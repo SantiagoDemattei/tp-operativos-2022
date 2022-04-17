@@ -1,0 +1,12 @@
+{
+    "files.associations": {
+        "cstdlib": "c",
+        "string.h": "c",
+        "stdio.h": "c",
+        "log.h": "c",
+        "main.h": "c",
+        "stdlib.h": "c",
+        "queue.h": "c",
+        "list.h": "c"
+    }
+}
