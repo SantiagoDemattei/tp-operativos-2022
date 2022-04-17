@@ -3,7 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <commons/collections/list.h>
+#include <../commons/collections/list.h>
 
 void iniciar_consola(int tamanio, char* path);
 t_list* obtener_instrucciones(char* path);

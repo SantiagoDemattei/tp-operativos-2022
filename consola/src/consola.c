@@ -34,3 +34,5 @@ t_list* obtener_instrucciones(char* path){
 }
 
 
+
+
