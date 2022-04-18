@@ -1,6 +1,8 @@
 #include "include/main.h"
 
 int main(int argc, char** argv) {
+    printf("Hello World!\n");
+
     if(argc != 3){
         return EXIT_FAILURE;
     }

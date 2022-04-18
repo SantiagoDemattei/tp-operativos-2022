@@ -1,37 +1,39 @@
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
+SRC_DIR = ./src
+_SRC = $(shell find ./src -type f -iname "*.c" -exec basename {} \;)
+SRC = $(patsubst %,$(SRC_DIR)/%,$(SRC))
 
--include ../makefile.init
+ODIR = ./obj
+_OBJ = $(_SRC:.c=.o)
+OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
-RM := rm -rf
+HEADERS = $(shell find ./include/*.h)
 
-ifneq ($(MAKECMDGOALS),clean)
-ifneq ($(strip $(C_DEPS)),)
--include $(C_DEPS)
-endif
-endif
+O_DIR = ./obj
+CC = gcc
 
--include ../makefile.defs
+CFLAGS = -c
 
-# Add inputs and outputs from these tool invocations to the build variables 
+LINK = -lcommons -lreadline -lpthread -lncurses -lm
 
-# All Target
-all: consola
+OUT_NAME = main.out
 
-# Tool invocations
-consola: $(OBJS)
-	@echo 'Building target: $@'
-	@echo 'Invoking: GCC C Linker'
-	gcc  -o "consola" $(OBJS) $(LIBS)
-	@echo 'Finished building target: $@'
-	@echo ' '
+.PHONY: makeFolder
 
-# Other Targets
+build: makeFolder $(OBJ)
+	$(CC) main.c -o $(OUT_NAME) $(OBJ) $(LINK)
+
+./obj/%.o: $(SRC_DIR)/%.c $(HEADERS)
+	$(CC) $(CFLAGS) -o $@ $< $(LINK)
+
+
+makeFolder:
+	@if [ ! -d ./obj ]; then \
+		mkdir obj; \
+	fi
+
+debug: CFLAGS := $(CFLAGS) -g
+debug: build
+
 clean:
-	-$(RM) $(EXECUTABLES)$(OBJS)$(C_DEPS) consola
-	-@echo ' '
-
-.PHONY: all clean dependents
-
--include ../makefile.targets
+	rm -rf obj
+	rm -rf *.out
