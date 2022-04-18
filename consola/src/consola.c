@@ -21,6 +21,11 @@ t_list* obtener_instrucciones(char* path){
     FILE* archivo = fopen(path, "r");
     t_list* lista_instrucciones = list_create();
 
+    if (archivo == NULL){
+        printf("Error: No se pudo abrir el archivo.\n");
+        exit(EXIT_FAILURE);
+    }
+
     //leer linea por linea del archivo
     char* linea = NULL;
     size_t capacidad = 0;

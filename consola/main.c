@@ -1,9 +1,8 @@
 #include "include/main.h"
 
 int main(int argc, char** argv) {
-    printf("Hello World!\n");
-
     if(argc != 3){
+        printf("%s", "Error: Cantidad de argumentos incorrecta.\n");
         return EXIT_FAILURE;
     }
 
