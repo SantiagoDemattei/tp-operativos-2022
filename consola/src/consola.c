@@ -2,7 +2,8 @@
 
 void iniciar_consola(int tamanio, char* path){
     t_list* lista_instrucciones = obtener_instrucciones(path);
-
+    // faltaria verificar acá qué elementos se guardaron en la lista
+    // mostrar_instrucciones(lista_instrucciones); VER ESTA FUNCION PARA MOSTRAR
     
     /*
     cargar_configuracion();
@@ -10,7 +11,6 @@ void iniciar_consola(int tamanio, char* path){
     enviar_info_al_kernel(tamanio, lista_instrucciones);
     */
 
-    list_destroy_and_destroy_elements(lista_instrucciones, free);
 }
 
 void print_instrucciones(char* instruccion){
@@ -31,8 +31,8 @@ t_list* obtener_instrucciones(char* path){
     size_t capacidad = 0;
     ssize_t read;
     while(read = getline(&linea, &capacidad, archivo) != -1){
-    	printf("Retrieved line of length %zu:\n", read);
-    	printf("%s", linea);
+    	// printf("Retrieved line of length %zu:\n", read);
+    	// printf("%s", linea);
         list_add(lista_instrucciones, linea);
     }
 
@@ -41,6 +41,9 @@ t_list* obtener_instrucciones(char* path){
     return lista_instrucciones;
 }
 
+void mostrar_instrucciones(t_list* lista_instrucciones){
+    list_iterate(lista_instrucciones, (void*)print_instrucciones);
+}
 
 
 
