@@ -3,10 +3,10 @@
 void iniciar_consola(int tamanio, char* path){
     t_list* lista_instrucciones = obtener_instrucciones(path);
     
-    // faltaria verificar acá qué elementos se guardaron en la lista
-    
-    /*
     cargar_configuracion();
+    
+
+    /*
     conectar_kernel();
     enviar_info_al_kernel(tamanio, lista_instrucciones);
     */

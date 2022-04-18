@@ -6,6 +6,7 @@
 #include <commons/collections/list.h>
 #include <commons/string.h>
 #include <string.h>
+#include "configuracion.h"
 
 typedef struct {
     char* instruccion;
