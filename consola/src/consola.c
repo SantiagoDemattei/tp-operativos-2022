@@ -2,8 +2,8 @@
 
 void iniciar_consola(int tamanio, char* path){
     t_list* lista_instrucciones = obtener_instrucciones(path);
+    
     // faltaria verificar acá qué elementos se guardaron en la lista
-    // mostrar_instrucciones(lista_instrucciones); VER ESTA FUNCION PARA MOSTRAR
     
     /*
     cargar_configuracion();
@@ -11,10 +11,7 @@ void iniciar_consola(int tamanio, char* path){
     enviar_info_al_kernel(tamanio, lista_instrucciones);
     */
 
-}
-
-void print_instrucciones(char* instruccion){
-    printf("Instruccion: %s\n", instruccion);
+    list_destroy_and_destroy_elements(lista_instrucciones, (void*) destruir_instruccion);
 }
 
 t_list* obtener_instrucciones(char* path){
@@ -30,19 +27,26 @@ t_list* obtener_instrucciones(char* path){
     char* linea = NULL;
     size_t capacidad = 0;
     ssize_t read;
-    while(read = getline(&linea, &capacidad, archivo) != -1){
-    	// printf("Retrieved line of length %zu:\n", read);
-    	// printf("%s", linea);
-        list_add(lista_instrucciones, linea);
+
+    while((read = getline(&linea, &capacidad, archivo)) != -1){
+        t_instruccion* instruccion = crear_instruccion(linea);
+        list_add(lista_instrucciones, instruccion);
     }
-
+    free(linea);
     fclose(archivo);
-
     return lista_instrucciones;
 }
 
-void mostrar_instrucciones(t_list* lista_instrucciones){
-    list_iterate(lista_instrucciones, (void*)print_instrucciones);
+t_instruccion* crear_instruccion(char* instruccion){
+    t_instruccion* instruccion_nueva = malloc(sizeof(t_instruccion)); // creo una instruccion
+    instruccion_nueva->instruccion = malloc(sizeof(char) * (strlen(instruccion) + 1)); // le asigno memoria para la instruccion (para el char en particular)
+    strcpy(instruccion_nueva->instruccion, instruccion); // copio el texto en la instruccion
+    return instruccion_nueva;
+}
+
+void destruir_instruccion(t_instruccion* instruccion){
+    free(instruccion->instruccion);
+    free(instruccion);
 }
 
 

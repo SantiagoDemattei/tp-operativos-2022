@@ -34,6 +34,9 @@ makeFolder:
 debug: CFLAGS := $(CFLAGS) -g
 debug: build
 
+valgrind: debug build
+	valgrind --leak-check=full --track-origins=yes --log-file=valgrind.log ./$(OUT_NAME)
+
 clean:
 	rm -rf obj
 	rm -rf *.out

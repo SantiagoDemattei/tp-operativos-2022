@@ -4,9 +4,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <commons/collections/list.h>
+#include <commons/string.h>
+#include <string.h>
+
+typedef struct {
+    char* instruccion;
+} t_instruccion;
 
 void iniciar_consola(int tamanio, char* path);
 t_list* obtener_instrucciones(char* path);
-void print_instrucciones(char* instruccion);
+t_instruccion* crear_instruccion(char* instruccion);
+void destruir_instruccion(t_instruccion* instruccion);
 
 #endif
