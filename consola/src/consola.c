@@ -3,7 +3,6 @@
 void iniciar_consola(int tamanio, char* path){
     t_list* lista_instrucciones = obtener_instrucciones(path);
 
-    list_iterate(lista_instrucciones, (void*) print_instrucciones); 
     
     /*
     cargar_configuracion();
@@ -25,9 +24,13 @@ t_list* obtener_instrucciones(char* path){
     //leer linea por linea del archivo
     char* linea = NULL;
     size_t capacidad = 0;
-    while(getline(&linea, &capacidad, archivo) != -1){
+    ssize_t read;
+    while(read = getline(&linea, &capacidad, archivo) != -1){
+    	printf("Retrieved line of length %zu:\n", read);
+    	printf("%s", linea);
         list_add(lista_instrucciones, linea);
     }
+
     fclose(archivo);
 
     return lista_instrucciones;

@@ -1,31 +1,37 @@
-# Globales
-CC = gcc
-OUTFILE = consola.out
+################################################################################
+# Automatically-generated file. Do not edit!
+################################################################################
 
-### Reglas ###
+-include ../makefile.init
 
-SRC = $(shell find ./src -type f -iname "*.c" -exec basename {} \;)
-OBJ = $(SRC:%.c=./obj/%.o)
+RM := rm -rf
 
-build: makefolder $(OBJ)
-	$(CC) -o $(OUTFILE) main.c $(OBJ)
+ifneq ($(MAKECMDGOALS),clean)
+ifneq ($(strip $(C_DEPS)),)
+-include $(C_DEPS)
+endif
+endif
 
-LINK = -lpthread -lcommons -lm
-CFLAGS = -c
+-include ../makefile.defs
 
-debug: CFLAGS := $(CFLAGS) -g
-debug: makeshared_debug build
+# Add inputs and outputs from these tool invocations to the build variables 
 
-./obj/%.o: ./src/%.c
-	$(CC) $(CFLAGS) $< -o $@ $(LINK)
+# All Target
+all: consola
 
-makefolder:
-	if [ ! -d ./obj ]; then mkdir obj; fi
+# Tool invocations
+consola: $(OBJS)
+	@echo 'Building target: $@'
+	@echo 'Invoking: GCC C Linker'
+	gcc  -o "consola" $(OBJS) $(LIBS)
+	@echo 'Finished building target: $@'
+	@echo ' '
 
-
-# Clean
-
+# Other Targets
 clean:
-	rm -rf obj
-	rm -rf *.out
-	rm -rf *.log
+	-$(RM) $(EXECUTABLES)$(OBJS)$(C_DEPS) consola
+	-@echo ' '
+
+.PHONY: all clean dependents
+
+-include ../makefile.targets

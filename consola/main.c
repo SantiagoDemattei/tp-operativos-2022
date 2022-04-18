@@ -1,10 +1,10 @@
 #include "include/main.h"
 
 int main(int argc, char** argv) {
-    if(argc != 2){ 
+    if(argc != 3){
         return EXIT_FAILURE;
     }
-    
+
     int tamanio = atoi(argv[1]);
     char* path = argv[2];
 
