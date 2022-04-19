@@ -3,8 +3,8 @@
 void iniciar_consola(int tamanio, char* path){
     t_list* lista_instrucciones = obtener_instrucciones(path);
     t_datos_conexion* datos_conexion = leer_configuracion();
-    //printf("%s", datos_conexion->ip); POR ALGUN MOTIVO NO FUNCIONA
-    //printf("%s", datos_conexion->puerto);
+    printf("%s\n", datos_conexion->ip); 
+    printf("%s\n", datos_conexion->puerto);
 
     /*
     conectar_kernel();

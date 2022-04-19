@@ -21,6 +21,7 @@ typedef struct {
 
 t_datos_conexion* leer_configuracion();
 void liberar_estructura_datos(t_datos_conexion* datos);
+char* eliminar_caracter_retorno(char* cadena);
 
 
 #endif

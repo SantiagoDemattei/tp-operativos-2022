@@ -12,20 +12,34 @@ t_datos_conexion* leer_configuracion(){
 
     char* ip_kernel = config_get_string_value(nuevo_config, "IP_KERNEL"); // leo ip
     char* puerto_kernel = config_get_string_value(nuevo_config, "PUERTO_KERNEL"); // leo puerto
-    
+
+	ip_kernel = eliminar_caracter_retorno(ip_kernel);
+	puerto_kernel = eliminar_caracter_retorno(puerto_kernel);
+
     t_datos_conexion* datos = malloc(sizeof(t_datos_conexion)); // creo estructura de datos de conexion
     datos->ip = malloc(sizeof(char) * (strlen(ip_kernel) + 1)); // le asigno memoria para la ip
     datos->puerto = malloc(sizeof(char) * (strlen(puerto_kernel) + 1)); // le asigno memoria para el puerto
     strcpy(datos->ip, ip_kernel); // copio la ip
     strcpy(datos->puerto, puerto_kernel); // copio el puerto 
 
-    printf("%s\n",datos->ip); // LOS DATOS SE GUARDAN BIEN!!!
-    printf("%s\n",datos->puerto); // LOS DATOS SE GUARDAN BIEN!!!
-
     config_destroy(nuevo_config); // libero la memoria del config
     return datos;
     
 }
+
+
+char* eliminar_caracter_retorno(char* cadena){
+    int i = 0;
+    while(cadena[i] != '\0'){
+        if(cadena[i] == '\r'){
+            cadena[i] = '\0';
+        }
+        i++;
+    }
+    return cadena;
+}
+
+
 
 void liberar_estructura_datos(t_datos_conexion* datos){
     free(datos->ip);
