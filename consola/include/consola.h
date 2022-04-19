@@ -7,6 +7,8 @@
 #include <commons/string.h>
 #include <string.h>
 #include "configuracion.h"
+#include "conexion.h"
+
 
 typedef struct {
     char* instruccion;

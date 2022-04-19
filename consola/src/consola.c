@@ -3,14 +3,11 @@
 void iniciar_consola(int tamanio, char* path){
     t_list* lista_instrucciones = obtener_instrucciones(path);
     t_datos_conexion* datos_conexion = leer_configuracion();
-    printf("%s\n", datos_conexion->ip); 
-    printf("%s\n", datos_conexion->puerto);
-
-    /*
-    conectar_kernel();
-    enviar_info_al_kernel(tamanio, lista_instrucciones);
+    
+    int conexion=crear_conexion(datos_conexion);
+    /*enviar_info_al_kernel(tamanio, lista_instrucciones);
     */
-
+    
     list_destroy_and_destroy_elements(lista_instrucciones, (void*) destruir_instruccion);
     liberar_estructura_datos(datos_conexion);
 }
