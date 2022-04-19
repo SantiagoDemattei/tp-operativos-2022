@@ -2,9 +2,9 @@
 
 void iniciar_consola(int tamanio, char* path){
     t_list* lista_instrucciones = obtener_instrucciones(path);
-    
-    cargar_configuracion();
-    
+    t_datos_conexion* datos_conexion = leer_configuracion();
+    //printf("%s", datos_conexion->ip); POR ALGUN MOTIVO NO FUNCIONA
+    //printf("%s", datos_conexion->puerto);
 
     /*
     conectar_kernel();
@@ -12,6 +12,7 @@ void iniciar_consola(int tamanio, char* path){
     */
 
     list_destroy_and_destroy_elements(lista_instrucciones, (void*) destruir_instruccion);
+    liberar_estructura_datos(datos_conexion);
 }
 
 t_list* obtener_instrucciones(char* path){

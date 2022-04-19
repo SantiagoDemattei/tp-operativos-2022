@@ -14,7 +14,13 @@ typedef struct {
 		t_dictionary *properties;
 	} t_config;
 
+typedef struct {
+    char* ip;
+    char* puerto;
+} t_datos_conexion;
 
+t_datos_conexion* leer_configuracion();
+void liberar_estructura_datos(t_datos_conexion* datos);
 
 
 #endif
