@@ -11,8 +11,8 @@ int crear_conexion(t_datos_conexion* datos_conexion)
 	hints.ai_flags = AI_PASSIVE;
 
 	getaddrinfo(datos_conexion->ip,  datos_conexion->puerto, &hints, &server_info);
-    printf("estoy conectando a %s\n", datos_conexion->ip); 
-    printf("estoy conectando a %s\n", datos_conexion->puerto);
+    printf("estoy conectando a la ip %s\n", datos_conexion->ip); 
+    printf("estoy conectando a el puerto %s\n", datos_conexion->puerto);
 	// Ahora vamos a crear el socket.
 	int socket_kernel = socket(server_info -> ai_family, server_info -> ai_socktype, server_info -> ai_protocol);
 	// Ahora que tenemos el socket, vamos a conectarlo
