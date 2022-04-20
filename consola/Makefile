@@ -19,12 +19,16 @@ OUT_NAME = main.out
 
 .PHONY: makeFolder
 
-build: makeFolder $(OBJ)
-	$(CC) main.c -o $(OUT_NAME) $(OBJ) $(LINK)
+SHARED= $(shell find ../shared/obj/*.o)
+
+build: makeFolder makeshared $(OBJ)
+	$(CC) main.c -o $(OUT_NAME) $(OBJ) $(LINK) $(SHARED)
 
 ./obj/%.o: $(SRC_DIR)/%.c $(HEADERS)
 	$(CC) $(CFLAGS) -o $@ $< $(LINK)
 
+makeshared: 
+	make -C ../shared
 
 makeFolder:
 	@if [ ! -d ./obj ]; then \

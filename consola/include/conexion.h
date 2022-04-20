@@ -10,6 +10,7 @@
 #include<string.h>
 #include<commons/log.h>
 #include "configuracion.h"
+#include "../../shared/include/sockets.h"
 
 typedef enum
 {
@@ -29,11 +30,11 @@ typedef struct
 	t_buffer* buffer;
 } t_paquete;
 
-int crear_conexion(t_datos_conexion* datos_conexion);
+//int crear_conexion(t_datos_conexion* datos_conexion);
 void enviar_mensaje(char* mensaje, int socket_cliente);
 void* serializar_paquete(t_paquete* paquete, int bytes);
 void eliminar_paquete(t_paquete* paquete);
-void liberar_conexion(int socket_cliente);
+// void liberar_conexion(int socket_cliente);
 void enviar_paquete(t_paquete* paquete, int socket_cliente);
 t_paquete* crear_paquete(void);
 void crear_buffer(t_paquete* paquete);
