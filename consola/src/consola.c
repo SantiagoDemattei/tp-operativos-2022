@@ -4,7 +4,12 @@ void iniciar_consola(int tamanio, char* path){
     t_list* lista_instrucciones = obtener_instrucciones(path);
     t_datos_conexion* datos_conexion = leer_configuracion();
     
-    int conexion=crear_conexion(datos_conexion);
+    int conexion = crear_conexion(datos_conexion);
+    t_paquete* paquete = crear_paquete();
+    // Ahora tenemos que hacer un agregar_a_paquete(paquete, (un struct que tenga las instrucciones y el tamanio a la vez), longitud del mensaje)
+
+    liberar_conexion(conexion);
+
     /*enviar_info_al_kernel(tamanio, lista_instrucciones);
     */
     
