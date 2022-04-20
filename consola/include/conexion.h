@@ -11,6 +11,24 @@
 #include<commons/log.h>
 #include "configuracion.h"
 
+typedef enum
+{
+	MENSAJE,
+	PAQUETE
+}op_code;
+
+typedef struct
+{
+	int size;
+	void* stream;
+} t_buffer;
+
+typedef struct
+{
+	op_code codigo_operacion;
+	t_buffer* buffer;
+} t_paquete;
+
 int crear_conexion(t_datos_conexion* datos_conexion);
 void enviar_mensaje(char* mensaje, int socket_cliente);
 void* serializar_paquete(t_paquete* paquete, int bytes);
