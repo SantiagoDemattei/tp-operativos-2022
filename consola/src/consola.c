@@ -6,12 +6,13 @@ void iniciar_consola(int tamanio, char* path){
 
     t_log* logger = log_create("consola.log", "CONSOLA", true, LOG_LEVEL_INFO);
 
-    int conexion = crear_conexion_consola(datos_conexion,logger);
+    int conexion = crear_conexion_consola(datos_conexion, logger);
 
+    send_aprobar_operativos(conexion, 7, 8);
     // t_paquete* paquete = crear_paquete();
 
     // Ahora tenemos que hacer un agregar_a_paquete(paquete, (un struct que tenga las instrucciones y el tamanio a la vez), longitud del mensaje)
-    printf("Estoy aca %d",conexion);
+    printf("Estoy aca %d\n", conexion);
     liberar_conexion(conexion);
     
 

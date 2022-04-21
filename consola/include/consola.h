@@ -10,6 +10,7 @@
 #include "configuracion.h"
 #include "conexion.h"
 #include "../../shared/include/sockets.h"
+#include "../../shared/include/protocolo.h"
 
 typedef struct {
     char* instruccion;
