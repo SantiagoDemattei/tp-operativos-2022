@@ -30,7 +30,7 @@ typedef struct
 	t_buffer* buffer;
 } t_paquete;
 
-//int crear_conexion(t_datos_conexion* datos_conexion);
+int crear_conexion_consola(t_config_consola* datos_conexion, t_log* logger);
 void enviar_mensaje(char* mensaje, int socket_cliente);
 void* serializar_paquete(t_paquete* paquete, int bytes);
 void eliminar_paquete(t_paquete* paquete);

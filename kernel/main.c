@@ -1,13 +1,15 @@
 #include "include/main.h"
-/*
+
 int main(void){
 
-logger = log_create("log.log", "KERNEL", true , LOG_LEVEL_DEBUG);
-int server_fd = iniciar_servidor();
-log_info(logger, "Kernel listo para recibir al cliente");
-int cliente_fd = esperar_cliente(server_fd);
+    int socket_kernel;   	
+    t_log* logger = log_create("kernel.log", "KERNEL", true, LOG_LEVEL_INFO);
+    t_config_kernel* configuracion_kernel = leer_configuracion();
+    socket_kernel = crear_comunicacion(configuracion_kernel, logger);
 
 
-return 0;
+    liberar_estructuras(configuracion_kernel);
+    log_destroy(logger);
 
-}*/
+    return EXIT_SUCCESS;
+}

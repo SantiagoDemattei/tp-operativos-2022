@@ -1,14 +1,10 @@
 #include "../include/conexion.h"
 
-int crear_conexion(t_datos_conexion* datos_conexion)
+int crear_conexion_consola(t_config_consola* datos_conexion, t_log* logger)
 {
-	struct addrinfo hints;
-	struct addrinfo *server_info;
-	t_log* logger = log_create("consola.log","CONSOLA",true,LOG_LEVEL_INFO);
-
-	int socket_Kernel = iniciar_servidor(logger,"KERNEL",datos_conexion->ip,datos_conexion->puerto);
- 	
-	liberar_conexion(socket_Kernel);
+	int socket_Kernel = crear_conexion_cliente(logger,"KERNEL",datos_conexion->ip,datos_conexion->puerto);
+	 
+	return socket_Kernel;
 }
 
 void enviar_mensaje(char* mensaje, int socket_cliente)

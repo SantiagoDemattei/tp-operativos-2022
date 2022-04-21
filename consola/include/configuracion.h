@@ -2,9 +2,9 @@
 #define CONFIG_H_
 
 #include <stdio.h>
+#include <commons/config.h>
 #include <stdlib.h>
 #include <string.h>
-#include <commons/config.h>
 #include <commons/string.h>
 #include <commons/log.h>
 #include "commons/collections/dictionary.h"
@@ -17,10 +17,10 @@ typedef struct {
 typedef struct {
     char* ip;
     char* puerto;
-} t_datos_conexion;
+} t_config_consola;
 
-t_datos_conexion* leer_configuracion();
-void liberar_estructura_datos(t_datos_conexion* datos);
+t_config_consola* leer_configuracion();
+void liberar_estructura_datos(t_config_consola* datos);
 char* eliminar_caracter_retorno(char* cadena);
 
 

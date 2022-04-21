@@ -2,18 +2,22 @@
 
 void iniciar_consola(int tamanio, char* path){
     t_list* lista_instrucciones = obtener_instrucciones(path);
-    t_datos_conexion* datos_conexion = leer_configuracion();
-    
-    int conexion = crear_conexion(datos_conexion);
-    t_paquete* paquete = crear_paquete();
-    // Ahora tenemos que hacer un agregar_a_paquete(paquete, (un struct que tenga las instrucciones y el tamanio a la vez), longitud del mensaje)
+    t_config_consola* datos_conexion = leer_configuracion();
 
+    t_log* logger = log_create("consola.log", "CONSOLA", true, LOG_LEVEL_INFO);
+
+    int conexion = crear_conexion_consola(datos_conexion,logger);
+
+    // t_paquete* paquete = crear_paquete();
+
+    // Ahora tenemos que hacer un agregar_a_paquete(paquete, (un struct que tenga las instrucciones y el tamanio a la vez), longitud del mensaje)
+    printf("Estoy aca %d",conexion);
     liberar_conexion(conexion);
     
 
     /*enviar_info_al_kernel(tamanio, lista_instrucciones);
     */
-    
+    log_destroy(logger);
     list_destroy_and_destroy_elements(lista_instrucciones, (void*) destruir_instruccion);
     liberar_estructura_datos(datos_conexion);
 }

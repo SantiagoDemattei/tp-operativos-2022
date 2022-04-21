@@ -1,7 +1,5 @@
 #include "../include/sockets.h"
 
-
-
 // INICIA SERVER ESCUCHANDO EN IP:PUERTO
 int iniciar_servidor(t_log* logger, const char* name, char* ip, char* puerto) {
     int socket_servidor;
@@ -44,8 +42,7 @@ int iniciar_servidor(t_log* logger, const char* name, char* ip, char* puerto) {
     listen(socket_servidor, SOMAXCONN); // Escuchando (hasta SOMAXCONN conexiones simultaneas)
     // Aviso al logger
     
-    printf("%s",servinfo);
-    log_info(logger, "Esperando en %s: %s (%s)\n", ip, puerto, name);
+    log_info(logger, "Esperando a %s: %s (%s)\n", ip, puerto, name);
     
     freeaddrinfo(servinfo);
     
@@ -65,7 +62,7 @@ int esperar_cliente(t_log* logger, const char* name, int socket_servidor) {
 }
 
 // CLIENTE SE INTENTA CONECTAR A SERVER ESCUCHANDO EN IP:PUERTO
-/*int crear_conexion(t_log* logger, const char* server_name, char* ip, char* puerto) {
+int crear_conexion_cliente(t_log* logger, const char* server_name, char* ip, char* puerto) {
     struct addrinfo hints, *servinfo;
 
     // Init de hints
@@ -97,7 +94,7 @@ int esperar_cliente(t_log* logger, const char* name, int socket_servidor) {
     freeaddrinfo(servinfo);
 
     return socket_cliente;
-}*/
+}
 
 // CERRAR CONEXION
 void liberar_conexion(int socket_cliente) {

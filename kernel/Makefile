@@ -15,7 +15,7 @@ CFLAGS = -c
 
 LINK = -lcommons -lreadline -lpthread -lncurses -lm
 
-OUT_NAME = mainConsola.out
+OUT_NAME = mainKernel.out
 
 .PHONY: makeFolder
 
