@@ -35,7 +35,7 @@ bool recv_aprobar_operativos(int fd, uint8_t* nota1, uint8_t* nota2) {
         free(stream);
         return false;
     }
-
+    
     deserializar_aprobar_operativos(stream, nota1, nota2);
 
     free(stream);
