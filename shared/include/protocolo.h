@@ -14,7 +14,7 @@
 
 
 bool send_iniciar_consola(int fd, t_list* instrucciones, int tamanioConsola);
-bool recv_iniciar_consola(int fd, t_list* instrucciones, int tamanioConsola);
+bool recv_iniciar_consola(int fd, t_list** instrucciones, int* tamanioConsola);
 
 bool send_debug(int fd);
 

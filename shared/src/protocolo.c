@@ -16,13 +16,13 @@ static void* serializar_t_list_instrucciones(size_t* size, t_list* lista){
 
     // Serializo las instrucciones
     list_it = list_iterator_create(lista);
-    int offset = 0;
+    int offset = 0; // desplazamiento
     for(int i=0; list_iterator_has_next(list_it); i++){
         t_instruccion* instruccion = list_iterator_next(list_it);
         memcpy(stream + offset, instruccion->identificador, strlen(instruccion->identificador));
-        offset += strlen(instruccion->identificador);
+        offset += strlen(instruccion->identificador); // desplazo en la longitud del identificador (= bytes ocupados por el identificador), recordar que sizeof(char) = 1
         memcpy(stream + offset, instruccion->argumentos, sizeof(int)*list_size(instruccion->argumentos));
-        offset += sizeof(int)*list_size(instruccion->argumentos);
+        offset += sizeof(int)*list_size(instruccion->argumentos); // desplazo en el tamaño en bytes de la lista de argumentos
     }
     list_iterator_destroy(list_it);
     return stream;
@@ -38,6 +38,7 @@ static void* serializar_iniciar_consola(size_t* size, t_list* instrucciones, int
         sizeof(op_code) +   // tamanio del op_code
         sizeof(size_t) + // size total del stream
         sizeof(int) + // tamanio de la consola
+        sizeof(size_t) + // size del stream de instrucciones
         size_instrucciones; // tamanio de la lista de instrucciones
     
     void* stream = malloc(size_total);
@@ -49,7 +50,9 @@ static void* serializar_iniciar_consola(size_t* size, t_list* instrucciones, int
     memcpy(stream, &cop, sizeof(op_code)); // op_code
     memcpy(stream + sizeof(op_code), &size_payload, sizeof(size_t)); // size del payload
     memcpy(stream + sizeof(op_code) + sizeof(size_t), &tamanioConsola, sizeof(int)); // tamanio de la consola
-    memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(int), stream_instrucciones, size_instrucciones); // instrucciones
+    memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(int), &size_instrucciones, sizeof(size_t)); // size del stream de instrucciones
+    memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(int) + sizeof(size_t), stream_instrucciones, size_instrucciones); // stream de instrucciones
+
     free(stream_instrucciones);
     *size=size_total;
 
@@ -80,11 +83,11 @@ static t_list* deserializar_t_list_instrucciones(void* stream, size_t size){
 static void deserializar_iniciar_consola(void* stream, t_list** instrucciones, int* tamanioConsola) {
     size_t size_instrucciones; 
     memcpy(tamanioConsola, stream, sizeof(int)); // tamanio de la consola
-    memcpy(&size_instrucciones, stream + sizeof(int), sizeof(size_t)); // tamanio de la lista de instrucciones
+    memcpy(&size_instrucciones, stream + sizeof(int), sizeof(size_t)); // size del stream de instrucciones
     void* stream_instrucciones = malloc(size_instrucciones);
-    memcpy(stream_instrucciones, stream + sizeof(int) + sizeof(size_t), size_instrucciones); // instrucciones
-    t_list* lista_instrucciones = deserializar_t_list_instrucciones(stream_instrucciones, size_instrucciones);
-    *instrucciones = lista_instrucciones;
+    memcpy(stream_instrucciones, stream + sizeof(int) + sizeof(size_t), size_instrucciones); // stream de instrucciones
+    t_list* lista = deserializar_t_list_instrucciones(stream_instrucciones, size_instrucciones);
+    *instrucciones = lista;
 
     free(stream_instrucciones);
 }
@@ -100,7 +103,7 @@ bool send_iniciar_consola(int fd, t_list* instrucciones, int tamanioConsola) {
     return true;
 }
 
-bool recv_iniciar_consola(int fd, t_list* instrucciones, int tamanioConsola) {
+bool recv_iniciar_consola(int fd, t_list** instrucciones, int* tamanioConsola) {
     size_t size;
     if(recv(fd, &size, sizeof(size_t), 0) != sizeof(size_t)) {
         return false;
@@ -112,8 +115,11 @@ bool recv_iniciar_consola(int fd, t_list* instrucciones, int tamanioConsola) {
         free(stream);
         return false;
     }
+    t_list* r_instrucciones;
 
-    deserializar_iniciar_consola(stream, &instrucciones, &tamanioConsola);
+    deserializar_iniciar_consola(stream, &r_instrucciones, tamanioConsola);
+    *instrucciones = r_instrucciones;
+
     free(stream);
     return true;
 }
