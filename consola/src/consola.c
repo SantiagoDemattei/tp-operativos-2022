@@ -4,7 +4,7 @@ void iniciar_consola(int tamanio, char* path){
     t_log* logger = log_create("consola.log", "CONSOLA", true, LOG_LEVEL_INFO);
 
     t_list* lista_instrucciones = obtener_instrucciones(path, logger);
-    t_config_consola* datos_conexion = leer_configuracion();
+    t_configuracion_consola* datos_conexion = leer_configuracion();
     mostrar_lista_instrucciones(lista_instrucciones, logger);
 
     int conexion = crear_conexion_consola(datos_conexion, logger);

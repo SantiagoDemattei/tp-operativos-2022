@@ -8,6 +8,8 @@
         "stdlib.h": "c",
         "queue.h": "c",
         "list.h": "c",
-        "configuracion.h": "c"
+        "configuracion.h": "c",
+        "sockets.h": "c",
+        "bibliotecas.h": "c"
     }
 }

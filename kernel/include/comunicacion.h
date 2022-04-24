@@ -21,7 +21,7 @@ typedef struct {
     char* server_name;
 } t_procesar_conexion_args;
 
-int crear_comunicacion(t_config_kernel* configuracion_kernel, t_log* logger);
+int crear_comunicacion(t_configuracion_kernel* configuracion_kernel, t_log* logger);
 int server_escuchar(t_log* logger, char* server_name, int server_socket);
 static void procesar_conexion(void* void_args);
 

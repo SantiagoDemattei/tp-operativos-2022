@@ -12,7 +12,7 @@
 #include "configuracion.h"
 #include "../../shared/include/sockets.h"
 
-int crear_conexion_consola(t_config_consola* datos_conexion, t_log* logger);
+int crear_conexion_consola(t_configuracion_consola* datos_conexion, t_log* logger);
 
 // void liberar_conexion(int socket_cliente);
 

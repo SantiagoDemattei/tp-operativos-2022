@@ -21,7 +21,7 @@ OUT_NAME = mainConsola.out
 
 SHARED= $(shell find ../shared/obj/*.o)
 
-build: makeFolder makeshared $(OBJ)
+all: makeFolder makeshared $(OBJ)
 	$(CC) main.c -o $(OUT_NAME) $(OBJ) $(LINK) $(SHARED)
 
 ./obj/%.o: $(SRC_DIR)/%.c $(HEADERS)

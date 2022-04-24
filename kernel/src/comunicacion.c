@@ -1,6 +1,6 @@
 #include "../include/comunicacion.h"
 
-int crear_comunicacion(t_config_kernel* configuracion_kernel, t_log* logger){
+int crear_comunicacion(t_configuracion_kernel* configuracion_kernel, t_log* logger){
     
     int socket_kernel = iniciar_servidor(logger, "CONSOLA", configuracion_kernel->ip_memoria, configuracion_kernel->puerto_escucha);
 

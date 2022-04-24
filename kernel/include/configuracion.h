@@ -7,15 +7,16 @@
 #include <string.h>
 #include <commons/string.h>
 #include <commons/log.h>
-#include "commons/collections/dictionary.h"
-#include <commons/config.h>
+#include "../../shared/include/bibliotecas.h"
 
+
+/*
 typedef struct {
 		char *path;
 		t_dictionary *properties;
 	} t_config;
-
-typedef struct t_config_kernel{
+*/
+typedef struct t_configuracion_kernel{
     char* ip_memoria;
     char* puerto_memoria;
     char* ip_cpu;
@@ -27,9 +28,9 @@ typedef struct t_config_kernel{
     char* alfa;
     int grado_multiprogramacion;
     char* tiempo_maximo_bloqueado; 
-} t_config_kernel;
+} t_configuracion_kernel;
 
-t_config_kernel* leer_configuracion();
+t_configuracion_kernel* leer_configuracion();
 
 
 #endif

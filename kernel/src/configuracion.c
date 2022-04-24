@@ -1,6 +1,6 @@
 #include "../include/configuracion.h"
 
-t_config_kernel* leer_configuracion(){
+t_configuracion_kernel* leer_configuracion(){
 
     t_config* nuevo_config; // revisar struct (no importa el de commons)
     nuevo_config = config_create("./kernel.config");
@@ -22,7 +22,7 @@ t_config_kernel* leer_configuracion(){
     char* tiempo_maximo_bloqueado = config_get_string_value(nuevo_config, "TIEMPO_MAXIMO_BLOQUEADO"); // leo tiempo maximo bloqueado
 
 
-    t_config_kernel* datos = malloc(sizeof(t_config_kernel)); // creo estructura de datos de conexion
+    t_configuracion_kernel* datos = malloc(sizeof(t_configuracion_kernel)); // creo estructura de datos de conexion
     datos->ip_memoria = malloc(strlen(ip_memoria)+1);
     strcpy(datos->ip_memoria, ip_memoria);
     datos->puerto_memoria = malloc(strlen(puerto_memoria)+1);

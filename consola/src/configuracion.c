@@ -1,7 +1,7 @@
 #include "../include/configuracion.h"
 
 
-t_config_consola* leer_configuracion(){
+t_configuracion_consola* leer_configuracion(){
 
     t_config* nuevo_config; // revisar struct (no importa el de commons)
     nuevo_config = config_create("./consola.config");
@@ -15,7 +15,7 @@ t_config_consola* leer_configuracion(){
 
 	ip_kernel = eliminar_caracter_retorno(ip_kernel);
 
-    t_config_consola* datos = malloc(sizeof(t_config_consola)); // creo estructura de datos de configuracion
+    t_configuracion_consola* datos = malloc(sizeof(t_configuracion_consola)); // creo estructura de datos de configuracion
     datos->ip = malloc(sizeof(char) * (strlen(ip_kernel) + 1)); // le asigno memoria para la ip
     strcpy(datos->ip, ip_kernel); // copio la ip
     datos->puerto = malloc(sizeof(char) * (strlen(puerto_kernel) + 1)); // le asigno el puerto
@@ -39,7 +39,7 @@ char* eliminar_caracter_retorno(char* cadena){
 
 
 
-void liberar_estructura_datos(t_config_consola* datos){
+void liberar_estructura_datos(t_configuracion_consola* datos){
     free(datos->ip);
     free(datos->puerto);
     free(datos);
