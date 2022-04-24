@@ -1,16 +1,6 @@
 #include "../include/protocolo.h"
 
 // INICIAR CONSOLA
-static void* serializar_t_list_argumentos(size_t* size, t_list* lista){
-    void* stream = malloc(size);
-    int offset = 0;
-    int i;
-    for(i = 0; i < list_size(lista); i++){
-        memcpy(stream + offset, list_get(lista, i), sizeof(int));
-        offset += sizeof(int);
-    }
-    return stream;
-}
 
 static void* serializar_t_list_instrucciones(size_t* size, t_list* lista){
     // calculo tamaño en bytes de la lista de instrucciones
@@ -26,14 +16,13 @@ static void* serializar_t_list_instrucciones(size_t* size, t_list* lista){
 
     // Serializo las instrucciones
     list_it = list_iterator_create(lista);
+    int offset = 0;
     for(int i=0; list_iterator_has_next(list_it); i++){
         t_instruccion* instruccion = list_iterator_next(list_it);
-        // Serializo el identificador
-        memcpy(stream + i*(strlen(instruccion->identificador) + sizeof(int)*list_size(instruccion->argumentos)), instruccion->identificador, strlen(instruccion->identificador));
-        // Serializo los argumentos
-        void* stream_argumentos = serializar_t_list_argumentos(sizeof(int)*list_size(instruccion->argumentos), instruccion->argumentos);
-        memcpy(stream + i*(strlen(instruccion->identificador) + sizeof(int)*list_size(instruccion->argumentos)) + strlen(instruccion->identificador), stream_argumentos, sizeof(int)*list_size(instruccion->argumentos));
-        free(stream_argumentos);
+        memcpy(stream + offset, instruccion->identificador, strlen(instruccion->identificador));
+        offset += strlen(instruccion->identificador);
+        memcpy(stream + offset, instruccion->argumentos, sizeof(int)*list_size(instruccion->argumentos));
+        offset += sizeof(int)*list_size(instruccion->argumentos);
     }
     list_iterator_destroy(list_it);
     return stream;
