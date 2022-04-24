@@ -14,12 +14,8 @@
 
 #include "../../shared/include/sockets.h"
 #include "../../shared/include/protocolo.h"
+#include "../../shared/include/bibliotecas.h"
 
-typedef struct {
-    t_log* log;
-    int fd;
-    char* server_name;
-} t_procesar_conexion_args;
 
 int crear_comunicacion(t_configuracion_kernel* configuracion_kernel, t_log* logger);
 int server_escuchar(t_log* logger, char* server_name, int server_socket);

@@ -7,13 +7,10 @@
 #include <commons/string.h>
 #include <commons/log.h>
 #include "../../shared/include/bibliotecas.h"
+#include "../../shared/include/estructuras.h"
 
-typedef struct {
-    char* ip;
-    char* puerto;
-} t_configuracion_consola;
 
-t_configuracion_consola* leer_configuracion();
+t_configuracion_consola* leer_configuracion(t_log* logger);
 void liberar_estructura_datos(t_configuracion_consola* datos);
 char* eliminar_caracter_retorno(char* cadena);
 

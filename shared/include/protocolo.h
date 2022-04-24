@@ -9,16 +9,12 @@
 #include <stdint.h>
 #include <string.h>
 #include <stdlib.h>
-
-typedef enum {
-    //AGREGAR MAS CODIGOS PARA CONEXION
-    DEBUG = 69,
-    APROBAR_OPERATIVOS,
-} op_code;
+#include <commons/collections/list.h>
+#include "estructuras.h"
 
 
-bool send_aprobar_operativos(int fd, uint8_t  nota1, uint8_t  nota2);
-bool recv_aprobar_operativos(int fd, uint8_t* nota1, uint8_t* nota2);
+bool send_iniciar_consola(int fd, t_list* instrucciones, int tamanioConsola);
+bool recv_iniciar_consola(int fd, t_list* instrucciones, int tamanioConsola);
 
 bool send_debug(int fd);
 

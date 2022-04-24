@@ -1,12 +1,12 @@
 #include "../include/configuracion.h"
 
 
-t_configuracion_consola* leer_configuracion(){
+t_configuracion_consola* leer_configuracion(t_log* logger) {
 
     t_config* nuevo_config; // revisar struct (no importa el de commons)
     nuevo_config = config_create("./consola.config");
     if(nuevo_config == NULL){
-        printf("Error: No se pudo abrir el archivo de configuracion de consola\n");
+        log_info(logger, "Error: No se pudo abrir el archivo de configuracion de consola");
         exit(EXIT_FAILURE);
     }
 

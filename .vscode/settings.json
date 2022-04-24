@@ -10,6 +10,7 @@
         "list.h": "c",
         "configuracion.h": "c",
         "sockets.h": "c",
-        "bibliotecas.h": "c"
+        "bibliotecas.h": "c",
+        "estructuras.h": "c"
     }
 }

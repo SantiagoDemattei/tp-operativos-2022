@@ -1,26 +1,19 @@
 #include "../include/consola.h"
 
-void iniciar_consola(int tamanio, char* path){
-    t_log* logger = log_create("consola.log", "CONSOLA", true, LOG_LEVEL_INFO);
+int iniciar_consola(int tamanio, char* path, t_log* logger) {
 
     t_list* lista_instrucciones = obtener_instrucciones(path, logger);
-    t_configuracion_consola* datos_conexion = leer_configuracion();
-    mostrar_lista_instrucciones(lista_instrucciones, logger);
+    t_configuracion_consola* datos_conexion = leer_configuracion(logger);
+    loggear_lista_instrucciones(lista_instrucciones, logger);
 
     int conexion = crear_conexion_consola(datos_conexion, logger);
 
-
-    send_aprobar_operativos(conexion, 7, 8); // ES PARA PRUEBA, TENEMOS QUE CREAR UN OP_CODE Y MANDAR LA LISTA DE INSTRUCCIONES CON UNA ACCION ASOCIADA A ESE OP_CODE
-
-    printf("Estoy aca %d\n", conexion);
-    liberar_conexion(conexion);
+    send_iniciar_consola(conexion, lista_instrucciones, tamanio);
     
-
-    /*enviar_info_al_kernel(tamanio, lista_instrucciones);
-    */
-    log_destroy(logger);
     list_destroy_and_destroy_elements(lista_instrucciones, (void*) destruir_instruccion);
     liberar_estructura_datos(datos_conexion);
+
+    return conexion;
 }
 
 t_list* obtener_instrucciones(char* path, t_log* logger){
@@ -28,8 +21,6 @@ t_list* obtener_instrucciones(char* path, t_log* logger){
     t_list* lista_instrucciones = list_create();
 
     if (archivo == NULL){
-        printf("Error: No se pudo abrir el archivo de instrucciones.\n");
-        //loggear error
         log_info(logger, "Error: No se pudo abrir el archivo de instrucciones.");
         exit(EXIT_FAILURE);
     }
@@ -57,8 +48,8 @@ t_instruccion* crear_instruccion(char* instruccion, t_log* logger){
         log_info(logger, "Error: No se pudo leer la instruccion.");
         exit(EXIT_FAILURE);
     }
-    instruccion_nueva->instruccion = malloc(strlen(token) + 1);
-    strcpy(instruccion_nueva->instruccion, token);
+    instruccion_nueva->identificador = malloc(strlen(token) + 1);
+    strcpy(instruccion_nueva->identificador, token);
     while(token != NULL){
         token = strtok(NULL, " "); // pongo null para no volver a leer el mismo token
         if(token != NULL){
@@ -70,11 +61,6 @@ t_instruccion* crear_instruccion(char* instruccion, t_log* logger){
     }
     instruccion_nueva->argumentos = lista_argumentos;
     return instruccion_nueva;
-    /*
-    instruccion_nueva->instruccion = malloc(sizeof(char) * (strlen(instruccion) + 1)); // le asigno memoria para la instruccion (para el char en particular)
-    strcpy(instruccion_nueva->instruccion, instruccion); // copio el texto en la instruccion
-    return instruccion_nueva; 
-    */
 }
 
 void destruir_argumentos(t_argumento* argumento){
@@ -82,18 +68,18 @@ void destruir_argumentos(t_argumento* argumento){
 }
 
 void destruir_instruccion(t_instruccion* instruccionS){
-    free(instruccionS->instruccion);
+    free(instruccionS->identificador);
     list_destroy_and_destroy_elements(instruccionS->argumentos, (void*) destruir_argumentos);
     free(instruccionS);
 }
 
-void mostrar_lista_instrucciones(t_list* lista_instrucciones, t_log* logger){
+void loggear_lista_instrucciones(t_list* lista_instrucciones, t_log* logger){
     int i;
     log_info(logger, "Lista de instrucciones cargadas:\n");
     for(i = 0; i < list_size(lista_instrucciones); i++){
         t_instruccion* instruccion = list_get(lista_instrucciones, i);
         //loggear
-        log_info(logger, "Instruccion: %s", instruccion->instruccion);
+        log_info(logger, "Instruccion: %s", instruccion->identificador);
         int j;
         for(j = 0; j < list_size(instruccion->argumentos); j++){
             t_argumento* argumento = list_get(instruccion->argumentos, j);
