@@ -60,7 +60,7 @@ static void* serializar_iniciar_consola(size_t* size, t_list* instrucciones, int
 
 }
 
-static t_list* deserializar_t_list_instrucciones(void* stream, int size){ // ACA ESTA EL PROBLEMA CREO (Ya no hay mas segfault)
+static t_list* deserializar_t_list_instrucciones(void* stream, size_t size){ // ACA ESTA EL PROBLEMA CREO (Ya no hay mas segfault)
     t_list* lista = list_create();
     int offset = 0;
     while(offset < size){
