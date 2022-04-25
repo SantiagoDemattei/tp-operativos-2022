@@ -66,6 +66,11 @@ static t_list* deserializar_t_list_instrucciones(void* stream, size_t size){ // 
     while(offset < size){
         t_instruccion* instruccion = malloc(sizeof(t_instruccion));
         instruccion->identificador = malloc(sizeof(char)); // no se como reservar memoria para la cadena (esta mal que sea sizeof(char) xq es una cadena y no un caracter)
+        /*
+        Para hacer el malloc del identificador deberiamos guardar el size de cada identificador, serializarlo y enviarlo por la conexion. Sino no hay forma de reservar
+        la memoria exacta para la longitud del identificador porque los char* tiene tamanio variable (por eso siempre se hace malloc(strlen(identificador) + 1)).
+        */
+
         memcpy(instruccion->identificador, stream + offset, sizeof(char));
         offset += sizeof(char);
         instruccion->argumentos = list_create();
