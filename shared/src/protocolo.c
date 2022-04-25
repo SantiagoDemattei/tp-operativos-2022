@@ -60,12 +60,12 @@ static void* serializar_iniciar_consola(size_t* size, t_list* instrucciones, int
 
 }
 
-static t_list* deserializar_t_list_instrucciones(void* stream, size_t size){ // ACA ESTA EL PROBLEMA CREO (Ya no hay mas segfault)
+static t_list* deserializar_t_list_instrucciones(void* stream, int size){ // ACA ESTA EL PROBLEMA CREO (Ya no hay mas segfault)
     t_list* lista = list_create();
     int offset = 0;
     while(offset < size){
         t_instruccion* instruccion = malloc(sizeof(t_instruccion));
-        instruccion->identificador = malloc(sizeof(char));
+        instruccion->identificador = malloc(sizeof(char)); // no se como reservar memoria para la cadena (esta mal que sea sizeof(char) xq es una cadena y no un caracter)
         memcpy(instruccion->identificador, stream + offset, sizeof(char));
         offset += sizeof(char);
         instruccion->argumentos = list_create();
@@ -79,6 +79,7 @@ static t_list* deserializar_t_list_instrucciones(void* stream, size_t size){ // 
         }
         list_add(lista, instruccion);
     }
+    
     return lista;
 }
 
