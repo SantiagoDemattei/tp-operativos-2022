@@ -60,24 +60,26 @@ static void* serializar_iniciar_consola(size_t* size, t_list* instrucciones, int
 
 }
 
-static t_list* deserializar_t_list_instrucciones(void* stream, size_t size){
-    t_list* instrucciones = list_create();
-    size_t offset = 0;
+static t_list* deserializar_t_list_instrucciones(void* stream, size_t size){ // ACA ESTA EL PROBLEMA CREO (Ya no hay mas segfault)
+    t_list* lista = list_create();
+    int offset = 0;
     while(offset < size){
-        t_instruccion* instruccion = malloc(sizeof(t_instruccion)); 
-        instruccion->identificador = malloc(sizeof(char)*(strlen(stream + offset) + 1)); 
-        memcpy(instruccion->identificador, stream + offset, sizeof(char)*(strlen(stream + offset) + 1));
-        offset += sizeof(char)*(strlen(stream + offset) + 1);
+        t_instruccion* instruccion = malloc(sizeof(t_instruccion));
+        instruccion->identificador = malloc(sizeof(char));
+        memcpy(instruccion->identificador, stream + offset, sizeof(char));
+        offset += sizeof(char);
         instruccion->argumentos = list_create();
-        for(int i=0; i<list_size(instruccion->argumentos); i++){
-            t_argumento* argumento = malloc(sizeof(t_argumento));
-            memcpy(&argumento->argumento, stream + offset, sizeof(int));
+        int cantidad_argumentos = *(int*)(stream + offset);
+        offset += sizeof(int);
+        for(int i=0; i<cantidad_argumentos; i++){
+            int* argumento = malloc(sizeof(int));
+            memcpy(argumento, stream + offset, sizeof(int));
             offset += sizeof(int);
             list_add(instruccion->argumentos, argumento);
         }
-        list_add(instrucciones, instruccion);
+        list_add(lista, instruccion);
     }
-    return instrucciones;
+    return lista;
 }
 
 static void deserializar_iniciar_consola(void* stream, t_list** instrucciones, int* tamanioConsola) {
@@ -117,7 +119,7 @@ bool recv_iniciar_consola(int fd, t_list** instrucciones, int* tamanioConsola) {
     }
     t_list* r_instrucciones;
 
-    deserializar_iniciar_consola(stream, &r_instrucciones, tamanioConsola);
+    deserializar_iniciar_consola(stream, &r_instrucciones, tamanioConsola); // Cuando llega una conexion, entra en la funcion pero se queda ahi
     *instrucciones = r_instrucciones;
 
     free(stream);
