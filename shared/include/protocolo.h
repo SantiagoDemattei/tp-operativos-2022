@@ -13,9 +13,9 @@
 #include "estructuras.h"
 
 
-bool send_iniciar_consola(int fd, t_list* instrucciones, int tamanioConsola);
-bool recv_iniciar_consola(int fd, t_list** instrucciones, int* tamanioConsola);
+bool send_iniciar_consola(uint32_t fd, t_list* instrucciones, uint32_t tamanioConsola);
+bool recv_iniciar_consola(uint32_t fd, t_list** instrucciones, uint32_t* tamanioConsola);
 
-bool send_debug(int fd);
+bool send_debug(uint32_t fd);
 
 #endif

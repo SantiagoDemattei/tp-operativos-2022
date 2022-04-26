@@ -1,8 +1,8 @@
 #include "../include/comunicacion.h"
 
-int crear_comunicacion(t_configuracion_kernel* configuracion_kernel, t_log* logger){
+uint32_t crear_comunicacion(t_configuracion_kernel* configuracion_kernel, t_log* logger){
     
-    int socket_kernel = iniciar_servidor(logger, "CONSOLA", configuracion_kernel->ip_memoria, configuracion_kernel->puerto_escucha);
+    uint32_t socket_kernel = iniciar_servidor(logger, "CONSOLA", configuracion_kernel->ip_memoria, configuracion_kernel->puerto_escucha);
 
     if(socket_kernel == -1){
         log_error(logger, "No se pudo iniciar el servidor de comunicacion");
@@ -16,7 +16,7 @@ int crear_comunicacion(t_configuracion_kernel* configuracion_kernel, t_log* logg
 static void procesar_conexion(void* void_args){
     t_procesar_conexion_args* args = (t_procesar_conexion_args*) void_args; // recibo a mi cliente y sus datos
     t_log* logger = args->log;
-    int cliente_socket = args->fd;
+    uint32_t cliente_socket = args->fd;
     char* server_name = args->server_name;
     free(args);
 
@@ -36,13 +36,13 @@ static void procesar_conexion(void* void_args){
             case INICIAR_PROCESO:
             {
                 
-                int tamanio;
-                t_list* instrucciones ;
+                uint32_t tamanio = 0;
+                t_list* instrucciones = NULL;
                 if(recv_iniciar_consola(cliente_socket, &instrucciones, &tamanio)){
                     log_info(logger, "Se recibieron las instrucciones");
                     log_info(logger, "Tamanio de la consola: %d",tamanio);
                     log_info(logger, "Cantidad de instrucciones: %d", list_size(instrucciones));
-                    // loggear_lista_instrucciones(instrucciones, logger);
+                    loggear_lista_instrucciones(instrucciones, logger);
                     // liberar memoria
                     list_destroy_and_destroy_elements(instrucciones, (void*) destruir_instruccion);
                 }
@@ -66,8 +66,8 @@ static void procesar_conexion(void* void_args){
     return;
 }
 
-int server_escuchar(t_log* logger, char* server_name, int server_socket) {
-    int cliente_socket = esperar_cliente(logger, server_name, server_socket); // espera a que se conecte un cliente
+uint32_t server_escuchar(t_log* logger, char* server_name, uint32_t server_socket) {
+    uint32_t cliente_socket = esperar_cliente(logger, server_name, server_socket); // espera a que se conecte un cliente
 
     if (cliente_socket != -1) { // si se conecto un cliente
         pthread_t hilo; // crea un hilo para procesar la conexion

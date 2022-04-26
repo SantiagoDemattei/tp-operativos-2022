@@ -7,9 +7,9 @@ static void* serializar_t_list_instrucciones(size_t* size, t_list* lista){
     // calculo tamaño en bytes de la lista de instrucciones (el tamaño que va a tener el stream de instrucciones)
     *size = 0;
     t_list_iterator* list_it = list_iterator_create(lista);
-    for(int i=0; list_iterator_has_next(list_it); i++){
+    for(uint32_t i=0; list_iterator_has_next(list_it); i++){
         t_instruccion* instruccion = list_iterator_next(list_it);
-        *size += sizeof(int) + strlen(instruccion->identificador) + sizeof(int) + sizeof(int)*list_size(instruccion->argumentos); // tamanio instruccion = longitud identificador + tamanio identificador + cantidad argumentos + tamanio argumentos
+        *size += sizeof(uint32_t) + strlen(instruccion->identificador) + sizeof(uint32_t) + sizeof(uint32_t)*list_size(instruccion->argumentos); // tamanio instruccion = longitud identificador + tamanio identificador + cantidad argumentos + tamanio argumentos
     }
     list_iterator_destroy(list_it);
 
@@ -17,27 +17,27 @@ static void* serializar_t_list_instrucciones(size_t* size, t_list* lista){
 
     // Serializo las instrucciones
     list_it = list_iterator_create(lista);
-    int offset = 0; // desplazamiento
-    for(int i=0; list_iterator_has_next(list_it); i++){
+    uint32_t offset = 0; // desplazamiento
+    for(uint32_t i=0; list_iterator_has_next(list_it); i++){
         t_instruccion* instruccion = list_iterator_next(list_it);
-        int tamanioCadena = strlen(instruccion->identificador);
-        memcpy(stream + offset, &tamanioCadena, sizeof(int));
-        offset += sizeof(int);
+        uint32_t tamanioCadena = strlen(instruccion->identificador);
+        memcpy(stream + offset, &tamanioCadena, sizeof(uint32_t));
+        offset += sizeof(uint32_t);
         memcpy(stream + offset, instruccion->identificador, strlen(instruccion->identificador));
         offset += strlen(instruccion->identificador); // desplazo en la longitud del identificador (= bytes ocupados por el identificador), recordar que sizeof(char) = 1
-        int cantidadArgumentos = list_size(instruccion->argumentos);
-        memcpy(stream + offset, &cantidadArgumentos, sizeof(int));
-        offset += sizeof(int);
-        for(int j=0; j<list_size(instruccion->argumentos); j++){
-            memcpy(stream + offset, list_get(instruccion->argumentos, j), sizeof(int));
-            offset += sizeof(int);
+        uint32_t cantidadArgumentos = list_size(instruccion->argumentos);
+        memcpy(stream + offset, &cantidadArgumentos, sizeof(uint32_t));
+        offset += sizeof(uint32_t);
+        for(uint32_t j=0; j<list_size(instruccion->argumentos); j++){
+            memcpy(stream + offset, list_get(instruccion->argumentos, j), sizeof(uint32_t));
+            offset += sizeof(uint32_t);
         }
     }
     list_iterator_destroy(list_it);
     return stream;
 }
 
-static void* serializar_iniciar_consola(size_t* size, t_list* instrucciones, int tamanioConsola) {
+static void* serializar_iniciar_consola(size_t* size, t_list* instrucciones, uint32_t tamanioConsola) {
 
     size_t size_instrucciones;
     void* stream_instrucciones = serializar_t_list_instrucciones(&size_instrucciones, instrucciones);
@@ -46,7 +46,7 @@ static void* serializar_iniciar_consola(size_t* size, t_list* instrucciones, int
     size_t size_total = 
         sizeof(op_code) +   // tamanio del op_code
         sizeof(size_t) + // size total del stream
-        sizeof(int) + // tamanio de la consola
+        sizeof(uint32_t) + // tamanio de la consola
         sizeof(size_t) + // size del stream de instrucciones
         size_instrucciones; // tamanio de la lista de instrucciones
     
@@ -59,9 +59,9 @@ static void* serializar_iniciar_consola(size_t* size, t_list* instrucciones, int
     // Ahora lleno el stream
     memcpy(stream, &cop, sizeof(op_code)); // op_code
     memcpy(stream + sizeof(op_code), &size_payload, sizeof(size_t)); // size del payload
-    memcpy(stream + sizeof(op_code) + sizeof(size_t), &tamanioConsola, sizeof(int)); // tamanio de la consola
-    memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(int), &size_instrucciones, sizeof(size_t)); // size del stream de instrucciones
-    memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(int) + sizeof(size_t), stream_instrucciones, size_instrucciones); // stream de instrucciones
+    memcpy(stream + sizeof(op_code) + sizeof(size_t), &tamanioConsola, sizeof(uint32_t)); // tamanio de la consola
+    memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t), &size_instrucciones, sizeof(size_t)); // size del stream de instrucciones
+    memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t) + sizeof(size_t), stream_instrucciones, size_instrucciones); // stream de instrucciones
 
     free(stream_instrucciones);
     *size=size_total;
@@ -70,25 +70,25 @@ static void* serializar_iniciar_consola(size_t* size, t_list* instrucciones, int
 
 }
 
-static t_list* deserializar_t_list_instrucciones(void* stream, size_t size){ // ACA ESTA EL PROBLEMA CREO (Ya no hay mas segfault)
+static t_list* deserializar_t_list_instrucciones(void* stream, size_t size){ // Uninitialised value was created by a heap allocation
     t_list* lista = list_create();
-    int offset = 0;
+    uint32_t offset = 0;
     while(offset < size){ // mientras el desplazamiento sea menor al tamanio del stream
         t_instruccion* instruccion = malloc(sizeof(t_instruccion));
-        int tamanioCadena;
-        memcpy(&tamanioCadena, stream + offset, sizeof(int));
+        uint32_t tamanioCadena = 0;
+        memcpy(&tamanioCadena, stream + offset, sizeof(uint32_t));
         instruccion->identificador = malloc(tamanioCadena + 1); // sizeof(char) = 1 ==> tamaño id = tamanioCadena + 1
-        offset += sizeof(int);
+        offset += sizeof(uint32_t);
         memcpy(instruccion->identificador, stream + offset, tamanioCadena);
         offset += tamanioCadena;
         instruccion->argumentos = list_create(); 
-        int cantidad_argumentos;
-        memcpy(&cantidad_argumentos, stream + offset, sizeof(int));
-        offset += sizeof(int);
-        for(int i=0; i<cantidad_argumentos; i++){
-            int* argumento = malloc(sizeof(int));
-            memcpy(argumento, stream + offset, sizeof(int));
-            offset += sizeof(int);
+        uint32_t cantidad_argumentos = 0;
+        memcpy(&cantidad_argumentos, stream + offset, sizeof(uint32_t));
+        offset += sizeof(uint32_t);
+        for(uint32_t i=0; i<cantidad_argumentos; i++){
+            uint32_t* argumento = malloc(sizeof(uint32_t));
+            memcpy(argumento, stream + offset, sizeof(uint32_t));
+            offset += sizeof(uint32_t);
             list_add(instruccion->argumentos, argumento);
         }
         list_add(lista, instruccion);
@@ -96,18 +96,18 @@ static t_list* deserializar_t_list_instrucciones(void* stream, size_t size){ // 
     return lista;
 }
 
-static void deserializar_iniciar_consola(void* stream, t_list** instrucciones, int* tamanioConsola) {
+static void deserializar_iniciar_consola(void* stream, t_list** instrucciones, uint32_t* tamanioConsola) {
   
     size_t size_instrucciones; 
-    memcpy(tamanioConsola, stream, sizeof(int)); // tamanio de la consola
-    memcpy(&size_instrucciones, stream + sizeof(int), sizeof(size_t)); // size del stream de instrucciones
+    memcpy(tamanioConsola, stream, sizeof(uint32_t)); // tamanio de la consola
+    memcpy(&size_instrucciones, stream + sizeof(uint32_t), sizeof(size_t)); // size del stream de instrucciones
     void* stream_instrucciones = malloc(size_instrucciones);
-    memcpy(stream_instrucciones, stream + sizeof(int) + sizeof(size_t), size_instrucciones); // stream de instrucciones
+    memcpy(stream_instrucciones, stream + sizeof(uint32_t) + sizeof(size_t), size_instrucciones); // stream de instrucciones
     *instrucciones = deserializar_t_list_instrucciones(stream_instrucciones, size_instrucciones);
     free(stream_instrucciones);
 }
 
-bool send_iniciar_consola(int fd, t_list* instrucciones, int tamanioConsola) {
+bool send_iniciar_consola(uint32_t fd, t_list* instrucciones, uint32_t tamanioConsola) {
     size_t size;
     void* stream = serializar_iniciar_consola(&size, instrucciones, tamanioConsola);
     if (send(fd, stream, size, 0) == -1) {
@@ -118,7 +118,7 @@ bool send_iniciar_consola(int fd, t_list* instrucciones, int tamanioConsola) {
     return true;
 }
 
-bool recv_iniciar_consola(int fd, t_list** instrucciones, int* tamanioConsola) {
+bool recv_iniciar_consola(uint32_t fd, t_list** instrucciones, uint32_t* tamanioConsola) {
     
     size_t size;
     if(recv(fd, &size, sizeof(size_t), 0) != sizeof(size_t)) {
@@ -139,7 +139,7 @@ bool recv_iniciar_consola(int fd, t_list** instrucciones, int* tamanioConsola) {
 
 
 // DEBUG
-bool send_debug(int fd) {
+bool send_debug(uint32_t fd) {
     op_code cop = DEBUG;
     if (send(fd, &cop, sizeof(op_code), 0) != sizeof(op_code))
         return false;

@@ -1,8 +1,8 @@
 #include "../include/sockets.h"
 
 // INICIA SERVER ESCUCHANDO EN IP:PUERTO
-int iniciar_servidor(t_log* logger, const char* name, char* ip, char* puerto) {
-    int socket_servidor;
+uint32_t iniciar_servidor(t_log* logger, const char* name, char* ip, char* puerto) {
+    uint32_t socket_servidor;
     struct addrinfo hints, *servinfo;
 
     // Inicializando hints
@@ -50,11 +50,11 @@ int iniciar_servidor(t_log* logger, const char* name, char* ip, char* puerto) {
 }
 
 // ESPERAR CONEXION DE CLIENTE EN UN SERVER ABIERTO
-int esperar_cliente(t_log* logger, const char* name, int socket_servidor) {
+uint32_t esperar_cliente(t_log* logger, const char* name, uint32_t socket_servidor) {
     struct sockaddr_in dir_cliente;
     socklen_t tam_direccion = sizeof(struct sockaddr_in);
 
-    int socket_cliente = accept(socket_servidor, (void*) &dir_cliente, &tam_direccion);
+    uint32_t socket_cliente = accept(socket_servidor, (void*) &dir_cliente, &tam_direccion);
 
     log_info(logger, "Cliente conectado (a %s)\n", name);
 
@@ -62,7 +62,7 @@ int esperar_cliente(t_log* logger, const char* name, int socket_servidor) {
 }
 
 // CLIENTE SE INTENTA CONECTAR A SERVER ESCUCHANDO EN IP:PUERTO
-int crear_conexion_cliente(t_log* logger, const char* server_name, char* ip, char* puerto) {
+uint32_t crear_conexion_cliente(t_log* logger, const char* server_name, char* ip, char* puerto) {
     struct addrinfo hints, *servinfo;
 
     // Init de hints
@@ -75,7 +75,7 @@ int crear_conexion_cliente(t_log* logger, const char* server_name, char* ip, cha
     getaddrinfo(ip, puerto, &hints, &servinfo);
 
     // Crea un socket con la informacion recibida (del primero, suficiente)
-    int socket_cliente = socket(servinfo->ai_family, servinfo->ai_socktype, servinfo->ai_protocol);
+    uint32_t socket_cliente = socket(servinfo->ai_family, servinfo->ai_socktype, servinfo->ai_protocol);
 
     // Fallo en crear el socket
     if(socket_cliente == -1) {
@@ -97,7 +97,7 @@ int crear_conexion_cliente(t_log* logger, const char* server_name, char* ip, cha
 }
 
 // CERRAR CONEXION
-void liberar_conexion(int socket_cliente) {
+void liberar_conexion(uint32_t socket_cliente) {
     close(socket_cliente);
     
 }

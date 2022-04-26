@@ -18,7 +18,7 @@ t_configuracion_kernel* leer_configuracion(){
     char* algoritmo_planificacion = config_get_string_value(nuevo_config, "ALGORITMO_PLANIFICACION"); // leo algoritmo de planificacion
     char* estimacion_inicial = config_get_string_value(nuevo_config, "ESTIMACION_INICIAL"); // leo estimacion inicial
     char* alfa = config_get_string_value(nuevo_config, "ALFA"); // leo alfa
-    int grado_multiprogramacion = config_get_int_value(nuevo_config, "GRADO_MULTIPROGRAMACION"); // leo grado multiprogramacion
+    uint32_t grado_multiprogramacion = config_get_int_value(nuevo_config, "GRADO_MULTIPROGRAMACION"); // leo grado multiprogramacion
     char* tiempo_maximo_bloqueado = config_get_string_value(nuevo_config, "TIEMPO_MAXIMO_BLOQUEADO"); // leo tiempo maximo bloqueado
 
 

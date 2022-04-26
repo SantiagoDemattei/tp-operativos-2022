@@ -18,8 +18,8 @@
 #include "../../shared/include/utils.h"
 
 
-int crear_comunicacion(t_configuracion_kernel* configuracion_kernel, t_log* logger);
-int server_escuchar(t_log* logger, char* server_name, int server_socket);
+uint32_t crear_comunicacion(t_configuracion_kernel* configuracion_kernel, t_log* logger);
+uint32_t server_escuchar(t_log* logger, char* server_name, uint32_t server_socket);
 static void procesar_conexion(void* void_args);
 
 #endif 

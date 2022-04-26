@@ -27,7 +27,7 @@ t_configuracion_consola* leer_configuracion(t_log* logger) {
 
 
 char* eliminar_caracter_retorno(char* cadena){
-    int i = 0;
+    uint32_t i = 0;
     while(cadena[i] != '\0'){
         if(cadena[i] == '\r'){
             cadena[i] = '\0';

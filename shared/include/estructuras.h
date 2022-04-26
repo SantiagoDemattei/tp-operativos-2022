@@ -1,6 +1,7 @@
 #ifndef ESTRUCTURAS_H_
 #define ESTRUCTURAS_H_
 
+#include <stdint.h>
 #include <commons/log.h>
 #include <commons/collections/list.h>
 
@@ -16,7 +17,7 @@ typedef struct {
 } t_configuracion_consola;
 
 typedef struct{
-    int argumento;
+    uint32_t argumento;
 } t_argumento;
 
 typedef struct {
@@ -26,7 +27,7 @@ typedef struct {
 
 typedef struct {
     t_log* log;
-    int fd;
+    uint32_t fd;
     char* server_name;
 } t_procesar_conexion_args;
 
@@ -40,7 +41,7 @@ typedef struct t_configuracion_kernel{
     char* algoritmo_planificacion;
     char* estimacion_inicial;
     char* alfa;
-    int grado_multiprogramacion;
+    uint32_t grado_multiprogramacion;
     char* tiempo_maximo_bloqueado; 
 } t_configuracion_kernel;
 

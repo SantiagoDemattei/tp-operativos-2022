@@ -1,6 +1,6 @@
 #include "include/main.h"
 
-int socket_kernel; 
+uint32_t socket_kernel; 
 t_log* logger;
 t_configuracion_kernel* configuracion_kernel;
 
@@ -14,7 +14,7 @@ void sighandler(int x) {
     }
 }
 
-int main(void){
+uint32_t main(void){
 
     signal(SIGINT , sighandler);
       	

@@ -2,7 +2,7 @@
 
 
 
-int main(int argc, char** argv) {
+uint32_t main(uint32_t argc, char** argv) {
 
     t_log* logger = log_create("consola.log", "CONSOLA", true, LOG_LEVEL_INFO);
 
@@ -12,9 +12,9 @@ int main(int argc, char** argv) {
         return EXIT_FAILURE; 
     }
 
-    int tamanio = atoi(argv[1]);
+    uint32_t tamanio = atoi(argv[1]);
     char* path = argv[2];
-    int conexion;
+    uint32_t conexion;
 
     conexion = iniciar_consola(tamanio, path, logger);
     

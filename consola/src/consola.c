@@ -1,12 +1,12 @@
 #include "../include/consola.h"
 
-int iniciar_consola(int tamanio, char* path, t_log* logger) {
+uint32_t iniciar_consola(uint32_t tamanio, char* path, t_log* logger) {
 
     t_list* lista_instrucciones = obtener_instrucciones(path, logger);
     t_configuracion_consola* datos_conexion = leer_configuracion(logger);
     loggear_lista_instrucciones(lista_instrucciones, logger);
 
-    int conexion = crear_conexion_consola(datos_conexion, logger);
+    uint32_t conexion = crear_conexion_consola(datos_conexion, logger);
 
     send_iniciar_consola(conexion, lista_instrucciones, tamanio);
 
