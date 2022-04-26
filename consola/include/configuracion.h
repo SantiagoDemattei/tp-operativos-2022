@@ -8,7 +8,7 @@
 #include <commons/log.h>
 #include "../../shared/include/bibliotecas.h"
 #include "../../shared/include/estructuras.h"
-
+#include "../../shared/include/utils.h"
 
 t_configuracion_consola* leer_configuracion(t_log* logger);
 void liberar_estructura_datos(t_configuracion_consola* datos);

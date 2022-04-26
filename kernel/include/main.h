@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <commons/log.h>
-
+#include <signal.h>
 #include "comunicacion.h"
 
 void liberar_estructuras(t_configuracion_kernel*);

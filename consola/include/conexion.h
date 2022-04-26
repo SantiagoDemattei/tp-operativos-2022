@@ -11,6 +11,7 @@
 #include<commons/log.h>
 #include "configuracion.h"
 #include "../../shared/include/sockets.h"
+#include "../../shared/include/utils.h"
 
 int crear_conexion_consola(t_configuracion_consola* datos_conexion, t_log* logger);
 

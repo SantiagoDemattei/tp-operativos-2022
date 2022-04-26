@@ -7,7 +7,7 @@
 typedef enum {
     //AGREGAR MAS CODIGOS PARA CONEXION
     DEBUG = 69,
-    INICIAR_CONSOLA,
+    INICIAR_PROCESO,
 } op_code;
 
 typedef struct {

@@ -12,23 +12,6 @@ int crear_comunicacion(t_configuracion_kernel* configuracion_kernel, t_log* logg
     return socket_kernel;
 }
 
-void loggear_lista_instrucciones(t_list* lista_instrucciones, t_log* logger){
-    int i;
-    log_info(logger, "Lista de instrucciones cargadas:\n");
-    for(i = 0; i < list_size(lista_instrucciones); i++){
-        t_instruccion* instruccion = list_get(lista_instrucciones, i);
-        //loggear
-        log_info(logger, "Instruccion: %s", instruccion->identificador);
-        int j;
-        for(j = 0; j < list_size(instruccion->argumentos); j++){
-            t_argumento* argumento = list_get(instruccion->argumentos, j);
-            //loggear
-            log_info(logger, "Argumento: %d", argumento->argumento);
-        }
-        log_info(logger, "\n"); // Meto un \n para separar las instrucciones
-    }
-}
-
 
 static void procesar_conexion(void* void_args){
     t_procesar_conexion_args* args = (t_procesar_conexion_args*) void_args; // recibo a mi cliente y sus datos
@@ -50,15 +33,18 @@ static void procesar_conexion(void* void_args){
                 log_info(logger, "debug");
                 break;
 
-            case INICIAR_CONSOLA:
+            case INICIAR_PROCESO:
             {
+                
                 int tamanio;
-                t_list* instrucciones;
+                t_list* instrucciones ;
                 if(recv_iniciar_consola(cliente_socket, &instrucciones, &tamanio)){
                     log_info(logger, "Se recibieron las instrucciones");
-                    log_info(logger, "Tamanio de la consola: %d", tamanio);
+                    log_info(logger, "Tamanio de la consola: %d",tamanio);
                     log_info(logger, "Cantidad de instrucciones: %d", list_size(instrucciones));
                     loggear_lista_instrucciones(instrucciones, logger);
+                    // liberar memoria
+                    list_destroy_and_destroy_elements(instrucciones, (void*) destruir_instruccion);
                 }
                 else{
                     log_error(logger, "No se recibieron las instrucciones");

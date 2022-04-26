@@ -9,7 +9,7 @@
 #include <commons/log.h>
 #include "../../shared/include/bibliotecas.h"
 #include "../../shared/include/estructuras.h"
-
+#include "../../shared/include/utils.h"
 
 t_configuracion_kernel* leer_configuracion();
 

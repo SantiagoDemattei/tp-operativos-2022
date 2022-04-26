@@ -9,6 +9,8 @@ int iniciar_consola(int tamanio, char* path, t_log* logger) {
     int conexion = crear_conexion_consola(datos_conexion, logger);
 
     send_iniciar_consola(conexion, lista_instrucciones, tamanio);
+
+    log_info(logger, "Se envio la lista de instrucciones al kernel");
     
     list_destroy_and_destroy_elements(lista_instrucciones, (void*) destruir_instruccion);
     liberar_estructura_datos(datos_conexion);
@@ -44,7 +46,6 @@ t_instruccion* crear_instruccion(char* instruccion, t_log* logger){
     t_list* lista_argumentos = list_create();
     char* token = strtok(instruccion, " ");
     if(token == NULL){
-        printf("Error: No se pudo leer la instruccion.\n");
         log_info(logger, "Error: No se pudo leer la instruccion.");
         exit(EXIT_FAILURE);
     }
@@ -63,30 +64,5 @@ t_instruccion* crear_instruccion(char* instruccion, t_log* logger){
     return instruccion_nueva;
 }
 
-void destruir_argumentos(t_argumento* argumento){
-    free(argumento);
-}
 
-void destruir_instruccion(t_instruccion* instruccionS){
-    free(instruccionS->identificador);
-    list_destroy_and_destroy_elements(instruccionS->argumentos, (void*) destruir_argumentos);
-    free(instruccionS);
-}
-
-void loggear_lista_instrucciones(t_list* lista_instrucciones, t_log* logger){
-    int i;
-    log_info(logger, "Lista de instrucciones cargadas:\n");
-    for(i = 0; i < list_size(lista_instrucciones); i++){
-        t_instruccion* instruccion = list_get(lista_instrucciones, i);
-        //loggear
-        log_info(logger, "Instruccion: %s", instruccion->identificador);
-        int j;
-        for(j = 0; j < list_size(instruccion->argumentos); j++){
-            t_argumento* argumento = list_get(instruccion->argumentos, j);
-            //loggear
-            log_info(logger, "Argumento: %d", argumento->argumento);
-        }
-        log_info(logger, "\n"); // Meto un \n para separar las instrucciones
-    }
-}
 

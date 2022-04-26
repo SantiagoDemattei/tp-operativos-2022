@@ -11,6 +11,7 @@
 #include "../../shared/include/sockets.h"
 #include "../../shared/include/protocolo.h"
 #include "../../shared/include/bibliotecas.h"
+#include "../../shared/include/utils.h"
 
 
 int iniciar_consola(int tamanio, char* path, t_log* logger);	
