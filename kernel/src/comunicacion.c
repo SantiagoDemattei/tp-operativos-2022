@@ -42,7 +42,7 @@ static void procesar_conexion(void* void_args){
                     log_info(logger, "Se recibieron las instrucciones");
                     log_info(logger, "Tamanio de la consola: %d",tamanio);
                     log_info(logger, "Cantidad de instrucciones: %d", list_size(instrucciones));
-                    loggear_lista_instrucciones(instrucciones, logger);
+                    // loggear_lista_instrucciones(instrucciones, logger);
                     // liberar memoria
                     list_destroy_and_destroy_elements(instrucciones, (void*) destruir_instruccion);
                 }
