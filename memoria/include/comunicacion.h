@@ -12,14 +12,14 @@
 #include<assert.h>
 #include "configuracion.h"
 
+#include "../../shared/include/sockets.h"
+#include "../../shared/include/protocolo.h"
+#include "../../shared/include/bibliotecas.h"
+#include "../../shared/include/utils.h"
+#include "../../shared/include/estructuras.h"
 
-uint32_t socket_kernel; 
-t_log* logger;
-t_configuracion_kernel* configuracion_kernel;
-
-uint32_t crear_comunicacion(t_configuracion_kernel* configuracion_kernel, t_log* logger);
+uint32_t crear_comunicacion_kernel(t_configuracion_memoria* configuracion_memoria, t_log* logger);
 uint32_t server_escuchar(t_log* logger, char* server_name, uint32_t server_socket);
 static void procesar_conexion(void* void_args);
 
-
-#endif 
+#endif

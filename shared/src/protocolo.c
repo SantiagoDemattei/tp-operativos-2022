@@ -1,6 +1,6 @@
 #include "../include/protocolo.h"
 
-// INICIAR CONSOLA
+// inicio: INICIAR CONSOLA
 
 static void* serializar_t_list_instrucciones(size_t* size, t_list* lista){
 
@@ -136,7 +136,23 @@ bool recv_iniciar_consola(uint32_t fd, t_list** instrucciones, uint32_t* tamanio
     free(stream);
     return true;
 }
+// fin: INICIAR_CONSOLA
 
+// inicio: PRUEBA
+bool send_numero_prueba(uint32_t fd, uint32_t numero) {
+    if (send(fd, &numero, sizeof(uint32_t), 0) == -1) {
+        return false;
+    }
+    return true;
+}
+
+bool recv_numero_prueba(uint32_t fd, uint32_t* numero) {
+    if (recv(fd, numero, sizeof(uint32_t), 0) != sizeof(uint32_t)) {
+        return false;
+    }
+    return true;
+}
+// fin: PRUEBA
 
 // DEBUG
 bool send_debug(uint32_t fd) {

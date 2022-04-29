@@ -11,6 +11,10 @@
         "configuracion.h": "c",
         "sockets.h": "c",
         "bibliotecas.h": "c",
-        "estructuras.h": "c"
+        "estructuras.h": "c",
+        "unistd.h": "c",
+        "protocolo.h": "c",
+        "utils.h": "c",
+        "comunicacion.h": "c"
     }
 }

@@ -1,6 +1,6 @@
 #include "../include/comunicacion.h"
 
-uint32_t crear_comunicacion(t_configuracion_kernel* configuracion_kernel, t_log* logger){
+uint32_t crear_comunicacion(t_configuracion_kernel* configuracion_kernel, t_log* logger){ //funcion de servidor 
     
     uint32_t socket_kernel = iniciar_servidor(logger, "CONSOLA", configuracion_kernel->ip_memoria, configuracion_kernel->puerto_escucha);
 
@@ -10,6 +10,20 @@ uint32_t crear_comunicacion(t_configuracion_kernel* configuracion_kernel, t_log*
     }
 
     return socket_kernel;
+}
+
+uint32_t crear_conexion_cpu(t_configuracion_kernel* datos_conexion, t_log* logger) //"kernel" cliente de cpu
+{
+	uint32_t socket_cpu = crear_conexion_cliente(logger, "CPU", datos_conexion->ip_cpu, datos_conexion->puerto_cpu_dispatch);
+    
+	return socket_cpu;
+}
+
+uint32_t crear_conexion_memoria(t_configuracion_kernel* datos_conexion, t_log* logger) //"kernel" cliente de memoria
+{
+	uint32_t socket_memoria = crear_conexion_cliente(logger, "MEMORIA", datos_conexion->ip_memoria, datos_conexion->puerto_memoria);
+    
+	return socket_memoria;
 }
 
 
@@ -42,7 +56,17 @@ static void procesar_conexion(void* void_args){
                     log_info(logger, "Se recibieron las instrucciones");
                     log_info(logger, "Tamanio de la consola: %d",tamanio);
                     log_info(logger, "Cantidad de instrucciones: %d", list_size(instrucciones));
-                    loggear_lista_instrucciones(instrucciones, logger);
+                    // loggear_lista_instrucciones(instrucciones, logger);
+
+                    // envio instrucciones a cpu
+                    int socket_cpu = crear_conexion_cpu(configuracion_kernel, logger);
+                    int socket_memoria = crear_conexion_memoria(configuracion_kernel, logger);
+                    //crear_pcb(instrucciones, socket_cpu, logger);
+                    //serializar_pcb()
+                    //send_pcb(socket_cpu, pcb);
+                    send_numero_prueba(socket_cpu, 1);
+                    send_numero_prueba(socket_memoria, 2);
+                    
                     // liberar memoria
                     list_destroy_and_destroy_elements(instrucciones, (void*) destruir_instruccion);
                 }
@@ -51,6 +75,8 @@ static void procesar_conexion(void* void_args){
                 }
                 break;
             }
+
+            
 
             // Errores
             case -1:
@@ -82,3 +108,4 @@ uint32_t server_escuchar(t_log* logger, char* server_name, uint32_t server_socke
     return 0;
 }
 
+ 

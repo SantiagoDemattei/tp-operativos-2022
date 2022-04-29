@@ -26,10 +26,10 @@ typedef struct {
 } t_instruccion;
 
 typedef struct {
-    t_log* log;
-    uint32_t fd;
-    char* server_name;
-} t_procesar_conexion_args;
+    t_log* log; //logger
+    uint32_t fd; //int socket 
+    char* server_name; //nombre del servidor
+} t_procesar_conexion_args; //para los hilos
 
 typedef struct t_configuracion_kernel{
     char* ip_memoria;
@@ -44,5 +44,36 @@ typedef struct t_configuracion_kernel{
     uint32_t grado_multiprogramacion;
     char* tiempo_maximo_bloqueado; 
 } t_configuracion_kernel;
+
+typedef struct t_configuracion_cpu{
+    int entradas_tlb;
+    char* reemplazo_tlb;
+    int retardo_noop;
+    char* ip_memoria;
+    char* puerto_memoria;
+    char* puerto_escucha_dispatch;
+    char* puerto_escucha_interrupt;
+} t_configuracion_cpu;
+
+typedef struct t_configuracion_memoria{
+    int puerto_escucha;
+    int tam_memoria;
+    int tam_pagina;
+    int entradas_por_tabla;
+    int retardo_memoria;
+    char* algoritmo_reemplazo;
+    int marcos_por_proceso;
+    int retardo_swap;
+    char* path_swap;
+} t_configuracion_memoria;
+
+typedef struct t_pcb{
+    uint32_t id;
+    uint32_t tamanio;
+    t_list* instrucciones;
+    uint32_t program_counter;
+    // FALTA EL TIPO DE TABLA DE PAGINAS tablas_pagina;
+    uint32_t estimacion_rafaga;
+}t_pcb;
 
 #endif

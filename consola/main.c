@@ -1,7 +1,6 @@
 #include "include/main.h"
 
 
-
 uint32_t main(uint32_t argc, char** argv) {
 
     t_log* logger = log_create("consola.log", "CONSOLA", true, LOG_LEVEL_INFO);

@@ -8,9 +8,9 @@
 #include <signal.h>
 #include "comunicacion.h"
 
-void liberar_estructuras(t_configuracion_kernel*);
+void liberar_estructuras_kernel(t_configuracion_kernel*);
 
-void liberar_estructuras(t_configuracion_kernel* datos_config_kernel){
+void liberar_estructuras_kernel(t_configuracion_kernel* datos_config_kernel){
     free(datos_config_kernel->ip_memoria);
     free(datos_config_kernel->ip_cpu);
     free(datos_config_kernel->algoritmo_planificacion);

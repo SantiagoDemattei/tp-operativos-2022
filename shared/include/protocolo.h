@@ -15,6 +15,8 @@
 
 bool send_iniciar_consola(uint32_t fd, t_list* instrucciones, uint32_t tamanioConsola);
 bool recv_iniciar_consola(uint32_t fd, t_list** instrucciones, uint32_t* tamanioConsola);
+bool send_numero_prueba(uint32_t fd, uint32_t numero);
+bool recv_numero_prueba(uint32_t fd, uint32_t* numero);
 
 bool send_debug(uint32_t fd);
 
