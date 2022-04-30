@@ -28,19 +28,13 @@ static void procesar_conexion(void* void_args){
             return;
         }
 
+        printf("Se recibio el codigo de operacion: %d\n", cop);
+
         switch (cop) {
             case DEBUG:
                 log_info(logger, "debug");
                 break;
-
-            case NUMERO_PRUEBA:
-            {
-                uint32_t numero = 0;
-                if(recv_numero_prueba(cliente_socket, &numero)){
-                    log_info(logger, "Se recibio el numero: %d", numero);
-                }
-            }
-
+                
             // Errores
             case -1:
                 log_error(logger, "Cliente desconectado de %s...", server_name);

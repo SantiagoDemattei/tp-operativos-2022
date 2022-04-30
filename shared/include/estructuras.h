@@ -7,7 +7,7 @@
 
 typedef enum {
     //AGREGAR MAS CODIGOS PARA CONEXION
-    DEBUG = 69,
+    DEBUG,
     INICIAR_PROCESO,
     NUMERO_PRUEBA,
 } op_code;

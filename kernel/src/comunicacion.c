@@ -64,8 +64,9 @@ static void procesar_conexion(void* void_args){
                     //crear_pcb(instrucciones, socket_cpu, logger);
                     //serializar_pcb()
                     //send_pcb(socket_cpu, pcb);
-                    send_numero_prueba(socket_cpu, 1);
-                    send_numero_prueba(socket_memoria, 2);
+
+                    send_debug(socket_cpu);
+                    send_debug(socket_memoria);
                     
                     // liberar memoria
                     list_destroy_and_destroy_elements(instrucciones, (void*) destruir_instruccion);
