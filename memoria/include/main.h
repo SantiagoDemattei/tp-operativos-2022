@@ -16,7 +16,11 @@
 void liberar_estructuras_memoria(t_configuracion_memoria*);
 
 void liberar_estructuras_memoria(t_configuracion_memoria* datos_config_memoria)
-{
+{   
+    free(datos_config_memoria->puerto_escucha);
     free(datos_config_memoria->algoritmo_reemplazo);
     free(datos_config_memoria->path_swap);
+    free(datos_config_memoria);
 }
+
+#endif

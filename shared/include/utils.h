@@ -12,5 +12,6 @@
 void loggear_lista_instrucciones(t_list* lista_instrucciones, t_log* logger);
 void destruir_argumentos(t_argumento* argumento);
 void destruir_instruccion(t_instruccion* instruccionS);
+char* eliminar_caracter_retorno(char* cadena);
 
 #endif

@@ -25,20 +25,6 @@ t_configuracion_consola* leer_configuracion(t_log* logger) {
     
 }
 
-
-char* eliminar_caracter_retorno(char* cadena){
-    uint32_t i = 0;
-    while(cadena[i] != '\0'){
-        if(cadena[i] == '\r'){
-            cadena[i] = '\0';
-        }
-        i++;
-    }
-    return cadena;
-}
-
-
-
 void liberar_estructura_datos(t_configuracion_consola* datos){
     free(datos->ip);
     free(datos->puerto);

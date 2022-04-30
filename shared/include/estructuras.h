@@ -9,6 +9,7 @@ typedef enum {
     //AGREGAR MAS CODIGOS PARA CONEXION
     DEBUG = 69,
     INICIAR_PROCESO,
+    NUMERO_PRUEBA,
 } op_code;
 
 typedef struct {
@@ -56,7 +57,7 @@ typedef struct t_configuracion_cpu{
 } t_configuracion_cpu;
 
 typedef struct t_configuracion_memoria{
-    int puerto_escucha;
+    char* puerto_escucha;
     int tam_memoria;
     int tam_pagina;
     int entradas_por_tabla;

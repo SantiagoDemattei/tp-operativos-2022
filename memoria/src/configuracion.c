@@ -9,7 +9,7 @@ t_configuracion_memoria* leer_configuracion(){
         exit(EXIT_FAILURE);
     }
 
-    int puerto_escucha = config_get_int_value(nuevo_config, "PUERTO_ESCUCHA"); // leo PUERTO_ESCUCHA
+    char* puerto_escucha = config_get_string_value(nuevo_config, "PUERTO_ESCUCHA"); // leo PUERTO_ESCUCHA
     int tam_memoria = config_get_int_value(nuevo_config, "TAM_MEMORIA");
     int tam_pagina = config_get_int_value(nuevo_config, "TAM_PAGINA");
     int entradas_por_tabla = config_get_int_value(nuevo_config, "ENTRADAS_POR_TABLA");
@@ -18,12 +18,24 @@ t_configuracion_memoria* leer_configuracion(){
     int marcos_por_proceso = config_get_int_value(nuevo_config,"RETARDO_SWAP");
     char* path_swap = config_get_string_value(nuevo_config,"PATH_SWAP");
 
+    
+    algoritmo_reemplazo = eliminar_caracter_retorno(algoritmo_reemplazo);
+    path_swap = eliminar_caracter_retorno(path_swap);
+    puerto_escucha = eliminar_caracter_retorno(puerto_escucha);
+
     t_configuracion_memoria* datos = malloc(sizeof(t_configuracion_memoria)); // creo estructura de datos de conexion
     datos->algoritmo_reemplazo = malloc(strlen(algoritmo_reemplazo)+1); 
     strcpy(datos->algoritmo_reemplazo, algoritmo_reemplazo);
     datos->path_swap = malloc(strlen(path_swap)+1);
     strcpy(datos->path_swap, path_swap);
-    
+    datos->puerto_escucha = malloc(strlen(puerto_escucha)+1);
+    strcpy(datos->puerto_escucha, puerto_escucha);
+    datos->tam_memoria = tam_memoria;
+    datos->tam_pagina = tam_pagina;
+    datos->entradas_por_tabla = entradas_por_tabla;
+    datos->retardo_memoria = retardo_memoria;
+    datos->marcos_por_proceso = marcos_por_proceso;
+
     config_destroy(nuevo_config); // libero la memoria del config
     return datos;
 }

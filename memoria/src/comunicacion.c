@@ -2,7 +2,7 @@
 
 uint32_t crear_comunicacion_kernel(t_configuracion_memoria* configuracion_memoria, t_log* logger){ //SERVIDOR DE KERNEL
     
-    uint32_t socket_memoria = iniciar_servidor(logger, "MEMORIA", configuracion_memoria->, configuracion_memoria->puerto_escucha);
+    uint32_t socket_memoria = iniciar_servidor(logger, "MEMORIA", "127.0.0.1", configuracion_memoria->puerto_escucha); // Pusimos 127.0.0.1 porque el config no tiene la ip
 
     if(socket_memoria == -1){
         log_error(logger, "No se pudo iniciar el servidor de comunicacion");
@@ -32,6 +32,14 @@ static void procesar_conexion(void* void_args){
             case DEBUG:
                 log_info(logger, "debug");
                 break;
+
+            case NUMERO_PRUEBA:
+            {
+                uint32_t numero = 0;
+                if(recv_numero_prueba(cliente_socket, &numero)){
+                    log_info(logger, "Se recibio el numero: %d", numero);
+                }
+            }
 
             // Errores
             case -1:

@@ -12,6 +12,6 @@
 
 t_configuracion_consola* leer_configuracion(t_log* logger);
 void liberar_estructura_datos(t_configuracion_consola* datos);
-char* eliminar_caracter_retorno(char* cadena);
+
 
 #endif

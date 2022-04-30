@@ -140,16 +140,29 @@ bool recv_iniciar_consola(uint32_t fd, t_list** instrucciones, uint32_t* tamanio
 
 // inicio: PRUEBA
 bool send_numero_prueba(uint32_t fd, uint32_t numero) {
-    if (send(fd, &numero, sizeof(uint32_t), 0) == -1) {
+    size_t size = sizeof(op_code) + sizeof(uint8_t);
+    void* stream = malloc(size);
+    op_code cop = NUMERO_PRUEBA;
+    memcpy(stream, &cop, sizeof(op_code));
+    memcpy(stream + sizeof(op_code), &numero, sizeof(uint8_t));
+    if (send(fd, stream, size, 0) == size) {
+        free(stream);
         return false;
     }
+    free(stream);
     return true;
+
 }
 
 bool recv_numero_prueba(uint32_t fd, uint32_t* numero) {
-    if (recv(fd, numero, sizeof(uint32_t), 0) != sizeof(uint32_t)) {
+    size_t size = sizeof(uint32_t);
+    void* stream = malloc(size);
+    if (recv(fd, stream, size, 0) != size) {
+        free(stream);
         return false;
     }
+    memcpy(numero, stream, size);
+    free(stream);
     return true;
 }
 // fin: PRUEBA
