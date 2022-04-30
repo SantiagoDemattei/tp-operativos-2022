@@ -42,7 +42,7 @@ uint32_t iniciar_servidor(t_log* logger, const char* name, char* ip, char* puert
     listen(socket_servidor, SOMAXCONN); // Escuchando (hasta SOMAXCONN conexiones simultaneas)
     // Aviso al logger
     
-    log_info(logger, "Esperando a %s: %s (%s)\n", ip, puerto, name);
+    log_info(logger, "Esperando a %s:%s (%s)\n", ip, puerto, name);
     
     freeaddrinfo(servinfo);
     
