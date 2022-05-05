@@ -11,14 +11,13 @@ uint32_t crear_comunicacion(t_configuracion_cpu* t_configuracion_cpu, t_log* log
     return socket_cpu;
 }
 
-/*
 uint32_t crear_conexion_memoria(t_configuracion_cpu* datos_conexion, t_log* logger) //funcion de cliente de memoria
 {
-	uint32_t socket_Kernel = crear_conexion_cliente(logger,"CPU",datos_conexion->ip_memoria ,datos_conexion->puerto);
+	uint32_t socket_memoria = crear_conexion_cliente(logger, "MEMORIA", datos_conexion->ip_memoria , datos_conexion->puerto_memoria);
 	 
-	return socket_Kernel;
+	return socket_memoria;
 }
-*/
+
 static void procesar_conexion(void* void_args){
     t_procesar_conexion_args* args = (t_procesar_conexion_args*) void_args; // recibo a mi cliente y sus datos
     t_log* logger = args->log;
@@ -37,9 +36,14 @@ static void procesar_conexion(void* void_args){
         switch (cop) {
             case DEBUG:
                 log_info(logger, "debug");
+                int socket_memoria = crear_conexion_memoria(configuracion_cpu, logger);
+                if(socket_memoria == -1){
+                    log_error(logger, "No se pudo conectar con la memoria");
+                    return;
+                }
+                send_debug(socket_memoria);
+                
                 break;
-            
-            
 
             // Errores
             case -1:

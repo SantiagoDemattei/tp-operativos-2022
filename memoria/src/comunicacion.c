@@ -13,6 +13,18 @@ uint32_t crear_comunicacion_kernel(t_configuracion_memoria* configuracion_memori
 }
 
 
+uint32_t crear_comunicacion_cpu(t_configuracion_memoria* configuracion_memoria, t_log* logger){ //SERVIDOR DE CPU
+    
+ uint32_t socket_cpu = iniciar_servidor(logger, "MEMORIA", "127.0.0.1", configuracion_memoria->puerto_escucha); // Pusimos 127.0.0.1 porque el config no tiene la ip
+
+    if(socket_cpu == -1){
+     log_error(logger, "No se pudo iniciar el servidor de comunicacion");
+        return -1;
+    }
+
+    return socket_cpu;
+}
+
 static void procesar_conexion(void* void_args){
     t_procesar_conexion_args* args = (t_procesar_conexion_args*) void_args; // recibo a mi cliente y sus datos
     t_log* logger = args->log;

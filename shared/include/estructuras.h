@@ -69,10 +69,10 @@ typedef struct t_configuracion_memoria{
 } t_configuracion_memoria;
 
 typedef struct t_pcb{
-    uint32_t id;
-    uint32_t tamanio;
-    t_list* instrucciones;
-    uint32_t program_counter;
+    uint32_t id;//identificador del proceso
+    uint32_t tamanio; //tamaño en bytes del proceso, el mismo no cambiará a lo largo de la ejecución
+    t_list* instrucciones; // lista de instrucciones a ejecutar.
+    uint32_t program_counter; //número de la próxima instrucción a ejecutar
     // FALTA EL TIPO DE TABLA DE PAGINAS tablas_pagina;
     uint32_t estimacion_rafaga;
 }t_pcb;

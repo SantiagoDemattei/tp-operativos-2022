@@ -1,5 +1,15 @@
-[INFO] 14:53:26:946 CPU/(4073:4073): Esperando a 127.0.0.1:8001 (CPU)
+[INFO] 20:01:35:346 CPU/(3975:3975): Esperando a 127.0.0.1:8001 (CPU)
 
-[INFO] 14:54:04:484 CPU/(4073:4073): Cliente conectado (a CPU)
+[INFO] 20:02:11:775 CPU/(3975:3975): Cliente conectado (a CPU)
 
-[INFO] 14:54:04:488 CPU/(4073:4171): debug
+[INFO] 20:02:11:812 CPU/(3975:4059): debug
+[INFO] 20:02:11:821 CPU/(3975:4059): Cliente conectado en 127.0.0.1:8002 (a CPU)
+
+[INFO] 20:04:28:189 CPU/(4435:4435): Esperando a 127.0.0.1:8001 (CPU)
+
+[INFO] 20:04:36:165 CPU/(4435:4435): Cliente conectado (a CPU)
+
+[INFO] 20:04:36:173 CPU/(4435:4449): debug
+[INFO] 20:04:36:175 CPU/(4435:4449): Cliente conectado en 127.0.0.1:8002 (a CPU)
+
+[INFO] 20:04:42:673 CPU/(4435:4449): DISCONNECT!

@@ -1,9 +1,5 @@
 #include "include/main.h"
 
-uint32_t socket_cpu; 
-t_log* logger_cpu;
-t_configuracion_cpu* configuracion_cpu;
-
 void sighandler(int x) {
     switch (x) {
         case SIGINT:
@@ -20,7 +16,7 @@ uint32_t main(void){
       	
     logger_cpu = log_create("cpu.log", "CPU", true, LOG_LEVEL_INFO);
     configuracion_cpu = leer_configuracion(logger_cpu);
-    socket_cpu = crear_comunicacion(configuracion_cpu, logger_cpu);
+    socket_cpu = crear_comunicacion(configuracion_cpu, logger_cpu); // servidor de kernel
 
     while(server_escuchar(logger_cpu, "CPU", socket_cpu)!=0);
 
