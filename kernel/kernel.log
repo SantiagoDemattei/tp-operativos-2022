@@ -1,0 +1,12 @@
+[INFO] 14:53:56:854 KERNEL/(4148:4148): Esperando a 127.0.0.1:8000 (CONSOLA)
+
+[INFO] 14:54:04:478 KERNEL/(4148:4148): Cliente conectado (a CONSOLA)
+
+[INFO] 14:54:04:479 KERNEL/(4148:4170): Se recibieron las instrucciones
+[INFO] 14:54:04:482 KERNEL/(4148:4170): Tamanio de la consola: 3
+[INFO] 14:54:04:483 KERNEL/(4148:4170): Cantidad de instrucciones: 6
+[INFO] 14:54:04:484 KERNEL/(4148:4170): Cliente conectado en 127.0.0.1:8001 (a CPU)
+
+[INFO] 14:54:04:486 KERNEL/(4148:4170): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 14:54:04:487 KERNEL/(4148:4170): DISCONNECT!
