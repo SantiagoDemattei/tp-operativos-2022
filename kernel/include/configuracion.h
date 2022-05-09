@@ -15,4 +15,5 @@
 
 t_configuracion_kernel* leer_configuracion();
 
+
 #endif

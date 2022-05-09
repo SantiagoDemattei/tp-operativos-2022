@@ -9,7 +9,7 @@ typedef enum {
     //AGREGAR MAS CODIGOS PARA CONEXION
     DEBUG,
     INICIAR_PROCESO,
-    NUMERO_PRUEBA,
+    ENVIAR_PCB,
 } op_code;
 
 typedef struct {
@@ -73,7 +73,7 @@ typedef struct t_pcb{
     uint32_t tamanio; //tamaño en bytes del proceso, el mismo no cambiará a lo largo de la ejecución
     t_list* instrucciones; // lista de instrucciones a ejecutar.
     uint32_t program_counter; //número de la próxima instrucción a ejecutar
-    // FALTA EL TIPO DE TABLA DE PAGINAS tablas_pagina;
+    uint32_t tabla_pagina;
     uint32_t estimacion_rafaga;
 }t_pcb;
 

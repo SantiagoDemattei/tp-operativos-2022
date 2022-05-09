@@ -23,6 +23,7 @@ static void procesar_conexion(void* void_args){
     t_log* logger = args->log;
     uint32_t cliente_socket = args->fd;
     char* server_name = args->server_name;
+    t_pcb* pcb = malloc(sizeof(t_pcb));
     free(args);
 
     op_code cop;
@@ -36,15 +37,29 @@ static void procesar_conexion(void* void_args){
         switch (cop) {
             case DEBUG:
                 log_info(logger, "debug");
-                int socket_memoria = crear_conexion_memoria(configuracion_cpu, logger);
-                if(socket_memoria == -1){
-                    log_error(logger, "No se pudo conectar con la memoria");
-                    return;
-                }
-                send_debug(socket_memoria);
-                
                 break;
+            
+            case ENVIAR_PCB:
+                log_info(logger, "Se recibio el pcb");
+                
 
+                if(recv_pcb(cliente_socket,&pcb)){
+                    
+                    loggear_lista_instrucciones(pcb->instrucciones,logger)
+
+                    /*
+                    int socket_memoria = crear_conexion_memoria(configuracion_cpu, logger);
+
+                    if(socket_memoria == -1){
+                        log_error(logger, "No se pudo conectar con la memoria");
+                        return;
+                    }
+                    send_debug(socket_memoria);
+                    */
+                }
+                    
+
+                break;
             // Errores
             case -1:
                 log_error(logger, "Cliente desconectado de %s...", server_name);

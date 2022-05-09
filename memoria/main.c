@@ -22,7 +22,7 @@ uint32_t main(void){
     configuracion_memoria = leer_configuracion();
     socket_memoria = crear_comunicacion_kernel(configuracion_memoria, logger);
 
-    while(server_escuchar(logger, "MEMORIA", socket_memoria)!=0);
+    while(server_escuchar(logger, "MEMORIA", socket_memoria)!=0); // servidor de kernel y cpu (ambos se conectan a la misma ip y puerto)
 
     liberar_conexion(socket_memoria);
     liberar_estructuras_memoria(configuracion_memoria);

@@ -17,6 +17,7 @@ uint32_t main(void){
     logger = log_create("kernel.log", "KERNEL", true, LOG_LEVEL_INFO);
     configuracion_kernel = leer_configuracion();
     socket_kernel = crear_comunicacion(configuracion_kernel, logger);
+    pthread_mutex_init(&mutex_cantidad_procesos, NULL);
 
     while(server_escuchar(logger, "CONSOLA", socket_kernel)!=0);
 

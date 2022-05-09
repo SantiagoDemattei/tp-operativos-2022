@@ -1,5 +1,7 @@
 #include "../include/comunicacion.h"
 
+uint32_t cantidad_procesos = 0;
+
 uint32_t crear_comunicacion(t_configuracion_kernel* configuracion_kernel, t_log* logger){ //funcion de servidor 
     
     uint32_t socket_kernel = iniciar_servidor(logger, "CONSOLA", configuracion_kernel->ip_memoria, configuracion_kernel->puerto_escucha);
@@ -51,6 +53,7 @@ static void procesar_conexion(void* void_args){
             {
                 
                 uint32_t tamanio = 0;
+                
                 t_list* instrucciones = NULL;
                 if(recv_iniciar_consola(cliente_socket, &instrucciones, &tamanio)){
                     log_info(logger, "Se recibieron las instrucciones");
@@ -61,9 +64,8 @@ static void procesar_conexion(void* void_args){
                     // envio instrucciones a cpu
                     int socket_cpu = crear_conexion_cpu(configuracion_kernel, logger);
                     int socket_memoria = crear_conexion_memoria(configuracion_kernel, logger);
-                    //crear_pcb(instrucciones, socket_cpu, logger);
-                    //serializar_pcb()
-                    //send_pcb(socket_cpu, pcb);
+                    t_pcb* pcb = crear_pcb(instrucciones, socket_cpu, logger, tamanio);
+                    send_pcb(socket_cpu, pcb);
 
                     send_debug(socket_cpu);
                     send_debug(socket_memoria);
@@ -76,8 +78,6 @@ static void procesar_conexion(void* void_args){
                 }
                 break;
             }
-
-            
 
             // Errores
             case -1:
@@ -109,4 +109,17 @@ uint32_t server_escuchar(t_log* logger, char* server_name, uint32_t server_socke
     return 0;
 }
 
- 
+ t_pcb* crear_pcb(t_list* instrucciones, uint32_t socket_cpu, t_log* logger, uint32_t tamanio){
+    t_pcb* pcb = malloc(sizeof(t_pcb));
+    pthread_mutex_lock(&mutex_cantidad_procesos);
+    pcb->id = cantidad_procesos;
+    cantidad_procesos++;
+    pthread_mutex_unlock(&mutex_cantidad_procesos);
+    pcb->instrucciones = instrucciones;
+    pcb->program_counter = 0 ;
+    pcb->tamanio = tamanio;
+    pcb->tabla_pagina = 0;
+    pcb->estimacion_rafaga = 0;
+    return pcb;
+ }
+

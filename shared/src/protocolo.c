@@ -45,7 +45,7 @@ static void* serializar_iniciar_consola(size_t* size, t_list* instrucciones, uin
     // stream completo
     size_t size_total = 
         sizeof(op_code) +   // tamanio del op_code
-        sizeof(size_t) + // size total del stream
+        sizeof(size_t) + // size total del payload
         sizeof(uint32_t) + // tamanio de la consola
         sizeof(size_t) + // size del stream de instrucciones
         size_instrucciones; // tamanio de la lista de instrucciones
@@ -144,4 +144,85 @@ bool send_debug(uint32_t fd) {
     if (send(fd, &cop, sizeof(op_code), 0) != sizeof(op_code))
         return false;
     return true;
+}
+//fin: DEBUG
+
+
+// ENVIO_PCB
+bool send_pcb(uint32_t fd, t_pcb* pcb) {
+    size_t size;
+    void* stream = serializar_pcb(&size, pcb);
+    if (send(fd, stream, size, 0) == -1) {
+        free(stream);
+        return false;
+    }
+    free(stream);
+    return true;
+}
+
+bool recv_pcb(uint32_t fd, t_pcb** pcb) {
+    size_t size;
+    if(recv(fd, &size, sizeof(size_t), 0) != sizeof(size_t)) {
+        return false;
+    }
+    // recibe el stream sin el opcode (size_payload + payload)
+    void* stream = malloc(size);
+    if(recv(fd, stream, size, 0) != size) {
+        free(stream);
+        return false;
+    }
+    // recibe el  payload
+    *pcb = deserializar_pcb(stream);
+    free(stream);
+    return true;
+}
+
+
+static void* serializar_pcb(size_t* size, t_pcb* pcb){
+    size_t size_instrucciones;
+    void* stream_instrucciones = serializar_t_list_instrucciones(&size_instrucciones, pcb->instrucciones);
+
+    size_t size_total = 
+            sizeof(op_code) +   // tamanio del op_code
+            sizeof(size_t) + // size  del payload
+            sizeof(uint32_t)*5 + // size de todos los enteros del pcb
+            sizeof(size_t) + // size del stream de instrucciones
+            size_instrucciones; // tamanio de la lista de instrucciones
+
+    void* stream = malloc(size_total);
+    size_t size_payload = size_total - sizeof(op_code) - sizeof(size_t);
+
+    op_code cop = ENVIAR_PCB;
+
+    // Ahora lleno el stream
+    memcpy(stream, &cop, sizeof(op_code)); // op_code
+    memcpy(stream + sizeof(op_code), &size_payload, sizeof(size_t)); // size del payload
+    memcpy(stream + sizeof(op_code) + sizeof(size_t), &(pcb->id), sizeof(uint32_t)); // pid
+    memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t), &(pcb->tamanio), sizeof(uint32_t)); // tamanio
+    memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t)*2, &(pcb->program_counter), sizeof(uint32_t));
+    memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t)*3, &(pcb->tabla_pagina), sizeof(uint32_t));
+    memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t)*4, &(pcb->estimacion_rafaga), sizeof(uint32_t));
+    memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t)*5, &size_instrucciones, sizeof(size_t)); // size del stream de instrucciones
+    memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t)*5 + sizeof(size_t), stream_instrucciones, size_instrucciones); // stream de instrucciones
+    
+    free(stream_instrucciones);
+    *size = size_total;
+    return stream;
+}
+
+static void deserializar_pcb (void* stream, t_list** instrucciones) {
+    t_pcb* pcb = malloc(sizeof(t_pcb));
+    size_t size_instrucciones; 
+    memcpy(pcb->id, stream, sizeof(uint32_t)); //proceso id
+    memcpy(pcb->tamanio, stream + sizeof(uint32_t), sizeof(uint32_t)); // tamanio
+    memcpy(pcb->program_counter, stream + sizeof(uint32_t)*2, sizeof(uint32_t)); //program_counter
+    memcpy(pcb->tabla_pagina, stream + sizeof(uint32_t)*3, sizeof(uint32_t)); //tabla pagina
+    memcpy(pcb->estimacion_rafaga, stream + sizeof(uint32_t)*4, sizeof(uint32_t)); //estimacion rafaga
+    memcpy(&size_instrucciones, stream + sizeof(uint32_t)*5, sizeof(size_t)); //tamanio de la lista de instrucciones
+    void* stream_instrucciones = malloc(size_instrucciones);
+    memcpy(stream_instrucciones, stream + sizeof(uint32_t)*5 + sizeof(size_t), size_instrucciones); // stream de instrucciones
+    *instrucciones = deserializar_t_list_instrucciones(stream_instrucciones, size_instrucciones);
+    pcb->instrucciones = instrucciones;
+    
+    free(stream_instrucciones);
 }

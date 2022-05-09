@@ -3,6 +3,7 @@
 
 #include "commons/collections/dictionary.h"
 #include <commons/config.h>
+#include <pthread.h>
 
 
 typedef struct {
