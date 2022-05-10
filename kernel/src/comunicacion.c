@@ -67,7 +67,6 @@ static void procesar_conexion(void* void_args){
                     t_pcb* pcb = crear_pcb(instrucciones, socket_cpu, logger, tamanio);
                     send_pcb(socket_cpu, pcb);
 
-                    send_debug(socket_cpu);
                     send_debug(socket_memoria);
                     
                     // liberar memoria

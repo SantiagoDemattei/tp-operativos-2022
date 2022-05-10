@@ -149,37 +149,6 @@ bool send_debug(uint32_t fd) {
 
 
 // ENVIO_PCB
-bool send_pcb(uint32_t fd, t_pcb* pcb) {
-    size_t size;
-    void* stream = serializar_pcb(&size, pcb);
-    if (send(fd, stream, size, 0) == -1) {
-        free(stream);
-        return false;
-    }
-    free(stream);
-    return true;
-}
-
-bool recv_pcb(uint32_t fd, t_pcb** pcb) {
-    size_t size;
-    if(recv(fd, &size, sizeof(size_t), 0) != sizeof(size_t)) {
-        return false;
-    }
-    // recibe el stream sin el opcode (size_payload + payload)
-    void* stream = malloc(size);
-    if(recv(fd, stream, size, 0) != size) {
-        free(stream);
-        return false;
-    }
-    // recibe el  payload
-    t_pcb* pcbF;
-    deserializar_pcb(stream, &pcbF);
-    *pcb = pcbF;
-    free(stream);
-    return true;
-}
-
-
 static void* serializar_pcb(size_t* size, t_pcb* pcb){
     size_t size_instrucciones;
     void* stream_instrucciones = serializar_t_list_instrucciones(&size_instrucciones, pcb->instrucciones);
@@ -234,3 +203,36 @@ static void deserializar_pcb (void* stream, t_pcb** pcbF) {
     
     free(stream_instrucciones);
 }
+
+bool send_pcb(uint32_t fd, t_pcb* pcb) {
+    size_t size;
+    void* stream = serializar_pcb(&size, pcb);
+    if (send(fd, stream, size, 0) == -1) {
+        free(stream);
+        return false;
+    }
+    free(stream);
+    return true;
+}
+
+bool recv_pcb(uint32_t fd, t_pcb** pcb) {
+    size_t size;
+    if(recv(fd, &size, sizeof(size_t), 0) != sizeof(size_t)) {
+        return false;
+    }
+    // recibe el stream sin el opcode (size_payload + payload)
+    void* stream = malloc(size);
+    if(recv(fd, stream, size, 0) != size) {
+        free(stream);
+        return false;
+    }
+    // recibe el  payload
+    t_pcb* pcbF;
+    deserializar_pcb(stream, &pcbF);
+    *pcb = pcbF;
+    free(stream);
+    return true;
+}
+
+// fin: ENVIO_PCB
+
