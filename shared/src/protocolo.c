@@ -172,7 +172,9 @@ bool recv_pcb(uint32_t fd, t_pcb** pcb) {
         return false;
     }
     // recibe el  payload
-    *pcb = deserializar_pcb(stream);
+    t_pcb* pcbF;
+    deserializar_pcb(stream, &pcbF);
+    *pcb = pcbF;
     free(stream);
     return true;
 }
@@ -210,19 +212,25 @@ static void* serializar_pcb(size_t* size, t_pcb* pcb){
     return stream;
 }
 
-static void deserializar_pcb (void* stream, t_list** instrucciones) {
+static void deserializar_pcb (void* stream, t_pcb** pcbF) {
     t_pcb* pcb = malloc(sizeof(t_pcb));
     size_t size_instrucciones; 
-    memcpy(pcb->id, stream, sizeof(uint32_t)); //proceso id
-    memcpy(pcb->tamanio, stream + sizeof(uint32_t), sizeof(uint32_t)); // tamanio
-    memcpy(pcb->program_counter, stream + sizeof(uint32_t)*2, sizeof(uint32_t)); //program_counter
-    memcpy(pcb->tabla_pagina, stream + sizeof(uint32_t)*3, sizeof(uint32_t)); //tabla pagina
-    memcpy(pcb->estimacion_rafaga, stream + sizeof(uint32_t)*4, sizeof(uint32_t)); //estimacion rafaga
+
+
+    memcpy(&(pcb->id), stream, sizeof(uint32_t)); //proceso id
+    memcpy(&(pcb->tamanio), stream + sizeof(uint32_t), sizeof(uint32_t)); // tamanio
+    memcpy(&(pcb->program_counter), stream + sizeof(uint32_t)*2, sizeof(uint32_t)); //program_counter
+    memcpy(&(pcb->tabla_pagina), stream + sizeof(uint32_t)*3, sizeof(uint32_t)); //tabla pagina
+    memcpy(&(pcb->estimacion_rafaga), stream + sizeof(uint32_t)*4, sizeof(uint32_t)); //estimacion rafaga
+
     memcpy(&size_instrucciones, stream + sizeof(uint32_t)*5, sizeof(size_t)); //tamanio de la lista de instrucciones
     void* stream_instrucciones = malloc(size_instrucciones);
     memcpy(stream_instrucciones, stream + sizeof(uint32_t)*5 + sizeof(size_t), size_instrucciones); // stream de instrucciones
-    *instrucciones = deserializar_t_list_instrucciones(stream_instrucciones, size_instrucciones);
+    t_list* instrucciones = deserializar_t_list_instrucciones(stream_instrucciones, size_instrucciones);
     pcb->instrucciones = instrucciones;
+    
+    // copiar pcb en pcbF
+    *pcbF = pcb;
     
     free(stream_instrucciones);
 }

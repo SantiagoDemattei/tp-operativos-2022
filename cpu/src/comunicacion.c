@@ -43,9 +43,9 @@ static void procesar_conexion(void* void_args){
                 log_info(logger, "Se recibio el pcb");
                 
 
-                if(recv_pcb(cliente_socket,&pcb)){
+                if(recv_pcb(cliente_socket, &pcb)){
                     
-                    loggear_lista_instrucciones(pcb->instrucciones,logger)
+                    loggear_lista_instrucciones(pcb->instrucciones,logger);
 
                     /*
                     int socket_memoria = crear_conexion_memoria(configuracion_cpu, logger);
