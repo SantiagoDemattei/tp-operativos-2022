@@ -46,7 +46,8 @@ static void procesar_conexion(void* void_args){
                 if(recv_pcb(cliente_socket, &pcb)){
                     
                     loggear_lista_instrucciones(pcb->instrucciones,logger);
-
+                    list_destroy_and_destroy_elements(pcb->instrucciones, (void*) destruir_instruccion);
+                    free(pcb); // por ahora
                     /*
                     int socket_memoria = crear_conexion_memoria(configuracion_cpu, logger);
 

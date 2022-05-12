@@ -66,6 +66,7 @@ static void procesar_conexion(void* void_args){
                     int socket_memoria = crear_conexion_memoria(configuracion_kernel, logger);
                     t_pcb* pcb = crear_pcb(instrucciones, socket_cpu, logger, tamanio);
                     send_pcb(socket_cpu, pcb);
+                    free(pcb);
 
                     send_debug(socket_memoria);
                     

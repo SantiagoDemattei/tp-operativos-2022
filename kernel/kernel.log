@@ -1,0 +1,72 @@
+[INFO] 17:45:16:462 KERNEL/(4998:4998): Esperando a 127.0.0.1:8000 (CONSOLA)
+
+[INFO] 17:45:24:011 KERNEL/(4998:4998): Cliente conectado (a CONSOLA)
+
+[INFO] 17:45:24:051 KERNEL/(4998:5018): Se recibieron las instrucciones
+[INFO] 17:45:24:055 KERNEL/(4998:5018): Tamanio de la consola: 2
+[INFO] 17:45:24:056 KERNEL/(4998:5018): Cantidad de instrucciones: 6
+[INFO] 17:45:24:075 KERNEL/(4998:5018): Cliente conectado en 127.0.0.1:8001 (a CPU)
+
+[ERROR] 17:45:24:081 KERNEL/(4998:5018): Error al conectar (a MEMORIA)
+
+[INFO] 17:45:24:116 KERNEL/(4998:5018): DISCONNECT!
+[INFO] 17:48:05:121 KERNEL/(5347:5347): Esperando a 127.0.0.1:8000 (CONSOLA)
+
+[INFO] 17:48:08:420 KERNEL/(5347:5347): Cliente conectado (a CONSOLA)
+
+[INFO] 17:48:08:464 KERNEL/(5347:5354): Se recibieron las instrucciones
+[INFO] 17:48:08:472 KERNEL/(5347:5354): Tamanio de la consola: 2
+[INFO] 17:48:08:473 KERNEL/(5347:5354): Cantidad de instrucciones: 6
+[INFO] 17:48:08:481 KERNEL/(5347:5354): Cliente conectado en 127.0.0.1:8001 (a CPU)
+
+[ERROR] 17:48:08:484 KERNEL/(5347:5354): Error al conectar (a MEMORIA)
+
+[INFO] 17:48:08:553 KERNEL/(5347:5354): DISCONNECT!
+[INFO] 17:49:55:935 KERNEL/(5625:5625): Esperando a 127.0.0.1:8000 (CONSOLA)
+
+[INFO] 17:49:58:805 KERNEL/(5625:5625): Cliente conectado (a CONSOLA)
+
+[INFO] 17:49:58:853 KERNEL/(5625:5630): Se recibieron las instrucciones
+[INFO] 17:49:58:856 KERNEL/(5625:5630): Tamanio de la consola: 2
+[INFO] 17:49:58:857 KERNEL/(5625:5630): Cantidad de instrucciones: 6
+[INFO] 17:49:58:864 KERNEL/(5625:5630): Cliente conectado en 127.0.0.1:8001 (a CPU)
+
+[ERROR] 17:49:58:874 KERNEL/(5625:5630): Error al conectar (a MEMORIA)
+
+[INFO] 17:49:58:917 KERNEL/(5625:5630): DISCONNECT!
+[INFO] 17:51:44:500 KERNEL/(5978:5978): Esperando a 127.0.0.1:8000 (CONSOLA)
+
+[INFO] 17:51:46:814 KERNEL/(5978:5978): Cliente conectado (a CONSOLA)
+
+[INFO] 17:51:46:860 KERNEL/(5978:6006): Se recibieron las instrucciones
+[INFO] 17:51:46:863 KERNEL/(5978:6006): Tamanio de la consola: 2
+[INFO] 17:51:46:864 KERNEL/(5978:6006): Cantidad de instrucciones: 6
+[INFO] 17:51:46:870 KERNEL/(5978:6006): Cliente conectado en 127.0.0.1:8001 (a CPU)
+
+[ERROR] 17:51:46:883 KERNEL/(5978:6006): Error al conectar (a MEMORIA)
+
+[INFO] 17:51:46:921 KERNEL/(5978:6006): DISCONNECT!
+[INFO] 17:55:06:383 KERNEL/(6553:6553): Esperando a 127.0.0.1:8000 (CONSOLA)
+
+[INFO] 17:55:09:092 KERNEL/(6553:6553): Cliente conectado (a CONSOLA)
+
+[INFO] 17:55:09:137 KERNEL/(6553:6570): Se recibieron las instrucciones
+[INFO] 17:55:09:141 KERNEL/(6553:6570): Tamanio de la consola: 2
+[INFO] 17:55:09:142 KERNEL/(6553:6570): Cantidad de instrucciones: 6
+[INFO] 17:55:09:153 KERNEL/(6553:6570): Cliente conectado en 127.0.0.1:8001 (a CPU)
+
+[ERROR] 17:55:09:155 KERNEL/(6553:6570): Error al conectar (a MEMORIA)
+
+[INFO] 17:55:09:189 KERNEL/(6553:6570): DISCONNECT!
+[INFO] 17:57:31:223 KERNEL/(6903:6903): Esperando a 127.0.0.1:8000 (CONSOLA)
+
+[INFO] 17:57:35:709 KERNEL/(6903:6903): Cliente conectado (a CONSOLA)
+
+[INFO] 17:57:35:749 KERNEL/(6903:6919): Se recibieron las instrucciones
+[INFO] 17:57:35:751 KERNEL/(6903:6919): Tamanio de la consola: 2
+[INFO] 17:57:35:753 KERNEL/(6903:6919): Cantidad de instrucciones: 6
+[INFO] 17:57:35:764 KERNEL/(6903:6919): Cliente conectado en 127.0.0.1:8001 (a CPU)
+
+[ERROR] 17:57:35:771 KERNEL/(6903:6919): Error al conectar (a MEMORIA)
+
+[INFO] 17:57:35:806 KERNEL/(6903:6919): DISCONNECT!

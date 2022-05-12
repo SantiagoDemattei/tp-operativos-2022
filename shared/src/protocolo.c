@@ -185,7 +185,6 @@ static void deserializar_pcb (void* stream, t_pcb** pcbF) {
     t_pcb* pcb = malloc(sizeof(t_pcb));
     size_t size_instrucciones; 
 
-
     memcpy(&(pcb->id), stream, sizeof(uint32_t)); //proceso id
     memcpy(&(pcb->tamanio), stream + sizeof(uint32_t), sizeof(uint32_t)); // tamanio
     memcpy(&(pcb->program_counter), stream + sizeof(uint32_t)*2, sizeof(uint32_t)); //program_counter
