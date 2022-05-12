@@ -23,7 +23,7 @@ static void procesar_conexion(void* void_args){
     t_log* logger = args->log;
     uint32_t cliente_socket = args->fd;
     char* server_name = args->server_name;
-    t_pcb* pcb = malloc(sizeof(t_pcb));
+    t_pcb* pcb;
     free(args);
 
     op_code cop;
@@ -45,7 +45,7 @@ static void procesar_conexion(void* void_args){
 
                 if(recv_pcb(cliente_socket, &pcb)){
                     
-                    loggear_lista_instrucciones(pcb->instrucciones,logger);
+                    loggear_lista_instrucciones(pcb->instrucciones, logger);
                     list_destroy_and_destroy_elements(pcb->instrucciones, (void*) destruir_instruccion);
                     free(pcb); // por ahora
                     /*
@@ -70,6 +70,8 @@ static void procesar_conexion(void* void_args){
                 return;
         }
     }
+    list_destroy_and_destroy_elements(pcb->instrucciones, (void*) destruir_instruccion);
+    free(pcb); // por ahora
 
     log_warning(logger, "El cliente se desconecto de %s server", server_name);
     return;

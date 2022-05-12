@@ -4,7 +4,7 @@ uint32_t cantidad_procesos = 0;
 
 uint32_t crear_comunicacion(t_configuracion_kernel* configuracion_kernel, t_log* logger){ //funcion de servidor 
     
-    uint32_t socket_kernel = iniciar_servidor(logger, "CONSOLA", configuracion_kernel->ip_memoria, configuracion_kernel->puerto_escucha);
+    socket_kernel = iniciar_servidor(logger, "CONSOLA", configuracion_kernel->ip_memoria, configuracion_kernel->puerto_escucha);
 
     if(socket_kernel == -1){
         log_error(logger, "No se pudo iniciar el servidor de comunicacion");
@@ -16,14 +16,14 @@ uint32_t crear_comunicacion(t_configuracion_kernel* configuracion_kernel, t_log*
 
 uint32_t crear_conexion_cpu(t_configuracion_kernel* datos_conexion, t_log* logger) //"kernel" cliente de cpu
 {
-	uint32_t socket_cpu = crear_conexion_cliente(logger, "CPU", datos_conexion->ip_cpu, datos_conexion->puerto_cpu_dispatch);
+    socket_cpu = crear_conexion_cliente(logger, "CPU", datos_conexion->ip_cpu, datos_conexion->puerto_cpu_dispatch);
     
 	return socket_cpu;
 }
 
 uint32_t crear_conexion_memoria(t_configuracion_kernel* datos_conexion, t_log* logger) //"kernel" cliente de memoria
 {
-	uint32_t socket_memoria = crear_conexion_cliente(logger, "MEMORIA", datos_conexion->ip_memoria, datos_conexion->puerto_memoria);
+	 socket_memoria = crear_conexion_cliente(logger, "MEMORIA", datos_conexion->ip_memoria, datos_conexion->puerto_memoria);
     
 	return socket_memoria;
 }
@@ -62,8 +62,8 @@ static void procesar_conexion(void* void_args){
                     // loggear_lista_instrucciones(instrucciones, logger);
 
                     // envio instrucciones a cpu
-                    int socket_cpu = crear_conexion_cpu(configuracion_kernel, logger);
-                    int socket_memoria = crear_conexion_memoria(configuracion_kernel, logger);
+                    socket_cpu = crear_conexion_cpu(configuracion_kernel, logger);
+                    socket_memoria = crear_conexion_memoria(configuracion_kernel, logger);
                     t_pcb* pcb = crear_pcb(instrucciones, socket_cpu, logger, tamanio);
                     send_pcb(socket_cpu, pcb);
                     free(pcb);

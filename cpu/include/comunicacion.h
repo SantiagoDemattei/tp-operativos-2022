@@ -17,7 +17,6 @@
 #include "../../shared/include/bibliotecas.h"
 #include "../../shared/include/utils.h"
 
-uint32_t socket_cpu; 
 t_log* logger_cpu;
 t_configuracion_cpu* configuracion_cpu;
 

@@ -13,11 +13,10 @@
 #include "configuracion.h"
 
 
-uint32_t socket_kernel; 
+
 t_log* logger;
 t_configuracion_kernel* configuracion_kernel;
 pthread_mutex_t mutex_cantidad_procesos;
-
 
 
 uint32_t crear_comunicacion(t_configuracion_kernel* configuracion_kernel, t_log* logger);

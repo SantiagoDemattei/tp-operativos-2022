@@ -12,7 +12,7 @@ void sighandler(int x) {
 
 uint32_t main(void){
 
-    signal(SIGINT , sighandler);
+    signal(SIGINT, sighandler);
       	
     logger_cpu = log_create("cpu.log", "CPU", true, LOG_LEVEL_INFO);
     configuracion_cpu = leer_configuracion(logger_cpu);

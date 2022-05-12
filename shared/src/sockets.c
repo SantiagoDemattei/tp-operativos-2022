@@ -99,5 +99,4 @@ uint32_t crear_conexion_cliente(t_log* logger, const char* server_name, char* ip
 // CERRAR CONEXION
 void liberar_conexion(uint32_t socket_cliente) {
     close(socket_cliente);
-    
 }

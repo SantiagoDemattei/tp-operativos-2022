@@ -12,6 +12,10 @@
 #include <commons/config.h>
 #include "utils.h"
 
+uint32_t socket_kernel; 
+uint32_t socket_cpu;
+uint32_t socket_memoria;
+
 uint32_t iniciar_servidor(t_log* logger, const char* name, char* ip, char* puerto);
 uint32_t esperar_cliente(t_log* logger, const char* name, uint32_t socket_servidor);
 uint32_t crear_conexion_cliente(t_log* logger, const char* server_name, char* ip, char* puerto);

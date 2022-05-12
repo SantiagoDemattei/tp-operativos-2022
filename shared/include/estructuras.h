@@ -5,6 +5,7 @@
 #include <commons/log.h>
 #include <commons/collections/list.h>
 
+
 typedef enum {
     //AGREGAR MAS CODIGOS PARA CONEXION
     DEBUG,
@@ -28,7 +29,7 @@ typedef struct {
 
 typedef struct {
     t_log* log; //logger
-    uint32_t fd; //int socket 
+    int fd; //int socket 
     char* server_name; //nombre del servidor
 } t_procesar_conexion_args; //para los hilos
 
