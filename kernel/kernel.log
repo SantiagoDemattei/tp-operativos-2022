@@ -1,0 +1,12 @@
+[INFO] 20:05:42:888 KERNEL/(6916:6916): Esperando a 127.0.0.1:8000 (CONSOLA)
+
+[INFO] 20:06:10:800 KERNEL/(6916:6916): Cliente conectado (a CONSOLA)
+
+[INFO] 20:06:10:802 KERNEL/(6916:7034): Se recibieron las instrucciones
+[INFO] 20:06:10:805 KERNEL/(6916:7034): Tamanio de la consola: 3
+[INFO] 20:06:10:805 KERNEL/(6916:7034): Cantidad de instrucciones: 6
+[INFO] 20:06:10:807 KERNEL/(6916:7034): Cliente conectado en 127.0.0.1:8001 (a CPU)
+
+[INFO] 20:06:10:808 KERNEL/(6916:7034): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 20:06:10:809 KERNEL/(6916:7034): DISCONNECT!

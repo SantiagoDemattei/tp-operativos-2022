@@ -2,7 +2,7 @@
 
 uint32_t crear_comunicacion(t_configuracion_cpu* t_configuracion_cpu, t_log* logger){ //funcion de servidor 
     
-    uint32_t socket_cpu = iniciar_servidor(logger, "CPU", t_configuracion_cpu->ip_memoria, t_configuracion_cpu->puerto_escucha_dispatch);
+    uint32_t socket_cpu = iniciar_servidor(logger, "KERNEL", t_configuracion_cpu->ip_cpu, t_configuracion_cpu->puerto_escucha_dispatch);
 
     if(socket_cpu == -1){
         log_error(logger, "No se pudo iniciar el servidor de comunicacion");

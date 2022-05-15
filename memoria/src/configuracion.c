@@ -9,6 +9,7 @@ t_configuracion_memoria* leer_configuracion(){
         exit(EXIT_FAILURE);
     }
 
+    char* ip_memoria = config_get_string_value(nuevo_config, "IP_MEMORIA");
     char* puerto_escucha = config_get_string_value(nuevo_config, "PUERTO_ESCUCHA"); // leo PUERTO_ESCUCHA
     int tam_memoria = config_get_int_value(nuevo_config, "TAM_MEMORIA");
     int tam_pagina = config_get_int_value(nuevo_config, "TAM_PAGINA");
@@ -24,6 +25,8 @@ t_configuracion_memoria* leer_configuracion(){
     puerto_escucha = eliminar_caracter_retorno(puerto_escucha);
 
     t_configuracion_memoria* datos = malloc(sizeof(t_configuracion_memoria)); // creo estructura de datos de conexion
+    datos->ip_memoria = malloc(strlen(ip_memoria)+1); 
+    strcpy(datos->ip_memoria, ip_memoria);
     datos->algoritmo_reemplazo = malloc(strlen(algoritmo_reemplazo)+1); 
     strcpy(datos->algoritmo_reemplazo, algoritmo_reemplazo);
     datos->path_swap = malloc(strlen(path_swap)+1);

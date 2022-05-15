@@ -10,6 +10,7 @@ t_configuracion_kernel* leer_configuracion(){
     }
 
     char* ip_memoria = config_get_string_value(nuevo_config, "IP_MEMORIA"); // leo ip de memoria
+    char* ip_kernel = config_get_string_value(nuevo_config, "IP_KERNEL"); // leo ip de memoria
     char* puerto_memoria = config_get_string_value(nuevo_config, "PUERTO_MEMORIA"); // leo puerto
     char* ip_cpu = config_get_string_value(nuevo_config, "IP_CPU"); // leo ip de cpu
     char* puerto_cpu_dispatch = config_get_string_value(nuevo_config, "PUERTO_CPU_DISPATCH"); // leo puerto de cpu dispatch
@@ -25,6 +26,8 @@ t_configuracion_kernel* leer_configuracion(){
     t_configuracion_kernel* datos = malloc(sizeof(t_configuracion_kernel)); // creo estructura de datos de conexion
     datos->ip_memoria = malloc(strlen(ip_memoria)+1);
     strcpy(datos->ip_memoria, ip_memoria);
+    datos->ip_kernel = malloc(strlen(ip_kernel)+1);
+    strcpy(datos->ip_kernel, ip_kernel);
     datos->puerto_memoria = malloc(strlen(puerto_memoria)+1);
     strcpy(datos->puerto_memoria, puerto_memoria);
     datos->ip_cpu = malloc(strlen(ip_cpu)+1);

@@ -2,7 +2,7 @@
 
 uint32_t crear_comunicacion_kernel(t_configuracion_memoria* configuracion_memoria, t_log* logger){ //SERVIDOR DE KERNEL
     
-    uint32_t socket_memoria = iniciar_servidor(logger, "MEMORIA", "127.0.0.1", configuracion_memoria->puerto_escucha); // Pusimos 127.0.0.1 porque el config no tiene la ip
+    uint32_t socket_memoria = iniciar_servidor(logger, "KERNEL", configuracion_memoria->ip_memoria, configuracion_memoria->puerto_escucha);
 
     if(socket_memoria == -1){
         log_error(logger, "No se pudo iniciar el servidor de comunicacion");
@@ -15,7 +15,7 @@ uint32_t crear_comunicacion_kernel(t_configuracion_memoria* configuracion_memori
 
 uint32_t crear_comunicacion_cpu(t_configuracion_memoria* configuracion_memoria, t_log* logger){ //SERVIDOR DE CPU
     
- socket_cpu = iniciar_servidor(logger, "MEMORIA", "127.0.0.1", configuracion_memoria->puerto_escucha); // Pusimos 127.0.0.1 porque el config no tiene la ip
+ socket_cpu = iniciar_servidor(logger, "CPU", configuracion_memoria->ip_memoria, configuracion_memoria->puerto_escucha);
 
     if(socket_cpu == -1){
      log_error(logger, "No se pudo iniciar el servidor de comunicacion");

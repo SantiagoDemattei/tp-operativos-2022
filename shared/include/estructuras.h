@@ -35,6 +35,7 @@ typedef struct {
 
 typedef struct t_configuracion_kernel{
     char* ip_memoria;
+    char* ip_kernel;
     char* puerto_memoria;
     char* ip_cpu;
     char* puerto_cpu_dispatch;
@@ -52,12 +53,14 @@ typedef struct t_configuracion_cpu{
     char* reemplazo_tlb;
     int retardo_noop;
     char* ip_memoria;
+    char* ip_cpu;
     char* puerto_memoria;
     char* puerto_escucha_dispatch;
     char* puerto_escucha_interrupt;
 } t_configuracion_cpu;
 
 typedef struct t_configuracion_memoria{
+    char* ip_memoria;
     char* puerto_escucha;
     int tam_memoria;
     int tam_pagina;

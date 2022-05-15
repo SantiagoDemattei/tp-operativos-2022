@@ -4,7 +4,7 @@ uint32_t cantidad_procesos = 0;
 
 uint32_t crear_comunicacion(t_configuracion_kernel* configuracion_kernel, t_log* logger){ //funcion de servidor 
     
-    socket_kernel = iniciar_servidor(logger, "CONSOLA", configuracion_kernel->ip_memoria, configuracion_kernel->puerto_escucha);
+    socket_kernel = iniciar_servidor(logger, "CONSOLA", configuracion_kernel->ip_kernel, configuracion_kernel->puerto_escucha);
 
     if(socket_kernel == -1){
         log_error(logger, "No se pudo iniciar el servidor de comunicacion");
