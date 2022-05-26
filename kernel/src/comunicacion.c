@@ -1,6 +1,6 @@
 #include "../include/comunicacion.h"
 
-uint32_t cantidad_procesos = 0;
+uint32_t cantidad_procesos_en_memoria = 0;
 
 uint32_t crear_comunicacion(t_configuracion_kernel* configuracion_kernel, t_log* logger){ //funcion de servidor 
     
@@ -65,12 +65,24 @@ static void procesar_conexion(void* void_args){
                     socket_cpu = crear_conexion_cpu(configuracion_kernel, logger);
                     socket_memoria = crear_conexion_memoria(configuracion_kernel, logger);
                     t_pcb* pcb = crear_pcb(instrucciones, socket_cpu, logger, tamanio);
-                    send_pcb(socket_cpu, pcb);
-                    free(pcb);
+                    // agregar pcb a la cola de new
+                    queue_push(cola_new, pcb);
+                    
+                    if(cantidad_procesos_en_memoria <= configuracion_kernel->grado_multiprogramacion){
+                        // agregar el pcb a la cola de ready
+                        t_pcb* consola_tope_lista = queue_pop(cola_new);
+                        queue_push(cola_ready, consola_tope_lista); // agrego a la cola de ready
+                        pthread_mutex_lock(&mutex_cantidad_procesos);
+                        cantidad_procesos_en_memoria++;
+                        pthread_mutex_unlock(&mutex_cantidad_procesos);
+                        send_inicializar_estructuras(socket_memoria, 1);
+                        send_pcb(socket_cpu, pcb);
+                    }
 
                     send_debug(socket_memoria);
                     
                     // liberar memoria
+                    free(pcb);
                     list_destroy_and_destroy_elements(instrucciones, (void*) destruir_instruccion);
                 }
                 else{
@@ -111,10 +123,7 @@ uint32_t server_escuchar(t_log* logger, char* server_name, uint32_t server_socke
 
  t_pcb* crear_pcb(t_list* instrucciones, uint32_t socket_cpu, t_log* logger, uint32_t tamanio){
     t_pcb* pcb = malloc(sizeof(t_pcb));
-    pthread_mutex_lock(&mutex_cantidad_procesos);
-    pcb->id = cantidad_procesos;
-    cantidad_procesos++;
-    pthread_mutex_unlock(&mutex_cantidad_procesos);
+    pcb->id = cantidad_procesos_en_memoria;
     pcb->instrucciones = instrucciones;
     pcb->program_counter = 0 ;
     pcb->tamanio = tamanio;

@@ -31,7 +31,7 @@ static void procesar_conexion(void* void_args){
     uint32_t cliente_socket = args->fd;
     char* server_name = args->server_name;
     free(args);
-
+    int mensaje;
     op_code cop;
 
      while (cliente_socket != -1){
@@ -40,13 +40,19 @@ static void procesar_conexion(void* void_args){
             return;
         }
 
-        printf("Se recibio el codigo de operacion: %d\n", cop);
-
         switch (cop) {
             case DEBUG:
                 log_info(logger, "debug");
                 break;
                 
+            case INICIALIZAR_ESTRUCTURAS:
+                
+                if(recv_inicializar_estructuras(cliente_socket, &mensaje)){
+                     log_info(logger, "INICIALIZANDO ESTRUCTURAS");
+                     // FALTA DEVOLVER EL VALOR DE LA TABLA DE PAGINAS AL KERNEL (LUEGO DE INICIALIZAR ESTRUCTURAS)
+                 }
+                break;
+            
             // Errores
             case -1:
                 log_error(logger, "Cliente desconectado de %s...", server_name);

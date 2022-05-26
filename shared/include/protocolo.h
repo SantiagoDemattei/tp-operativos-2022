@@ -18,5 +18,7 @@ bool recv_iniciar_consola(uint32_t fd, t_list** instrucciones, uint32_t* tamanio
 bool send_debug(uint32_t fd);
 bool send_pcb(uint32_t fd, t_pcb* pcb);
 bool recv_pcb(uint32_t fd, t_pcb** pcb);
+bool send_inicializar_estructuras(uint32_t fd, int mensaje);
+bool recv_inicializar_estructuras(uint32_t fd, int* mensaje);
 
 #endif

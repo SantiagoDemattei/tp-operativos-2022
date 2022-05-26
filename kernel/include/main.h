@@ -8,7 +8,9 @@
 #include <signal.h>
 #include "comunicacion.h"
 
+
 void liberar_estructuras_kernel(t_configuracion_kernel*);
+void crear_colas_estados();
 
 void liberar_estructuras_kernel(t_configuracion_kernel* datos_config_kernel){
     free(datos_config_kernel->ip_memoria);
@@ -22,6 +24,14 @@ void liberar_estructuras_kernel(t_configuracion_kernel* datos_config_kernel){
     free(datos_config_kernel->puerto_cpu_interrupt);
     free(datos_config_kernel->puerto_escucha);  
     free(datos_config_kernel);
+}
+
+void crear_colas_estados(){
+    cola_new = queue_create();
+    cola_ready = queue_create();
+    cola_exec = queue_create();
+    cola_blocked = queue_create();
+    cola_exit = queue_create();
 }
 
 #endif 

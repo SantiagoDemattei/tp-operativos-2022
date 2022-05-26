@@ -1,7 +1,7 @@
 #include "../include/protocolo.h"
 
+#pragma region INICIAR CONSOLA
 // inicio: INICIAR CONSOLA
-
 static void* serializar_t_list_instrucciones(size_t* size, t_list* lista){
 
     // calculo tamaño en bytes de la lista de instrucciones (el tamaño que va a tener el stream de instrucciones)
@@ -137,6 +137,7 @@ bool recv_iniciar_consola(uint32_t fd, t_list** instrucciones, uint32_t* tamanio
     return true;
 }
 // fin: INICIAR_CONSOLA
+#pragma endregion
 
 // DEBUG
 bool send_debug(uint32_t fd) {
@@ -147,9 +148,9 @@ bool send_debug(uint32_t fd) {
 }
 //fin: DEBUG
 
-
+#pragma region  ENVIO_PCB
 // ENVIO_PCB
-static void* serializar_pcb(size_t* size, t_pcb* pcb){
+static void* serializar_pcb(size_t* size, t_pcb* pcb, op_code cop){
     size_t size_instrucciones;
     void* stream_instrucciones = serializar_t_list_instrucciones(&size_instrucciones, pcb->instrucciones);
 
@@ -163,7 +164,6 @@ static void* serializar_pcb(size_t* size, t_pcb* pcb){
     void* stream = malloc(size_total);
     size_t size_payload = size_total - sizeof(op_code) - sizeof(size_t);
 
-    op_code cop = ENVIAR_PCB;
 
     // Ahora lleno el stream
     memcpy(stream, &cop, sizeof(op_code)); // op_code
@@ -205,7 +205,7 @@ static void deserializar_pcb (void* stream, t_pcb** pcbF) {
 
 bool send_pcb(uint32_t fd, t_pcb* pcb) {
     size_t size;
-    void* stream = serializar_pcb(&size, pcb);
+    void* stream = serializar_pcb(&size, pcb, ENVIAR_PCB);
     if (send(fd, stream, size, 0) == -1) {
         free(stream);
         return false;
@@ -234,4 +234,44 @@ bool recv_pcb(uint32_t fd, t_pcb** pcb) {
 }
 
 // fin: ENVIO_PCB
+#pragma endregion
+
+
+#pragma region  INICIALIZAR_ESTRUCTURAS (memoria)
+// INICIALIZAR_ESTRUCTURAS (memoria)
+
+bool send_inicializar_estructuras(uint32_t fd, int mensaje){
+    size_t size = sizeof(op_code) + sizeof(size_t) + sizeof(int);
+    void* stream = malloc(size);
+    size_t size_payload = size - sizeof(op_code);
+    op_code cop = INICIALIZAR_ESTRUCTURAS;
+    memcpy(stream, &cop, sizeof(op_code));
+    memcpy(stream + sizeof(op_code), &size_payload, sizeof(size_t));
+    memcpy(stream + sizeof(op_code) + sizeof(size_t), &mensaje, sizeof(int));
+    if (send(fd, stream, size, 0) == -1) {
+        free(stream);
+        return false;
+    }
+    free(stream);
+    return true;
+}
+
+bool recv_inicializar_estructuras(uint32_t fd, int* mensaje){
+    size_t size;
+    if(recv(fd, &size, sizeof(size_t), 0) != sizeof(size_t)) {
+        return false;
+    }
+    void* stream = malloc(size);
+    if(recv(fd, stream, size, 0) != size) {
+        free(stream);
+        return false;
+    }
+    memcpy(mensaje, stream, sizeof(int));
+    free(stream);
+    return true;
+
+}
+
+// fin: INICIALIZAR_ESTRUCTURAS
+#pragma endregion
 

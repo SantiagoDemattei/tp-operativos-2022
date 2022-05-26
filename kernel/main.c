@@ -19,6 +19,9 @@ uint32_t main(void){
     socket_kernel = crear_comunicacion(configuracion_kernel, logger);
     pthread_mutex_init(&mutex_cantidad_procesos, NULL);
 
+    // funcion de creacion de colas de estados
+    crear_colas_estados();
+    
     while(server_escuchar(logger, "CONSOLA", socket_kernel)!=0);
 
     liberar_conexion(socket_kernel);
@@ -27,3 +30,5 @@ uint32_t main(void){
 
     return EXIT_SUCCESS;
 }
+
+

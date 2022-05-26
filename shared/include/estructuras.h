@@ -4,6 +4,7 @@
 #include <stdint.h>
 #include <commons/log.h>
 #include <commons/collections/list.h>
+#include <commons/collections/queue.h>
 
 
 typedef enum {
@@ -11,6 +12,7 @@ typedef enum {
     DEBUG,
     INICIAR_PROCESO,
     ENVIAR_PCB,
+    INICIALIZAR_ESTRUCTURAS
 } op_code;
 
 typedef struct {
@@ -80,5 +82,11 @@ typedef struct t_pcb{
     uint32_t tabla_pagina;
     uint32_t estimacion_rafaga;
 }t_pcb;
+
+t_queue *cola_new;
+t_queue *cola_ready;
+t_queue *cola_exec;
+t_queue *cola_blocked;
+t_queue *cola_exit;
 
 #endif
