@@ -139,6 +139,7 @@ bool recv_iniciar_consola(uint32_t fd, t_list** instrucciones, uint32_t* tamanio
 // fin: INICIAR_CONSOLA
 #pragma endregion
 
+#pragma region  DEBUG
 // DEBUG
 bool send_debug(uint32_t fd) {
     op_code cop = DEBUG;
@@ -147,6 +148,7 @@ bool send_debug(uint32_t fd) {
     return true;
 }
 //fin: DEBUG
+#pragma endregion
 
 #pragma region  ENVIO_PCB
 // ENVIO_PCB
@@ -236,8 +238,7 @@ bool recv_pcb(uint32_t fd, t_pcb** pcb) {
 // fin: ENVIO_PCB
 #pragma endregion
 
-
-#pragma region  INICIALIZAR_ESTRUCTURAS (memoria)
+#pragma region  INICIALIZAR_ESTRUCTURAS 
 // INICIALIZAR_ESTRUCTURAS (memoria)
 
 bool send_inicializar_estructuras(uint32_t fd, int mensaje){
@@ -262,6 +263,7 @@ bool recv_inicializar_estructuras(uint32_t fd, int* mensaje){
         return false;
     }
     void* stream = malloc(size);
+    printf("llegue hast aca");
     if(recv(fd, stream, size, 0) != size) {
         free(stream);
         return false;
@@ -275,3 +277,36 @@ bool recv_inicializar_estructuras(uint32_t fd, int* mensaje){
 // fin: INICIALIZAR_ESTRUCTURAS
 #pragma endregion
 
+#pragma region  VALOR_TB 
+bool send_valor_tb(uint32_t fd, int valor_tb){
+    size_t size = sizeof(op_code) + sizeof(size_t) + sizeof(int);
+    void* stream = malloc(size);
+    size_t size_payload = size - sizeof(op_code);
+    op_code cop = VALOR_TB;
+    memcpy(stream, &cop, sizeof(op_code));
+    memcpy(stream + sizeof(op_code), &size_payload, sizeof(size_t));
+    memcpy(stream + sizeof(op_code) + sizeof(size_t), &valor_tb, sizeof(int));
+    if (send(fd, stream, size, 0) == -1) {
+        free(stream);
+        return false;
+    }
+    free(stream);
+    return true;
+}
+
+bool recv_valor_tb(uint32_t fd, int* valor_tb){
+    size_t size;
+    if(recv(fd, &size, sizeof(size_t), 0) != sizeof(size_t)) {
+        return false;
+    }
+    void* stream = malloc(size);
+    if(recv(fd, stream, size, 0) != size) {
+        free(stream);
+        return false;
+    }
+    memcpy(&valor_tb, stream, sizeof(int));
+    free(stream);
+    return true;
+}
+
+#pragma endregion

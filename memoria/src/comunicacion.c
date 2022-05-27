@@ -32,6 +32,7 @@ static void procesar_conexion(void* void_args){
     char* server_name = args->server_name;
     free(args);
     int mensaje;
+    uint32_t valor_tb;
     op_code cop;
 
      while (cliente_socket != -1){
@@ -46,10 +47,13 @@ static void procesar_conexion(void* void_args){
                 break;
                 
             case INICIALIZAR_ESTRUCTURAS:
-                
                 if(recv_inicializar_estructuras(cliente_socket, &mensaje)){
-                     log_info(logger, "INICIALIZANDO ESTRUCTURAS");
-                     // FALTA DEVOLVER EL VALOR DE LA TABLA DE PAGINAS AL KERNEL (LUEGO DE INICIALIZAR ESTRUCTURAS)
+                    log_info(logger, "INICIALIZANDO ESTRUCTURAS");
+                    printf("\n%d\n", mensaje);
+                    // FALTA DEVOLVER EL VALOR DE LA TABLA DE PAGINAS AL KERNEL (LUEGO DE INICIALIZAR ESTRUCTURAS)
+                    valor_tb = 2123; // valor de tabla de paginas
+                    send_valor_tb(cliente_socket, valor_tb);
+                    printf("Se envio el valor de la tabla de paginas al kernel\n");
                  }
                 break;
             

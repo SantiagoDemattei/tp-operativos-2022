@@ -12,7 +12,8 @@ typedef enum {
     DEBUG,
     INICIAR_PROCESO,
     ENVIAR_PCB,
-    INICIALIZAR_ESTRUCTURAS
+    INICIALIZAR_ESTRUCTURAS,
+    VALOR_TB
 } op_code;
 
 typedef struct {

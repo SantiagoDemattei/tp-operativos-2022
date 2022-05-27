@@ -20,5 +20,8 @@ bool send_pcb(uint32_t fd, t_pcb* pcb);
 bool recv_pcb(uint32_t fd, t_pcb** pcb);
 bool send_inicializar_estructuras(uint32_t fd, int mensaje);
 bool recv_inicializar_estructuras(uint32_t fd, int* mensaje);
+bool send_valor_tb(uint32_t fd, int valor_tb);
+bool recv_valor_tb(uint32_t fd, int* valor_tb);
+
 
 #endif
