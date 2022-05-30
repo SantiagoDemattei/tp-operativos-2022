@@ -31,7 +31,7 @@ static void procesar_conexion(void* void_args){
     uint32_t cliente_socket = args->fd;
     char* server_name = args->server_name;
     free(args);
-    int mensaje;
+    uint32_t mensaje;
     uint32_t valor_tb;
     op_code cop;
 
@@ -40,7 +40,6 @@ static void procesar_conexion(void* void_args){
             log_info(logger, "DISCONNECT!");
             return;
         }
-
         switch (cop) {
             case DEBUG:
                 log_info(logger, "debug");
@@ -49,12 +48,12 @@ static void procesar_conexion(void* void_args){
             case INICIALIZAR_ESTRUCTURAS:
                 if(recv_inicializar_estructuras(cliente_socket, &mensaje)){
                     log_info(logger, "INICIALIZANDO ESTRUCTURAS");
-                    printf("\n%d\n", mensaje);
-                    // FALTA DEVOLVER EL VALOR DE LA TABLA DE PAGINAS AL KERNEL (LUEGO DE INICIALIZAR ESTRUCTURAS)
-                    valor_tb = 2123; // valor de tabla de paginas
+
+                    valor_tb = 2123; // valor de tabla de paginas NO VA A QUEDAR ASI
+                    
                     send_valor_tb(cliente_socket, valor_tb);
-                    printf("Se envio el valor de la tabla de paginas al kernel\n");
-                 }
+                    log_info(logger, "Se envio el valor de la tabla de paginas al kernel\n");
+                }
                 break;
             
             // Errores

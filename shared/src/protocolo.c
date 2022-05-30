@@ -241,14 +241,14 @@ bool recv_pcb(uint32_t fd, t_pcb** pcb) {
 #pragma region  INICIALIZAR_ESTRUCTURAS 
 // INICIALIZAR_ESTRUCTURAS (memoria)
 
-bool send_inicializar_estructuras(uint32_t fd, int mensaje){
-    size_t size = sizeof(op_code) + sizeof(size_t) + sizeof(int);
+bool send_inicializar_estructuras(uint32_t fd, uint32_t mensaje){
+    size_t size = sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t);
     void* stream = malloc(size);
-    size_t size_payload = size - sizeof(op_code);
+    size_t size_payload = size - sizeof(op_code) - sizeof(size_t);
     op_code cop = INICIALIZAR_ESTRUCTURAS;
     memcpy(stream, &cop, sizeof(op_code));
     memcpy(stream + sizeof(op_code), &size_payload, sizeof(size_t));
-    memcpy(stream + sizeof(op_code) + sizeof(size_t), &mensaje, sizeof(int));
+    memcpy(stream + sizeof(op_code) + sizeof(size_t), &mensaje, sizeof(uint32_t));
     if (send(fd, stream, size, 0) == -1) {
         free(stream);
         return false;
@@ -257,18 +257,17 @@ bool send_inicializar_estructuras(uint32_t fd, int mensaje){
     return true;
 }
 
-bool recv_inicializar_estructuras(uint32_t fd, int* mensaje){
+bool recv_inicializar_estructuras(uint32_t fd, uint32_t* mensaje){
     size_t size;
     if(recv(fd, &size, sizeof(size_t), 0) != sizeof(size_t)) {
         return false;
     }
     void* stream = malloc(size);
-    printf("llegue hast aca");
-    if(recv(fd, stream, size, 0) != size) {
+    if(recv(fd, stream, size, 0) != sizeof(size)) {
         free(stream);
         return false;
     }
-    memcpy(mensaje, stream, sizeof(int));
+    memcpy(mensaje, stream, sizeof(uint32_t));
     free(stream);
     return true;
 
@@ -278,14 +277,14 @@ bool recv_inicializar_estructuras(uint32_t fd, int* mensaje){
 #pragma endregion
 
 #pragma region  VALOR_TB 
-bool send_valor_tb(uint32_t fd, int valor_tb){
-    size_t size = sizeof(op_code) + sizeof(size_t) + sizeof(int);
+bool send_valor_tb(uint32_t fd, uint32_t valor_tb){
+    size_t size = sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t);
     void* stream = malloc(size);
-    size_t size_payload = size - sizeof(op_code);
+    size_t size_payload = size - sizeof(op_code) - sizeof(size_t);
     op_code cop = VALOR_TB;
     memcpy(stream, &cop, sizeof(op_code));
     memcpy(stream + sizeof(op_code), &size_payload, sizeof(size_t));
-    memcpy(stream + sizeof(op_code) + sizeof(size_t), &valor_tb, sizeof(int));
+    memcpy(stream + sizeof(op_code) + sizeof(size_t), &valor_tb, sizeof(uint32_t));
     if (send(fd, stream, size, 0) == -1) {
         free(stream);
         return false;
@@ -294,17 +293,20 @@ bool send_valor_tb(uint32_t fd, int valor_tb){
     return true;
 }
 
-bool recv_valor_tb(uint32_t fd, int* valor_tb){
+bool recv_valor_tb(uint32_t fd, uint32_t* valor_tb){
+    uint32_t valor;
     size_t size;
     if(recv(fd, &size, sizeof(size_t), 0) != sizeof(size_t)) {
         return false;
     }
     void* stream = malloc(size);
-    if(recv(fd, stream, size, 0) != size) {
+    if(recv(fd, stream, size, 0) != sizeof(size)) {
         free(stream);
         return false;
     }
-    memcpy(&valor_tb, stream, sizeof(int));
+    memcpy(&valor, stream, sizeof(uint32_t));
+
+    *valor_tb = valor;
     free(stream);
     return true;
 }

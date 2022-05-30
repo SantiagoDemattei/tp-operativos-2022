@@ -36,6 +36,8 @@ static void procesar_conexion(void* void_args){
     char* server_name = args->server_name;
     free(args);
     op_code cop;
+    uint32_t mensaje = 1;
+    uint32_t valorTB=0;
 
      while (cliente_socket != -1){
          if (recv(cliente_socket, &cop, sizeof(op_code), 0) != sizeof(op_code)) {
@@ -71,23 +73,19 @@ static void procesar_conexion(void* void_args){
                         // agregar el pcb a la cola de ready
                         t_pcb* consola_tope_lista = queue_pop(cola_new);
                         queue_push(cola_ready, consola_tope_lista); // agrego a la cola de ready
+
                         pthread_mutex_lock(&mutex_cantidad_procesos);
                         cantidad_procesos_en_memoria++;
-                        pthread_mutex_unlock(&mutex_cantidad_procesos);
-                        send_inicializar_estructuras(socket_memoria, 1);
+                        pthread_mutex_unlock(&mutex_cantidad_procesos);       
+
+                        send_inicializar_estructuras(socket_memoria, mensaje);
                         
-                        // recibo el valor de la tabla de paginas que me devuelve la memoria
                         if(recv(socket_memoria, &cop, sizeof(op_code), 0) != sizeof(op_code)){
                             return;
                         }
-
-                        recv_valor_tb(socket_memoria, &pcb->tabla_pagina);            
-                        printf("%d\n", pcb->tabla_pagina);
-                        send_pcb(socket_cpu, pcb);
-                    }
-
-                    send_debug(socket_memoria);
-                    
+                        recv_valor_tb(socket_memoria, &consola_tope_lista->tabla_pagina);                     
+                        // send_pcb(socket_cpu, consola_tope_lista);
+                    }                    
                     // liberar memoria
                     free(pcb);
                     list_destroy_and_destroy_elements(instrucciones, (void*) destruir_instruccion);
