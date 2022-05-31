@@ -327,7 +327,7 @@ bool send_interrupcion_por_nuevo_ready(uint32_t fd)
 
 #pragma region BLOQUEO_IO
 
-bool send_pcb_con_tiempo_bloqueado(uint32_t fd, t_pcb *pcb, float tiempo_bloqueo)
+bool send_pcb_con_tiempo_bloqueado(uint32_t fd, t_pcb *pcb, uint32_t tiempo_bloqueo)
 {
     size_t size_instrucciones;
     void *stream_instrucciones = serializar_t_list_instrucciones(&size_instrucciones, pcb->instrucciones);
@@ -339,7 +339,7 @@ bool send_pcb_con_tiempo_bloqueado(uint32_t fd, t_pcb *pcb, float tiempo_bloqueo
         sizeof(uint32_t) * 5 + // size de todos los enteros del pcb
         sizeof(size_t) +       // size del stream de instrucciones
         size_instrucciones +   // tamanio de la lista de instrucciones
-        sizeof(float);         // tamanio del float
+        sizeof(uint32_t);         // tamanio del float
 
     void *stream = malloc(size_total);
     size_t size_payload = size_total - sizeof(op_code) - sizeof(size_t);
@@ -354,7 +354,7 @@ bool send_pcb_con_tiempo_bloqueado(uint32_t fd, t_pcb *pcb, float tiempo_bloqueo
     memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t) * 4, &(pcb->estimacion_rafaga), sizeof(uint32_t));
     memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t) * 5, &size_instrucciones, sizeof(size_t));                                  // size del stream de instrucciones
     memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t) * 5 + sizeof(size_t), stream_instrucciones, size_instrucciones);            // stream de instrucciones
-    memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t) * 5 + sizeof(size_t) + size_instrucciones, &tiempo_bloqueo, sizeof(float)); // tiempo de bloqueo
+    memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t) * 5 + sizeof(size_t) + size_instrucciones, &tiempo_bloqueo, sizeof(uint32_t)); // tiempo de bloqueo
 
     if (send(fd, stream, size_total, 0) != sizeof(size_total))
     {
@@ -365,7 +365,7 @@ bool send_pcb_con_tiempo_bloqueado(uint32_t fd, t_pcb *pcb, float tiempo_bloqueo
     return true;
 }
 
-bool recv_pcb_con_tiempo_bloqueado(uint32_t *fd, t_pcb **pcbF, float *tiempo_bloqueo)
+bool recv_pcb_con_tiempo_bloqueado(uint32_t *fd, t_pcb **pcbF, uint32_t *tiempo_bloqueo)
 {   
     t_pcb *pcb = malloc(sizeof(t_pcb));
     size_t size_instrucciones;
@@ -396,11 +396,10 @@ bool recv_pcb_con_tiempo_bloqueado(uint32_t *fd, t_pcb **pcbF, float *tiempo_blo
     memcpy(stream_instrucciones, stream + sizeof(uint32_t) * 5 + sizeof(size_t), size_instrucciones); // stream de instrucciones
     t_list *instrucciones = deserializar_t_list_instrucciones(stream_instrucciones, size_instrucciones);
     pcb->instrucciones = instrucciones;
-    memcpy(tiempo_bloqueo, stream + sizeof(uint32_t) * 5 + sizeof(size_t) + size_instrucciones, sizeof(float)); // tiempo de bloqueo    
+    memcpy(tiempo_bloqueo, stream + sizeof(uint32_t) * 5 + sizeof(size_t) + size_instrucciones, sizeof(uint32_t)); // tiempo de bloqueo    
 
 
     pcbF = pcb;
-
     free(stream);
     free(stream_instrucciones);
 

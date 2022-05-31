@@ -39,7 +39,6 @@ static void procesar_conexion(void *void_args)
     t_log *logger = args->log;
     uint32_t cliente_socket = args->fd;
     char *server_name = args->server_name;
-    t_pcb *pcb;
     free(args);
 
     op_code cop;
@@ -59,15 +58,12 @@ static void procesar_conexion(void *void_args)
             break;
 
         case ENVIAR_PCB:
-            log_info(logger, "Se recibio el PCB");
 
-            if (recv_pcb(cliente_socket, &pcb))
+            if (recv_pcb(cliente_socket, &running))
             {
-                running = pcb;
-                ciclo_instruccion(&running, cliente_socket);
-
-                list_destroy_and_destroy_elements(pcb->instrucciones, (void *)destruir_instruccion);
-                free(pcb); // por ahora
+                log_info(logger, "Se recibio el PCB");
+                printf("copie el pcb en running\n");
+                ciclo_instruccion(running, cliente_socket, logger);
             }
 
             break;
@@ -88,8 +84,6 @@ static void procesar_conexion(void *void_args)
             return;
         }
     }
-    list_destroy_and_destroy_elements(pcb->instrucciones, (void *)destruir_instruccion);
-    free(pcb); // por ahora
 
     log_warning(logger, "El cliente se desconecto de %s server", server_name);
     return;
@@ -113,68 +107,89 @@ uint32_t server_escuchar(t_log *logger, char *server_name, uint32_t server_socke
     return 0;
 }
 
-void ciclo_instruccion(t_pcb *running, uint32_t cliente_socket)
+void ciclo_instruccion(t_pcb *running, uint32_t cliente_socket, t_log *logger)
 {
-    uint32_t cantidad_instrucciones = list_size(running->instrucciones);
+    t_list *lista_instrucciones = running->instrucciones;
+    uint32_t cantidad_instrucciones = list_size(lista_instrucciones);
     INSTRUCCIONES_EJECUCION instruccion_actual_enum;
-    t_instruccion* instruccion_actual;
+    t_instruccion *instruccion_actual;
     float retardo;
     float segundos;
-    t_argumento* tiempo_bloqueo;
-    while (running->program_counter < cantidad_instrucciones)
+    int i;
+    uint32_t cantidad_noops = 0;
+    t_argumento *tiempo_bloqueo;
+    t_argumento *argumentos;
+    uint32_t j;
+    while ((running->program_counter < cantidad_instrucciones) && (running != NULL))
     {
         instruccion_actual = list_get(running->instrucciones, running->program_counter);
         instruccion_actual_enum = enumerar_instruccion(instruccion_actual);
-       
+        argumentos = instruccion_actual->argumentos;
+
+        printf("Antes del switch con la instruccion: %d\n", instruccion_actual_enum);
         switch (instruccion_actual_enum)
         {
-            case NO_OP:
-                retardo = configuracion_cpu->retardo_noop;
-                segundos = retardo / 1000;
-                sleep(segundos); // hay que convertir el argumento a segundos
-                break;
-
-            case I_O:
-                tiempo_bloqueo = list_get(instruccion_actual->argumentos, 0);
-                send_pcb_con_tiempo_bloqueado(cliente_socket, &running, tiempo_bloqueo);
-                break;
-
-            case READ:
+        case NO_OP:
+            retardo = configuracion_cpu->retardo_noop;
+            segundos = retardo / 1000;
+            sleep(segundos);
+            running->program_counter++;
             break;
 
-            case WRITE:
+        case I_O:
+            tiempo_bloqueo = list_get(instruccion_actual->argumentos, 0);
+            running->program_counter++;
+            send_pcb_con_tiempo_bloqueado(cliente_socket, running, tiempo_bloqueo->argumento);
+            //running = NULL;
             break;
-            
-            case COPY:
+
+        case READ:
+            running->program_counter++;
             break;
-        
-            case EXIT:           
+
+        case WRITE:
+            running->program_counter++;
+            break;
+
+        case COPY:
+            running->program_counter++;
+            break;
+
+        case EXIT:
+            running->program_counter++;
             break;
         }
 
-        running->program_counter++;
-        
-        //chequearInterrupciones();
-
+        // chequearInterrupciones();
     }
-    
 }
 
-INSTRUCCIONES_EJECUCION enumerar_instruccion (t_instruccion* instruccion)
+INSTRUCCIONES_EJECUCION enumerar_instruccion(t_instruccion *instruccion)
 {
-    char* identificador = instruccion->identificador;
-    if(strcmp(identificador,"NO_OP")){
-        return NO_OP; 
-    }else if (strcmp(identificador,"I/O")){
+    char *identificador = instruccion->identificador;
+    if (!strcmp(identificador, "NO_OP"))
+    {
+        return NO_OP;
+    }
+    else if (!strcmp(identificador, "I/O"))
+    {
         return I_O;
-    }else if (strcmp(identificador,"READ")){
+    }
+    else if (!strcmp(identificador, "READ"))
+    {
         return READ;
-    }else if(strcmp(identificador,"WRITE")){
+    }
+    else if (!strcmp(identificador, "WRITE"))
+    {
         return WRITE;
-    }else if(strcmp(identificador,"COPY")){
+    }
+    else if (!strcmp(identificador, "COPY"))
+    {
         return COPY;
-    }else if (strcmp(identificador,"EXIT")){
+    }
+    else if (!strcmp(identificador, "EXIT"))
+    {
         return EXIT;
     }
-    return -1;
+    return ERROR;
 }

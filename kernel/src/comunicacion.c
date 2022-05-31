@@ -44,11 +44,13 @@ static void procesar_conexion(void *void_args)
     uint32_t cliente_socket = args->fd;
     char *server_name = args->server_name;
     free(args);
+
     op_code cop;
     uint32_t valorTB = 0;
     uint32_t tamanio = 0;
-    float tiempo_bloqueo;
+    uint32_t tiempo_bloqueo;
     t_list *instrucciones = NULL;
+    t_pcb *pcb;
 
     while (cliente_socket != -1)
     {
@@ -61,11 +63,12 @@ static void procesar_conexion(void *void_args)
         switch (cop)
         {
         case DEBUG:
+
             log_info(logger, "debug");
             break;
 
         case INICIAR_PROCESO:
-            
+
             if (recv_iniciar_consola(cliente_socket, &instrucciones, &tamanio))
             {
                 log_info(logger, "Se recibieron las instrucciones");
@@ -79,6 +82,7 @@ static void procesar_conexion(void *void_args)
 
                 verificacion_multiprogramacion(pcb, cop); // planificador de largo plazo
 
+                atencion_cpu(socket_cpu_dispatch, logger);
                 // liberar memoria
                 free(pcb);
                 list_destroy_and_destroy_elements(instrucciones, (void *)destruir_instruccion);
@@ -89,7 +93,7 @@ static void procesar_conexion(void *void_args)
             }
             break;
         case BLOQUEO_IO:
-            //  recv_pcb_con_tiempo_bloqueado (socket_cpu_dispatch, pcb, tiempo_bloqueo);
+            recv_pcb_con_tiempo_bloqueado(socket_cpu_dispatch, &pcb, &tiempo_bloqueo);
             break;
 
         // Errores
@@ -193,5 +197,31 @@ void verificacion_multiprogramacion(t_pcb *pcb, op_code cop)
             }
             pthread_mutex_unlock(&mutex_estado_running);
         }
+    }
+    return;
+}
+
+void atencion_cpu(uint32_t socket_cpu_dispatch, t_log *logger)
+{
+    op_code cop;
+    t_pcb *pcb;
+    uint32_t tiempo;
+    if (recv(socket_cpu_dispatch, &cop, sizeof(op_code), 0) != sizeof(op_code))
+    {
+        log_info(logger, "DISCONNECT!");
+        return;
+    }
+    switch (cop)
+    {
+    case BLOQUEO_IO:
+        recv_pcb_con_tiempo_bloqueado(socket_cpu_dispatch, pcb, &tiempo);
+        printf("Tiempo bloqueado recibido: %d\n", tiempo);
+        pthread_mutex_lock(&mutex_estado_running);
+        running = NULL;
+        pthread_mutex_unlock(&mutex_estado_running);
+        
+        queue_push(cola_blocked, pcb);
+
+        break;
     }
 }

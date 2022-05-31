@@ -40,3 +40,4 @@ char* eliminar_caracter_retorno(char* cadena){
 void destructor_queue(t_pcb* pcb){
     list_destroy_and_destroy_elements(pcb->instrucciones, (void*) destruir_instruccion);
 }
+

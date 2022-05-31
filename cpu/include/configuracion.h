@@ -23,7 +23,8 @@ typedef enum
     READ,
     WRITE,
     COPY,
-    EXIT
+    EXIT,
+    ERROR
 } INSTRUCCIONES_EJECUCION;
 
 #endif

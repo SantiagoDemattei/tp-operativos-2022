@@ -27,7 +27,7 @@ typedef struct
 
 typedef struct
 {
-    uint32_t argumento;
+      uint32_t argumento;
 } t_argumento;
 
 typedef struct
