@@ -12,7 +12,7 @@ t_configuracion_cpu* leer_configuracion(t_log* logger) {
 
     int entradas_tlb = config_get_int_value(nuevo_config, "ENTRADAS_TLB");
     char* reemplazo_tlb = config_get_string_value(nuevo_config, "REEMPLAZO_TLB");
-    int retardo_noop = config_get_int_value(nuevo_config, "RETARDO_NOOP");
+    float retardo_noop = config_get_int_value(nuevo_config, "RETARDO_NOOP");
     char* ip_memoria = config_get_string_value(nuevo_config, "IP_MEMORIA");
     char* ip_cpu = config_get_string_value(nuevo_config, "IP_CPU");
     char* puerto_memoria = config_get_string_value(nuevo_config, "PUERTO_MEMORIA");

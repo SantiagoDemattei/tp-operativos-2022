@@ -15,14 +15,14 @@ uint32_t crear_comunicacion_kernel(t_configuracion_memoria* configuracion_memori
 
 uint32_t crear_comunicacion_cpu(t_configuracion_memoria* configuracion_memoria, t_log* logger){ //SERVIDOR DE CPU
     
- socket_cpu = iniciar_servidor(logger, "CPU", configuracion_memoria->ip_memoria, configuracion_memoria->puerto_escucha);
+ socket_cpu_dispatch = iniciar_servidor(logger, "CPU", configuracion_memoria->ip_memoria, configuracion_memoria->puerto_escucha);
 
-    if(socket_cpu == -1){
+    if(socket_cpu_dispatch == -1){
      log_error(logger, "No se pudo iniciar el servidor de comunicacion");
         return -1;
     }
 
-    return socket_cpu;
+    return socket_cpu_dispatch;
 }
 
 static void procesar_conexion(void* void_args){
@@ -46,15 +46,13 @@ static void procesar_conexion(void* void_args){
                 break;
                 
             case INICIALIZAR_ESTRUCTURAS:
-                if(recv_inicializar_estructuras(cliente_socket, &mensaje)){
                     log_info(logger, "INICIALIZANDO ESTRUCTURAS");
 
                     valor_tb = 2123; // valor de tabla de paginas NO VA A QUEDAR ASI
                     
                     send_valor_tb(cliente_socket, valor_tb);
                     log_info(logger, "Se envio el valor de la tabla de paginas al kernel\n");
-                }
-                break;
+                 break;
             
             // Errores
             case -1:

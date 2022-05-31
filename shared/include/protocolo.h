@@ -18,10 +18,10 @@ bool recv_iniciar_consola(uint32_t fd, t_list** instrucciones, uint32_t* tamanio
 bool send_debug(uint32_t fd);
 bool send_pcb(uint32_t fd, t_pcb* pcb);
 bool recv_pcb(uint32_t fd, t_pcb** pcb);
-bool send_inicializar_estructuras(uint32_t fd, uint32_t mensaje);
-bool recv_inicializar_estructuras(uint32_t fd, uint32_t* mensaje);
+bool send_inicializar_estructuras(uint32_t fd);
 bool send_valor_tb(uint32_t fd, uint32_t valor_tb);
 bool recv_valor_tb(uint32_t fd, uint32_t* valor_tb);
+bool send_interrupcion_por_nuevo_ready(uint32_t fd);
 
 
 #endif

@@ -21,6 +21,7 @@ void liberar_estructuras_cpu(t_configuracion_cpu*);
 void liberar_estructuras_cpu(t_configuracion_cpu* datos_config_cpu){
     free(datos_config_cpu->reemplazo_tlb);
     free(datos_config_cpu->ip_memoria);
+    free(datos_config_cpu->ip_cpu);
     free(datos_config_cpu->puerto_memoria);
     free(datos_config_cpu->puerto_escucha_dispatch);
     free(datos_config_cpu->puerto_escucha_interrupt);

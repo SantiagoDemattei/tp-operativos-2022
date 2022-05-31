@@ -13,7 +13,8 @@
 #include "utils.h"
 
 uint32_t socket_kernel; 
-uint32_t socket_cpu;
+uint32_t socket_cpu_dispatch;
+uint32_t socket_cpu_interrupt;
 uint32_t socket_memoria;
 
 uint32_t iniciar_servidor(t_log* logger, const char* name, char* ip, char* puerto);

@@ -15,5 +15,10 @@
 
 t_configuracion_kernel* leer_configuracion();
 
+t_pcb *running;
+t_queue *cola_new;
+t_queue *cola_ready;
+t_queue *cola_blocked;
+t_queue *cola_exit;
 
 #endif

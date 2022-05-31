@@ -10,8 +10,20 @@
 #include "../../shared/include/estructuras.h"
 #include "../../shared/include/utils.h"
 
+t_pcb *running;
+
 t_configuracion_cpu* leer_configuracion(t_log* logger);
 void liberar_estructura_datos(t_configuracion_cpu* datos);
 char* eliminar_caracter_retorno(char* cadena);
+
+typedef enum
+{
+    NO_OP,
+    I_O,
+    READ,
+    WRITE,
+    COPY,
+    EXIT
+} INSTRUCCIONES_EJECUCION;
 
 #endif

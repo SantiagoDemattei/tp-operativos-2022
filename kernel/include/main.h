@@ -15,6 +15,7 @@ void crear_colas_estados();
 void liberar_estructuras_kernel(t_configuracion_kernel* datos_config_kernel){
     free(datos_config_kernel->ip_memoria);
     free(datos_config_kernel->ip_cpu);
+    free(datos_config_kernel->ip_kernel);
     free(datos_config_kernel->algoritmo_planificacion);
     free(datos_config_kernel->estimacion_inicial);
     free(datos_config_kernel->alfa);
@@ -29,9 +30,17 @@ void liberar_estructuras_kernel(t_configuracion_kernel* datos_config_kernel){
 void crear_colas_estados(){
     cola_new = queue_create();
     cola_ready = queue_create();
-    cola_exec = queue_create();
     cola_blocked = queue_create();
     cola_exit = queue_create();
 }
+
+void destruir_colas_estados(){
+    queue_destroy_and_destroy_elements(cola_new, (void*) destructor_queue);
+    queue_destroy_and_destroy_elements(cola_ready, (void* ) destructor_queue);
+    queue_destroy_and_destroy_elements(cola_blocked, (void*) destructor_queue);
+    queue_destroy_and_destroy_elements(cola_exit, (void*) destructor_queue);
+}
+
+
 
 #endif 
