@@ -19,18 +19,18 @@ typedef enum
 
 } op_code;
 
-typedef struct
+typedef struct  //config para la consola
 {
     char *ip;
     char *puerto;
 } t_configuracion_consola;
 
-typedef struct
+typedef struct //para los argumentos de las instrucciones
 {
       uint32_t argumento;
 } t_argumento;
 
-typedef struct
+typedef struct //cada instruccion tiene un identificador y una lista de argumentos ( NO_OP tiene la lista de argumentos vacia)
 {
     char *identificador;
     t_list *argumentos;

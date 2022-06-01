@@ -1,27 +1,27 @@
 #include "../include/consola.h"
 
-uint32_t iniciar_consola(uint32_t tamanio, char *path, t_log *logger)
+uint32_t iniciar_consola(uint32_t tamanio, char *path, t_log *logger) 
 {
 
-    t_list *lista_instrucciones = obtener_instrucciones(path, logger);
-    t_configuracion_consola *datos_conexion = leer_configuracion(logger);
-    loggear_lista_instrucciones(lista_instrucciones, logger);
+    t_list *lista_instrucciones = obtener_instrucciones(path, logger); //lista con instrucciones del archivo 
+    t_configuracion_consola *datos_conexion = leer_configuracion(logger); //datos del servidor (kernel en este caso) al que queremos que se conecte
+    loggear_lista_instrucciones(lista_instrucciones, logger); 
 
-    uint32_t conexion = crear_conexion_consola(datos_conexion, logger);
+    uint32_t conexion = crear_conexion_consola(datos_conexion, logger); //numero de socket del servidor (kernel) al que se conecto 
 
-    send_iniciar_consola(conexion, lista_instrucciones, tamanio);
+    send_iniciar_consola(conexion, lista_instrucciones, tamanio); //una vez que se conecta con el server le manda la lista de instrucciones y el tamaño del proceso
 
     log_info(logger, "Se envio la lista de instrucciones al kernel");
 
-    list_destroy_and_destroy_elements(lista_instrucciones, (void *)destruir_instruccion);
+    list_destroy_and_destroy_elements(lista_instrucciones, (void *)destruir_instruccion); 
     liberar_estructura_datos(datos_conexion);
 
     return conexion;
 }
 
-t_list *obtener_instrucciones(char *path, t_log *logger)
+t_list *obtener_instrucciones(char *path, t_log *logger) 
 {
-    FILE *archivo = fopen(path, "r");
+    FILE *archivo = fopen(path, "r"); 
     t_list *lista_instrucciones = list_create();
     t_list *lista_instrucciones_aux = list_create();
     if (archivo == NULL)
@@ -37,32 +37,32 @@ t_list *obtener_instrucciones(char *path, t_log *logger)
 
     while ((read = getline(&linea, &capacidad, archivo)) != -1)
     {
-        t_instruccion *instruccion = crear_instruccion(linea, logger);
-        list_add(lista_instrucciones_aux, instruccion);
-    }
+        t_instruccion *instruccion = crear_instruccion(linea, logger); //crea la instruccion con su identificador y sus argumentos
+        list_add(lista_instrucciones_aux, instruccion); 
+    } //tenemos la lista completa con todas las instrucciones del proceso
 
-    int incremento = 0;
+   // int incremento = 0;
     int i = 0;
     t_instruccion *instruccion;  
     int incremento_aux = 0;
-    for (i = 0; i < (list_size(lista_instrucciones_aux)); i++)
+    for (i = 0; i < (list_size(lista_instrucciones_aux)); i++) //itera por cada instruccion
     {
-        instruccion = list_get(lista_instrucciones_aux, i);
-        if (strcmp(instruccion->identificador, "NO_OP") == 0)
+        instruccion = list_get(lista_instrucciones_aux, i); //tomo instruccion de la lista 
+        if (strcmp(instruccion->identificador, "NO_OP") == 0) //si la instruccion es NO_OP 
         {   
-            t_argumento *argumento = instruccion->argumentos;
-            incremento_aux = list_get(argumento->argumento, 0);
-            incremento += (incremento_aux);
-            while(incremento_aux > 0){
+            t_argumento *argumento = instruccion->argumentos; 
+            incremento_aux = list_get(argumento->argumento, 0); //tomo el argumento de la instruccion NO_OP
+          // incremento += (incremento_aux); 
+            while(incremento_aux > 0){  // agrega la instruccion n veces a la lista segun el argumento
                 t_instruccion *copia = malloc(sizeof(t_instruccion));   
                 copia->identificador = malloc(strlen("NO_OP") + 1);
                 strcpy(copia->identificador, "NO_OP");
-                copia->argumentos = list_create();
+                copia->argumentos = list_create(); 
                 list_add(lista_instrucciones, copia);
                 incremento_aux--;
             }
         }
-        else
+        else //si no es NO_OP agrego la instruccion a la lista
         {
             list_add(lista_instrucciones, instruccion);
         }
@@ -73,18 +73,18 @@ t_list *obtener_instrucciones(char *path, t_log *logger)
     return lista_instrucciones;
 }
 
-t_instruccion *crear_instruccion(char *instruccion, t_log *logger)
+t_instruccion *crear_instruccion(char *instruccion, t_log *logger) 
 {
     t_instruccion *instruccion_nueva = malloc(sizeof(t_instruccion)); // creo una instruccion
-    t_list *lista_argumentos = list_create();
-    char *token = strtok(instruccion, " ");
+    t_list *lista_argumentos = list_create(); 
+    char *token = strtok(instruccion, " "); 
     if (token == NULL)
     {
         log_info(logger, "Error: No se pudo leer la instruccion.");
         exit(EXIT_FAILURE);
     }
-    instruccion_nueva->identificador = malloc(strlen(token) + 1);
-    strcpy(instruccion_nueva->identificador, token);
+    instruccion_nueva->identificador = malloc(strlen(token) + 1); 
+    strcpy(instruccion_nueva->identificador, token); //guardo el identificador
     while (token != NULL)
     {
         token = strtok(NULL, " "); // pongo null para no volver a leer el mismo token
@@ -97,5 +97,5 @@ t_instruccion *crear_instruccion(char *instruccion, t_log *logger)
         }
     }
     instruccion_nueva->argumentos = lista_argumentos;
-    return instruccion_nueva;
+    return instruccion_nueva; 
 }

@@ -26,17 +26,6 @@ void destruir_instruccion(t_instruccion* instruccionS){
 }
 
 
-char* eliminar_caracter_retorno(char* cadena){
-    uint32_t i = 0;
-    while(cadena[i] != '\0'){
-        if(cadena[i] == '\r'){
-            cadena[i] = '\0';
-        }
-        i++;
-    }
-    return cadena;
-}
-
 void destructor_queue(t_pcb* pcb){
     list_destroy_and_destroy_elements(pcb->instrucciones, (void*) destruir_instruccion);
 }

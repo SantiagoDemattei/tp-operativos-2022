@@ -74,8 +74,8 @@ uint32_t crear_conexion_cliente(t_log* logger, const char* server_name, char* ip
     // Recibe addrinfo
     getaddrinfo(ip, puerto, &hints, &servinfo);
 
-    // Crea un socket con la informacion recibida (del primero, suficiente)
-    uint32_t socket_cliente = socket(servinfo->ai_family, servinfo->ai_socktype, servinfo->ai_protocol);
+    // Crea un socket con la informacion recibida (del primero, suficiente) 
+    uint32_t socket_cliente = socket(servinfo->ai_family, servinfo->ai_socktype, servinfo->ai_protocol); //crea el socket con la info recibida 
 
     // Fallo en crear el socket
     if(socket_cliente == -1) {
@@ -84,7 +84,7 @@ uint32_t crear_conexion_cliente(t_log* logger, const char* server_name, char* ip
     }
 
     // Error conectando
-    if(connect(socket_cliente, servinfo->ai_addr, servinfo->ai_addrlen) == -1) {
+    if(connect(socket_cliente, servinfo->ai_addr, servinfo->ai_addrlen) == -1) { //intenta conectar el socket creado con el servidor
         log_error(logger, "Error al conectar (a %s)\n", server_name);
         freeaddrinfo(servinfo);
         return 0;
@@ -93,7 +93,7 @@ uint32_t crear_conexion_cliente(t_log* logger, const char* server_name, char* ip
 
     freeaddrinfo(servinfo);
 
-    return socket_cliente;
+    return socket_cliente; 
 }
 
 // CERRAR CONEXION

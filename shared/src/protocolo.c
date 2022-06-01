@@ -2,19 +2,19 @@
 
 #pragma region INICIAR CONSOLA
 // inicio: INICIAR CONSOLA
-static void *serializar_t_list_instrucciones(size_t *size, t_list *lista)
+static void *serializar_t_list_instrucciones(size_t *size, t_list *lista) 
 {
     // calculo tamaño en bytes de la lista de instrucciones (el tamanio que va a tener el stream de instrucciones)
     *size = 0;
-    t_list_iterator *list_it = list_iterator_create(lista);
+    t_list_iterator *list_it = list_iterator_create(lista); //para iterar la lista y calcular su tamaño para el stream de instrucciones 
     for (uint32_t i = 0; list_iterator_has_next(list_it); i++)
     {
         t_instruccion *instruccion = list_iterator_next(list_it);
-        *size += sizeof(uint32_t) + strlen(instruccion->identificador) + sizeof(uint32_t) + sizeof(uint32_t) * list_size(instruccion->argumentos); // tamanio instruccion = longitud identificador + tamanio identificador + cantidad argumentos + tamanio argumentos
+        *size += sizeof(uint32_t) + strlen(instruccion->identificador) + sizeof(uint32_t) + sizeof(uint32_t) * list_size(instruccion->argumentos); // tamanio instruccion = longitud identificador + tamanio identificador + cantidad argumentos + tamanio lista argumentos
     }
-    list_iterator_destroy(list_it);
+    list_iterator_destroy(list_it); 
 
-    void *stream = malloc(*size); // stream = listade(longitud + identificador + lista argumentos) = stream que contiene lista de instrucciones para el kernel
+    void *stream = malloc(*size); // stream = listade(longitud  identificador + identificador + cantArgumentos + lista argumentos) = stream que contiene lista de instrucciones para el kernel
 
     // Serializo las instrucciones
     list_it = list_iterator_create(lista);
@@ -22,45 +22,45 @@ static void *serializar_t_list_instrucciones(size_t *size, t_list *lista)
     for (uint32_t i = 0; list_iterator_has_next(list_it); i++)
     {
         t_instruccion *instruccion = list_iterator_next(list_it);
-        uint32_t tamanioCadena = strlen(instruccion->identificador);
-        memcpy(stream + offset, &tamanioCadena, sizeof(uint32_t));
+        uint32_t tamanioCadena = strlen(instruccion->identificador); 
+        memcpy(stream + offset, &tamanioCadena, sizeof(uint32_t)); //longitud identificador
         offset += sizeof(uint32_t);
-        memcpy(stream + offset, instruccion->identificador, strlen(instruccion->identificador));
+        memcpy(stream + offset, instruccion->identificador, strlen(instruccion->identificador)); //identificador
         offset += strlen(instruccion->identificador); // desplazo en la longitud del identificador (= bytes ocupados por el identificador), recordar que sizeof(char) = 1
-        uint32_t cantidadArgumentos = list_size(instruccion->argumentos);
-        memcpy(stream + offset, &cantidadArgumentos, sizeof(uint32_t));
-        offset += sizeof(uint32_t);
-        for (uint32_t j = 0; j < list_size(instruccion->argumentos); j++)
+        uint32_t cantidadArgumentos = list_size(instruccion->argumentos); 
+        memcpy(stream + offset, &cantidadArgumentos, sizeof(uint32_t)); //cant argumentos 
+        offset += sizeof(uint32_t); 
+        for (uint32_t j = 0; j < list_size(instruccion->argumentos); j++) 
         {
-            memcpy(stream + offset, list_get(instruccion->argumentos, j), sizeof(uint32_t));
+            memcpy(stream + offset, list_get(instruccion->argumentos, j), sizeof(uint32_t)); //cada uno de los argumentos
             offset += sizeof(uint32_t);
         }
     }
     list_iterator_destroy(list_it);
-    return stream;
+    return stream; 
 }
 
 static void *serializar_iniciar_consola(size_t *size, t_list *instrucciones, uint32_t tamanioConsola)
 {
 
-    size_t size_instrucciones;
+    size_t size_instrucciones;  //size del stream de instrucciones
     void *stream_instrucciones = serializar_t_list_instrucciones(&size_instrucciones, instrucciones);
 
-    // stream completo
+    // tamaño stream completo
     size_t size_total =
         sizeof(op_code) +   // tamanio del op_code
         sizeof(size_t) +    // size total del payload
         sizeof(uint32_t) +  // tamanio de la consola
-        sizeof(size_t) +    // size del stream de instrucciones
-        size_instrucciones; // tamanio de la lista de instrucciones
+        sizeof(size_t) +    // tamanio del stream de instrucciones
+        size_instrucciones; // stream de instrucciones
 
     void *stream = malloc(size_total);
     // Payload (todo lo que va despues del op code)
-    size_t size_payload = size_total - sizeof(op_code) - sizeof(size_t); // el tamanio del payload no incluye el op_code ni el size
+    size_t size_payload = size_total - sizeof(op_code) - sizeof(size_t); // el tamanio del payload no incluye el op_code ni su size (arranca dsp de su tamanio)
 
-    op_code cop = INICIAR_PROCESO;
+    op_code cop = INICIAR_PROCESO; //codigo para iniciar el proceso 
 
-    // Ahora lleno el stream
+    // Ahora lleno el stream COMPLETO
     memcpy(stream, &cop, sizeof(op_code));                                                                                           // op_code
     memcpy(stream + sizeof(op_code), &size_payload, sizeof(size_t));                                                                 // size del payload
     memcpy(stream + sizeof(op_code) + sizeof(size_t), &tamanioConsola, sizeof(uint32_t));                                            // tamanio de la consola
@@ -70,7 +70,7 @@ static void *serializar_iniciar_consola(size_t *size, t_list *instrucciones, uin
     free(stream_instrucciones);
     *size = size_total;
 
-    return stream;
+    return stream; //devuelve el stream COMPLETO: opcode + sizepayload + tamanioconsola + sizeStreamInstrucciones + streaminstrucciones
 }
 
 static t_list *deserializar_t_list_instrucciones(void *stream, size_t size)
@@ -114,17 +114,17 @@ static void deserializar_iniciar_consola(void *stream, t_list **instrucciones, u
     free(stream_instrucciones);
 }
 
-bool send_iniciar_consola(uint32_t fd, t_list *instrucciones, uint32_t tamanioConsola)
+bool send_iniciar_consola(uint32_t fd, t_list *instrucciones, uint32_t tamanioConsola)  //solo puedo mandar bytes por sockets -> serializo (transformar en stream)
 {
     size_t size;
-    void *stream = serializar_iniciar_consola(&size, instrucciones, tamanioConsola);
-    if (send(fd, stream, size, 0) == -1)
+    void *stream = serializar_iniciar_consola(&size, instrucciones, tamanioConsola); //size tiene el tamaño del stream completo
+    if (send(fd, stream, size, 0) == -1)  //le mando el stream completo y su tamaño al server (por la conexion donde estan (fd))
     {
         free(stream);
         return false;
     }
     free(stream);
-    return true;
+    return true; 
 }
 
 bool recv_iniciar_consola(uint32_t fd, t_list **instrucciones, uint32_t *tamanioConsola)
