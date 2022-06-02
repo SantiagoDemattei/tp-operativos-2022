@@ -9,7 +9,7 @@
 typedef enum
 {
     // AGREGAR MAS CODIGOS PARA CONEXION
-    DEBUG,
+    DEBUG, 
     INICIAR_PROCESO,
     ENVIAR_PCB,
     INICIALIZAR_ESTRUCTURAS,
@@ -39,11 +39,11 @@ typedef struct //cada instruccion tiene un identificador y una lista de argument
 typedef struct
 {
     t_log *log;             // logger
-    int fd;                 // int socket
+    int fd;                 // int socket 
     char *server_name;      // nombre del servidor
 } t_procesar_conexion_args; // para los hilos
 
-typedef struct t_configuracion_kernel
+typedef struct t_configuracion_kernel 
 {
     char *ip_memoria;
     char *ip_kernel;

@@ -130,14 +130,14 @@ bool send_iniciar_consola(uint32_t fd, t_list *instrucciones, uint32_t tamanioCo
 bool recv_iniciar_consola(uint32_t fd, t_list **instrucciones, uint32_t *tamanioConsola)
 {
 
-    size_t size;
-    if (recv(fd, &size, sizeof(size_t), 0) != sizeof(size_t))
+    size_t size; 
+    if (recv(fd, &size, sizeof(size_t), 0) != sizeof(size_t)) //size del payload
     {
         return false;
     }
-    // recibe el stream sin el opcode (size_payload + payload)
+
     void *stream = malloc(size);
-    if (recv(fd, stream, size, 0) != size)
+    if (recv(fd, stream, size, 0) != size) //payload (tamanioConsola + sizeStreamInstrucciones + streamInstrucciones)
     {
         free(stream);
         return false;
@@ -219,11 +219,11 @@ static void deserializar_pcb(void *stream, t_pcb **pcbF)
     free(stream_instrucciones);
 }
 
-bool send_pcb(uint32_t fd, t_pcb *pcb)
+bool send_pcb(uint32_t fd, t_pcb *pcb) 
 {
     size_t size;
     void *stream = serializar_pcb(&size, pcb, ENVIAR_PCB);
-    if (send(fd, stream, size, 0) == -1)
+    if (send(fd, stream, size, 0) == -1) 
     {
         free(stream);
         return false;
@@ -235,12 +235,12 @@ bool send_pcb(uint32_t fd, t_pcb *pcb)
 bool recv_pcb(uint32_t fd, t_pcb **pcb)
 {
     size_t size;
-    if (recv(fd, &size, sizeof(size_t), 0) != sizeof(size_t))
+    if (recv(fd, &size, sizeof(size_t), 0) != sizeof(size_t))  //payload
     {
         return false;
     }
-    // recibe el stream sin el opcode (size_payload + payload)
-    void *stream = malloc(size);
+
+    void *stream = malloc(size); 
     if (recv(fd, stream, size, 0) != size)
     {
         free(stream);
@@ -260,10 +260,10 @@ bool recv_pcb(uint32_t fd, t_pcb **pcb)
 #pragma region INICIALIZAR_ESTRUCTURAS
 // INICIALIZAR_ESTRUCTURAS (memoria)
 
-bool send_inicializar_estructuras(uint32_t fd)
+bool send_inicializar_estructuras(uint32_t fd) 
 {
     op_code cop = INICIALIZAR_ESTRUCTURAS;
-    if (send(fd, &cop, sizeof(op_code), 0) != sizeof(op_code))
+    if (send(fd, &cop, sizeof(op_code), 0) != sizeof(op_code)) //envia a la memoria el cop ?? para que inicialice estructuras y obtenga el valor de la TP
         return false;
     return true;
 }
@@ -272,16 +272,16 @@ bool send_inicializar_estructuras(uint32_t fd)
 #pragma endregion
 
 #pragma region VALOR_TB
-bool send_valor_tb(uint32_t fd, uint32_t valor_tb)
+bool send_valor_tb(uint32_t fd, uint32_t valor_tb) //la memoria le tiene que mandar el valor de la tabla de paginas serializado al kernel
 {
-    size_t size = sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t);
+    size_t size = sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t);  //stream: cop + sizePayload + valorTb
     void *stream = malloc(size);
-    size_t size_payload = size - sizeof(op_code) - sizeof(size_t);
+    size_t size_payload = size - sizeof(op_code) - sizeof(size_t); 
     op_code cop = VALOR_TB;
     memcpy(stream, &cop, sizeof(op_code));
     memcpy(stream + sizeof(op_code), &size_payload, sizeof(size_t));
     memcpy(stream + sizeof(op_code) + sizeof(size_t), &valor_tb, sizeof(uint32_t));
-    if (send(fd, stream, size, 0) == -1)
+    if (send(fd, stream, size, 0) == -1) 
     {
         free(stream);
         return false;
@@ -290,11 +290,11 @@ bool send_valor_tb(uint32_t fd, uint32_t valor_tb)
     return true;
 }
 
-bool recv_valor_tb(uint32_t fd, uint32_t *valor_tb)
+bool recv_valor_tb(uint32_t fd, uint32_t *valor_tb) 
 {
     uint32_t valor;
     size_t size;
-    if (recv(fd, &size, sizeof(size_t), 0) != sizeof(size_t))
+    if (recv(fd, &size, sizeof(size_t), 0) != sizeof(size_t)) 
     {
         return false;
     }
@@ -306,7 +306,7 @@ bool recv_valor_tb(uint32_t fd, uint32_t *valor_tb)
     }
     memcpy(&valor, stream, sizeof(uint32_t));
 
-    *valor_tb = valor;
+    *valor_tb = valor; 
     free(stream);
     return true;
 }

@@ -27,7 +27,7 @@ void liberar_estructuras_kernel(t_configuracion_kernel* datos_config_kernel){
     free(datos_config_kernel);
 }
 
-void crear_colas_estados(){
+void crear_colas_estados(){ 
     cola_new = queue_create();
     cola_ready = queue_create();
     cola_blocked = queue_create();

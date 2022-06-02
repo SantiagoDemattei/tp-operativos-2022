@@ -25,32 +25,32 @@ uint32_t crear_comunicacion_cpu(t_configuracion_memoria* configuracion_memoria, 
     return socket_cpu_dispatch;
 }
 
-static void procesar_conexion(void* void_args){
+static void procesar_conexion(void* void_args){  //entre el kernel (cliente) y la memoria (server)
     t_procesar_conexion_args* args = (t_procesar_conexion_args*) void_args; // recibo a mi cliente y sus datos
     t_log* logger = args->log;
     uint32_t cliente_socket = args->fd;
     char* server_name = args->server_name;
     free(args);
-    uint32_t mensaje;
+    uint32_t mensaje; 
     uint32_t valor_tb;
-    op_code cop;
+    op_code cop; 
 
-     while (cliente_socket != -1){
-         if (recv(cliente_socket, &cop, sizeof(op_code), 0) != sizeof(op_code)) {
+     while (cliente_socket != -1){  //mientras el cliente no se haya desconectado
+         if (recv(cliente_socket, &cop, sizeof(op_code), 0) != sizeof(op_code)) { //desconectamos al cliente xq no le esta mandando el cop bien 
             log_info(logger, "DISCONNECT!");
             return;
         }
         switch (cop) {
-            case DEBUG:
+            case DEBUG: 
                 log_info(logger, "debug");
                 break;
                 
             case INICIALIZAR_ESTRUCTURAS:
-                    log_info(logger, "INICIALIZANDO ESTRUCTURAS");
+                    log_info(logger, "INICIALIZANDO ESTRUCTURAS"); //FALTA INICIALIZAR ESTRUCTURAS 
 
                     valor_tb = 2123; // valor de tabla de paginas NO VA A QUEDAR ASI
                     
-                    send_valor_tb(cliente_socket, valor_tb);
+                    send_valor_tb(cliente_socket, valor_tb); 
                     log_info(logger, "Se envio el valor de la tabla de paginas al kernel\n");
                  break;
             

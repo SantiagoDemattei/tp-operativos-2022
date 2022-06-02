@@ -59,11 +59,11 @@ static void procesar_conexion(void *void_args)
 
         case ENVIAR_PCB:
 
-            if (recv_pcb(cliente_socket, &running))
+            if (recv_pcb(cliente_socket, &running))  
             {
                 log_info(logger, "Se recibio el PCB");
                 printf("copie el pcb en running\n");
-                ciclo_instruccion(running, cliente_socket, logger);
+                ciclo_instruccion(running, cliente_socket, logger); //cuando la cpu recibe el pcb simula un ciclo de instruccion
             }
 
             break;
@@ -109,7 +109,7 @@ uint32_t server_escuchar(t_log *logger, char *server_name, uint32_t server_socke
 
 void ciclo_instruccion(t_pcb *running, uint32_t cliente_socket, t_log *logger)
 {
-    t_list *lista_instrucciones = running->instrucciones;
+    t_list *lista_instrucciones = running->instrucciones; //lista de instrucciones del proceso que esta en running
     uint32_t cantidad_instrucciones = list_size(lista_instrucciones);
     INSTRUCCIONES_EJECUCION instruccion_actual_enum;
     t_instruccion *instruccion_actual;
@@ -117,26 +117,26 @@ void ciclo_instruccion(t_pcb *running, uint32_t cliente_socket, t_log *logger)
     float segundos;
     int i;
     uint32_t cantidad_noops = 0;
-    t_argumento *tiempo_bloqueo;
+    t_argumento *tiempo_bloqueo; 
     t_argumento *argumentos;
     uint32_t j;
-    while ((running->program_counter < cantidad_instrucciones) && (running != NULL))
+    while ((running->program_counter < cantidad_instrucciones) && (running != NULL)) //recorro tomando como punto de partida la instrucción que indique el Program Counter del PCB recibido -> FETCH 
     {
-        instruccion_actual = list_get(running->instrucciones, running->program_counter);
-        instruccion_actual_enum = enumerar_instruccion(instruccion_actual);
+        instruccion_actual = list_get(running->instrucciones, running->program_counter); //tomo la instruccion actual
+        instruccion_actual_enum = enumerar_instruccion(instruccion_actual); 
         argumentos = instruccion_actual->argumentos;
 
         printf("Antes del switch con la instruccion: %d\n", instruccion_actual_enum);
         switch (instruccion_actual_enum)
         {
-        case NO_OP:
+        case NO_OP: //DECODE + EXECUTE
             retardo = configuracion_cpu->retardo_noop;
             segundos = retardo / 1000;
-            sleep(segundos);
-            running->program_counter++;
+            sleep(segundos); //espera un tiempo determinado
+            running->program_counter++; //avanza a la prox instruccion 
             break;
 
-        case I_O:
+        case I_O: //DECODE + EXECUTE
             tiempo_bloqueo = list_get(instruccion_actual->argumentos, 0);
             running->program_counter++;
             send_pcb_con_tiempo_bloqueado(cliente_socket, running, tiempo_bloqueo->argumento);

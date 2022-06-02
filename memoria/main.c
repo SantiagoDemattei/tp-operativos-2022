@@ -20,7 +20,7 @@ uint32_t main(void){
       	
     logger = log_create("memoria.log", "MEMORIA", true, LOG_LEVEL_INFO);
     configuracion_memoria = leer_configuracion();
-    socket_memoria = crear_comunicacion_kernel(configuracion_memoria, logger);
+    socket_memoria = crear_comunicacion_kernel(configuracion_memoria, logger); //inicia el servidor para que el kernel se conecte 
 
     while(server_escuchar(logger, "MEMORIA", socket_memoria)!=0); // servidor de kernel y cpu (ambos se conectan a la misma ip y puerto)
 

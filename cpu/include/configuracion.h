@@ -10,7 +10,7 @@
 #include "../../shared/include/estructuras.h"
 #include "../../shared/include/utils.h"
 
-t_pcb *running;
+t_pcb *running; //global de la cpu 
 
 t_configuracion_cpu* leer_configuracion(t_log* logger);
 void liberar_estructura_datos(t_configuracion_cpu* datos);
@@ -25,6 +25,6 @@ typedef enum
     COPY,
     EXIT,
     ERROR
-} INSTRUCCIONES_EJECUCION;
+} INSTRUCCIONES_EJECUCION; //enum para los distintos tipos de instrucciones 
 
 #endif
