@@ -14,11 +14,23 @@
 #include "../../shared/include/utils.h"
 
 t_configuracion_kernel* leer_configuracion();
+void inicializar_semaforos();
+
+pthread_mutex_t mutex_cantidad_procesos; 
+pthread_mutex_t mutex_estado_running;
+pthread_mutex_t mutex_logger_kernel;
+pthread_mutex_t mutex_cola_new;
+pthread_mutex_t mutex_cola_ready;
+pthread_mutex_t mutex_lista_blocked;
+pthread_mutex_t mutex_cola_exit;
 
 t_pcb *running;
 t_queue *cola_new;
 t_queue *cola_ready;
-t_queue *cola_blocked;
+t_list *bloqueados;
 t_queue *cola_exit;
+
+
+
 
 #endif

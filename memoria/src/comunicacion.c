@@ -54,6 +54,14 @@ static void procesar_conexion(void* void_args){  //entre el kernel (cliente) y l
                     log_info(logger, "Se envio el valor de la tabla de paginas al kernel\n");
                  break;
             
+            case LIBERAR_ESTRUCTURAS:
+                    log_info(logger, "LIBERANDO ESTRUCTURAS"); 
+
+                    // ACA VA EL CODIGO PARA LIBERAR LAS ESTRUCTURAS
+
+                    send_fin_proceso(cliente_socket);
+                    break;
+
             // Errores
             case -1:
                 log_error(logger, "Cliente desconectado de %s...", server_name);

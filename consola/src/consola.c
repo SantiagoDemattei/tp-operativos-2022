@@ -2,7 +2,7 @@
 
 uint32_t iniciar_consola(uint32_t tamanio, char *path, t_log *logger) 
 {
-
+    op_code cop;
     t_list *lista_instrucciones = obtener_instrucciones(path, logger); //lista con instrucciones del archivo 
     t_configuracion_consola *datos_conexion = leer_configuracion(logger); //datos del servidor (kernel en este caso) al que queremos que se conecte
     loggear_lista_instrucciones(lista_instrucciones, logger); 
@@ -12,6 +12,15 @@ uint32_t iniciar_consola(uint32_t tamanio, char *path, t_log *logger)
     send_iniciar_consola(conexion, lista_instrucciones, tamanio); //una vez que se conecta con el server le manda la lista de instrucciones y el tamaño del proceso
 
     log_info(logger, "Se envio la lista de instrucciones al kernel");
+
+    log_info(logger, "Estoy esperando a que el kernel me avise que ya ejecuto mis instrucciones...");
+
+    if(recv(conexion, &cop, sizeof(op_code), 0) != sizeof(op_code)) 
+    {
+        log_error(logger, "No se pudo recibir el codigo de operacion");
+        return -1;
+    }
+    log_info(logger, "El kernel me aviso que ya ejecute mis instrucciones :D");
 
     list_destroy_and_destroy_elements(lista_instrucciones, (void *)destruir_instruccion); 
     liberar_estructura_datos(datos_conexion);
@@ -43,7 +52,9 @@ t_list *obtener_instrucciones(char *path, t_log *logger)
 
    // int incremento = 0;
     int i = 0;
-    t_instruccion *instruccion;  
+    int j = 0;
+    t_instruccion *instruccion; 
+    
     int incremento_aux = 0;
     for (i = 0; i < (list_size(lista_instrucciones_aux)); i++) //itera por cada instruccion
     {
@@ -63,10 +74,24 @@ t_list *obtener_instrucciones(char *path, t_log *logger)
             }
         }
         else //si no es NO_OP agrego la instruccion a la lista
-        {
-            list_add(lista_instrucciones, instruccion);
+        {   
+            t_instruccion *instruccion_aux = malloc(sizeof(t_instruccion));//para poder borrar la lista aux y que no se borren los elementos.
+            instruccion_aux->identificador = malloc(strlen(instruccion->identificador) + 1);
+            strcpy(instruccion_aux->identificador, instruccion->identificador);
+            instruccion_aux->argumentos = list_create();
+            for(j = 0; j < list_size(instruccion->argumentos); j++)
+            {
+                t_argumento *argumento_aux = malloc(sizeof(t_argumento));
+                t_argumento* provisorio = list_get(instruccion->argumentos, j);
+                argumento_aux->argumento = provisorio->argumento;
+                list_add(instruccion_aux->argumentos, argumento_aux);
+            }
+            list_add(lista_instrucciones, instruccion_aux);
         }
-    }              
+    } 
+    // destruir lista auxiliar
+    list_destroy_and_destroy_elements(lista_instrucciones_aux, (void *)destruir_instruccion);
+    
 
     free(linea);
     fclose(archivo);

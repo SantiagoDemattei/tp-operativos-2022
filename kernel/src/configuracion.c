@@ -51,3 +51,15 @@ t_configuracion_kernel* leer_configuracion(){
     config_destroy(nuevo_config); // libero la memoria del config
     return datos;
 }
+
+void inicializar_semaforos(){
+    pthread_mutex_init(&mutex_cantidad_procesos, NULL);
+    pthread_mutex_init(&mutex_estado_running, NULL); 
+    pthread_mutex_init(&mutex_logger_kernel, NULL);
+    pthread_mutex_init(&mutex_cola_new, NULL);
+    pthread_mutex_init(&mutex_cola_ready, NULL);
+    pthread_mutex_init(&mutex_lista_blocked, NULL);
+    pthread_mutex_init(&mutex_cola_exit, NULL);
+}   
+
+

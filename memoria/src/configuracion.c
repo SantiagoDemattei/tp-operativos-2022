@@ -19,10 +19,6 @@ t_configuracion_memoria* leer_configuracion(){
     int marcos_por_proceso = config_get_int_value(nuevo_config,"RETARDO_SWAP");
     char* path_swap = config_get_string_value(nuevo_config,"PATH_SWAP");
 
-    
-    algoritmo_reemplazo = eliminar_caracter_retorno(algoritmo_reemplazo);
-    path_swap = eliminar_caracter_retorno(path_swap);
-    puerto_escucha = eliminar_caracter_retorno(puerto_escucha);
 
     t_configuracion_memoria* datos = malloc(sizeof(t_configuracion_memoria)); // creo estructura de datos de conexion
     datos->ip_memoria = malloc(strlen(ip_memoria)+1); 

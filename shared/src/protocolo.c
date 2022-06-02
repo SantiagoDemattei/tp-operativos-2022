@@ -229,7 +229,9 @@ bool send_pcb(uint32_t fd, t_pcb *pcb)
         return false;
     }
     free(stream);
+    printf("Envio pcb\n");
     return true;
+
 }
 
 bool recv_pcb(uint32_t fd, t_pcb **pcb)
@@ -241,6 +243,7 @@ bool recv_pcb(uint32_t fd, t_pcb **pcb)
     }
 
     void *stream = malloc(size); 
+    printf("recv_pcb\n");
     if (recv(fd, stream, size, 0) != size)
     {
         free(stream);
@@ -269,6 +272,17 @@ bool send_inicializar_estructuras(uint32_t fd)
 }
 
 // fin: INICIALIZAR_ESTRUCTURAS
+#pragma endregion
+
+#pragma region FIN_PROCESO
+bool send_fin_proceso(uint32_t fd)
+{
+    op_code cop = LIBERAR_ESTRUCTURAS;
+    if(send(fd, &cop, sizeof(op_code), 0) != sizeof(op_code))
+        return false;
+    return true;    
+
+}
 #pragma endregion
 
 #pragma region VALOR_TB
@@ -365,7 +379,7 @@ bool send_pcb_con_tiempo_bloqueado(uint32_t fd, t_pcb *pcb, uint32_t tiempo_bloq
     return true;
 }
 
-bool recv_pcb_con_tiempo_bloqueado(uint32_t *fd, t_pcb **pcbF, uint32_t *tiempo_bloqueo)
+bool recv_pcb_con_tiempo_bloqueado(uint32_t *fd, t_pcb **pcbF, uint32_t* tiempo_bloqueo)
 {   
     t_pcb *pcb = malloc(sizeof(t_pcb));
     size_t size_instrucciones;
@@ -373,13 +387,13 @@ bool recv_pcb_con_tiempo_bloqueado(uint32_t *fd, t_pcb **pcbF, uint32_t *tiempo_
     op_code cop;
 
     size_t size;
-    if (recv(fd, &size, sizeof(size_t), 0) != sizeof(size_t))
+    if (recv(fd, &size, sizeof(size_t), 0) != sizeof(size_t)) 
     {
         return false;
     }
     
     void *stream = malloc(size);
-    if (recv(fd, stream, size, 0) != size)
+    if (recv(fd, stream, size, 0) != size) 
     {
         free(stream);
         return false;
@@ -397,12 +411,9 @@ bool recv_pcb_con_tiempo_bloqueado(uint32_t *fd, t_pcb **pcbF, uint32_t *tiempo_
     t_list *instrucciones = deserializar_t_list_instrucciones(stream_instrucciones, size_instrucciones);
     pcb->instrucciones = instrucciones;
     memcpy(tiempo_bloqueo, stream + sizeof(uint32_t) * 5 + sizeof(size_t) + size_instrucciones, sizeof(uint32_t)); // tiempo de bloqueo    
-
-
-    pcbF = pcb;
+    *pcbF = pcb;
     free(stream);
     free(stream_instrucciones);
-
 
     return true;
  

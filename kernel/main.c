@@ -20,12 +20,12 @@ uint32_t main(void){
     logger = log_create("kernel.log", "KERNEL", true, LOG_LEVEL_INFO);
     configuracion_kernel = leer_configuracion(); //me devuelve los datos para la conexion
     socket_kernel = crear_comunicacion(configuracion_kernel, logger); 
-    pthread_mutex_init(&mutex_cantidad_procesos, NULL); //inicializo los mutex
-    pthread_mutex_init(&mutex_estado_running, NULL); //inicializo los mutex 
+    inicializar_semaforos();
     running = NULL; //variable global -> estado running -> variable porque siempre tenemos 1 solo proceso en running 
 
     // funcion de creacion de colas de estados
     crear_colas_estados();
+    
     
     while(server_escuchar(logger, "KERNEL", socket_kernel)!=0); //si se conecta un cliente se crea un hilo para atenderlo y recibe 1 para poder seguir conectando con mas clientes
 
@@ -37,5 +37,6 @@ uint32_t main(void){
 
     return EXIT_SUCCESS;
 }
+
 
 

@@ -15,7 +15,8 @@ typedef enum
     INICIALIZAR_ESTRUCTURAS,
     VALOR_TB,
     INT_NUEVO_READY,
-    BLOQUEO_IO
+    BLOQUEO_IO,
+    LIBERAR_ESTRUCTURAS
 
 } op_code;
 

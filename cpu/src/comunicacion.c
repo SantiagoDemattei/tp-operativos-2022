@@ -62,7 +62,6 @@ static void procesar_conexion(void *void_args)
             if (recv_pcb(cliente_socket, &running))  
             {
                 log_info(logger, "Se recibio el PCB");
-                printf("copie el pcb en running\n");
                 ciclo_instruccion(running, cliente_socket, logger); //cuando la cpu recibe el pcb simula un ciclo de instruccion
             }
 
@@ -120,7 +119,7 @@ void ciclo_instruccion(t_pcb *running, uint32_t cliente_socket, t_log *logger)
     t_argumento *tiempo_bloqueo; 
     t_argumento *argumentos;
     uint32_t j;
-    while ((running->program_counter < cantidad_instrucciones) && (running != NULL)) //recorro tomando como punto de partida la instrucción que indique el Program Counter del PCB recibido -> FETCH 
+    while ((running != NULL) && (running->program_counter < cantidad_instrucciones)) //recorro tomando como punto de partida la instrucción que indique el Program Counter del PCB recibido -> FETCH 
     {
         instruccion_actual = list_get(running->instrucciones, running->program_counter); //tomo la instruccion actual
         instruccion_actual_enum = enumerar_instruccion(instruccion_actual); 
@@ -131,8 +130,7 @@ void ciclo_instruccion(t_pcb *running, uint32_t cliente_socket, t_log *logger)
         {
         case NO_OP: //DECODE + EXECUTE
             retardo = configuracion_cpu->retardo_noop;
-            segundos = retardo / 1000;
-            sleep(segundos); //espera un tiempo determinado
+            usleep(retardo*1000); //espera un tiempo determinado
             running->program_counter++; //avanza a la prox instruccion 
             break;
 
@@ -140,7 +138,7 @@ void ciclo_instruccion(t_pcb *running, uint32_t cliente_socket, t_log *logger)
             tiempo_bloqueo = list_get(instruccion_actual->argumentos, 0);
             running->program_counter++;
             send_pcb_con_tiempo_bloqueado(cliente_socket, running, tiempo_bloqueo->argumento);
-            //running = NULL;
+            running = NULL;
             break;
 
         case READ:
@@ -155,8 +153,9 @@ void ciclo_instruccion(t_pcb *running, uint32_t cliente_socket, t_log *logger)
             running->program_counter++;
             break;
 
-        case EXIT:
-            running->program_counter++;
+        case EXIT:      
+            send_pcb(cliente_socket, running);
+            running = NULL;
             break;
         }
 
