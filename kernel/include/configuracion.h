@@ -2,7 +2,6 @@
 #define CONFIG_H_
 
 #include <stdio.h>
-
 #include <stdlib.h>
 #include <string.h>
 #include <commons/string.h>
@@ -23,12 +22,15 @@ pthread_mutex_t mutex_cola_new;
 pthread_mutex_t mutex_cola_ready;
 pthread_mutex_t mutex_lista_blocked;
 pthread_mutex_t mutex_cola_exit;
+sem_t sem_planificar;
+//sem_t finalizar_planificacion;
 
 t_pcb *running;
 t_queue *cola_new;
 t_queue *cola_ready;
 t_list *bloqueados;
 t_queue *cola_exit;
+
 
 
 

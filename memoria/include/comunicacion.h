@@ -21,5 +21,6 @@
 uint32_t crear_comunicacion_kernel(t_configuracion_memoria* configuracion_memoria, t_log* logger);
 uint32_t server_escuchar(t_log* logger, char* server_name, uint32_t server_socket);
 static void procesar_conexion(void* void_args);
+void inicializar_semaforos();
 
 #endif

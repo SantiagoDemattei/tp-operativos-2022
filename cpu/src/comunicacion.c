@@ -7,7 +7,9 @@ uint32_t crear_comunicacion_dispatch(t_configuracion_cpu *t_configuracion_cpu, t
 
     if (socket_cpu_dispatch == -1)
     {
+        pthread_mutex_lock(&mutex_logger_cpu);
         log_error(logger, "No se pudo iniciar el servidor de comunicacion");
+        pthread_mutex_unlock(&mutex_logger_cpu);
         return -1;
     }
     return socket_cpu_dispatch;
@@ -20,7 +22,9 @@ uint32_t crear_comunicacion_interrupt(t_configuracion_cpu *t_configuracion_cpu, 
 
     if (socket_cpu_interrupt == -1)
     {
+        pthread_mutex_lock(&mutex_logger_cpu);
         log_error(logger, "No se pudo iniciar el servidor de comunicacion");
+        pthread_mutex_unlock(&mutex_logger_cpu);
         return -1;
     }
     return socket_cpu_interrupt;
@@ -46,22 +50,29 @@ static void procesar_conexion(void *void_args)
     while (cliente_socket != -1)
     {
         if (recv(cliente_socket, &cop, sizeof(op_code), 0) != sizeof(op_code))
-        {
+        {   
+            pthread_mutex_lock(&mutex_logger_cpu);
             log_info(logger, "DISCONNECT!");
+            pthread_mutex_unlock(&mutex_logger_cpu);
             return;
         }
 
         switch (cop)
         {
         case DEBUG:
+            pthread_mutex_lock(&mutex_logger_cpu); 
             log_info(logger, "debug");
+            pthread_mutex_unlock(&mutex_logger_cpu);
             break;
 
         case ENVIAR_PCB:
 
             if (recv_pcb(cliente_socket, &running))  
-            {
-                log_info(logger, "Se recibio el PCB");
+            {   
+                
+                pthread_mutex_lock(&mutex_logger_cpu);
+                log_info(logger, "Se recibio el PCB, por el hilo de cpu: %d", pthread_self());
+                pthread_mutex_unlock(&mutex_logger_cpu);
                 ciclo_instruccion(running, cliente_socket, logger); //cuando la cpu recibe el pcb simula un ciclo de instruccion
             }
 
@@ -69,22 +80,29 @@ static void procesar_conexion(void *void_args)
 
         case INT_NUEVO_READY:
 
+            pthread_mutex_lock(&mutex_logger_cpu);
             log_info(logger, "Desalojando proceso");
+            pthread_mutex_unlock(&mutex_logger_cpu);
             // ACA VA EL CODIGO PARA INTERRUMPIR EL PROCESO QUE ESTA EJECUTANDO ACTUALMENTE
             running = NULL;
             break;
 
             // Errores
         case -1:
+            pthread_mutex_lock(&mutex_logger_cpu);
             log_error(logger, "Cliente desconectado de %s...", server_name);
+            pthread_mutex_unlock(&mutex_logger_cpu);
             return;
         default:
+            pthread_mutex_lock(&mutex_logger_cpu);
             log_error(logger, "Algo anduvo mal en el server de %s", server_name);
+            pthread_mutex_unlock(&mutex_logger_cpu);
             return;
         }
     }
-
+    pthread_mutex_lock(&mutex_logger_cpu);
     log_warning(logger, "El cliente se desconecto de %s server", server_name);
+    pthread_mutex_unlock(&mutex_logger_cpu);
     return;
 }
 
@@ -119,55 +137,78 @@ void ciclo_instruccion(t_pcb *running, uint32_t cliente_socket, t_log *logger)
     t_argumento *tiempo_bloqueo; 
     t_argumento *argumentos;
     uint32_t j;
+    pthread_mutex_lock(&mutex_running_cpu);
     while ((running != NULL) && (running->program_counter < cantidad_instrucciones)) //recorro tomando como punto de partida la instrucción que indique el Program Counter del PCB recibido -> FETCH 
     {
+        pthread_mutex_unlock(&mutex_running_cpu);
         instruccion_actual = list_get(running->instrucciones, running->program_counter); //tomo la instruccion actual
         instruccion_actual_enum = enumerar_instruccion(instruccion_actual); 
         argumentos = instruccion_actual->argumentos;
 
+        pthread_mutex_lock(&mutex_logger_cpu);
         log_info(logger,"Antes del switch con la instruccion: %s\n", instruccion_actual->identificador);
+        pthread_mutex_unlock(&mutex_logger_cpu);
+        
         switch (instruccion_actual_enum)
         {
         case NO_OP: //DECODE + EXECUTE
             retardo = configuracion_cpu->retardo_noop;
             usleep(retardo*1000); //espera un tiempo determinado
+            pthread_mutex_lock(&mutex_running_cpu);
             running->program_counter++; //avanza a la prox instruccion 
+            pthread_mutex_unlock(&mutex_running_cpu);
             break;
 
         case I_O: //DECODE + EXECUTE
             tiempo_bloqueo = list_get(instruccion_actual->argumentos, 0);
+            pthread_mutex_lock(&mutex_running_cpu);
             running->program_counter++;
             send_pcb_con_tiempo_bloqueado(cliente_socket, running, tiempo_bloqueo->argumento);
             running = NULL;
+            pthread_mutex_unlock(&mutex_running_cpu);
             break;
 
         case READ:
+            pthread_mutex_lock(&mutex_running_cpu);
             running->program_counter++;
+            pthread_mutex_unlock(&mutex_running_cpu);
             break;
 
         case WRITE:
+            pthread_mutex_lock(&mutex_running_cpu);
             running->program_counter++;
+            pthread_mutex_unlock(&mutex_running_cpu);
             break;
 
         case COPY:
+            pthread_mutex_lock(&mutex_running_cpu);
             running->program_counter++;
+            pthread_mutex_unlock(&mutex_running_cpu);
             break;
 
-        case EXIT:      
+        case EXIT:     
+            pthread_mutex_lock(&mutex_running_cpu); 
             send_pcb(cliente_socket, running);
             running->program_counter++;
             running = NULL;
+            pthread_mutex_unlock(&mutex_running_cpu);
             break;
         
         case ERROR:
+            pthread_mutex_lock(&mutex_running_cpu);
             running = NULL;
+            pthread_mutex_unlock(&mutex_running_cpu);
+            
+            pthread_mutex_lock(&mutex_logger_cpu);
             log_error(logger, "Error en la instruccion");
+            pthread_mutex_unlock(&mutex_logger_cpu);
 
             break;
         }
-
+        pthread_mutex_lock(&mutex_running_cpu);
         // chequearInterrupciones();
     }
+    pthread_mutex_unlock(&mutex_running_cpu);
 }
 
 INSTRUCCIONES_EJECUCION enumerar_instruccion(t_instruccion *instruccion)

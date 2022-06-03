@@ -50,3 +50,8 @@ void liberar_estructura_datos(t_configuracion_cpu* datos){
     free(datos->puerto_escucha_interrupt);
     free(datos);
 }
+
+void inicializar_semaforos(){
+    pthread_mutex_init(&mutex_logger_cpu, NULL);
+    pthread_mutex_init(&mutex_running_cpu, NULL);
+}

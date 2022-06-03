@@ -236,7 +236,8 @@ void atencion_cpu(uint32_t socket_cpu_dispatch, uint32_t cliente_socket, t_log *
     t_pcb *pcb;
     t_pcb *pcbExit;
     uint32_t tiempo;
-    while (true)
+    printf("NOC NOC\n");
+    while (true) // va a salir cuando no hayan mas procesos en la cola
     {
 
         if (recv(socket_cpu_dispatch, &cop, sizeof(op_code), 0) != sizeof(op_code))
@@ -251,12 +252,24 @@ void atencion_cpu(uint32_t socket_cpu_dispatch, uint32_t cliente_socket, t_log *
         {
         case BLOQUEO_IO:
             recv_pcb_con_tiempo_bloqueado(socket_cpu_dispatch, &pcb, &tiempo);
+
             pthread_mutex_lock(&mutex_logger_kernel);
+            log_info(logger, "Se bloqueo el proceso %d por IO en el hilo %d", pcb->id, pthread_self());
             log_info(logger, "Tiempo bloqueado recibido: %d\n", tiempo);
             pthread_mutex_unlock(&mutex_logger_kernel);
+
             pthread_mutex_lock(&mutex_estado_running);
             running = NULL;
             pthread_mutex_unlock(&mutex_estado_running);
+
+            pthread_mutex_lock(&mutex_cola_ready);
+            if (queue_size(cola_ready) > 0)
+            {
+                pthread_mutex_unlock(&mutex_cola_ready);
+                sem_post(&sem_planificar);
+                pthread_mutex_lock(&mutex_cola_ready);
+            }
+            pthread_mutex_unlock(&mutex_cola_ready);
 
             pthread_mutex_lock(&mutex_lista_blocked);
             list_add(bloqueados, pcb); // lista para los procesos bloqueados y poder sacar cualquier proceso de la lista
@@ -269,18 +282,18 @@ void atencion_cpu(uint32_t socket_cpu_dispatch, uint32_t cliente_socket, t_log *
             int indice = buscar_indice_pcb_en_lista_bloqueados(bloqueados, pcb);
             list_remove(bloqueados, indice); // saca el pcb de la lista de bloqueados
             pthread_mutex_lock(&mutex_logger_kernel);
-            log_info(logger, "Proceso %d desbloqueado", pcb->id);
+            log_info(logger, "Proceso %d desbloqueado en el hilo %d", pcb->id, pthread_self());
             pthread_mutex_unlock(&mutex_logger_kernel);
             pthread_mutex_unlock(&mutex_lista_blocked);
 
             pthread_mutex_lock(&mutex_cola_ready);
             queue_push(cola_ready, pcb); // Cuando se desbloquea, vuelve a ready
+
+            sem_post(&sem_planificar);
             pthread_mutex_unlock(&mutex_cola_ready);
-            planificar();
             break;
 
         case ENVIAR_PCB:
-
             recv_pcb(socket_cpu_dispatch, &pcbExit);
             pthread_mutex_lock(&mutex_logger_kernel);
             log_info(logger, "Orden EXIT recibida, id: %d\n", pcbExit->id);
@@ -300,8 +313,18 @@ void atencion_cpu(uint32_t socket_cpu_dispatch, uint32_t cliente_socket, t_log *
             {
                 pthread_mutex_lock(&mutex_logger_kernel);
                 log_error(logger, "Error al avisarle a la consola que finalizo");
+                
                 pthread_mutex_unlock(&mutex_logger_kernel);
                 return;
+            }
+            else
+            {
+                pthread_mutex_lock(&mutex_logger_kernel);
+                // loggear el id del hilo
+                log_info(logger, "hilo: %d\n", pthread_self());
+                log_info(logger, "le mande a la consola que termino!!!!!!!\n");
+                pthread_mutex_unlock(&mutex_logger_kernel);
+                
             }
 
             pthread_mutex_lock(&mutex_cantidad_procesos);
@@ -311,21 +334,37 @@ void atencion_cpu(uint32_t socket_cpu_dispatch, uint32_t cliente_socket, t_log *
             pthread_mutex_lock(&mutex_estado_running);
             running = NULL; // estado de running en null porque el proceso termino de ejecutar
             pthread_mutex_unlock(&mutex_estado_running);
-
+   
+            pthread_mutex_lock(&mutex_cola_ready);
             if (queue_size(cola_ready) > 0)
             {
+                pthread_mutex_unlock(&mutex_cola_ready);
                 pthread_mutex_lock(&mutex_logger_kernel);
+                pthread_mutex_lock(&mutex_cola_ready);
                 log_info(logger, "En la cola quedan %d procesos \n", queue_size(cola_ready));
+                pthread_mutex_unlock(&mutex_cola_ready);
                 pthread_mutex_unlock(&mutex_logger_kernel);
-                planificar();
+                sem_post(&sem_planificar); // post = signal
+                pthread_mutex_lock(&mutex_logger_kernel);
+                log_info(logger,"Estoy falleciendo y soy el hilo: %d\n", pthread_self());
+                pthread_mutex_unlock(&mutex_logger_kernel);
                 // cuando un proceso termina de ejecutar(exit) planificamos
             }
             else
             {
+                pthread_mutex_unlock(&mutex_logger_kernel);
                 printf("No quedan mas procesos en la cola \n");
+
+                pthread_mutex_lock(&mutex_logger_kernel);
+                log_info(logger,"Estoy falleciendo y soy el hiloo: %d\n", pthread_self());
+                pthread_mutex_unlock(&mutex_logger_kernel);
+                // sem_post(&finalizar_planificar);
                 return;
             }
+            
+            break;
         }
+        
     }
 }
 
@@ -336,33 +375,42 @@ void planificar()
     switch (algoritmo) // segun el algortimo planifica
     {
     case FIFO:
-        pcb_tope_lista = malloc(sizeof(t_pcb));
-        pthread_mutex_lock(&mutex_estado_running);
-        if (running != NULL) // hay alguien ejecutando
+        while (true)
         {
+            sem_wait(&sem_planificar);
+            pcb_tope_lista = malloc(sizeof(t_pcb));
+
+            pthread_mutex_lock(&mutex_estado_running);
+            if (running == NULL) // no hay alguien ejecutando
+            {
+                pthread_mutex_unlock(&mutex_estado_running);
+
+                pthread_mutex_lock(&mutex_cola_ready);
+                pcb_tope_lista = queue_pop(cola_ready); // si no hay nadie ejecutando, saco al primero de la cola de ready
+                pthread_mutex_unlock(&mutex_cola_ready);
+
+                pthread_mutex_lock(&mutex_estado_running);
+                running = pcb_tope_lista; // pone al proceso a ejecutar
+                pthread_mutex_unlock(&mutex_estado_running);
+
+                send_pcb(socket_cpu_dispatch, pcb_tope_lista); // se lo mando a la cpu para que lo ponga a ejecutar. 
+
+                pthread_mutex_lock(&mutex_logger_kernel);
+                log_info(logger, "Proceso %d en ejecucion, (lo puso a ejecutar el hilo: %d)", pcb_tope_lista->id, pthread_self());
+                pthread_mutex_unlock(&mutex_logger_kernel);
+
+                pthread_mutex_lock(&mutex_estado_running);
+            }
             pthread_mutex_unlock(&mutex_estado_running);
-            return;
+
+
+            // list_destroy_and_destroy_elements(pcb_tope_lista->instrucciones, (void *)destruir_instruccion);
+            //  free(pcb_tope_lista); // HAY QUE VER QUE NO TIRE SEG FAULT
         }
-        pthread_mutex_unlock(&mutex_estado_running);
-
-        pthread_mutex_lock(&mutex_cola_ready);
-        pcb_tope_lista = queue_pop(cola_ready); // si no hay nadie ejecutando, saco al primero de la cola de ready
-        pthread_mutex_unlock(&mutex_cola_ready);
-
-        pthread_mutex_lock(&mutex_estado_running);
-        running = pcb_tope_lista; // pone al proceso a ejecutar
-        pthread_mutex_unlock(&mutex_estado_running);
-        send_pcb(socket_cpu_dispatch, pcb_tope_lista); // se lo mando a la cpu para que lo ponga a ejecutar
-
-        pthread_mutex_lock(&mutex_logger_kernel);
-        log_info(logger, "Proceso %d en ejecucion", pcb_tope_lista->id);
-        pthread_mutex_unlock(&mutex_logger_kernel);
-
-        // list_destroy_and_destroy_elements(pcb_tope_lista->instrucciones, (void *)destruir_instruccion);
-        //  free(pcb_tope_lista); // HAY QUE VER QUE NO TIRE SEG FAULT
         break;
 
     case SJF: // con desalojo
+        // sem_wait(&planificar) || sem_wait(&nuevoAReady);
         break;
     }
     return;

@@ -2,6 +2,7 @@
 #define ESTRUCTURAS_H_
 
 #include <stdint.h>
+#include <semaphore.h>
 #include <commons/log.h>
 #include <commons/collections/list.h>
 #include <commons/collections/queue.h>

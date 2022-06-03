@@ -23,6 +23,7 @@ bool send_valor_tb(uint32_t fd, uint32_t valor_tb);
 bool recv_valor_tb(uint32_t fd, uint32_t* valor_tb);
 bool send_interrupcion_por_nuevo_ready(uint32_t fd);
 bool send_fin_proceso(uint32_t fd);
+bool send_pcb_con_tiempo_bloqueado(uint32_t fd, t_pcb *pcb, uint32_t tiempo_bloqueo);
 
 
 #endif

@@ -27,4 +27,6 @@ void liberar_estructuras_cpu(t_configuracion_cpu* datos_config_cpu){
     free(datos_config_cpu->puerto_escucha_interrupt);
     free(datos_config_cpu);
 }
+
+
 #endif 

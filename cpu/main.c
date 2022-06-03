@@ -19,6 +19,7 @@ uint32_t main(void){
     configuracion_cpu = leer_configuracion(logger_cpu);
     socket_cpu_dispatch = crear_comunicacion_dispatch(configuracion_cpu, logger_cpu); // servidor de kernel
     socket_cpu_interrupt = crear_comunicacion_interrupt(configuracion_cpu, logger_cpu) ;
+    inicializar_semaforos();
     
     while(server_escuchar(logger_cpu, "CPU DISPATCH", socket_cpu_dispatch) != 0 && server_escuchar(logger_cpu, "CPU INTERRUPT", socket_cpu_interrupt) != 0);
 

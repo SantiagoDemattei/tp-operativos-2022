@@ -15,6 +15,7 @@ t_pcb *running; //global de la cpu
 t_configuracion_cpu* leer_configuracion(t_log* logger);
 void liberar_estructura_datos(t_configuracion_cpu* datos);
 char* eliminar_caracter_retorno(char* cadena);
+void inicializar_semaforos();
 
 typedef enum
 {
@@ -26,5 +27,9 @@ typedef enum
     EXIT,
     ERROR
 } INSTRUCCIONES_EJECUCION; //enum para los distintos tipos de instrucciones 
+
+pthread_mutex_t mutex_logger_cpu;
+pthread_mutex_t mutex_running_cpu;
+
 
 #endif

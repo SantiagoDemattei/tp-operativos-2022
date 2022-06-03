@@ -60,6 +60,8 @@ void inicializar_semaforos(){
     pthread_mutex_init(&mutex_cola_ready, NULL);
     pthread_mutex_init(&mutex_lista_blocked, NULL);
     pthread_mutex_init(&mutex_cola_exit, NULL);
+    sem_init(&sem_planificar, 0, 0);
+    //sem_init(&finalizar_planificar, 0, 0);
 }   
 
 

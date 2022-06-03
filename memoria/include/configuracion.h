@@ -13,5 +13,7 @@
 
 t_configuracion_memoria* leer_configuracion();
 
+pthread_mutex_t mutex_logger_memoria;
+pthread_mutex_t mutex_valor_tp;
 
 #endif

@@ -26,9 +26,13 @@ uint32_t main(void){
     // funcion de creacion de colas de estados
     crear_colas_estados();
     
-    
+    pthread_t planificador;
+    pthread_create(&planificador, NULL, (void*)planificar, NULL);
+
+
     while(server_escuchar(logger, "KERNEL", socket_kernel)!=0); //si se conecta un cliente se crea un hilo para atenderlo y recibe 1 para poder seguir conectando con mas clientes
 
+    pthread_detach(planificador);
     liberar_conexion(socket_kernel);
     liberar_estructuras_kernel(configuracion_kernel);
     destruir_colas_estados();

@@ -38,3 +38,8 @@ t_configuracion_memoria* leer_configuracion(){
     config_destroy(nuevo_config); // libero la memoria del config
     return datos;
 }
+
+void inicializar_semaforos(){
+    pthread_mutex_init(&mutex_logger_memoria, NULL);
+    pthread_mutex_init(&mutex_valor_tp, NULL);
+}   
