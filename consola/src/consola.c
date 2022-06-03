@@ -15,13 +15,13 @@ uint32_t iniciar_consola(uint32_t tamanio, char *path, t_log *logger)
 
     log_info(logger, "Estoy esperando a que el kernel me avise que ya ejecuto mis instrucciones...");
 
-    if(recv(conexion, &cop, sizeof(op_code), 0) != sizeof(op_code)) 
+    if(recv(conexion, &cop, sizeof(op_code), 0) != sizeof(op_code)) //se queda esperando a que el kernel le avise que se ejecutaron las instrucciones
     {
         log_error(logger, "No se pudo recibir el codigo de operacion");
         return -1;
     }
     log_info(logger, "El kernel me aviso que ya ejecute mis instrucciones :D");
-
+    liberar_conexion(conexion);
     list_destroy_and_destroy_elements(lista_instrucciones, (void *)destruir_instruccion); 
     liberar_estructura_datos(datos_conexion);
 

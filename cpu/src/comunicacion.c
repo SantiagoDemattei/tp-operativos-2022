@@ -125,7 +125,7 @@ void ciclo_instruccion(t_pcb *running, uint32_t cliente_socket, t_log *logger)
         instruccion_actual_enum = enumerar_instruccion(instruccion_actual); 
         argumentos = instruccion_actual->argumentos;
 
-        printf("Antes del switch con la instruccion: %d\n", instruccion_actual_enum);
+        log_info(logger,"Antes del switch con la instruccion: %s\n", instruccion_actual->identificador);
         switch (instruccion_actual_enum)
         {
         case NO_OP: //DECODE + EXECUTE
@@ -155,7 +155,14 @@ void ciclo_instruccion(t_pcb *running, uint32_t cliente_socket, t_log *logger)
 
         case EXIT:      
             send_pcb(cliente_socket, running);
+            running->program_counter++;
             running = NULL;
+            break;
+        
+        case ERROR:
+            running = NULL;
+            log_error(logger, "Error en la instruccion");
+
             break;
         }
 

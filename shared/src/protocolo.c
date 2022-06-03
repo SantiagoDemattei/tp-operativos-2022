@@ -229,7 +229,6 @@ bool send_pcb(uint32_t fd, t_pcb *pcb)
         return false;
     }
     free(stream);
-    printf("Envio pcb\n");
     return true;
 
 }
@@ -243,7 +242,6 @@ bool recv_pcb(uint32_t fd, t_pcb **pcb)
     }
 
     void *stream = malloc(size); 
-    printf("recv_pcb\n");
     if (recv(fd, stream, size, 0) != size)
     {
         free(stream);
@@ -266,7 +264,7 @@ bool recv_pcb(uint32_t fd, t_pcb **pcb)
 bool send_inicializar_estructuras(uint32_t fd) 
 {
     op_code cop = INICIALIZAR_ESTRUCTURAS;
-    if (send(fd, &cop, sizeof(op_code), 0) != sizeof(op_code)) //envia a la memoria el cop ?? para que inicialice estructuras y obtenga el valor de la TP
+    if (send(fd, &cop, sizeof(op_code), 0) != sizeof(op_code)) //envia a la memoria el cop para que inicialice estructuras y obtenga el valor de la TP
         return false;
     return true;
 }

@@ -29,7 +29,7 @@ uint32_t server_escuchar(t_log* logger, char* server_name, uint32_t server_socke
 t_pcb* crear_pcb(t_list* instrucciones, t_log* logger, uint32_t);
 static void procesar_conexion(void* void_args);
 void incrementar_cantidad_procesos();
-void verificacion_multiprogramacion(t_pcb* pcb, op_code cop);
+void verificacion_multiprogramacion(t_pcb* pcb);
 void atencion_cpu(uint32_t socket_cpu_dispatch, uint32_t cliente_socket, t_log *logger);
 ALGORITMO algortimo_de_planificacion(char *algortimo_de_planificacion);
 void planificar();

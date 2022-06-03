@@ -1,28 +1,22 @@
-[INFO] 17:35:30:403 KERNEL/(21639:21639): Cliente conectado (a KERNEL)
+[INFO] 22:52:22:781 KERNEL/(7363:7363): Cliente conectado (a KERNEL)
 
-[INFO] 17:35:59:172 KERNEL/(21675:21675): Cliente conectado (a KERNEL)
+[INFO] 22:52:57:991 KERNEL/(7503:7503): Esperando a 127.0.0.1:8000 (CONSOLA)
 
-[INFO] 17:36:00:402 KERNEL/(21682:21682): Esperando a 127.0.0.1:8000 (CONSOLA)
+[INFO] 22:53:00:738 KERNEL/(7503:7503): Cliente conectado (a KERNEL)
 
-[INFO] 17:36:06:201 KERNEL/(21682:21682): Cliente conectado (a KERNEL)
+[INFO] 22:53:00:763 KERNEL/(7503:7505): Se recibieron las instrucciones
+[INFO] 22:53:00:764 KERNEL/(7503:7505): Tamanio de la consola: 3
+[INFO] 22:53:00:767 KERNEL/(7503:7505): Cantidad de instrucciones: 10
+[INFO] 22:53:00:768 KERNEL/(7503:7505): Cliente conectado en 127.0.0.1:8001 (a CPU DISPATCH)
 
-[INFO] 17:36:06:202 KERNEL/(21682:21692): Se recibieron las instrucciones
-[INFO] 17:36:06:203 KERNEL/(21682:21682): Cliente conectado (a KERNEL)
+[INFO] 22:53:00:772 KERNEL/(7503:7505): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 17:36:06:203 KERNEL/(21682:21692): Tamanio de la consola: 5
-[INFO] 17:36:06:203 KERNEL/(21682:21692): Cantidad de instrucciones: 10
-[INFO] 17:36:06:204 KERNEL/(21682:21692): Cliente conectado en 127.0.0.1:8001 (a CPU DISPATCH)
+[INFO] 22:53:00:775 KERNEL/(7503:7505): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 17:36:06:204 KERNEL/(21682:21692): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 22:53:05:846 KERNEL/(7503:7505): Tiempo bloqueado recibido: 3000
 
-[INFO] 17:36:06:204 KERNEL/(21682:21692): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 22:53:08:865 KERNEL/(7503:7505): Proceso 0 desbloqueado
+[INFO] 22:53:08:866 KERNEL/(7503:7505): Proceso 0 en ejecucion
+[INFO] 22:53:08:875 KERNEL/(7503:7505): Orden EXIT recibida, id: 0
 
-[INFO] 17:36:06:204 KERNEL/(21682:21693): Se recibieron las instrucciones
-[INFO] 17:36:06:205 KERNEL/(21682:21693): Tamanio de la consola: 3
-[INFO] 17:36:06:205 KERNEL/(21682:21693): Cantidad de instrucciones: 10
-[INFO] 17:36:06:205 KERNEL/(21682:21693): Cliente conectado en 127.0.0.1:8001 (a CPU DISPATCH)
-
-[INFO] 17:36:06:205 KERNEL/(21682:21693): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
-
-[INFO] 17:36:06:205 KERNEL/(21682:21693): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
-
+[INFO] 22:53:08:886 KERNEL/(7503:7505): DISCONNECT!
