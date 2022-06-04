@@ -39,6 +39,7 @@ uint32_t crear_conexion_memoria(t_configuracion_kernel *datos_conexion, t_log *l
 
 static void procesar_conexion(void *void_args)
 {
+    //tener solo un hilo por todas las conexiones, solo uno escucha al cliente. es un gran productor consumidor
     t_procesar_conexion_args *args = (t_procesar_conexion_args *)void_args; // recibo a mi cliente y sus datos
     t_log *logger = args->log;
     uint32_t cliente_socket = args->fd;
@@ -251,6 +252,9 @@ void atencion_cpu(uint32_t socket_cpu_dispatch, uint32_t cliente_socket, t_log *
         switch (cop)
         {
         case BLOQUEO_IO:
+
+        //crear funcion loggear con mutex que haga el lock y el unlock y pasar por parametro el mensaje (monitor)
+        //
             recv_pcb_con_tiempo_bloqueado(socket_cpu_dispatch, &pcb, &tiempo);
 
             pthread_mutex_lock(&mutex_logger_kernel);
@@ -411,6 +415,8 @@ void planificar()
 
     case SJF: // con desalojo
         // sem_wait(&planificar) || sem_wait(&nuevoAReady);
+        //guardar en timer.start en blblio timer cuando se y cuando vuelve comparar el tiempo
+        
         break;
     }
     return;
