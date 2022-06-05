@@ -36,6 +36,7 @@ void planificar();
 void recibir();
 void bloquear();
 bool consulta_grado();
+void revisar_new();
 
 
 

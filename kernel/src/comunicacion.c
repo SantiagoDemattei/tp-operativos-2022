@@ -56,27 +56,23 @@ static void procesar_conexion(void *void_args)
     {
         if (recv(cliente_socket, &cop, sizeof(op_code), 0) != sizeof(op_code))
         {
-            pthread_mutex_lock(&mutex_logger_kernel);
-            log_info(logger, "DISCONNECT!"); // desconectamos al cliente  xq no le esta mandando el cop bien
-            pthread_mutex_unlock(&mutex_logger_kernel);
+            loggear_info(logger, "DISCONNECT", mutex_logger_kernel);
             return;
         }
-        printf("Cliente %d conectado\n", cliente_socket);
+
         switch (cop)
         {
         case DEBUG: // para probar
-            pthread_mutex_lock(&mutex_logger_kernel);
-            log_info(logger, "debug");
-            pthread_mutex_unlock(&mutex_logger_kernel);
+            loggear_info(logger, "DEBUG", mutex_logger_kernel);
             break;
 
         case INICIAR_PROCESO:
             if (recv_iniciar_consola(cliente_socket, &instrucciones, &tamanio))
             {
                 loggear_info(logger, "Se recibieron las instrucciones", mutex_logger_kernel);
+                loggear_lista_instrucciones(instrucciones, logger);
 
                 t_pcb *pcb = crear_pcb(instrucciones, logger, tamanio);
-
                 verificacion_multiprogramacion(pcb);
             }
             break;
@@ -157,9 +153,12 @@ void verificacion_multiprogramacion(t_pcb *pcb)
         queue_push_con_mutex(cola_ready, tope_cola_new, mutex_cola_ready); // agrega el pcb a la cola de ready
         sem_post(&sem_nuevo_ready);
 
-        if (queue_size(cola_ready) == 1)
+        if (queue_size_con_mutex(cola_ready, mutex_cola_ready) == 1)
         { // si el pcb recien agregado es el primero (o sea no habia nadie en ready antes), planifico.
+            sem_post(&sem_nuevo_ready);
             sem_post(&sem_planificar);
+        } else {
+            sem_post(&sem_nuevo_ready);
         }
     }
 
@@ -194,7 +193,6 @@ void planificar()
             sem_wait(&sem_nuevo_ready);
             sem_wait(&sem_planificar);
             pcb_tope_lista = queue_pop_con_mutex(cola_ready, mutex_cola_ready);
-
             pthread_mutex_lock(&mutex_estado_running);
             if (running == NULL)
             {
@@ -207,6 +205,8 @@ void planificar()
                 socket_cpu_dispatch = crear_conexion_cpu_dispatch(configuracion_kernel, logger);
 
                 send_pcb(socket_cpu_dispatch, pcb_tope_lista); // mando el pcb a la CPU
+                sem_post(&sem_recibir); // activo al hilo recibir para que se ponga a la espera de un mensaje de la CPU
+                printf("MANDE EL PCB A LA CPU \n");
                 close(socket_cpu_dispatch);
 
                 pthread_mutex_lock(&mutex_estado_running);
@@ -232,9 +232,9 @@ void recibir()
     t_pcb *pcbExit;
     uint32_t tiempo;
     while (true)
-    {
-        socket_cpu_dispatch = crear_conexion_cpu_dispatch(configuracion_kernel, logger);
-        if (recv(socket_cpu_dispatch, &cop, sizeof(op_code), 0) != sizeof(op_code)) // recv es bloqueante y espera a recibir un op_code
+    {   
+        sem_wait(&sem_recibir);
+        if (recv(socket_cpu_dispatch, &cop, sizeof(op_code), 0) != sizeof(op_code))
         {
             loggear_info(logger, "DISCONNECT", mutex_logger_kernel);
             return;
@@ -283,7 +283,7 @@ void recibir()
             cantidad_procesos_en_memoria--; // baja el nivel de multiprogramacion
             pthread_mutex_unlock(&mutex_cantidad_procesos);
 
-            // TODO: avisar con  un semaforo que se libero lugar y se puede admitir un nuevo proceso en reaedy
+            revisar_new(); // como se libero espacio dentro del grado de multiprogramacion, revisa si hay algun proceso en new para meterlo en ready
 
             /* TODO: VER COMO CONTESTARLE A LA CONSOLA ESPECIFICA QUE TERMINO (Analizar: https://stackoverflow.com/questions/57730441/sockets-programming-sending-and-receiving-different-data-to-different-clients-i)
             if (send(cliente_socket, &cop2, sizeof(op_code), 0) != sizeof(op_code)) // avisa a la consola que el proceso termino
@@ -312,6 +312,13 @@ void recibir()
     }
 }
 
+void revisar_new(){
+    if(consulta_grado() && !queue_vacia_con_mutex(cola_new, mutex_cola_new)){
+        t_pcb* pcb = queue_pop_con_mutex(cola_new, mutex_cola_new);
+        queue_push_con_mutex(cola_ready, pcb, mutex_cola_ready);
+        sem_post(&sem_nuevo_ready);
+    }
+}
 
 ALGORITMO algortimo_de_planificacion(char *algortimo_de_planificacion)
 {

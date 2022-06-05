@@ -51,9 +51,7 @@ static void procesar_conexion(void *void_args)
     {
         if (recv(cliente_socket, &cop, sizeof(op_code), 0) != sizeof(op_code))
         {   
-            pthread_mutex_lock(&mutex_logger_cpu);
-            log_info(logger, "DISCONNECT!");
-            pthread_mutex_unlock(&mutex_logger_cpu);
+            loggear_info(logger, "DISCONNECT", mutex_logger_cpu);
             return;
         }
 
@@ -70,9 +68,8 @@ static void procesar_conexion(void *void_args)
             if (recv_pcb(cliente_socket, &running))  
             {   
                 
-                pthread_mutex_lock(&mutex_logger_cpu);
-                log_info(logger, "Se recibio el PCB, por el hilo de cpu: %d", pthread_self());
-                pthread_mutex_unlock(&mutex_logger_cpu);
+                loggear_info(logger, "Se recibio un pcb para ejecutar", mutex_logger_cpu);
+                loggear_lista_instrucciones(running->instrucciones, logger);
                 ciclo_instruccion(running, cliente_socket, logger); //cuando la cpu recibe el pcb simula un ciclo de instruccion
             }
 
@@ -134,7 +131,7 @@ void ciclo_instruccion(t_pcb *running, uint32_t cliente_socket, t_log *logger)
     float segundos;
     int i;
     uint32_t cantidad_noops = 0;
-    t_argumento *tiempo_bloqueo; 
+    t_argumento *tiempo_bloqueo1; 
     t_argumento *argumentos;
     uint32_t j;
     pthread_mutex_lock(&mutex_running_cpu);
@@ -146,7 +143,7 @@ void ciclo_instruccion(t_pcb *running, uint32_t cliente_socket, t_log *logger)
         argumentos = instruccion_actual->argumentos;
 
         pthread_mutex_lock(&mutex_logger_cpu);
-        log_info(logger,"Antes del switch con la instruccion: %s\n", instruccion_actual->identificador);
+        log_info(logger, "Antes del switch con la instruccion: %s\n", instruccion_actual->identificador);
         pthread_mutex_unlock(&mutex_logger_cpu);
         
         switch (instruccion_actual_enum)
@@ -160,10 +157,10 @@ void ciclo_instruccion(t_pcb *running, uint32_t cliente_socket, t_log *logger)
             break;
 
         case I_O: //DECODE + EXECUTE
-            tiempo_bloqueo = list_get(instruccion_actual->argumentos, 0);
+            tiempo_bloqueo1 = list_get(instruccion_actual->argumentos, 0);
             pthread_mutex_lock(&mutex_running_cpu);
             running->program_counter++;
-            send_pcb_con_tiempo_bloqueado(cliente_socket, running, tiempo_bloqueo->argumento);
+            send_pcb_con_tiempo_bloqueado(cliente_socket, running, tiempo_bloqueo1->argumento);
             running = NULL;
             pthread_mutex_unlock(&mutex_running_cpu);
             break;

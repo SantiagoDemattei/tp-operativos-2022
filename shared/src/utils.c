@@ -5,6 +5,7 @@ void loggear_lista_instrucciones(t_list* lista_instrucciones, t_log* logger){
     for(uint32_t i = 0; i < list_size(lista_instrucciones); i++){
         t_instruccion* instruccion = list_get(lista_instrucciones, i);
         log_info(logger, "Instruccion: %s", instruccion->identificador);
+        log_info(logger, "Tamanio de la instruccion: %d", strlen(instruccion->identificador));
         for(uint32_t j = 0; j < list_size(instruccion->argumentos); j++){
             t_argumento* argumento = list_get(instruccion->argumentos, j);
             log_info(logger, "Argumento: %d", argumento->argumento);
@@ -66,3 +67,20 @@ t_pcb* queue_pop_con_mutex(t_queue* queue, pthread_mutex_t mutex){
     pthread_mutex_unlock(&mutex);
     return pcb;
 }
+
+int queue_size_con_mutex(t_queue* queue, pthread_mutex_t mutex){
+    int size;
+    pthread_mutex_lock(&mutex);
+    size = queue_size(queue);
+    pthread_mutex_unlock(&mutex);
+    return size;
+}
+
+bool queue_vacia_con_mutex(t_queue* queue, pthread_mutex_t mutex){
+    bool is_empty;
+    pthread_mutex_lock(&mutex);
+    is_empty = queue_is_empty(queue);
+    pthread_mutex_unlock(&mutex);
+    return is_empty;
+}
+

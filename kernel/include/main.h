@@ -8,9 +8,13 @@
 #include <signal.h>
 #include "comunicacion.h"
 
+pthread_t planificador;
+pthread_t receptor;
+pthread_t bloqueador;
 
 void liberar_estructuras_kernel(t_configuracion_kernel*);
 void crear_colas_estados();
+void destruir_semaforos();
 
 void liberar_estructuras_kernel(t_configuracion_kernel* datos_config_kernel){
     free(datos_config_kernel->ip_memoria);
@@ -39,5 +43,26 @@ void destruir_colas_estados(){
     queue_destroy_and_destroy_elements(cola_blocked, (void*) destructor_queue);
 }
 
+void destruir_semaforos(){
+    pthread_mutex_destroy(&mutex_cantidad_procesos);
+    pthread_mutex_destroy(&mutex_estado_running);
+    pthread_mutex_destroy(&mutex_cantidad_procesos); 
+    pthread_mutex_destroy(&mutex_estado_running);
+    pthread_mutex_destroy(&mutex_logger_kernel);
+    pthread_mutex_destroy(&mutex_cola_new);
+    pthread_mutex_destroy(&mutex_cola_ready);
+    pthread_mutex_destroy(&mutex_cola_blocked);
+    pthread_mutex_destroy(&mutex_cola_exit);
+    sem_destroy(&sem_planificar);
+    sem_destroy(&sem_nuevo_ready);
+    sem_destroy(&sem_nuevo_bloqued);
+    sem_destroy(&sem_recibir);
+}
+
+void destruir_hilos(){
+    pthread_cancel(planificador);
+    pthread_cancel(receptor);
+    pthread_cancel(bloqueador);
+}
 
 #endif 
