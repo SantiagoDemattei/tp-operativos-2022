@@ -379,7 +379,7 @@ bool send_pcb_con_tiempo_bloqueado(uint32_t fd, t_pcb *pcb, uint32_t tiempo_bloq
     return true;
 }
 
-bool recv_pcb_con_tiempo_bloqueado(uint32_t *fd, t_pcb **pcbF, uint32_t* tiempo_bloqueo)
+bool recv_pcb_con_tiempo_bloqueado(uint32_t fd, t_pcb **pcbF, uint32_t* tiempo_bloqueo)
 {   
     t_pcb *pcb = malloc(sizeof(t_pcb));
     size_t size_instrucciones;
