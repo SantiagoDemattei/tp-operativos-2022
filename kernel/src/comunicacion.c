@@ -162,10 +162,6 @@ void verificacion_multiprogramacion(t_pcb *pcb)
         }
     }
 
-    // Asi como está, si no lo permite el grado de multiprogramacion, lo deja en new.
-    // TODO: Hacer que cuando se recibe una orden de EXIT, al liberar espacio dentro del grado de multiprogramacion,
-    // verificar si hay procesos en la cola new para meter dentro de ready y planificar.
-
     return;
 }
 
