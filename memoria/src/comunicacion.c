@@ -7,9 +7,7 @@ uint32_t crear_comunicacion_kernel(t_configuracion_memoria *configuracion_memori
 
     if (socket_memoria == -1)
     {
-        pthread_mutex_lock(&mutex_logger_memoria);
-        log_error(logger, "No se pudo iniciar el servidor de comunicacion");
-        pthread_mutex_unlock(&mutex_logger_memoria);
+        loggear_error(logger, "No se pudo iniciar el servidor de comunicacion\n", mutex_logger_memoria);
         return -1;
     }
 
@@ -23,9 +21,7 @@ uint32_t crear_comunicacion_cpu(t_configuracion_memoria *configuracion_memoria, 
 
     if (socket_cpu_dispatch == -1)
     {
-        pthread_mutex_lock(&mutex_logger_memoria);
-        log_error(logger, "No se pudo iniciar el servidor de comunicacion");
-        pthread_mutex_unlock(&mutex_logger_memoria);
+        loggear_error(logger, "No se pudo iniciar el servidor de comunicacion\n", mutex_logger_memoria);
         return -1;
     }
 
@@ -47,23 +43,17 @@ static void procesar_conexion(void *void_args)
     { // mientras el cliente no se haya desconectado
         if (recv(cliente_socket, &cop, sizeof(op_code), 0) != sizeof(op_code))
         { // desconectamos al cliente xq no le esta mandando el cop bien
-            pthread_mutex_lock(&mutex_logger_memoria);
-            log_info(logger, "DISCONNECT!");
-            pthread_mutex_unlock(&mutex_logger_memoria);
+            loggear_info(logger, "DISCONNECT!\n", mutex_logger_memoria);
             return;
         }
         switch (cop)
         {
         case DEBUG:
-            pthread_mutex_lock(&mutex_logger_memoria);
-            log_info(logger, "debug");
-            pthread_mutex_unlock(&mutex_logger_memoria);
+            loggear_info(logger, "debug\n", mutex_logger_memoria);
             break;
 
         case INICIALIZAR_ESTRUCTURAS:
-            pthread_mutex_lock(&mutex_logger_memoria);
-            log_info(logger, "INICIALIZANDO ESTRUCTURAS"); // FALTA INICIALIZAR ESTRUCTURAS
-            pthread_mutex_unlock(&mutex_logger_memoria);
+            loggear_info(logger, "INICIALIZANDO ESTRUCTURAS\n", mutex_logger_memoria);
 
             pthread_mutex_lock(&mutex_valor_tp);
             valor_tb = 2123; // valor de tabla de paginas NO VA A QUEDAR ASI
@@ -74,15 +64,11 @@ static void procesar_conexion(void *void_args)
             pthread_mutex_unlock(&mutex_valor_tp);
             
 
-            pthread_mutex_lock(&mutex_logger_memoria);
-            log_info(logger, "Se envio el valor de la tabla de paginas al kernel\n");
-            pthread_mutex_unlock(&mutex_logger_memoria);
+            loggear_info(logger, "Se envio el valor de la tabla de paginas al kernel\n", &mutex_logger_memoria);
             break;
 
         case LIBERAR_ESTRUCTURAS:
-            pthread_mutex_lock(&mutex_logger_memoria);
-            log_info(logger, "LIBERANDO ESTRUCTURAS");
-            pthread_mutex_unlock(&mutex_logger_memoria);
+            loggear_info(logger, "LIBERANDO ESTRUCTURAS", &mutex_logger_memoria);
 
             // ACA VA EL CODIGO PARA LIBERAR LAS ESTRUCTURAS
 

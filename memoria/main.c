@@ -10,6 +10,7 @@ void sighandler(int x) {
             liberar_conexion(socket_memoria);
             log_destroy(logger);
             liberar_estructuras_memoria(configuracion_memoria);
+            destruir_semaforos();
             exit(EXIT_SUCCESS);
     }
 }
@@ -27,6 +28,7 @@ uint32_t main(void){
 
     liberar_conexion(socket_memoria);
     liberar_estructuras_memoria(configuracion_memoria);
+    destruir_semaforos();
     log_destroy(logger);
 
     return EXIT_SUCCESS;
