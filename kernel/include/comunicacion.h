@@ -33,6 +33,9 @@ void verificacion_multiprogramacion(t_pcb* pcb);
 void atencion_cpu(uint32_t socket_cpu_dispatch, uint32_t cliente_socket, t_log *logger);
 ALGORITMO algortimo_de_planificacion(char *algortimo_de_planificacion);
 void planificar();
+void recibir();
+void bloquear();
+bool consulta_grado();
 
 
 

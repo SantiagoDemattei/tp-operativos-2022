@@ -27,10 +27,14 @@ uint32_t main(void){
     crear_colas_estados();
     
     pthread_t planificador;
-    pthread_create(&planificador, NULL, (void*)planificar, NULL);
+    pthread_t receptor;
+    pthread_t bloqueador;
+    pthread_create(&planificador, NULL, (void*)planificar, NULL); // encargado de planificar sacando de ready y mandando el pcb a la CPU
+    pthread_create(&receptor, NULL, (void*)recibir, NULL); // encargado de escuchar mensajes de la cpu (IO o EXIT)
+    pthread_create(&bloqueador, NULL, (void*)bloquear, NULL); // encargado de bloquear los procesos que se encuentran en la cola de blocked
 
 
-    while(server_escuchar(logger, "KERNEL", socket_kernel)!=0); //si se conecta un cliente se crea un hilo para atenderlo y recibe 1 para poder seguir conectando con mas clientes
+    while(server_escuchar(logger, "KERNEL", socket_kernel)!=0); 
 
     pthread_detach(planificador);
     liberar_conexion(socket_kernel);

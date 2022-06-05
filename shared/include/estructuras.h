@@ -95,6 +95,7 @@ typedef struct t_pcb
     uint32_t program_counter; // número de la próxima instrucción a ejecutar
     uint32_t tabla_pagina;
     uint32_t estimacion_rafaga;
+    uint32_t tiempo_bloqueo;
 } t_pcb;
 
 

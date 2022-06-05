@@ -40,3 +40,29 @@ int buscar_indice_pcb_en_lista_bloqueados(t_list* lista_bloqueados, t_pcb* pcb){
     }
     return indice; //si recibe -1 no lo encontro
 }
+
+void loggear_info(t_log* logger, char* mensaje, pthread_mutex_t mutex){
+    pthread_mutex_lock(&mutex);
+    log_info(logger, mensaje);
+    pthread_mutex_unlock(&mutex);
+}
+
+void loggear_error(t_log* logger, char* mensaje, pthread_mutex_t mutex){
+    pthread_mutex_lock(&mutex);
+    log_error(logger, mensaje);
+    pthread_mutex_unlock(&mutex);
+}
+
+void queue_push_con_mutex(t_queue* queue, t_pcb* pcb, pthread_mutex_t mutex){
+    pthread_mutex_lock(&mutex);
+    queue_push(queue, pcb);
+    pthread_mutex_unlock(&mutex);
+}
+
+t_pcb* queue_pop_con_mutex(t_queue* queue, pthread_mutex_t mutex){
+    t_pcb* pcb;
+    pthread_mutex_lock(&mutex);
+    pcb = queue_pop(queue);
+    pthread_mutex_unlock(&mutex);
+    return pcb;
+}
