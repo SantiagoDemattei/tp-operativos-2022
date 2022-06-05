@@ -64,11 +64,11 @@ static void procesar_conexion(void *void_args)
             pthread_mutex_unlock(&mutex_valor_tp);
             
 
-            loggear_info(logger, "Se envio el valor de la tabla de paginas al kernel\n", &mutex_logger_memoria);
+            loggear_info(logger, "Se envio el valor de la tabla de paginas al kernel\n", mutex_logger_memoria);
             break;
 
         case LIBERAR_ESTRUCTURAS:
-            loggear_info(logger, "LIBERANDO ESTRUCTURAS", &mutex_logger_memoria);
+            loggear_info(logger, "LIBERANDO ESTRUCTURAS", mutex_logger_memoria);
 
             // ACA VA EL CODIGO PARA LIBERAR LAS ESTRUCTURAS
 

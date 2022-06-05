@@ -106,7 +106,7 @@ uint32_t server_escuchar(t_log *logger, char *server_name, uint32_t server_socke
         t_procesar_conexion_args *args = malloc(sizeof(t_procesar_conexion_args)); // crea una estructura para pasarle los argumentos al hilo
         args->log = logger;                                                        // guarda el logger en la estructura
         args->fd = cliente_socket;                                                 // guarda el socket del cliente en la estructura
-        args->server_name = server_name;                                           // guarda el nombre del servidor en la estructura
+        args->server_name = server_name;                                         // guarda el nombre del servidor en la estructura
         procesar_conexion(args);                                                   
         return 1;                                                                  // devuelve 1 para indicar que se conecto un cliente
     }
