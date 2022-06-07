@@ -17,7 +17,7 @@ uint32_t main(void){
       	
     logger_cpu = log_create("cpu.log", "CPU", true, LOG_LEVEL_INFO);
     configuracion_cpu = leer_configuracion(logger_cpu);
-    socket_cpu_dispatch = crear_comunicacion_dispatch(configuracion_cpu, logger_cpu); // servidor de kernel
+    socket_cpu_dispatch = crear_comunicacion_dispatch(configuracion_cpu, logger_cpu); // servidor de kernel para recibir PCB
     socket_cpu_interrupt = crear_comunicacion_interrupt(configuracion_cpu, logger_cpu) ;
     inicializar_semaforos();
     

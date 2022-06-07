@@ -1,7 +1,7 @@
 #include "../include/sockets.h"
 
 // INICIA SERVER ESCUCHANDO EN IP:PUERTO
-uint32_t iniciar_servidor(t_log* logger, const char* name, char* ip, char* puerto) {
+uint32_t iniciar_servidor(t_log* logger, const char* name, char* ip, char* puerto) { 
     uint32_t socket_servidor;
     struct addrinfo hints, *servinfo;
 
@@ -14,7 +14,7 @@ uint32_t iniciar_servidor(t_log* logger, const char* name, char* ip, char* puert
     // Recibe los addrinfo
     getaddrinfo(ip, puerto, &hints, &servinfo);
 
-    bool conecto = false;
+    bool conecto = false; 
     
     // Itera por cada addrinfo devuelto
     for (struct addrinfo *p = servinfo; p != NULL; p = p->ai_next) {
@@ -55,7 +55,7 @@ uint32_t esperar_cliente(t_log* logger, const char* name, uint32_t socket_servid
     socklen_t tam_direccion = sizeof(struct sockaddr_in);
 
     uint32_t socket_cliente = accept(socket_servidor, (void*) &dir_cliente, &tam_direccion); //accept devuelve la linea donde quedan conectados
-
+    printf("socket: %d\n", socket_cliente);
     log_info(logger, "Cliente conectado (a %s)\n", name);
 
     return socket_cliente;

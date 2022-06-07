@@ -52,7 +52,7 @@ static void procesar_conexion(void *void_args)
     t_list *instrucciones = NULL;
     t_pcb *pcb;
 
-    while (cliente_socket != -1) // mientras el cliente no se haya desconectado
+    while (cliente_socket != -1) // mientras el cliente no se haya desconectado. (Es el socket de la consola)
     {
         if (recv(cliente_socket, &cop, sizeof(op_code), 0) != sizeof(op_code))
         {
@@ -151,15 +151,13 @@ void verificacion_multiprogramacion(t_pcb *pcb)
         liberar_conexion(socket_memoria);
 
         queue_push_con_mutex(cola_ready, tope_cola_new, mutex_cola_ready); // agrega el pcb a la cola de ready
-        sem_post(&sem_nuevo_ready);
+        sem_post(&sem_nuevo_ready); 
 
-        if (queue_size_con_mutex(cola_ready, mutex_cola_ready) == 1)
+        if (queue_size_con_mutex(cola_ready, mutex_cola_ready) == 1) 
         { // si el pcb recien agregado es el primero (o sea no habia nadie en ready antes), planifico.
-            sem_post(&sem_nuevo_ready);
             sem_post(&sem_planificar);
-        } else {
-            sem_post(&sem_nuevo_ready);
-        }
+        } 
+        //HAY QUE PLANIFICAR SI SOS SJF
     }
 
     return;
@@ -180,17 +178,19 @@ bool consulta_grado()
 void planificar()
 {
     ALGORITMO algoritmo = algortimo_de_planificacion(configuracion_kernel->algoritmo_planificacion);
+     socket_cpu_dispatch = crear_conexion_cpu_dispatch(configuracion_kernel, logger); //linea donde estan conectados la cpu (dispatch) y el kernel
     t_pcb *pcb_tope_lista;
     switch (algoritmo) // segun el algortimo planifica
     {
     case FIFO:
-        while (true)
+        while (true) //para que lo ejecute todo el tiempo
         {
-            sem_wait(&sem_nuevo_ready);
-            sem_wait(&sem_planificar);
-            pcb_tope_lista = queue_pop_con_mutex(cola_ready, mutex_cola_ready);
+            sem_wait(&sem_nuevo_ready); //espera a que llegue alguien a ready
+            sem_wait(&sem_planificar); //espera que lo habiliten a planificar 
+            printf("VOY A PLANIFICAR\n");
+            pcb_tope_lista = queue_pop_con_mutex(cola_ready, mutex_cola_ready); //saco proceso de la lista de ready 
             pthread_mutex_lock(&mutex_estado_running);
-            if (running == NULL)
+            if (running == NULL) //no hay nadie ejecutando lo pongo a ejecutar 
             {
                 pthread_mutex_unlock(&mutex_estado_running);
 
@@ -198,12 +198,11 @@ void planificar()
                 running = pcb_tope_lista; // modifico el running de kernel
                 pthread_mutex_unlock(&mutex_estado_running);
 
-                socket_cpu_dispatch = crear_conexion_cpu_dispatch(configuracion_kernel, logger);
 
-                send_pcb(socket_cpu_dispatch, pcb_tope_lista); // mando el pcb a la CPU
+                send_pcb(socket_cpu_dispatch, pcb_tope_lista, ENVIAR_PCB); // mando el pcb a la CPU a traves del socket dispatch
                 sem_post(&sem_recibir); // activo al hilo recibir para que se ponga a la espera de un mensaje de la CPU
                 printf("MANDE EL PCB A LA CPU \n");
-                close(socket_cpu_dispatch);
+                //close(socket_cpu_dispatch);
 
                 pthread_mutex_lock(&mutex_estado_running);
             }
@@ -227,10 +226,10 @@ void recibir()
     t_pcb *pcb;
     t_pcb *pcbExit;
     uint32_t tiempo;
-    while (true)
+    while (true) 
     {   
-        sem_wait(&sem_recibir);
-        if (recv(socket_cpu_dispatch, &cop, sizeof(op_code), 0) != sizeof(op_code))
+        sem_wait(&sem_recibir); //espera que lo habiliten -> cuando el kernel le manda a la cpu el PCB para que lo ponga a ejecutar
+        if (recv(socket_cpu_dispatch, &cop, sizeof(op_code), 0) != sizeof(op_code)) //espera recibir algun mensaje de la CPU porque alguna instruccion involucra que el kernel haga algo 
         {
             loggear_info(logger, "DISCONNECT", mutex_logger_kernel);
             return;
@@ -239,15 +238,13 @@ void recibir()
         switch(cop)
         {
         case BLOQUEO_IO:
-            recv_pcb_con_tiempo_bloqueado(socket_cpu_dispatch, &pcb, &tiempo);
-
-            pcb->tiempo_bloqueo = tiempo;
+            recv_pcb(socket_cpu_dispatch, &pcb); //recibe el PCB del proceso que se bloquea 
 
             pthread_mutex_lock(&mutex_estado_running);
-            running = NULL; // modifico el running de kernel
+            running = NULL; // modifico el running de kernel 
             pthread_mutex_unlock(&mutex_estado_running);
 
-            queue_push_con_mutex(cola_blocked, pcb, mutex_cola_blocked);
+            queue_push_con_mutex(cola_blocked, pcb, mutex_cola_blocked); //encolamos a los procesos que se van bloqueando 
 
             loggear_info(logger, "Nuevo proceso en cola blocked", mutex_logger_kernel);
 
@@ -255,12 +252,12 @@ void recibir()
             sem_post(&sem_nuevo_bloqued); // aviso que hay un nuevo pcb en la cola de blocked
             break;
         
-        case ENVIAR_PCB:
-            recv_pcb(socket_cpu_dispatch, &pcbExit);
-            loggear_info(logger, "Orden EXIT recibida", mutex_logger_kernel);
+        case ENVIAR_PCB: //kernel recibe el pcb para terminar el proceso
+            recv_pcb(socket_cpu_dispatch, &pcbExit);  
+            loggear_info(logger, "Orden EXIT recibida", mutex_logger_kernel); 
             
             pthread_mutex_lock(&mutex_estado_running);
-            running = NULL; // modifico el running de kernel
+            running = NULL; // modifico el running de kernel 
             pthread_mutex_unlock(&mutex_estado_running);
 
             sem_post(&sem_planificar); // como se libero la cpu por EXIT, puedo poner a otro a planificar
@@ -273,15 +270,15 @@ void recibir()
                 loggear_error(logger, "Error al recibir el op code LIBERAR ESTRUCTURAS", mutex_logger_kernel);
                 return;
             }
-            liberar_conexion(socket_memoria);
+            liberar_conexion(socket_memoria); 
 
             pthread_mutex_lock(&mutex_cantidad_procesos);
             cantidad_procesos_en_memoria--; // baja el nivel de multiprogramacion
             pthread_mutex_unlock(&mutex_cantidad_procesos);
-
+            
             revisar_new(); // como se libero espacio dentro del grado de multiprogramacion, revisa si hay algun proceso en new para meterlo en ready
 
-            /* TODO: VER COMO CONTESTARLE A LA CONSOLA ESPECIFICA QUE TERMINO (Analizar: https://stackoverflow.com/questions/57730441/sockets-programming-sending-and-receiving-different-data-to-different-clients-i)
+            /* TODO(PENDIENTE PARA REALIZAR): VER COMO CONTESTARLE A LA CONSOLA ESPECIFICA QUE TERMINO (Analizar: https://stackoverflow.com/questions/57730441/sockets-programming-sending-and-receiving-different-data-to-different-clients-i)
             if (send(cliente_socket, &cop2, sizeof(op_code), 0) != sizeof(op_code)) // avisa a la consola que el proceso termino
             {
                 pthread_mutex_lock(&mutex_logger_kernel);
@@ -299,24 +296,20 @@ void recibir()
                 pthread_
             }
             */
-
             break;
         }
-
-        
-    liberar_conexion(socket_cpu_dispatch);
     }
 }
 
 void revisar_new(){
-    if(consulta_grado() && !queue_vacia_con_mutex(cola_new, mutex_cola_new)){
+    if(consulta_grado() && !queue_vacia_con_mutex(cola_new, mutex_cola_new)){ //hay alguien en new y el grado de multi lo permite 
         t_pcb* pcb = queue_pop_con_mutex(cola_new, mutex_cola_new);
         queue_push_con_mutex(cola_ready, pcb, mutex_cola_ready);
-        sem_post(&sem_nuevo_ready);
+        sem_post(&sem_nuevo_ready); //avisa que llego alguien a ready
     }
 }
 
-ALGORITMO algortimo_de_planificacion(char *algortimo_de_planificacion)
+ALGORITMO algortimo_de_planificacion(char *algortimo_de_planificacion) //para devolver el enum que corresponde
 {
     if (strcmp(algortimo_de_planificacion, "FIFO") == 0)
     {
@@ -329,17 +322,19 @@ ALGORITMO algortimo_de_planificacion(char *algortimo_de_planificacion)
     return ERROR;
 }
 
-void bloquear(){
+void bloquear(){ 
     t_pcb* pcb;
     uint32_t tiempo;
     while(true){
         sem_wait(&sem_nuevo_bloqued); // espero a que haya alguien en la cola de blocked
 
-        pcb = queue_pop_con_mutex(cola_blocked, mutex_cola_blocked);
+        pcb = queue_pop_con_mutex(cola_blocked, mutex_cola_blocked); //saca a un proceso de la cola de blocked
         tiempo = pcb->tiempo_bloqueo;
-        usleep(tiempo * 1000);
+        usleep(tiempo * 1000); //bloquea al proceso 
 
-        queue_push_con_mutex(cola_ready, pcb, mutex_cola_ready);
-        sem_post(&sem_nuevo_ready); // aviso que meti un nuevo pcb en la cola de ready
+        queue_push_con_mutex(cola_ready, pcb, mutex_cola_ready); //cuando se despierta lo pone en ready
+        sem_post(&sem_nuevo_ready); // aviso que meti un nuevo pcb en la cola de ready y puede planificar
+
+        //si es sjf tengo que activar el planificar 
     }
 }

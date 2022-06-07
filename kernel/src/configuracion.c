@@ -53,14 +53,14 @@ t_configuracion_kernel* leer_configuracion(){
 }
 
 void inicializar_semaforos(){
-    pthread_mutex_init(&mutex_cantidad_procesos, NULL);
+    pthread_mutex_init(&mutex_cantidad_procesos, NULL); 
     pthread_mutex_init(&mutex_estado_running, NULL); 
-    pthread_mutex_init(&mutex_logger_kernel, NULL);
+    pthread_mutex_init(&mutex_logger_kernel, NULL); 
     pthread_mutex_init(&mutex_cola_new, NULL);
     pthread_mutex_init(&mutex_cola_ready, NULL);
     pthread_mutex_init(&mutex_cola_blocked, NULL);
     pthread_mutex_init(&mutex_cola_exit, NULL);
-    sem_init(&sem_planificar, 0, 0);
+    sem_init(&sem_planificar, 0, 0); 
     sem_init(&sem_nuevo_ready, 0, 0);
     sem_init(&sem_nuevo_bloqued, 0, 0);
     sem_init(&sem_recibir, 0, 0);
