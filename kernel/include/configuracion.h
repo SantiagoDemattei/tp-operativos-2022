@@ -25,6 +25,7 @@ pthread_mutex_t mutex_cola_exit;
 sem_t sem_planificar;
 sem_t sem_nuevo_ready;
 sem_t sem_nuevo_bloqued;
+sem_t sem_running;
 sem_t sem_recibir;
 //sem_t finalizar_planificacion;
 

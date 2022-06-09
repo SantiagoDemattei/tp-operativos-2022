@@ -26,7 +26,7 @@ typedef enum
 
 uint32_t crear_comunicacion(t_configuracion_kernel* configuracion_kernel, t_log* logger);
 uint32_t server_escuchar(t_log* logger, char* server_name, uint32_t server_socket);
-t_pcb* crear_pcb(t_list* instrucciones, t_log* logger, uint32_t);
+t_pcb* crear_pcb(t_list* instrucciones, t_log* logger, uint32_t, uint32_t*);
 static void procesar_conexion(void* void_args);
 void incrementar_cantidad_procesos();
 void verificacion_multiprogramacion(t_pcb* pcb);

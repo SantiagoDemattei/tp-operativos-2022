@@ -39,10 +39,11 @@ uint32_t crear_conexion_memoria(t_configuracion_kernel *datos_conexion, t_log *l
 
 static void procesar_conexion(void *void_args)
 {
+
     // tener solo un hilo por todas las conexiones, solo uno escucha al cliente. es un gran productor consumidor
     t_procesar_conexion_args *args = (t_procesar_conexion_args *)void_args; // recibo a mi cliente y sus datos
     t_log *logger = args->log;
-    uint32_t cliente_socket = args->fd;
+    uint32_t *cliente_socket = args->fd;
     char *server_name = args->server_name;
     free(args);
 
@@ -52,9 +53,9 @@ static void procesar_conexion(void *void_args)
     t_list *instrucciones = NULL;
     t_pcb *pcb;
 
-    while (cliente_socket != -1) // mientras el cliente no se haya desconectado. (Es el socket de la consola)
+    while (*cliente_socket != -1) // mientras el cliente no se haya desconectado. (Es el socket de la consola)
     {
-        if (recv(cliente_socket, &cop, sizeof(op_code), 0) != sizeof(op_code))
+        if (recv(*cliente_socket, &cop, sizeof(op_code), 0) != sizeof(op_code))
         {
             loggear_info(logger, "DISCONNECT", mutex_logger_kernel);
             return;
@@ -67,12 +68,12 @@ static void procesar_conexion(void *void_args)
             break;
 
         case INICIAR_PROCESO:
-            if (recv_iniciar_consola(cliente_socket, &instrucciones, &tamanio))
+            if (recv_iniciar_consola(*cliente_socket, &instrucciones, &tamanio))
             {
                 loggear_info(logger, "Se recibieron las instrucciones", mutex_logger_kernel);
                 loggear_lista_instrucciones(instrucciones, logger);
 
-                t_pcb *pcb = crear_pcb(instrucciones, logger, tamanio);
+                t_pcb *pcb = crear_pcb(instrucciones, logger, tamanio, cliente_socket);
                 verificacion_multiprogramacion(pcb);
             }
             break;
@@ -95,26 +96,25 @@ static void procesar_conexion(void *void_args)
     pthread_mutex_unlock(&mutex_logger_kernel);
     return;
 }
-
 uint32_t server_escuchar(t_log *logger, char *server_name, uint32_t server_socket)
-{
-    uint32_t cliente_socket = esperar_cliente(logger, server_name, server_socket); // cuando se conecta un cliente nos devuelve la "linea" donde estan conectados
-    pthread_t hilo;                                                                // crea un hilo para procesar la conexion
-
-    if (cliente_socket != -1)
+{   
+    uint32_t *cliente_socket = esperar_cliente(logger, server_name, server_socket); // cuando se conecta un cliente nos devuelve la "linea" donde estan conectados  
+    pthread_t thread;                                                            // crea un hilo para procesar la conexion
+    if (*cliente_socket != -1)
     {                                                                              // si se conecto un cliente
         t_procesar_conexion_args *args = malloc(sizeof(t_procesar_conexion_args)); // crea una estructura para pasarle los argumentos al hilo
         args->log = logger;                                                        // guarda el logger en la estructura
         args->fd = cliente_socket;                                                 // guarda el socket del cliente en la estructura
-        args->server_name = server_name;                                         // guarda el nombre del servidor en la estructura
-        procesar_conexion(args);                                                   
+        args->server_name = server_name;                                           // guarda el nombre del servidor en la estructura
+        pthread_create(&thread, NULL, (void*) procesar_conexion, args);
+        pthread_detach(thread);                                                
         return 1;                                                                  // devuelve 1 para indicar que se conecto un cliente
     }
-    // liberar_conexion(server_socket);
+    liberar_conexion(server_socket);
     return 0; // devuelve 0 si no se conecto nadie
 }
 
-t_pcb *crear_pcb(t_list *instrucciones, t_log *logger, uint32_t tamanio)
+t_pcb *crear_pcb(t_list *instrucciones, t_log *logger, uint32_t tamanio, uint32_t* cliente_socket)
 {
     t_pcb *pcb = malloc(sizeof(t_pcb));
     pcb->id = cantidad_procesos_en_memoria;
@@ -124,6 +124,7 @@ t_pcb *crear_pcb(t_list *instrucciones, t_log *logger, uint32_t tamanio)
     pcb->tabla_pagina = 0;
     pcb->estimacion_rafaga = 0;
     pcb->tiempo_bloqueo = 0;
+    pcb->cliente_socket = cliente_socket;
     return pcb;
 }
 
@@ -184,10 +185,13 @@ void planificar()
     {
     case FIFO:
         while (true) //para que lo ejecute todo el tiempo
-        {
+        {   
+            
             sem_wait(&sem_nuevo_ready); //espera a que llegue alguien a ready
+            printf("Estoy en planificar\n");
             sem_wait(&sem_planificar); //espera que lo habiliten a planificar 
             printf("VOY A PLANIFICAR\n");
+            sem_wait(&sem_running); //avisa q no hay nadie en running
             pcb_tope_lista = queue_pop_con_mutex(cola_ready, mutex_cola_ready); //saco proceso de la lista de ready 
             pthread_mutex_lock(&mutex_estado_running);
             if (running == NULL) //no hay nadie ejecutando lo pongo a ejecutar 
@@ -201,7 +205,7 @@ void planificar()
 
                 send_pcb(socket_cpu_dispatch, pcb_tope_lista, ENVIAR_PCB); // mando el pcb a la CPU a traves del socket dispatch
                 sem_post(&sem_recibir); // activo al hilo recibir para que se ponga a la espera de un mensaje de la CPU
-                printf("MANDE EL PCB A LA CPU \n");
+                printf("MANDE EL PCB A LA CPU, %d \n", pcb_tope_lista->id);
                 //close(socket_cpu_dispatch);
 
                 pthread_mutex_lock(&mutex_estado_running);
@@ -243,6 +247,7 @@ void recibir()
             pthread_mutex_lock(&mutex_estado_running);
             running = NULL; // modifico el running de kernel 
             pthread_mutex_unlock(&mutex_estado_running);
+            sem_post(&sem_running);
 
             queue_push_con_mutex(cola_blocked, pcb, mutex_cola_blocked); //encolamos a los procesos que se van bloqueando 
 
@@ -259,7 +264,8 @@ void recibir()
             pthread_mutex_lock(&mutex_estado_running);
             running = NULL; // modifico el running de kernel 
             pthread_mutex_unlock(&mutex_estado_running);
-
+            
+            sem_post(&sem_running);
             sem_post(&sem_planificar); // como se libero la cpu por EXIT, puedo poner a otro a planificar
 
             socket_memoria = crear_conexion_memoria(configuracion_kernel, logger);
@@ -275,27 +281,9 @@ void recibir()
             pthread_mutex_lock(&mutex_cantidad_procesos);
             cantidad_procesos_en_memoria--; // baja el nivel de multiprogramacion
             pthread_mutex_unlock(&mutex_cantidad_procesos);
-            
-            revisar_new(); // como se libero espacio dentro del grado de multiprogramacion, revisa si hay algun proceso en new para meterlo en ready
-
-            /* TODO(PENDIENTE PARA REALIZAR): VER COMO CONTESTARLE A LA CONSOLA ESPECIFICA QUE TERMINO (Analizar: https://stackoverflow.com/questions/57730441/sockets-programming-sending-and-receiving-different-data-to-different-clients-i)
-            if (send(cliente_socket, &cop2, sizeof(op_code), 0) != sizeof(op_code)) // avisa a la consola que el proceso termino
-            {
-                pthread_mutex_lock(&mutex_logger_kernel);
-                log_error(logger, "Error al avisarle a la consola que finalizo");
-
-                pthread_mutex_unlock(&mutex_logger_kernel);
-                return;
-            }
-            else
-            {
-                pthread_mutex_lock(&mutex_logger_kernel);
-                // loggear el id del hilo
-                log_info(logger, "hilo: %d\n", pthread_self());
-                log_info(logger, "le mande a la consola que termino!!!!!!!\n");
-                pthread_
-            }
-            */
+            revisar_new();
+            send(*(pcbExit->cliente_socket), &cop2, sizeof(op_code), 0) != sizeof(op_code); // como se libero espacio dentro del grado de multiprogramacion, revisa si hay algun proceso en new para meterlo en ready
+            destruir_pcb(pcbExit);
             break;
         }
     }
@@ -306,6 +294,7 @@ void revisar_new(){
         t_pcb* pcb = queue_pop_con_mutex(cola_new, mutex_cola_new);
         queue_push_con_mutex(cola_ready, pcb, mutex_cola_ready);
         sem_post(&sem_nuevo_ready); //avisa que llego alguien a ready
+        loggear_info(logger, "Nuevo proceso en cola ready", mutex_logger_kernel);
     }
 }
 
@@ -334,7 +323,7 @@ void bloquear(){
 
         queue_push_con_mutex(cola_ready, pcb, mutex_cola_ready); //cuando se despierta lo pone en ready
         sem_post(&sem_nuevo_ready); // aviso que meti un nuevo pcb en la cola de ready y puede planificar
-
+    
         //si es sjf tengo que activar el planificar 
     }
 }

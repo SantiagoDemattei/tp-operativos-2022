@@ -26,6 +26,6 @@ uint32_t crear_comunicacion_interrupt(t_configuracion_cpu* configuracion_cpu, t_
 uint32_t server_escuchar(t_log* logger, char* server_name, uint32_t server_socket);
 uint32_t enumerar_instruccion (t_instruccion* instruccion);
 static void procesar_conexion(void* void_args);
-void ciclo_instruccion(t_pcb* running, uint32_t cliente_socket, t_log* logger);
+void ciclo_instruccion(t_pcb* running, uint32_t* cliente_socket, t_log* logger);
 
 #endif 

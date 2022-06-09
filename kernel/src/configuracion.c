@@ -64,6 +64,7 @@ void inicializar_semaforos(){
     sem_init(&sem_nuevo_ready, 0, 0);
     sem_init(&sem_nuevo_bloqued, 0, 0);
     sem_init(&sem_recibir, 0, 0);
+    sem_init(&sem_running, 0, 1);
     //sem_init(&finalizar_planificar, 0, 0);
 }   
 

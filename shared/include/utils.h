@@ -20,5 +20,6 @@ void queue_push_con_mutex(t_queue* queue, t_pcb* pcb, pthread_mutex_t mutex);
 t_pcb* queue_pop_con_mutex(t_queue* queue, pthread_mutex_t mutex);
 int queue_size_con_mutex(t_queue* queue, pthread_mutex_t mutex);
 bool queue_vacia_con_mutex(t_queue* queue, pthread_mutex_t mutex);
+void destruir_pcb(t_pcb* pcb);
 
 #endif

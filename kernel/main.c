@@ -33,7 +33,7 @@ uint32_t main(void){
     pthread_create(&receptor, NULL, (void*)recibir, NULL); // encargado de escuchar mensajes de la cpu (IO o EXIT)
     pthread_create(&bloqueador, NULL, (void*)bloquear, NULL); // encargado de bloquear los procesos que se encuentran en la cola de blocked
 
-    while(server_escuchar(logger, "KERNEL", socket_kernel)!=0); 
+    while(server_escuchar(logger, "KERNEL", socket_kernel)); 
 
     pthread_detach(planificador);
     pthread_detach(receptor);

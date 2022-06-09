@@ -27,7 +27,7 @@ void destruir_instruccion(t_instruccion* instruccionS){
 }
 
 void destructor_queue(t_pcb* pcb){
-    list_destroy_and_destroy_elements(pcb->instrucciones, (void*) destruir_instruccion);
+    destruir_pcb(pcb);
 }
 
 int buscar_indice_pcb_en_lista_bloqueados(t_list* lista_bloqueados, t_pcb* pcb){
@@ -82,5 +82,13 @@ bool queue_vacia_con_mutex(t_queue* queue, pthread_mutex_t mutex){
     is_empty = queue_is_empty(queue);
     pthread_mutex_unlock(&mutex);
     return is_empty;
+}
+
+void destruir_pcb(t_pcb* pcb){
+    if(list_size(pcb->instrucciones) > 0){
+        list_destroy_and_destroy_elements(pcb->instrucciones, (void*) destruir_instruccion);
+    }
+    free(pcb->cliente_socket);
+    free(pcb);
 }
 

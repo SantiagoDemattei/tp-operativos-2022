@@ -41,7 +41,7 @@ typedef struct //cada instruccion tiene un identificador y una lista de argument
 typedef struct
 {
     t_log *log;             // logger
-    int fd;                 // int socket 
+    uint32_t *fd;                 // int socket 
     char *server_name;      // nombre del servidor
 } t_procesar_conexion_args; // para los hilos
 
@@ -96,6 +96,7 @@ typedef struct t_pcb
     uint32_t tabla_pagina;
     uint32_t estimacion_rafaga;
     uint32_t tiempo_bloqueo;
+    uint32_t *cliente_socket;   
 } t_pcb;
 
 

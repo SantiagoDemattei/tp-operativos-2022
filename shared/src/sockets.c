@@ -50,12 +50,12 @@ uint32_t iniciar_servidor(t_log* logger, const char* name, char* ip, char* puert
 }
 
 // ESPERAR CONEXION DE CLIENTE EN UN SERVER ABIERTO
-uint32_t esperar_cliente(t_log* logger, const char* name, uint32_t socket_servidor) {
+uint32_t* esperar_cliente(t_log* logger, const char* name, uint32_t socket_servidor) {
     struct sockaddr_in dir_cliente;
     socklen_t tam_direccion = sizeof(struct sockaddr_in);
-
-    uint32_t socket_cliente = accept(socket_servidor, (void*) &dir_cliente, &tam_direccion); //accept devuelve la linea donde quedan conectados
-    printf("socket: %d\n", socket_cliente);
+    uint32_t *socket_cliente = malloc(sizeof(uint32_t)); //multiplexacion :)
+    *socket_cliente = accept(socket_servidor, (void*) &dir_cliente, &tam_direccion); //accept devuelve la linea donde quedan conectados
+    printf("socket cliente: %d\n", *socket_cliente);
     log_info(logger, "Cliente conectado (a %s)\n", name);
 
     return socket_cliente;

@@ -41,15 +41,15 @@ static void procesar_conexion(void *void_args)
 {
     t_procesar_conexion_args *args = (t_procesar_conexion_args *)void_args; // recibo a mi cliente y sus datos
     t_log *logger = args->log;
-    uint32_t cliente_socket = args->fd;
+    uint32_t* cliente_socket = args->fd;
     char *server_name = args->server_name;
     free(args);
 
     op_code cop;
 
-    while (cliente_socket != -1)
+    while (*cliente_socket != -1)
     {
-        if (recv(cliente_socket, &cop, sizeof(op_code), 0) != sizeof(op_code))
+        if (recv(*cliente_socket, &cop, sizeof(op_code), 0) != sizeof(op_code))
         {   
             loggear_info(logger, "DISCONNECT", mutex_logger_cpu);
             return;
@@ -65,11 +65,10 @@ static void procesar_conexion(void *void_args)
 
         case ENVIAR_PCB: //recibir PCB para poner a ejecutar
 
-            if (recv_pcb(cliente_socket, &running)) //en running guardo el pcb que va a ejecutar
+            if (recv_pcb(*cliente_socket, &running)) //en running guardo el pcb que va a ejecutar
             {   
                 
                 loggear_info(logger, "Se recibio un pcb para ejecutar", mutex_logger_cpu);
-                loggear_lista_instrucciones(running->instrucciones, logger);
                 ciclo_instruccion(running, cliente_socket, logger); //cuando la cpu recibe el pcb simula un ciclo de instruccion
             }
 
@@ -105,14 +104,14 @@ static void procesar_conexion(void *void_args)
 
 uint32_t server_escuchar(t_log *logger, char *server_name, uint32_t server_socket) //hilos al pedo 
 {
-    uint32_t cliente_socket = esperar_cliente(logger, server_name, server_socket); // espera a que se conecte un cliente
+    uint32_t* cliente_socket = esperar_cliente(logger, server_name, server_socket); // espera a que se conecte un cliente
 
-    if (cliente_socket != -1)
+    if (*cliente_socket != -1)
     {                                                                              // si se conecto un cliente
         pthread_t hilo;                                                            // crea un hilo para procesar la conexion
         t_procesar_conexion_args *args = malloc(sizeof(t_procesar_conexion_args)); // crea una estructura para pasarle los argumentos al hilo
         args->log = logger;                                                        // guarda el logger en la estructura
-        args->fd = cliente_socket;                                                 // guarda el socket del cliente en la estructura
+        args->fd = cliente_socket;                                                // guarda el socket del cliente en la estructura
         args->server_name = server_name;                                           // guarda el nombre del servidor en la estructura
         pthread_create(&hilo, NULL, (void *)procesar_conexion, (void *)args);      // crea el hilo
         pthread_detach(hilo);                                                      // lo desconecta del hilo
@@ -121,7 +120,7 @@ uint32_t server_escuchar(t_log *logger, char *server_name, uint32_t server_socke
     return 0;
 }
 
-void ciclo_instruccion(t_pcb *running, uint32_t cliente_socket, t_log *logger)
+void ciclo_instruccion(t_pcb *running, uint32_t* cliente_socket, t_log *logger)
 {
     t_list *lista_instrucciones = running->instrucciones; //lista de instrucciones del proceso que esta en running
     uint32_t cantidad_instrucciones = list_size(lista_instrucciones);
@@ -161,7 +160,7 @@ void ciclo_instruccion(t_pcb *running, uint32_t cliente_socket, t_log *logger)
             pthread_mutex_lock(&mutex_running_cpu);
             running->tiempo_bloqueo = tiempo_bloqueo1->argumento; //en el pcb me guardo el tiempo de bloqueo
             running->program_counter++; //avanzo el program counter
-            send_pcb(cliente_socket, running, BLOQUEO_IO); //mando el pcb para que lo reciba el kernel y bloquee al pcb
+            send_pcb(*cliente_socket, running, BLOQUEO_IO); //mando el pcb para que lo reciba el kernel y bloquee al pcb
             running = NULL; 
             pthread_mutex_unlock(&mutex_running_cpu);
             break;
@@ -186,7 +185,7 @@ void ciclo_instruccion(t_pcb *running, uint32_t cliente_socket, t_log *logger)
 
         case EXIT:     
             pthread_mutex_lock(&mutex_running_cpu); 
-            send_pcb(cliente_socket, running, ENVIAR_PCB); 
+            send_pcb(*cliente_socket, running, ENVIAR_PCB); 
             running->program_counter++;
             running = NULL;
             pthread_mutex_unlock(&mutex_running_cpu);

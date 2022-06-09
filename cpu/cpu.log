@@ -1,4 +1,58 @@
-[INFO] 20:38:00:985 CPU/(5313:5313): Esperando a 127.0.0.1:8001 (KERNEL DISPATCH)
+[INFO] 19:19:22:416 CPU/(21762:21762): Esperando a 127.0.0.1:8001 (KERNEL DISPATCH)
 
-[INFO] 20:38:00:986 CPU/(5313:5313): Esperando a 127.0.0.1:8005 (KERNEL INTERRUPT)
+[INFO] 19:19:22:417 CPU/(21762:21762): Esperando a 127.0.0.1:8005 (KERNEL INTERRUPT)
 
+[INFO] 19:27:48:385 CPU/(21762:21762): Cliente conectado (a CPU DISPATCH)
+
+[INFO] 19:27:54:493 CPU/(21762:22229): Se recibio un pcb para ejecutar
+[INFO] 19:27:54:504 CPU/(21762:22229): Antes del switch con la instruccion: NO_OP
+
+[INFO] 19:27:55:506 CPU/(21762:22229): Antes del switch con la instruccion: NO_OP
+
+[INFO] 19:27:56:508 CPU/(21762:22229): Antes del switch con la instruccion: NO_OP
+
+[INFO] 19:27:57:510 CPU/(21762:22229): Antes del switch con la instruccion: NO_OP
+
+[INFO] 19:27:58:512 CPU/(21762:22229): Antes del switch con la instruccion: NO_OP
+
+[INFO] 19:27:59:513 CPU/(21762:22229): Antes del switch con la instruccion: I/O
+
+[INFO] 19:28:02:568 CPU/(21762:22229): Se recibio un pcb para ejecutar
+[INFO] 19:28:02:570 CPU/(21762:22229): Antes del switch con la instruccion: READ
+
+[INFO] 19:28:02:571 CPU/(21762:22229): Antes del switch con la instruccion: WRITE
+
+[INFO] 19:28:02:572 CPU/(21762:22229): Antes del switch con la instruccion: COPY
+
+[INFO] 19:28:02:574 CPU/(21762:22229): Antes del switch con la instruccion: EXIT
+
+[INFO] 19:28:07:785 CPU/(21762:22229): DISCONNECT
+[INFO] 19:38:06:028 CPU/(22784:22784): Esperando a 127.0.0.1:8001 (KERNEL DISPATCH)
+
+[INFO] 19:38:06:030 CPU/(22784:22784): Esperando a 127.0.0.1:8005 (KERNEL INTERRUPT)
+
+[INFO] 19:38:14:515 CPU/(22784:22784): Cliente conectado (a CPU DISPATCH)
+
+[INFO] 19:38:18:537 CPU/(22784:22792): Se recibio un pcb para ejecutar
+[INFO] 19:38:18:560 CPU/(22784:22792): Antes del switch con la instruccion: NO_OP
+
+[INFO] 19:38:19:562 CPU/(22784:22792): Antes del switch con la instruccion: NO_OP
+
+[INFO] 19:38:20:563 CPU/(22784:22792): Antes del switch con la instruccion: NO_OP
+
+[INFO] 19:38:21:565 CPU/(22784:22792): Antes del switch con la instruccion: NO_OP
+
+[INFO] 19:38:22:567 CPU/(22784:22792): Antes del switch con la instruccion: NO_OP
+
+[INFO] 19:38:23:569 CPU/(22784:22792): Antes del switch con la instruccion: I/O
+
+[INFO] 19:38:26:583 CPU/(22784:22792): Se recibio un pcb para ejecutar
+[INFO] 19:38:26:584 CPU/(22784:22792): Antes del switch con la instruccion: READ
+
+[INFO] 19:38:26:585 CPU/(22784:22792): Antes del switch con la instruccion: WRITE
+
+[INFO] 19:38:26:586 CPU/(22784:22792): Antes del switch con la instruccion: COPY
+
+[INFO] 19:38:26:588 CPU/(22784:22792): Antes del switch con la instruccion: EXIT
+
+[INFO] 19:38:29:082 CPU/(22784:22792): DISCONNECT

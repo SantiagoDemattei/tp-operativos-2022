@@ -32,16 +32,16 @@ static void procesar_conexion(void *void_args)
 {                                                                           // entre el kernel (cliente) y la memoria (server)
     t_procesar_conexion_args *args = (t_procesar_conexion_args *)void_args; // recibo a mi cliente y sus datos
     t_log *logger = args->log;
-    uint32_t cliente_socket = args->fd;
+    uint32_t *cliente_socket = args->fd;
     char *server_name = args->server_name;
     free(args);
     uint32_t mensaje;
     uint32_t valor_tb;
     op_code cop;
 
-    while (cliente_socket != -1)
+    while (*cliente_socket != -1)
     { // mientras el cliente no se haya desconectado
-        if (recv(cliente_socket, &cop, sizeof(op_code), 0) != sizeof(op_code))
+        if (recv(*cliente_socket, &cop, sizeof(op_code), 0) != sizeof(op_code))
         { // desconectamos al cliente xq no le esta mandando el cop bien
             loggear_info(logger, "DISCONNECT!\n", mutex_logger_memoria);
             return;
@@ -60,7 +60,7 @@ static void procesar_conexion(void *void_args)
             pthread_mutex_unlock(&mutex_valor_tp);
 
             pthread_mutex_lock(&mutex_valor_tp);
-            send_valor_tb(cliente_socket, valor_tb);
+            send_valor_tb(*cliente_socket, valor_tb);
             pthread_mutex_unlock(&mutex_valor_tp);
             
 
@@ -72,7 +72,7 @@ static void procesar_conexion(void *void_args)
 
             // ACA VA EL CODIGO PARA LIBERAR LAS ESTRUCTURAS
 
-            send_fin_proceso(cliente_socket);
+            send_fin_proceso(*cliente_socket);
             break;
 
         // Errores
@@ -97,9 +97,9 @@ static void procesar_conexion(void *void_args)
 
 uint32_t server_escuchar(t_log *logger, char *server_name, uint32_t server_socket)
 {
-    uint32_t cliente_socket = esperar_cliente(logger, server_name, server_socket); // espera a que se conecte un cliente
+    uint32_t* cliente_socket = esperar_cliente(logger, server_name, server_socket); // espera a que se conecte un cliente
 
-    if (cliente_socket != -1)
+    if (*cliente_socket != -1)
     {                                                                              // si se conecto un cliente
         pthread_t hilo;                                                            // crea un hilo para procesar la conexion
         t_procesar_conexion_args *args = malloc(sizeof(t_procesar_conexion_args)); // crea una estructura para pasarle los argumentos al hilo

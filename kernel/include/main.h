@@ -60,9 +60,9 @@ void destruir_semaforos(){
 }
 
 void destruir_hilos(){
-    pthread_cancel(planificador);
-    pthread_cancel(receptor);
-    pthread_cancel(bloqueador);
+    pthread_detach(planificador);
+    pthread_detach(receptor);
+    pthread_detach(bloqueador);
 }
 
 #endif 
