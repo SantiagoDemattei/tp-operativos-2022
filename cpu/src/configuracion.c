@@ -54,4 +54,5 @@ void liberar_estructura_datos(t_configuracion_cpu* datos){
 void inicializar_semaforos(){
     pthread_mutex_init(&mutex_logger_cpu, NULL);
     pthread_mutex_init(&mutex_running_cpu, NULL);
+    pthread_mutex_init(&mutex_interrupcion, NULL);
 }

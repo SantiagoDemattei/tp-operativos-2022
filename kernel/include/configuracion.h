@@ -27,6 +27,7 @@ sem_t sem_nuevo_ready;
 sem_t sem_nuevo_bloqued;
 sem_t sem_running;
 sem_t sem_recibir;
+sem_t sem_desalojo;
 //sem_t finalizar_planificacion;
 
 t_pcb *running;

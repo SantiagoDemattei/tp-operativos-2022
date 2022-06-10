@@ -31,5 +31,7 @@ typedef enum
 pthread_mutex_t mutex_logger_cpu;
 pthread_mutex_t mutex_running_cpu;
 
+bool interrupciones;
+
 
 #endif

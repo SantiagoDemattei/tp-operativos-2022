@@ -20,7 +20,7 @@ uint32_t main(void){
     socket_cpu_dispatch = crear_comunicacion_dispatch(configuracion_cpu, logger_cpu); // servidor de kernel para recibir PCB
     socket_cpu_interrupt = crear_comunicacion_interrupt(configuracion_cpu, logger_cpu) ;
     inicializar_semaforos();
-    
+
     while(server_escuchar(logger_cpu, "CPU DISPATCH", socket_cpu_dispatch) != 0 && server_escuchar(logger_cpu, "CPU INTERRUPT", socket_cpu_interrupt) != 0);
 
     liberar_conexion(socket_cpu_dispatch);

@@ -41,7 +41,7 @@ static void procesar_conexion(void *void_args)
 {
     t_procesar_conexion_args *args = (t_procesar_conexion_args *)void_args; // recibo a mi cliente y sus datos
     t_log *logger = args->log;
-    uint32_t* cliente_socket = args->fd;
+    uint32_t* cliente_socket = args->fd; //el cliente socket puede ser interrupt o dispatch
     char *server_name = args->server_name;
     free(args);
 
@@ -67,7 +67,6 @@ static void procesar_conexion(void *void_args)
 
             if (recv_pcb(*cliente_socket, &running)) //en running guardo el pcb que va a ejecutar
             {   
-                
                 loggear_info(logger, "Se recibio un pcb para ejecutar", mutex_logger_cpu);
                 ciclo_instruccion(running, cliente_socket, logger); //cuando la cpu recibe el pcb simula un ciclo de instruccion
             }
@@ -75,15 +74,17 @@ static void procesar_conexion(void *void_args)
             break;
 
         case INT_NUEVO_READY:
-
             pthread_mutex_lock(&mutex_logger_cpu);
             log_info(logger, "Desalojando proceso");
             pthread_mutex_unlock(&mutex_logger_cpu);
-            // ACA VA EL CODIGO PARA INTERRUMPIR EL PROCESO QUE ESTA EJECUTANDO ACTUALMENTE
-            running = NULL;
+
+            pthread_mutex_lock(&mutex_interrupcion);
+            interrupciones = true; //interrupciones activadas para chequearlas cuando termine de ejecutar una instruccion
+            pthread_mutex_unlock(&mutex_interrupcion);
+            free(cliente_socket);
             break;
 
-            // Errores
+        // Errores
         case -1:
             pthread_mutex_lock(&mutex_logger_cpu);
             log_error(logger, "Cliente desconectado de %s...", server_name);
@@ -101,6 +102,7 @@ static void procesar_conexion(void *void_args)
     pthread_mutex_unlock(&mutex_logger_cpu);
     return;
 }
+
 
 uint32_t server_escuchar(t_log *logger, char *server_name, uint32_t server_socket) //hilos al pedo 
 {
@@ -204,9 +206,26 @@ void ciclo_instruccion(t_pcb *running, uint32_t* cliente_socket, t_log *logger)
             break;
         }
         pthread_mutex_lock(&mutex_running_cpu);
-        // chequearInterrupciones();
-    }
+        chequear_interrupciones(cliente_socket); //cuando termina de ejecutar una instruccion chequeo si hay interrupciones
+        }
     pthread_mutex_unlock(&mutex_running_cpu);
+}
+
+void chequear_interrupciones(uint32_t* cliente_socket){
+    pthread_mutex_lock(&mutex_interrupcion);
+    if(interrupciones){
+        pthread_mutex_unlock(&mutex_interrupcion);
+        send_pcb(*cliente_socket, running, INTERRUPCION); //desalojo el pcb y mando el pcb para que lo reciba el kernel
+        destruir_pcb(running);
+        pthread_mutex_lock(&mutex_running_cpu);
+        running = NULL; //desalojo el pcb
+        pthread_mutex_unlock(&mutex_running_cpu);
+        
+        pthread_mutex_lock(&mutex_interrupcion);
+    }
+    pthread_mutex_unlock(&mutex_interrupcion);
+    
+    
 }
 
 INSTRUCCIONES_EJECUCION enumerar_instruccion(t_instruccion *instruccion)
