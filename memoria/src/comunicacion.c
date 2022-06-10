@@ -62,7 +62,8 @@ static void procesar_conexion(void *void_args)
             pthread_mutex_lock(&mutex_valor_tp);
             send_valor_tb(*cliente_socket, valor_tb);
             pthread_mutex_unlock(&mutex_valor_tp);
-            
+
+            free(cliente_socket);
 
             loggear_info(logger, "Se envio el valor de la tabla de paginas al kernel\n", mutex_logger_memoria);
             break;
@@ -71,8 +72,8 @@ static void procesar_conexion(void *void_args)
             loggear_info(logger, "LIBERANDO ESTRUCTURAS", mutex_logger_memoria);
 
             // ACA VA EL CODIGO PARA LIBERAR LAS ESTRUCTURAS
-
             send_fin_proceso(*cliente_socket);
+            free(cliente_socket);
             break;
 
         // Errores

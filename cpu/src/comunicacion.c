@@ -161,6 +161,7 @@ void ciclo_instruccion(t_pcb *running, uint32_t* cliente_socket, t_log *logger)
             running->tiempo_bloqueo = tiempo_bloqueo1->argumento; //en el pcb me guardo el tiempo de bloqueo
             running->program_counter++; //avanzo el program counter
             send_pcb(*cliente_socket, running, BLOQUEO_IO); //mando el pcb para que lo reciba el kernel y bloquee al pcb
+            destruir_pcb(running);
             running = NULL; 
             pthread_mutex_unlock(&mutex_running_cpu);
             break;

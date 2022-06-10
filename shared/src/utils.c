@@ -88,7 +88,6 @@ void destruir_pcb(t_pcb* pcb){
     if(list_size(pcb->instrucciones) > 0){
         list_destroy_and_destroy_elements(pcb->instrucciones, (void*) destruir_instruccion);
     }
-    free(pcb->cliente_socket);
     free(pcb);
 }
 

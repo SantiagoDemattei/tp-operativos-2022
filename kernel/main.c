@@ -22,7 +22,7 @@ uint32_t main(void){
     socket_kernel = crear_comunicacion(configuracion_kernel, logger); //por ahora es el mismo socket para todas las consolas pero lo tenemos que cambiar!!!!
     inicializar_semaforos();
     running = NULL; //variable global -> estado running -> variable porque siempre tenemos 1 solo proceso en running 
-
+    
     // funcion de creacion de colas de estados
     crear_colas_estados();
     

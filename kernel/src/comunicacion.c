@@ -74,6 +74,7 @@ static void procesar_conexion(void *void_args)
                 loggear_lista_instrucciones(instrucciones, logger);
 
                 t_pcb *pcb = crear_pcb(instrucciones, logger, tamanio, cliente_socket);
+            
                 verificacion_multiprogramacion(pcb);
             }
             break;
@@ -160,7 +161,6 @@ void verificacion_multiprogramacion(t_pcb *pcb)
         } 
         //HAY QUE PLANIFICAR SI SOS SJF
     }
-
     return;
 }
 
@@ -179,7 +179,7 @@ bool consulta_grado()
 void planificar()
 {
     ALGORITMO algoritmo = algortimo_de_planificacion(configuracion_kernel->algoritmo_planificacion);
-     socket_cpu_dispatch = crear_conexion_cpu_dispatch(configuracion_kernel, logger); //linea donde estan conectados la cpu (dispatch) y el kernel
+    socket_cpu_dispatch = crear_conexion_cpu_dispatch(configuracion_kernel, logger); //linea donde estan conectados la cpu (dispatch) y el kernel
     t_pcb *pcb_tope_lista;
     switch (algoritmo) // segun el algortimo planifica
     {
@@ -207,6 +207,7 @@ void planificar()
                 sem_post(&sem_recibir); // activo al hilo recibir para que se ponga a la espera de un mensaje de la CPU
                 printf("MANDE EL PCB A LA CPU, %d \n", pcb_tope_lista->id);
                 //close(socket_cpu_dispatch);
+                destruir_pcb(pcb_tope_lista);
 
                 pthread_mutex_lock(&mutex_estado_running);
             }
@@ -283,6 +284,7 @@ void recibir()
             pthread_mutex_unlock(&mutex_cantidad_procesos);
             revisar_new();
             send(*(pcbExit->cliente_socket), &cop2, sizeof(op_code), 0) != sizeof(op_code); // como se libero espacio dentro del grado de multiprogramacion, revisa si hay algun proceso en new para meterlo en ready
+            free(pcbExit->cliente_socket);
             destruir_pcb(pcbExit);
             break;
         }
