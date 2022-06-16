@@ -22,18 +22,21 @@ pthread_mutex_t mutex_cola_new;
 pthread_mutex_t mutex_cola_ready;
 pthread_mutex_t mutex_cola_blocked;
 pthread_mutex_t mutex_cola_exit;
+pthread_mutex_t mutex_cola_ready_suspendido;
 sem_t sem_planificar;
 sem_t sem_nuevo_ready;
 sem_t sem_nuevo_bloqued;
 sem_t sem_running;
 sem_t sem_recibir;
 sem_t sem_desalojo;
+sem_t sem_esperar_confirmacion;
 //sem_t finalizar_planificacion;
 
 t_pcb *running;
 t_queue *cola_new;
 t_list *cola_ready;
 t_queue *cola_blocked;
+t_queue *cola_ready_suspendido;
 
 
 #endif

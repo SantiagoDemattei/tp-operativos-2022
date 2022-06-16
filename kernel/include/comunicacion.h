@@ -43,6 +43,7 @@ bool consulta_grado();
 void revisar_new();
 t_pcb* realizar_estimacion();
 bool comparar_estimaciones(t_pcb* pcb1, t_pcb* pcb2);
+void comunicacion_suspension_memoria(t_pcb *pcb);
 
 
 #endif 

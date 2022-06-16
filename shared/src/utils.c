@@ -112,6 +112,21 @@ void destruir_pcb(t_pcb* pcb){
     free(pcb);
 }
 
+int queue_find_con_mutex(t_queue* queue, t_pcb* pcb_buscado, pthread_mutex_t mutex){ //busca el pcb en la cola y si no lo encuentra devuelve NULL
+    int indice;
+    pthread_mutex_lock(&mutex);
+    indice = list_find(queue, (void *)criterio_id, pcb_buscado); 
+    pthread_mutex_unlock(&mutex);
+    return indice;
+}
+
+bool criterio_id(t_pcb* pcb, t_pcb* pcb_buscado){
+    return pcb->id == pcb_buscado->id;
+}
+            
+
+     
+
 
 
 

@@ -18,7 +18,9 @@ typedef enum
     INT_NUEVO_READY,
     BLOQUEO_IO,
     LIBERAR_ESTRUCTURAS,
-    INTERRUPCION
+    INTERRUPCION,
+    SUSPENSION,
+    CONFIRMACION_SUSPENSION
 
 } op_code;
 
@@ -99,6 +101,7 @@ typedef struct t_pcb
     uint32_t *cliente_socket;
     double rafaga_real_anterior;
     double estimacion_rafaga_anterior;
+    bool blocked_suspendido; 
 } t_pcb;
 
 

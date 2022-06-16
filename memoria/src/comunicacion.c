@@ -37,6 +37,8 @@ static void procesar_conexion(void *void_args)
     free(args);
     uint32_t mensaje;
     uint32_t valor_tb;
+    uint32_t id_proceso;
+
     op_code cop;
 
     while (*cliente_socket != -1)
@@ -73,6 +75,14 @@ static void procesar_conexion(void *void_args)
 
             // ACA VA EL CODIGO PARA LIBERAR LAS ESTRUCTURAS
             send_fin_proceso(*cliente_socket);
+            free(cliente_socket);
+            break;
+        
+        case SUSPENSION:
+            loggear_info(logger, "SUSPENDIENDO PROCESO\n", mutex_logger_memoria);
+            recv_suspension(cliente_socket, &id_proceso);
+            //FALTA VER QUE HACE
+            logger_info(logger, "PROCESO SUSPENDIDO\n", mutex_logger_memoria);
             free(cliente_socket);
             break;
 

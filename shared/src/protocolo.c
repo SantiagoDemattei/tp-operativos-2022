@@ -175,6 +175,7 @@ static void *serializar_pcb(size_t *size, t_pcb *pcb, op_code cop)
         sizeof(size_t) +       // size  del payload
         sizeof(uint32_t) * 6 + // size de todos los enteros del pcb
         sizeof(double) * 2 +      
+        sizeof(bool) +         // size del bool de suspendido
         sizeof(size_t) +       // size del stream de instrucciones
         size_instrucciones;    // tamanio de la lista de instrucciones
 
@@ -192,8 +193,9 @@ static void *serializar_pcb(size_t *size, t_pcb *pcb, op_code cop)
     memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t) * 5, &(pcb->cliente_socket), sizeof(uint32_t));
     memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t) * 6, &(pcb->estimacion_rafaga_anterior), sizeof(double));
     memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t) * 6 + sizeof(double), &(pcb->rafaga_real_anterior), sizeof(double));
-    memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t) * 6 + sizeof(double) * 2 , &size_instrucciones, sizeof(size_t));                       // size del stream de instrucciones
-    memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t) * 6 + sizeof(double) * 2  + sizeof(size_t), stream_instrucciones, size_instrucciones); // stream de instrucciones
+    memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t) * 6 + sizeof(double) *2, &(pcb->blocked_suspendido), sizeof(bool)); //size del bool de suspendido
+    memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t) * 6 + sizeof(double) * 2 + sizeof(bool) , &size_instrucciones, sizeof(size_t));                       // size del stream de instrucciones
+    memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t) * 6 + sizeof(double) * 2  + sizeof(bool) + sizeof(size_t) , stream_instrucciones, size_instrucciones); // stream de instrucciones
 
     free(stream_instrucciones);
     *size = size_total;
@@ -214,9 +216,10 @@ static void deserializar_pcb(void *stream, t_pcb **pcbF)
     memcpy(&(pcb->cliente_socket), stream + sizeof(uint32_t) * 5, sizeof(uint32_t));    // cliente socket
     memcpy(&(pcb->estimacion_rafaga_anterior), stream + sizeof(uint32_t) * 6 , sizeof(double));
     memcpy(&(pcb->rafaga_real_anterior), stream + sizeof(uint32_t) * 6 + sizeof(double), sizeof(double));
-    memcpy(&size_instrucciones, stream + sizeof(uint32_t) * 6 + sizeof(double) * 2 , sizeof(size_t)); // tamanio de la lista de instrucciones
+    memcpy(&(pcb->blocked_suspendido), stream + sizeof(uint32_t) * 6 + sizeof(double) * 2, sizeof(bool)); //suspendido
+    memcpy(&size_instrucciones, stream + sizeof(uint32_t) * 6 + sizeof(double) * 2 + sizeof(bool) , sizeof(size_t)); // tamanio de la lista de instrucciones
     void *stream_instrucciones = malloc(size_instrucciones);
-    memcpy(stream_instrucciones, stream + sizeof(uint32_t) * 6 + sizeof(double) * 2 + sizeof(size_t), size_instrucciones); // stream de instrucciones
+    memcpy(stream_instrucciones, stream + sizeof(uint32_t) * 6 + sizeof(double) * 2 + sizeof(bool) + sizeof(size_t), size_instrucciones); // stream de instrucciones
     t_list *instrucciones = deserializar_t_list_instrucciones(stream_instrucciones, size_instrucciones);
     pcb->instrucciones = instrucciones;
 
@@ -337,6 +340,63 @@ bool send_interrupcion_por_nuevo_ready(uint32_t fd)
 {
     op_code cop = INT_NUEVO_READY;
     if (send(fd, &cop, sizeof(op_code), 0) != sizeof(op_code))
+        return false;
+    return true;
+}
+
+#pragma endregion
+
+#pragma region SUSPENSION
+
+bool send_suspension(uint32_t fd, uint32_t id)
+{
+    size_t size = sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t); // stream: cop + sizePayload + id
+    void *stream = malloc(size);
+
+    size_t size_payload = size - sizeof(op_code) - sizeof(size_t);
+    op_code cop = SUSPENSION;
+
+    memcpy(stream, &cop, sizeof(op_code));
+    memcpy(stream + sizeof(op_code), &size_payload, sizeof(size_t));
+    memcpy(stream + sizeof(op_code) + sizeof(size_t), &id, sizeof(uint32_t));
+
+    if (send(fd, stream, size, 0) == -1)
+    {
+        free(stream);
+        return false;
+    }
+    free(stream);
+    return true;
+}
+
+bool recv_suspension(uint32_t fd, uint32_t *id)
+{
+    uint32_t valor;
+    size_t size;
+    if (recv(fd, &size, sizeof(size_t), 0) != sizeof(size_t))
+    {
+        return false;
+    }
+    void *stream = malloc(size);
+    if (recv(fd, stream, size, 0) != sizeof(size))
+    {
+        free(stream);
+        return false;
+    }
+    memcpy(&valor, stream, sizeof(uint32_t));
+
+    *id = valor;
+    free(stream);
+    return true;
+}
+
+#pragma endregion
+
+#pragma region CONFIRMACION_SUSPENSION
+
+bool send_confirmacion_suspension(uint32_t fd){
+    op_code cod = CONFIRMACION_SUSPENSION;
+    if(send(fd, &cod, sizeof(op_code), 0) != sizeof(op_code))
         return false;
     return true;
 }

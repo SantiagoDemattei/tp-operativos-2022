@@ -73,7 +73,6 @@ static void procesar_conexion(void *void_args)
                 pthread_mutex_unlock(&mutex_interrupcion);
                 ciclo_instruccion(cliente_socket, logger); //cuando la cpu recibe el pcb simula un ciclo de instruccion
             }
-
             break;
 
         case INT_NUEVO_READY:
@@ -116,7 +115,7 @@ uint32_t server_escuchar(t_log *logger, char *server_name, uint32_t server_socke
         pthread_t hilo;                                                            // crea un hilo para procesar la conexion
         t_procesar_conexion_args *args = malloc(sizeof(t_procesar_conexion_args)); // crea una estructura para pasarle los argumentos al hilo
         args->log = logger;                                                        // guarda el logger en la estructura
-        args->fd = cliente_socket;                                                // guarda el socket del cliente en la estructura
+        args->fd = cliente_socket;                                                 // guarda el socket del cliente en la estructura
         args->server_name = server_name;                                           // guarda el nombre del servidor en la estructura
         pthread_create(&hilo, NULL, (void *)procesar_conexion, (void *)args);      // crea el hilo
         pthread_detach(hilo);                                                      // lo desconecta del hilo
@@ -216,7 +215,7 @@ void ciclo_instruccion(uint32_t* cliente_socket, t_log *logger)
 
 void chequear_interrupciones(uint32_t* cliente_socket){
     pthread_mutex_lock(&mutex_interrupcion);
-    if(interrupciones){
+    if(interrupciones){ //si hay interrupciones hay que desalojar un proceso
         pthread_mutex_unlock(&mutex_interrupcion);
         send_pcb(*cliente_socket, running, INTERRUPCION); //desalojo el pcb y mando el pcb para que lo reciba el kernel
         //destruir_pcb(running);

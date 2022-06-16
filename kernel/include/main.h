@@ -35,12 +35,14 @@ void crear_colas_estados(){
     cola_new = queue_create();
     cola_ready = list_create();
     cola_blocked = queue_create();
+    cola_ready_suspendido = queue_create();
 }
 
 void destruir_colas_estados(){
     queue_destroy_and_destroy_elements(cola_new, (void*) destructor_queue);
     list_destroy_and_destroy_elements(cola_ready, (void* ) destructor_queue);
     queue_destroy_and_destroy_elements(cola_blocked, (void*) destructor_queue);
+    queue_destroy_and_destroy_elements(cola_ready_suspendido, (void*) destructor_queue);
 }
 
 void destruir_semaforos(){
@@ -53,10 +55,12 @@ void destruir_semaforos(){
     pthread_mutex_destroy(&mutex_cola_ready);
     pthread_mutex_destroy(&mutex_cola_blocked);
     pthread_mutex_destroy(&mutex_cola_exit);
+    pthread_mutex_destroy(&mutex_cola_ready_suspendido);
     sem_destroy(&sem_planificar);
     sem_destroy(&sem_nuevo_ready);
     sem_destroy(&sem_nuevo_bloqued);
     sem_destroy(&sem_recibir);
+    sem_destroy(&sem_esperar_confirmacion);
 }
 
 void destruir_hilos(){
