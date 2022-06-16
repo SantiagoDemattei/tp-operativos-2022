@@ -20,10 +20,13 @@ void queue_push_con_mutex(t_queue* queue, t_pcb* pcb, pthread_mutex_t mutex);
 t_pcb* queue_pop_con_mutex(t_queue* queue, pthread_mutex_t mutex);
 int queue_size_con_mutex(t_queue* queue, pthread_mutex_t mutex);
 bool queue_vacia_con_mutex(t_queue* queue, pthread_mutex_t mutex);
+t_pcb* queue_peek_con_mutex(t_queue* queue, pthread_mutex_t mutex_cola_blocked);
 void destruir_pcb(t_pcb* pcb);
 int list_size_con_mutex(t_list* lista, pthread_mutex_t mutex);
 t_pcb* list_get_and_remove_con_mutex(t_list* lista, int indice, pthread_mutex_t mutex);
 void list_add_con_mutex(t_list* lista, t_pcb* pcb, pthread_mutex_t mutex);
+t_pcb* queue_find_con_mutex(t_queue* queue, t_pcb* pcb_buscado, pthread_mutex_t mutex);
 bool criterio_id(t_pcb* pcb, t_pcb* pcb_buscado);
+void* queue_find(t_queue *self, bool(*condition)(void*));
 
 #endif

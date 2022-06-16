@@ -76,9 +76,7 @@ static void procesar_conexion(void *void_args)
             break;
 
         case INT_NUEVO_READY:
-            pthread_mutex_lock(&mutex_logger_cpu);
-            log_info(logger, "Desalojando proceso");
-            pthread_mutex_unlock(&mutex_logger_cpu);
+            loggear_info(logger, "Desalojando proceso", mutex_logger_cpu);
 
             pthread_mutex_lock(&mutex_interrupcion);
             interrupciones = true; //interrupciones activadas para chequearlas cuando termine de ejecutar una instruccion
@@ -207,25 +205,34 @@ void ciclo_instruccion(uint32_t* cliente_socket, t_log *logger)
 
             break;
         }
-        pthread_mutex_lock(&mutex_running_cpu);
         chequear_interrupciones(cliente_socket); //cuando termina de ejecutar una instruccion chequeo si hay interrupciones
-        }
+        pthread_mutex_lock(&mutex_running_cpu);
+    }
     pthread_mutex_unlock(&mutex_running_cpu);
 }
 
 void chequear_interrupciones(uint32_t* cliente_socket){
     pthread_mutex_lock(&mutex_interrupcion);
+    printf("chequeando interrupciones\n");
     if(interrupciones){ //si hay interrupciones hay que desalojar un proceso
+        printf("entro al if chequear interrupciones\n");
         pthread_mutex_unlock(&mutex_interrupcion);
+
+        pthread_mutex_lock(&mutex_running_cpu);
         send_pcb(*cliente_socket, running, INTERRUPCION); //desalojo el pcb y mando el pcb para que lo reciba el kernel
-        //destruir_pcb(running);
-        //pthread_mutex_lock(&mutex_running_cpu);
+        pthread_mutex_unlock(&mutex_running_cpu);
+
+        destruir_pcb(running);
+        
+        printf("Proceso interrumpido");
+        pthread_mutex_lock(&mutex_running_cpu);
         running = NULL; //desalojo el pcb
-        //pthread_mutex_unlock(&mutex_running_cpu);
+        pthread_mutex_unlock(&mutex_running_cpu);
         
         pthread_mutex_lock(&mutex_interrupcion);
     }
     pthread_mutex_unlock(&mutex_interrupcion);
+    printf("termine de chequear_interrupciones\n");
 }
 
 INSTRUCCIONES_EJECUCION enumerar_instruccion(t_instruccion *instruccion)

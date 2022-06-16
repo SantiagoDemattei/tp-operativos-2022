@@ -80,9 +80,11 @@ static void procesar_conexion(void *void_args)
         
         case SUSPENSION:
             loggear_info(logger, "SUSPENDIENDO PROCESO\n", mutex_logger_memoria);
-            recv_suspension(cliente_socket, &id_proceso);
+            recv_suspension(*cliente_socket, &id_proceso);
             //FALTA VER QUE HACE
-            logger_info(logger, "PROCESO SUSPENDIDO\n", mutex_logger_memoria);
+            loggear_info(logger, "PROCESO SUSPENDIDO\n", mutex_logger_memoria);
+            printf("suspendi proceso %d\n", id_proceso);
+            send_confirmacion_suspension(*cliente_socket);
             free(cliente_socket);
             break;
 

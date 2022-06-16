@@ -61,6 +61,7 @@ void destruir_semaforos(){
     sem_destroy(&sem_nuevo_bloqued);
     sem_destroy(&sem_recibir);
     sem_destroy(&sem_esperar_confirmacion);
+    sem_destroy(&sem_queue_suspended);
 }
 
 void destruir_hilos(){

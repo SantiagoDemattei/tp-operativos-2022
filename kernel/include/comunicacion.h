@@ -40,10 +40,10 @@ void planificar();
 void recibir();
 void bloquear();
 bool consulta_grado();
-void revisar_new();
+void revisar_entrada_a_ready();
 t_pcb* realizar_estimacion();
-bool comparar_estimaciones(t_pcb* pcb1, t_pcb* pcb2);
+void *comparar_estimaciones(t_pcb* pcb1, t_pcb* pcb2);
 void comunicacion_suspension_memoria(t_pcb *pcb);
-
+bool criterio_id_lista(t_pcb* pcb_buscado, t_pcb* pcb_de_la_cola);
 
 #endif 

@@ -23,6 +23,7 @@ pthread_mutex_t mutex_cola_ready;
 pthread_mutex_t mutex_cola_blocked;
 pthread_mutex_t mutex_cola_exit;
 pthread_mutex_t mutex_cola_ready_suspendido;
+pthread_mutex_t mutex_variable_contador;
 sem_t sem_planificar;
 sem_t sem_nuevo_ready;
 sem_t sem_nuevo_bloqued;
@@ -30,6 +31,7 @@ sem_t sem_running;
 sem_t sem_recibir;
 sem_t sem_desalojo;
 sem_t sem_esperar_confirmacion;
+sem_t sem_queue_suspended;
 //sem_t finalizar_planificacion;
 
 t_pcb *running;

@@ -112,16 +112,35 @@ void destruir_pcb(t_pcb* pcb){
     free(pcb);
 }
 
-int queue_find_con_mutex(t_queue* queue, t_pcb* pcb_buscado, pthread_mutex_t mutex){ //busca el pcb en la cola y si no lo encuentra devuelve NULL
-    int indice;
-    pthread_mutex_lock(&mutex);
-    indice = list_find(queue, (void *)criterio_id, pcb_buscado); 
-    pthread_mutex_unlock(&mutex);
-    return indice;
+void* queue_find(t_queue *self, bool(*condition)(void*)) {
+	void *data = list_find(self->elements, condition);
+	return data;
 }
 
-bool criterio_id(t_pcb* pcb, t_pcb* pcb_buscado){
-    return pcb->id == pcb_buscado->id;
+t_pcb* queue_find_con_mutex(t_queue* queue, t_pcb* pcb_buscado, pthread_mutex_t mutex){ //busca el pcb en la cola y si no lo encuentra devuelve NULL
+    int indice;
+
+    bool (closure)(void *data){
+        t_pcb* pcb = (t_pcb*) data;
+        return criterio_id(pcb_buscado, pcb);
+    }
+
+    pthread_mutex_lock(&mutex);
+    t_pcb* pcb_encontrado = (t_pcb*) queue_find(queue, closure); 
+    pthread_mutex_unlock(&mutex);
+
+    return pcb_encontrado;
+}
+
+bool criterio_id(t_pcb* pcb_buscado, t_pcb* pcb_de_la_cola){
+    return pcb_de_la_cola->id == pcb_buscado->id;
+}
+
+t_pcb* queue_peek_con_mutex(t_queue* queue, pthread_mutex_t mutex_cola_blocked){
+    pthread_mutex_lock(&mutex_cola_blocked);
+    t_pcb* pcb = queue_peek(queue);
+    pthread_mutex_unlock(&mutex_cola_blocked);
+    return pcb;
 }
             
 
