@@ -95,9 +95,10 @@ typedef struct t_pcb
     t_list *instrucciones;    // lista de instrucciones a ejecutar.
     uint32_t program_counter; // número de la próxima instrucción a ejecutar
     uint32_t tabla_pagina;
-    uint32_t estimacion_rafaga;
     uint32_t tiempo_bloqueo;
-    uint32_t *cliente_socket;   
+    uint32_t *cliente_socket;
+    double rafaga_real_anterior;
+    double estimacion_rafaga_anterior;
 } t_pcb;
 
 

@@ -32,11 +32,8 @@ sem_t sem_desalojo;
 
 t_pcb *running;
 t_queue *cola_new;
-t_queue *cola_ready;
+t_list *cola_ready;
 t_queue *cola_blocked;
-
-
-
 
 
 #endif

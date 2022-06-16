@@ -173,7 +173,8 @@ static void *serializar_pcb(size_t *size, t_pcb *pcb, op_code cop)
     size_t size_total =
         sizeof(op_code) +      // tamanio del op_code
         sizeof(size_t) +       // size  del payload
-        sizeof(uint32_t) * 7 + // size de todos los enteros del pcb
+        sizeof(uint32_t) * 6 + // size de todos los enteros del pcb
+        sizeof(double) * 2 +      
         sizeof(size_t) +       // size del stream de instrucciones
         size_instrucciones;    // tamanio de la lista de instrucciones
 
@@ -187,11 +188,12 @@ static void *serializar_pcb(size_t *size, t_pcb *pcb, op_code cop)
     memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t), &(pcb->tamanio), sizeof(uint32_t)); // tamanio
     memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t) * 2, &(pcb->program_counter), sizeof(uint32_t));
     memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t) * 3, &(pcb->tabla_pagina), sizeof(uint32_t));
-    memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t) * 4, &(pcb->estimacion_rafaga), sizeof(uint32_t));
-    memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t) * 5, &(pcb->tiempo_bloqueo), sizeof(uint32_t));
-    memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t) * 6, &(pcb->cliente_socket), sizeof(uint32_t));
-    memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t) * 7, &size_instrucciones, sizeof(size_t));                       // size del stream de instrucciones
-    memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t) * 7 + sizeof(size_t), stream_instrucciones, size_instrucciones); // stream de instrucciones
+    memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t) * 4, &(pcb->tiempo_bloqueo), sizeof(uint32_t));
+    memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t) * 5, &(pcb->cliente_socket), sizeof(uint32_t));
+    memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t) * 6, &(pcb->estimacion_rafaga_anterior), sizeof(double));
+    memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t) * 6 + sizeof(double), &(pcb->rafaga_real_anterior), sizeof(double));
+    memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t) * 6 + sizeof(double) * 2 , &size_instrucciones, sizeof(size_t));                       // size del stream de instrucciones
+    memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t) * 6 + sizeof(double) * 2  + sizeof(size_t), stream_instrucciones, size_instrucciones); // stream de instrucciones
 
     free(stream_instrucciones);
     *size = size_total;
@@ -208,12 +210,13 @@ static void deserializar_pcb(void *stream, t_pcb **pcbF)
     memcpy(&(pcb->tamanio), stream + sizeof(uint32_t), sizeof(uint32_t));               // tamanio
     memcpy(&(pcb->program_counter), stream + sizeof(uint32_t) * 2, sizeof(uint32_t));   // program_counter
     memcpy(&(pcb->tabla_pagina), stream + sizeof(uint32_t) * 3, sizeof(uint32_t));      // tabla pagina
-    memcpy(&(pcb->estimacion_rafaga), stream + sizeof(uint32_t) * 4, sizeof(uint32_t)); // estimacion rafaga
-    memcpy(&(pcb->tiempo_bloqueo), stream + sizeof(uint32_t) * 5, sizeof(uint32_t));    // tiempo de bloqueo
-    memcpy(&(pcb->cliente_socket), stream + sizeof(uint32_t) * 6, sizeof(uint32_t));    // cliente socket
-    memcpy(&size_instrucciones, stream + sizeof(uint32_t) * 7, sizeof(size_t)); // tamanio de la lista de instrucciones
+    memcpy(&(pcb->tiempo_bloqueo), stream + sizeof(uint32_t) * 4, sizeof(uint32_t));    // tiempo de bloqueo
+    memcpy(&(pcb->cliente_socket), stream + sizeof(uint32_t) * 5, sizeof(uint32_t));    // cliente socket
+    memcpy(&(pcb->estimacion_rafaga_anterior), stream + sizeof(uint32_t) * 6 , sizeof(double));
+    memcpy(&(pcb->rafaga_real_anterior), stream + sizeof(uint32_t) * 6 + sizeof(double), sizeof(double));
+    memcpy(&size_instrucciones, stream + sizeof(uint32_t) * 6 + sizeof(double) * 2 , sizeof(size_t)); // tamanio de la lista de instrucciones
     void *stream_instrucciones = malloc(size_instrucciones);
-    memcpy(stream_instrucciones, stream + sizeof(uint32_t) * 7 + sizeof(size_t), size_instrucciones); // stream de instrucciones
+    memcpy(stream_instrucciones, stream + sizeof(uint32_t) * 6 + sizeof(double) * 2 + sizeof(size_t), size_instrucciones); // stream de instrucciones
     t_list *instrucciones = deserializar_t_list_instrucciones(stream_instrucciones, size_instrucciones);
     pcb->instrucciones = instrucciones;
 

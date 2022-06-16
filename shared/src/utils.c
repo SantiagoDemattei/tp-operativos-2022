@@ -60,6 +60,27 @@ void queue_push_con_mutex(t_queue* queue, t_pcb* pcb, pthread_mutex_t mutex){
     pthread_mutex_unlock(&mutex);
 }
 
+void list_add_con_mutex(t_list* lista, t_pcb* pcb, pthread_mutex_t mutex){
+    pthread_mutex_lock(&mutex);
+    list_add(lista, pcb);
+    pthread_mutex_unlock(&mutex);
+}
+
+
+t_pcb* list_get_and_remove_con_mutex(t_list* lista, int indice, pthread_mutex_t mutex){
+    pthread_mutex_lock(&mutex);
+    t_pcb* pcb = list_remove(lista, indice);
+    pthread_mutex_unlock(&mutex);
+    return pcb;
+}
+
+int list_size_con_mutex(t_list* lista, pthread_mutex_t mutex){
+    pthread_mutex_lock(&mutex);
+    int size = list_size(lista);
+    pthread_mutex_unlock(&mutex);
+    return size;
+}
+
 t_pcb* queue_pop_con_mutex(t_queue* queue, pthread_mutex_t mutex){
     t_pcb* pcb;
     pthread_mutex_lock(&mutex);
@@ -90,4 +111,7 @@ void destruir_pcb(t_pcb* pcb){
     }
     free(pcb);
 }
+
+
+
 

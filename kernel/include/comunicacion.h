@@ -10,11 +10,15 @@
 #include<commons/collections/list.h>
 #include<string.h>
 #include<assert.h>
+#include<commons/temporal.h>
+#include<time.h>
 #include "configuracion.h"
 
 
 t_log* logger;
 t_configuracion_kernel* configuracion_kernel; 
+time_t fecha_inicio;
+time_t fecha_final;
 
 typedef enum
 {
@@ -37,8 +41,8 @@ void recibir();
 void bloquear();
 bool consulta_grado();
 void revisar_new();
-
-
+t_pcb* realizar_estimacion();
+bool comparar_estimaciones(t_pcb* pcb1, t_pcb* pcb2);
 
 
 #endif 

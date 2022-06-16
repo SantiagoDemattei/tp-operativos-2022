@@ -33,13 +33,13 @@ void liberar_estructuras_kernel(t_configuracion_kernel* datos_config_kernel){
 
 void crear_colas_estados(){ 
     cola_new = queue_create();
-    cola_ready = queue_create();
+    cola_ready = list_create();
     cola_blocked = queue_create();
 }
 
 void destruir_colas_estados(){
     queue_destroy_and_destroy_elements(cola_new, (void*) destructor_queue);
-    queue_destroy_and_destroy_elements(cola_ready, (void* ) destructor_queue);
+    list_destroy_and_destroy_elements(cola_ready, (void* ) destructor_queue);
     queue_destroy_and_destroy_elements(cola_blocked, (void*) destructor_queue);
 }
 

@@ -123,9 +123,10 @@ t_pcb *crear_pcb(t_list *instrucciones, t_log *logger, uint32_t tamanio, uint32_
     pcb->program_counter = 0;
     pcb->tamanio = tamanio;
     pcb->tabla_pagina = 0;
-    pcb->estimacion_rafaga = 0;
     pcb->tiempo_bloqueo = 0;
     pcb->cliente_socket = cliente_socket;
+    pcb->estimacion_rafaga_anterior=  atof(configuracion_kernel->estimacion_inicial);
+    pcb->rafaga_real_anterior = 0;
     return pcb;
 }
 
@@ -152,14 +153,20 @@ void verificacion_multiprogramacion(t_pcb *pcb)
 
         liberar_conexion(socket_memoria);
 
-        queue_push_con_mutex(cola_ready, tope_cola_new, mutex_cola_ready); // agrega el pcb a la cola de ready
+        list_add_con_mutex(cola_ready, tope_cola_new, mutex_cola_ready); // agrega el pcb a la cola de ready
+        
         sem_post(&sem_nuevo_ready);
 
-        if (queue_size_con_mutex(cola_ready, mutex_cola_ready) == 1)
+        if (list_size_con_mutex(cola_ready, mutex_cola_ready) == 1)
         { // si el pcb recien agregado es el primero (o sea no habia nadie en ready antes), planifico.
             sem_post(&sem_planificar);
+            return;
         }
         // HAY QUE PLANIFICAR SI SOS SJF
+        if(strcmp(configuracion_kernel->algoritmo_planificacion, "SRT") == 0)
+        {
+            sem_post(&sem_planificar);
+        }
     }
     return;
 }
@@ -191,7 +198,7 @@ void planificar()
             sem_wait(&sem_nuevo_ready);                                         // espera a que llegue alguien a ready
             sem_wait(&sem_planificar);                                          // espera que lo habiliten a planificar
             sem_wait(&sem_running);                                             // avisa q no hay nadie en running
-            pcb_tope_lista = queue_pop_con_mutex(cola_ready, mutex_cola_ready); // saco proceso de la lista de ready
+            pcb_tope_lista = list_get_and_remove_con_mutex(cola_ready, 0, mutex_cola_ready); // saco proceso de la lista de ready
             pthread_mutex_lock(&mutex_estado_running);
             if (running == NULL) // no hay nadie ejecutando lo pongo a ejecutar
             {
@@ -217,8 +224,7 @@ void planificar()
         {
             sem_wait(&sem_nuevo_ready);                                         // espera a que llegue alguien a ready
             sem_wait(&sem_planificar);                                          // espera que lo habiliten a planificar
-            sem_wait(&sem_running);                                             // avisa q no hay nadie en running
-
+ 
             pthread_mutex_lock(&mutex_estado_running);
             if (running == NULL)
             {   
@@ -226,26 +232,28 @@ void planificar()
                 pthread_mutex_unlock(&mutex_estado_running);
 
                 pthread_mutex_lock(&mutex_estado_running);
-                running = pcb_elegido; // modifico el running de kernel
+     
+                running = pcb_elegido; // modifico el running
+                fecha_inicio = time(0); 
                 pthread_mutex_unlock(&mutex_estado_running);
 
                 send_pcb(socket_cpu_dispatch, pcb_elegido, ENVIAR_PCB); // mando el pcb a la CPU a traves del socket dispatch
-                sem_post(&sem_recibir);                                    // activo al hilo recibir para que se ponga a la espera de un mensaje de la CPU
-                printf("MANDE EL PCB A LA CPU, %d \n", pcb_tope_lista->id);
+                sem_post(&sem_recibir);                                 // activo al hilo recibir para que se ponga a la espera de un mensaje de la CPU
+                printf("MANDE EL PCB A LA CPU, %d \n", pcb_elegido->id);
                 destruir_pcb(pcb_elegido);
 
                 pthread_mutex_lock(&mutex_estado_running);
             }
-            else//si hay alguien corriendo
+            else //si hay alguien corriendo
             {
                 pthread_mutex_unlock(&mutex_estado_running);
-                send_interrupcion_por_nuevo_ready(socket_cpu_interrupt); // aviso a la cpu que hay un nuevo proceso en ready para que desaloje al proceso que esta ejecutando
-
+                send_interrupcion_por_nuevo_ready(socket_cpu_interrupt);    // aviso a la cpu que hay un nuevo proceso en ready para que desaloje al proceso que esta ejecutando
+                sem_post(&sem_recibir);                                 // activo al hilo recibir para que se ponga a la espera de un mensaje de la CPU
                 sem_wait(&sem_desalojo); //espera que lo habilite el kernel cuando le llega el pcb del proceso desalojado 
                 t_pcb* pcb_elegido = realizar_estimacion(); //de los procesos que estan en ready vemos quien ejecuta segun la estimacion
-                // send_pcb(socket_cpu_dispatch, pcb_elegido, ENVIAR_PCB); // mando el pcb a la CPU a traves del socket dispatch para que lo ejecute
-                // sem_post(&sem_recibir);                                 // activo al hilo recibir para que se ponga a la espera de un mensaje de la CPU
-               
+                send_pcb(socket_cpu_dispatch, pcb_elegido, ENVIAR_PCB); // mando el pcb a la CPU a traves del socket dispatch para que lo ejecute
+                printf("MANDE EL PCB A LA CPU, %d \n", pcb_elegido->id);
+                sem_post(&sem_recibir);   
                 pthread_mutex_lock(&mutex_estado_running);
             }
             pthread_mutex_unlock(&mutex_estado_running);
@@ -277,15 +285,17 @@ void recibir()
             recv_pcb(socket_cpu_dispatch, &pcb); // recibe el PCB del proceso que se bloquea
 
             pthread_mutex_lock(&mutex_estado_running);
-            running = NULL; // modifico el running de kernel
+            running = NULL; // modifico el running de 
+            fecha_final = time(0); // cuando sale de running
             pthread_mutex_unlock(&mutex_estado_running);
             sem_post(&sem_running);
 
+            pcb->rafaga_real_anterior = difftime(fecha_final, fecha_inicio) * 1000; //diferencia entre fecha final e inicial en milisegundos
             queue_push_con_mutex(cola_blocked, pcb, mutex_cola_blocked); // encolamos a los procesos que se van bloqueando
 
             loggear_info(logger, "Nuevo proceso en cola blocked", mutex_logger_kernel);
 
-            sem_post(&sem_planificar);    // como se libero la cpu por I/O, puedo poner a otro a planificar
+            sem_post(&sem_planificar);    // como se libero la cpu por I/O, puedo poner a otro a planificar venite 
             sem_post(&sem_nuevo_bloqued); // aviso que hay un nuevo pcb en la cola de blocked
             break;
 
@@ -318,13 +328,22 @@ void recibir()
             free(pcbExit->cliente_socket);
             destruir_pcb(pcbExit);
             break;
-        }
+        
         case INTERRUPCION:
             recv_pcb(socket_cpu_dispatch, &pcb); // recibe el PCB del proceso que se bloquea
-            queue_push_con_mutex(cola_ready, pcb, mutex_cola_ready);  //mete en ready al proceso desalojado
+
+            pthread_mutex_lock(&mutex_estado_running);
+            running = NULL;
+            fecha_final = time(0); 
+            pthread_mutex_unlock(&mutex_estado_running);
+
+            pcb->rafaga_real_anterior = difftime(fecha_final, fecha_inicio) * 1000;
+            list_add_con_mutex(cola_ready, pcb, mutex_cola_ready);  //mete en ready al proceso desalojado
+            
             sem_post(&sem_nuevo_ready); // aviso que hay un nuevo pcb en la cola de ready
             sem_post(&sem_desalojo); //aviso que llego el proceso desalojado y hay q planificar 
             break;
+        }
     }
 }
 
@@ -333,7 +352,7 @@ void revisar_new()
     if (consulta_grado() && !queue_vacia_con_mutex(cola_new, mutex_cola_new))
     { // hay alguien en new y el grado de multi lo permite
         t_pcb *pcb = queue_pop_con_mutex(cola_new, mutex_cola_new);
-        queue_push_con_mutex(cola_ready, pcb, mutex_cola_ready);
+        list_add_con_mutex(cola_ready, pcb, mutex_cola_ready);
         sem_post(&sem_nuevo_ready); // avisa que llego alguien a ready
         loggear_info(logger, "Nuevo proceso en cola ready", mutex_logger_kernel);
     }
@@ -345,7 +364,7 @@ ALGORITMO algortimo_de_planificacion(char *algortimo_de_planificacion) // para d
     {
         return FIFO;
     }
-    else if (strcmp(algortimo_de_planificacion, "SJF") == 0)
+    else if (strcmp(algortimo_de_planificacion, "SRT") == 0)
     {
         return SJF;
     }
@@ -364,17 +383,34 @@ void bloquear()
         tiempo = pcb->tiempo_bloqueo;
         usleep(tiempo * 1000); // bloquea al proceso
 
-        queue_push_con_mutex(cola_ready, pcb, mutex_cola_ready); // cuando se despierta lo pone en ready
+        list_add_con_mutex(cola_ready, pcb, mutex_cola_ready); // cuando se despierta lo pone en ready
         sem_post(&sem_nuevo_ready);                              // aviso que meti un nuevo pcb en la cola de ready y puede planificar
-
-        // si es sjf tengo que activar el planificar
+        if(strcmp(configuracion_kernel->algoritmo_planificacion, "SRT") == 0)
+        {
+            sem_post(&sem_planificar);
+        }
     }
 }
 
+
+
 t_pcb* realizar_estimacion(){ // devuelve el pcb que se va a ejecutar
-    t_pcb *pcb;
+    t_pcb *pcb_elegido;
+    float alfa = atof(configuracion_kernel->alfa);
+    // recorrer lista de pcbs en ready y buscar el que tiene el valor de rafaga mas bajo
+    // FALTA HACER COMPARAR LO QUE LE FALTA EJECUTAR AL PROCESO QUE DESALOJE CON LAS ESTIMACIONES DE LOS QUE YA ESTAN EN READY
+    for(int i = 0; i < list_size(cola_ready); i++){
+       t_pcb* aux = list_get(cola_ready, i);
+       aux->estimacion_rafaga_anterior = alfa * (aux->rafaga_real_anterior) + (1 - alfa) * (aux->estimacion_rafaga_anterior); // estimacion rafaga siguiente = alfa * (duracion rafaga anterior real) + (1-alfa) * (estimacion de la rafaga anterior)
+        printf("el pcb %d tiene estimacion de rafaga: %f\n", aux->id, aux->estimacion_rafaga_anterior);
+    }
+    // buscar el pcb con la estimacion mas baja
+    list_sort(cola_ready, (void*)comparar_estimaciones);
+    pcb_elegido = list_remove(cola_ready, 0);
+    return pcb_elegido;
     
-    for()
-    pcb = queue_pop_con_mutex(cola_ready, mutex_cola_ready);
-    
+}
+
+bool comparar_estimaciones(t_pcb* pcb1, t_pcb* pcb2){
+    return pcb1->estimacion_rafaga_anterior < pcb2->estimacion_rafaga_anterior;
 }

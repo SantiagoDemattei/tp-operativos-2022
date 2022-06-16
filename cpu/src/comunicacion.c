@@ -67,8 +67,11 @@ static void procesar_conexion(void *void_args)
 
             if (recv_pcb(*cliente_socket, &running)) //en running guardo el pcb que va a ejecutar
             {   
-                loggear_info(logger, "Se recibio un pcb para ejecutar", mutex_logger_cpu);
-                ciclo_instruccion(running, cliente_socket, logger); //cuando la cpu recibe el pcb simula un ciclo de instruccion
+                loggear_info(logger, "Se recibio el pcb para ejecutar\n", mutex_logger_cpu);
+                pthread_mutex_lock(&mutex_interrupcion);
+                interrupciones = false; //interrupciones desactivadas para chequearlas cuando termine de ejecutar una instruccion
+                pthread_mutex_unlock(&mutex_interrupcion);
+                ciclo_instruccion(cliente_socket, logger); //cuando la cpu recibe el pcb simula un ciclo de instruccion
             }
 
             break;
@@ -81,7 +84,7 @@ static void procesar_conexion(void *void_args)
             pthread_mutex_lock(&mutex_interrupcion);
             interrupciones = true; //interrupciones activadas para chequearlas cuando termine de ejecutar una instruccion
             pthread_mutex_unlock(&mutex_interrupcion);
-            free(cliente_socket);
+            
             break;
 
         // Errores
@@ -122,7 +125,7 @@ uint32_t server_escuchar(t_log *logger, char *server_name, uint32_t server_socke
     return 0;
 }
 
-void ciclo_instruccion(t_pcb *running, uint32_t* cliente_socket, t_log *logger)
+void ciclo_instruccion(uint32_t* cliente_socket, t_log *logger)
 {
     t_list *lista_instrucciones = running->instrucciones; //lista de instrucciones del proceso que esta en running
     uint32_t cantidad_instrucciones = list_size(lista_instrucciones);
@@ -216,16 +219,14 @@ void chequear_interrupciones(uint32_t* cliente_socket){
     if(interrupciones){
         pthread_mutex_unlock(&mutex_interrupcion);
         send_pcb(*cliente_socket, running, INTERRUPCION); //desalojo el pcb y mando el pcb para que lo reciba el kernel
-        destruir_pcb(running);
-        pthread_mutex_lock(&mutex_running_cpu);
+        //destruir_pcb(running);
+        //pthread_mutex_lock(&mutex_running_cpu);
         running = NULL; //desalojo el pcb
-        pthread_mutex_unlock(&mutex_running_cpu);
+        //pthread_mutex_unlock(&mutex_running_cpu);
         
         pthread_mutex_lock(&mutex_interrupcion);
     }
     pthread_mutex_unlock(&mutex_interrupcion);
-    
-    
 }
 
 INSTRUCCIONES_EJECUCION enumerar_instruccion(t_instruccion *instruccion)
