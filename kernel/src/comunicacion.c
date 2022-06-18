@@ -264,7 +264,7 @@ void planificar()
                 pthread_mutex_lock(&mutex_info_desalojado);                                                            
                 if(pcb_elegido->id == id_desalojado){ // si el que elegi es el mismo que el que estaba antes en running (el que acabo de desalojar)
                     
-                    pcb_elegido->estimacion_rafaga_anterior = estimacion_desalojado; //le modifico la informacion con la que habiamos calculado antes de desalojarlo porque va a a continuar 
+                    pcb_elegido->estimacion_rafaga_anterior = estimacion_desalojado; //al pedo porque ya se lo asigne cuando lo desalojamos pero funciona
                     pcb_elegido->rafaga_real_anterior = real_desalojado;
                 }                                         
                 pthread_mutex_unlock(&mutex_info_desalojado);                 
@@ -273,7 +273,7 @@ void planificar()
 
                 pthread_mutex_lock(&mutex_estado_running);
                 running = pcb_elegido; // modifico el running
-                fecha_inicio = time(NULL); //setea la fecha de inicio de ejecucion porque es un proceso nuevo o continua el mismo 
+                fecha_inicio = time(NULL); //setea la fecha de inicio de ejecucion porque es un proceso nuevo o continua el mismo(fue desalojado y se volvio a elegir)
                 pthread_mutex_unlock(&mutex_estado_running);
 
                 printf("MANDE EL PCB A LA CPU, %d \n", pcb_elegido->id);
@@ -336,8 +336,8 @@ void recibir()
 
             //cuando el proceso se bloquea tenemos que calcular la estimacion para dsp cuando vaya a ready podamos elegir quien tiene la menor 
             pthread_mutex_lock(&mutex_info_desalojado); 
-            if(pcb->id == id_desalojado){   //si el proceso que se bloquea es el que habiamos desalojado, la rafaga anterior va a ser lo que ya habia ejecutado antes de desalojarse ()
-                pcb->rafaga_real_anterior = difftime(fecha_final, fecha_inicio) * 1000 + pcb->rafaga_real_anterior; // 
+            if(pcb->id == id_desalojado){   //si el proceso que se bloquea es el que habiamos desalojado, la rafaga anterior va a ser lo que ya habia ejecutado antes de desalojarse () + lo nuevo que ejecuto cuando lo volvimos a poner en running 
+                pcb->rafaga_real_anterior = difftime(fecha_final, fecha_inicio) * 1000 + pcb->rafaga_real_anterior; 
             }
             else{
                 pcb->rafaga_real_anterior = difftime(fecha_final, fecha_inicio) * 1000;  
@@ -405,10 +405,10 @@ void recibir()
             
             pthread_mutex_lock(&mutex_info_desalojado);
             id_desalojado = pcb->id;
-            estimacion_desalojado = pcb->estimacion_rafaga_anterior; 
-            real_desalojado = pcb->rafaga_real_anterior; 
+            estimacion_desalojado = pcb->estimacion_rafaga_anterior; //guardo la estimacion del proceso que se desalojo
+            real_desalojado = pcb->rafaga_real_anterior;  //guardo la rafaga real del proceso que se desalojo
             pthread_mutex_unlock(&mutex_info_desalojado);
-            
+
             list_add_con_mutex(cola_ready, pcb, mutex_cola_ready); // mete en ready al proceso desalojado
             
             sem_post(&sem_nuevo_ready); // aviso que hay un nuevo pcb en la cola de ready
