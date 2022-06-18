@@ -1,271 +1,84 @@
-[INFO] 12:12:38:098 CPU/(4328:4328): Esperando a 127.0.0.1:8001 (KERNEL DISPATCH)
+[INFO] 12:43:41:355 CPU/(9586:9586): Esperando a 127.0.0.1:8001 (KERNEL DISPATCH)
 
-[INFO] 12:12:38:099 CPU/(4328:4328): Esperando a 127.0.0.1:8005 (KERNEL INTERRUPT)
+[INFO] 12:43:41:356 CPU/(9586:9586): Esperando a 127.0.0.1:8005 (KERNEL INTERRUPT)
 
-[INFO] 12:12:59:991 CPU/(4328:4328): Cliente conectado (a CPU DISPATCH)
+[INFO] 12:44:31:591 CPU/(9586:9586): Cliente conectado (a CPU DISPATCH)
 
-[INFO] 12:12:59:992 CPU/(4328:4328): Cliente conectado (a CPU INTERRUPT)
+[INFO] 12:44:31:592 CPU/(9586:9586): Cliente conectado (a CPU INTERRUPT)
 
-[INFO] 12:15:51:991 CPU/(4328:4402): Se recibio el pcb para ejecutar
+[INFO] 12:44:34:886 CPU/(9586:9882): Se recibio el pcb para ejecutar
 
-[INFO] 12:15:51:991 CPU/(4328:4402): Antes del switch con la instruccion: NO_OP
+[INFO] 12:44:34:886 CPU/(9586:9882): Antes del switch con la instruccion: NO_OP
 
-[INFO] 12:15:52:992 CPU/(4328:4402): Antes del switch con la instruccion: NO_OP
+[INFO] 12:44:35:887 CPU/(9586:9882): Antes del switch con la instruccion: NO_OP
 
-[INFO] 12:15:53:993 CPU/(4328:4402): Antes del switch con la instruccion: NO_OP
+[INFO] 12:44:36:118 CPU/(9586:9883): Desalojando proceso
+[INFO] 12:44:36:888 CPU/(9586:9882): Se recibio el pcb para ejecutar
 
-[INFO] 12:15:54:994 CPU/(4328:4402): Antes del switch con la instruccion: I/O
+[INFO] 12:44:36:888 CPU/(9586:9882): Antes del switch con la instruccion: NO_OP
 
-[INFO] 12:15:55:133 CPU/(4328:4402): Se recibio el pcb para ejecutar
+[INFO] 12:44:37:894 CPU/(9586:9882): Antes del switch con la instruccion: I/O
 
-[INFO] 12:15:55:138 CPU/(4328:4402): Antes del switch con la instruccion: NO_OP
+[INFO] 12:44:37:896 CPU/(9586:9882): Se recibio el pcb para ejecutar
 
-[INFO] 12:15:56:139 CPU/(4328:4402): Antes del switch con la instruccion: NO_OP
+[INFO] 12:44:37:896 CPU/(9586:9882): Antes del switch con la instruccion: NO_OP
 
-[INFO] 12:15:57:140 CPU/(4328:4402): Antes del switch con la instruccion: NO_OP
+[INFO] 12:44:38:897 CPU/(9586:9882): Antes del switch con la instruccion: NO_OP
 
-[INFO] 12:15:58:141 CPU/(4328:4402): Antes del switch con la instruccion: NO_OP
+[INFO] 12:44:39:897 CPU/(9586:9882): Antes del switch con la instruccion: NO_OP
 
-[INFO] 12:15:59:142 CPU/(4328:4402): Antes del switch con la instruccion: NO_OP
+[INFO] 12:44:40:898 CPU/(9586:9882): Antes del switch con la instruccion: I/O
 
-[INFO] 12:16:00:143 CPU/(4328:4402): Antes del switch con la instruccion: NO_OP
+[INFO] 12:44:45:905 CPU/(9586:9882): Se recibio el pcb para ejecutar
 
-[INFO] 12:16:01:144 CPU/(4328:4402): Antes del switch con la instruccion: NO_OP
+[INFO] 12:44:45:905 CPU/(9586:9882): Antes del switch con la instruccion: NO_OP
 
-[INFO] 12:16:02:145 CPU/(4328:4402): Antes del switch con la instruccion: NO_OP
+[INFO] 12:44:46:906 CPU/(9586:9882): Antes del switch con la instruccion: NO_OP
 
-[INFO] 12:16:03:146 CPU/(4328:4402): Antes del switch con la instruccion: NO_OP
+[INFO] 12:44:47:907 CPU/(9586:9882): Antes del switch con la instruccion: NO_OP
 
-[INFO] 12:16:04:146 CPU/(4328:4402): Antes del switch con la instruccion: NO_OP
+[INFO] 12:44:48:908 CPU/(9586:9882): Antes del switch con la instruccion: NO_OP
 
-[INFO] 12:16:04:647 CPU/(4328:4403): DISCONNECT
-[INFO] 12:16:05:148 CPU/(4328:4402): Antes del switch con la instruccion: EXIT
+[INFO] 12:44:49:908 CPU/(9586:9882): Antes del switch con la instruccion: NO_OP
 
-[INFO] 12:16:05:148 CPU/(4328:4402): DISCONNECT
-[INFO] 12:16:19:389 CPU/(5223:5223): Esperando a 127.0.0.1:8001 (KERNEL DISPATCH)
+[INFO] 12:44:50:896 CPU/(9586:9883): Desalojando proceso
+[INFO] 12:44:50:909 CPU/(9586:9882): Se recibio el pcb para ejecutar
 
-[INFO] 12:16:19:390 CPU/(5223:5223): Esperando a 127.0.0.1:8005 (KERNEL INTERRUPT)
+[INFO] 12:44:50:910 CPU/(9586:9882): Antes del switch con la instruccion: NO_OP
 
-[INFO] 12:16:27:480 CPU/(5223:5223): Cliente conectado (a CPU DISPATCH)
+[INFO] 12:44:50:909 CPU/(9586:9883): Desalojando proceso
+[INFO] 12:44:51:910 CPU/(9586:9882): Se recibio el pcb para ejecutar
 
-[INFO] 12:16:27:480 CPU/(5223:5249): DISCONNECT
-[INFO] 12:17:04:891 CPU/(5371:5371): Esperando a 127.0.0.1:8001 (KERNEL DISPATCH)
+[INFO] 12:44:51:910 CPU/(9586:9882): Antes del switch con la instruccion: NO_OP
 
-[INFO] 12:17:04:892 CPU/(5371:5371): Esperando a 127.0.0.1:8005 (KERNEL INTERRUPT)
+[INFO] 12:44:52:911 CPU/(9586:9882): Antes del switch con la instruccion: NO_OP
 
-[INFO] 12:17:36:078 CPU/(5371:5371): Cliente conectado (a CPU DISPATCH)
+[INFO] 12:44:53:912 CPU/(9586:9882): Antes del switch con la instruccion: EXIT
 
-[INFO] 12:17:36:079 CPU/(5371:5371): Cliente conectado (a CPU INTERRUPT)
+[INFO] 12:44:53:913 CPU/(9586:9882): Se recibio el pcb para ejecutar
 
-[INFO] 12:17:42:855 CPU/(5371:5438): Se recibio el pcb para ejecutar
+[INFO] 12:44:53:913 CPU/(9586:9882): Antes del switch con la instruccion: NO_OP
 
-[INFO] 12:17:42:855 CPU/(5371:5438): Antes del switch con la instruccion: NO_OP
+[INFO] 12:44:54:913 CPU/(9586:9882): Antes del switch con la instruccion: NO_OP
 
-[INFO] 12:17:43:856 CPU/(5371:5438): Antes del switch con la instruccion: NO_OP
+[INFO] 12:44:55:897 CPU/(9586:9883): Desalojando proceso
+[INFO] 12:44:55:914 CPU/(9586:9882): Se recibio el pcb para ejecutar
 
-[INFO] 12:17:44:857 CPU/(5371:5438): Antes del switch con la instruccion: NO_OP
+[INFO] 12:44:55:915 CPU/(9586:9882): Antes del switch con la instruccion: NO_OP
 
-[INFO] 12:17:45:858 CPU/(5371:5438): Antes del switch con la instruccion: I/O
+[INFO] 12:44:56:916 CPU/(9586:9882): Antes del switch con la instruccion: NO_OP
 
-[INFO] 12:17:45:859 CPU/(5371:5438): Se recibio el pcb para ejecutar
+[INFO] 12:44:57:917 CPU/(9586:9882): Antes del switch con la instruccion: NO_OP
 
-[INFO] 12:17:45:859 CPU/(5371:5438): Antes del switch con la instruccion: NO_OP
+[INFO] 12:44:58:918 CPU/(9586:9882): Antes del switch con la instruccion: EXIT
 
-[INFO] 12:17:46:860 CPU/(5371:5438): Antes del switch con la instruccion: NO_OP
+[INFO] 12:44:58:919 CPU/(9586:9882): Se recibio el pcb para ejecutar
 
-[INFO] 12:17:47:861 CPU/(5371:5438): Antes del switch con la instruccion: NO_OP
+[INFO] 12:44:58:919 CPU/(9586:9882): Antes del switch con la instruccion: NO_OP
 
-[INFO] 12:17:48:861 CPU/(5371:5438): Antes del switch con la instruccion: I/O
+[INFO] 12:44:59:920 CPU/(9586:9882): Antes del switch con la instruccion: NO_OP
 
-[INFO] 12:17:48:862 CPU/(5371:5438): Se recibio el pcb para ejecutar
+[INFO] 12:45:00:921 CPU/(9586:9882): Antes del switch con la instruccion: NO_OP
 
-[INFO] 12:17:48:863 CPU/(5371:5438): Antes del switch con la instruccion: NO_OP
-
-[INFO] 12:17:49:865 CPU/(5371:5438): Antes del switch con la instruccion: NO_OP
-
-[INFO] 12:17:50:866 CPU/(5371:5438): Antes del switch con la instruccion: NO_OP
-
-[INFO] 12:17:51:867 CPU/(5371:5438): Antes del switch con la instruccion: NO_OP
-
-[INFO] 12:17:52:868 CPU/(5371:5438): Antes del switch con la instruccion: NO_OP
-
-[INFO] 12:17:53:869 CPU/(5371:5438): Antes del switch con la instruccion: NO_OP
-
-[INFO] 12:17:54:870 CPU/(5371:5438): Antes del switch con la instruccion: NO_OP
-
-[INFO] 12:17:55:871 CPU/(5371:5438): Antes del switch con la instruccion: NO_OP
-
-[INFO] 12:17:56:872 CPU/(5371:5438): Antes del switch con la instruccion: NO_OP
-
-[INFO] 12:17:57:873 CPU/(5371:5438): Antes del switch con la instruccion: NO_OP
-
-[INFO] 12:17:58:873 CPU/(5371:5438): Antes del switch con la instruccion: EXIT
-
-[INFO] 12:17:58:875 CPU/(5371:5438): Se recibio el pcb para ejecutar
-
-[INFO] 12:17:58:875 CPU/(5371:5438): Antes del switch con la instruccion: NO_OP
-
-[INFO] 12:17:59:875 CPU/(5371:5438): Antes del switch con la instruccion: NO_OP
-
-[INFO] 12:18:00:877 CPU/(5371:5438): Antes del switch con la instruccion: NO_OP
-
-[INFO] 12:18:01:877 CPU/(5371:5438): Antes del switch con la instruccion: EXIT
-
-[INFO] 12:18:03:860 CPU/(5371:5438): Se recibio el pcb para ejecutar
-
-[INFO] 12:18:03:861 CPU/(5371:5438): Antes del switch con la instruccion: NO_OP
-
-[INFO] 12:18:04:862 CPU/(5371:5438): Antes del switch con la instruccion: NO_OP
-
-[INFO] 12:18:05:863 CPU/(5371:5438): Antes del switch con la instruccion: NO_OP
-
-[INFO] 12:18:06:864 CPU/(5371:5438): Antes del switch con la instruccion: EXIT
-
-[INFO] 12:19:13:126 CPU/(5371:5439): DISCONNECT
-[INFO] 12:19:13:126 CPU/(5371:5438): DISCONNECT
-[INFO] 12:19:28:921 CPU/(5683:5683): Esperando a 127.0.0.1:8001 (KERNEL DISPATCH)
-
-[INFO] 12:19:28:921 CPU/(5683:5683): Esperando a 127.0.0.1:8005 (KERNEL INTERRUPT)
-
-[INFO] 12:19:36:956 CPU/(5683:5683): Cliente conectado (a CPU DISPATCH)
-
-[INFO] 12:19:36:957 CPU/(5683:5683): Cliente conectado (a CPU INTERRUPT)
-
-[INFO] 12:19:52:509 CPU/(5683:5707): Se recibio el pcb para ejecutar
-
-[INFO] 12:19:52:509 CPU/(5683:5707): Antes del switch con la instruccion: NO_OP
-
-[INFO] 12:19:53:509 CPU/(5683:5707): Antes del switch con la instruccion: NO_OP
-
-[INFO] 12:19:54:510 CPU/(5683:5707): Antes del switch con la instruccion: NO_OP
-
-[INFO] 12:19:55:510 CPU/(5683:5707): Antes del switch con la instruccion: I/O
-
-[INFO] 12:19:55:511 CPU/(5683:5707): Se recibio el pcb para ejecutar
-
-[INFO] 12:19:55:512 CPU/(5683:5707): Antes del switch con la instruccion: NO_OP
-
-[INFO] 12:19:56:512 CPU/(5683:5707): Antes del switch con la instruccion: NO_OP
-
-[INFO] 12:19:57:513 CPU/(5683:5707): Antes del switch con la instruccion: NO_OP
-
-[INFO] 12:19:58:514 CPU/(5683:5707): Antes del switch con la instruccion: I/O
-
-[INFO] 12:19:58:515 CPU/(5683:5707): Se recibio el pcb para ejecutar
-
-[INFO] 12:19:58:515 CPU/(5683:5707): Antes del switch con la instruccion: NO_OP
-
-[INFO] 12:19:59:515 CPU/(5683:5707): Antes del switch con la instruccion: NO_OP
-
-[INFO] 12:20:00:516 CPU/(5683:5707): Antes del switch con la instruccion: NO_OP
-
-[INFO] 12:20:01:516 CPU/(5683:5707): Antes del switch con la instruccion: NO_OP
-
-[INFO] 12:20:02:517 CPU/(5683:5707): Antes del switch con la instruccion: NO_OP
-
-[INFO] 12:20:03:518 CPU/(5683:5707): Antes del switch con la instruccion: NO_OP
-
-[INFO] 12:20:04:519 CPU/(5683:5707): Antes del switch con la instruccion: NO_OP
-
-[INFO] 12:20:05:520 CPU/(5683:5707): Antes del switch con la instruccion: NO_OP
-
-[INFO] 12:20:06:521 CPU/(5683:5707): Antes del switch con la instruccion: NO_OP
-
-[INFO] 12:20:07:523 CPU/(5683:5707): Antes del switch con la instruccion: NO_OP
-
-[INFO] 12:20:08:524 CPU/(5683:5707): Antes del switch con la instruccion: EXIT
-
-[INFO] 12:20:08:525 CPU/(5683:5707): Se recibio el pcb para ejecutar
-
-[INFO] 12:20:08:525 CPU/(5683:5707): Antes del switch con la instruccion: NO_OP
-
-[INFO] 12:20:09:526 CPU/(5683:5707): Antes del switch con la instruccion: NO_OP
-
-[INFO] 12:20:10:527 CPU/(5683:5707): Antes del switch con la instruccion: NO_OP
-
-[INFO] 12:20:11:528 CPU/(5683:5707): Antes del switch con la instruccion: EXIT
-
-[INFO] 12:20:13:513 CPU/(5683:5707): Se recibio el pcb para ejecutar
-
-[INFO] 12:20:13:513 CPU/(5683:5707): Antes del switch con la instruccion: NO_OP
-
-[INFO] 12:20:14:513 CPU/(5683:5707): Antes del switch con la instruccion: NO_OP
-
-[INFO] 12:20:15:514 CPU/(5683:5707): Antes del switch con la instruccion: NO_OP
-
-[INFO] 12:20:16:515 CPU/(5683:5707): Antes del switch con la instruccion: EXIT
-
-[INFO] 12:20:36:237 CPU/(5683:5708): DISCONNECT
-[INFO] 12:20:36:238 CPU/(5683:5707): DISCONNECT
-[INFO] 12:20:46:910 CPU/(5948:5948): Esperando a 127.0.0.1:8001 (KERNEL DISPATCH)
-
-[INFO] 12:20:46:911 CPU/(5948:5948): Esperando a 127.0.0.1:8005 (KERNEL INTERRUPT)
-
-[INFO] 12:20:50:546 CPU/(5948:5948): Cliente conectado (a CPU DISPATCH)
-
-[INFO] 12:20:50:546 CPU/(5948:5948): Cliente conectado (a CPU INTERRUPT)
-
-[INFO] 12:20:58:357 CPU/(5948:5963): Se recibio el pcb para ejecutar
-
-[INFO] 12:20:58:357 CPU/(5948:5963): Antes del switch con la instruccion: NO_OP
-
-[INFO] 12:20:59:357 CPU/(5948:5963): Antes del switch con la instruccion: NO_OP
-
-[INFO] 12:21:00:358 CPU/(5948:5963): Antes del switch con la instruccion: NO_OP
-
-[INFO] 12:21:01:359 CPU/(5948:5963): Antes del switch con la instruccion: I/O
-
-[INFO] 12:21:01:360 CPU/(5948:5963): Se recibio el pcb para ejecutar
-
-[INFO] 12:21:01:360 CPU/(5948:5963): Antes del switch con la instruccion: NO_OP
-
-[INFO] 12:21:02:361 CPU/(5948:5963): Antes del switch con la instruccion: NO_OP
-
-[INFO] 12:21:03:361 CPU/(5948:5963): Antes del switch con la instruccion: NO_OP
-
-[INFO] 12:21:04:362 CPU/(5948:5963): Antes del switch con la instruccion: I/O
-
-[INFO] 12:21:04:363 CPU/(5948:5963): Se recibio el pcb para ejecutar
-
-[INFO] 12:21:04:364 CPU/(5948:5963): Antes del switch con la instruccion: NO_OP
-
-[INFO] 12:21:05:365 CPU/(5948:5963): Antes del switch con la instruccion: NO_OP
-
-[INFO] 12:21:06:366 CPU/(5948:5963): Antes del switch con la instruccion: NO_OP
-
-[INFO] 12:21:07:367 CPU/(5948:5963): Antes del switch con la instruccion: NO_OP
-
-[INFO] 12:21:08:368 CPU/(5948:5963): Antes del switch con la instruccion: NO_OP
-
-[INFO] 12:21:09:370 CPU/(5948:5963): Antes del switch con la instruccion: NO_OP
-
-[INFO] 12:21:10:371 CPU/(5948:5963): Antes del switch con la instruccion: NO_OP
-
-[INFO] 12:21:11:372 CPU/(5948:5963): Antes del switch con la instruccion: NO_OP
-
-[INFO] 12:21:12:372 CPU/(5948:5963): Antes del switch con la instruccion: NO_OP
-
-[INFO] 12:21:13:373 CPU/(5948:5963): Antes del switch con la instruccion: NO_OP
-
-[INFO] 12:21:14:375 CPU/(5948:5963): Antes del switch con la instruccion: EXIT
-
-[INFO] 12:21:14:376 CPU/(5948:5963): Se recibio el pcb para ejecutar
-
-[INFO] 12:21:14:376 CPU/(5948:5963): Antes del switch con la instruccion: NO_OP
-
-[INFO] 12:21:15:377 CPU/(5948:5963): Antes del switch con la instruccion: NO_OP
-
-[INFO] 12:21:16:379 CPU/(5948:5963): Antes del switch con la instruccion: NO_OP
-
-[INFO] 12:21:17:380 CPU/(5948:5963): Antes del switch con la instruccion: EXIT
-
-[INFO] 12:21:19:361 CPU/(5948:5963): Se recibio el pcb para ejecutar
-
-[INFO] 12:21:19:361 CPU/(5948:5963): Antes del switch con la instruccion: NO_OP
-
-[INFO] 12:21:20:363 CPU/(5948:5963): Antes del switch con la instruccion: NO_OP
-
-[INFO] 12:21:21:364 CPU/(5948:5963): Antes del switch con la instruccion: NO_OP
-
-[INFO] 12:21:22:365 CPU/(5948:5963): Antes del switch con la instruccion: EXIT
+[INFO] 12:45:01:923 CPU/(9586:9882): Antes del switch con la instruccion: EXIT
 

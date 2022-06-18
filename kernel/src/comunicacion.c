@@ -400,14 +400,14 @@ void recibir()
             fecha_final = time(NULL); // cuando sale de running, guardo la hora actual
             pthread_mutex_unlock(&mutex_estado_running);
 
+            pcb->rafaga_real_anterior = difftime(fecha_final, fecha_inicio) * 1000; // diferencia entre fecha final e inicial en milisegundos, nos dice cuanto ejecuto el proceso verdaderamente en milisegundos
+            pcb->estimacion_rafaga_anterior = pcb->estimacion_rafaga_anterior - pcb->rafaga_real_anterior; // hago la estimacion antes de meterlo en ready (de lo que le falta ejecutar)
+            
             pthread_mutex_lock(&mutex_info_desalojado);
             id_desalojado = pcb->id;
             estimacion_desalojado = pcb->estimacion_rafaga_anterior; 
             real_desalojado = pcb->rafaga_real_anterior; 
             pthread_mutex_unlock(&mutex_info_desalojado);
-
-            pcb->rafaga_real_anterior = difftime(fecha_final, fecha_inicio) * 1000; // diferencia entre fecha final e inicial en milisegundos, nos dice cuanto ejecuto el proceso verdaderamente en milisegundos
-            pcb->estimacion_rafaga_anterior = pcb->estimacion_rafaga_anterior - pcb->rafaga_real_anterior; // hago la estimacion antes de meterlo en ready (de lo que le falta ejecutar)
             
             list_add_con_mutex(cola_ready, pcb, mutex_cola_ready); // mete en ready al proceso desalojado
             
