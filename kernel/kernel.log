@@ -1,0 +1,148 @@
+[INFO] 16:01:14:271 KERNEL/(6446:6446): Esperando a 127.0.0.1:8000 (CONSOLA)
+
+[INFO] 16:01:14:274 KERNEL/(6446:6447): Cliente conectado en 127.0.0.1:8001 (a CPU DISPATCH)
+
+[INFO] 16:01:14:275 KERNEL/(6446:6447): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+
+[INFO] 16:01:37:139 KERNEL/(6446:6446): Cliente conectado (a KERNEL)
+
+[INFO] 16:01:37:143 KERNEL/(6446:6489): Se recibieron las instrucciones
+[INFO] 16:01:37:144 KERNEL/(6446:6489): Lista de instrucciones cargadas:
+[INFO] 16:01:37:144 KERNEL/(6446:6489): Instruccion: NO_OP
+[INFO] 16:01:37:145 KERNEL/(6446:6489): Tamanio de la instruccion: 5
+[INFO] 16:01:37:145 KERNEL/(6446:6489): 
+
+[INFO] 16:01:37:146 KERNEL/(6446:6489): Instruccion: NO_OP
+[INFO] 16:01:37:147 KERNEL/(6446:6489): Tamanio de la instruccion: 5
+[INFO] 16:01:37:149 KERNEL/(6446:6489): 
+
+[INFO] 16:01:37:150 KERNEL/(6446:6489): Instruccion: NO_OP
+[INFO] 16:01:37:151 KERNEL/(6446:6489): Tamanio de la instruccion: 5
+[INFO] 16:01:37:152 KERNEL/(6446:6489): 
+
+[INFO] 16:01:37:153 KERNEL/(6446:6489): Instruccion: I/O
+[INFO] 16:01:37:154 KERNEL/(6446:6489): Tamanio de la instruccion: 3
+[INFO] 16:01:37:155 KERNEL/(6446:6489): Argumento: 5000
+[INFO] 16:01:37:164 KERNEL/(6446:6489): 
+
+[INFO] 16:01:37:165 KERNEL/(6446:6489): Instruccion: NO_OP
+[INFO] 16:01:37:169 KERNEL/(6446:6489): Tamanio de la instruccion: 5
+[INFO] 16:01:37:169 KERNEL/(6446:6489): 
+
+[INFO] 16:01:37:170 KERNEL/(6446:6489): Instruccion: NO_OP
+[INFO] 16:01:37:171 KERNEL/(6446:6489): Tamanio de la instruccion: 5
+[INFO] 16:01:37:171 KERNEL/(6446:6489): 
+
+[INFO] 16:01:37:172 KERNEL/(6446:6489): Instruccion: NO_OP
+[INFO] 16:01:37:172 KERNEL/(6446:6489): Tamanio de la instruccion: 5
+[INFO] 16:01:37:173 KERNEL/(6446:6489): 
+
+[INFO] 16:01:37:174 KERNEL/(6446:6489): Instruccion: EXIT
+[INFO] 16:01:37:176 KERNEL/(6446:6489): Tamanio de la instruccion: 4
+[INFO] 16:01:37:177 KERNEL/(6446:6489): 
+
+[INFO] 16:01:37:179 KERNEL/(6446:6489): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 16:01:38:301 KERNEL/(6446:6446): Cliente conectado (a KERNEL)
+
+[INFO] 16:01:38:304 KERNEL/(6446:6492): Se recibieron las instrucciones
+[INFO] 16:01:38:304 KERNEL/(6446:6492): Lista de instrucciones cargadas:
+[INFO] 16:01:38:305 KERNEL/(6446:6492): Instruccion: NO_OP
+[INFO] 16:01:38:306 KERNEL/(6446:6492): Tamanio de la instruccion: 5
+[INFO] 16:01:38:306 KERNEL/(6446:6492): 
+
+[INFO] 16:01:38:307 KERNEL/(6446:6492): Instruccion: NO_OP
+[INFO] 16:01:38:308 KERNEL/(6446:6492): Tamanio de la instruccion: 5
+[INFO] 16:01:38:308 KERNEL/(6446:6492): 
+
+[INFO] 16:01:38:309 KERNEL/(6446:6492): Instruccion: NO_OP
+[INFO] 16:01:38:309 KERNEL/(6446:6492): Tamanio de la instruccion: 5
+[INFO] 16:01:38:310 KERNEL/(6446:6492): 
+
+[INFO] 16:01:38:311 KERNEL/(6446:6492): Instruccion: I/O
+[INFO] 16:01:38:312 KERNEL/(6446:6492): Tamanio de la instruccion: 3
+[INFO] 16:01:38:312 KERNEL/(6446:6492): Argumento: 5000
+[INFO] 16:01:38:313 KERNEL/(6446:6492): 
+
+[INFO] 16:01:38:314 KERNEL/(6446:6492): Instruccion: NO_OP
+[INFO] 16:01:38:314 KERNEL/(6446:6492): Tamanio de la instruccion: 5
+[INFO] 16:01:38:315 KERNEL/(6446:6492): 
+
+[INFO] 16:01:38:316 KERNEL/(6446:6492): Instruccion: NO_OP
+[INFO] 16:01:38:317 KERNEL/(6446:6492): Tamanio de la instruccion: 5
+[INFO] 16:01:38:317 KERNEL/(6446:6492): 
+
+[INFO] 16:01:38:318 KERNEL/(6446:6492): Instruccion: NO_OP
+[INFO] 16:01:38:319 KERNEL/(6446:6492): Tamanio de la instruccion: 5
+[INFO] 16:01:38:319 KERNEL/(6446:6492): 
+
+[INFO] 16:01:38:320 KERNEL/(6446:6492): Instruccion: EXIT
+[INFO] 16:01:38:321 KERNEL/(6446:6492): Tamanio de la instruccion: 4
+[INFO] 16:01:38:331 KERNEL/(6446:6492): 
+
+[INFO] 16:01:38:334 KERNEL/(6446:6492): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 16:01:39:214 KERNEL/(6446:6446): Cliente conectado (a KERNEL)
+
+[INFO] 16:01:39:216 KERNEL/(6446:6495): Se recibieron las instrucciones
+[INFO] 16:01:39:217 KERNEL/(6446:6495): Lista de instrucciones cargadas:
+[INFO] 16:01:39:217 KERNEL/(6446:6495): Instruccion: NO_OP
+[INFO] 16:01:39:218 KERNEL/(6446:6495): Tamanio de la instruccion: 5
+[INFO] 16:01:39:219 KERNEL/(6446:6495): 
+
+[INFO] 16:01:39:219 KERNEL/(6446:6495): Instruccion: NO_OP
+[INFO] 16:01:39:220 KERNEL/(6446:6495): Tamanio de la instruccion: 5
+[INFO] 16:01:39:221 KERNEL/(6446:6495): 
+
+[INFO] 16:01:39:222 KERNEL/(6446:6495): Instruccion: NO_OP
+[INFO] 16:01:39:223 KERNEL/(6446:6495): Tamanio de la instruccion: 5
+[INFO] 16:01:39:224 KERNEL/(6446:6495): 
+
+[INFO] 16:01:39:225 KERNEL/(6446:6495): Instruccion: NO_OP
+[INFO] 16:01:39:237 KERNEL/(6446:6495): Tamanio de la instruccion: 5
+[INFO] 16:01:39:238 KERNEL/(6446:6495): 
+
+[INFO] 16:01:39:238 KERNEL/(6446:6495): Instruccion: NO_OP
+[INFO] 16:01:39:239 KERNEL/(6446:6495): Tamanio de la instruccion: 5
+[INFO] 16:01:39:239 KERNEL/(6446:6495): 
+
+[INFO] 16:01:39:240 KERNEL/(6446:6495): Instruccion: NO_OP
+[INFO] 16:01:39:240 KERNEL/(6446:6495): Tamanio de la instruccion: 5
+[INFO] 16:01:39:241 KERNEL/(6446:6495): 
+
+[INFO] 16:01:39:241 KERNEL/(6446:6495): Instruccion: NO_OP
+[INFO] 16:01:39:242 KERNEL/(6446:6495): Tamanio de la instruccion: 5
+[INFO] 16:01:39:246 KERNEL/(6446:6495): 
+
+[INFO] 16:01:39:247 KERNEL/(6446:6495): Instruccion: NO_OP
+[INFO] 16:01:39:248 KERNEL/(6446:6495): Tamanio de la instruccion: 5
+[INFO] 16:01:39:248 KERNEL/(6446:6495): 
+
+[INFO] 16:01:39:249 KERNEL/(6446:6495): Instruccion: NO_OP
+[INFO] 16:01:39:250 KERNEL/(6446:6495): Tamanio de la instruccion: 5
+[INFO] 16:01:39:250 KERNEL/(6446:6495): 
+
+[INFO] 16:01:39:251 KERNEL/(6446:6495): Instruccion: NO_OP
+[INFO] 16:01:39:251 KERNEL/(6446:6495): Tamanio de la instruccion: 5
+[INFO] 16:01:39:252 KERNEL/(6446:6495): 
+
+[INFO] 16:01:39:253 KERNEL/(6446:6495): Instruccion: EXIT
+[INFO] 16:01:39:253 KERNEL/(6446:6495): Tamanio de la instruccion: 4
+[INFO] 16:01:39:265 KERNEL/(6446:6495): 
+
+[INFO] 16:01:39:266 KERNEL/(6446:6495): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 16:01:40:205 KERNEL/(6446:6448): Nuevo proceso en cola blocked
+[INFO] 16:01:43:216 KERNEL/(6446:6448): Nuevo proceso en cola blocked
+[INFO] 16:01:48:277 KERNEL/(6446:6448): Orden EXIT recibida
+[INFO] 16:01:48:292 KERNEL/(6446:6448): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 16:01:48:298 KERNEL/(6446:6489): DISCONNECT
+[INFO] 16:01:53:312 KERNEL/(6446:6448): Orden EXIT recibida
+[INFO] 16:01:53:315 KERNEL/(6446:6448): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 16:01:53:321 KERNEL/(6446:6492): DISCONNECT
+[INFO] 16:01:59:335 KERNEL/(6446:6448): Orden EXIT recibida
+[INFO] 16:01:59:336 KERNEL/(6446:6448): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 16:01:59:338 KERNEL/(6446:6495): DISCONNECT

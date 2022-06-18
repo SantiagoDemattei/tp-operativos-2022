@@ -63,7 +63,7 @@ static void procesar_conexion(void *void_args)
             pthread_mutex_unlock(&mutex_logger_cpu);
             break;
 
-        case ENVIAR_PCB: //recibir PCB para poner a ejecutar
+        case ENVIAR_PCB: //recibir PCB del kernel para poner a ejecutar
 
             if (recv_pcb(*cliente_socket, &running)) //en running guardo el pcb que va a ejecutar
             {   
@@ -75,8 +75,8 @@ static void procesar_conexion(void *void_args)
             }
             break;
 
-        case INT_NUEVO_READY:
-            loggear_info(logger, "Desalojando proceso", mutex_logger_cpu);
+        case INT_NUEVO_READY://solo se usa para interrumpir (si llega aca vino por el socket_interrupt)
+            loggear_info(logger, "Interrumpiendo proceso", mutex_logger_cpu);
 
             pthread_mutex_lock(&mutex_interrupcion);
             interrupciones = true; //interrupciones activadas para chequearlas cuando termine de ejecutar una instruccion
@@ -211,7 +211,6 @@ void chequear_interrupciones(uint32_t* cliente_socket){
     pthread_mutex_lock(&mutex_interrupcion);
     printf("chequeando interrupciones\n");
     if(interrupciones){ //si hay interrupciones hay que desalojar un proceso
-        printf("entro al if chequear interrupciones\n");
         pthread_mutex_unlock(&mutex_interrupcion);
 
         pthread_mutex_lock(&mutex_running_cpu);

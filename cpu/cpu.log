@@ -1,0 +1,84 @@
+[INFO] 16:01:04:056 CPU/(6433:6433): Esperando a 127.0.0.1:8001 (KERNEL DISPATCH)
+
+[INFO] 16:01:04:057 CPU/(6433:6433): Esperando a 127.0.0.1:8005 (KERNEL INTERRUPT)
+
+[INFO] 16:01:14:273 CPU/(6433:6433): Cliente conectado (a CPU DISPATCH)
+
+[INFO] 16:01:14:275 CPU/(6433:6433): Cliente conectado (a CPU INTERRUPT)
+
+[INFO] 16:01:37:180 CPU/(6433:6451): Se recibio el pcb para ejecutar
+
+[INFO] 16:01:37:181 CPU/(6433:6451): Antes del switch con la instruccion: NO_OP
+
+[INFO] 16:01:38:186 CPU/(6433:6451): Antes del switch con la instruccion: NO_OP
+
+[INFO] 16:01:38:336 CPU/(6433:6452): Interrumpiendo proceso
+[INFO] 16:01:39:193 CPU/(6433:6451): Se recibio el pcb para ejecutar
+
+[INFO] 16:01:39:194 CPU/(6433:6451): Antes del switch con la instruccion: NO_OP
+
+[INFO] 16:01:39:269 CPU/(6433:6452): Interrumpiendo proceso
+[INFO] 16:01:40:203 CPU/(6433:6451): Se recibio el pcb para ejecutar
+
+[INFO] 16:01:40:204 CPU/(6433:6451): Antes del switch con la instruccion: I/O
+
+[INFO] 16:01:40:205 CPU/(6433:6451): Se recibio el pcb para ejecutar
+
+[INFO] 16:01:40:206 CPU/(6433:6451): Antes del switch con la instruccion: NO_OP
+
+[INFO] 16:01:41:208 CPU/(6433:6451): Antes del switch con la instruccion: NO_OP
+
+[INFO] 16:01:42:211 CPU/(6433:6451): Antes del switch con la instruccion: NO_OP
+
+[INFO] 16:01:43:213 CPU/(6433:6451): Antes del switch con la instruccion: I/O
+
+[INFO] 16:01:43:218 CPU/(6433:6451): Se recibio el pcb para ejecutar
+
+[INFO] 16:01:43:222 CPU/(6433:6451): Antes del switch con la instruccion: NO_OP
+
+[INFO] 16:01:44:227 CPU/(6433:6451): Antes del switch con la instruccion: NO_OP
+
+[INFO] 16:01:45:207 CPU/(6433:6452): Interrumpiendo proceso
+[INFO] 16:01:45:258 CPU/(6433:6451): Se recibio el pcb para ejecutar
+
+[INFO] 16:01:45:263 CPU/(6433:6451): Antes del switch con la instruccion: NO_OP
+
+[INFO] 16:01:46:266 CPU/(6433:6451): Antes del switch con la instruccion: NO_OP
+
+[INFO] 16:01:47:271 CPU/(6433:6451): Antes del switch con la instruccion: NO_OP
+
+[INFO] 16:01:48:275 CPU/(6433:6451): Antes del switch con la instruccion: EXIT
+
+[INFO] 16:01:48:280 CPU/(6433:6451): Se recibio el pcb para ejecutar
+
+[INFO] 16:01:48:285 CPU/(6433:6451): Antes del switch con la instruccion: NO_OP
+
+[INFO] 16:01:49:293 CPU/(6433:6451): Antes del switch con la instruccion: NO_OP
+
+[INFO] 16:01:50:208 CPU/(6433:6452): Interrumpiendo proceso
+[INFO] 16:01:50:297 CPU/(6433:6451): Se recibio el pcb para ejecutar
+
+[INFO] 16:01:50:299 CPU/(6433:6451): Antes del switch con la instruccion: NO_OP
+
+[INFO] 16:01:51:302 CPU/(6433:6451): Antes del switch con la instruccion: NO_OP
+
+[INFO] 16:01:52:307 CPU/(6433:6451): Antes del switch con la instruccion: NO_OP
+
+[INFO] 16:01:53:311 CPU/(6433:6451): Antes del switch con la instruccion: EXIT
+
+[INFO] 16:01:53:315 CPU/(6433:6451): Se recibio el pcb para ejecutar
+
+[INFO] 16:01:53:316 CPU/(6433:6451): Antes del switch con la instruccion: NO_OP
+
+[INFO] 16:01:54:319 CPU/(6433:6451): Antes del switch con la instruccion: NO_OP
+
+[INFO] 16:01:55:322 CPU/(6433:6451): Antes del switch con la instruccion: NO_OP
+
+[INFO] 16:01:56:326 CPU/(6433:6451): Antes del switch con la instruccion: NO_OP
+
+[INFO] 16:01:57:330 CPU/(6433:6451): Antes del switch con la instruccion: NO_OP
+
+[INFO] 16:01:58:333 CPU/(6433:6451): Antes del switch con la instruccion: NO_OP
+
+[INFO] 16:01:59:334 CPU/(6433:6451): Antes del switch con la instruccion: EXIT
+
