@@ -129,12 +129,8 @@ void ciclo_instruccion(uint32_t* cliente_socket, t_log *logger)
     INSTRUCCIONES_EJECUCION instruccion_actual_enum;
     t_instruccion *instruccion_actual;
     float retardo;
-    float segundos;
-    int i;
-    uint32_t cantidad_noops = 0;
     t_argumento *tiempo_bloqueo1; 
     t_argumento *argumentos;
-    uint32_t j;
     pthread_mutex_lock(&mutex_running_cpu); 
     while ((running != NULL) && (running->program_counter < cantidad_instrucciones)) //recorro tomando como punto de partida la instrucción que indique el Program Counter del PCB recibido -> FETCH 
     {
@@ -164,7 +160,7 @@ void ciclo_instruccion(uint32_t* cliente_socket, t_log *logger)
             running->program_counter++; //avanzo el program counter
             send_pcb(*cliente_socket, running, BLOQUEO_IO); //mando el pcb para que lo reciba el kernel y bloquee al pcb
             destruir_pcb(running);
-            running = NULL; 
+            running = NULL; //proceso bloqueado por I/O -> en running no hay nadie 
             pthread_mutex_unlock(&mutex_running_cpu);
             break;
 
@@ -211,7 +207,7 @@ void ciclo_instruccion(uint32_t* cliente_socket, t_log *logger)
     pthread_mutex_unlock(&mutex_running_cpu);
 }
 
-void chequear_interrupciones(uint32_t* cliente_socket){
+void chequear_interrupciones(uint32_t* cliente_socket){ 
     pthread_mutex_lock(&mutex_interrupcion);
     printf("chequeando interrupciones\n");
     if(interrupciones){ //si hay interrupciones hay que desalojar un proceso
@@ -219,7 +215,7 @@ void chequear_interrupciones(uint32_t* cliente_socket){
         pthread_mutex_unlock(&mutex_interrupcion);
 
         pthread_mutex_lock(&mutex_running_cpu);
-        send_pcb(*cliente_socket, running, INTERRUPCION); //desalojo el pcb y mando el pcb para que lo reciba el kernel
+        send_pcb(*cliente_socket, running, INTERRUPCION); //desalojo el pcb y mando el pcb para que lo reciba el kernel 
         pthread_mutex_unlock(&mutex_running_cpu);
 
         destruir_pcb(running);

@@ -35,7 +35,6 @@ static void procesar_conexion(void *void_args)
     uint32_t *cliente_socket = args->fd;
     char *server_name = args->server_name;
     free(args);
-    uint32_t mensaje;
     uint32_t valor_tb;
     uint32_t id_proceso;
 

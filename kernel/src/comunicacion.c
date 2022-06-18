@@ -2,7 +2,7 @@
 
 uint32_t cantidad_procesos_en_memoria = 0; // para verificar el grado de multiprogramacion
 uint32_t contador = 1;                     // variable global para asignar el ID a los procesos que llegan
-uint32_t id_desalojado;
+uint32_t id_desalojado; 
 double estimacion_desalojado=0;
 double real_desalojado=0;
 
@@ -53,13 +53,12 @@ static void procesar_conexion(void *void_args)
 
     op_code cop;
     uint32_t tamanio = 0;
-    uint32_t tiempo_bloqueo;
     t_list *instrucciones = NULL;
     t_pcb *pcb;
 
     while (*cliente_socket != -1) // mientras el cliente no se haya desconectado. (Es el socket de la consola)
     {
-        if (recv(*cliente_socket, &cop, sizeof(op_code), 0) != sizeof(op_code))
+        if (recv(*cliente_socket, &cop, sizeof(op_code), 0) != sizeof(op_code)) 
         {
             loggear_info(logger, "DISCONNECT", mutex_logger_kernel);
             return;
@@ -97,11 +96,11 @@ static void procesar_conexion(void *void_args)
         }
     }
     pthread_mutex_lock(&mutex_logger_kernel);
-    log_warning(logger, "El cliente se desconecto de %s server", server_name);
+    log_warning(logger, "El cliente se desconecto de %s server", server_name); 
     pthread_mutex_unlock(&mutex_logger_kernel);
     return;
 }
-uint32_t server_escuchar(t_log *logger, char *server_name, uint32_t server_socket)
+uint32_t server_escuchar(t_log *logger, char *server_name, uint32_t server_socket) //crea un hilo para atender a cada cliente 
 {
     uint32_t *cliente_socket = esperar_cliente(logger, server_name, server_socket); // cuando se conecta un cliente nos devuelve la "linea" donde estan conectados
     pthread_t thread;                                                               // crea un hilo para procesar la conexion
@@ -143,10 +142,10 @@ t_pcb *crear_pcb(t_list *instrucciones, t_log *logger, uint32_t tamanio, uint32_
 void verificacion_multiprogramacion(t_pcb *pcb)
 {
     op_code cop;
-    queue_push_con_mutex(cola_new, pcb, mutex_cola_new);
-    if (consulta_grado())
+    queue_push_con_mutex(cola_new, pcb, mutex_cola_new); // agrega el pcb a la cola de NEW
+    if (consulta_grado()) //si el grado de multiprogramacion lo permite 
     {
-        t_pcb *tope_cola_new = queue_pop_con_mutex(cola_new, mutex_cola_new);
+        t_pcb *tope_cola_new = queue_pop_con_mutex(cola_new, mutex_cola_new); // saca el pcb del tope de la cola de NEW
 
         pthread_mutex_lock(&mutex_cantidad_procesos);
         cantidad_procesos_en_memoria++; // aumenta el grado de multiprogramacion
@@ -165,11 +164,11 @@ void verificacion_multiprogramacion(t_pcb *pcb)
 
         list_add_con_mutex(cola_ready, tope_cola_new, mutex_cola_ready); // agrega el pcb a la cola de ready
 
-        sem_post(&sem_nuevo_ready);
+        sem_post(&sem_nuevo_ready); // nuevo pcb en ready para que sepa el planificador
 
         if (list_size_con_mutex(cola_ready, mutex_cola_ready) == 1)
-        { // si el pcb recien agregado es el primero (o sea no habia nadie en ready antes), planifico.
-            sem_post(&sem_planificar);
+        { // si el pcb recien agregado es el primero (o sea no habia nadie en ready antes), planifico (tanto en fifo como en sjf)
+            sem_post(&sem_planificar); //habilito al planificador
             return;
         }
         // HAY QUE PLANIFICAR SI SOS SJF
@@ -181,7 +180,7 @@ void verificacion_multiprogramacion(t_pcb *pcb)
     return;
 }
 
-bool consulta_grado()
+bool consulta_grado() 
 {
     pthread_mutex_lock(&mutex_cantidad_procesos);
     printf("Cantidad de procesos en memoria: %d\n", cantidad_procesos_en_memoria);
@@ -194,7 +193,7 @@ bool consulta_grado()
     return false;
 }
 
-void planificar()
+void planificar() 
 {
     ALGORITMO algoritmo = algortimo_de_planificacion(configuracion_kernel->algoritmo_planificacion);
     socket_cpu_dispatch = crear_conexion_cpu_dispatch(configuracion_kernel, logger);   // linea donde estan conectados la cpu (dispatch) y el kernel
@@ -208,7 +207,7 @@ void planificar()
 
             sem_wait(&sem_nuevo_ready);                                                      // espera a que llegue alguien a ready
             sem_wait(&sem_planificar);                                                       // espera que lo habiliten a planificar
-            sem_wait(&sem_running);                                                          // avisa q no hay nadie en running
+            sem_wait(&sem_running);                                                          // espera que no haya nadie en running
             pcb_tope_lista = list_get_and_remove_con_mutex(cola_ready, 0, mutex_cola_ready); // saco proceso de la lista de ready
             pthread_mutex_lock(&mutex_estado_running);
             if (running == NULL) // no hay nadie ejecutando lo pongo a ejecutar
@@ -236,8 +235,8 @@ void planificar()
             sem_wait(&sem_nuevo_ready); // espera a que llegue alguien a ready
             sem_wait(&sem_planificar);  // espera que lo habiliten a planificar
 
-            pthread_mutex_lock(&mutex_estado_running);
-            if (running == NULL)
+            pthread_mutex_lock(&mutex_estado_running); 
+            if (running == NULL) 
             {
                 t_pcb *pcb_elegido = realizar_estimacion(); // si un proceso termina de ejecutar en running no hay nadie pero tenemos que estimar de los procesos que estan en ready quien ejecuta
                 pthread_mutex_unlock(&mutex_estado_running);
@@ -259,15 +258,13 @@ void planificar()
                 pthread_mutex_unlock(&mutex_estado_running);
                 send_interrupcion_por_nuevo_ready(socket_cpu_interrupt); // aviso a la cpu que hay un nuevo proceso en ready para que desaloje al proceso que esta ejecutando
                 sem_post(&sem_recibir);                                  // activo al hilo recibir para que se ponga a la espera de un mensaje de la CPU
-                sem_wait(&sem_desalojo);
+                sem_wait(&sem_desalojo);                                // espera que lo habilite el kernel cuando le llega el pcb del proceso desalojado 
                 t_pcb *pcb_elegido = realizar_estimacion();  
-                
-                      // espera que lo habilite el kernel cuando le llega el pcb del proceso desalojado
                
                 pthread_mutex_lock(&mutex_info_desalojado);                                                            
                 if(pcb_elegido->id == id_desalojado){ // si el que elegi es el mismo que el que estaba antes en running (el que acabo de desalojar)
                     
-                    pcb_elegido->estimacion_rafaga_anterior = estimacion_desalojado;
+                    pcb_elegido->estimacion_rafaga_anterior = estimacion_desalojado; //le modifico la informacion con la que habiamos calculado antes de desalojarlo porque va a a continuar 
                     pcb_elegido->rafaga_real_anterior = real_desalojado;
                 }                                         
                 pthread_mutex_unlock(&mutex_info_desalojado);                 
@@ -276,7 +273,7 @@ void planificar()
 
                 pthread_mutex_lock(&mutex_estado_running);
                 running = pcb_elegido; // modifico el running
-                fecha_inicio = time(NULL);
+                fecha_inicio = time(NULL); //setea la fecha de inicio de ejecucion porque es un proceso nuevo o continua el mismo 
                 pthread_mutex_unlock(&mutex_estado_running);
 
                 printf("MANDE EL PCB A LA CPU, %d \n", pcb_elegido->id);
@@ -304,8 +301,7 @@ void controlador_tiempo_blocked_proceso(t_pcb *pcb)
         pthread_mutex_lock(&mutex_cantidad_procesos);
         cantidad_procesos_en_memoria--;
         pthread_mutex_unlock(&mutex_cantidad_procesos);
-        sem_post(&sem_queue_suspended);
-        // revisar_entrada_a_ready(); // reviso si hay alguien que pueda pasar a ready
+        sem_post(&sem_queue_suspended); //habilito al hilo de largo plazo que revise si hay alguien que pueda pasar a ready porque baje el grado de multiprogramacion
     }
     pthread_exit(NULL);
 }
@@ -316,8 +312,7 @@ void recibir()
     op_code cop2;
     t_pcb *pcb;
     t_pcb *pcbExit;
-    uint32_t tiempo;
-    float alfa = atof(configuracion_kernel->alfa);
+    float alfa = atof(configuracion_kernel->alfa); 
 
     while (true)
     {
@@ -334,26 +329,28 @@ void recibir()
             recv_pcb(socket_cpu_dispatch, &pcb); // recibe el PCB del proceso que se bloquea
 
             pthread_mutex_lock(&mutex_estado_running);
-            running = NULL;           // modifico el running de
-            fecha_final = time(NULL); // cuando sale de running, guardo la hora actual
+            running = NULL;           // modifico el running del kernel porque bloqueo al proceso
+            fecha_final = time(NULL); // cuando sale de running, guardo la hora actual (me importa para el sjf)
             pthread_mutex_unlock(&mutex_estado_running);
-            sem_post(&sem_running);
+            sem_post(&sem_running); // habilito el semaforo de running porque no hay ningun proceso corriendo
 
-            pthread_mutex_lock(&mutex_info_desalojado);
-            if(pcb->id == id_desalojado){
-                pcb->rafaga_real_anterior = difftime(fecha_final, fecha_inicio) * 1000 + pcb->rafaga_real_anterior;
+            //cuando el proceso se bloquea tenemos que calcular la estimacion para dsp cuando vaya a ready podamos elegir quien tiene la menor 
+            pthread_mutex_lock(&mutex_info_desalojado); 
+            if(pcb->id == id_desalojado){   //si el proceso que se bloquea es el que habiamos desalojado, la rafaga anterior va a ser lo que ya habia ejecutado antes de desalojarse ()
+                pcb->rafaga_real_anterior = difftime(fecha_final, fecha_inicio) * 1000 + pcb->rafaga_real_anterior; // 
             }
             else{
-                pcb->rafaga_real_anterior = difftime(fecha_final, fecha_inicio) * 1000;
+                pcb->rafaga_real_anterior = difftime(fecha_final, fecha_inicio) * 1000;  
             }
             pthread_mutex_unlock(&mutex_info_desalojado);
             
              // diferencia entre fecha final e inicial en milisegundos, nos dice cuanto ejecuto el proceso verdaderamente en milisegundos
+             
             pcb->estimacion_rafaga_anterior = alfa * (pcb->rafaga_real_anterior) + (1 - alfa) * (pcb->estimacion_rafaga_anterior);
             queue_push_con_mutex(cola_blocked, pcb, mutex_cola_blocked); // encolamos a los procesos que se van bloqueando
 
             // creo hilo para controlar el tiempo maximo que puede pasar un proceso en la cola de blocked
-            pthread_t controlador_tiempo_blocked;
+            pthread_t controlador_tiempo_blocked; 
             
             pthread_create(&controlador_tiempo_blocked, NULL, (void *)controlador_tiempo_blocked_proceso, (void *)pcb);
             pthread_detach(controlador_tiempo_blocked);
@@ -389,15 +386,14 @@ void recibir()
             pthread_mutex_lock(&mutex_cantidad_procesos);
             cantidad_procesos_en_memoria--; // baja el nivel de multiprogramacion
             pthread_mutex_unlock(&mutex_cantidad_procesos);
-            sem_post(&sem_queue_suspended);
-            // revisar_entrada_a_ready();
-            send(*(pcbExit->cliente_socket), &cop2, sizeof(op_code), 0) != sizeof(op_code); // como se libero espacio dentro del grado de multiprogramacion, revisa si hay algun proceso en new para meterlo en ready
+            sem_post(&sem_queue_suspended); // habilito al hilo de largo plazo que revise si hay alguien que pueda pasar a ready porque baje el grado de multiprogramacion
+            send(*(pcbExit->cliente_socket), &cop2, sizeof(op_code), 0) != sizeof(op_code); 
             free(pcbExit->cliente_socket);
             destruir_pcb(pcbExit);
             break;
 
         case INTERRUPCION:                       // desaloje a un proceso
-            recv_pcb(socket_cpu_dispatch, &pcb); // recibe el PCB del proceso que se bloquea
+            recv_pcb(socket_cpu_dispatch, &pcb); // recibe el PCB del proceso que se desalojo
 
             pthread_mutex_lock(&mutex_estado_running);
             running = NULL;
@@ -406,12 +402,12 @@ void recibir()
 
             pthread_mutex_lock(&mutex_info_desalojado);
             id_desalojado = pcb->id;
-            estimacion_desalojado = pcb->estimacion_rafaga_anterior;
-            real_desalojado = pcb->rafaga_real_anterior;
+            estimacion_desalojado = pcb->estimacion_rafaga_anterior; 
+            real_desalojado = pcb->rafaga_real_anterior; 
             pthread_mutex_unlock(&mutex_info_desalojado);
 
             pcb->rafaga_real_anterior = difftime(fecha_final, fecha_inicio) * 1000; // diferencia entre fecha final e inicial en milisegundos, nos dice cuanto ejecuto el proceso verdaderamente en milisegundos
-            pcb->estimacion_rafaga_anterior = pcb->estimacion_rafaga_anterior - pcb->rafaga_real_anterior; // hago la estimacion antes de meterlo en ready
+            pcb->estimacion_rafaga_anterior = pcb->estimacion_rafaga_anterior - pcb->rafaga_real_anterior; // hago la estimacion antes de meterlo en ready (de lo que le falta ejecutar)
             
             list_add_con_mutex(cola_ready, pcb, mutex_cola_ready); // mete en ready al proceso desalojado
             
@@ -422,12 +418,12 @@ void recibir()
     }
 }
 
-void revisar_entrada_a_ready() // reviso si hay algun proceso en new o en suspended ready para meterlo en ready
+void revisar_entrada_a_ready() // reviso si hay algun proceso en new o en suspended ready para meterlo en ready, lo hace el hilo de largo plazo
 {
     while (true)
     {
-        sem_wait(&sem_queue_suspended);
-        if (consulta_grado() && (!queue_vacia_con_mutex(cola_new, mutex_cola_new) || !queue_vacia_con_mutex(cola_ready_suspendido, mutex_cola_ready_suspendido))) // chequeo si hay algun proceso en new o en suspended ready
+        sem_wait(&sem_queue_suspended); //espera que se haya bajado el grado de multiprogramacion (porque suspendi un proceso o porque alguno termino)
+        if (consulta_grado() && (!queue_vacia_con_mutex(cola_new, mutex_cola_new) || !queue_vacia_con_mutex(cola_ready_suspendido, mutex_cola_ready_suspendido))) // chequeo si hay algun proceso en new o en suspended ready y que el grado de multiprogramacion me lo permita 
         {
 
             if (!queue_vacia_con_mutex(cola_ready_suspendido, mutex_cola_ready_suspendido)) // si hay alguien en ready suspendido -> lo priorizo y lo pongo en ready primero
@@ -450,7 +446,7 @@ void revisar_entrada_a_ready() // reviso si hay algun proceso en new o en suspen
             sem_post(&sem_nuevo_ready); // avisa que llego alguien a ready
             if (strcmp(configuracion_kernel->algoritmo_planificacion, "SRT") == 0)
             {
-                sem_post(&sem_planificar); // aviso que hay un nuevo pcb en la cola de ready
+                sem_post(&sem_planificar); //si es SJF, como llego un proceso a ready tiene que planificar 
             }
             loggear_info(logger, "Nuevo proceso en cola ready", mutex_logger_kernel);
         }
@@ -478,17 +474,17 @@ void bloquear()
     {
         sem_wait(&sem_nuevo_bloqued); // espero a que haya alguien en la cola de blocked
 
-        pcb = queue_peek_con_mutex(cola_blocked, mutex_cola_blocked); // agarra el pcb del proceso que se bloquea pero no lo saca de la cola block para poder suspenderlo
+        pcb = queue_peek_con_mutex(cola_blocked, mutex_cola_blocked); // agarra el pcb del proceso que se bloquea pero no lo saca de la cola block para poder suspenderlo si tuviera que hacerlo
         tiempo = pcb->tiempo_bloqueo;
         usleep(tiempo * 1000);                                 // bloquea al proceso
         queue_pop_con_mutex(cola_blocked, mutex_cola_blocked); // cuando termina el tiempo de bloqueo, saca el pcb de la cola de blocked
 
-        if (pcb->blocked_suspendido)
+        if (pcb->blocked_suspendido)  //si el proceso estaba suspendido y se "desperto", lo pongo en ready suspendido 
         {
             queue_push_con_mutex(cola_ready_suspendido, pcb, mutex_cola_ready_suspendido);
-            sem_post(&sem_queue_suspended); // habilito el semaforo del hilo para chequear si de los procesos en new y ready suspended hay alguien para meterlo en ready
+            sem_post(&sem_queue_suspended); // habilito el semaforo del hilo de largo plazo para chequear si de los procesos en new y ready suspended hay alguien para meterlo en ready
         }
-        else
+        else //si no esta suspendido 
         {
             list_add_con_mutex(cola_ready, pcb, mutex_cola_ready); // cuando se despierta lo pone en ready
 
@@ -513,7 +509,8 @@ t_pcb *realizar_estimacion()
         t_pcb *pcb = (t_pcb *)data;
         return criterio_id_lista(pcb_elegido, pcb);
     }
-    list_remove_by_condition(cola_ready, closure); // lo saco de la cola de ready
+    
+    list_remove_by_condition(cola_ready, closure); // recorre la lista de ready y cuando lo encuentra lo saca 
     pthread_mutex_unlock(&mutex_cola_ready);
     return pcb_elegido;
 }
