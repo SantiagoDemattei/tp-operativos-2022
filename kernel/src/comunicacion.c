@@ -2,6 +2,9 @@
 
 uint32_t cantidad_procesos_en_memoria = 0; // para verificar el grado de multiprogramacion
 uint32_t contador = 1;                     // variable global para asignar el ID a los procesos que llegan
+uint32_t id_desalojado;
+double estimacion_desalojado=0;
+double real_desalojado=0;
 
 uint32_t crear_comunicacion(t_configuracion_kernel *configuracion_kernel, t_log *logger) // inicio el servidor
 {
@@ -240,7 +243,6 @@ void planificar()
                 pthread_mutex_unlock(&mutex_estado_running);
 
                 pthread_mutex_lock(&mutex_estado_running);
-                printf("running es null \n");
                 running = pcb_elegido;     // modifico el running
                 fecha_inicio = time(NULL); // guarda la hora actual de inicio de ejecucion
                 pthread_mutex_unlock(&mutex_estado_running);
@@ -258,8 +260,18 @@ void planificar()
                 send_interrupcion_por_nuevo_ready(socket_cpu_interrupt); // aviso a la cpu que hay un nuevo proceso en ready para que desaloje al proceso que esta ejecutando
                 sem_post(&sem_recibir);                                  // activo al hilo recibir para que se ponga a la espera de un mensaje de la CPU
                 sem_wait(&sem_desalojo);
-                printf("running tiene algo \n");                        // espera que lo habilite el kernel cuando le llega el pcb del proceso desalojado
-                t_pcb *pcb_elegido = realizar_estimacion();             // de los procesos que estan en ready vemos quien ejecuta segun la estimacion
+                t_pcb *pcb_elegido = realizar_estimacion();  
+                
+                      // espera que lo habilite el kernel cuando le llega el pcb del proceso desalojado
+               
+                pthread_mutex_lock(&mutex_info_desalojado);                                                            
+                if(pcb_elegido->id == id_desalojado){ // si el que elegi es el mismo que el que estaba antes en running (el que acabo de desalojar)
+                    
+                    pcb_elegido->estimacion_rafaga_anterior = estimacion_desalojado;
+                    pcb_elegido->rafaga_real_anterior = real_desalojado;
+                }                                         
+                pthread_mutex_unlock(&mutex_info_desalojado);                 
+                
                 send_pcb(socket_cpu_dispatch, pcb_elegido, ENVIAR_PCB); // mando el pcb a la CPU a traves del socket dispatch para que lo ejecute
 
                 pthread_mutex_lock(&mutex_estado_running);
@@ -281,15 +293,14 @@ void planificar()
 
 void controlador_tiempo_blocked_proceso(t_pcb *pcb)
 {
-    printf("me voy a dormir:  %d\n", pcb->id);
+    
     usleep((atoi(configuracion_kernel->tiempo_maximo_bloqueado)) * 1000); // espero el tiempo maximo de bloqueado definido en el archivo de config
-    printf("ya me desperte: %d\n", pcb->id);
+    
     // si el proceso sigue en la cola de bloqueados, pongo pcb->suspendido=true;
     if (queue_find_con_mutex(cola_blocked, pcb, mutex_cola_blocked) != NULL) // si el proceso sigue en la cola de bloqueados, lo suspedno porque supero el tiempo maximo que podia estar bloqueado
     {
         printf("voy a suspender el proceso: %d\n", pcb->id);
         comunicacion_suspension_memoria(pcb); // cuando suspendo al proceso aviso a la memoria
-        printf("proceso %d suspendido por tiempo maximo de bloqueado\n", pcb->id);
         pthread_mutex_lock(&mutex_cantidad_procesos);
         cantidad_procesos_en_memoria--;
         pthread_mutex_unlock(&mutex_cantidad_procesos);
@@ -306,6 +317,8 @@ void recibir()
     t_pcb *pcb;
     t_pcb *pcbExit;
     uint32_t tiempo;
+    float alfa = atof(configuracion_kernel->alfa);
+
     while (true)
     {
         sem_wait(&sem_recibir);                                                     // espera que lo habiliten -> cuando el kernel le manda a la cpu el PCB para que lo ponga a ejecutar
@@ -326,16 +339,25 @@ void recibir()
             pthread_mutex_unlock(&mutex_estado_running);
             sem_post(&sem_running);
 
-            pcb->rafaga_real_anterior = difftime(fecha_final, fecha_inicio) * 1000; // diferencia entre fecha final e inicial en milisegundos, nos dice cuanto ejecuto el proceso verdaderamente en milisegundos
-            printf("el proceso ejecuto %lf milisegundos\n", pcb->rafaga_real_anterior);
+            pthread_mutex_lock(&mutex_info_desalojado);
+            if(pcb->id == id_desalojado){
+                pcb->rafaga_real_anterior = difftime(fecha_final, fecha_inicio) * 1000 + pcb->rafaga_real_anterior;
+            }
+            else{
+                pcb->rafaga_real_anterior = difftime(fecha_final, fecha_inicio) * 1000;
+            }
+            pthread_mutex_unlock(&mutex_info_desalojado);
+            
+             // diferencia entre fecha final e inicial en milisegundos, nos dice cuanto ejecuto el proceso verdaderamente en milisegundos
+            pcb->estimacion_rafaga_anterior = alfa * (pcb->rafaga_real_anterior) + (1 - alfa) * (pcb->estimacion_rafaga_anterior);
             queue_push_con_mutex(cola_blocked, pcb, mutex_cola_blocked); // encolamos a los procesos que se van bloqueando
 
             // creo hilo para controlar el tiempo maximo que puede pasar un proceso en la cola de blocked
             pthread_t controlador_tiempo_blocked;
-            printf("voy a contar el tiempo maximo en un hilo\n");
+            
             pthread_create(&controlador_tiempo_blocked, NULL, (void *)controlador_tiempo_blocked_proceso, (void *)pcb);
             pthread_detach(controlador_tiempo_blocked);
-            printf("termine de contar el tiempo maximo en un hilo\n");
+            
 
             loggear_info(logger, "Nuevo proceso en cola blocked", mutex_logger_kernel);
 
@@ -382,10 +404,17 @@ void recibir()
             fecha_final = time(NULL); // cuando sale de running, guardo la hora actual
             pthread_mutex_unlock(&mutex_estado_running);
 
-            pcb->rafaga_real_anterior = difftime(fecha_final, fecha_inicio) * 1000; // diferencia entre fecha final e inicial en milisegundos, nos dice cuanto ejecuto el proceso verdaderamente en milisegundos
-            printf("el proceso ejecuto %lf milisegundos\n", pcb->rafaga_real_anterior);
-            list_add_con_mutex(cola_ready, pcb, mutex_cola_ready); // mete en ready al proceso desalojado
+            pthread_mutex_lock(&mutex_info_desalojado);
+            id_desalojado = pcb->id;
+            estimacion_desalojado = pcb->estimacion_rafaga_anterior;
+            real_desalojado = pcb->rafaga_real_anterior;
+            pthread_mutex_unlock(&mutex_info_desalojado);
 
+            pcb->rafaga_real_anterior = difftime(fecha_final, fecha_inicio) * 1000; // diferencia entre fecha final e inicial en milisegundos, nos dice cuanto ejecuto el proceso verdaderamente en milisegundos
+            pcb->estimacion_rafaga_anterior = pcb->estimacion_rafaga_anterior - pcb->rafaga_real_anterior; // hago la estimacion antes de meterlo en ready
+            
+            list_add_con_mutex(cola_ready, pcb, mutex_cola_ready); // mete en ready al proceso desalojado
+            
             sem_post(&sem_nuevo_ready); // aviso que hay un nuevo pcb en la cola de ready
             sem_post(&sem_desalojo);    // aviso que llego el proceso desalojado y hay q planificar
             break;
@@ -398,7 +427,6 @@ void revisar_entrada_a_ready() // reviso si hay algun proceso en new o en suspen
     while (true)
     {
         sem_wait(&sem_queue_suspended);
-        printf("voy a revisar si hay algun proceso en new o en suspended ready para meterlo en ready\n");
         if (consulta_grado() && (!queue_vacia_con_mutex(cola_new, mutex_cola_new) || !queue_vacia_con_mutex(cola_ready_suspendido, mutex_cola_ready_suspendido))) // chequeo si hay algun proceso en new o en suspended ready
         {
 
@@ -457,7 +485,6 @@ void bloquear()
 
         if (pcb->blocked_suspendido)
         {
-            printf("voy a meter %d de blocked suspended a ready suspended \n", pcb->id);
             queue_push_con_mutex(cola_ready_suspendido, pcb, mutex_cola_ready_suspendido);
             sem_post(&sem_queue_suspended); // habilito el semaforo del hilo para chequear si de los procesos en new y ready suspended hay alguien para meterlo en ready
         }
@@ -477,24 +504,10 @@ void bloquear()
 t_pcb *realizar_estimacion()
 { // devuelve el pcb que se va a ejecutar
     t_pcb *pcb_elegido;
-    float alfa = atof(configuracion_kernel->alfa); // de char a float
     // recorrer lista de pcbs en ready y buscar el que tiene el valor de rafaga mas bajo
     pthread_mutex_lock(&mutex_cola_ready);
-    for (int i = 0; i < list_size(cola_ready); i++)
-    {
-        t_pcb *aux = list_get(cola_ready, i);
-        if (aux->rafaga_real_anterior == 0)
-        {
-            aux->estimacion_rafaga_anterior = aux->estimacion_rafaga_anterior;
-        }
-        else
-        {
-            // estimacion rafaga siguiente = alfa * (duracion rafaga anterior real) + (1-alfa) * (estimacion de la rafaga anterior)
-            aux->estimacion_rafaga_anterior = alfa * (aux->rafaga_real_anterior) + (1 - alfa) * (aux->estimacion_rafaga_anterior); // en estimacion de la rafafa anterior guardamos la ultima estimacion
-        }
-        printf("el pcb %d tiene estimacion de rafaga: %lf\n", aux->id, aux->estimacion_rafaga_anterior);
-    }
     pcb_elegido = list_get_minimum(cola_ready, (void *)comparar_estimaciones); // busco y devuelve el pcb con la estimacion mas baja
+    
     bool(closure)(void *data)
     {
         t_pcb *pcb = (t_pcb *)data;
@@ -506,7 +519,7 @@ t_pcb *realizar_estimacion()
 }
 
 void *comparar_estimaciones(t_pcb *pcb1, t_pcb *pcb2)
-{
+{   
     return pcb1->estimacion_rafaga_anterior <= pcb2->estimacion_rafaga_anterior ? pcb1 : pcb2;
 }
 
@@ -529,7 +542,6 @@ void comunicacion_suspension_memoria(t_pcb *pcb)
     }
 
     loggear_info(logger, "Confirmacion de suspension recibida", mutex_logger_kernel);
-    printf("proceso %d suspendido\n", pcb->id);
     pcb->blocked_suspendido = true;   // suspendo al proceso
     liberar_conexion(socket_memoria); // cierro la conexion con la memoria
 }

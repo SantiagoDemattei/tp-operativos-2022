@@ -24,6 +24,7 @@ pthread_mutex_t mutex_cola_blocked;
 pthread_mutex_t mutex_cola_exit;
 pthread_mutex_t mutex_cola_ready_suspendido;
 pthread_mutex_t mutex_variable_contador;
+pthread_mutex_t mutex_info_desalojado;
 sem_t sem_planificar;
 sem_t sem_nuevo_ready;
 sem_t sem_nuevo_bloqued;
