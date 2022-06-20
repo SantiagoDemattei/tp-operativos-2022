@@ -131,6 +131,9 @@ void ciclo_instruccion(uint32_t* cliente_socket, t_log *logger)
     float retardo;
     t_argumento *tiempo_bloqueo1; 
     t_argumento *argumentos;
+    t_argumento* direccion_logica;
+    uint32_t numero_pagina;
+    t_argumento* valor;
     pthread_mutex_lock(&mutex_running_cpu); 
     while ((running != NULL) && (running->program_counter < cantidad_instrucciones)) //recorro tomando como punto de partida la instrucción que indique el Program Counter del PCB recibido -> FETCH 
     {
@@ -154,7 +157,7 @@ void ciclo_instruccion(uint32_t* cliente_socket, t_log *logger)
             break;
 
         case I_O: //DECODE + EXECUTE
-            tiempo_bloqueo1 = list_get(instruccion_actual->argumentos, 0);
+            tiempo_bloqueo1 = list_get(argumentos, 0);
             pthread_mutex_lock(&mutex_running_cpu);
             running->tiempo_bloqueo = tiempo_bloqueo1->argumento; //en el pcb me guardo el tiempo de bloqueo
             running->program_counter++; //avanzo el program counter
@@ -166,11 +169,18 @@ void ciclo_instruccion(uint32_t* cliente_socket, t_log *logger)
 
         case READ:
             pthread_mutex_lock(&mutex_running_cpu);
+            
             running->program_counter++;
             pthread_mutex_unlock(&mutex_running_cpu);
             break;
 
         case WRITE:
+            direccion_logica = list_get(argumentos, 0);
+            numero_pagina = (uint32_t) floor((direccion_logica->argumento) / tamanio_pagina); //calculo el numero de pagina donde voy a escribir el dato
+            socket_memoria = crear_conexion_memoria(configuracion_cpu, logger); //creo la conexion con la memoria 
+            valor = list_get(argumentos,1);
+            send_valor_y_num_pagina(socket_memoria, numero_pagina, valor->argumento); //envio el numero de pagina y el valor que quiero escribir a la memoria
+
             pthread_mutex_lock(&mutex_running_cpu);
             running->program_counter++;
             pthread_mutex_unlock(&mutex_running_cpu);

@@ -20,7 +20,9 @@ typedef enum
     LIBERAR_ESTRUCTURAS,
     INTERRUPCION,
     SUSPENSION,
-    CONFIRMACION_SUSPENSION
+    CONFIRMACION_SUSPENSION,
+    WRITE_MEMORIA,
+    ORDEN_ENVIO_TAMANIO
 
 } op_code;
 
@@ -66,7 +68,7 @@ typedef struct t_configuracion_kernel
 
 typedef struct t_configuracion_cpu
 {
-    int entradas_tlb;
+    uint32_t entradas_tlb;
     char *reemplazo_tlb;
     float retardo_noop;
     char *ip_memoria;
@@ -80,13 +82,13 @@ typedef struct t_configuracion_memoria
 {
     char *ip_memoria;
     char *puerto_escucha;
-    int tam_memoria;
-    int tam_pagina;
-    int entradas_por_tabla;
-    int retardo_memoria;
+    uint32_t tam_memoria;
+    uint32_t tam_pagina;
+    uint32_t entradas_por_tabla;
+    uint32_t retardo_memoria;
     char *algoritmo_reemplazo;
-    int marcos_por_proceso;
-    int retardo_swap;
+    uint32_t marcos_por_proceso;
+    uint32_t retardo_swap;
     char *path_swap;
 } t_configuracion_memoria;
 
@@ -103,7 +105,6 @@ typedef struct t_pcb
     double estimacion_rafaga_anterior;
     bool blocked_suspendido; 
 } t_pcb;
-
 
 
 #endif

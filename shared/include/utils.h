@@ -29,4 +29,5 @@ t_pcb* queue_find_con_mutex(t_queue* queue, t_pcb* pcb_buscado, pthread_mutex_t 
 bool criterio_id(t_pcb* pcb, t_pcb* pcb_buscado);
 void* queue_find(t_queue *self, bool(*condition)(void*));
 
+
 #endif

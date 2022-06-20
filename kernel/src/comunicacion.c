@@ -43,8 +43,6 @@ uint32_t crear_conexion_memoria(t_configuracion_kernel *datos_conexion, t_log *l
 
 static void procesar_conexion(void *void_args)
 {
-
-    // tener solo un hilo por todas las conexiones, solo uno escucha al cliente. es un gran productor consumidor
     t_procesar_conexion_args *args = (t_procesar_conexion_args *)void_args; // recibo a mi cliente y sus datos
     t_log *logger = args->log;
     uint32_t *cliente_socket = args->fd;
@@ -158,8 +156,8 @@ void verificacion_multiprogramacion(t_pcb *pcb)
             loggear_error(logger, "Error al recibir el op_code INICIALIZAR_ESTRUCTURAS de la memoria", mutex_logger_kernel);
             return;
         }
-        recv_valor_tb(socket_memoria, &tope_cola_new->tabla_pagina); // recibe el valor de la tp y lo guarda en el pcb
-
+        recv_valor_tb(socket_memoria, &tope_cola_new->tabla_pagina); // recibe el id de la tabla de paginas y lo guarda en el pcb
+        printf("el id de la tabla de pagina de %d es %d\n", tope_cola_new->id, tope_cola_new->tabla_pagina);
         liberar_conexion(socket_memoria);
 
         list_add_con_mutex(cola_ready, tope_cola_new, mutex_cola_ready); // agrega el pcb a la cola de ready

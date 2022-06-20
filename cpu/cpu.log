@@ -1,84 +1,303 @@
-[INFO] 16:01:04:056 CPU/(6433:6433): Esperando a 127.0.0.1:8001 (KERNEL DISPATCH)
+[INFO] 19:43:34:271 CPU/(21178:21178): Esperando a 127.0.0.1:8001 (KERNEL DISPATCH)
 
-[INFO] 16:01:04:057 CPU/(6433:6433): Esperando a 127.0.0.1:8005 (KERNEL INTERRUPT)
+[INFO] 19:43:34:274 CPU/(21178:21178): Esperando a 127.0.0.1:8005 (KERNEL INTERRUPT)
 
-[INFO] 16:01:14:273 CPU/(6433:6433): Cliente conectado (a CPU DISPATCH)
+[INFO] 19:43:34:281 CPU/(21178:21178): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 16:01:14:275 CPU/(6433:6433): Cliente conectado (a CPU INTERRUPT)
+[INFO] 19:45:06:308 CPU/(21311:21311): Esperando a 127.0.0.1:8001 (KERNEL DISPATCH)
 
-[INFO] 16:01:37:180 CPU/(6433:6451): Se recibio el pcb para ejecutar
+[INFO] 19:45:06:310 CPU/(21311:21311): Esperando a 127.0.0.1:8005 (KERNEL INTERRUPT)
 
-[INFO] 16:01:37:181 CPU/(6433:6451): Antes del switch con la instruccion: NO_OP
+[INFO] 19:45:06:313 CPU/(21311:21311): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 16:01:38:186 CPU/(6433:6451): Antes del switch con la instruccion: NO_OP
+[INFO] 19:45:38:307 CPU/(21311:21311): Cliente conectado (a CPU DISPATCH)
 
-[INFO] 16:01:38:336 CPU/(6433:6452): Interrumpiendo proceso
-[INFO] 16:01:39:193 CPU/(6433:6451): Se recibio el pcb para ejecutar
+[INFO] 19:45:38:309 CPU/(21311:21311): Cliente conectado (a CPU INTERRUPT)
 
-[INFO] 16:01:39:194 CPU/(6433:6451): Antes del switch con la instruccion: NO_OP
+[INFO] 19:46:53:620 CPU/(21311:21378): Se recibio el pcb para ejecutar
 
-[INFO] 16:01:39:269 CPU/(6433:6452): Interrumpiendo proceso
-[INFO] 16:01:40:203 CPU/(6433:6451): Se recibio el pcb para ejecutar
+[INFO] 19:46:53:669 CPU/(21311:21378): Antes del switch con la instruccion: NO_OP
 
-[INFO] 16:01:40:204 CPU/(6433:6451): Antes del switch con la instruccion: I/O
+[INFO] 19:46:54:673 CPU/(21311:21378): Antes del switch con la instruccion: NO_OP
 
-[INFO] 16:01:40:205 CPU/(6433:6451): Se recibio el pcb para ejecutar
+[INFO] 19:46:55:675 CPU/(21311:21378): Antes del switch con la instruccion: NO_OP
 
-[INFO] 16:01:40:206 CPU/(6433:6451): Antes del switch con la instruccion: NO_OP
+[INFO] 19:46:56:677 CPU/(21311:21378): Antes del switch con la instruccion: I/O
 
-[INFO] 16:01:41:208 CPU/(6433:6451): Antes del switch con la instruccion: NO_OP
+[INFO] 19:47:01:683 CPU/(21311:21378): Se recibio el pcb para ejecutar
 
-[INFO] 16:01:42:211 CPU/(6433:6451): Antes del switch con la instruccion: NO_OP
+[INFO] 19:47:01:684 CPU/(21311:21378): Antes del switch con la instruccion: NO_OP
 
-[INFO] 16:01:43:213 CPU/(6433:6451): Antes del switch con la instruccion: I/O
+[INFO] 19:47:02:686 CPU/(21311:21378): Antes del switch con la instruccion: NO_OP
 
-[INFO] 16:01:43:218 CPU/(6433:6451): Se recibio el pcb para ejecutar
+[INFO] 19:47:03:688 CPU/(21311:21378): Antes del switch con la instruccion: NO_OP
 
-[INFO] 16:01:43:222 CPU/(6433:6451): Antes del switch con la instruccion: NO_OP
+[INFO] 19:47:04:690 CPU/(21311:21378): Antes del switch con la instruccion: WRITE
 
-[INFO] 16:01:44:227 CPU/(6433:6451): Antes del switch con la instruccion: NO_OP
+[INFO] 19:47:04:693 CPU/(21311:21378): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 16:01:45:207 CPU/(6433:6452): Interrumpiendo proceso
-[INFO] 16:01:45:258 CPU/(6433:6451): Se recibio el pcb para ejecutar
+[INFO] 19:47:04:694 CPU/(21311:21378): Antes del switch con la instruccion: EXIT
 
-[INFO] 16:01:45:263 CPU/(6433:6451): Antes del switch con la instruccion: NO_OP
+[INFO] 19:52:49:210 CPU/(21920:21920): Esperando a 127.0.0.1:8001 (KERNEL DISPATCH)
 
-[INFO] 16:01:46:266 CPU/(6433:6451): Antes del switch con la instruccion: NO_OP
+[INFO] 19:52:49:234 CPU/(21920:21920): Esperando a 127.0.0.1:8005 (KERNEL INTERRUPT)
 
-[INFO] 16:01:47:271 CPU/(6433:6451): Antes del switch con la instruccion: NO_OP
+[ERROR] 19:52:49:238 CPU/(21920:21920): Error al conectar (a MEMORIA)
 
-[INFO] 16:01:48:275 CPU/(6433:6451): Antes del switch con la instruccion: EXIT
+[INFO] 19:52:49:239 CPU/(21920:21920): ERROR DE CONEXION
+[INFO] 19:53:05:646 CPU/(21958:21958): Esperando a 127.0.0.1:8001 (KERNEL DISPATCH)
 
-[INFO] 16:01:48:280 CPU/(6433:6451): Se recibio el pcb para ejecutar
+[INFO] 19:53:05:647 CPU/(21958:21958): Esperando a 127.0.0.1:8005 (KERNEL INTERRUPT)
 
-[INFO] 16:01:48:285 CPU/(6433:6451): Antes del switch con la instruccion: NO_OP
+[INFO] 19:53:05:650 CPU/(21958:21958): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 16:01:49:293 CPU/(6433:6451): Antes del switch con la instruccion: NO_OP
+[INFO] 19:53:08:370 CPU/(21958:21958): Cliente conectado (a CPU DISPATCH)
 
-[INFO] 16:01:50:208 CPU/(6433:6452): Interrumpiendo proceso
-[INFO] 16:01:50:297 CPU/(6433:6451): Se recibio el pcb para ejecutar
+[INFO] 19:53:08:374 CPU/(21958:21958): Cliente conectado (a CPU INTERRUPT)
 
-[INFO] 16:01:50:299 CPU/(6433:6451): Antes del switch con la instruccion: NO_OP
+[INFO] 19:53:19:872 CPU/(21958:21968): Se recibio el pcb para ejecutar
 
-[INFO] 16:01:51:302 CPU/(6433:6451): Antes del switch con la instruccion: NO_OP
+[INFO] 19:53:19:874 CPU/(21958:21968): Antes del switch con la instruccion: NO_OP
 
-[INFO] 16:01:52:307 CPU/(6433:6451): Antes del switch con la instruccion: NO_OP
+[INFO] 19:53:20:876 CPU/(21958:21968): Antes del switch con la instruccion: NO_OP
 
-[INFO] 16:01:53:311 CPU/(6433:6451): Antes del switch con la instruccion: EXIT
+[INFO] 19:53:21:878 CPU/(21958:21968): Antes del switch con la instruccion: NO_OP
 
-[INFO] 16:01:53:315 CPU/(6433:6451): Se recibio el pcb para ejecutar
+[INFO] 19:53:22:880 CPU/(21958:21968): Antes del switch con la instruccion: I/O
 
-[INFO] 16:01:53:316 CPU/(6433:6451): Antes del switch con la instruccion: NO_OP
+[INFO] 19:53:27:883 CPU/(21958:21968): Se recibio el pcb para ejecutar
 
-[INFO] 16:01:54:319 CPU/(6433:6451): Antes del switch con la instruccion: NO_OP
+[INFO] 19:53:27:884 CPU/(21958:21968): Antes del switch con la instruccion: NO_OP
 
-[INFO] 16:01:55:322 CPU/(6433:6451): Antes del switch con la instruccion: NO_OP
+[INFO] 19:53:28:886 CPU/(21958:21968): Antes del switch con la instruccion: NO_OP
 
-[INFO] 16:01:56:326 CPU/(6433:6451): Antes del switch con la instruccion: NO_OP
+[INFO] 19:53:29:889 CPU/(21958:21968): Antes del switch con la instruccion: NO_OP
 
-[INFO] 16:01:57:330 CPU/(6433:6451): Antes del switch con la instruccion: NO_OP
+[INFO] 19:53:30:891 CPU/(21958:21968): Antes del switch con la instruccion: WRITE
 
-[INFO] 16:01:58:333 CPU/(6433:6451): Antes del switch con la instruccion: NO_OP
+[INFO] 19:53:30:893 CPU/(21958:21968): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 16:01:59:334 CPU/(6433:6451): Antes del switch con la instruccion: EXIT
+[INFO] 19:53:30:894 CPU/(21958:21968): Antes del switch con la instruccion: EXIT
+
+[INFO] 19:57:41:919 CPU/(22243:22243): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 19:57:41:920 CPU/(22243:22243): Cliente conectado (a CPU DISPATCH)
+
+[INFO] 19:58:07:681 CPU/(22264:22264): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 19:58:07:683 CPU/(22264:22264): Cliente conectado (a CPU DISPATCH)
+
+[INFO] 19:58:19:472 CPU/(22275:22275): Esperando a 127.0.0.1:8001 (KERNEL DISPATCH)
+
+[INFO] 19:58:19:473 CPU/(22275:22275): Esperando a 127.0.0.1:8005 (KERNEL INTERRUPT)
+
+[INFO] 19:58:19:475 CPU/(22275:22275): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 19:58:23:184 CPU/(22275:22275): Cliente conectado (a CPU DISPATCH)
+
+[INFO] 19:58:23:186 CPU/(22275:22275): Cliente conectado (a CPU INTERRUPT)
+
+[INFO] 19:58:29:479 CPU/(22275:22285): Se recibio el pcb para ejecutar
+
+[INFO] 19:58:29:486 CPU/(22275:22285): Antes del switch con la instruccion: NO_OP
+
+[INFO] 19:58:30:494 CPU/(22275:22285): Antes del switch con la instruccion: NO_OP
+
+[INFO] 19:58:31:496 CPU/(22275:22285): Antes del switch con la instruccion: NO_OP
+
+[INFO] 19:58:32:498 CPU/(22275:22285): Antes del switch con la instruccion: I/O
+
+[INFO] 19:58:37:522 CPU/(22275:22285): Se recibio el pcb para ejecutar
+
+[INFO] 19:58:37:524 CPU/(22275:22285): Antes del switch con la instruccion: NO_OP
+
+[INFO] 19:58:38:526 CPU/(22275:22285): Antes del switch con la instruccion: NO_OP
+
+[INFO] 19:58:39:528 CPU/(22275:22285): Antes del switch con la instruccion: NO_OP
+
+[INFO] 19:58:40:530 CPU/(22275:22285): Antes del switch con la instruccion: WRITE
+
+[INFO] 19:58:40:531 CPU/(22275:22285): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 19:58:40:532 CPU/(22275:22285): Antes del switch con la instruccion: EXIT
+
+[INFO] 20:04:56:548 CPU/(22275:22286): DISCONNECT
+[INFO] 20:04:56:548 CPU/(22275:22285): DISCONNECT
+[INFO] 20:05:40:171 CPU/(22653:22653): Esperando a 127.0.0.1:8001 (KERNEL DISPATCH)
+
+[INFO] 20:05:40:172 CPU/(22653:22653): Esperando a 127.0.0.1:8005 (KERNEL INTERRUPT)
+
+[INFO] 20:05:40:174 CPU/(22653:22653): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 20:05:42:949 CPU/(22653:22653): Cliente conectado (a CPU DISPATCH)
+
+[INFO] 20:05:42:952 CPU/(22653:22653): Cliente conectado (a CPU INTERRUPT)
+
+[INFO] 20:05:46:749 CPU/(22653:22660): Se recibio el pcb para ejecutar
+
+[INFO] 20:05:46:750 CPU/(22653:22660): Antes del switch con la instruccion: NO_OP
+
+[INFO] 20:05:47:752 CPU/(22653:22660): Antes del switch con la instruccion: NO_OP
+
+[INFO] 20:05:48:754 CPU/(22653:22660): Antes del switch con la instruccion: NO_OP
+
+[INFO] 20:05:49:757 CPU/(22653:22660): Antes del switch con la instruccion: I/O
+
+[INFO] 20:05:54:760 CPU/(22653:22660): Se recibio el pcb para ejecutar
+
+[INFO] 20:05:54:761 CPU/(22653:22660): Antes del switch con la instruccion: NO_OP
+
+[INFO] 20:05:55:762 CPU/(22653:22660): Antes del switch con la instruccion: NO_OP
+
+[INFO] 20:05:56:764 CPU/(22653:22660): Antes del switch con la instruccion: NO_OP
+
+[INFO] 20:05:57:766 CPU/(22653:22660): Antes del switch con la instruccion: WRITE
+
+[INFO] 20:05:57:768 CPU/(22653:22660): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 20:05:57:770 CPU/(22653:22660): Antes del switch con la instruccion: EXIT
+
+[INFO] 20:09:47:750 CPU/(22996:22996): Esperando a 127.0.0.1:8001 (KERNEL DISPATCH)
+
+[INFO] 20:09:47:751 CPU/(22996:22996): Esperando a 127.0.0.1:8005 (KERNEL INTERRUPT)
+
+[INFO] 20:09:47:754 CPU/(22996:22996): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 20:09:52:550 CPU/(22996:22996): Cliente conectado (a CPU DISPATCH)
+
+[INFO] 20:09:52:552 CPU/(22996:22996): Cliente conectado (a CPU INTERRUPT)
+
+[INFO] 20:09:55:753 CPU/(22996:23006): Se recibio el pcb para ejecutar
+
+[INFO] 20:09:55:754 CPU/(22996:23006): Antes del switch con la instruccion: NO_OP
+
+[INFO] 20:09:56:755 CPU/(22996:23006): Antes del switch con la instruccion: NO_OP
+
+[INFO] 20:09:57:757 CPU/(22996:23006): Antes del switch con la instruccion: NO_OP
+
+[INFO] 20:09:58:760 CPU/(22996:23006): Antes del switch con la instruccion: I/O
+
+[INFO] 20:10:03:763 CPU/(22996:23006): Se recibio el pcb para ejecutar
+
+[INFO] 20:10:03:764 CPU/(22996:23006): Antes del switch con la instruccion: NO_OP
+
+[INFO] 20:10:04:765 CPU/(22996:23006): Antes del switch con la instruccion: NO_OP
+
+[INFO] 20:10:05:767 CPU/(22996:23006): Antes del switch con la instruccion: NO_OP
+
+[INFO] 20:10:06:769 CPU/(22996:23006): Antes del switch con la instruccion: WRITE
+
+[INFO] 20:10:06:771 CPU/(22996:23006): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 20:10:06:774 CPU/(22996:23006): Antes del switch con la instruccion: EXIT
+
+[INFO] 20:16:22:145 CPU/(23427:23427): Esperando a 127.0.0.1:8001 (KERNEL DISPATCH)
+
+[INFO] 20:16:22:146 CPU/(23427:23427): Esperando a 127.0.0.1:8005 (KERNEL INTERRUPT)
+
+[INFO] 20:16:22:149 CPU/(23427:23427): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 20:16:25:124 CPU/(23427:23427): Cliente conectado (a CPU DISPATCH)
+
+[INFO] 20:16:25:126 CPU/(23427:23427): Cliente conectado (a CPU INTERRUPT)
+
+[INFO] 20:16:28:680 CPU/(23427:23437): Se recibio el pcb para ejecutar
+
+[INFO] 20:16:28:687 CPU/(23427:23437): Antes del switch con la instruccion: NO_OP
+
+[INFO] 20:16:29:688 CPU/(23427:23437): Antes del switch con la instruccion: NO_OP
+
+[INFO] 20:16:30:691 CPU/(23427:23437): Antes del switch con la instruccion: NO_OP
+
+[INFO] 20:16:31:693 CPU/(23427:23437): Antes del switch con la instruccion: I/O
+
+[INFO] 20:16:36:719 CPU/(23427:23437): Se recibio el pcb para ejecutar
+
+[INFO] 20:16:36:720 CPU/(23427:23437): Antes del switch con la instruccion: NO_OP
+
+[INFO] 20:16:37:721 CPU/(23427:23437): Antes del switch con la instruccion: NO_OP
+
+[INFO] 20:16:38:723 CPU/(23427:23437): Antes del switch con la instruccion: NO_OP
+
+[INFO] 20:16:39:724 CPU/(23427:23437): Antes del switch con la instruccion: WRITE
+
+[INFO] 20:16:39:726 CPU/(23427:23437): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 20:16:39:728 CPU/(23427:23437): Antes del switch con la instruccion: EXIT
+
+[INFO] 20:20:59:697 CPU/(23755:23755): Esperando a 127.0.0.1:8001 (KERNEL DISPATCH)
+
+[INFO] 20:20:59:698 CPU/(23755:23755): Esperando a 127.0.0.1:8005 (KERNEL INTERRUPT)
+
+[INFO] 20:20:59:701 CPU/(23755:23755): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 20:21:01:983 CPU/(23755:23755): Cliente conectado (a CPU DISPATCH)
+
+[INFO] 20:21:01:984 CPU/(23755:23755): Cliente conectado (a CPU INTERRUPT)
+
+[INFO] 20:21:04:394 CPU/(23755:23765): Se recibio el pcb para ejecutar
+
+[INFO] 20:21:04:395 CPU/(23755:23765): Antes del switch con la instruccion: NO_OP
+
+[INFO] 20:21:05:397 CPU/(23755:23765): Antes del switch con la instruccion: NO_OP
+
+[INFO] 20:21:06:399 CPU/(23755:23765): Antes del switch con la instruccion: NO_OP
+
+[INFO] 20:21:07:402 CPU/(23755:23765): Antes del switch con la instruccion: I/O
+
+[INFO] 20:21:12:404 CPU/(23755:23765): Se recibio el pcb para ejecutar
+
+[INFO] 20:21:12:405 CPU/(23755:23765): Antes del switch con la instruccion: NO_OP
+
+[INFO] 20:21:13:406 CPU/(23755:23765): Antes del switch con la instruccion: NO_OP
+
+[INFO] 20:21:14:409 CPU/(23755:23765): Antes del switch con la instruccion: NO_OP
+
+[INFO] 20:21:15:412 CPU/(23755:23765): Antes del switch con la instruccion: WRITE
+
+[INFO] 20:21:15:414 CPU/(23755:23765): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 20:21:15:416 CPU/(23755:23765): Antes del switch con la instruccion: EXIT
+
+[INFO] 20:23:44:008 CPU/(23941:23941): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 20:23:44:010 CPU/(23941:23941): Cliente conectado (a CPU DISPATCH)
+
+[INFO] 20:23:48:239 CPU/(23948:23948): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 20:23:48:241 CPU/(23948:23948): Cliente conectado (a CPU DISPATCH)
+
+[INFO] 20:24:39:405 CPU/(23982:23982): Esperando a 127.0.0.1:8001 (KERNEL DISPATCH)
+
+[INFO] 20:24:39:406 CPU/(23982:23982): Esperando a 127.0.0.1:8005 (KERNEL INTERRUPT)
+
+[INFO] 20:24:39:408 CPU/(23982:23982): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 20:24:41:461 CPU/(23982:23982): Cliente conectado (a CPU DISPATCH)
+
+[INFO] 20:24:41:466 CPU/(23982:23982): Cliente conectado (a CPU INTERRUPT)
+
+[INFO] 20:24:44:279 CPU/(23982:23991): Se recibio el pcb para ejecutar
+
+[INFO] 20:24:44:279 CPU/(23982:23991): Antes del switch con la instruccion: NO_OP
+
+[INFO] 20:24:45:281 CPU/(23982:23991): Antes del switch con la instruccion: NO_OP
+
+[INFO] 20:24:46:283 CPU/(23982:23991): Antes del switch con la instruccion: NO_OP
+
+[INFO] 20:24:47:286 CPU/(23982:23991): Antes del switch con la instruccion: I/O
+
+[INFO] 20:24:52:366 CPU/(23982:23991): Se recibio el pcb para ejecutar
+
+[INFO] 20:24:52:367 CPU/(23982:23991): Antes del switch con la instruccion: NO_OP
+
+[INFO] 20:24:53:369 CPU/(23982:23991): Antes del switch con la instruccion: NO_OP
+
+[INFO] 20:24:54:372 CPU/(23982:23991): Antes del switch con la instruccion: NO_OP
+
+[INFO] 20:24:55:373 CPU/(23982:23991): Antes del switch con la instruccion: WRITE
+
+[INFO] 20:24:55:374 CPU/(23982:23991): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 20:24:55:375 CPU/(23982:23991): Antes del switch con la instruccion: EXIT
 

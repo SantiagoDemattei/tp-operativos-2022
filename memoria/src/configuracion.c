@@ -11,12 +11,12 @@ t_configuracion_memoria* leer_configuracion(){
 
     char* ip_memoria = config_get_string_value(nuevo_config, "IP_MEMORIA");
     char* puerto_escucha = config_get_string_value(nuevo_config, "PUERTO_ESCUCHA"); // leo PUERTO_ESCUCHA
-    int tam_memoria = config_get_int_value(nuevo_config, "TAM_MEMORIA");
-    int tam_pagina = config_get_int_value(nuevo_config, "TAM_PAGINA");
-    int entradas_por_tabla = config_get_int_value(nuevo_config, "ENTRADAS_POR_TABLA");
-    int retardo_memoria= config_get_int_value(nuevo_config,"RETARDO_MEMORIA");
+    uint32_t tam_memoria = config_get_int_value(nuevo_config, "TAM_MEMORIA");
+    uint32_t tam_pagina = config_get_int_value(nuevo_config, "TAM_PAGINA");
+    uint32_t entradas_por_tabla = config_get_int_value(nuevo_config, "ENTRADAS_POR_TABLA");
+    uint32_t retardo_memoria= config_get_int_value(nuevo_config,"RETARDO_MEMORIA");
     char* algoritmo_reemplazo = config_get_string_value(nuevo_config, "ALGORITMO_REEMPLAZO"); // leo ALGORITMO_REEMPLAZO
-    int marcos_por_proceso = config_get_int_value(nuevo_config,"RETARDO_SWAP");
+    uint32_t marcos_por_proceso = config_get_int_value(nuevo_config,"RETARDO_SWAP");
     char* path_swap = config_get_string_value(nuevo_config,"PATH_SWAP");
 
 
@@ -42,4 +42,5 @@ t_configuracion_memoria* leer_configuracion(){
 void inicializar_semaforos(){
     pthread_mutex_init(&mutex_logger_memoria, NULL);
     pthread_mutex_init(&mutex_valor_tp, NULL);
+    pthread_mutex_init(&mutex_lista_tablas, NULL);
 }   

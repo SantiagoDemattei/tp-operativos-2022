@@ -142,10 +142,3 @@ t_pcb* queue_peek_con_mutex(t_queue* queue, pthread_mutex_t mutex_cola_blocked){
     pthread_mutex_unlock(&mutex_cola_blocked);
     return pcb;
 }
-            
-
-     
-
-
-
-

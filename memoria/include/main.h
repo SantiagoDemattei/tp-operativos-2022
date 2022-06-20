@@ -27,6 +27,8 @@ void liberar_estructuras_memoria(t_configuracion_memoria* datos_config_memoria)
 void destruir_semaforos(){
     pthread_mutex_destroy(&mutex_logger_memoria);
     pthread_mutex_destroy(&mutex_valor_tp);
+    pthread_mutex_destroy(&mutex_lista_tablas);
 }
+
 
 #endif

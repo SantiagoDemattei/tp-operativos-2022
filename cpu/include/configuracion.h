@@ -9,8 +9,9 @@
 #include "../../shared/include/bibliotecas.h"
 #include "../../shared/include/estructuras.h"
 #include "../../shared/include/utils.h"
-
-t_pcb *running; //global de la cpu 
+#include "math.h"
+t_pcb *running; //global de la cpu
+uint32_t tamanio_pagina;
 
 t_configuracion_cpu* leer_configuracion(t_log* logger);
 void liberar_estructura_datos(t_configuracion_cpu* datos);

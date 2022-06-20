@@ -1,4 +1,5 @@
 #include "../include/comunicacion.h"
+uint32_t contador = 0;
 
 uint32_t crear_comunicacion_kernel(t_configuracion_memoria *configuracion_memoria, t_log *logger)
 { // SERVIDOR DE KERNEL
@@ -35,10 +36,12 @@ static void procesar_conexion(void *void_args)
     uint32_t *cliente_socket = args->fd;
     char *server_name = args->server_name;
     free(args);
-    uint32_t valor_tb;
+
     uint32_t id_proceso;
 
     op_code cop;
+    uint32_t valor;
+    uint32_t num_pagina;
 
     while (*cliente_socket != -1)
     { // mientras el cliente no se haya desconectado
@@ -53,20 +56,41 @@ static void procesar_conexion(void *void_args)
             loggear_info(logger, "debug\n", mutex_logger_memoria);
             break;
 
+        case ORDEN_ENVIO_TAMANIO:
+            printf("el tamnanio de pagina es: %d\n", (configuracion_memoria->tam_pagina));
+            send_valor_tb(*cliente_socket, (configuracion_memoria->tam_pagina)); //envio el tamanio de pagina a la cpu
+            loggear_info(logger, "Envie tamanio de pagina a CPU\n", mutex_logger_memoria);        
+            break;
+
+
         case INICIALIZAR_ESTRUCTURAS:
             loggear_info(logger, "INICIALIZANDO ESTRUCTURAS\n", mutex_logger_memoria);
 
-            pthread_mutex_lock(&mutex_valor_tp);
-            valor_tb = 2123; // valor de tabla de paginas NO VA A QUEDAR ASI
-            pthread_mutex_unlock(&mutex_valor_tp);
+            t_tabla_pagina1 *tabla_pagina1 = malloc(sizeof(t_tabla_pagina1) + sizeof(uint32_t) * configuracion_memoria->entradas_por_tabla);
+            tabla_pagina1->id_tabla = contador;
+            
+            //inicializar en null las filas de la tabla
+            for (int i = 0; i < configuracion_memoria->entradas_por_tabla; i++)
+            {
+                tabla_pagina1->primer_nivel[i] = NULL;
+            }
+
+            list_add_con_mutex_tablas(lista_tablas_primer_nivel, tabla_pagina1, mutex_lista_tablas);
+
+            send_valor_tb(*cliente_socket, tabla_pagina1->id_tabla); //le mandamos el id de la tabla que corresponde al proceso (es lo mismo que el contador)
 
             pthread_mutex_lock(&mutex_valor_tp);
-            send_valor_tb(*cliente_socket, valor_tb);
+            contador++; // valor de tabla de paginas NO VA A QUEDAR ASI
             pthread_mutex_unlock(&mutex_valor_tp);
 
             free(cliente_socket);
 
             loggear_info(logger, "Se envio el valor de la tabla de paginas al kernel\n", mutex_logger_memoria);
+            break;
+        
+        case WRITE_MEMORIA:
+            recv_valor_y_num_pagina(*cliente_socket, &num_pagina, &valor);
+            //HAY QUE PONER EL VALOR EN EL NUMERO DE PAGINA QUE CORRESPONDE DE LA TABLA DE PAGINAS
             break;
 
         case LIBERAR_ESTRUCTURAS:
@@ -108,7 +132,10 @@ static void procesar_conexion(void *void_args)
 }
 
 uint32_t server_escuchar(t_log *logger, char *server_name, uint32_t server_socket)
-{
+{   
+
+
+
     uint32_t* cliente_socket = esperar_cliente(logger, server_name, server_socket); // espera a que se conecte un cliente
 
     if (*cliente_socket != -1)
@@ -123,4 +150,10 @@ uint32_t server_escuchar(t_log *logger, char *server_name, uint32_t server_socke
         return 1;                                                                  // devuelve 1 para indicar que se conecto un cliente
     }
     return 0;
+}
+
+void list_add_con_mutex_tablas(t_list* lista, t_tabla_pagina1* tabla_pagina1 , pthread_mutex_t mutex){
+    pthread_mutex_lock(&mutex);
+    list_add(lista, tabla_pagina1);
+    pthread_mutex_unlock(&mutex);
 }

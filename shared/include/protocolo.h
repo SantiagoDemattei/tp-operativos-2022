@@ -26,6 +26,9 @@ bool send_fin_proceso(uint32_t fd);
 bool send_suspension(uint32_t fd, uint32_t id);
 bool recv_suspension(uint32_t fd, uint32_t* id);
 bool send_confirmacion_suspension(uint32_t fd);
+bool send_valor_y_num_pagina(uint32_t fd, uint32_t num_pagina, uint32_t valor);
+bool recv_valor_y_num_pagina(uint32_t fd, uint32_t *num_pagina, uint32_t *valor);
+bool send_orden_envio_tamanio(uint32_t fd);
 
 
 #endif

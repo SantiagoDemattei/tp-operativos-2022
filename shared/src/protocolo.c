@@ -293,7 +293,7 @@ bool send_fin_proceso(uint32_t fd)
 #pragma endregion
 
 #pragma region VALOR_TB
-bool send_valor_tb(uint32_t fd, uint32_t valor_tb) // la memoria le tiene que mandar el valor de la tabla de paginas serializado al kernel
+bool send_valor_tb(uint32_t fd, uint32_t valor_tb) // la memoria le tiene que mandar el valor de la tabla de paginas serializado al kernel y tambien la usamos para pasarle a la cpu el tamanio de las paginas 
 {
     size_t size = sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t); // stream: cop + sizePayload + valorTb
     void *stream = malloc(size);
@@ -326,7 +326,6 @@ bool recv_valor_tb(uint32_t fd, uint32_t *valor_tb)
         return false;
     }
     memcpy(&valor, stream, sizeof(uint32_t));
-
     *valor_tb = valor;
     free(stream);
     return true;
@@ -397,6 +396,58 @@ bool recv_suspension(uint32_t fd, uint32_t *id)
 bool send_confirmacion_suspension(uint32_t fd){
     op_code cod = CONFIRMACION_SUSPENSION;
     if(send(fd, &cod, sizeof(op_code), 0) != sizeof(op_code))
+        return false;
+    return true;
+}
+
+#pragma endregion
+
+#pragma region WRITE
+bool send_valor_y_num_pagina(uint32_t fd, uint32_t num_pagina, uint32_t valor){
+    size_t size = sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t) + sizeof(uint32_t); // stream: cop + sizePayload + numPagina + valor
+    void *stream = malloc(size);
+    op_code cop = WRITE_MEMORIA;
+    size_t size_payload = size - sizeof(op_code) - sizeof(size_t);
+    memcpy(stream, &cop, sizeof(op_code));
+    memcpy(stream + sizeof(op_code), &size_payload, sizeof(size_t));
+    memcpy(stream + sizeof(op_code) + sizeof(size_t), &num_pagina, sizeof(uint32_t));
+    memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t), &valor, sizeof(uint32_t));
+    if(send(fd, stream, size, 0) == -1){
+        free(stream);
+        return false;
+    }
+    free(stream);
+    return true;
+}
+
+bool recv_valor_y_num_pagina(uint32_t fd, uint32_t *num_pagina, uint32_t *valor){
+    uint32_t valor_recibido;
+    uint32_t num_pagina_recibido;
+    size_t size;
+    if(recv(fd, &size, sizeof(size_t), 0) != sizeof(size_t)){
+        return false;
+    }
+    void *stream = malloc(size);
+    if(recv(fd, stream, size, 0) != size){
+        free(stream);
+        return false;
+    }
+    memcpy(&num_pagina_recibido, stream, sizeof(uint32_t));
+    memcpy(&valor_recibido, stream + sizeof(uint32_t), sizeof(uint32_t));
+    *num_pagina = num_pagina_recibido;
+    *valor = valor_recibido;
+    free(stream);
+    return true;
+}
+
+#pragma endregion
+
+#pragma region ORDEN_ENVIO_TAMANIO
+
+bool send_orden_envio_tamanio(uint32_t fd)
+{
+    op_code cop = ORDEN_ENVIO_TAMANIO;
+    if (send(fd, &cop, sizeof(op_code), 0) != sizeof(op_code))
         return false;
     return true;
 }

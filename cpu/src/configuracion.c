@@ -10,7 +10,7 @@ t_configuracion_cpu* leer_configuracion(t_log* logger) {
         exit(EXIT_FAILURE);
     }
 
-    int entradas_tlb = config_get_int_value(nuevo_config, "ENTRADAS_TLB");
+    uint32_t entradas_tlb = config_get_int_value(nuevo_config, "ENTRADAS_TLB");
     char* reemplazo_tlb = config_get_string_value(nuevo_config, "REEMPLAZO_TLB");
     float retardo_noop = config_get_int_value(nuevo_config, "RETARDO_NOOP");
     char* ip_memoria = config_get_string_value(nuevo_config, "IP_MEMORIA");
