@@ -10,8 +10,17 @@
 #include "../../shared/include/estructuras.h"
 #include "../../shared/include/utils.h"
 #include "math.h"
-t_pcb *running; //global de la cpu
+
+t_pcb* running; //global de la cpu
 uint32_t tamanio_pagina;
+t_list* tlb;
+
+pthread_mutex_t mutex_logger_cpu;
+pthread_mutex_t mutex_running_cpu;
+pthread_mutex_t mutex_interrupcion;
+pthread_mutex_t mutex_tlb;
+
+bool interrupciones;
 
 t_configuracion_cpu* leer_configuracion(t_log* logger);
 void liberar_estructura_datos(t_configuracion_cpu* datos);
@@ -29,11 +38,7 @@ typedef enum
     ERROR
 } INSTRUCCIONES_EJECUCION; //enum para los distintos tipos de instrucciones 
 
-pthread_mutex_t mutex_logger_cpu;
-pthread_mutex_t mutex_running_cpu;
-pthread_mutex_t mutex_interrupcion;
 
-bool interrupciones;
 
 
 #endif

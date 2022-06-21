@@ -11,7 +11,7 @@
 #include<string.h>
 #include<assert.h>
 #include "configuracion.h"
-
+#include "tlb_manager.h"   
 #include "../../shared/include/sockets.h"
 #include "../../shared/include/protocolo.h"
 #include "../../shared/include/bibliotecas.h"

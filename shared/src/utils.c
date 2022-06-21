@@ -54,6 +54,12 @@ void loggear_error(t_log* logger, char* mensaje, pthread_mutex_t mutex){
     pthread_mutex_unlock(&mutex);
 }
 
+void loggear_success(t_log* logger, char* mensaje, pthread_mutex_t mutex){
+    pthread_mutex_lock(&mutex);
+    log_success(logger, mensaje);
+    pthread_mutex_unlock(&mutex);
+}
+
 void queue_push_con_mutex(t_queue* queue, t_pcb* pcb, pthread_mutex_t mutex){
     pthread_mutex_lock(&mutex);
     queue_push(queue, pcb);
@@ -141,4 +147,38 @@ t_pcb* queue_peek_con_mutex(t_queue* queue, pthread_mutex_t mutex_cola_blocked){
     t_pcb* pcb = queue_peek(queue);
     pthread_mutex_unlock(&mutex_cola_blocked);
     return pcb;
+}
+
+int list_size_con_mutex_tlb(t_list* lista, pthread_mutex_t* mutex){
+    pthread_mutex_lock(&mutex);
+    int size = list_size(lista);
+    pthread_mutex_unlock(&mutex);
+    return size;
+}
+
+void list_add_con_mutex_tlb(t_list* lista, t_tlb* tlb, pthread_mutex_t* mutex){
+    pthread_mutex_lock(&mutex);
+    list_add(lista, tlb);
+    pthread_mutex_unlock(&mutex);
+}
+
+uint32_t list_find_con_mutex_tlb(t_list* lista, t_tlb* tlb_buscado, pthread_mutex_t* mutex){
+    bool (closure)(void *data){
+        t_tlb* entrada = (t_tlb*) data;
+        return criterio_id(tlb_buscado, entrada);
+    }
+    pthread_mutex_lock(&mutex);
+    t_tlb* tlb_encontrado = list_find(lista, closure);
+    pthread_mutex_unlock(&mutex);
+    
+    if(tlb_encontrado == NULL){
+        return -1;
+    }
+    return tlb_encontrado->marco;
+}
+
+
+
+bool criterio_pagina_tlb(t_tlb* tlb_buscado, t_tlb* tlb_de_la_lista){
+    return tlb_de_la_lista->pagina == tlb_buscado->pagina;
 }

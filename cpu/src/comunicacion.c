@@ -133,6 +133,7 @@ void ciclo_instruccion(uint32_t* cliente_socket, t_log *logger)
     t_argumento *argumentos;
     t_argumento* direccion_logica;
     uint32_t numero_pagina;
+    uint32_t marco;
     t_argumento* valor;
     pthread_mutex_lock(&mutex_running_cpu); 
     while ((running != NULL) && (running->program_counter < cantidad_instrucciones)) //recorro tomando como punto de partida la instrucción que indique el Program Counter del PCB recibido -> FETCH 
@@ -177,9 +178,32 @@ void ciclo_instruccion(uint32_t* cliente_socket, t_log *logger)
         case WRITE:
             direccion_logica = list_get(argumentos, 0);
             numero_pagina = (uint32_t) floor((direccion_logica->argumento) / tamanio_pagina); //calculo el numero de pagina donde voy a escribir el dato
-            socket_memoria = crear_conexion_memoria(configuracion_cpu, logger); //creo la conexion con la memoria 
-            valor = list_get(argumentos,1);
-            send_valor_y_num_pagina(socket_memoria, numero_pagina, valor->argumento); //envio el numero de pagina y el valor que quiero escribir a la memoria
+            valor = list_get(argumentos, 1);
+            marco = buscar(numero_pagina);
+            if(marco != -1){ // TLB HIT
+                socket_memoria = crear_conexion_memoria(configuracion_cpu, logger); //creo la conexion con la memoria
+                // send a memoria de la pagina, el marco, y el valor a escribir 
+            } else{ // TLB MISS
+                socket_memoria = crear_conexion_memoria(configuracion_cpu, logger); //creo la conexion con la memoria 
+                send_valor_y_num_pagina(socket_memoria, numero_pagina, valor->argumento); //envio el numero de pagina y el valor que quiero escribir a la memoria
+
+                // recibo numero de marco en donde escribio lo que le pedi
+                recv_valor_tb(socket_memoria, &marco); //TODO: HACER EL SEND DESDE MEMORIA
+                // agrego una nueva entrada en la tlb con el nro de pagina y el marco
+                t_entrada_tlb *entrada_tlb = malloc(sizeof(t_entrada_tlb));
+                entrada_tlb->numero_pagina = numero_pagina;
+                entrada_tlb->marco = marco; 
+                agregar(entrada_tlb);
+                
+                pthread_mutex_lock(&mutex_running_cpu);
+                running->program_counter--;
+                pthread_mutex_unlock(&mutex_running_cpu);
+                
+
+            } 
+
+           
+
 
             pthread_mutex_lock(&mutex_running_cpu);
             running->program_counter++;
@@ -219,7 +243,6 @@ void ciclo_instruccion(uint32_t* cliente_socket, t_log *logger)
 
 void chequear_interrupciones(uint32_t* cliente_socket){ 
     pthread_mutex_lock(&mutex_interrupcion);
-    printf("chequeando interrupciones\n");
     if(interrupciones){ //si hay interrupciones hay que desalojar un proceso
         pthread_mutex_unlock(&mutex_interrupcion);
 
@@ -227,9 +250,9 @@ void chequear_interrupciones(uint32_t* cliente_socket){
         send_pcb(*cliente_socket, running, INTERRUPCION); //desalojo el pcb y mando el pcb para que lo reciba el kernel 
         pthread_mutex_unlock(&mutex_running_cpu);
 
+        printf("Proceso %d interrumpido", running->id);
         destruir_pcb(running);
         
-        printf("Proceso interrumpido");
         pthread_mutex_lock(&mutex_running_cpu);
         running = NULL; //desalojo el pcb
         pthread_mutex_unlock(&mutex_running_cpu);
@@ -237,7 +260,6 @@ void chequear_interrupciones(uint32_t* cliente_socket){
         pthread_mutex_lock(&mutex_interrupcion);
     }
     pthread_mutex_unlock(&mutex_interrupcion);
-    printf("termine de chequear_interrupciones\n");
 }
 
 INSTRUCCIONES_EJECUCION enumerar_instruccion(t_instruccion *instruccion)
@@ -269,3 +291,8 @@ INSTRUCCIONES_EJECUCION enumerar_instruccion(t_instruccion *instruccion)
     }
     return ERROR;
 }
+
+
+
+
+

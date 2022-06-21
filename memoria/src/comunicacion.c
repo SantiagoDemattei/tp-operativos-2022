@@ -91,6 +91,8 @@ static void procesar_conexion(void *void_args)
         case WRITE_MEMORIA:
             recv_valor_y_num_pagina(*cliente_socket, &num_pagina, &valor);
             //HAY QUE PONER EL VALOR EN EL NUMERO DE PAGINA QUE CORRESPONDE DE LA TABLA DE PAGINAS
+            
+            //send_valor_tb(*cliente_socket, marco);
             break;
 
         case LIBERAR_ESTRUCTURAS:

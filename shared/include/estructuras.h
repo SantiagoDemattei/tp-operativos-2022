@@ -106,5 +106,10 @@ typedef struct t_pcb
     bool blocked_suspendido; 
 } t_pcb;
 
+typedef struct t_tlb{
+    uint32_t pagina;
+    uint32_t marco;
+} t_tlb;
+
 
 #endif
