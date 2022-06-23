@@ -38,7 +38,7 @@ static void procesar_conexion(void *void_args)
     free(args);
 
     uint32_t id_proceso;
-
+    uint32_t tamanio_proceso;
     op_code cop;
     uint32_t valor;
     uint32_t num_pagina;
@@ -58,24 +58,45 @@ static void procesar_conexion(void *void_args)
 
         case ORDEN_ENVIO_TAMANIO:
             printf("el tamnanio de pagina es: %d\n", (configuracion_memoria->tam_pagina));
-            send_valor_tb(*cliente_socket, (configuracion_memoria->tam_pagina)); //envio el tamanio de pagina a la cpu
+            send_valor_y_num_pagina (*cliente_socket, (configuracion_memoria->tam_pagina),(configuracion_memoria->entradas_por_tabla)); //envio el tamanio de pagina a la cpu
             loggear_info(logger, "Envie tamanio de pagina a CPU\n", mutex_logger_memoria);        
             break;
 
 
         case INICIALIZAR_ESTRUCTURAS:
+            recv_inicializar_estructuras(*cliente_socket, &tamanio_proceso, &id_proceso);
             loggear_info(logger, "INICIALIZANDO ESTRUCTURAS\n", mutex_logger_memoria);
+            t_estructura_proceso *estructura = malloc(sizeof(t_estructura_proceso));
+            estructura->id_proceso = id_proceso;
+            
+            estructura->espacio_en_memoria = malloc(tamanio_proceso);
 
+            // estructura de memoria = espacio + lista de tablas + archivo
             t_tabla_pagina1 *tabla_pagina1 = malloc(sizeof(t_tabla_pagina1) + sizeof(uint32_t) * configuracion_memoria->entradas_por_tabla);
             tabla_pagina1->id_tabla = contador;
-            
             //inicializar en null las filas de la tabla
             for (int i = 0; i < configuracion_memoria->entradas_por_tabla; i++)
             {
                 tabla_pagina1->primer_nivel[i] = NULL;
             }
 
-            list_add_con_mutex_tablas(lista_tablas_primer_nivel, tabla_pagina1, mutex_lista_tablas);
+            estructura->tabla_pagina1 = tabla_pagina1;
+            estructura->lista_tablas_segundo_nivel = list_create();           
+            char* proceso_string = malloc(strlen("/proceso_") +strlen(string_itoa(id_proceso)));
+            string_append(&proceso_string, "/proceso_");
+            string_append( &proceso_string , string_itoa(id_proceso));
+            char* path_archivo = malloc(strlen( configuracion_memoria->path_swap + strlen(proceso_string)));
+            string_append(&path_archivo, configuracion_memoria->path_swap);
+            string_append(&path_archivo, proceso_string);
+     
+             
+            estructura->nombre_archivo_swap = malloc(strlen(path_archivo)); // "/home/utnso/swap/proceso_xx" (el +1 es por el \0)
+            
+            
+            string_append(&estructura->nombre_archivo_swap, path_archivo);
+            printf("El nombre del archivo es: %s\n", estructura->nombre_archivo_swap);
+            
+            list_add_con_mutex_tablas(lista_estructuras, estructura, mutex_lista_estructuras);
 
             send_valor_tb(*cliente_socket, tabla_pagina1->id_tabla); //le mandamos el id de la tabla que corresponde al proceso (es lo mismo que el contador)
 
@@ -88,10 +109,10 @@ static void procesar_conexion(void *void_args)
             loggear_info(logger, "Se envio el valor de la tabla de paginas al kernel\n", mutex_logger_memoria);
             break;
         
-        case WRITE_MEMORIA:
+        case OBTENER_MARCO:
             recv_valor_y_num_pagina(*cliente_socket, &num_pagina, &valor);
             //HAY QUE PONER EL VALOR EN EL NUMERO DE PAGINA QUE CORRESPONDE DE LA TABLA DE PAGINAS
-            
+            //TODO: ESTO
             //send_valor_tb(*cliente_socket, marco);
             break;
 
@@ -134,10 +155,7 @@ static void procesar_conexion(void *void_args)
 }
 
 uint32_t server_escuchar(t_log *logger, char *server_name, uint32_t server_socket)
-{   
-
-
-
+{  
     uint32_t* cliente_socket = esperar_cliente(logger, server_name, server_socket); // espera a que se conecte un cliente
 
     if (*cliente_socket != -1)
@@ -154,7 +172,7 @@ uint32_t server_escuchar(t_log *logger, char *server_name, uint32_t server_socke
     return 0;
 }
 
-void list_add_con_mutex_tablas(t_list* lista, t_tabla_pagina1* tabla_pagina1 , pthread_mutex_t mutex){
+void list_add_con_mutex_tablas(t_list* lista, t_estructura_proceso* tabla_pagina1 , pthread_mutex_t mutex){
     pthread_mutex_lock(&mutex);
     list_add(lista, tabla_pagina1);
     pthread_mutex_unlock(&mutex);

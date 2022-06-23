@@ -13,13 +13,12 @@
 #include "../../shared/include/bibliotecas.h"
 #include "../../shared/include/utils.h"
 
-typedef enum {
+typedef enum ALGORITMO_REEMPLAZO {
     FIFO,
     LRU,
-    ERROR
 } ALGORITMO_REEMPLAZO; //enum para los distintos tipos de algoritmos de reemplazo de la tlb
-#endif
 
 void agregar(t_tlb* elemento_a_agregar);
 uint32_t buscar(uint32_t numero_pagina);
 ALGORITMO_REEMPLAZO algoritmo_remplazo (char* algoritmo);
+#endif

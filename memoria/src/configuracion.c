@@ -42,5 +42,5 @@ t_configuracion_memoria* leer_configuracion(){
 void inicializar_semaforos(){
     pthread_mutex_init(&mutex_logger_memoria, NULL);
     pthread_mutex_init(&mutex_valor_tp, NULL);
-    pthread_mutex_init(&mutex_lista_tablas, NULL);
+    pthread_mutex_init(&mutex_lista_estructuras, NULL);
 }   

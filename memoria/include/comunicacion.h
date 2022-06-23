@@ -28,10 +28,18 @@ typedef struct t_tabla_pagina1{ //la memoria tiene una lista con el id de la tab
     uint32_t* primer_nivel[];  //tabla de primer nivel de cada proceso  
 }t_tabla_pagina1;
 
+typedef struct t_estructura_proceso{
+uint32_t id_proceso;
+void * espacio_en_memoria;
+t_tabla_pagina1 *tabla_pagina1;
+t_list *lista_tablas_segundo_nivel;
+char* nombre_archivo_swap;
+}t_estructura_proceso;
+
 // uint32_t tabla_pagina_2 [][3]; //matriz que representa la tabla de paginas de 2do nivel de 4 columnas y n filas
 
-t_list *lista_tablas_primer_nivel; //lista de tablas de primer nivel por cada proceso para que la memoria conozca la de todos los procesos
-void list_add_con_mutex_tablas(t_list* lista, t_tabla_pagina1* tabla_pagina1 , pthread_mutex_t mutex);
+t_list *lista_estructuras; //lista de tablas de primer nivel por cada proceso para que la memoria conozca la de todos los procesos
+void list_add_con_mutex_tablas(t_list* lista, t_estructura_proceso* tabla_pagina1 , pthread_mutex_t mutex);
 uint32_t crear_comunicacion_kernel(t_configuracion_memoria* configuracion_memoria, t_log* logger);
 uint32_t server_escuchar(t_log* logger, char* server_name, uint32_t server_socket);
 static void procesar_conexion(void* void_args);

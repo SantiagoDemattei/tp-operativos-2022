@@ -271,11 +271,43 @@ bool recv_pcb(uint32_t fd, t_pcb **pcb)
 #pragma region INICIALIZAR_ESTRUCTURAS
 // INICIALIZAR_ESTRUCTURAS (memoria)
 
-bool send_inicializar_estructuras(uint32_t fd)
-{
-    op_code cop = INICIALIZAR_ESTRUCTURAS;
-    if (send(fd, &cop, sizeof(op_code), 0) != sizeof(op_code)) // envia a la memoria el cop para que inicialice estructuras y obtenga el valor de la TP
+bool send_inicializar_estructuras(uint32_t fd, uint32_t tamanio_proceso, uint32_t id_proceso)
+{   
+    op_code op = INICIALIZAR_ESTRUCTURAS;
+    size_t size = sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t) * 2;
+    void *stream = malloc(size);
+    
+    memcpy(stream, &op, sizeof(op_code));
+    memcpy(stream + sizeof(op_code), &size, sizeof(size_t));
+    memcpy(stream + sizeof(op_code) + sizeof(size_t), &tamanio_proceso, sizeof(uint32_t));
+    memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t), &id_proceso, sizeof(uint32_t));
+    if (send(fd, stream, size, 0) == -1)
+    {
+        free(stream);
         return false;
+    }
+    free(stream);
+    return true;
+
+}
+
+bool recv_inicializar_estructuras(uint32_t fd, uint32_t* tamanio_proceso, uint32_t* id_proceso){
+    size_t size;
+    if (recv(fd, &size, sizeof(size_t), 0) != sizeof(size_t)) // payload
+    {
+        return false;
+    }
+
+    void *stream = malloc(size);
+    if (recv(fd, stream, size, 0) != size)
+    {
+        free(stream);
+        return false;
+    }
+    // recibe el  payload
+    memcpy(tamanio_proceso, stream, sizeof(uint32_t));
+    memcpy(id_proceso, stream + sizeof(uint32_t), sizeof(uint32_t));
+    free(stream);
     return true;
 }
 
@@ -406,7 +438,7 @@ bool send_confirmacion_suspension(uint32_t fd){
 bool send_valor_y_num_pagina(uint32_t fd, uint32_t num_pagina, uint32_t valor){
     size_t size = sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t) + sizeof(uint32_t); // stream: cop + sizePayload + numPagina + valor
     void *stream = malloc(size);
-    op_code cop = WRITE_MEMORIA;
+    op_code cop = OBTENER_MARCO;
     size_t size_payload = size - sizeof(op_code) - sizeof(size_t);
     memcpy(stream, &cop, sizeof(op_code));
     memcpy(stream + sizeof(op_code), &size_payload, sizeof(size_t));

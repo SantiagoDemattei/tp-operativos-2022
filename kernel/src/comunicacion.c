@@ -150,7 +150,7 @@ void verificacion_multiprogramacion(t_pcb *pcb)
         pthread_mutex_unlock(&mutex_cantidad_procesos);
 
         socket_memoria = crear_conexion_memoria(configuracion_kernel, logger); // se conecta con el server de memoria
-        send_inicializar_estructuras(socket_memoria);                          // para que la memoria inicialice estructuras y obtenga el valor de la TP
+        send_inicializar_estructuras(socket_memoria, tope_cola_new->tamanio, tope_cola_new->id);                          // para que la memoria inicialice estructuras y obtenga el valor de la TP
         if (recv(socket_memoria, &cop, sizeof(op_code), 0) != sizeof(op_code))
         {
             loggear_error(logger, "Error al recibir el op_code INICIALIZAR_ESTRUCTURAS de la memoria", mutex_logger_kernel);

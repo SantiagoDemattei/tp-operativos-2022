@@ -29,8 +29,8 @@ void list_add_con_mutex(t_list* lista, t_pcb* pcb, pthread_mutex_t mutex);
 t_pcb* queue_find_con_mutex(t_queue* queue, t_pcb* pcb_buscado, pthread_mutex_t mutex);
 bool criterio_id(t_pcb* pcb, t_pcb* pcb_buscado);
 void* queue_find(t_queue *self, bool(*condition)(void*));
-int list_size_con_mutex_tlb(t_list* lista, pthread_mutex_t* mutex);
-void list_add_con_mutex_tlb(t_list* lista, t_tlb* tlb, pthread_mutex_t* mutex);
+int list_size_con_mutex_tlb(t_list* lista, pthread_mutex_t mutex);
+void list_add_con_mutex_tlb(t_list* lista, t_tlb* tlb, pthread_mutex_t mutex);
 
 
 #endif

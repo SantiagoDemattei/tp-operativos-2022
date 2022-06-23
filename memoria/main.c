@@ -23,7 +23,7 @@ uint32_t main(void){
     socket_memoria = crear_comunicacion_kernel(configuracion_memoria, logger); //inicia el servidor para que el kernel y la cpu se conecten a la memoria
     
     inicializar_semaforos();
-    lista_tablas_primer_nivel = list_create(); //lista de tablas de primer nivel para que la memoria se guarde las tablas de primer nivel de todos los procesos       
+    lista_estructuras = list_create(); //lista de tablas de primer nivel para que la memoria se guarde las tablas de primer nivel de todos los procesos       
 
     while(server_escuchar(logger, "MEMORIA", socket_memoria)!=0); // servidor de kernel y cpu (ambos se conectan a la misma ip y puerto)
 

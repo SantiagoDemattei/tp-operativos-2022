@@ -17,8 +17,7 @@
 #include "../../shared/include/bibliotecas.h"
 #include "../../shared/include/utils.h"
 
-t_log* logger_cpu;
-t_configuracion_cpu* configuracion_cpu;
+
 
 
 uint32_t crear_comunicacion_dispatch(t_configuracion_cpu* configuracion_cpu, t_log* logger);
@@ -29,5 +28,6 @@ void controlador_tiempo_blocked_proceso(t_pcb *pcb);
 static void procesar_conexion(void* void_args);
 void ciclo_instruccion(uint32_t* cliente_socket, t_log* logger);
 void chequear_interrupciones(uint32_t* cliente_socket);
+t_direccion_fisica* calcular_mmu(t_argumento* direc_logica);
 
 #endif 

@@ -34,8 +34,6 @@ void destruir_semaforos(){
     pthread_mutex_destroy(&mutex_running_cpu);
     pthread_mutex_destroy(&mutex_interrupcion);
     pthread_mutex_destroy(&mutex_tlb);
-    sem_destroy(&sem_agregar_a_tlb);
-    sem_destroy(&sem_buscar_en_tlb);
 }
 
 

@@ -41,7 +41,7 @@ static void procesar_conexion(void *void_args)
 {
     t_procesar_conexion_args *args = (t_procesar_conexion_args *)void_args; // recibo a mi cliente y sus datos
     t_log *logger = args->log;
-    uint32_t* cliente_socket = args->fd; //el cliente socket puede ser interrupt o dispatch
+    uint32_t *cliente_socket = args->fd; // el cliente socket puede ser interrupt o dispatch
     char *server_name = args->server_name;
     free(args);
 
@@ -50,7 +50,7 @@ static void procesar_conexion(void *void_args)
     while (*cliente_socket != -1)
     {
         if (recv(*cliente_socket, &cop, sizeof(op_code), 0) != sizeof(op_code))
-        {   
+        {
             loggear_info(logger, "DISCONNECT", mutex_logger_cpu);
             return;
         }
@@ -58,30 +58,30 @@ static void procesar_conexion(void *void_args)
         switch (cop)
         {
         case DEBUG:
-            pthread_mutex_lock(&mutex_logger_cpu); 
+            pthread_mutex_lock(&mutex_logger_cpu);
             log_info(logger, "debug");
             pthread_mutex_unlock(&mutex_logger_cpu);
             break;
 
-        case ENVIAR_PCB: //recibir PCB del kernel para poner a ejecutar
+        case ENVIAR_PCB: // recibir PCB del kernel para poner a ejecutar
 
-            if (recv_pcb(*cliente_socket, &running)) //en running guardo el pcb que va a ejecutar
-            {   
+            if (recv_pcb(*cliente_socket, &running)) // en running guardo el pcb que va a ejecutar
+            {
                 loggear_info(logger, "Se recibio el pcb para ejecutar\n", mutex_logger_cpu);
                 pthread_mutex_lock(&mutex_interrupcion);
-                interrupciones = false; //interrupciones desactivadas para chequearlas cuando termine de ejecutar una instruccion
+                interrupciones = false; // interrupciones desactivadas para chequearlas cuando termine de ejecutar una instruccion
                 pthread_mutex_unlock(&mutex_interrupcion);
-                ciclo_instruccion(cliente_socket, logger); //cuando la cpu recibe el pcb simula un ciclo de instruccion
+                ciclo_instruccion(cliente_socket, logger); // cuando la cpu recibe el pcb simula un ciclo de instruccion
             }
             break;
 
-        case INT_NUEVO_READY://solo se usa para interrumpir (si llega aca vino por el socket_interrupt)
+        case INT_NUEVO_READY: // solo se usa para interrumpir (si llega aca vino por el socket_interrupt)
             loggear_info(logger, "Interrumpiendo proceso", mutex_logger_cpu);
 
             pthread_mutex_lock(&mutex_interrupcion);
-            interrupciones = true; //interrupciones activadas para chequearlas cuando termine de ejecutar una instruccion
+            interrupciones = true; // interrupciones activadas para chequearlas cuando termine de ejecutar una instruccion
             pthread_mutex_unlock(&mutex_interrupcion);
-            
+
             break;
 
         // Errores
@@ -103,10 +103,9 @@ static void procesar_conexion(void *void_args)
     return;
 }
 
-
-uint32_t server_escuchar(t_log *logger, char *server_name, uint32_t server_socket) //hilos al pedo 
+uint32_t server_escuchar(t_log *logger, char *server_name, uint32_t server_socket) // hilos al pedo
 {
-    uint32_t* cliente_socket = esperar_cliente(logger, server_name, server_socket); // espera a que se conecte un cliente
+    uint32_t *cliente_socket = esperar_cliente(logger, server_name, server_socket); // espera a que se conecte un cliente
 
     if (*cliente_socket != -1)
     {                                                                              // si se conecto un cliente
@@ -122,92 +121,96 @@ uint32_t server_escuchar(t_log *logger, char *server_name, uint32_t server_socke
     return 0;
 }
 
-void ciclo_instruccion(uint32_t* cliente_socket, t_log *logger)
+void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
 {
-    t_list *lista_instrucciones = running->instrucciones; //lista de instrucciones del proceso que esta en running
+    t_list *lista_instrucciones = running->instrucciones; // lista de instrucciones del proceso que esta en running
     uint32_t cantidad_instrucciones = list_size(lista_instrucciones);
     INSTRUCCIONES_EJECUCION instruccion_actual_enum;
     t_instruccion *instruccion_actual;
     float retardo;
-    t_argumento *tiempo_bloqueo1; 
+    t_argumento *tiempo_bloqueo1;
     t_argumento *argumentos;
-    t_argumento* direccion_logica;
-    uint32_t numero_pagina;
+    t_argumento *direccion_logica;
     uint32_t marco;
-    t_argumento* valor;
-    pthread_mutex_lock(&mutex_running_cpu); 
-    while ((running != NULL) && (running->program_counter < cantidad_instrucciones)) //recorro tomando como punto de partida la instrucción que indique el Program Counter del PCB recibido -> FETCH 
+    t_argumento *valor;
+    pthread_mutex_lock(&mutex_running_cpu);
+    while ((running != NULL) && (running->program_counter < cantidad_instrucciones)) // recorro tomando como punto de partida la instrucción que indique el Program Counter del PCB recibido -> FETCH
     {
+        t_direccion_fisica *direccion_fisica;
         pthread_mutex_unlock(&mutex_running_cpu);
-        instruccion_actual = list_get(running->instrucciones, running->program_counter); //tomo la instruccion actual
-        instruccion_actual_enum = enumerar_instruccion(instruccion_actual); 
+        instruccion_actual = list_get(running->instrucciones, running->program_counter); // tomo la instruccion actual
+        instruccion_actual_enum = enumerar_instruccion(instruccion_actual);
         argumentos = instruccion_actual->argumentos;
 
-        pthread_mutex_lock(&mutex_logger_cpu); 
+        pthread_mutex_lock(&mutex_logger_cpu);
         log_info(logger, "Antes del switch con la instruccion: %s\n", instruccion_actual->identificador);
         pthread_mutex_unlock(&mutex_logger_cpu);
-        
+
         switch (instruccion_actual_enum)
         {
-        case NO_OP: //DECODE + EXECUTE 
+        case NO_OP: // DECODE + EXECUTE
             retardo = configuracion_cpu->retardo_noop;
-            usleep(retardo*1000); //espera un tiempo determinado
+            usleep(retardo * 1000); // espera un tiempo determinado
             pthread_mutex_lock(&mutex_running_cpu);
-            running->program_counter++; //avanza a la prox instruccion 
+            running->program_counter++; // avanza a la prox instruccion
             pthread_mutex_unlock(&mutex_running_cpu);
             break;
 
-        case I_O: //DECODE + EXECUTE
+        case I_O: // DECODE + EXECUTE
             tiempo_bloqueo1 = list_get(argumentos, 0);
             pthread_mutex_lock(&mutex_running_cpu);
-            running->tiempo_bloqueo = tiempo_bloqueo1->argumento; //en el pcb me guardo el tiempo de bloqueo
-            running->program_counter++; //avanzo el program counter
-            send_pcb(*cliente_socket, running, BLOQUEO_IO); //mando el pcb para que lo reciba el kernel y bloquee al pcb
+            running->tiempo_bloqueo = tiempo_bloqueo1->argumento; // en el pcb me guardo el tiempo de bloqueo
+            running->program_counter++;                           // avanzo el program counter
+            send_pcb(*cliente_socket, running, BLOQUEO_IO);       // mando el pcb para que lo reciba el kernel y bloquee al pcb
             destruir_pcb(running);
-            running = NULL; //proceso bloqueado por I/O -> en running no hay nadie 
+            running = NULL; // proceso bloqueado por I/O -> en running no hay nadie
             pthread_mutex_unlock(&mutex_running_cpu);
             break;
 
         case READ:
             pthread_mutex_lock(&mutex_running_cpu);
-            
+
             running->program_counter++;
             pthread_mutex_unlock(&mutex_running_cpu);
             break;
 
         case WRITE:
             direccion_logica = list_get(argumentos, 0);
-            numero_pagina = (uint32_t) floor((direccion_logica->argumento) / tamanio_pagina); //calculo el numero de pagina donde voy a escribir el dato
-            valor = list_get(argumentos, 1);
-            marco = buscar(numero_pagina);
-            if(marco != -1){ // TLB HIT
-                socket_memoria = crear_conexion_memoria(configuracion_cpu, logger); //creo la conexion con la memoria
-                // send a memoria de la pagina, el marco, y el valor a escribir 
-            } else{ // TLB MISS
-                socket_memoria = crear_conexion_memoria(configuracion_cpu, logger); //creo la conexion con la memoria 
-                send_valor_y_num_pagina(socket_memoria, numero_pagina, valor->argumento); //envio el numero de pagina y el valor que quiero escribir a la memoria
+            direccion_fisica = calcular_mmu(direccion_logica);
+            printf("el numero de pagina es: %d\n", direccion_fisica->numero_pagina);
+            printf("la entrada de primer nivel es: %d\n", direccion_fisica->entrada_tabla_1er_nivel);
+            printf("la entrada de segundo nivel es: %d\n", direccion_fisica->entrada_tabla_2do_nivel);
+            printf("El desplazamiento es: %d\n", direccion_fisica->desplazamiento);
 
-                // recibo numero de marco en donde escribio lo que le pedi
-                recv_valor_tb(socket_memoria, &marco); //TODO: HACER EL SEND DESDE MEMORIA
+            valor = list_get(argumentos, 1);
+            marco = buscar(direccion_fisica->numero_pagina);
+            if (marco != -1)
+            {                                                                       // TLB HIT
+                socket_memoria = crear_conexion_memoria(configuracion_cpu, logger); // creo la conexion con la memoria
+                // send a memoria de la pagina, el marco, y el valor a escribir
+            }
+            else
+            {                                                                                               // TLB MISS
+                socket_memoria = crear_conexion_memoria(configuracion_cpu, logger);                         // creo la conexion con la memoria
+                send_valor_y_num_pagina(socket_memoria, direccion_fisica->numero_pagina, valor->argumento); 
+                // TODO: HACER EL SEND DESDE MEMORIA
+                recv_valor_tb(socket_memoria, &marco); 
                 // agrego una nueva entrada en la tlb con el nro de pagina y el marco
-                t_entrada_tlb *entrada_tlb = malloc(sizeof(t_entrada_tlb));
-                entrada_tlb->numero_pagina = numero_pagina;
-                entrada_tlb->marco = marco; 
+                t_tlb *entrada_tlb = malloc(sizeof(t_tlb));
+                entrada_tlb->pagina = direccion_fisica->numero_pagina;
+                entrada_tlb->marco = marco;
                 agregar(entrada_tlb);
-                
+
                 pthread_mutex_lock(&mutex_running_cpu);
                 running->program_counter--;
                 pthread_mutex_unlock(&mutex_running_cpu);
-                
-
-            } 
-
-           
-
-
+            }
             pthread_mutex_lock(&mutex_running_cpu);
             running->program_counter++;
             pthread_mutex_unlock(&mutex_running_cpu);
+
+            free(direccion_fisica);
+
             break;
 
         case COPY:
@@ -216,47 +219,49 @@ void ciclo_instruccion(uint32_t* cliente_socket, t_log *logger)
             pthread_mutex_unlock(&mutex_running_cpu);
             break;
 
-        case EXIT:     
-            pthread_mutex_lock(&mutex_running_cpu); 
-            send_pcb(*cliente_socket, running, ENVIAR_PCB); 
+        case EXIT:
+            pthread_mutex_lock(&mutex_running_cpu);
+            send_pcb(*cliente_socket, running, ENVIAR_PCB);
             running->program_counter++;
             running = NULL;
             pthread_mutex_unlock(&mutex_running_cpu);
             break;
-        
+
         case ERROR:
             pthread_mutex_lock(&mutex_running_cpu);
             running = NULL;
             pthread_mutex_unlock(&mutex_running_cpu);
-            
+
             pthread_mutex_lock(&mutex_logger_cpu);
             log_error(logger, "Error en la instruccion");
             pthread_mutex_unlock(&mutex_logger_cpu);
 
             break;
         }
-        chequear_interrupciones(cliente_socket); //cuando termina de ejecutar una instruccion chequeo si hay interrupciones
+        chequear_interrupciones(cliente_socket); // cuando termina de ejecutar una instruccion chequeo si hay interrupciones
         pthread_mutex_lock(&mutex_running_cpu);
     }
     pthread_mutex_unlock(&mutex_running_cpu);
 }
 
-void chequear_interrupciones(uint32_t* cliente_socket){ 
+void chequear_interrupciones(uint32_t *cliente_socket)
+{
     pthread_mutex_lock(&mutex_interrupcion);
-    if(interrupciones){ //si hay interrupciones hay que desalojar un proceso
+    if (interrupciones)
+    { // si hay interrupciones hay que desalojar un proceso
         pthread_mutex_unlock(&mutex_interrupcion);
 
         pthread_mutex_lock(&mutex_running_cpu);
-        send_pcb(*cliente_socket, running, INTERRUPCION); //desalojo el pcb y mando el pcb para que lo reciba el kernel 
+        send_pcb(*cliente_socket, running, INTERRUPCION); // desalojo el pcb y mando el pcb para que lo reciba el kernel
         pthread_mutex_unlock(&mutex_running_cpu);
 
         printf("Proceso %d interrumpido", running->id);
         destruir_pcb(running);
-        
+
         pthread_mutex_lock(&mutex_running_cpu);
-        running = NULL; //desalojo el pcb
+        running = NULL; // desalojo el pcb
         pthread_mutex_unlock(&mutex_running_cpu);
-        
+
         pthread_mutex_lock(&mutex_interrupcion);
     }
     pthread_mutex_unlock(&mutex_interrupcion);
@@ -292,7 +297,15 @@ INSTRUCCIONES_EJECUCION enumerar_instruccion(t_instruccion *instruccion)
     return ERROR;
 }
 
+t_direccion_fisica *calcular_mmu(t_argumento *direc_logica)
+{
+    printf("calculando direccion fisica\n");
+    t_direccion_fisica *direccion_fisica = malloc(sizeof(t_direccion_fisica));
+    printf("calculando direccion fisica 2\n");
+    direccion_fisica->numero_pagina = (uint32_t)floor((direc_logica->argumento) / tamanio_pagina); // calculo el numero de pagina donde voy a escribir el dato
+    direccion_fisica->entrada_tabla_1er_nivel = (uint32_t)floor(direccion_fisica->numero_pagina / cant_entradas_por_tabla);
+    direccion_fisica->entrada_tabla_2do_nivel = direccion_fisica->numero_pagina % cant_entradas_por_tabla;
+    direccion_fisica->desplazamiento = direc_logica->argumento - (direccion_fisica->numero_pagina * tamanio_pagina);
 
-
-
-
+    return direccion_fisica;
+}
