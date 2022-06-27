@@ -162,10 +162,10 @@ void list_add_con_mutex_tlb(t_list* lista, t_tlb* tlb, pthread_mutex_t mutex){
     pthread_mutex_unlock(&mutex);
 }
 
-uint32_t list_find_con_mutex_tlb(t_list* lista, t_tlb* tlb_buscado, pthread_mutex_t mutex){
+uint32_t list_find_con_mutex_tlb(t_list* lista, uint32_t tlb_buscado, pthread_mutex_t mutex){
     bool (closure)(void *data){
         t_tlb* entrada = (t_tlb*) data;
-        return criterio_id(tlb_buscado, entrada);
+        return criterio_pagina_tlb(tlb_buscado, entrada);
     }
     pthread_mutex_lock(&mutex);
     t_tlb* tlb_encontrado = list_find(lista, closure);
@@ -178,7 +178,6 @@ uint32_t list_find_con_mutex_tlb(t_list* lista, t_tlb* tlb_buscado, pthread_mute
 }
 
 
-
-bool criterio_pagina_tlb(t_tlb* tlb_buscado, t_tlb* tlb_de_la_lista){
-    return tlb_de_la_lista->pagina == tlb_buscado->pagina;
+bool criterio_pagina_tlb(uint32_t tlb_buscado, t_tlb* tlb_de_la_lista){
+    return tlb_de_la_lista->pagina == tlb_buscado;
 }

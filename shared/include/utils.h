@@ -31,6 +31,7 @@ bool criterio_id(t_pcb* pcb, t_pcb* pcb_buscado);
 void* queue_find(t_queue *self, bool(*condition)(void*));
 int list_size_con_mutex_tlb(t_list* lista, pthread_mutex_t mutex);
 void list_add_con_mutex_tlb(t_list* lista, t_tlb* tlb, pthread_mutex_t mutex);
-
+uint32_t list_find_con_mutex_tlb(t_list* lista, uint32_t tlb_buscado, pthread_mutex_t mutex);
+bool criterio_pagina_tlb(uint32_t tlb_buscado, t_tlb* tlb_de_la_lista);
 
 #endif

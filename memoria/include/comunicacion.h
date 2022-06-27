@@ -25,8 +25,20 @@
 
 typedef struct t_tabla_pagina1{ //la memoria tiene una lista con el id de la tabla q le corresponde al proceso junto con su tabla de primer nivel
     uint32_t id_tabla; //el que se guarda en el pcb (es el que devuelve memoria, al inicializar las estructuras)
-    uint32_t* primer_nivel[];  //tabla de primer nivel de cada proceso  
+    t_list* primer_nivel;  //tabla de primer nivel de cada proceso  
 }t_tabla_pagina1;
+
+typedef struct t_tabla_pagina2{
+    uint32_t id_tabla;
+    t_list* segundo_nivel;
+}t_tabla_pagina2;
+
+typedef struct t_estructura_2do_nivel{
+    uint32_t marco;
+    bool presencia;
+    bool uso;
+    bool modificado;
+}t_estructura_2do_nivel;
 
 typedef struct t_estructura_proceso{
 uint32_t id_proceso;
@@ -36,7 +48,8 @@ t_list *lista_tablas_segundo_nivel;
 char* nombre_archivo_swap;
 }t_estructura_proceso;
 
-// uint32_t tabla_pagina_2 [][3]; //matriz que representa la tabla de paginas de 2do nivel de 4 columnas y n filas
+
+t_estructura_proceso* estructura_proceso_actual;
 
 t_list *lista_estructuras; //lista de tablas de primer nivel por cada proceso para que la memoria conozca la de todos los procesos
 void list_add_con_mutex_tablas(t_list* lista, t_estructura_proceso* tabla_pagina1 , pthread_mutex_t mutex);
@@ -44,5 +57,11 @@ uint32_t crear_comunicacion_kernel(t_configuracion_memoria* configuracion_memori
 uint32_t server_escuchar(t_log* logger, char* server_name, uint32_t server_socket);
 static void procesar_conexion(void* void_args);
 void inicializar_semaforos();
-
+uint32_t obtener_tabla_2do_nivel(uint32_t id_tabla, uint32_t entrada_primer_nivel);
+t_tabla_pagina1 *buscar_tabla_pagina1(uint32_t id_tabla);
+uint32_t buscar_nro_tabla_segundo_nivel(t_tabla_pagina1 *tabla_pagina1, uint32_t entrada_tabla_1er_nivel);
+uint32_t obtener_frame(uint32_t nro_tabla_2do_nivel, uint32_t entrada_tabla_2do_nivel);
+uint32_t leer_valor(uint32_t frame, uint32_t desplazamiento);
+void escribir_valor(uint32_t frame, uint32_t desplazamiento, uint32_t valor_a_escribir);
+void copiar_valor(uint32_t frame_origen, uint32_t desplazamiento_origen, uint32_t frame_destino, uint32_t desplazamiento_destino);
 #endif

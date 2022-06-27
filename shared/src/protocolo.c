@@ -434,16 +434,16 @@ bool send_confirmacion_suspension(uint32_t fd){
 
 #pragma endregion
 
-#pragma region WRITE
-bool send_valor_y_num_pagina(uint32_t fd, uint32_t num_pagina, uint32_t valor){
+#pragma region OBTENER_TAMANIO
+bool send_tamanio_y_cant_entradas(uint32_t fd, uint32_t tamanio, uint32_t cant_entradas){
     size_t size = sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t) + sizeof(uint32_t); // stream: cop + sizePayload + numPagina + valor
     void *stream = malloc(size);
-    op_code cop = OBTENER_MARCO;
+    op_code cop = OBTENER_TAMANIO;
     size_t size_payload = size - sizeof(op_code) - sizeof(size_t);
     memcpy(stream, &cop, sizeof(op_code));
     memcpy(stream + sizeof(op_code), &size_payload, sizeof(size_t));
-    memcpy(stream + sizeof(op_code) + sizeof(size_t), &num_pagina, sizeof(uint32_t));
-    memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t), &valor, sizeof(uint32_t));
+    memcpy(stream + sizeof(op_code) + sizeof(size_t), &tamanio, sizeof(uint32_t));
+    memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t), &cant_entradas, sizeof(uint32_t));
     if(send(fd, stream, size, 0) == -1){
         free(stream);
         return false;
@@ -452,9 +452,9 @@ bool send_valor_y_num_pagina(uint32_t fd, uint32_t num_pagina, uint32_t valor){
     return true;
 }
 
-bool recv_valor_y_num_pagina(uint32_t fd, uint32_t *num_pagina, uint32_t *valor){
-    uint32_t valor_recibido;
-    uint32_t num_pagina_recibido;
+bool recv_tamanio_y_cant_entradas(uint32_t fd, uint32_t *tamanio, uint32_t *cant_entradas){
+    uint32_t cant_entradas_recibida;
+    uint32_t tamanio_recibido;
     size_t size;
     if(recv(fd, &size, sizeof(size_t), 0) != sizeof(size_t)){
         return false;
@@ -464,10 +464,10 @@ bool recv_valor_y_num_pagina(uint32_t fd, uint32_t *num_pagina, uint32_t *valor)
         free(stream);
         return false;
     }
-    memcpy(&num_pagina_recibido, stream, sizeof(uint32_t));
-    memcpy(&valor_recibido, stream + sizeof(uint32_t), sizeof(uint32_t));
-    *num_pagina = num_pagina_recibido;
-    *valor = valor_recibido;
+    memcpy(&tamanio_recibido, stream, sizeof(uint32_t));
+    memcpy(&cant_entradas_recibida, stream + sizeof(uint32_t), sizeof(uint32_t));
+    *tamanio = tamanio_recibido;
+    *cant_entradas = cant_entradas_recibida;
     free(stream);
     return true;
 }
@@ -483,5 +483,346 @@ bool send_orden_envio_tamanio(uint32_t fd)
         return false;
     return true;
 }
+
+#pragma endregion
+
+#pragma region PRIMER_ACCESO
+
+bool send_entrada_tabla_1er_nivel(uint32_t fd, uint32_t id_tabla1, uint32_t entrada_tabla_1er_nivel){
+    size_t size = sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t) + sizeof(uint32_t); // stream: cop + sizePayload + idTabla1 + entradaTabla1erNivel
+    void *stream = malloc(size);
+    op_code cop = PRIMER_ACCESO;
+    size_t size_payload = size - sizeof(op_code) - sizeof(size_t);
+    memcpy(stream, &cop, sizeof(op_code));
+    memcpy(stream + sizeof(op_code), &size_payload, sizeof(size_t));
+    memcpy(stream + sizeof(op_code) + sizeof(size_t), &id_tabla1, sizeof(uint32_t));
+    memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t), &entrada_tabla_1er_nivel, sizeof(uint32_t));
+    if(send(fd, stream, size, 0) == -1){
+        free(stream);
+        return false;
+    }
+    free(stream);
+    return true;
+}
+
+
+bool recv_entrada_tabla_1er_nivel(uint32_t fd, uint32_t *id_tabla, uint32_t *entrada_tabla_1er_nivel){
+    uint32_t id_tabla_recibido;
+    uint32_t entrada_tabla_1er_nivel_recibido;
+    size_t size;
+    if(recv(fd, &size, sizeof(size_t), 0) != sizeof(size_t)){
+        return false;
+    }
+    void *stream = malloc(size);
+    if(recv(fd, stream, size, 0) != size){
+        free(stream);
+        return false;
+    }
+    memcpy(&id_tabla_recibido, stream, sizeof(uint32_t));
+    memcpy(&entrada_tabla_1er_nivel_recibido, stream + sizeof(uint32_t), sizeof(uint32_t));
+    *id_tabla = id_tabla_recibido;
+    *entrada_tabla_1er_nivel = entrada_tabla_1er_nivel_recibido;
+    free(stream);
+    return true;
+}
+
+#pragma endregion
+
+#pragma region NUM_TABLA_SEGUNDO_NIVEL
+bool send_num_tabla_2do_nivel(uint32_t fd, uint32_t num_tabla_2do_nivel){
+    size_t size = sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t); // stream: cop + sizePayload + numTabla2doNivel
+    void *stream = malloc(size);
+    op_code cop = NUM_TABLA_SEGUNDO_NIVEL;
+    size_t size_payload = size - sizeof(op_code) - sizeof(size_t);
+    memcpy(stream, &cop, sizeof(op_code));
+    memcpy(stream + sizeof(op_code), &size_payload, sizeof(size_t));
+    memcpy(stream + sizeof(op_code) + sizeof(size_t), &num_tabla_2do_nivel, sizeof(uint32_t));
+    if(send(fd, stream, size, 0) == -1){
+        free(stream);
+        return false;
+    }
+    free(stream);
+    return true;
+}
+
+bool recv_num_tabla_2do_nivel(uint32_t fd, uint32_t *num_tabla_2do_nivel){
+    uint32_t num_tabla_2do_nivel_recibido;
+    size_t size;
+    if(recv(fd, &size, sizeof(size_t), 0) != sizeof(size_t)){
+        return false;
+    }
+    void *stream = malloc(size);
+    if(recv(fd, stream, size, 0) != size){
+        free(stream);
+        return false;
+    }
+    memcpy(&num_tabla_2do_nivel_recibido, stream, sizeof(uint32_t));
+    *num_tabla_2do_nivel = num_tabla_2do_nivel_recibido;
+    free(stream);
+    return true;
+}
+
+#pragma endregion
+
+#pragma region SEGUNDO_ACCESO
+
+bool send_entrada_tabla_2do_nivel(uint32_t fd, uint32_t num_segundo_nivel, uint32_t entrada_tabla_2do_nivel){
+    size_t size = sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t) + sizeof(uint32_t); // stream: cop + sizePayload + idTabla1 + entradaTabla1erNivel
+    void *stream = malloc(size);
+    op_code cop = SEGUNDO_ACCESO;
+    size_t size_payload = size - sizeof(op_code) - sizeof(size_t);
+    memcpy(stream, &cop, sizeof(op_code));
+    memcpy(stream + sizeof(op_code), &size_payload, sizeof(size_t));
+    memcpy(stream + sizeof(op_code) + sizeof(size_t), &num_segundo_nivel, sizeof(uint32_t));
+    memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t), &entrada_tabla_2do_nivel, sizeof(uint32_t));
+    if(send(fd, stream, size, 0) == -1){
+        free(stream);
+        return false;
+    }
+    free(stream);
+    return true;
+}
+
+
+bool recv_entrada_tabla_2do_nivel(uint32_t fd, uint32_t *num_segundo_nivel, uint32_t *entrada_tabla_2do_nivel){
+    uint32_t num_tabla_segundo;
+    uint32_t entrada_tabla_2do_nivel_recibido;
+    size_t size;
+    if(recv(fd, &size, sizeof(size_t), 0) != sizeof(size_t)){
+        return false;
+    }
+    void *stream = malloc(size);
+    if(recv(fd, stream, size, 0) != size){
+        free(stream);
+        return false;
+    }
+    memcpy(&num_tabla_segundo, stream, sizeof(uint32_t));
+    memcpy(&entrada_tabla_2do_nivel, stream + sizeof(uint32_t), sizeof(uint32_t));
+    *num_segundo_nivel = num_tabla_segundo;
+    *entrada_tabla_2do_nivel = entrada_tabla_2do_nivel_recibido;
+    free(stream);
+    return true;
+}
+
+#pragma endregion
+
+#pragma region EJECUTAR_WRITE
+
+bool send_ejecutar_write(uint32_t fd, uint32_t marco, uint32_t desplazamiento, uint32_t valor_a_escribir){
+    size_t size = sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t)*3; // stream: cop + sizePayload + marco + desplazamiento + valorAEscribir
+    void *stream = malloc(size);
+    op_code cop = EJECUTAR_WRITE;
+    size_t size_payload = size - sizeof(op_code) - sizeof(size_t);
+    memcpy(stream, &cop, sizeof(op_code));
+    memcpy(stream + sizeof(op_code), &size_payload, sizeof(size_t));
+    memcpy(stream + sizeof(op_code) + sizeof(size_t), &marco, sizeof(uint32_t));
+    memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t), &desplazamiento, sizeof(uint32_t));
+    memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t) + sizeof(uint32_t), &valor_a_escribir, sizeof(uint32_t));
+    if(send(fd, stream, size, 0) == -1){
+        free(stream);
+        return false;
+    }
+    free(stream);
+    return true;
+}
+
+bool recv_ejecutar_write(uint32_t fd, uint32_t* marco, uint32_t* desplazamiento, uint32_t* valor_a_escribir){
+    uint32_t marco_recibido;
+    uint32_t desplazamiento_recibido;
+    uint32_t valor_a_escribir_recibido;
+    size_t size;
+    if(recv(fd, &size, sizeof(size_t), 0) != sizeof(size_t)){
+        return false;
+    }
+    void *stream = malloc(size);
+    if(recv(fd, stream, size, 0) != size){
+        free(stream);
+        return false;
+    }
+    memcpy(&marco_recibido, stream, sizeof(uint32_t));
+    memcpy(&desplazamiento_recibido, stream + sizeof(uint32_t), sizeof(uint32_t));
+    memcpy(&valor_a_escribir_recibido, stream + sizeof(uint32_t) + sizeof(uint32_t), sizeof(uint32_t));
+    *marco = marco_recibido;
+    *desplazamiento = desplazamiento_recibido;
+    *valor_a_escribir = valor_a_escribir_recibido;
+    free(stream);
+    return true;
+}
+
+#pragma endregion 
+
+#pragma region OK
+
+bool send_ok(uint32_t fd){
+    op_code cop = OK;
+    if (send(fd, &cop, sizeof(op_code), 0) != sizeof(op_code))
+        return false;
+    return true;
+}
+
+#pragma endregion
+
+#pragma region EJECUTAR_READ
+
+bool send_ejecutar_read(uint32_t fd, uint32_t marco, uint32_t desplazamiento){
+    size_t size = sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t)*2; // stream: cop + sizePayload + marco + desplazamiento
+    void *stream = malloc(size);
+    op_code cop = EJECUTAR_READ;
+    size_t size_payload = size - sizeof(op_code) - sizeof(size_t);
+    memcpy(stream, &cop, sizeof(op_code));
+    memcpy(stream + sizeof(op_code), &size_payload, sizeof(size_t));
+    memcpy(stream + sizeof(op_code) + sizeof(size_t), &marco, sizeof(uint32_t));
+    memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t), &desplazamiento, sizeof(uint32_t));
+    if(send(fd, stream, size, 0) == -1){
+        free(stream);
+        return false;
+    }
+    free(stream);
+    return true;
+}
+
+bool recv_ejecutar_read(uint32_t fd, uint32_t* marco, uint32_t* desplazamiento){
+    uint32_t marco_recibido;
+    uint32_t desplazamiento_recibido;
+    size_t size;
+    if(recv(fd, &size, sizeof(size_t), 0) != sizeof(size_t)){
+        return false;
+    }
+    void *stream = malloc(size);
+    if(recv(fd, stream, size, 0) != size){
+        free(stream);
+        return false;
+    }
+    memcpy(&marco_recibido, stream, sizeof(uint32_t));
+    memcpy(&desplazamiento_recibido, stream + sizeof(uint32_t), sizeof(uint32_t));
+    *marco = marco_recibido;
+    *desplazamiento = desplazamiento_recibido;
+    free(stream);
+    return true;
+}
+
+#pragma endregion
+
+#pragma region OK_READ
+
+bool send_ok_read(uint32_t fd, uint32_t valor_leido){
+    size_t size = sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t); // stream: cop + sizePayload + valorLeido
+    void *stream = malloc(size);
+    op_code cop = OK_READ;
+    size_t size_payload = size - sizeof(op_code) - sizeof(size_t);
+    memcpy(stream, &cop, sizeof(op_code));
+    memcpy(stream + sizeof(op_code), &size_payload, sizeof(size_t));
+    memcpy(stream + sizeof(op_code) + sizeof(size_t), &valor_leido, sizeof(uint32_t));
+    if(send(fd, stream, size, 0) == -1){
+        free(stream);
+        return false;
+    }
+    free(stream);
+    return true;
+}
+
+bool recv_ok_read(uint32_t fd, uint32_t* valor_leido){
+    uint32_t valor_leido_recibido;
+    size_t size;
+    if(recv(fd, &size, sizeof(size_t), 0) != sizeof(size_t)){
+        return false;
+    }
+    void *stream = malloc(size);
+    if(recv(fd, stream, size, 0) != size){
+        free(stream);
+        return false;
+    }
+    memcpy(&valor_leido_recibido, stream, sizeof(uint32_t));
+    *valor_leido = valor_leido_recibido;
+    free(stream);
+    return true;
+}
+
+#pragma endregion
+
+#pragma region FRAME
+
+bool send_frame(uint32_t fd, uint32_t frame){
+    size_t size = sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t); // stream: cop + sizePayload + frame
+    void *stream = malloc(size);
+    op_code cop = FRAME;
+    size_t size_payload = size - sizeof(op_code) - sizeof(size_t);
+    memcpy(stream, &cop, sizeof(op_code));
+    memcpy(stream + sizeof(op_code), &size_payload, sizeof(size_t));
+    memcpy(stream + sizeof(op_code) + sizeof(size_t), &frame, sizeof(uint32_t));
+    if(send(fd, stream, size, 0) == -1){
+        free(stream);
+        return false;
+    }
+    free(stream);
+    return true;    
+}
+
+bool recv_frame(uint32_t fd, uint32_t* frame){
+    uint32_t frame_recibido;
+    size_t size;
+    if(recv(fd, &size, sizeof(size_t), 0) != sizeof(size_t)){
+        return false;
+    }
+    void *stream = malloc(size);
+    if(recv(fd, stream, size, 0) != size){
+        free(stream);
+        return false;
+    }
+    memcpy(&frame_recibido, stream, sizeof(uint32_t));
+    *frame = frame_recibido;
+    free(stream);
+    return true;
+}
+
+#pragma endregion
+
+#pragma region EJECUTAR_COPY
+
+bool send_ejecutar_copy(uint32_t fd, uint32_t marco_origen, uint32_t desplazamiento_origen, uint32_t marco_destino, uint32_t desplazamiento_destino){
+    size_t size = sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t)*4; // stream: cop + sizePayload + marcoOrigen + desplazamientoOrigen + marcoDestino + desplazamientoDestino
+    void *stream = malloc(size);
+    op_code cop = EJECUTAR_COPY;
+    size_t size_payload = size - sizeof(op_code) - sizeof(size_t);
+    memcpy(stream, &cop, sizeof(op_code));
+    memcpy(stream + sizeof(op_code), &size_payload, sizeof(size_t));
+    memcpy(stream + sizeof(op_code) + sizeof(size_t), &marco_origen, sizeof(uint32_t));
+    memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t), &desplazamiento_origen, sizeof(uint32_t));
+    memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t)*2, &marco_destino, sizeof(uint32_t));
+    memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t)*3, &desplazamiento_destino, sizeof(uint32_t));
+    if(send(fd, stream, size, 0) == -1){
+        free(stream);
+        return false;
+    }
+    free(stream);
+    return true;
+}
+
+bool recv_ejecutar_copy(uint32_t fd, uint32_t* marco_origen, uint32_t* desplazamiento_origen, uint32_t* marco_destino, uint32_t* desplazamiento_destino){
+    uint32_t marco_origen_recibido;
+    uint32_t desplazamiento_origen_recibido;
+    uint32_t marco_destino_recibido;
+    uint32_t desplazamiento_destino_recibido;
+    size_t size;
+    if(recv(fd, &size, sizeof(size_t), 0) != sizeof(size_t)){
+        return false;
+    }
+    void *stream = malloc(size);
+    if(recv(fd, stream, size, 0) != size){
+        free(stream);
+        return false;
+    }
+    memcpy(&marco_origen_recibido, stream, sizeof(uint32_t));
+    memcpy(&desplazamiento_origen_recibido, stream + sizeof(uint32_t), sizeof(uint32_t));
+    memcpy(&marco_destino_recibido, stream + sizeof(uint32_t)*2, sizeof(uint32_t));
+    memcpy(&desplazamiento_destino_recibido, stream + sizeof(uint32_t)*3, sizeof(uint32_t));
+    *marco_origen = marco_origen_recibido;
+    *desplazamiento_origen = desplazamiento_origen_recibido;
+    *marco_destino = marco_destino_recibido;
+    *desplazamiento_destino = desplazamiento_destino_recibido;
+    free(stream);
+    return true;
+}
+
 
 #pragma endregion

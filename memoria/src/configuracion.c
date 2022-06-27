@@ -43,4 +43,5 @@ void inicializar_semaforos(){
     pthread_mutex_init(&mutex_logger_memoria, NULL);
     pthread_mutex_init(&mutex_valor_tp, NULL);
     pthread_mutex_init(&mutex_lista_estructuras, NULL);
+    pthread_mutex_init(&mutex_estructura_proceso_actual, NULL);
 }   

@@ -21,9 +21,17 @@ typedef enum
     INTERRUPCION,
     SUSPENSION,
     CONFIRMACION_SUSPENSION,
-    OBTENER_MARCO,
-    ORDEN_ENVIO_TAMANIO
-
+    OBTENER_TAMANIO,
+    ORDEN_ENVIO_TAMANIO,
+    PRIMER_ACCESO,
+    NUM_TABLA_SEGUNDO_NIVEL,
+    SEGUNDO_ACCESO,
+    EJECUTAR_WRITE,
+    EJECUTAR_READ,
+    EJECUTAR_COPY,
+    OK,
+    OK_READ, 
+    FRAME
 } op_code;
 
 typedef struct  //config para la consola

@@ -29,5 +29,6 @@ static void procesar_conexion(void* void_args);
 void ciclo_instruccion(uint32_t* cliente_socket, t_log* logger);
 void chequear_interrupciones(uint32_t* cliente_socket);
 t_direccion_fisica* calcular_mmu(t_argumento* direc_logica);
+uint32_t obtener_marco(uint32_t entrada_tabla_1er_nivel, uint32_t entrada_tabla_2do_nivel, uint32_t id_tabla_1);
 
 #endif 

@@ -27,9 +27,24 @@ bool send_fin_proceso(uint32_t fd);
 bool send_suspension(uint32_t fd, uint32_t id);
 bool recv_suspension(uint32_t fd, uint32_t* id);
 bool send_confirmacion_suspension(uint32_t fd);
-bool send_valor_y_num_pagina(uint32_t fd, uint32_t num_pagina, uint32_t valor);
-bool recv_valor_y_num_pagina(uint32_t fd, uint32_t *num_pagina, uint32_t *valor);
+bool send_tamanio_y_cant_entradas(uint32_t fd, uint32_t num_pagina, uint32_t valor);
+bool recv_tamanio_y_cant_entradas(uint32_t fd, uint32_t *num_pagina, uint32_t *valor);
 bool send_orden_envio_tamanio(uint32_t fd);
-
-
+bool send_entrada_tabla_1er_nivel(uint32_t fd, uint32_t id_tabla, uint32_t entrada_tabla_1er_nivel);
+bool recv_entrada_tabla_1er_nivel(uint32_t fd, uint32_t *id_tabla, uint32_t *entrada_tabla_1er_nivel);
+bool send_entrada_tabla_2do_nivel(uint32_t fd, uint32_t num_segundo_nivel, uint32_t entrada_tabla_2do_nivel);
+bool recv_entrada_tabla_2do_nivel(uint32_t fd, uint32_t *num_segundo_nivel, uint32_t *entrada_tabla_2do_nivel);
+bool send_num_tabla_2do_nivel(uint32_t fd, uint32_t num_tabla_2do_nivel);
+bool recv_num_tabla_2do_nivel(uint32_t fd, uint32_t *num_tabla_2do_nivel);
+bool send_ejecutar_write(uint32_t fd, uint32_t marco, uint32_t desplazamiento, uint32_t valor_a_escribir);
+bool recv_ejecutar_write(uint32_t fd, uint32_t* marco, uint32_t* desplazamiento, uint32_t* valor_a_escribir);
+bool send_ok(uint32_t fd);
+bool send_ejecutar_read(uint32_t fd, uint32_t marco, uint32_t desplazamiento);
+bool recv_ejecutar_read(uint32_t fd, uint32_t* marco, uint32_t* desplazamiento);
+bool send_ok_read(uint32_t fd, uint32_t valor_leido);
+bool recv_ok_read(uint32_t fd, uint32_t* valor_leido);
+bool send_frame(uint32_t fd, uint32_t frame);
+bool recv_frame(uint32_t fd, uint32_t* frame);
+bool send_ejecutar_copy(uint32_t fd, uint32_t marco_origen, uint32_t desplazamiento_origen, uint32_t marco_destino, uint32_t desplazamiento_destino);
+bool recv_ejecutar_copy(uint32_t fd, uint32_t* marco_origen, uint32_t* desplazamiento_origen, uint32_t* marco_destino, uint32_t* desplazamiento_destino);
 #endif
