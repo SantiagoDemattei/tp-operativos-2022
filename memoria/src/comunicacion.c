@@ -47,6 +47,7 @@ static void procesar_conexion(void *void_args)
     uint32_t num_tabla_segundo_nivel;
     uint32_t num_segundo_nivel;
     uint32_t entrada_tabla_2do_nivel;
+    t_marco_presencia *marco_presencia = malloc(sizeof(t_marco_presencia));
     uint32_t frame;
     uint32_t desplazamiento;
     uint32_t valor_leido;
@@ -69,7 +70,7 @@ static void procesar_conexion(void *void_args)
             break;
 
         case ORDEN_ENVIO_TAMANIO:
-            printf("el tamnanio de pagina es: %d\n", (configuracion_memoria->tam_pagina));
+            printf("el tamanio de pagina es: %d\n", (configuracion_memoria->tam_pagina));
             send_tamanio_y_cant_entradas(*cliente_socket, (configuracion_memoria->tam_pagina), (configuracion_memoria->entradas_por_tabla)); // envio el tamanio de pagina a la cpu
             loggear_info(logger, "Envie tamanio de pagina a CPU\n", mutex_logger_memoria);
             break;
@@ -96,18 +97,17 @@ static void procesar_conexion(void *void_args)
                 tabla_segundo_nivel->segundo_nivel = list_create();
                 list_add(estructura->lista_tablas_segundo_nivel, tabla_segundo_nivel);
             }
-
+            printf("id_proceso: %d\n", id_proceso);
             char *proceso_string = malloc(strlen("/proceso_") + strlen(string_itoa(id_proceso)));
-            string_append(&proceso_string, "/proceso_");
-            string_append(&proceso_string, string_itoa(id_proceso));
+            proceso_string = string_from_format("/proceso_%d", id_proceso);
             char *path_archivo = malloc(strlen(configuracion_memoria->path_swap + strlen(proceso_string)));
             string_append(&path_archivo, configuracion_memoria->path_swap);
             string_append(&path_archivo, proceso_string);
 
             estructura->nombre_archivo_swap = malloc(strlen(path_archivo)); // "/home/utnso/swap/proceso_xx" (el +1 es por el \0)
             string_append(&estructura->nombre_archivo_swap, path_archivo);
-            printf("El nombre del archivo es: %s\n", estructura->nombre_archivo_swap);
-
+            
+            loggear_info(logger, string_from_format("El nombre del archivo es: %s\n", estructura->nombre_archivo_swap), mutex_logger_memoria);
             list_add_con_mutex_tablas(lista_estructuras, estructura, mutex_lista_estructuras);
 
             send_valor_tb(*cliente_socket, tabla_pagina1->id_tabla); // le mandamos el id de la tabla que corresponde al proceso (es lo mismo que el contador)
@@ -131,8 +131,8 @@ static void procesar_conexion(void *void_args)
             recv_entrada_tabla_2do_nivel(*cliente_socket, &num_segundo_nivel, &entrada_tabla_2do_nivel);
             loggear_info(logger, "Se recibio la entrada de la tabla de pagina de segundo nivel\n", mutex_logger_memoria);
             // busco el frame en la tabla de segundo nivel
-            frame = obtener_frame(num_segundo_nivel, entrada_tabla_2do_nivel);
-            send_frame(*cliente_socket, frame);
+            marco_presencia = obtener_frame(num_segundo_nivel, entrada_tabla_2do_nivel);
+            send_frame(*cliente_socket, marco_presencia);
             break;
 
         case EJECUTAR_WRITE:
@@ -141,6 +141,7 @@ static void procesar_conexion(void *void_args)
             escribir_valor(frame, desplazamiento, valor_a_escribir);
             send_ok(*cliente_socket);
             break;
+            
         case EJECUTAR_READ:
             recv_ejecutar_read(*cliente_socket, &frame, &desplazamiento);
             loggear_info(logger, "Se recibio orden de lectura\n", mutex_logger_memoria);
@@ -269,10 +270,10 @@ t_list *buscar_tabla_segundo_nivel(uint32_t nro_tabla_2do_nivel)
     return NULL;
 }
 
-uint32_t obtener_frame(uint32_t nro_tabla_2do_nivel, uint32_t entrada_tabla_2do_nivel)
+t_marco_presencia* obtener_frame(uint32_t nro_tabla_2do_nivel, uint32_t entrada_tabla_2do_nivel)
 {
     t_estructura_2do_nivel *fila_2do_nivel;
-    uint32_t frame;
+    t_marco_presencia *marco_presencia = malloc(sizeof(t_marco_presencia));
     pthread_mutex_lock(&mutex_lista_estructuras);
     t_list *tabla_segundo_nivel = buscar_tabla_segundo_nivel(nro_tabla_2do_nivel);
 
@@ -291,19 +292,33 @@ uint32_t obtener_frame(uint32_t nro_tabla_2do_nivel, uint32_t entrada_tabla_2do_
             // si esta en 1, retorno el frame
             // si esta en 0, tengo que cargarlo en memoria trayendomelo de SWAP
             if (fila_2do_nivel->presencia == 1)
-            {
-                frame = fila_2do_nivel->marco;
+            {   
+                marco_presencia->marco = fila_2do_nivel->marco;
+                marco_presencia->presencia = 1; 
+                /*
+                devolver una estructura: 
+                    1) marco
+                    2) bit de presencia original (1)
+                */
             }
             else
             {
                 // cargarlo de swap
                 // modificar el campo de frame (de -1 al que obtuve de SWAP) y el de presencia (de 0 a 1) en la fila de la tabla de 2do nivel
                 // return el frame
+                printf("Entre por el else y el bit de presencia es 0\n");
+                marco_presencia->marco = 0; // ES PARA PROBAR AHORAA!!!
+                marco_presencia->presencia = 0;
+                /*
+                devolver una estructura: 
+                    1) marco
+                    2) bit de presencia original (0)
+                */
             }
         }
     }
     pthread_mutex_unlock(&mutex_lista_estructuras);
-    return frame;
+    return marco_presencia;
 }
 
 void escribir_valor(uint32_t frame, uint32_t desplazamiento, uint32_t valor_a_escribir)

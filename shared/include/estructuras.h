@@ -120,4 +120,9 @@ typedef struct t_tlb{
 } t_tlb;
 
 
+typedef struct t_marco_presencia{
+    uint32_t marco;
+    bool presencia;
+} t_marco_presencia;
+
 #endif

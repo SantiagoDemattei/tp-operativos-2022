@@ -133,6 +133,9 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
     t_argumento *direccion_logica;
     t_argumento *direccion_logica_origen;
     t_argumento *direccion_logica_destino;
+    t_marco_presencia *marco_presencia;
+    t_marco_presencia *marco_presencia_origen;
+    t_marco_presencia *marco_presencia_destino;
     uint32_t marco;
     uint32_t marco_origen;
     uint32_t marco_destino;
@@ -200,15 +203,32 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
             }
             else // TLB MISS
             {
-                marco = obtener_marco(direccion_fisica->entrada_tabla_1er_nivel, direccion_fisica->entrada_tabla_2do_nivel, running->tabla_pagina); // obtengo el marco;
+                marco_presencia = obtener_marco(direccion_fisica->entrada_tabla_1er_nivel, direccion_fisica->entrada_tabla_2do_nivel, running->tabla_pagina); // obtengo el marco;
+
                 t_tlb *entrada_tlb = malloc(sizeof(t_tlb));
                 entrada_tlb->pagina = direccion_fisica->numero_pagina;
-                entrada_tlb->marco = marco;
+                entrada_tlb->marco = marco_presencia->marco;
                 agregar(entrada_tlb); // agrego la entrada a la tlb
 
-                pthread_mutex_lock(&mutex_running_cpu);
-                running->program_counter--; // reinicio la instruccion
-                pthread_mutex_unlock(&mutex_running_cpu);
+                if (marco_presencia->presencia == 0) // si presencia = 0, reiniciamos la instruccion
+                {
+                    pthread_mutex_lock(&mutex_running_cpu);
+                    running->program_counter--; // reinicio la instruccion
+                    pthread_mutex_unlock(&mutex_running_cpu);
+                }
+                else
+                {
+                    socket_memoria_cpu = crear_conexion_memoria(configuracion_cpu, logger_cpu); // creo la conexion con la memoria
+                    // send a memoria del marco, el desplazamiento (este es el tercer acceso)
+                    send_ejecutar_read(socket_memoria_cpu, marco, direccion_fisica->desplazamiento);
+                    if (recv(socket_memoria_cpu, &cop, sizeof(op_code), 0) != sizeof(op_code))
+                    {
+                        loggear_error(logger_cpu, "Error al leer", mutex_logger_cpu);
+                    }
+                    recv_ok_read(socket_memoria_cpu, &valor_leido);
+                    loggear_info(logger_cpu, string_from_format("El valor leido en la posicion es: %d\n", valor_leido), mutex_logger_cpu);
+                    liberar_conexion(socket_memoria_cpu);
+                }
             }
 
             pthread_mutex_lock(&mutex_running_cpu);
@@ -239,16 +259,29 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
             }
             else // TLB MISS
             {
-                marco = obtener_marco(direccion_fisica->entrada_tabla_1er_nivel, direccion_fisica->entrada_tabla_2do_nivel, running->tabla_pagina); // obtengo el marco;
+                marco_presencia = obtener_marco(direccion_fisica->entrada_tabla_1er_nivel, direccion_fisica->entrada_tabla_2do_nivel, running->tabla_pagina); // obtengo el marco;
+                printf("el marco es: %d\n", marco_presencia->marco);
 
                 t_tlb *entrada_tlb = malloc(sizeof(t_tlb));
                 entrada_tlb->pagina = direccion_fisica->numero_pagina;
-                entrada_tlb->marco = marco;
+                entrada_tlb->marco = marco_presencia->marco;
                 agregar(entrada_tlb); // agrego la entrada a la tlb
 
-                pthread_mutex_lock(&mutex_running_cpu);
-                running->program_counter--; // reinicio la instruccion
-                pthread_mutex_unlock(&mutex_running_cpu);
+                if (marco_presencia->presencia == 0) // si presencia = 0, reiniciamos la instruccion
+                {
+                    pthread_mutex_lock(&mutex_running_cpu);
+                    running->program_counter--; // reinicio la instruccion
+                    pthread_mutex_unlock(&mutex_running_cpu);
+                }
+                else // si presencia = 1, ejecutamos la instruccion
+                {
+                    socket_memoria_cpu = crear_conexion_memoria(configuracion_cpu, logger_cpu); // creo la conexion con la memoria
+                    // send a memoria del marco, el desplazamaiento y el valor a escribir (este es el tercer acceso)
+                    send_ejecutar_write(socket_memoria_cpu, marco, direccion_fisica->desplazamiento, valor->argumento);
+                    recv(socket_memoria_cpu, &cop, sizeof(op_code), 0); // espero el OK
+                    loggear_info(logger_cpu, "Se escribio el valor en la posicion correspondiente\n", mutex_logger_cpu);
+                    liberar_conexion(socket_memoria_cpu);
+                }
             }
 
             pthread_mutex_lock(&mutex_running_cpu);
@@ -286,24 +319,38 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
             {
                 if (marco_origen == -1)
                 {
-                    marco_origen = obtener_marco(direccion_fisica_origen->entrada_tabla_1er_nivel, direccion_fisica_origen->entrada_tabla_2do_nivel, running->tabla_pagina); // obtengo el marco;
+                    marco_presencia_origen = obtener_marco(direccion_fisica_origen->entrada_tabla_1er_nivel, direccion_fisica_origen->entrada_tabla_2do_nivel, running->tabla_pagina); // obtengo el marco;
 
                     t_tlb *entrada_tlb = malloc(sizeof(t_tlb));
                     entrada_tlb->pagina = direccion_fisica->numero_pagina;
-                    entrada_tlb->marco = marco;
+                    entrada_tlb->marco = marco_presencia->marco;
                     agregar(entrada_tlb); // agrego la entrada a la tlb
-                } else {
-                    marco_destino = obtener_marco(direccion_fisica_destino->entrada_tabla_1er_nivel, direccion_fisica_destino->entrada_tabla_2do_nivel, running->tabla_pagina); // obtengo el marco;
+                }
+                else
+                {
+                    marco_presencia_destino = obtener_marco(direccion_fisica_destino->entrada_tabla_1er_nivel, direccion_fisica_destino->entrada_tabla_2do_nivel, running->tabla_pagina); // obtengo el marco;
 
                     t_tlb *entrada_tlb = malloc(sizeof(t_tlb));
                     entrada_tlb->pagina = direccion_fisica->numero_pagina;
-                    entrada_tlb->marco = marco;
+                    entrada_tlb->marco = marco_presencia->marco;
                     agregar(entrada_tlb); // agrego la entrada a la tlb
                 }
 
-                pthread_mutex_lock(&mutex_running_cpu);
-                running->program_counter--; // reinicio la instruccion
-                pthread_mutex_unlock(&mutex_running_cpu);            
+                if (marco_presencia_origen->presencia == 0 || marco_presencia_destino->presencia == 0) // si presencia = 0, reiniciamos la instruccion
+                {
+                    pthread_mutex_lock(&mutex_running_cpu);
+                    running->program_counter--; // reinicio la instruccion
+                    pthread_mutex_unlock(&mutex_running_cpu);
+                }
+                else // si presencia = 1, ejecutamos la instruccion
+                {
+                    socket_memoria_cpu = crear_conexion_memoria(configuracion_cpu, logger_cpu); // creo la conexion con la memoria
+                    // send a memoria del marco y desplazamiento, tanto del origen como del destino
+                    send_ejecutar_copy(socket_memoria_cpu, marco_origen, direccion_fisica_origen->desplazamiento, marco_destino, direccion_fisica_destino->desplazamiento);
+                    recv(socket_memoria_cpu, &cop, sizeof(op_code), 0); // espero el OK
+                    loggear_info(logger_cpu, "Se copio el valor en la posicion correspondiente\n", mutex_logger_cpu);
+                    liberar_conexion(socket_memoria_cpu);
+                }
             }
 
             pthread_mutex_lock(&mutex_running_cpu);
@@ -401,7 +448,7 @@ t_direccion_fisica *calcular_mmu(t_argumento *direc_logica)
     return direccion_fisica;
 }
 
-uint32_t obtener_marco(uint32_t entrada_tabla_1er_nivel, uint32_t entrada_tabla_2do_nivel, uint32_t id_tabla_1)
+t_marco_presencia *obtener_marco(uint32_t entrada_tabla_1er_nivel, uint32_t entrada_tabla_2do_nivel, uint32_t id_tabla_1)
 {
     // PRIMER ACCESO A MEMORIA:
     // send de la entrada 1
@@ -409,7 +456,7 @@ uint32_t obtener_marco(uint32_t entrada_tabla_1er_nivel, uint32_t entrada_tabla_
     op_code cop;
     uint32_t num_segundo_nivel;
     uint32_t marco;
-
+    t_marco_presencia *marco_presencia;
     socket_memoria_cpu = crear_conexion_memoria(configuracion_cpu, logger_cpu);
     send_entrada_tabla_1er_nivel(socket_memoria_cpu, id_tabla_1, entrada_tabla_1er_nivel);
     if (recv(socket_memoria_cpu, &cop, sizeof(op_code), 0) != sizeof(op_code))
@@ -429,7 +476,7 @@ uint32_t obtener_marco(uint32_t entrada_tabla_1er_nivel, uint32_t entrada_tabla_
     {
         loggear_error(logger_cpu, "Error en conexion", mutex_logger_cpu);
     }
-    recv_frame(socket_cpu_dispatch, &marco);
+    recv_frame(socket_cpu_dispatch, &marco_presencia);
     liberar_conexion(socket_memoria_cpu);
-    return marco;
+    return marco_presencia;
 }

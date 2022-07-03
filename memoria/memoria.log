@@ -1,0 +1,22 @@
+[INFO] 17:04:20:490 MEMORIA/(10179:10179): Esperando a 127.0.0.1:8002 (KERNEL)
+
+[INFO] 17:04:22:250 MEMORIA/(10179:10179): Cliente conectado (a MEMORIA)
+
+[INFO] 17:04:22:258 MEMORIA/(10179:10181): Envie tamanio de pagina a CPU
+
+[INFO] 17:04:22:260 MEMORIA/(10179:10181): DISCONNECT!
+
+[INFO] 17:05:46:346 MEMORIA/(10179:10179): Cliente conectado (a MEMORIA)
+
+[INFO] 17:05:46:349 MEMORIA/(10179:10261): INICIALIZANDO ESTRUCTURAS
+
+[INFO] 17:05:46:349 MEMORIA/(10179:10261): El nombre del archivo es: 7:05:46:349 MEMORIA/(10179:1¡	/home/utnso/swap/proceso_1
+
+[INFO] 17:05:46:360 MEMORIA/(10179:10261): Se envio el valor de la tabla de paginas al kernel
+
+[INFO] 17:05:46:361 MEMORIA/(10179:10261): DISCONNECT!
+
+[INFO] 17:05:48:391 MEMORIA/(10179:10179): Cliente conectado (a MEMORIA)
+
+[INFO] 17:05:48:429 MEMORIA/(10179:10262): Se recibio la entrada de la tabla de paginas de primer nivel
+

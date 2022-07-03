@@ -43,8 +43,8 @@ bool send_ejecutar_read(uint32_t fd, uint32_t marco, uint32_t desplazamiento);
 bool recv_ejecutar_read(uint32_t fd, uint32_t* marco, uint32_t* desplazamiento);
 bool send_ok_read(uint32_t fd, uint32_t valor_leido);
 bool recv_ok_read(uint32_t fd, uint32_t* valor_leido);
-bool send_frame(uint32_t fd, uint32_t frame);
-bool recv_frame(uint32_t fd, uint32_t* frame);
+bool send_frame(uint32_t fd, t_marco_presencia* marco_presencia);
+bool recv_frame(uint32_t fd, t_marco_presencia** marco_presencia);
 bool send_ejecutar_copy(uint32_t fd, uint32_t marco_origen, uint32_t desplazamiento_origen, uint32_t marco_destino, uint32_t desplazamiento_destino);
 bool recv_ejecutar_copy(uint32_t fd, uint32_t* marco_origen, uint32_t* desplazamiento_origen, uint32_t* marco_destino, uint32_t* desplazamiento_destino);
 #endif

@@ -1,0 +1,33 @@
+[INFO] 17:04:22:246 CPU/(10180:10180): Esperando a 127.0.0.1:8001 (KERNEL DISPATCH)
+
+[INFO] 17:04:22:249 CPU/(10180:10180): Esperando a 127.0.0.1:8005 (KERNEL INTERRUPT)
+
+[INFO] 17:04:22:251 CPU/(10180:10180): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 17:04:24:318 CPU/(10180:10180): Cliente conectado (a CPU DISPATCH)
+
+[INFO] 17:04:24:321 CPU/(10180:10187): DISCONNECT
+[INFO] 17:05:42:266 CPU/(10180:10180): Cliente conectado (a CPU INTERRUPT)
+
+[INFO] 17:05:42:269 CPU/(10180:10180): Cliente conectado (a CPU DISPATCH)
+
+[INFO] 17:05:46:357 CPU/(10180:10255): Se recibio el pcb para ejecutar
+
+[INFO] 17:05:46:358 CPU/(10180:10255): Antes del switch con la instruccion: NO_OP
+
+[INFO] 17:05:47:360 CPU/(10180:10255): Antes del switch con la instruccion: NO_OP
+
+[INFO] 17:05:48:386 CPU/(10180:10255): Antes del switch con la instruccion: WRITE
+
+[ERROR] 17:05:48:390 CPU/(10180:10255): No se encontro la pagina en la tlb
+[INFO] 17:05:48:391 CPU/(10180:10255): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[ERROR] 17:05:48:823 CPU/(10180:10255): Error en conexion
+[ERROR] 17:05:48:827 CPU/(10180:10255): Error al conectar (a MEMORIA)
+
+[ERROR] 17:05:48:828 CPU/(10180:10255): Error en conexion
+[INFO] 17:05:48:829 CPU/(10180:10255): Antes del switch con la instruccion: WRITE
+
+[WARNING] 17:05:48:830 CPU/(10180:10255): Se encontro la pagina en la tlb
+[ERROR] 17:05:48:831 CPU/(10180:10255): Error al conectar (a MEMORIA)
+

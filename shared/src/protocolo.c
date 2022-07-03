@@ -276,9 +276,9 @@ bool send_inicializar_estructuras(uint32_t fd, uint32_t tamanio_proceso, uint32_
     op_code op = INICIALIZAR_ESTRUCTURAS;
     size_t size = sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t) * 2;
     void *stream = malloc(size);
-    
+    size_t size_payload = size - sizeof(op_code) - sizeof(size_t); 
     memcpy(stream, &op, sizeof(op_code));
-    memcpy(stream + sizeof(op_code), &size, sizeof(size_t));
+    memcpy(stream + sizeof(op_code), &size_payload, sizeof(size_t));
     memcpy(stream + sizeof(op_code) + sizeof(size_t), &tamanio_proceso, sizeof(uint32_t));
     memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t), &id_proceso, sizeof(uint32_t));
     if (send(fd, stream, size, 0) == -1)
@@ -288,19 +288,19 @@ bool send_inicializar_estructuras(uint32_t fd, uint32_t tamanio_proceso, uint32_
     }
     free(stream);
     return true;
-
 }
 
 bool recv_inicializar_estructuras(uint32_t fd, uint32_t* tamanio_proceso, uint32_t* id_proceso){
     size_t size;
     if (recv(fd, &size, sizeof(size_t), 0) != sizeof(size_t)) // payload
     {
+        printf("error al recibir el tamanio del payload\n");
         return false;
     }
-
     void *stream = malloc(size);
     if (recv(fd, stream, size, 0) != size)
     {
+        printf("Error al recibir el payload\n");
         free(stream);
         return false;
     }
@@ -742,24 +742,26 @@ bool recv_ok_read(uint32_t fd, uint32_t* valor_leido){
 
 #pragma region FRAME
 
-bool send_frame(uint32_t fd, uint32_t frame){
-    size_t size = sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t); // stream: cop + sizePayload + frame
+bool send_frame(uint32_t fd, t_marco_presencia* marco_presencia){
+    size_t size = sizeof(op_code) + sizeof(size_t) + sizeof(t_marco_presencia); // stream: cop + sizePayload + frame
     void *stream = malloc(size);
     op_code cop = FRAME;
     size_t size_payload = size - sizeof(op_code) - sizeof(size_t);
     memcpy(stream, &cop, sizeof(op_code));
     memcpy(stream + sizeof(op_code), &size_payload, sizeof(size_t));
-    memcpy(stream + sizeof(op_code) + sizeof(size_t), &frame, sizeof(uint32_t));
+    memcpy(stream + sizeof(op_code) + sizeof(size_t), &marco_presencia, sizeof(t_marco_presencia));
     if(send(fd, stream, size, 0) == -1){
         free(stream);
+        free(marco_presencia);
         return false;
     }
     free(stream);
+    free(marco_presencia);
     return true;    
 }
 
-bool recv_frame(uint32_t fd, uint32_t* frame){
-    uint32_t frame_recibido;
+bool recv_frame(uint32_t fd, t_marco_presencia** marco_presencia){
+    t_marco_presencia* marco_presencia_recibido = malloc(sizeof(t_marco_presencia));
     size_t size;
     if(recv(fd, &size, sizeof(size_t), 0) != sizeof(size_t)){
         return false;
@@ -769,8 +771,8 @@ bool recv_frame(uint32_t fd, uint32_t* frame){
         free(stream);
         return false;
     }
-    memcpy(&frame_recibido, stream, sizeof(uint32_t));
-    *frame = frame_recibido;
+    memcpy(&marco_presencia_recibido, stream, sizeof(t_marco_presencia));
+    *marco_presencia = marco_presencia_recibido;
     free(stream);
     return true;
 }
