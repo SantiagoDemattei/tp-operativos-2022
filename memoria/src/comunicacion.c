@@ -78,11 +78,11 @@ static void procesar_conexion(void *void_args)
         case INICIALIZAR_ESTRUCTURAS:
             recv_inicializar_estructuras(*cliente_socket, &tamanio_proceso, &id_proceso);
             loggear_info(logger, "INICIALIZANDO ESTRUCTURAS\n", mutex_logger_memoria);
-            t_estructura_proceso *estructura = malloc(sizeof(t_estructura_proceso));
+            t_estructura_proceso *estructura = malloc(sizeof(t_estructura_proceso)); //creamos la estructura correspondiete al proceso 
             estructura->id_proceso = id_proceso;
             estructura->espacio_en_memoria = malloc(tamanio_proceso);
 
-            // estructura de memoria = espacio + lista de tablas + archivo
+            // estructura de memoria = espacio + lista de tablas + archivo (espacio en swap)
             t_tabla_pagina1 *tabla_pagina1 = malloc(sizeof(t_tabla_pagina1) + sizeof(uint32_t) * (configuracion_memoria->entradas_por_tabla));
             tabla_pagina1->id_tabla = contador;
             tabla_pagina1->primer_nivel = list_create();
@@ -104,11 +104,11 @@ static void procesar_conexion(void *void_args)
             string_append(&path_archivo, configuracion_memoria->path_swap);
             string_append(&path_archivo, proceso_string);
 
-            estructura->nombre_archivo_swap = malloc(strlen(path_archivo)); // "/home/utnso/swap/proceso_xx" (el +1 es por el \0)
+            estructura->nombre_archivo_swap = malloc(strlen(path_archivo)); // "/home/utnso/swap/proceso_xx"
             string_append(&estructura->nombre_archivo_swap, path_archivo);
             
             loggear_info(logger, string_from_format("El nombre del archivo es: %s\n", estructura->nombre_archivo_swap), mutex_logger_memoria);
-            list_add_con_mutex_tablas(lista_estructuras, estructura, mutex_lista_estructuras);
+            list_add_con_mutex_tablas(lista_estructuras, estructura, mutex_lista_estructuras); //agrega la estructura a la lista de estructuras global donde estan las de todos los procesos
 
             send_valor_tb(*cliente_socket, tabla_pagina1->id_tabla); // le mandamos el id de la tabla que corresponde al proceso (es lo mismo que el contador)
 
@@ -155,6 +155,7 @@ static void procesar_conexion(void *void_args)
             copiar_valor(frame_origen, desplazamiento_origen, frame_destino, desplazamiento_destino);
             send_ok(*cliente_socket);
             break;
+            
         case LIBERAR_ESTRUCTURAS:
             loggear_info(logger, "LIBERANDO ESTRUCTURAS", mutex_logger_memoria);
 

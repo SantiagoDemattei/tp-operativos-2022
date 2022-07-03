@@ -293,7 +293,7 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
             break;
 
         case COPY:
-            direccion_logica_origen = list_get(argumentos, 1);
+            direccion_logica_origen = list_get(argumentos, 1); //direccion logica del valor que queremos escribir
             direccion_fisica_origen = calcular_mmu(direccion_logica_origen);
             printf("el numero de pagina es: %d\n", direccion_fisica->numero_pagina);
             printf("la entrada de primer nivel es: %d\n", direccion_fisica->entrada_tabla_1er_nivel);
@@ -438,7 +438,7 @@ INSTRUCCIONES_EJECUCION enumerar_instruccion(t_instruccion *instruccion)
     return ERROR;
 }
 
-t_direccion_fisica *calcular_mmu(t_argumento *direc_logica)
+t_direccion_fisica *calcular_mmu(t_argumento *direc_logica) //calcula la direccion fisica
 {
     t_direccion_fisica *direccion_fisica = malloc(sizeof(t_direccion_fisica));
     direccion_fisica->numero_pagina = (uint32_t)floor((direc_logica->argumento) / tamanio_pagina); // calculo el numero de pagina donde voy a escribir el dato
