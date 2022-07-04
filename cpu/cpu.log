@@ -1,33 +1,40 @@
-[INFO] 20:39:02:116 CPU/(13673:13673): Esperando a 127.0.0.1:8001 (KERNEL DISPATCH)
+[INFO] 00:19:05:433 CPU/(30801:30801): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 20:39:02:116 CPU/(13673:13673): Esperando a 127.0.0.1:8005 (KERNEL INTERRUPT)
+[INFO] 00:19:05:434 CPU/(30801:30801): Cliente conectado (a CPU DISPATCH)
 
-[INFO] 20:39:02:117 CPU/(13673:13673): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 00:19:24:062 CPU/(30834:30834): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 20:39:06:431 CPU/(13673:13673): Cliente conectado (a CPU DISPATCH)
+[INFO] 00:19:24:062 CPU/(30834:30834): Cliente conectado (a CPU DISPATCH)
 
-[INFO] 20:39:06:433 CPU/(13673:13673): Cliente conectado (a CPU INTERRUPT)
+[INFO] 00:19:43:892 CPU/(30874:30874): Esperando a 127.0.0.1:8001 (KERNEL DISPATCH)
 
-[INFO] 20:39:10:003 CPU/(13673:13686): Se recibio el pcb para ejecutar
+[INFO] 00:19:43:892 CPU/(30874:30874): Esperando a 127.0.0.1:8005 (KERNEL INTERRUPT)
 
-[INFO] 20:39:10:003 CPU/(13673:13686): Antes del switch con la instruccion: NO_OP
+[INFO] 00:19:43:892 CPU/(30874:30874): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 20:39:11:004 CPU/(13673:13686): Antes del switch con la instruccion: NO_OP
+[INFO] 00:19:45:602 CPU/(30874:30874): Cliente conectado (a CPU DISPATCH)
 
-[INFO] 20:39:12:005 CPU/(13673:13686): Antes del switch con la instruccion: WRITE
+[INFO] 00:19:45:602 CPU/(30874:30874): Cliente conectado (a CPU INTERRUPT)
 
-[ERROR] 20:39:12:009 CPU/(13673:13686): No se encontro la pagina en la tlb
-[INFO] 20:39:12:014 CPU/(13673:13686): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 00:19:47:282 CPU/(30874:30887): Se recibio el pcb para ejecutar
 
-[INFO] 20:39:12:015 CPU/(13673:13686): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 00:19:47:282 CPU/(30874:30887): Antes del switch con la instruccion: NO_OP
 
-[ERROR] 20:39:12:159 CPU/(13673:13686): Error en conexion
-[INFO] 20:39:12:159 CPU/(13673:13686): Antes del switch con la instruccion: WRITE
+[INFO] 00:19:48:283 CPU/(30874:30887): Antes del switch con la instruccion: NO_OP
 
-[WARNING] 20:39:12:159 CPU/(13673:13686): Se encontro la pagina en la tlb
-[ERROR] 20:39:12:160 CPU/(13673:13686): Error al conectar (a MEMORIA)
+[INFO] 00:19:49:285 CPU/(30874:30887): Antes del switch con la instruccion: WRITE
 
-[INFO] 20:39:12:160 CPU/(13673:13686): Se escribio el valor en la posicion correspondiente
+[ERROR] 00:19:49:285 CPU/(30874:30887): No se encontro la pagina en la tlb
+[INFO] 00:19:49:285 CPU/(30874:30887): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 20:39:12:160 CPU/(13673:13686): Antes del switch con la instruccion: EXIT
+[INFO] 00:19:49:286 CPU/(30874:30887): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:19:49:287 CPU/(30874:30887): Antes del switch con la instruccion: WRITE
+
+[WARNING] 00:19:49:288 CPU/(30874:30887): Se encontro la pagina en la tlb
+[INFO] 00:19:49:288 CPU/(30874:30887): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:19:49:458 CPU/(30874:30887): Se escribio el valor en la posicion correspondiente
+
+[INFO] 00:19:49:459 CPU/(30874:30887): Antes del switch con la instruccion: EXIT
 

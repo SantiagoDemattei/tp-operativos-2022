@@ -248,8 +248,7 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
             valor = list_get(argumentos, 1);
             marco = buscar(direccion_fisica->numero_pagina);
             if (marco != -1) // TLB HIT
-            {
-
+            {   
                 socket_memoria_cpu = crear_conexion_memoria(configuracion_cpu, logger_cpu); // creo la conexion con la memoria
                 // send a memoria del marco, el desplazamaiento y el valor a escribir (este es el tercer acceso)
                 send_ejecutar_write(socket_memoria_cpu, marco, direccion_fisica->desplazamiento, valor->argumento);
@@ -456,10 +455,12 @@ t_marco_presencia *obtener_marco(uint32_t entrada_tabla_1er_nivel, uint32_t entr
     uint32_t num_segundo_nivel;
     uint32_t marco;
     t_marco_presencia *marco_presencia;
+
     socket_memoria_cpu = crear_conexion_memoria(configuracion_cpu, logger_cpu);
     send_entrada_tabla_1er_nivel(socket_memoria_cpu, id_tabla_1, entrada_tabla_1er_nivel);
+    
     if (recv(socket_memoria_cpu, &cop, sizeof(op_code), 0) != sizeof(op_code))
-    {
+    {   
         loggear_error(logger_cpu, "Error en conexion", mutex_logger_cpu);
     }
     recv_num_tabla_2do_nivel(socket_memoria_cpu, &num_segundo_nivel);
@@ -472,10 +473,13 @@ t_marco_presencia *obtener_marco(uint32_t entrada_tabla_1er_nivel, uint32_t entr
     socket_memoria_cpu = crear_conexion_memoria(configuracion_cpu, logger_cpu);
     send_entrada_tabla_2do_nivel(socket_memoria_cpu, num_segundo_nivel, entrada_tabla_2do_nivel);
     if (recv(socket_memoria_cpu, &cop, sizeof(op_code), 0) != sizeof(op_code))
-    {
+    {   
         loggear_error(logger_cpu, "Error en conexion", mutex_logger_cpu);
     }
-    recv_frame(socket_memoria_cpu, &marco_presencia);
+    recv_frame(socket_memoria_cpu, &marco_presencia); // ACA ESTA EL PROBLEMA
+
+    printf("el marco presencia es: %d\n", marco_presencia->marco);
+
     liberar_conexion(socket_memoria_cpu);
     return marco_presencia;
 }

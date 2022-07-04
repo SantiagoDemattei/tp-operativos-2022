@@ -585,9 +585,10 @@ bool send_entrada_tabla_2do_nivel(uint32_t fd, uint32_t num_segundo_nivel, uint3
 
 
 bool recv_entrada_tabla_2do_nivel(uint32_t fd, uint32_t *num_segundo_nivel, uint32_t *entrada_tabla_2do_nivel){
-    uint32_t num_tabla_segundo;
+    uint32_t num_tabla_segundo_recibido;
     uint32_t entrada_tabla_2do_nivel_recibido;
     size_t size;
+
     if(recv(fd, &size, sizeof(size_t), 0) != sizeof(size_t)){
         return false;
     }
@@ -596,10 +597,12 @@ bool recv_entrada_tabla_2do_nivel(uint32_t fd, uint32_t *num_segundo_nivel, uint
         free(stream);
         return false;
     }
-    memcpy(&num_tabla_segundo, stream, sizeof(uint32_t));
-    memcpy(&entrada_tabla_2do_nivel, stream + sizeof(uint32_t), sizeof(uint32_t));
-    *num_segundo_nivel = num_tabla_segundo;
+    memcpy(&num_tabla_segundo_recibido, stream, sizeof(uint32_t));
+    memcpy(&entrada_tabla_2do_nivel_recibido, stream + sizeof(uint32_t), sizeof(uint32_t));
+
+    *num_segundo_nivel = num_tabla_segundo_recibido; // ACA ESTA EL PROBLEMA
     *entrada_tabla_2do_nivel = entrada_tabla_2do_nivel_recibido;
+    
     free(stream);
     return true;
 }
@@ -618,6 +621,7 @@ bool send_ejecutar_write(uint32_t fd, uint32_t marco, uint32_t desplazamiento, u
     memcpy(stream + sizeof(op_code) + sizeof(size_t), &marco, sizeof(uint32_t));
     memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t), &desplazamiento, sizeof(uint32_t));
     memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t) + sizeof(uint32_t), &valor_a_escribir, sizeof(uint32_t));
+
     if(send(fd, stream, size, 0) == -1){
         free(stream);
         return false;
@@ -631,14 +635,18 @@ bool recv_ejecutar_write(uint32_t fd, uint32_t* marco, uint32_t* desplazamiento,
     uint32_t desplazamiento_recibido;
     uint32_t valor_a_escribir_recibido;
     size_t size;
+
     if(recv(fd, &size, sizeof(size_t), 0) != sizeof(size_t)){
         return false;
     }
+
     void *stream = malloc(size);
+
     if(recv(fd, stream, size, 0) != size){
         free(stream);
         return false;
     }
+
     memcpy(&marco_recibido, stream, sizeof(uint32_t));
     memcpy(&desplazamiento_recibido, stream + sizeof(uint32_t), sizeof(uint32_t));
     memcpy(&valor_a_escribir_recibido, stream + sizeof(uint32_t) + sizeof(uint32_t), sizeof(uint32_t));
@@ -755,13 +763,14 @@ bool send_frame(uint32_t fd, t_marco_presencia* marco_presencia){
         free(marco_presencia);
         return false;
     }
+
     free(stream);
     free(marco_presencia);
     return true;    
 }
 
 bool recv_frame(uint32_t fd, t_marco_presencia** marco_presencia){
-    t_marco_presencia* marco_presencia_recibido = malloc(sizeof(t_marco_presencia));
+    
     size_t size;
     if(recv(fd, &size, sizeof(size_t), 0) != sizeof(size_t)){
         return false;
@@ -771,7 +780,8 @@ bool recv_frame(uint32_t fd, t_marco_presencia** marco_presencia){
         free(stream);
         return false;
     }
-    memcpy(&marco_presencia_recibido, stream, sizeof(t_marco_presencia));
+    t_marco_presencia* marco_presencia_recibido = malloc(sizeof(t_marco_presencia));
+    memcpy(marco_presencia_recibido, stream, sizeof(t_marco_presencia));
     *marco_presencia = marco_presencia_recibido;
     free(stream);
     return true;

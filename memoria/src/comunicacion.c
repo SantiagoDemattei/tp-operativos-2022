@@ -241,11 +241,9 @@ void list_add_con_mutex_tablas(t_list *lista, t_estructura_proceso *tabla_pagina
 
 t_tabla_pagina1 *buscar_tabla_pagina1(uint32_t id_tabla)
 {   
-    printf("entre a la funcion buscar_tabla_pagina1");
     t_estructura_proceso *estructura = NULL;
     t_tabla_pagina1 *tabla_pagina1 = NULL;
     int i;
-    printf("voy a buscar la tabla de paginas de primer nivel del proceso");
     for (i = 0; i < list_size(lista_estructuras); i++)
     {
         estructura = list_get(lista_estructuras, i);
@@ -254,6 +252,7 @@ t_tabla_pagina1 *buscar_tabla_pagina1(uint32_t id_tabla)
             pthread_mutex_lock(&mutex_estructura_proceso_actual);
             estructura_proceso_actual = estructura;
             pthread_mutex_unlock(&mutex_estructura_proceso_actual);
+            tabla_pagina1 = estructura->tabla_pagina1;
             return tabla_pagina1;
         }
     }
@@ -261,21 +260,20 @@ t_tabla_pagina1 *buscar_tabla_pagina1(uint32_t id_tabla)
 }
 
 uint32_t buscar_nro_tabla_segundo_nivel(t_tabla_pagina1 *tabla_pagina1, uint32_t entrada_tabla_1er_nivel)
-{
-    t_list *tabla_primer_nivel = tabla_pagina1->primer_nivel;
-    uint32_t *retorno = list_get(tabla_primer_nivel, entrada_tabla_1er_nivel); // recorre por indice la tabla de primer nivel y devuelve el contenido (nro de la tabla de segundo nivel)
-    return *retorno;                                                           // ver si no tira error el puntero
+{   
+    int i;
+    uint32_t *retorno = malloc(sizeof(uint32_t));
+    retorno = list_get(tabla_pagina1->primer_nivel, entrada_tabla_1er_nivel); // recorre por indice la tabla de primer nivel y devuelve el contenido (nro de la tabla de segundo nivel)
+    i = *retorno;                                                             // guarda el contenido en i
+    free(retorno);
+    return i;                                                           
 }
 
 uint32_t obtener_tabla_2do_nivel(uint32_t id_tabla, uint32_t entrada_primer_nivel)
 {   
-    printf("hago el signal del semaforo");
     pthread_mutex_lock(&mutex_lista_estructuras);
-    printf("voy a entrar a la funcion buscar_tabla_pagina1");
     t_tabla_pagina1 *tabla_pagina1 = buscar_tabla_pagina1(id_tabla);                                        // obtengo de la lista de estructuras, la tabla de primer nivel del proceso
-    printf("rompi al buscar la tabla de primer nivel");
     uint32_t nro_tabla_segundo_nivel = buscar_nro_tabla_segundo_nivel(tabla_pagina1, entrada_primer_nivel); // busco el numero de tabla de segundo nivel en la tabla de primer nivel
-    printf("rompi al buscar nro de tabla segundo nivel");
     pthread_mutex_unlock(&mutex_lista_estructuras);
 
     return nro_tabla_segundo_nivel;
@@ -349,13 +347,17 @@ t_marco_presencia *obtener_frame(uint32_t nro_tabla_2do_nivel, uint32_t entrada_
 }
 
 void escribir_valor(uint32_t frame, uint32_t desplazamiento, uint32_t valor_a_escribir)
-{
+{   
     pthread_mutex_lock(&mutex_estructura_proceso_actual);
-    char *memoria_del_proceso = estructura_proceso_actual->espacio_en_memoria; // desde 0 bytes hasta el tamanio maximo de la memoria del proceso
+    void *memoria_del_proceso = estructura_proceso_actual->espacio_en_memoria; // desde 0 bytes hasta el tamanio maximo de la memoria del proceso
     size_t frame_real = (configuracion_memoria->tam_pagina * frame);           // lo que hago aca es calcular en donde esta ubicado el frame donde tengo que escribir
     // tamanio pagina = tamanio frame (en paginacion)
+    printf("Escribiendo en frame %d\n", frame);
+    printf("frame real: %d\n", frame_real);
+    printf("desplazamiento: %d\n", desplazamiento);
+    printf("valor a escribir: %d\n", valor_a_escribir); 
     memcpy(memoria_del_proceso + frame_real + desplazamiento, &valor_a_escribir, sizeof(valor_a_escribir)); // comienzo de la memoria + todos los bytes que hay hasta el frame elegido + el desplazamiento sobre el frame
-    pthread_mutex_lock(&mutex_estructura_proceso_actual);
+    pthread_mutex_unlock(&mutex_estructura_proceso_actual);
 }
 
 uint32_t leer_valor(uint32_t frame, uint32_t desplazamiento)

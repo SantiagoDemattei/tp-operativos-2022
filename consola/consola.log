@@ -1,23 +1,23 @@
-[INFO] 20:39:09:993 CONSOLA/(13693:13693): Lista de instrucciones cargadas:
-[INFO] 20:39:09:993 CONSOLA/(13693:13693): Instruccion: NO_OP
-[INFO] 20:39:09:993 CONSOLA/(13693:13693): Tamanio de la instruccion: 5
-[INFO] 20:39:09:993 CONSOLA/(13693:13693): 
+[INFO] 00:19:47:273 CONSOLA/(30889:30889): Lista de instrucciones cargadas:
+[INFO] 00:19:47:273 CONSOLA/(30889:30889): Instruccion: NO_OP
+[INFO] 00:19:47:273 CONSOLA/(30889:30889): Tamanio de la instruccion: 5
+[INFO] 00:19:47:273 CONSOLA/(30889:30889): 
 
-[INFO] 20:39:09:994 CONSOLA/(13693:13693): Instruccion: NO_OP
-[INFO] 20:39:09:994 CONSOLA/(13693:13693): Tamanio de la instruccion: 5
-[INFO] 20:39:09:994 CONSOLA/(13693:13693): 
+[INFO] 00:19:47:274 CONSOLA/(30889:30889): Instruccion: NO_OP
+[INFO] 00:19:47:274 CONSOLA/(30889:30889): Tamanio de la instruccion: 5
+[INFO] 00:19:47:274 CONSOLA/(30889:30889): 
 
-[INFO] 20:39:09:994 CONSOLA/(13693:13693): Instruccion: WRITE
-[INFO] 20:39:09:994 CONSOLA/(13693:13693): Tamanio de la instruccion: 5
-[INFO] 20:39:09:994 CONSOLA/(13693:13693): Argumento: 4
-[INFO] 20:39:09:994 CONSOLA/(13693:13693): Argumento: 42
-[INFO] 20:39:09:995 CONSOLA/(13693:13693): 
+[INFO] 00:19:47:274 CONSOLA/(30889:30889): Instruccion: WRITE
+[INFO] 00:19:47:274 CONSOLA/(30889:30889): Tamanio de la instruccion: 5
+[INFO] 00:19:47:275 CONSOLA/(30889:30889): Argumento: 4
+[INFO] 00:19:47:275 CONSOLA/(30889:30889): Argumento: 42
+[INFO] 00:19:47:275 CONSOLA/(30889:30889): 
 
-[INFO] 20:39:09:995 CONSOLA/(13693:13693): Instruccion: EXIT
-[INFO] 20:39:09:998 CONSOLA/(13693:13693): Tamanio de la instruccion: 4
-[INFO] 20:39:09:998 CONSOLA/(13693:13693): 
+[INFO] 00:19:47:275 CONSOLA/(30889:30889): Instruccion: EXIT
+[INFO] 00:19:47:275 CONSOLA/(30889:30889): Tamanio de la instruccion: 4
+[INFO] 00:19:47:276 CONSOLA/(30889:30889): 
 
-[INFO] 20:39:09:999 CONSOLA/(13693:13693): Cliente conectado en 127.0.0.1:8000 (a KERNEL)
+[INFO] 00:19:47:276 CONSOLA/(30889:30889): Cliente conectado en 127.0.0.1:8000 (a KERNEL)
 
-[INFO] 20:39:09:999 CONSOLA/(13693:13693): Se envio la lista de instrucciones al kernel
-[INFO] 20:39:09:999 CONSOLA/(13693:13693): Estoy esperando a que el kernel me avise que ya ejecuto mis instrucciones...
+[INFO] 00:19:47:276 CONSOLA/(30889:30889): Se envio la lista de instrucciones al kernel
+[INFO] 00:19:47:276 CONSOLA/(30889:30889): Estoy esperando a que el kernel me avise que ya ejecuto mis instrucciones...
