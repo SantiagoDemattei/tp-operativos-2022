@@ -259,7 +259,6 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
             else // TLB MISS
             {
                 marco_presencia = obtener_marco(direccion_fisica->entrada_tabla_1er_nivel, direccion_fisica->entrada_tabla_2do_nivel, running->tabla_pagina); // obtengo el marco;
-                printf("el marco es: %d\n", marco_presencia->marco);
 
                 t_tlb *entrada_tlb = malloc(sizeof(t_tlb));
                 entrada_tlb->pagina = direccion_fisica->numero_pagina;
@@ -294,13 +293,20 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
         case COPY:
             direccion_logica_origen = list_get(argumentos, 1); //direccion logica del valor que queremos escribir
             direccion_fisica_origen = calcular_mmu(direccion_logica_origen);
-            printf("el numero de pagina es: %d\n", direccion_fisica->numero_pagina);
-            printf("la entrada de primer nivel es: %d\n", direccion_fisica->entrada_tabla_1er_nivel);
-            printf("la entrada de segundo nivel es: %d\n", direccion_fisica->entrada_tabla_2do_nivel);
-            printf("El desplazamiento es: %d\n", direccion_fisica->desplazamiento);
+            printf("ORIGEN: \n");
+            printf("el numero de pagina es: %d\n", direccion_fisica_origen->numero_pagina);
+            printf("la entrada de primer nivel es: %d\n", direccion_fisica_origen->entrada_tabla_1er_nivel);
+            printf("la entrada de segundo nivel es: %d\n", direccion_fisica_origen->entrada_tabla_2do_nivel);
+            printf("El desplazamiento es: %d\n", direccion_fisica_origen->desplazamiento);
 
             direccion_logica_destino = list_get(argumentos, 0);
             direccion_fisica_destino = calcular_mmu(direccion_logica_destino);
+            printf("DESTINO: \n");
+            printf("el numero de pagina es: %d\n", direccion_fisica_destino->numero_pagina);
+            printf("la entrada de primer nivel es: %d\n", direccion_fisica_destino->entrada_tabla_1er_nivel);
+            printf("la entrada de segundo nivel es: %d\n", direccion_fisica_destino->entrada_tabla_2do_nivel);
+            printf("El desplazamiento es: %d\n", direccion_fisica_destino->desplazamiento);
+
 
             marco_origen = buscar(direccion_fisica_origen->numero_pagina);
             marco_destino = buscar(direccion_fisica_destino->numero_pagina);
@@ -320,8 +326,8 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
                     marco_presencia_origen = obtener_marco(direccion_fisica_origen->entrada_tabla_1er_nivel, direccion_fisica_origen->entrada_tabla_2do_nivel, running->tabla_pagina); // obtengo el marco de la tabla de paginas;
 
                     t_tlb *entrada_tlb = malloc(sizeof(t_tlb));
-                    entrada_tlb->pagina = direccion_fisica->numero_pagina;
-                    entrada_tlb->marco = marco_presencia->marco;
+                    entrada_tlb->pagina = direccion_fisica_origen->numero_pagina;
+                    entrada_tlb->marco = marco_presencia_origen->marco;
                     agregar(entrada_tlb); // agrego la entrada a la tlb
                 }
                 else
@@ -329,8 +335,8 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
                     marco_presencia_destino = obtener_marco(direccion_fisica_destino->entrada_tabla_1er_nivel, direccion_fisica_destino->entrada_tabla_2do_nivel, running->tabla_pagina); // obtengo el marco;
 
                     t_tlb *entrada_tlb = malloc(sizeof(t_tlb));
-                    entrada_tlb->pagina = direccion_fisica->numero_pagina;
-                    entrada_tlb->marco = marco_presencia->marco;
+                    entrada_tlb->pagina = direccion_fisica_destino->numero_pagina;
+                    entrada_tlb->marco = marco_presencia_destino->marco;
                     agregar(entrada_tlb); // agrego la entrada a la tlb
                 }
 
@@ -478,7 +484,6 @@ t_marco_presencia *obtener_marco(uint32_t entrada_tabla_1er_nivel, uint32_t entr
     }
     recv_frame(socket_memoria_cpu, &marco_presencia); // ACA ESTA EL PROBLEMA
 
-    printf("el marco presencia es: %d\n", marco_presencia->marco);
 
     liberar_conexion(socket_memoria_cpu);
     return marco_presencia;

@@ -751,13 +751,15 @@ bool recv_ok_read(uint32_t fd, uint32_t* valor_leido){
 #pragma region FRAME
 
 bool send_frame(uint32_t fd, t_marco_presencia* marco_presencia){
-    size_t size = sizeof(op_code) + sizeof(size_t) + sizeof(t_marco_presencia); // stream: cop + sizePayload + frame
+    size_t size = sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t) + sizeof(bool); // stream: cop + sizePayload + frame
     void *stream = malloc(size);
     op_code cop = FRAME;
     size_t size_payload = size - sizeof(op_code) - sizeof(size_t);
     memcpy(stream, &cop, sizeof(op_code));
     memcpy(stream + sizeof(op_code), &size_payload, sizeof(size_t));
-    memcpy(stream + sizeof(op_code) + sizeof(size_t), &marco_presencia, sizeof(t_marco_presencia));
+    memcpy(stream + sizeof(op_code) + sizeof(size_t), &(marco_presencia->marco), sizeof(uint32_t));
+    memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t), &(marco_presencia->presencia), sizeof(bool));
+
     if(send(fd, stream, size, 0) == -1){
         free(stream);
         free(marco_presencia);
@@ -781,7 +783,9 @@ bool recv_frame(uint32_t fd, t_marco_presencia** marco_presencia){
         return false;
     }
     t_marco_presencia* marco_presencia_recibido = malloc(sizeof(t_marco_presencia));
-    memcpy(marco_presencia_recibido, stream, sizeof(t_marco_presencia));
+    memcpy(&(marco_presencia_recibido->marco), stream, sizeof(uint32_t));
+    memcpy(&(marco_presencia_recibido->presencia), stream + sizeof(uint32_t), sizeof(bool));
+
     *marco_presencia = marco_presencia_recibido;
     free(stream);
     return true;
