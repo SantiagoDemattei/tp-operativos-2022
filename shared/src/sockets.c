@@ -55,7 +55,6 @@ uint32_t* esperar_cliente(t_log* logger, const char* name, uint32_t socket_servi
     socklen_t tam_direccion = sizeof(struct sockaddr_in);
     uint32_t *socket_cliente = malloc(sizeof(uint32_t)); //multiplexacion :)
     *socket_cliente = accept(socket_servidor, (void*) &dir_cliente, &tam_direccion); //accept devuelve la linea donde quedan conectados
-    printf("socket cliente: %d\n", *socket_cliente);
     log_info(logger, "Cliente conectado (a %s)\n", name);
 
     return socket_cliente;

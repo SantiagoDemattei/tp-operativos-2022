@@ -14,7 +14,7 @@
 #include "configuracion.h"
 
 
-t_log* logger;
+
 t_configuracion_kernel* configuracion_kernel; 
 time_t fecha_inicio;
 time_t fecha_final;

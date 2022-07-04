@@ -44,7 +44,7 @@ int buscar_indice_pcb_en_lista_bloqueados(t_list* lista_bloqueados, t_pcb* pcb){
 
 void loggear_info(t_log* logger, char* mensaje, pthread_mutex_t mutex){
     pthread_mutex_lock(&mutex);
-    log_info(logger, mensaje);
+    log_info(logger, mensaje ) ;
     pthread_mutex_unlock(&mutex);
 }
 
@@ -54,9 +54,9 @@ void loggear_error(t_log* logger, char* mensaje, pthread_mutex_t mutex){
     pthread_mutex_unlock(&mutex);
 }
 
-void loggear_success(t_log* logger, char* mensaje, pthread_mutex_t mutex){
+void loggear_warning(t_log* logger, char* mensaje, pthread_mutex_t mutex){
     pthread_mutex_lock(&mutex);
-    log_warning(logger, mensaje);
+    log_warning(logger, mensaje) ;
     pthread_mutex_unlock(&mutex);
 }
 

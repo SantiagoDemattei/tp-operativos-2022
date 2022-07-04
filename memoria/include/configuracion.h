@@ -15,7 +15,7 @@
 t_configuracion_memoria* leer_configuracion();
 
 t_configuracion_memoria* configuracion_memoria;
-
+t_log* logger;
 pthread_mutex_t mutex_logger_memoria;
 pthread_mutex_t mutex_valor_tp;
 pthread_mutex_t mutex_lista_estructuras;

@@ -17,6 +17,7 @@
         "utils.h": "c",
         "comunicacion.h": "c",
         "assert.h": "c",
-        "tlb_manager.h": "c"
+        "tlb_manager.h": "c",
+        "time.h": "c"
     }
 }

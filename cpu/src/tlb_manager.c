@@ -33,7 +33,7 @@ uint32_t buscar(uint32_t numero_pagina)
         loggear_error(logger_cpu, "No se encontro la pagina en la tlb", mutex_logger_cpu);
         return -1;
     }
-    loggear_success(logger_cpu, "Se encontro la pagina en la tlb", mutex_logger_cpu);
+    loggear_warning(logger_cpu, "Se encontro la pagina en la tlb", mutex_logger_cpu);
     return marco_buscado;
 }
 

@@ -1,7 +1,7 @@
 #include "include/main.h"
 
 uint32_t socket_memoria; 
-t_log* logger;
+
 
 void sighandler(int x) {
     switch (x) {
@@ -22,6 +22,8 @@ uint32_t main(void){
     configuracion_memoria = leer_configuracion();
     socket_memoria = crear_comunicacion_kernel(configuracion_memoria, logger); //inicia el servidor para que el kernel y la cpu se conecten a la memoria
     
+
+
     inicializar_semaforos();
     lista_estructuras = list_create(); //lista de tablas de primer nivel para que la memoria se guarde las tablas de primer nivel de todos los procesos       
 

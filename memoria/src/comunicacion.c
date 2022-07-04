@@ -68,11 +68,10 @@ static void procesar_conexion(void *void_args)
         switch (cop)
         {
         case DEBUG:
-            loggear_info(logger, "debug\n", mutex_logger_memoria);
+            loggear_info(logger, "DEBUG\n", mutex_logger_memoria);
             break;
 
         case ORDEN_ENVIO_TAMANIO:
-            printf("el tamanio de pagina es: %d\n", (configuracion_memoria->tam_pagina));
             send_tamanio_y_cant_entradas(*cliente_socket, (configuracion_memoria->tam_pagina), (configuracion_memoria->entradas_por_tabla)); // envio el tamanio de pagina a la cpu
             loggear_info(logger, "Envie tamanio de pagina a CPU\n", mutex_logger_memoria);
             break;
@@ -116,8 +115,7 @@ static void procesar_conexion(void *void_args)
                 list_add(estructura->lista_tablas_segundo_nivel, tabla_segundo_nivel);
             }
 
-            printf("id_proceso: %d\n", id_proceso);
-            char *proceso_string = malloc(strlen("/proceso_") + strlen(string_itoa(id_proceso)));
+            char *proceso_string = malloc(strlen("/proceso_") + sizeof(id_proceso));
             proceso_string = string_from_format("/proceso_%d", id_proceso);
             char *path_archivo = malloc(strlen(configuracion_memoria->path_swap + strlen(proceso_string)));
             string_append(&path_archivo, configuracion_memoria->path_swap);
@@ -157,21 +155,21 @@ static void procesar_conexion(void *void_args)
 
         case EJECUTAR_WRITE:
             recv_ejecutar_write(*cliente_socket, &frame, &desplazamiento, &valor_a_escribir);
-            loggear_info(logger, "Se recibio orden de escritura\n", mutex_logger_memoria);
+            loggear_warning(logger, "Se recibio orden de escritura\n", mutex_logger_memoria);
             escribir_valor(frame, desplazamiento, valor_a_escribir);
             send_ok(*cliente_socket);
             break;
 
         case EJECUTAR_READ:
             recv_ejecutar_read(*cliente_socket, &frame, &desplazamiento);
-            loggear_info(logger, "Se recibio orden de lectura\n", mutex_logger_memoria);
+            loggear_warning(logger, "Se recibio orden de lectura\n", mutex_logger_memoria);
             valor_leido = leer_valor(frame, desplazamiento);
             send_ok_read(*cliente_socket, valor_leido);
             break;
 
         case EJECUTAR_COPY:
             recv_ejecutar_copy(*cliente_socket, &frame_origen, &desplazamiento_origen, &frame_destino, &desplazamiento_destino);
-            loggear_info(logger, "Se recibio orden de copia\n", mutex_logger_memoria);
+            loggear_warning(logger, "Se recibio orden de copia\n", mutex_logger_memoria);
             copiar_valor(frame_origen, desplazamiento_origen, frame_destino, desplazamiento_destino);
             send_ok(*cliente_socket);
             break;
@@ -188,8 +186,7 @@ static void procesar_conexion(void *void_args)
             loggear_info(logger, "SUSPENDIENDO PROCESO\n", mutex_logger_memoria);
             recv_suspension(*cliente_socket, &id_proceso);
             // FALTA VER QUE HACE
-            loggear_info(logger, "PROCESO SUSPENDIDO\n", mutex_logger_memoria);
-            printf("suspendi proceso %d\n", id_proceso);
+            loggear_warning(logger,string_from_format("Se suspendio el proceso %d\n", id_proceso), mutex_logger_memoria);
             send_confirmacion_suspension(*cliente_socket);
             free(cliente_socket);
             break;
@@ -207,7 +204,6 @@ static void procesar_conexion(void *void_args)
             return;
         }
     }
-
     pthread_mutex_lock(&mutex_logger_memoria);
     log_warning(logger, "El cliente se desconecto de %s server", server_name);
     pthread_mutex_unlock(&mutex_logger_memoria);

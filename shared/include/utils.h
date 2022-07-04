@@ -11,7 +11,7 @@
 
 void loggear_info(t_log* logger, char* mensaje, pthread_mutex_t mutex);
 void loggear_error(t_log* logger, char* mensaje, pthread_mutex_t mutex);
-void loggear_success(t_log* logger, char* mensaje, pthread_mutex_t mutex);
+void loggear_warning(t_log* logger, char* mensaje, pthread_mutex_t mutex);
 void loggear_lista_instrucciones(t_list* lista_instrucciones, t_log* logger);
 void destruir_argumentos(t_argumento* argumento);
 void destruir_instruccion(t_instruccion* instruccionS);

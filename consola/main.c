@@ -6,8 +6,7 @@ uint32_t main(uint32_t argc, char** argv) { //cada proceso (instancia de consola
     t_log* logger = log_create("consola.log", "CONSOLA", true, LOG_LEVEL_INFO);
 
     if(argc != 3){ 
-        log_info(logger, "Error: Cantidad de parametros incorrecta");
-        printf("%s", "Error: Cantidad de argumentos incorrecta.\n");
+        log_error(logger, "Error: Cantidad de parametros incorrecta");
         return EXIT_FAILURE; 
     }
 

@@ -65,7 +65,6 @@ t_list *obtener_instrucciones(char *path, t_log *logger)
             t_list *lista_argumentos = instruccion->argumentos;
             argumento1 = list_get(lista_argumentos, 0);
             incremento_aux = argumento1->argumento; //tomo el argumento de la instruccion NO_OP
-            printf("%d\n", incremento_aux);
           // incremento += (incremento_aux); 
             while(incremento_aux > 0){  // agrega la instruccion n veces a la lista segun el argumento
                 t_instruccion *copia = malloc(sizeof(t_instruccion));   

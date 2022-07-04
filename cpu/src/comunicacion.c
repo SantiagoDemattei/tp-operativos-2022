@@ -7,9 +7,7 @@ uint32_t crear_comunicacion_dispatch(t_configuracion_cpu *t_configuracion_cpu, t
 
     if (socket_cpu_dispatch == -1)
     {
-        pthread_mutex_lock(&mutex_logger_cpu);
-        log_error(logger, "No se pudo iniciar el servidor de comunicacion");
-        pthread_mutex_unlock(&mutex_logger_cpu);
+        loggear_error(logger, "No se pudo iniciar el servidor de comunicacion",mutex_logger_cpu);
         return -1;
     }
     return socket_cpu_dispatch;
@@ -22,9 +20,7 @@ uint32_t crear_comunicacion_interrupt(t_configuracion_cpu *t_configuracion_cpu, 
 
     if (socket_cpu_interrupt == -1)
     {
-        pthread_mutex_lock(&mutex_logger_cpu);
-        log_error(logger, "No se pudo iniciar el servidor de comunicacion");
-        pthread_mutex_unlock(&mutex_logger_cpu);
+        loggear_error(logger, "No se pudo iniciar el servidor de comunicacion",mutex_logger_cpu);
         return -1;
     }
     return socket_cpu_interrupt;
@@ -58,16 +54,14 @@ static void procesar_conexion(void *void_args)
         switch (cop)
         {
         case DEBUG:
-            pthread_mutex_lock(&mutex_logger_cpu);
-            log_info(logger, "debug");
-            pthread_mutex_unlock(&mutex_logger_cpu);
+            loggear_info(logger, "DEBUG", mutex_logger_cpu);
             break;
 
         case ENVIAR_PCB: // recibir PCB del kernel para poner a ejecutar
 
             if (recv_pcb(*cliente_socket, &running)) // en running guardo el pcb que va a ejecutar
             {
-                loggear_info(logger, "Se recibio el pcb para ejecutar\n", mutex_logger_cpu);
+                loggear_info(logger, "Se recibio un pcb para ejecutar\n", mutex_logger_cpu);
                 pthread_mutex_lock(&mutex_interrupcion);
                 interrupciones = false; // interrupciones desactivadas para chequearlas cuando termine de ejecutar una instruccion
                 pthread_mutex_unlock(&mutex_interrupcion);
@@ -98,7 +92,7 @@ static void procesar_conexion(void *void_args)
         }
     }
     pthread_mutex_lock(&mutex_logger_cpu);
-    log_warning(logger, "El cliente se desconecto de %s server", server_name);
+    log_info(logger, "El cliente se desconecto de %s server", server_name);
     pthread_mutex_unlock(&mutex_logger_cpu);
     return;
 }
@@ -155,7 +149,7 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
         argumentos = instruccion_actual->argumentos;
 
         pthread_mutex_lock(&mutex_logger_cpu);
-        log_info(logger, "Antes del switch con la instruccion: %s\n", instruccion_actual->identificador);
+        log_info(logger, "Ejecutando la instruccion: %s\n", instruccion_actual->identificador);
         pthread_mutex_unlock(&mutex_logger_cpu);
 
         switch (instruccion_actual_enum)
@@ -400,7 +394,7 @@ void chequear_interrupciones(uint32_t *cliente_socket)
         send_pcb(*cliente_socket, running, INTERRUPCION); // desalojo el pcb y mando el pcb para que lo reciba el kernel
         pthread_mutex_unlock(&mutex_running_cpu);
 
-        printf("Proceso %d interrumpido", running->id);
+        loggear_warning(logger_cpu, string_from_format("Proceso %d interrumpido", running->id), mutex_logger_cpu);
         destruir_pcb(running);
 
         pthread_mutex_lock(&mutex_running_cpu);

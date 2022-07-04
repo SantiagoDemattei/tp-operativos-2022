@@ -14,7 +14,7 @@
 
 t_configuracion_kernel* leer_configuracion();
 void inicializar_semaforos();
-
+t_log* logger;
 pthread_mutex_t mutex_cantidad_procesos; 
 pthread_mutex_t mutex_estado_running;
 pthread_mutex_t mutex_logger_kernel;

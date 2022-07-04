@@ -29,11 +29,9 @@ uint32_t main(void){
 
     if (recv(socket_memoria_cpu, &cop, sizeof(op_code), 0) != sizeof(op_code))
     {   
-     loggear_info(logger_cpu, "ERROR DE CONEXION", mutex_logger_cpu);
+     loggear_error(logger_cpu, "ERROR DE CONEXION", mutex_logger_cpu);
     }
     recv_tamanio_y_cant_entradas(socket_memoria_cpu, &tamanio_pagina, &cant_entradas_por_tabla); //recibo el tamano de la pagina y la cantidad de entradas por tabla que me manda la memoria
-    printf("Tamanio de pagina: %d\n", tamanio_pagina);
-    printf("Cantidad de entradas por tabla: %d\n", cant_entradas_por_tabla);
     liberar_conexion(socket_memoria_cpu);
     
     while(server_escuchar(logger_cpu, "CPU DISPATCH", socket_cpu_dispatch) != 0 && server_escuchar(logger_cpu, "CPU INTERRUPT", socket_cpu_interrupt) != 0);

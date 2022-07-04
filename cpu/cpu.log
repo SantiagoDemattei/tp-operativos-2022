@@ -1,0 +1,117 @@
+[INFO] 16:05:49:329 CPU/(10539:10539): Esperando a 127.0.0.1:8001 (KERNEL DISPATCH)
+
+[INFO] 16:05:49:330 CPU/(10539:10539): Esperando a 127.0.0.1:8005 (KERNEL INTERRUPT)
+
+[ERROR] 16:05:49:331 CPU/(10539:10539): Error al conectar (a MEMORIA)
+
+[ERROR] 16:05:49:332 CPU/(10539:10539): ERROR DE CONEXION
+[INFO] 16:06:22:169 CPU/(10596:10596): Esperando a 127.0.0.1:8001 (KERNEL DISPATCH)
+
+[INFO] 16:06:22:170 CPU/(10596:10596): Esperando a 127.0.0.1:8005 (KERNEL INTERRUPT)
+
+[ERROR] 16:06:22:171 CPU/(10596:10596): Error al conectar (a MEMORIA)
+
+[ERROR] 16:06:22:172 CPU/(10596:10596): ERROR DE CONEXION
+[INFO] 16:07:25:106 CPU/(10719:10719): Esperando a 127.0.0.1:8001 (KERNEL DISPATCH)
+
+[INFO] 16:07:25:107 CPU/(10719:10719): Esperando a 127.0.0.1:8005 (KERNEL INTERRUPT)
+
+[ERROR] 16:07:25:109 CPU/(10719:10719): Error al conectar (a MEMORIA)
+
+[INFO] 16:07:25:110 CPU/(10719:10719): [32mhola[0m
+[ERROR] 16:07:25:110 CPU/(10719:10719): ERROR DE CONEXION
+[INFO] 16:10:39:210 CPU/(10899:10899): Esperando a 127.0.0.1:8001 (KERNEL DISPATCH)
+
+[INFO] 16:10:39:211 CPU/(10899:10899): Esperando a 127.0.0.1:8005 (KERNEL INTERRUPT)
+
+[INFO] 16:10:39:212 CPU/(10899:10899): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 16:10:39:212 CPU/(10899:10899): [32mhola[0m
+[INFO] 16:10:47:467 CPU/(10899:10899): Cliente conectado (a CPU DISPATCH)
+
+[INFO] 16:10:47:468 CPU/(10899:10899): Cliente conectado (a CPU INTERRUPT)
+
+[INFO] 16:10:58:262 CPU/(10899:10912): Se recibio un pcb para ejecutar
+
+[INFO] 16:10:58:263 CPU/(10899:10912): Ejecutando la instruccion: NO_OP
+
+[INFO] 16:10:59:276 CPU/(10899:10912): Ejecutando la instruccion: NO_OP
+
+[INFO] 16:11:00:280 CPU/(10899:10912): Ejecutando la instruccion: NO_OP
+
+[INFO] 16:11:01:282 CPU/(10899:10912): Ejecutando la instruccion: I/O
+
+[INFO] 16:11:14:290 CPU/(10899:10912): Se recibio un pcb para ejecutar
+
+[INFO] 16:11:14:291 CPU/(10899:10912): Ejecutando la instruccion: NO_OP
+
+[INFO] 16:11:15:292 CPU/(10899:10912): Ejecutando la instruccion: NO_OP
+
+[INFO] 16:11:16:294 CPU/(10899:10912): Ejecutando la instruccion: NO_OP
+
+[INFO] 16:11:17:296 CPU/(10899:10912): Ejecutando la instruccion: EXIT
+
+[INFO] 17:30:02:383 CPU/(14584:14584): Esperando a 127.0.0.1:8001 (KERNEL DISPATCH)
+
+[INFO] 17:30:02:384 CPU/(14584:14584): Esperando a 127.0.0.1:8005 (KERNEL INTERRUPT)
+
+[INFO] 17:30:02:386 CPU/(14584:14584): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 17:30:06:295 CPU/(14584:14584): Cliente conectado (a CPU DISPATCH)
+
+[INFO] 17:30:06:296 CPU/(14584:14584): Cliente conectado (a CPU INTERRUPT)
+
+[INFO] 17:30:13:511 CPU/(14584:14594): Se recibio un pcb para ejecutar
+
+[INFO] 17:30:13:512 CPU/(14584:14594): Ejecutando la instruccion: NO_OP
+
+[INFO] 17:30:14:513 CPU/(14584:14594): Ejecutando la instruccion: NO_OP
+
+[INFO] 17:30:15:515 CPU/(14584:14594): Ejecutando la instruccion: NO_OP
+
+[INFO] 17:30:16:517 CPU/(14584:14594): Ejecutando la instruccion: I/O
+
+[INFO] 17:30:29:544 CPU/(14584:14594): Se recibio un pcb para ejecutar
+
+[INFO] 17:30:29:546 CPU/(14584:14594): Ejecutando la instruccion: NO_OP
+
+[INFO] 17:30:30:548 CPU/(14584:14594): Ejecutando la instruccion: NO_OP
+
+[INFO] 17:30:31:550 CPU/(14584:14594): Ejecutando la instruccion: NO_OP
+
+[INFO] 17:30:32:552 CPU/(14584:14594): Ejecutando la instruccion: EXIT
+
+[INFO] 17:31:34:759 CPU/(14659:14659): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 17:31:34:762 CPU/(14659:14659): Cliente conectado (a CPU DISPATCH)
+
+[INFO] 17:33:09:165 CPU/(14730:14730): Esperando a 127.0.0.1:8001 (KERNEL DISPATCH)
+
+[INFO] 17:33:09:319 CPU/(14730:14730): Esperando a 127.0.0.1:8005 (KERNEL INTERRUPT)
+
+[INFO] 17:33:09:339 CPU/(14730:14730): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 17:33:19:129 CPU/(14730:14730): Cliente conectado (a CPU DISPATCH)
+
+[INFO] 17:33:19:151 CPU/(14730:14730): Cliente conectado (a CPU INTERRUPT)
+
+[INFO] 17:33:22:881 CPU/(14730:14745): Se recibio un pcb para ejecutar
+
+[INFO] 17:33:22:901 CPU/(14730:14745): Ejecutando la instruccion: NO_OP
+
+[INFO] 17:33:23:919 CPU/(14730:14745): Ejecutando la instruccion: NO_OP
+
+[INFO] 17:33:24:921 CPU/(14730:14745): Ejecutando la instruccion: NO_OP
+
+[INFO] 17:33:25:924 CPU/(14730:14745): Ejecutando la instruccion: I/O
+
+[INFO] 17:33:38:948 CPU/(14730:14745): Se recibio un pcb para ejecutar
+
+[INFO] 17:33:38:951 CPU/(14730:14745): Ejecutando la instruccion: NO_OP
+
+[INFO] 17:33:39:952 CPU/(14730:14745): Ejecutando la instruccion: NO_OP
+
+[INFO] 17:33:40:954 CPU/(14730:14745): Ejecutando la instruccion: NO_OP
+
+[INFO] 17:33:41:957 CPU/(14730:14745): Ejecutando la instruccion: EXIT
+

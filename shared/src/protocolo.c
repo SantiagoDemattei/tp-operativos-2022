@@ -294,13 +294,11 @@ bool recv_inicializar_estructuras(uint32_t fd, uint32_t* tamanio_proceso, uint32
     size_t size;
     if (recv(fd, &size, sizeof(size_t), 0) != sizeof(size_t)) // payload
     {
-        printf("error al recibir el tamanio del payload\n");
         return false;
     }
     void *stream = malloc(size);
     if (recv(fd, stream, size, 0) != size)
     {
-        printf("Error al recibir el payload\n");
         free(stream);
         return false;
     }
