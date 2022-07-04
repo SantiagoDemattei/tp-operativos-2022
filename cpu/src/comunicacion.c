@@ -300,14 +300,13 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
             printf("la entrada de segundo nivel es: %d\n", direccion_fisica->entrada_tabla_2do_nivel);
             printf("El desplazamiento es: %d\n", direccion_fisica->desplazamiento);
 
-            direccion_logica_destino = list_get(argumentos, 1);
+            direccion_logica_destino = list_get(argumentos, 0);
             direccion_fisica_destino = calcular_mmu(direccion_logica_destino);
 
             marco_origen = buscar(direccion_fisica_origen->numero_pagina);
             marco_destino = buscar(direccion_fisica_destino->numero_pagina);
             if (marco_origen != -1 && marco_destino != -1) // TLB HIT
             {
-
                 socket_memoria_cpu = crear_conexion_memoria(configuracion_cpu, logger_cpu); // creo la conexion con la memoria
                 // send a memoria del marco y desplazamiento, tanto del origen como del destino
                 send_ejecutar_copy(socket_memoria_cpu, marco_origen, direccion_fisica_origen->desplazamiento, marco_destino, direccion_fisica_destino->desplazamiento);
@@ -319,7 +318,7 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
             {
                 if (marco_origen == -1)
                 {
-                    marco_presencia_origen = obtener_marco(direccion_fisica_origen->entrada_tabla_1er_nivel, direccion_fisica_origen->entrada_tabla_2do_nivel, running->tabla_pagina); // obtengo el marco;
+                    marco_presencia_origen = obtener_marco(direccion_fisica_origen->entrada_tabla_1er_nivel, direccion_fisica_origen->entrada_tabla_2do_nivel, running->tabla_pagina); // obtengo el marco de la tabla de paginas;
 
                     t_tlb *entrada_tlb = malloc(sizeof(t_tlb));
                     entrada_tlb->pagina = direccion_fisica->numero_pagina;
@@ -441,7 +440,7 @@ INSTRUCCIONES_EJECUCION enumerar_instruccion(t_instruccion *instruccion)
 t_direccion_fisica *calcular_mmu(t_argumento *direc_logica) //calcula la direccion fisica
 {
     t_direccion_fisica *direccion_fisica = malloc(sizeof(t_direccion_fisica));
-    direccion_fisica->numero_pagina = (uint32_t)floor((direc_logica->argumento) / tamanio_pagina); // calculo el numero de pagina donde voy a escribir el dato
+    direccion_fisica->numero_pagina = (uint32_t)floor((direc_logica->argumento) / tamanio_pagina); // calculo el numero de pagina donde voy a escribir / leer el dato
     direccion_fisica->entrada_tabla_1er_nivel = (uint32_t)floor(direccion_fisica->numero_pagina / cant_entradas_por_tabla);
     direccion_fisica->entrada_tabla_2do_nivel = direccion_fisica->numero_pagina % cant_entradas_por_tabla;
     direccion_fisica->desplazamiento = direc_logica->argumento - (direccion_fisica->numero_pagina * tamanio_pagina);
@@ -463,7 +462,7 @@ t_marco_presencia *obtener_marco(uint32_t entrada_tabla_1er_nivel, uint32_t entr
     {
         loggear_error(logger_cpu, "Error en conexion", mutex_logger_cpu);
     }
-    recv_num_tabla_2do_nivel(socket_cpu_dispatch, &num_segundo_nivel);
+    recv_num_tabla_2do_nivel(socket_memoria_cpu, &num_segundo_nivel);
     liberar_conexion(socket_memoria_cpu);
 
     // SEGUNDO ACCESO A MEMORIA:
@@ -476,7 +475,7 @@ t_marco_presencia *obtener_marco(uint32_t entrada_tabla_1er_nivel, uint32_t entr
     {
         loggear_error(logger_cpu, "Error en conexion", mutex_logger_cpu);
     }
-    recv_frame(socket_cpu_dispatch, &marco_presencia);
+    recv_frame(socket_memoria_cpu, &marco_presencia);
     liberar_conexion(socket_memoria_cpu);
     return marco_presencia;
 }

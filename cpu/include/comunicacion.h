@@ -10,6 +10,7 @@
 #include<commons/collections/list.h>
 #include<string.h>
 #include<assert.h>
+#include<math.h>
 #include "configuracion.h"
 #include "tlb_manager.h"   
 #include "../../shared/include/sockets.h"

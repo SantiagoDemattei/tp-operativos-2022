@@ -27,7 +27,7 @@ void agregar(t_tlb *elemento_a_agregar)
 
 uint32_t buscar(uint32_t numero_pagina)
 {
-    uint32_t marco_buscado = list_find_con_mutex_tlb(tlb, numero_pagina, mutex_tlb);
+    uint32_t marco_buscado = list_find_con_mutex_tlb(tlb, numero_pagina, mutex_tlb); 
     if (marco_buscado == -1)
     {
         loggear_error(logger_cpu, "No se encontro la pagina en la tlb", mutex_logger_cpu);
