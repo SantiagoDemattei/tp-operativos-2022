@@ -61,7 +61,10 @@ uint32_t obtener_tabla_2do_nivel(uint32_t id_tabla, uint32_t entrada_primer_nive
 t_tabla_pagina1 *buscar_tabla_pagina1(uint32_t id_tabla);
 uint32_t buscar_nro_tabla_segundo_nivel(t_tabla_pagina1 *tabla_pagina1, uint32_t entrada_tabla_1er_nivel);
 t_marco_presencia* obtener_frame(uint32_t nro_tabla_2do_nivel, uint32_t entrada_tabla_2do_nivel);
+void buscar_estructura_del_proceso(uint32_t pid);
 uint32_t leer_valor(uint32_t frame, uint32_t desplazamiento);
 void escribir_valor(uint32_t frame, uint32_t desplazamiento, uint32_t valor_a_escribir);
 void copiar_valor(uint32_t frame_origen, uint32_t desplazamiento_origen, uint32_t frame_destino, uint32_t desplazamiento_destino);
+
+
 #endif

@@ -609,8 +609,8 @@ bool recv_entrada_tabla_2do_nivel(uint32_t fd, uint32_t *num_segundo_nivel, uint
 
 #pragma region EJECUTAR_WRITE
 
-bool send_ejecutar_write(uint32_t fd, uint32_t marco, uint32_t desplazamiento, uint32_t valor_a_escribir){
-    size_t size = sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t)*3; // stream: cop + sizePayload + marco + desplazamiento + valorAEscribir
+bool send_ejecutar_write(uint32_t fd, uint32_t marco, uint32_t desplazamiento, uint32_t valor_a_escribir, uint32_t id_proceso){
+    size_t size = sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t)*4; // stream: cop + sizePayload + marco + desplazamiento + valorAEscribir
     void *stream = malloc(size);
     op_code cop = EJECUTAR_WRITE;
     size_t size_payload = size - sizeof(op_code) - sizeof(size_t);
@@ -619,6 +619,7 @@ bool send_ejecutar_write(uint32_t fd, uint32_t marco, uint32_t desplazamiento, u
     memcpy(stream + sizeof(op_code) + sizeof(size_t), &marco, sizeof(uint32_t));
     memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t), &desplazamiento, sizeof(uint32_t));
     memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t) + sizeof(uint32_t), &valor_a_escribir, sizeof(uint32_t));
+    memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t) + sizeof(uint32_t) + sizeof(uint32_t), &id_proceso, sizeof(uint32_t));
 
     if(send(fd, stream, size, 0) == -1){
         free(stream);
@@ -628,10 +629,11 @@ bool send_ejecutar_write(uint32_t fd, uint32_t marco, uint32_t desplazamiento, u
     return true;
 }
 
-bool recv_ejecutar_write(uint32_t fd, uint32_t* marco, uint32_t* desplazamiento, uint32_t* valor_a_escribir){
+bool recv_ejecutar_write(uint32_t fd, uint32_t* marco, uint32_t* desplazamiento, uint32_t* valor_a_escribir, uint32_t* id_proceso){
     uint32_t marco_recibido;
     uint32_t desplazamiento_recibido;
     uint32_t valor_a_escribir_recibido;
+    uint32_t id_proceso_recibido;
     size_t size;
 
     if(recv(fd, &size, sizeof(size_t), 0) != sizeof(size_t)){
@@ -648,9 +650,11 @@ bool recv_ejecutar_write(uint32_t fd, uint32_t* marco, uint32_t* desplazamiento,
     memcpy(&marco_recibido, stream, sizeof(uint32_t));
     memcpy(&desplazamiento_recibido, stream + sizeof(uint32_t), sizeof(uint32_t));
     memcpy(&valor_a_escribir_recibido, stream + sizeof(uint32_t) + sizeof(uint32_t), sizeof(uint32_t));
+    memcpy(&id_proceso_recibido, stream + sizeof(uint32_t) + sizeof(uint32_t) + sizeof(uint32_t), sizeof(uint32_t));
     *marco = marco_recibido;
     *desplazamiento = desplazamiento_recibido;
     *valor_a_escribir = valor_a_escribir_recibido;
+    *id_proceso = id_proceso_recibido;
     free(stream);
     return true;
 }
@@ -670,8 +674,8 @@ bool send_ok(uint32_t fd){
 
 #pragma region EJECUTAR_READ
 
-bool send_ejecutar_read(uint32_t fd, uint32_t marco, uint32_t desplazamiento){
-    size_t size = sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t)*2; // stream: cop + sizePayload + marco + desplazamiento
+bool send_ejecutar_read(uint32_t fd, uint32_t marco, uint32_t desplazamiento, uint32_t id_proceso){
+    size_t size = sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t)*3; // stream: cop + sizePayload + marco + desplazamiento
     void *stream = malloc(size);
     op_code cop = EJECUTAR_READ;
     size_t size_payload = size - sizeof(op_code) - sizeof(size_t);
@@ -679,6 +683,7 @@ bool send_ejecutar_read(uint32_t fd, uint32_t marco, uint32_t desplazamiento){
     memcpy(stream + sizeof(op_code), &size_payload, sizeof(size_t));
     memcpy(stream + sizeof(op_code) + sizeof(size_t), &marco, sizeof(uint32_t));
     memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t), &desplazamiento, sizeof(uint32_t));
+    memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t) + sizeof(uint32_t), &id_proceso, sizeof(uint32_t));
     if(send(fd, stream, size, 0) == -1){
         free(stream);
         return false;
@@ -687,9 +692,10 @@ bool send_ejecutar_read(uint32_t fd, uint32_t marco, uint32_t desplazamiento){
     return true;
 }
 
-bool recv_ejecutar_read(uint32_t fd, uint32_t* marco, uint32_t* desplazamiento){
+bool recv_ejecutar_read(uint32_t fd, uint32_t* marco, uint32_t* desplazamiento, uint32_t* id_proceso){
     uint32_t marco_recibido;
     uint32_t desplazamiento_recibido;
+    uint32_t id_proceso_recibido;
     size_t size;
     if(recv(fd, &size, sizeof(size_t), 0) != sizeof(size_t)){
         return false;
@@ -701,8 +707,10 @@ bool recv_ejecutar_read(uint32_t fd, uint32_t* marco, uint32_t* desplazamiento){
     }
     memcpy(&marco_recibido, stream, sizeof(uint32_t));
     memcpy(&desplazamiento_recibido, stream + sizeof(uint32_t), sizeof(uint32_t));
+    memcpy(&id_proceso_recibido, stream + sizeof(uint32_t) + sizeof(uint32_t), sizeof(uint32_t));
     *marco = marco_recibido;
     *desplazamiento = desplazamiento_recibido;
+    *id_proceso = id_proceso_recibido;
     free(stream);
     return true;
 }
@@ -793,8 +801,8 @@ bool recv_frame(uint32_t fd, t_marco_presencia** marco_presencia){
 
 #pragma region EJECUTAR_COPY
 
-bool send_ejecutar_copy(uint32_t fd, uint32_t marco_origen, uint32_t desplazamiento_origen, uint32_t marco_destino, uint32_t desplazamiento_destino){
-    size_t size = sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t)*4; // stream: cop + sizePayload + marcoOrigen + desplazamientoOrigen + marcoDestino + desplazamientoDestino
+bool send_ejecutar_copy(uint32_t fd, uint32_t marco_origen, uint32_t desplazamiento_origen, uint32_t marco_destino, uint32_t desplazamiento_destino, uint32_t id_proceso){
+    size_t size = sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t)*5; // stream: cop + sizePayload + marcoOrigen + desplazamientoOrigen + marcoDestino + desplazamientoDestino
     void *stream = malloc(size);
     op_code cop = EJECUTAR_COPY;
     size_t size_payload = size - sizeof(op_code) - sizeof(size_t);
@@ -804,6 +812,7 @@ bool send_ejecutar_copy(uint32_t fd, uint32_t marco_origen, uint32_t desplazamie
     memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t), &desplazamiento_origen, sizeof(uint32_t));
     memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t)*2, &marco_destino, sizeof(uint32_t));
     memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t)*3, &desplazamiento_destino, sizeof(uint32_t));
+    memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t)*4, &id_proceso, sizeof(uint32_t));
     if(send(fd, stream, size, 0) == -1){
         free(stream);
         return false;
@@ -812,11 +821,12 @@ bool send_ejecutar_copy(uint32_t fd, uint32_t marco_origen, uint32_t desplazamie
     return true;
 }
 
-bool recv_ejecutar_copy(uint32_t fd, uint32_t* marco_origen, uint32_t* desplazamiento_origen, uint32_t* marco_destino, uint32_t* desplazamiento_destino){
+bool recv_ejecutar_copy(uint32_t fd, uint32_t* marco_origen, uint32_t* desplazamiento_origen, uint32_t* marco_destino, uint32_t* desplazamiento_destino, uint32_t* id_proceso){
     uint32_t marco_origen_recibido;
     uint32_t desplazamiento_origen_recibido;
     uint32_t marco_destino_recibido;
     uint32_t desplazamiento_destino_recibido;
+    uint32_t id_proceso_recibido;
     size_t size;
     if(recv(fd, &size, sizeof(size_t), 0) != sizeof(size_t)){
         return false;
@@ -830,10 +840,12 @@ bool recv_ejecutar_copy(uint32_t fd, uint32_t* marco_origen, uint32_t* desplazam
     memcpy(&desplazamiento_origen_recibido, stream + sizeof(uint32_t), sizeof(uint32_t));
     memcpy(&marco_destino_recibido, stream + sizeof(uint32_t)*2, sizeof(uint32_t));
     memcpy(&desplazamiento_destino_recibido, stream + sizeof(uint32_t)*3, sizeof(uint32_t));
+    memcpy(&id_proceso_recibido, stream + sizeof(uint32_t)*4, sizeof(uint32_t));
     *marco_origen = marco_origen_recibido;
     *desplazamiento_origen = desplazamiento_origen_recibido;
     *marco_destino = marco_destino_recibido;
     *desplazamiento_destino = desplazamiento_destino_recibido;
+    *id_proceso = id_proceso_recibido;
     free(stream);
     return true;
 }

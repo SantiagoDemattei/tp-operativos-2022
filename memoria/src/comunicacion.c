@@ -115,8 +115,8 @@ static void procesar_conexion(void *void_args)
                 list_add(estructura->lista_tablas_segundo_nivel, tabla_segundo_nivel); //guarda la tabla de 2do nivel en la lista de tablas de segundo nivel de la estrcutura del proceso
             }
 
-            char *proceso_string = malloc(strlen("/proceso_") + sizeof(id_proceso)); //para agregarlo en la url del archivo de swap
-            proceso_string = string_from_format("/proceso_%d", id_proceso);
+            char *proceso_string = malloc(sizeof(id_proceso)+ strlen("/.swap")); //para agregarlo en la url del archivo de swap
+            proceso_string = string_from_format("/%d.swap", id_proceso);
             char *path_archivo = malloc(strlen(configuracion_memoria->path_swap + strlen(proceso_string)));
             string_append(&path_archivo, configuracion_memoria->path_swap);
             string_append(&path_archivo, proceso_string);
@@ -154,21 +154,24 @@ static void procesar_conexion(void *void_args)
             break;
 
         case EJECUTAR_WRITE:
-            recv_ejecutar_write(*cliente_socket, &frame, &desplazamiento, &valor_a_escribir);
+            recv_ejecutar_write(*cliente_socket, &frame, &desplazamiento, &valor_a_escribir, &id_proceso);
             loggear_warning(logger, "Se recibio orden de escritura\n", mutex_logger_memoria);
+            buscar_estructura_del_proceso(id_proceso); // busco la estructura del proceso en la lista de estructuras global
             escribir_valor(frame, desplazamiento, valor_a_escribir);
             send_ok(*cliente_socket);
             break;
 
         case EJECUTAR_READ:
-            recv_ejecutar_read(*cliente_socket, &frame, &desplazamiento);
+            recv_ejecutar_read(*cliente_socket, &frame, &desplazamiento, &id_proceso);
+            buscar_estructura_del_proceso(id_proceso);
             loggear_warning(logger, "Se recibio orden de lectura\n", mutex_logger_memoria);
             valor_leido = leer_valor(frame, desplazamiento);
             send_ok_read(*cliente_socket, valor_leido);
             break;
 
         case EJECUTAR_COPY:
-            recv_ejecutar_copy(*cliente_socket, &frame_origen, &desplazamiento_origen, &frame_destino, &desplazamiento_destino);
+            recv_ejecutar_copy(*cliente_socket, &frame_origen, &desplazamiento_origen, &frame_destino, &desplazamiento_destino, &id_proceso);
+            buscar_estructura_del_proceso(id_proceso);
             loggear_warning(logger, "Se recibio orden de copia\n", mutex_logger_memoria);
             copiar_valor(frame_origen, desplazamiento_origen, frame_destino, desplazamiento_destino);
             send_ok(*cliente_socket);
@@ -301,7 +304,7 @@ t_marco_presencia *obtener_frame(uint32_t nro_tabla_2do_nivel, uint32_t entrada_
     if (tabla_segundo_nivel != NULL) 
     {
         fila_2do_nivel = list_get(tabla_segundo_nivel, entrada_tabla_2do_nivel); //obtiene la fila que quiere de la tabla de segundo nivel
-        if (fila_2do_nivel == NULL) //FALLO DE PAGINA (deberia entrar en write y en copy)
+        if (fila_2do_nivel == NULL) 
         {
             // buscar en swap la info del frame
             // list_add de la estructura de 2do nivel en la tabla de segundo nivel (reemplazar si la tabla esta llena con los algoritmos CLOCK y CLOCK-M)
@@ -324,7 +327,7 @@ t_marco_presencia *obtener_frame(uint32_t nro_tabla_2do_nivel, uint32_t entrada_
             }
             else
             {
-                // cargarlo de swap
+                // ir a buscar la pagina en swap
                 // modificar el campo de frame (de -1 al que obtuve de SWAP) y el de presencia (de 0 a 1) en la fila de la tabla de 2do nivel
                 // return el frame
                 printf("Entre por el else y el bit de presencia es 0\n");
@@ -377,4 +380,24 @@ void copiar_valor(uint32_t frame_origen, uint32_t desplazamiento_origen, uint32_
     // tamanio pagina = tamanio frame (en paginacion)
     memcpy(memoria_del_proceso + frame_real_destino + desplazamiento_destino, memoria_del_proceso + frame_real_origen + desplazamiento_origen, sizeof(uint32_t)); // comienzo de la memoria + todos los bytes que hay hasta el frame elegido + el desplazamiento sobre el frame
     pthread_mutex_unlock(&mutex_estructura_proceso_actual);
+}
+
+void buscar_estructura_del_proceso(uint32_t pid)
+{
+    t_estructura_proceso *procesoAux;
+    pthread_mutex_lock(&mutex_lista_estructuras);
+    for(int i =0; i < list_size(lista_estructuras); i++)
+    {   
+        
+        procesoAux = list_get(lista_estructuras, i);
+        if(procesoAux->id_proceso == pid)
+        {   
+            pthread_mutex_lock(&mutex_estructura_proceso_actual);
+            estructura_proceso_actual = procesoAux;
+            pthread_mutex_unlock(&mutex_estructura_proceso_actual);
+            break;
+        }
+        
+    }
+    pthread_mutex_unlock(&mutex_lista_estructuras);
 }

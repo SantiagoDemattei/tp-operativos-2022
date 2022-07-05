@@ -36,15 +36,15 @@ bool send_entrada_tabla_2do_nivel(uint32_t fd, uint32_t num_segundo_nivel, uint3
 bool recv_entrada_tabla_2do_nivel(uint32_t fd, uint32_t *num_segundo_nivel, uint32_t *entrada_tabla_2do_nivel);
 bool send_num_tabla_2do_nivel(uint32_t fd, uint32_t num_tabla_2do_nivel);
 bool recv_num_tabla_2do_nivel(uint32_t fd, uint32_t *num_tabla_2do_nivel);
-bool send_ejecutar_write(uint32_t fd, uint32_t marco, uint32_t desplazamiento, uint32_t valor_a_escribir);
-bool recv_ejecutar_write(uint32_t fd, uint32_t* marco, uint32_t* desplazamiento, uint32_t* valor_a_escribir);
+bool send_ejecutar_write(uint32_t fd, uint32_t marco, uint32_t desplazamiento, uint32_t valor_a_escribir, uint32_t id_proceso);
+bool recv_ejecutar_write(uint32_t fd, uint32_t* marco, uint32_t* desplazamiento, uint32_t* valor_a_escribir, uint32_t* id_proceso);
 bool send_ok(uint32_t fd);
-bool send_ejecutar_read(uint32_t fd, uint32_t marco, uint32_t desplazamiento);
-bool recv_ejecutar_read(uint32_t fd, uint32_t* marco, uint32_t* desplazamiento);
+bool send_ejecutar_read(uint32_t fd, uint32_t marco, uint32_t desplazamiento, uint32_t id_proceso);
+bool recv_ejecutar_read(uint32_t fd, uint32_t* marco, uint32_t* desplazamiento, uint32_t* id_proceso);
 bool send_ok_read(uint32_t fd, uint32_t valor_leido);
 bool recv_ok_read(uint32_t fd, uint32_t* valor_leido);
 bool send_frame(uint32_t fd, t_marco_presencia* marco_presencia);
 bool recv_frame(uint32_t fd, t_marco_presencia** marco_presencia);
-bool send_ejecutar_copy(uint32_t fd, uint32_t marco_origen, uint32_t desplazamiento_origen, uint32_t marco_destino, uint32_t desplazamiento_destino);
-bool recv_ejecutar_copy(uint32_t fd, uint32_t* marco_origen, uint32_t* desplazamiento_origen, uint32_t* marco_destino, uint32_t* desplazamiento_destino);
+bool send_ejecutar_copy(uint32_t fd, uint32_t marco_origen, uint32_t desplazamiento_origen, uint32_t marco_destino, uint32_t desplazamiento_destino, uint32_t id_proceso);
+bool recv_ejecutar_copy(uint32_t fd, uint32_t* marco_origen, uint32_t* desplazamiento_origen, uint32_t* marco_destino, uint32_t* desplazamiento_destino, uint32_t* id_proceso);
 #endif
