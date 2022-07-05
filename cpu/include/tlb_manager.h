@@ -18,6 +18,8 @@ typedef enum ALGORITMO_REEMPLAZO {
     LRU,
 } ALGORITMO_REEMPLAZO; //enum para los distintos tipos de algoritmos de reemplazo de la tlb
 
+t_tlb* elegir_victima_lru();
+void borrar_entrada(t_tlb* victima);
 void agregar(t_tlb* elemento_a_agregar);
 uint32_t buscar(uint32_t numero_pagina);
 ALGORITMO_REEMPLAZO algoritmo_remplazo (char* algoritmo);

@@ -174,6 +174,8 @@ uint32_t list_find_con_mutex_tlb(t_list* lista, uint32_t tlb_buscado, pthread_mu
     if(tlb_encontrado == NULL){
         return -1;
     }
+
+    tlb_encontrado->ultima_referencia = time(NULL); //si lo encuentra, es porque en ese momento se lo esta referenciando ===> actualizo la ultima referencia
     return tlb_encontrado->marco;
 }
 

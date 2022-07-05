@@ -117,6 +117,7 @@ typedef struct t_pcb
 typedef struct t_tlb{
     uint32_t pagina;
     uint32_t marco;
+    time_t ultima_referencia;
 } t_tlb;
 
 

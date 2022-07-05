@@ -72,7 +72,7 @@ static void procesar_conexion(void *void_args)
             break;
 
         case ORDEN_ENVIO_TAMANIO:
-            send_tamanio_y_cant_entradas(*cliente_socket, (configuracion_memoria->tam_pagina), (configuracion_memoria->entradas_por_tabla)); // envio el tamanio de pagina a la cpu
+            send_tamanio_y_cant_entradas(*cliente_socket, (configuracion_memoria->tam_pagina), (configuracion_memoria->entradas_por_tabla)); // envio el tamanio de pagina y cantidad de entradas de la tabla a la cpu
             loggear_info(logger, "Envie tamanio de pagina a CPU\n", mutex_logger_memoria);
             break;
 
@@ -85,7 +85,7 @@ static void procesar_conexion(void *void_args)
 
             // averiguo cuantas paginas tiene mi proceso: tamanio en bytes del proceso / tamanio en bytes de una pagina
             cant_paginas = ceil(tamanio_proceso / (configuracion_memoria->tam_pagina));
-            cant_tablas_segundo_nivel = cant_paginas / (configuracion_memoria->entradas_por_tabla); // para saber cuantas tablas de 2do nivel crear
+            cant_tablas_segundo_nivel = ceil(cant_paginas / (configuracion_memoria->entradas_por_tabla)); // para saber cuantas tablas de 2do nivel crear
 
             // estructura de memoria = espacio + lista de tablas + archivo (espacio en swap)
             t_tabla_pagina1 *tabla_pagina1 = malloc(sizeof(t_tabla_pagina1) + sizeof(uint32_t) * (configuracion_memoria->entradas_por_tabla));
@@ -106,23 +106,23 @@ static void procesar_conexion(void *void_args)
                 { // llenamos cada entrada de la tabla de 2do nivel
                     t_estructura_2do_nivel *entrada_segundo_nivel = malloc(sizeof(t_estructura_2do_nivel));
                     entrada_segundo_nivel->marco = -2;
-                    entrada_segundo_nivel->uso = 0;
-                    entrada_segundo_nivel->modificado = 0;
-                    entrada_segundo_nivel->presencia = 0;
-                    list_add(tabla_segundo_nivel->segundo_nivel, entrada_segundo_nivel);
+                    entrada_segundo_nivel->uso = false;
+                    entrada_segundo_nivel->modificado = false;
+                    entrada_segundo_nivel->presencia = false;
+                    list_add(tabla_segundo_nivel->segundo_nivel, entrada_segundo_nivel); //agrega las filas a la tabla de segundo nivel
                 }
-                list_add(tabla_pagina1->primer_nivel, id); // llenamos la tabla de primer nivel
-                list_add(estructura->lista_tablas_segundo_nivel, tabla_segundo_nivel);
+                list_add(tabla_pagina1->primer_nivel, id); // llenamos la tabla de primer nivel con el id de la tabla de segundo nivel
+                list_add(estructura->lista_tablas_segundo_nivel, tabla_segundo_nivel); //guarda la tabla de 2do nivel en la lista de tablas de segundo nivel de la estrcutura del proceso
             }
 
-            char *proceso_string = malloc(strlen("/proceso_") + sizeof(id_proceso));
+            char *proceso_string = malloc(strlen("/proceso_") + sizeof(id_proceso)); //para agregarlo en la url del archivo de swap
             proceso_string = string_from_format("/proceso_%d", id_proceso);
             char *path_archivo = malloc(strlen(configuracion_memoria->path_swap + strlen(proceso_string)));
             string_append(&path_archivo, configuracion_memoria->path_swap);
             string_append(&path_archivo, proceso_string);
 
             estructura->nombre_archivo_swap = malloc(strlen(path_archivo)); // "/home/utnso/swap/proceso_xx"
-            string_append(&estructura->nombre_archivo_swap, path_archivo);
+            string_append(&estructura->nombre_archivo_swap, path_archivo);//agrego el path completo a la estructura
 
             loggear_info(logger, string_from_format("El nombre del archivo es: %s\n", estructura->nombre_archivo_swap), mutex_logger_memoria);
             list_add_con_mutex_tablas(lista_estructuras, estructura, mutex_lista_estructuras); // agrega la estructura a la lista de estructuras global donde estan las de todos los procesos
@@ -130,7 +130,7 @@ static void procesar_conexion(void *void_args)
             send_valor_tb(*cliente_socket, tabla_pagina1->id_tabla); // le mandamos el id de la tabla que corresponde al proceso (es lo mismo que el contador)
 
             pthread_mutex_lock(&mutex_valor_tp);
-            contador++;
+            contador++;//para el id de la tabla de 1er nivel
             pthread_mutex_unlock(&mutex_valor_tp);
 
             free(cliente_socket);
@@ -141,7 +141,7 @@ static void procesar_conexion(void *void_args)
         case PRIMER_ACCESO:
             recv_entrada_tabla_1er_nivel(*cliente_socket, &id_tabla1, &entrada_primer_nivel);
             loggear_info(logger, "Se recibio la entrada de la tabla de paginas de primer nivel\n", mutex_logger_memoria);
-            num_tabla_segundo_nivel = obtener_tabla_2do_nivel(id_tabla1, entrada_primer_nivel);
+            num_tabla_segundo_nivel = obtener_tabla_2do_nivel(id_tabla1, entrada_primer_nivel); 
             send_num_tabla_2do_nivel(*cliente_socket, num_tabla_segundo_nivel);
             break;
 
@@ -149,7 +149,7 @@ static void procesar_conexion(void *void_args)
             recv_entrada_tabla_2do_nivel(*cliente_socket, &num_segundo_nivel, &entrada_tabla_2do_nivel);
             loggear_info(logger, "Se recibio la entrada de la tabla de pagina de segundo nivel\n", mutex_logger_memoria);
             // busco el frame en la tabla de segundo nivel
-            marco_presencia = obtener_frame(num_segundo_nivel, entrada_tabla_2do_nivel);
+            marco_presencia = obtener_frame(num_segundo_nivel, entrada_tabla_2do_nivel); //siempre va a encontrar un frame porque alguien ya escribio
             send_frame(*cliente_socket, marco_presencia);
             break;
 
@@ -235,7 +235,7 @@ void list_add_con_mutex_tablas(t_list *lista, t_estructura_proceso *tabla_pagina
     pthread_mutex_unlock(&mutex);
 }
 
-t_tabla_pagina1 *buscar_tabla_pagina1(uint32_t id_tabla)
+t_tabla_pagina1 *buscar_tabla_pagina1(uint32_t id_tabla) //busca en la lista de estructuras de todos los procesos la tabla de paginas de primer nivel corresponiente al proceso 
 {   
     t_estructura_proceso *estructura = NULL;
     t_tabla_pagina1 *tabla_pagina1 = NULL;
@@ -246,7 +246,7 @@ t_tabla_pagina1 *buscar_tabla_pagina1(uint32_t id_tabla)
         if (estructura->tabla_pagina1->id_tabla == id_tabla)
         {
             pthread_mutex_lock(&mutex_estructura_proceso_actual);
-            estructura_proceso_actual = estructura;
+            estructura_proceso_actual = estructura; 
             pthread_mutex_unlock(&mutex_estructura_proceso_actual);
             tabla_pagina1 = estructura->tabla_pagina1;
             return tabla_pagina1;
@@ -257,25 +257,25 @@ t_tabla_pagina1 *buscar_tabla_pagina1(uint32_t id_tabla)
 
 uint32_t buscar_nro_tabla_segundo_nivel(t_tabla_pagina1 *tabla_pagina1, uint32_t entrada_tabla_1er_nivel)
 {   
-    int i;
+    uint32_t i;
     uint32_t *retorno = malloc(sizeof(uint32_t));
-    retorno = list_get(tabla_pagina1->primer_nivel, entrada_tabla_1er_nivel); // recorre por indice la tabla de primer nivel y devuelve el contenido (nro de la tabla de segundo nivel)
+    retorno = list_get(tabla_pagina1->primer_nivel, entrada_tabla_1er_nivel); // recorre por indice la tabla de primer nivel hasta llegar a la entrada que necesita y devuelve el contenido (nro de la tabla de segundo nivel)
     i = *retorno;                                                             // guarda el contenido en i
     free(retorno);
     return i;                                                           
 }
 
-uint32_t obtener_tabla_2do_nivel(uint32_t id_tabla, uint32_t entrada_primer_nivel)
+uint32_t obtener_tabla_2do_nivel(uint32_t id_tabla, uint32_t entrada_primer_nivel) 
 {   
     pthread_mutex_lock(&mutex_lista_estructuras);
-    t_tabla_pagina1 *tabla_pagina1 = buscar_tabla_pagina1(id_tabla);                                        // obtengo de la lista de estructuras, la tabla de primer nivel del proceso
-    uint32_t nro_tabla_segundo_nivel = buscar_nro_tabla_segundo_nivel(tabla_pagina1, entrada_primer_nivel); // busco el numero de tabla de segundo nivel en la tabla de primer nivel
+    t_tabla_pagina1 *tabla_pagina1 = buscar_tabla_pagina1(id_tabla); // busca en la lista de estructuras de todos los procesos la tabla de paginas de primer nivel corresponiente al proceso                                       
+    uint32_t nro_tabla_segundo_nivel = buscar_nro_tabla_segundo_nivel(tabla_pagina1, entrada_primer_nivel); // busco el numero de tabla de segundo nivel en la tabla de primer nivel (lo voy a encontrar porque conozco la entrada/fila a la que necesito ir)
     pthread_mutex_unlock(&mutex_lista_estructuras);
 
     return nro_tabla_segundo_nivel;
 }
 
-t_list *buscar_tabla_segundo_nivel(uint32_t nro_tabla_2do_nivel)
+t_list *buscar_tabla_segundo_nivel(uint32_t nro_tabla_2do_nivel) //busca la tabla de segundo nivel en la lista de todas las tablas de segundo nivel del proceso actual
 {
     pthread_mutex_lock(&mutex_estructura_proceso_actual);
     t_list *lista_tablas_2do_nivel = estructura_proceso_actual->lista_tablas_segundo_nivel;
@@ -283,7 +283,7 @@ t_list *buscar_tabla_segundo_nivel(uint32_t nro_tabla_2do_nivel)
     for (int i = 0; i < list_size(lista_tablas_2do_nivel); i++)
     {
         t_tabla_pagina2 *tabla_pagina2 = list_get(lista_tablas_2do_nivel, i);
-        if (tabla_pagina2->id_tabla == nro_tabla_2do_nivel)
+        if (tabla_pagina2->id_tabla == nro_tabla_2do_nivel)//es el numero que viene del primer acceso
         {
             return tabla_pagina2->segundo_nivel;
         }
@@ -298,10 +298,10 @@ t_marco_presencia *obtener_frame(uint32_t nro_tabla_2do_nivel, uint32_t entrada_
     pthread_mutex_lock(&mutex_lista_estructuras);
     t_list *tabla_segundo_nivel = buscar_tabla_segundo_nivel(nro_tabla_2do_nivel);
 
-    if (tabla_segundo_nivel != NULL)
+    if (tabla_segundo_nivel != NULL) 
     {
-        fila_2do_nivel = list_get(tabla_segundo_nivel, entrada_tabla_2do_nivel);
-        if (fila_2do_nivel == NULL)
+        fila_2do_nivel = list_get(tabla_segundo_nivel, entrada_tabla_2do_nivel); //obtiene la fila que quiere de la tabla de segundo nivel
+        if (fila_2do_nivel == NULL) //FALLO DE PAGINA (deberia entrar en write y en copy)
         {
             // buscar en swap la info del frame
             // list_add de la estructura de 2do nivel en la tabla de segundo nivel (reemplazar si la tabla esta llena con los algoritmos CLOCK y CLOCK-M)
@@ -360,7 +360,7 @@ uint32_t leer_valor(uint32_t frame, uint32_t desplazamiento)
 {
     pthread_mutex_lock(&mutex_estructura_proceso_actual);
     uint32_t valor_leido;
-    char *memoria_del_proceso = estructura_proceso_actual->espacio_en_memoria; // desde 0 bytes hasta el tamanio maximo de la memoria del proceso
+    void *memoria_del_proceso = estructura_proceso_actual->espacio_en_memoria; // desde 0 bytes hasta el tamanio maximo de la memoria del proceso
     size_t frame_real = (configuracion_memoria->tam_pagina * frame);           // lo que hago aca es calcular en donde esta ubicado el frame donde tengo que leer
     // tamanio pagina = tamanio frame (en paginacion)
     memcpy(&valor_leido, memoria_del_proceso + frame_real + desplazamiento, sizeof(valor_leido)); // comienzo de la memoria + todos los bytes que hay hasta el frame elegido + el desplazamiento sobre el frame
@@ -371,7 +371,7 @@ uint32_t leer_valor(uint32_t frame, uint32_t desplazamiento)
 void copiar_valor(uint32_t frame_origen, uint32_t desplazamiento_origen, uint32_t frame_destino, uint32_t desplazamiento_destino)
 {
     pthread_mutex_lock(&mutex_estructura_proceso_actual);
-    char *memoria_del_proceso = estructura_proceso_actual->espacio_en_memoria;       // desde 0 bytes hasta el tamanio maximo de la memoria del proceso
+    void *memoria_del_proceso = estructura_proceso_actual->espacio_en_memoria;       // desde 0 bytes hasta el tamanio maximo de la memoria del proceso
     size_t frame_real_origen = (configuracion_memoria->tam_pagina * frame_origen);   // lo que hago aca es calcular en donde esta ubicado el frame donde tengo que leer
     size_t frame_real_destino = (configuracion_memoria->tam_pagina * frame_destino); // lo que hago aca es calcular en donde esta ubicado el frame donde tengo que leer
     // tamanio pagina = tamanio frame (en paginacion)

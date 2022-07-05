@@ -25,12 +25,12 @@
 
 typedef struct t_tabla_pagina1{ 
     uint32_t id_tabla; //el que se guarda en el pcb (es el que devuelve memoria, al inicializar las estructuras)
-    t_list* primer_nivel;  //tabla de primer nivel de cada proceso  
+    t_list* primer_nivel;  //filas de la tabla de primer nivel . Cada fila es el id de la tabla de 2do nivel.
 }t_tabla_pagina1;
 
 typedef struct t_tabla_pagina2{
     uint32_t id_tabla;
-    t_list* segundo_nivel;
+    t_list* segundo_nivel; //filas de la tabla de segundo nivel
 }t_tabla_pagina2;
 
 typedef struct t_estructura_2do_nivel{
@@ -42,7 +42,7 @@ typedef struct t_estructura_2do_nivel{
 
 typedef struct t_estructura_proceso{
 uint32_t id_proceso;
-void * espacio_en_memoria; 
+void * espacio_en_memoria; //espacio que ocupa el proceso en memoria
 t_tabla_pagina1 *tabla_pagina1; //cada proceso tiene la tabla de paginas de 1er nivel y
 t_list *lista_tablas_segundo_nivel; //lista de tablas de segundo nivel (tantas como entradas tenga la de 1er nivel)
 char* nombre_archivo_swap; //espacio de swap para los procesos
