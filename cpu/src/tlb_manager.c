@@ -6,7 +6,7 @@ void agregar(t_tlb *elemento_a_agregar)
     t_tlb *victima;
     if (list_size_con_mutex_tlb(tlb, mutex_tlb) < configuracion_cpu->entradas_tlb)
     { // si la tlb no esta llena ===> tiene espacio libre ===> agrego la entrada nueva
-        elemento_a_agregar->ultima_referencia = time(NULL);
+        elemento_a_agregar->ultima_referencia = time(NULL); //tiempo actual 
         list_add_con_mutex_tlb(tlb, elemento_a_agregar, mutex_tlb);
     }
     else
@@ -22,7 +22,7 @@ void agregar(t_tlb *elemento_a_agregar)
                 break;
             case LRU:
                 victima = elegir_victima_lru();
-                borrar_entrada(victima);
+                borrar_entrada(victima); //borramos de la tlb
                 elemento_a_agregar->ultima_referencia = time(NULL);
                 list_add_con_mutex_tlb(tlb, elemento_a_agregar, mutex_tlb);
                 break;
@@ -43,7 +43,7 @@ t_tlb* elegir_victima_lru(){
 }
 
 void* comparar_ultimas_referencias(t_tlb* entrada1, t_tlb* entrada2){
-    if(difftime(entrada1->ultima_referencia, entrada2->ultima_referencia) > 0){ //t1 - t2
+    if(difftime(entrada1->ultima_referencia, entrada2->ultima_referencia) > 0){ //t1 - t2 devuelvo la de tiempo mas chica como victima.
         return entrada2;
     } else return entrada1;
 }

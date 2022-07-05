@@ -1,40 +1,80 @@
-[INFO] 22:56:21:619 CONSOLA/(6407:6407): Lista de instrucciones cargadas:
-[INFO] 22:56:21:621 CONSOLA/(6407:6407): Instruccion: NO_OP
-[INFO] 22:56:21:623 CONSOLA/(6407:6407): Tamanio de la instruccion: 5
-[INFO] 22:56:21:624 CONSOLA/(6407:6407): 
+[INFO] 18:22:11:700 CONSOLA/(9704:9704): Lista de instrucciones cargadas:
+[INFO] 18:22:11:701 CONSOLA/(9704:9704): Instruccion: NO_OP
+[INFO] 18:22:11:701 CONSOLA/(9704:9704): Tamanio de la instruccion: 5
+[INFO] 18:22:11:701 CONSOLA/(9704:9704): 
 
-[INFO] 22:56:21:625 CONSOLA/(6407:6407): Instruccion: NO_OP
-[INFO] 22:56:21:626 CONSOLA/(6407:6407): Tamanio de la instruccion: 5
-[INFO] 22:56:21:627 CONSOLA/(6407:6407): 
+[INFO] 18:22:11:701 CONSOLA/(9704:9704): Instruccion: NO_OP
+[INFO] 18:22:11:701 CONSOLA/(9704:9704): Tamanio de la instruccion: 5
+[INFO] 18:22:11:702 CONSOLA/(9704:9704): 
 
-[INFO] 22:56:21:628 CONSOLA/(6407:6407): Instruccion: WRITE
-[INFO] 22:56:21:629 CONSOLA/(6407:6407): Tamanio de la instruccion: 5
-[INFO] 22:56:21:630 CONSOLA/(6407:6407): Argumento: 4
-[INFO] 22:56:21:631 CONSOLA/(6407:6407): Argumento: 42
-[INFO] 22:56:21:632 CONSOLA/(6407:6407): 
+[INFO] 18:22:11:702 CONSOLA/(9704:9704): Instruccion: WRITE
+[INFO] 18:22:11:702 CONSOLA/(9704:9704): Tamanio de la instruccion: 5
+[INFO] 18:22:11:702 CONSOLA/(9704:9704): Argumento: 4
+[INFO] 18:22:11:702 CONSOLA/(9704:9704): Argumento: 42
+[INFO] 18:22:11:703 CONSOLA/(9704:9704): 
 
-[INFO] 22:56:21:633 CONSOLA/(6407:6407): Instruccion: READ
-[INFO] 22:56:21:656 CONSOLA/(6407:6407): Tamanio de la instruccion: 4
-[INFO] 22:56:21:658 CONSOLA/(6407:6407): Argumento: 4
-[INFO] 22:56:21:659 CONSOLA/(6407:6407): 
+[INFO] 18:22:11:703 CONSOLA/(9704:9704): Instruccion: READ
+[INFO] 18:22:11:703 CONSOLA/(9704:9704): Tamanio de la instruccion: 4
+[INFO] 18:22:11:703 CONSOLA/(9704:9704): Argumento: 4
+[INFO] 18:22:11:703 CONSOLA/(9704:9704): 
 
-[INFO] 22:56:21:660 CONSOLA/(6407:6407): Instruccion: COPY
-[INFO] 22:56:21:662 CONSOLA/(6407:6407): Tamanio de la instruccion: 4
-[INFO] 22:56:21:663 CONSOLA/(6407:6407): Argumento: 5
-[INFO] 22:56:21:664 CONSOLA/(6407:6407): Argumento: 4
-[INFO] 22:56:21:665 CONSOLA/(6407:6407): 
+[INFO] 18:22:11:704 CONSOLA/(9704:9704): Instruccion: COPY
+[INFO] 18:22:11:704 CONSOLA/(9704:9704): Tamanio de la instruccion: 4
+[INFO] 18:22:11:704 CONSOLA/(9704:9704): Argumento: 5
+[INFO] 18:22:11:704 CONSOLA/(9704:9704): Argumento: 4
+[INFO] 18:22:11:704 CONSOLA/(9704:9704): 
 
-[INFO] 22:56:21:667 CONSOLA/(6407:6407): Instruccion: READ
-[INFO] 22:56:21:669 CONSOLA/(6407:6407): Tamanio de la instruccion: 4
-[INFO] 22:56:21:670 CONSOLA/(6407:6407): Argumento: 5
-[INFO] 22:56:21:671 CONSOLA/(6407:6407): 
+[INFO] 18:22:11:704 CONSOLA/(9704:9704): Instruccion: READ
+[INFO] 18:22:11:704 CONSOLA/(9704:9704): Tamanio de la instruccion: 4
+[INFO] 18:22:11:705 CONSOLA/(9704:9704): Argumento: 5
+[INFO] 18:22:11:705 CONSOLA/(9704:9704): 
 
-[INFO] 22:56:21:673 CONSOLA/(6407:6407): Instruccion: EXIT
-[INFO] 22:56:21:674 CONSOLA/(6407:6407): Tamanio de la instruccion: 4
-[INFO] 22:56:21:676 CONSOLA/(6407:6407): 
+[INFO] 18:22:11:705 CONSOLA/(9704:9704): Instruccion: EXIT
+[INFO] 18:22:11:705 CONSOLA/(9704:9704): Tamanio de la instruccion: 4
+[INFO] 18:22:11:705 CONSOLA/(9704:9704): 
 
-[INFO] 22:56:21:678 CONSOLA/(6407:6407): Cliente conectado en 127.0.0.1:8000 (a KERNEL)
+[INFO] 18:22:11:706 CONSOLA/(9704:9704): Cliente conectado en 127.0.0.1:8000 (a KERNEL)
 
-[INFO] 22:56:21:716 CONSOLA/(6407:6407): Se envio la lista de instrucciones al kernel
-[INFO] 22:56:21:721 CONSOLA/(6407:6407): Estoy esperando a que el kernel me avise que ya ejecuto mis instrucciones...
-[INFO] 22:56:24:068 CONSOLA/(6407:6407): El kernel me aviso que ya ejecute mis instrucciones :D
+[INFO] 18:22:11:706 CONSOLA/(9704:9704): Se envio la lista de instrucciones al kernel
+[INFO] 18:22:11:706 CONSOLA/(9704:9704): Estoy esperando a que el kernel me avise que ya ejecuto mis instrucciones...
+[ERROR] 18:23:00:786 CONSOLA/(9704:9704): No se pudo recibir el codigo de operacion
+[INFO] 18:24:28:331 CONSOLA/(10089:10089): Lista de instrucciones cargadas:
+[INFO] 18:24:28:331 CONSOLA/(10089:10089): Instruccion: NO_OP
+[INFO] 18:24:28:331 CONSOLA/(10089:10089): Tamanio de la instruccion: 5
+[INFO] 18:24:28:331 CONSOLA/(10089:10089): 
+
+[INFO] 18:24:28:332 CONSOLA/(10089:10089): Instruccion: NO_OP
+[INFO] 18:24:28:332 CONSOLA/(10089:10089): Tamanio de la instruccion: 5
+[INFO] 18:24:28:332 CONSOLA/(10089:10089): 
+
+[INFO] 18:24:28:332 CONSOLA/(10089:10089): Instruccion: WRITE
+[INFO] 18:24:28:332 CONSOLA/(10089:10089): Tamanio de la instruccion: 5
+[INFO] 18:24:28:333 CONSOLA/(10089:10089): Argumento: 4
+[INFO] 18:24:28:333 CONSOLA/(10089:10089): Argumento: 42
+[INFO] 18:24:28:333 CONSOLA/(10089:10089): 
+
+[INFO] 18:24:28:333 CONSOLA/(10089:10089): Instruccion: READ
+[INFO] 18:24:28:333 CONSOLA/(10089:10089): Tamanio de la instruccion: 4
+[INFO] 18:24:28:334 CONSOLA/(10089:10089): Argumento: 4
+[INFO] 18:24:28:334 CONSOLA/(10089:10089): 
+
+[INFO] 18:24:28:334 CONSOLA/(10089:10089): Instruccion: COPY
+[INFO] 18:24:28:334 CONSOLA/(10089:10089): Tamanio de la instruccion: 4
+[INFO] 18:24:28:334 CONSOLA/(10089:10089): Argumento: 5
+[INFO] 18:24:28:335 CONSOLA/(10089:10089): Argumento: 4
+[INFO] 18:24:28:335 CONSOLA/(10089:10089): 
+
+[INFO] 18:24:28:335 CONSOLA/(10089:10089): Instruccion: READ
+[INFO] 18:24:28:335 CONSOLA/(10089:10089): Tamanio de la instruccion: 4
+[INFO] 18:24:28:335 CONSOLA/(10089:10089): Argumento: 5
+[INFO] 18:24:28:335 CONSOLA/(10089:10089): 
+
+[INFO] 18:24:28:336 CONSOLA/(10089:10089): Instruccion: EXIT
+[INFO] 18:24:28:336 CONSOLA/(10089:10089): Tamanio de la instruccion: 4
+[INFO] 18:24:28:336 CONSOLA/(10089:10089): 
+
+[INFO] 18:24:28:336 CONSOLA/(10089:10089): Cliente conectado en 127.0.0.1:8000 (a KERNEL)
+
+[INFO] 18:24:28:336 CONSOLA/(10089:10089): Se envio la lista de instrucciones al kernel
+[INFO] 18:24:28:337 CONSOLA/(10089:10089): Estoy esperando a que el kernel me avise que ya ejecuto mis instrucciones...
+[INFO] 18:24:30:372 CONSOLA/(10089:10089): El kernel me aviso que ya ejecute mis instrucciones :D

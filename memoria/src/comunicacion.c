@@ -121,9 +121,13 @@ static void procesar_conexion(void *void_args)
             string_append(&path_archivo, configuracion_memoria->path_swap);
             string_append(&path_archivo, proceso_string);
 
-            estructura->nombre_archivo_swap = malloc(strlen(path_archivo)); // "/home/utnso/swap/proceso_xx"
+            estructura->nombre_archivo_swap = malloc(strlen(path_archivo)); // "/home/utnso/id.swap"
             string_append(&estructura->nombre_archivo_swap, path_archivo);//agrego el path completo a la estructura
 
+            if(!crear_archivo_swap(estructura,  tamanio_proceso, logger, mutex_logger_memoria)){ 
+                break;
+            } 
+            
             loggear_info(logger, string_from_format("El nombre del archivo es: %s\n", estructura->nombre_archivo_swap), mutex_logger_memoria);
             list_add_con_mutex_tablas(lista_estructuras, estructura, mutex_lista_estructuras); // agrega la estructura a la lista de estructuras global donde estan las de todos los procesos
 
@@ -149,14 +153,14 @@ static void procesar_conexion(void *void_args)
             recv_entrada_tabla_2do_nivel(*cliente_socket, &num_segundo_nivel, &entrada_tabla_2do_nivel);
             loggear_info(logger, "Se recibio la entrada de la tabla de pagina de segundo nivel\n", mutex_logger_memoria);
             // busco el frame en la tabla de segundo nivel
-            marco_presencia = obtener_frame(num_segundo_nivel, entrada_tabla_2do_nivel); //siempre va a encontrar un frame porque alguien ya escribio
+            marco_presencia = obtener_frame(num_segundo_nivel, entrada_tabla_2do_nivel); 
             send_frame(*cliente_socket, marco_presencia);
             break;
 
         case EJECUTAR_WRITE:
             recv_ejecutar_write(*cliente_socket, &frame, &desplazamiento, &valor_a_escribir, &id_proceso);
             loggear_warning(logger, "Se recibio orden de escritura\n", mutex_logger_memoria);
-            buscar_estructura_del_proceso(id_proceso); // busco la estructura del proceso en la lista de estructuras global
+            buscar_estructura_del_proceso(id_proceso); // setea el proceso actual buscandolo en la lista de estructuras global
             escribir_valor(frame, desplazamiento, valor_a_escribir);
             send_ok(*cliente_socket);
             break;
@@ -171,7 +175,7 @@ static void procesar_conexion(void *void_args)
 
         case EJECUTAR_COPY:
             recv_ejecutar_copy(*cliente_socket, &frame_origen, &desplazamiento_origen, &frame_destino, &desplazamiento_destino, &id_proceso);
-            buscar_estructura_del_proceso(id_proceso);
+            buscar_estructura_del_proceso(id_proceso); //setea la estrctura actual 
             loggear_warning(logger, "Se recibio orden de copia\n", mutex_logger_memoria);
             copiar_valor(frame_origen, desplazamiento_origen, frame_destino, desplazamiento_destino);
             send_ok(*cliente_socket);
@@ -294,27 +298,17 @@ t_list *buscar_tabla_segundo_nivel(uint32_t nro_tabla_2do_nivel) //busca la tabl
     return NULL;
 }
 
-t_marco_presencia *obtener_frame(uint32_t nro_tabla_2do_nivel, uint32_t entrada_tabla_2do_nivel)
+t_marco_presencia *obtener_frame(uint32_t nro_tabla_2do_nivel, uint32_t entrada_tabla_2do_nivel) //devuelve el marco con el bit de presencia para poder reiniciar la instruccion
 {
     t_estructura_2do_nivel *fila_2do_nivel;
     t_marco_presencia *marco_presencia = malloc(sizeof(t_marco_presencia));
     pthread_mutex_lock(&mutex_lista_estructuras);
     t_list *tabla_segundo_nivel = buscar_tabla_segundo_nivel(nro_tabla_2do_nivel);
 
-    if (tabla_segundo_nivel != NULL) 
+    if (tabla_segundo_nivel != NULL) //la tabla de segundo nivel siempre esta llena con marcos que si estan libres estan en -2
     {
         fila_2do_nivel = list_get(tabla_segundo_nivel, entrada_tabla_2do_nivel); //obtiene la fila que quiere de la tabla de segundo nivel
-        if (fila_2do_nivel == NULL) 
-        {
-            // buscar en swap la info del frame
-            // list_add de la estructura de 2do nivel en la tabla de segundo nivel (reemplazar si la tabla esta llena con los algoritmos CLOCK y CLOCK-M)
-            // return el frame
-        }
-        else
-        {
-            // verificar el bit de presencia
-            // si esta en 1, retorno el frame
-            // si esta en 0, tengo que cargarlo en memoria trayendomelo de SWAP
+    
             if (fila_2do_nivel->presencia == 1)
             {
                 marco_presencia->marco = fila_2do_nivel->marco;
@@ -325,21 +319,21 @@ t_marco_presencia *obtener_frame(uint32_t nro_tabla_2do_nivel, uint32_t entrada_
                     2) bit de presencia original (1)
                 */
             }
-            else
+            else //fallo de pagina (bit de presencia = 0)
             {
                 // ir a buscar la pagina en swap
-                // modificar el campo de frame (de -1 al que obtuve de SWAP) y el de presencia (de 0 a 1) en la fila de la tabla de 2do nivel
+                // modificar el campo de frame (de -2 al que obtuve de SWAP) y el de presencia (de 0 a 1) en la fila de la tabla de 2do nivel
                 // return el frame
                 printf("Entre por el else y el bit de presencia es 0\n");
                 marco_presencia->marco = 0; // ES PARA PROBAR AHORAA!!! aca va el frame resultado del algoritmo de reemplazo
-                marco_presencia->presencia = 0;
+                marco_presencia->presencia = 0; 
                 /*
                 devolver una estructura:
                     1) marco
                     2) bit de presencia original (0)
                 */
             }
-        }
+        
     }
     pthread_mutex_unlock(&mutex_lista_estructuras);
     return marco_presencia;
@@ -382,7 +376,7 @@ void copiar_valor(uint32_t frame_origen, uint32_t desplazamiento_origen, uint32_
     pthread_mutex_unlock(&mutex_estructura_proceso_actual);
 }
 
-void buscar_estructura_del_proceso(uint32_t pid)
+void buscar_estructura_del_proceso(uint32_t pid) //setea la estrctura actual con el proceso que corresponde 
 {
     t_estructura_proceso *procesoAux;
     pthread_mutex_lock(&mutex_lista_estructuras);
