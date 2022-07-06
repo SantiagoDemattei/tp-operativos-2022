@@ -28,6 +28,10 @@ void destruir_semaforos(){
     pthread_mutex_destroy(&mutex_logger_memoria);
     pthread_mutex_destroy(&mutex_valor_tp);
     pthread_mutex_destroy(&mutex_lista_estructuras);
+    pthread_mutex_destroy(&mutex_tamanio_pagina);
+    pthread_mutex_destroy(&mutex_estructura_proceso_actual);
+    pthread_mutex_destroy(&mutex_marcos);
+    pthread_mutex_destroy(&mutex_espacio_memoria);
 }
 
 

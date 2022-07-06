@@ -1,12 +1,13 @@
 #include "../include/swap.h"
 
-bool crear_archivo_swap(t_estructura_proceso* estructura, uint32_t tamanio, t_log* logger, pthread_mutex_t mutex)
+bool crear_archivo_swap(t_estructura_proceso *estructura, uint32_t tamanio, t_log *logger, pthread_mutex_t mutex)
 {
     loggear_info(logger, "Creando archivo SWAP\n", mutex);
-    printf("ruta: %s\n", estructura->nombre_archivo_swap);
-    int fd = open(estructura->nombre_archivo_swap, O_RDWR | O_CREAT, S_IRUSR | S_IWUSR); // creo el archivo en la ruta indicada con esos permisos salvo que ya lo este y directamente lo leo con los permisos de usuario 
- 
-    if(fd == -1){
+    printf("Ruta: %s\n", estructura->nombre_archivo_swap);
+    int fd = open(estructura->nombre_archivo_swap, O_RDWR | O_CREAT, S_IRUSR | S_IWUSR); // creo el archivo en la ruta indicada con esos permisos salvo que ya lo este y directamente lo leo con los permisos de usuario
+
+    if (fd == -1)
+    {
         loggear_error(logger, "No se pudo crear el area de SWAP\n", mutex);
         return false;
     }
@@ -14,37 +15,46 @@ bool crear_archivo_swap(t_estructura_proceso* estructura, uint32_t tamanio, t_lo
     ftruncate(fd, tamanio); // ajusto el tamaño del archivo creado al tamaño del proceso
 
     estructura->archivo_swap = mmap(NULL, tamanio, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0); // mapeo el archivo creado en memoria
-    if (errno!=0) log_error(logger, "Error en mmap: errno %i", errno); // si hay un error al hacer mmap devuelve el codigo de error (errno = "error number")
+    if (errno != 0)
+        log_error(logger, "Error en mmap: errno %i", errno); // si hay un error al hacer mmap devuelve el codigo de error (errno = "error number")
 
     memset(estructura->archivo_swap, 0, tamanio); // inicializo el archivo con 0's BYTES
 
     close(fd); // cierro el archivo
-    return true;  
+    return true;
 }
 
-
-void* buscar_contenido_pagina_en_swap(void* archivo_mappeado, uint32_t nro_pagina, uint32_t tam_pagina){
-    void* contenido_pagina = malloc(tam_pagina);
+void *buscar_contenido_pagina_en_swap(void *archivo_mappeado, uint32_t nro_pagina, uint32_t tam_pagina)
+{
+    void *contenido_pagina = malloc(tam_pagina);
     memcpy(contenido_pagina, archivo_mappeado + nro_pagina * tam_pagina, tam_pagina); // pagina ocupa desde donde arranca + tamanio de la pagina
-    return contenido_pagina; //chorizo de bytes
+    return contenido_pagina;                                                          // chorizo de bytes
 }
 
-void escribir_contenido_pagina_en_marco(void* memoria_del_proceso, void* contenido_pagina, uint32_t nro_frame, uint32_t tamanio_frame){ //cargas el contenido de la pagina en memoria RAM
-    memcpy(memoria_del_proceso + nro_frame * tamanio_frame, contenido_pagina, tamanio_frame); 
+void escribir_contenido_pagina_en_marco(uint32_t inicio, void *contenido_pagina, uint32_t nro_frame, uint32_t tamanio_frame)
+{ // cargas el contenido de la pagina en memoria RAM
+    pthread_mutex_lock(&mutex_espacio_memoria);
+    size_t inicio_real = inicio * tamanio_frame; // donde arranca el proceso en memoria RAM
+    memcpy(espacio_memoria + inicio_real + nro_frame * tamanio_frame, contenido_pagina, tamanio_frame); // copio el contenido de la pagina dentro del frame
+    free(contenido_pagina); // libero la variable del contenido de la pagina
+    pthread_mutex_unlock(&mutex_espacio_memoria);
 }
 
-void* buscar_contenido_pagina_en_memoria(void* memoria_del_proceso, uint32_t nro_frame, uint32_t tamanio_frame){ 
-    void* contenido_pagina = malloc(tamanio_frame);
-    memcpy(contenido_pagina, memoria_del_proceso + nro_frame * tamanio_frame, tamanio_frame);
+void *buscar_contenido_pagina_en_memoria(uint32_t inicio, uint32_t nro_frame, uint32_t tamanio_frame)
+{
+    pthread_mutex_lock(&mutex_espacio_memoria);
+    void *contenido_pagina = malloc(tamanio_frame);
+    size_t inicio_real = inicio * tamanio_frame;
+    memcpy(contenido_pagina, espacio_memoria + inicio_real + nro_frame * tamanio_frame, tamanio_frame);
+    pthread_mutex_unlock(&mutex_espacio_memoria);
     return contenido_pagina;
 }
 
-void escribir_contenido_pagina_en_swap(void* archivo_mappeado, void* contenido_pagina, uint32_t nro_pagina, uint32_t tam_pagina){ //descargas la pagina de la RAM a swap
+void escribir_contenido_pagina_en_swap(void *archivo_mappeado, void *contenido_pagina, uint32_t nro_pagina, uint32_t tam_pagina)
+{ // descargas la pagina de la RAM a swap
     memcpy(archivo_mappeado + nro_pagina * tam_pagina, contenido_pagina, tam_pagina);
+    free(contenido_pagina);
 }
-
-
-
 
 
 
@@ -71,4 +81,3 @@ parametros de memset:
     3) tamanio del pedazo de memoria que estoy por escribir.
 
 */
-

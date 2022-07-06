@@ -32,8 +32,8 @@ bool recv_tamanio_y_cant_entradas(uint32_t fd, uint32_t *num_pagina, uint32_t *v
 bool send_orden_envio_tamanio(uint32_t fd);
 bool send_entrada_tabla_1er_nivel(uint32_t fd, uint32_t id_tabla, uint32_t entrada_tabla_1er_nivel);
 bool recv_entrada_tabla_1er_nivel(uint32_t fd, uint32_t *id_tabla, uint32_t *entrada_tabla_1er_nivel);
-bool send_entrada_tabla_2do_nivel(uint32_t fd, uint32_t num_segundo_nivel, uint32_t entrada_tabla_2do_nivel);
-bool recv_entrada_tabla_2do_nivel(uint32_t fd, uint32_t *num_segundo_nivel, uint32_t *entrada_tabla_2do_nivel);
+bool send_entrada_tabla_2do_nivel(uint32_t fd, uint32_t num_segundo_nivel, uint32_t entrada_tabla_2do_nivel, uint32_t nro_pagina);
+bool recv_entrada_tabla_2do_nivel(uint32_t fd, uint32_t *num_segundo_nivel, uint32_t *entrada_tabla_2do_nivel, uint32_t *nro_pagina);
 bool send_num_tabla_2do_nivel(uint32_t fd, uint32_t num_tabla_2do_nivel);
 bool recv_num_tabla_2do_nivel(uint32_t fd, uint32_t *num_tabla_2do_nivel);
 bool send_ejecutar_write(uint32_t fd, uint32_t marco, uint32_t desplazamiento, uint32_t valor_a_escribir, uint32_t id_proceso);

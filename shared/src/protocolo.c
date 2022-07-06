@@ -564,8 +564,8 @@ bool recv_num_tabla_2do_nivel(uint32_t fd, uint32_t *num_tabla_2do_nivel){
 
 #pragma region SEGUNDO_ACCESO
 
-bool send_entrada_tabla_2do_nivel(uint32_t fd, uint32_t num_segundo_nivel, uint32_t entrada_tabla_2do_nivel){
-    size_t size = sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t) + sizeof(uint32_t); // stream: cop + sizePayload + idTabla1 + entradaTabla1erNivel
+bool send_entrada_tabla_2do_nivel(uint32_t fd, uint32_t num_segundo_nivel, uint32_t entrada_tabla_2do_nivel, uint32_t nro_pagina){
+    size_t size = sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t) + sizeof(uint32_t) + sizeof(uint32_t); // stream: cop + sizePayload + idTabla1 + entradaTabla1erNivel
     void *stream = malloc(size);
     op_code cop = SEGUNDO_ACCESO;
     size_t size_payload = size - sizeof(op_code) - sizeof(size_t);
@@ -573,6 +573,7 @@ bool send_entrada_tabla_2do_nivel(uint32_t fd, uint32_t num_segundo_nivel, uint3
     memcpy(stream + sizeof(op_code), &size_payload, sizeof(size_t));
     memcpy(stream + sizeof(op_code) + sizeof(size_t), &num_segundo_nivel, sizeof(uint32_t));
     memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t), &entrada_tabla_2do_nivel, sizeof(uint32_t));
+    memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t) + sizeof(uint32_t), &nro_pagina, sizeof(uint32_t));
     if(send(fd, stream, size, 0) == -1){
         free(stream);
         return false;
@@ -582,9 +583,10 @@ bool send_entrada_tabla_2do_nivel(uint32_t fd, uint32_t num_segundo_nivel, uint3
 }
 
 
-bool recv_entrada_tabla_2do_nivel(uint32_t fd, uint32_t *num_segundo_nivel, uint32_t *entrada_tabla_2do_nivel){
+bool recv_entrada_tabla_2do_nivel(uint32_t fd, uint32_t *num_segundo_nivel, uint32_t *entrada_tabla_2do_nivel, uint32_t *nro_pagina){
     uint32_t num_tabla_segundo_recibido;
     uint32_t entrada_tabla_2do_nivel_recibido;
+    uint32_t nro_pagina_recibido;
     size_t size;
 
     if(recv(fd, &size, sizeof(size_t), 0) != sizeof(size_t)){
@@ -597,10 +599,10 @@ bool recv_entrada_tabla_2do_nivel(uint32_t fd, uint32_t *num_segundo_nivel, uint
     }
     memcpy(&num_tabla_segundo_recibido, stream, sizeof(uint32_t));
     memcpy(&entrada_tabla_2do_nivel_recibido, stream + sizeof(uint32_t), sizeof(uint32_t));
-
+    memcpy(&nro_pagina_recibido, stream + sizeof(uint32_t) + sizeof(uint32_t), sizeof(uint32_t));
     *num_segundo_nivel = num_tabla_segundo_recibido; // ACA ESTA EL PROBLEMA
     *entrada_tabla_2do_nivel = entrada_tabla_2do_nivel_recibido;
-    
+    *nro_pagina = nro_pagina_recibido;
     free(stream);
     return true;
 }

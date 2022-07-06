@@ -1,66 +1,92 @@
-[INFO] 18:22:06:751 CPU/(9689:9689): Esperando a 127.0.0.1:8001 (KERNEL DISPATCH)
+[INFO] 17:28:29:479 CPU/(6844:6844): Esperando a 127.0.0.1:8001 (KERNEL DISPATCH)
 
-[INFO] 18:22:06:751 CPU/(9689:9689): Esperando a 127.0.0.1:8005 (KERNEL INTERRUPT)
+[INFO] 17:28:29:480 CPU/(6844:6844): Esperando a 127.0.0.1:8005 (KERNEL INTERRUPT)
 
-[INFO] 18:22:06:752 CPU/(9689:9689): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 17:28:29:481 CPU/(6844:6844): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 18:22:09:840 CPU/(9689:9689): Cliente conectado (a CPU DISPATCH)
+[INFO] 17:28:31:378 CPU/(6844:6844): Cliente conectado (a CPU DISPATCH)
 
-[INFO] 18:22:09:840 CPU/(9689:9689): Cliente conectado (a CPU INTERRUPT)
+[INFO] 17:28:31:381 CPU/(6844:6844): Cliente conectado (a CPU INTERRUPT)
 
-[INFO] 18:23:00:786 CPU/(9689:9700): DISCONNECT
-[INFO] 18:23:00:786 CPU/(9689:9699): DISCONNECT
-[INFO] 18:24:15:649 CPU/(10044:10044): Esperando a 127.0.0.1:8001 (KERNEL DISPATCH)
+[INFO] 17:30:05:938 CPU/(7105:7105): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 18:24:15:649 CPU/(10044:10044): Esperando a 127.0.0.1:8005 (KERNEL INTERRUPT)
+[INFO] 17:30:05:940 CPU/(7105:7105): Cliente conectado (a CPU DISPATCH)
 
-[INFO] 18:24:15:650 CPU/(10044:10044): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 17:30:47:895 CPU/(7189:7189): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 18:24:18:540 CPU/(10044:10044): Cliente conectado (a CPU DISPATCH)
+[INFO] 17:30:47:897 CPU/(7189:7189): Cliente conectado (a CPU DISPATCH)
 
-[INFO] 18:24:18:541 CPU/(10044:10044): Cliente conectado (a CPU INTERRUPT)
+[INFO] 17:31:22:849 CPU/(7270:7270): Esperando a 127.0.0.1:8001 (KERNEL DISPATCH)
 
-[INFO] 18:24:28:340 CPU/(10044:10066): Se recibio un pcb para ejecutar
+[INFO] 17:31:22:880 CPU/(7270:7270): Esperando a 127.0.0.1:8005 (KERNEL INTERRUPT)
 
-[INFO] 18:24:28:340 CPU/(10044:10066): Ejecutando la instruccion: NO_OP
+[INFO] 17:31:22:882 CPU/(7270:7270): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 18:24:29:341 CPU/(10044:10066): Ejecutando la instruccion: NO_OP
+[INFO] 17:31:28:508 CPU/(7270:7270): Cliente conectado (a CPU DISPATCH)
 
-[INFO] 18:24:30:342 CPU/(10044:10066): Ejecutando la instruccion: WRITE
+[INFO] 17:31:28:510 CPU/(7270:7270): Cliente conectado (a CPU INTERRUPT)
 
-[ERROR] 18:24:30:342 CPU/(10044:10066): No se encontro la pagina en la tlb
-[INFO] 18:24:30:344 CPU/(10044:10066): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 17:34:48:581 CPU/(7806:7806): Esperando a 127.0.0.1:8001 (KERNEL DISPATCH)
 
-[INFO] 18:24:30:346 CPU/(10044:10066): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 17:34:48:584 CPU/(7806:7806): Esperando a 127.0.0.1:8005 (KERNEL INTERRUPT)
 
-[INFO] 18:24:30:349 CPU/(10044:10066): Ejecutando la instruccion: WRITE
+[INFO] 17:34:48:586 CPU/(7806:7806): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[WARNING] 18:24:30:350 CPU/(10044:10066): Se encontro la pagina en la tlb
-[INFO] 18:24:30:350 CPU/(10044:10066): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 17:34:51:275 CPU/(7806:7806): Cliente conectado (a CPU DISPATCH)
 
-[INFO] 18:24:30:356 CPU/(10044:10066): Se escribio el valor en la posicion correspondiente
+[INFO] 17:34:51:276 CPU/(7806:7806): Cliente conectado (a CPU INTERRUPT)
 
-[INFO] 18:24:30:356 CPU/(10044:10066): Ejecutando la instruccion: READ
+[INFO] 17:37:39:287 CPU/(8231:8231): Esperando a 127.0.0.1:8001 (KERNEL DISPATCH)
 
-[WARNING] 18:24:30:357 CPU/(10044:10066): Se encontro la pagina en la tlb
-[INFO] 18:24:30:358 CPU/(10044:10066): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 17:37:39:289 CPU/(8231:8231): Esperando a 127.0.0.1:8005 (KERNEL INTERRUPT)
 
-[INFO] 18:24:30:359 CPU/(10044:10066): El valor leido en la posicion es: 42
+[INFO] 17:37:39:290 CPU/(8231:8231): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 18:24:30:360 CPU/(10044:10066): Ejecutando la instruccion: COPY
+[INFO] 17:37:41:503 CPU/(8231:8231): Cliente conectado (a CPU DISPATCH)
 
-[WARNING] 18:24:30:360 CPU/(10044:10066): Se encontro la pagina en la tlb
-[WARNING] 18:24:30:360 CPU/(10044:10066): Se encontro la pagina en la tlb
-[INFO] 18:24:30:361 CPU/(10044:10066): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 17:37:41:506 CPU/(8231:8231): Cliente conectado (a CPU INTERRUPT)
 
-[INFO] 18:24:30:362 CPU/(10044:10066): Se copio el valor en la posicion correspondiente
+[INFO] 17:37:44:475 CPU/(8231:8238): Se recibio un pcb para ejecutar
 
-[INFO] 18:24:30:363 CPU/(10044:10066): Ejecutando la instruccion: READ
+[INFO] 17:37:44:476 CPU/(8231:8238): Ejecutando la instruccion: NO_OP
 
-[WARNING] 18:24:30:363 CPU/(10044:10066): Se encontro la pagina en la tlb
-[INFO] 18:24:30:364 CPU/(10044:10066): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 17:37:45:491 CPU/(8231:8238): Ejecutando la instruccion: NO_OP
 
-[INFO] 18:24:30:365 CPU/(10044:10066): El valor leido en la posicion es: 42
+[INFO] 17:37:46:493 CPU/(8231:8238): Ejecutando la instruccion: WRITE
 
-[INFO] 18:24:30:366 CPU/(10044:10066): Ejecutando la instruccion: EXIT
+[ERROR] 17:37:46:494 CPU/(8231:8238): No se encontro la pagina en la tlb
+[INFO] 17:37:46:496 CPU/(8231:8238): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 17:37:46:513 CPU/(8231:8238): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 17:37:46:559 CPU/(8231:8238): Ejecutando la instruccion: WRITE
+
+[WARNING] 17:37:46:561 CPU/(8231:8238): Se encontro la pagina en la tlb
+[INFO] 17:37:46:562 CPU/(8231:8238): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 17:37:46:597 CPU/(8231:8238): Se escribio el valor en la posicion correspondiente
+
+[INFO] 17:37:46:598 CPU/(8231:8238): Ejecutando la instruccion: READ
+
+[WARNING] 17:37:46:607 CPU/(8231:8238): Se encontro la pagina en la tlb
+[INFO] 17:37:46:639 CPU/(8231:8238): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 17:37:46:644 CPU/(8231:8238): El valor leido en la posicion es: 42
+
+[INFO] 17:37:46:655 CPU/(8231:8238): Ejecutando la instruccion: COPY
+
+[WARNING] 17:37:46:656 CPU/(8231:8238): Se encontro la pagina en la tlb
+[WARNING] 17:37:46:657 CPU/(8231:8238): Se encontro la pagina en la tlb
+[INFO] 17:37:46:659 CPU/(8231:8238): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 17:37:46:664 CPU/(8231:8238): Se copio el valor en la posicion correspondiente
+
+[INFO] 17:37:46:665 CPU/(8231:8238): Ejecutando la instruccion: READ
+
+[WARNING] 17:37:46:688 CPU/(8231:8238): Se encontro la pagina en la tlb
+[INFO] 17:37:46:690 CPU/(8231:8238): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 17:37:46:692 CPU/(8231:8238): El valor leido en la posicion es: 42
+
+[INFO] 17:37:46:693 CPU/(8231:8238): Ejecutando la instruccion: EXIT
 

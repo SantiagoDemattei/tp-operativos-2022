@@ -152,12 +152,19 @@ typedef struct t_estructura_2do_nivel
 typedef struct t_estructura_proceso
 {
     uint32_t id_proceso;
-    int marco_comienzo;
-    int marco_fin;
+    uint32_t marco_comienzo;
+    uint32_t marco_fin;
     t_tabla_pagina1 *tabla_pagina1;     // cada proceso tiene la tabla de paginas de 1er nivel y
     t_list *lista_tablas_segundo_nivel; // lista de tablas de segundo nivel (tantas como entradas tenga la de 1er nivel)
     char *nombre_archivo_swap;          // espacio de swap para los procesos
     void *archivo_swap;
+    t_list* vector_marcos;
 } t_estructura_proceso;
+
+typedef struct t_vector_marcos{
+    uint32_t estado; // 1 = ocupado, 0 = libre
+    uint32_t nro_pagina;
+
+}t_vector_marcos;
 
 #endif

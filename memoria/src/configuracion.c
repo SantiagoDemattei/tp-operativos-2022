@@ -18,7 +18,8 @@ t_configuracion_memoria *leer_configuracion()
     uint32_t entradas_por_tabla = config_get_int_value(nuevo_config, "ENTRADAS_POR_TABLA");
     uint32_t retardo_memoria = config_get_int_value(nuevo_config, "RETARDO_MEMORIA");
     char *algoritmo_reemplazo = config_get_string_value(nuevo_config, "ALGORITMO_REEMPLAZO"); // leo ALGORITMO_REEMPLAZO
-    uint32_t marcos_por_proceso = config_get_int_value(nuevo_config, "RETARDO_SWAP");
+    uint32_t retardo_swap= config_get_int_value(nuevo_config, "RETARDO_SWAP");
+    uint32_t marcos_por_proceso = config_get_int_value(nuevo_config, "MARCOS_POR_PROCESO"); 
     char *path_swap = config_get_string_value(nuevo_config, "PATH_SWAP");
 
     t_configuracion_memoria *datos = malloc(sizeof(t_configuracion_memoria)); // creo estructura de datos de conexion
@@ -35,7 +36,7 @@ t_configuracion_memoria *leer_configuracion()
     datos->entradas_por_tabla = entradas_por_tabla;
     datos->retardo_memoria = retardo_memoria;
     datos->marcos_por_proceso = marcos_por_proceso;
-
+    datos->retardo_swap = retardo_swap;
     config_destroy(nuevo_config); // libero la memoria del config
     return datos;
 }
@@ -46,4 +47,6 @@ void inicializar_semaforos()
     pthread_mutex_init(&mutex_valor_tp, NULL);
     pthread_mutex_init(&mutex_lista_estructuras, NULL);
     pthread_mutex_init(&mutex_estructura_proceso_actual, NULL);
+    pthread_mutex_init(&mutex_marcos, NULL);
+    pthread_mutex_init(&mutex_espacio_memoria, NULL);
 }

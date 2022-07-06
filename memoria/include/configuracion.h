@@ -21,7 +21,9 @@ pthread_mutex_t mutex_valor_tp;
 pthread_mutex_t mutex_lista_estructuras;
 pthread_mutex_t mutex_tamanio_pagina;
 pthread_mutex_t mutex_estructura_proceso_actual;
-
+pthread_mutex_t mutex_marcos;
+pthread_mutex_t mutex_espacio_memoria;
+uint32_t puntero_clock;
 void* espacio_memoria;
 int cant_total_marcos;
 t_list* marcos_totales;

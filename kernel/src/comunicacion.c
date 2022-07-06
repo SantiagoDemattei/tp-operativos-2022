@@ -141,7 +141,7 @@ void verificacion_multiprogramacion(t_pcb *pcb)
     queue_push_con_mutex(cola_new, pcb, mutex_cola_new); // agrega el pcb a la cola de NEW
     if (consulta_grado())                                // si el grado de multiprogramacion lo permite
     {
-        t_pcb *tope_cola_new = queue_pop_con_mutex(cola_new, mutex_cola_new); // saca el pcb del tope de la cola de NEW
+        t_pcb *tope_cola_new = queue_peek_con_mutex(cola_new, mutex_cola_new); // obtiene el pcb del tope de la cola de NEW
 
         pthread_mutex_lock(&mutex_cantidad_procesos);
         cantidad_procesos_en_memoria++; // aumenta el grado de multiprogramacion
@@ -155,6 +155,13 @@ void verificacion_multiprogramacion(t_pcb *pcb)
             return;
         }
         recv_valor_tb(socket_memoria, &tope_cola_new->tabla_pagina); // recibe el id de la tabla de paginas y lo guarda en el pcb
+
+        if(tope_cola_new->tabla_pagina == -1)//se lo mando si no encontre un marco libre para el proceso
+        {
+            loggear_error(logger, "Error al inicializar estructuras del proceso", mutex_logger_kernel);
+            return;
+        }
+        queue_pop_con_mutex(cola_new, mutex_cola_new); // saca el pcb de la cola de NEW
         loggear_info(logger, string_from_format("El id de la tabla de pagina del proceso %d es %d\n", tope_cola_new->id, tope_cola_new->tabla_pagina), mutex_logger_kernel);
         liberar_conexion(socket_memoria);
 

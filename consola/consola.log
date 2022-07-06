@@ -1,80 +1,320 @@
-[INFO] 18:22:11:700 CONSOLA/(9704:9704): Lista de instrucciones cargadas:
-[INFO] 18:22:11:701 CONSOLA/(9704:9704): Instruccion: NO_OP
-[INFO] 18:22:11:701 CONSOLA/(9704:9704): Tamanio de la instruccion: 5
-[INFO] 18:22:11:701 CONSOLA/(9704:9704): 
+[INFO] 17:19:00:203 CONSOLA/(5181:5181): Lista de instrucciones cargadas:
+[INFO] 17:19:00:206 CONSOLA/(5181:5181): Instruccion: NO_OP
+[INFO] 17:19:00:207 CONSOLA/(5181:5181): Tamanio de la instruccion: 5
+[INFO] 17:19:00:208 CONSOLA/(5181:5181): 
 
-[INFO] 18:22:11:701 CONSOLA/(9704:9704): Instruccion: NO_OP
-[INFO] 18:22:11:701 CONSOLA/(9704:9704): Tamanio de la instruccion: 5
-[INFO] 18:22:11:702 CONSOLA/(9704:9704): 
+[INFO] 17:19:00:209 CONSOLA/(5181:5181): Instruccion: NO_OP
+[INFO] 17:19:00:210 CONSOLA/(5181:5181): Tamanio de la instruccion: 5
+[INFO] 17:19:00:211 CONSOLA/(5181:5181): 
 
-[INFO] 18:22:11:702 CONSOLA/(9704:9704): Instruccion: WRITE
-[INFO] 18:22:11:702 CONSOLA/(9704:9704): Tamanio de la instruccion: 5
-[INFO] 18:22:11:702 CONSOLA/(9704:9704): Argumento: 4
-[INFO] 18:22:11:702 CONSOLA/(9704:9704): Argumento: 42
-[INFO] 18:22:11:703 CONSOLA/(9704:9704): 
+[INFO] 17:19:00:212 CONSOLA/(5181:5181): Instruccion: WRITE
+[INFO] 17:19:00:213 CONSOLA/(5181:5181): Tamanio de la instruccion: 5
+[INFO] 17:19:00:213 CONSOLA/(5181:5181): Argumento: 4
+[INFO] 17:19:00:214 CONSOLA/(5181:5181): Argumento: 42
+[INFO] 17:19:00:215 CONSOLA/(5181:5181): 
 
-[INFO] 18:22:11:703 CONSOLA/(9704:9704): Instruccion: READ
-[INFO] 18:22:11:703 CONSOLA/(9704:9704): Tamanio de la instruccion: 4
-[INFO] 18:22:11:703 CONSOLA/(9704:9704): Argumento: 4
-[INFO] 18:22:11:703 CONSOLA/(9704:9704): 
+[INFO] 17:19:00:216 CONSOLA/(5181:5181): Instruccion: READ
+[INFO] 17:19:00:270 CONSOLA/(5181:5181): Tamanio de la instruccion: 4
+[INFO] 17:19:00:271 CONSOLA/(5181:5181): Argumento: 4
+[INFO] 17:19:00:273 CONSOLA/(5181:5181): 
 
-[INFO] 18:22:11:704 CONSOLA/(9704:9704): Instruccion: COPY
-[INFO] 18:22:11:704 CONSOLA/(9704:9704): Tamanio de la instruccion: 4
-[INFO] 18:22:11:704 CONSOLA/(9704:9704): Argumento: 5
-[INFO] 18:22:11:704 CONSOLA/(9704:9704): Argumento: 4
-[INFO] 18:22:11:704 CONSOLA/(9704:9704): 
+[INFO] 17:19:00:274 CONSOLA/(5181:5181): Instruccion: COPY
+[INFO] 17:19:00:275 CONSOLA/(5181:5181): Tamanio de la instruccion: 4
+[INFO] 17:19:00:277 CONSOLA/(5181:5181): Argumento: 5
+[INFO] 17:19:00:278 CONSOLA/(5181:5181): Argumento: 4
+[INFO] 17:19:00:279 CONSOLA/(5181:5181): 
 
-[INFO] 18:22:11:704 CONSOLA/(9704:9704): Instruccion: READ
-[INFO] 18:22:11:704 CONSOLA/(9704:9704): Tamanio de la instruccion: 4
-[INFO] 18:22:11:705 CONSOLA/(9704:9704): Argumento: 5
-[INFO] 18:22:11:705 CONSOLA/(9704:9704): 
+[INFO] 17:19:00:284 CONSOLA/(5181:5181): Instruccion: READ
+[INFO] 17:19:00:286 CONSOLA/(5181:5181): Tamanio de la instruccion: 4
+[INFO] 17:19:00:287 CONSOLA/(5181:5181): Argumento: 5
+[INFO] 17:19:00:289 CONSOLA/(5181:5181): 
 
-[INFO] 18:22:11:705 CONSOLA/(9704:9704): Instruccion: EXIT
-[INFO] 18:22:11:705 CONSOLA/(9704:9704): Tamanio de la instruccion: 4
-[INFO] 18:22:11:705 CONSOLA/(9704:9704): 
+[INFO] 17:19:00:295 CONSOLA/(5181:5181): Instruccion: EXIT
+[INFO] 17:19:00:312 CONSOLA/(5181:5181): Tamanio de la instruccion: 4
+[INFO] 17:19:00:313 CONSOLA/(5181:5181): 
 
-[INFO] 18:22:11:706 CONSOLA/(9704:9704): Cliente conectado en 127.0.0.1:8000 (a KERNEL)
+[INFO] 17:19:00:330 CONSOLA/(5181:5181): Cliente conectado en 127.0.0.1:8000 (a KERNEL)
 
-[INFO] 18:22:11:706 CONSOLA/(9704:9704): Se envio la lista de instrucciones al kernel
-[INFO] 18:22:11:706 CONSOLA/(9704:9704): Estoy esperando a que el kernel me avise que ya ejecuto mis instrucciones...
-[ERROR] 18:23:00:786 CONSOLA/(9704:9704): No se pudo recibir el codigo de operacion
-[INFO] 18:24:28:331 CONSOLA/(10089:10089): Lista de instrucciones cargadas:
-[INFO] 18:24:28:331 CONSOLA/(10089:10089): Instruccion: NO_OP
-[INFO] 18:24:28:331 CONSOLA/(10089:10089): Tamanio de la instruccion: 5
-[INFO] 18:24:28:331 CONSOLA/(10089:10089): 
+[INFO] 17:19:00:333 CONSOLA/(5181:5181): Se envio la lista de instrucciones al kernel
+[INFO] 17:19:00:336 CONSOLA/(5181:5181): Estoy esperando a que el kernel me avise que ya ejecuto mis instrucciones...
+[ERROR] 17:19:33:966 CONSOLA/(5181:5181): No se pudo recibir el codigo de operacion
+[INFO] 17:21:11:106 CONSOLA/(5549:5549): Lista de instrucciones cargadas:
+[INFO] 17:21:11:107 CONSOLA/(5549:5549): Instruccion: NO_OP
+[INFO] 17:21:11:110 CONSOLA/(5549:5549): Tamanio de la instruccion: 5
+[INFO] 17:21:11:121 CONSOLA/(5549:5549): 
 
-[INFO] 18:24:28:332 CONSOLA/(10089:10089): Instruccion: NO_OP
-[INFO] 18:24:28:332 CONSOLA/(10089:10089): Tamanio de la instruccion: 5
-[INFO] 18:24:28:332 CONSOLA/(10089:10089): 
+[INFO] 17:21:11:122 CONSOLA/(5549:5549): Instruccion: NO_OP
+[INFO] 17:21:11:123 CONSOLA/(5549:5549): Tamanio de la instruccion: 5
+[INFO] 17:21:11:125 CONSOLA/(5549:5549): 
 
-[INFO] 18:24:28:332 CONSOLA/(10089:10089): Instruccion: WRITE
-[INFO] 18:24:28:332 CONSOLA/(10089:10089): Tamanio de la instruccion: 5
-[INFO] 18:24:28:333 CONSOLA/(10089:10089): Argumento: 4
-[INFO] 18:24:28:333 CONSOLA/(10089:10089): Argumento: 42
-[INFO] 18:24:28:333 CONSOLA/(10089:10089): 
+[INFO] 17:21:11:126 CONSOLA/(5549:5549): Instruccion: WRITE
+[INFO] 17:21:11:128 CONSOLA/(5549:5549): Tamanio de la instruccion: 5
+[INFO] 17:21:11:129 CONSOLA/(5549:5549): Argumento: 4
+[INFO] 17:21:11:130 CONSOLA/(5549:5549): Argumento: 42
+[INFO] 17:21:11:131 CONSOLA/(5549:5549): 
 
-[INFO] 18:24:28:333 CONSOLA/(10089:10089): Instruccion: READ
-[INFO] 18:24:28:333 CONSOLA/(10089:10089): Tamanio de la instruccion: 4
-[INFO] 18:24:28:334 CONSOLA/(10089:10089): Argumento: 4
-[INFO] 18:24:28:334 CONSOLA/(10089:10089): 
+[INFO] 17:21:11:132 CONSOLA/(5549:5549): Instruccion: READ
+[INFO] 17:21:11:132 CONSOLA/(5549:5549): Tamanio de la instruccion: 4
+[INFO] 17:21:11:133 CONSOLA/(5549:5549): Argumento: 4
+[INFO] 17:21:11:134 CONSOLA/(5549:5549): 
 
-[INFO] 18:24:28:334 CONSOLA/(10089:10089): Instruccion: COPY
-[INFO] 18:24:28:334 CONSOLA/(10089:10089): Tamanio de la instruccion: 4
-[INFO] 18:24:28:334 CONSOLA/(10089:10089): Argumento: 5
-[INFO] 18:24:28:335 CONSOLA/(10089:10089): Argumento: 4
-[INFO] 18:24:28:335 CONSOLA/(10089:10089): 
+[INFO] 17:21:11:135 CONSOLA/(5549:5549): Instruccion: COPY
+[INFO] 17:21:11:136 CONSOLA/(5549:5549): Tamanio de la instruccion: 4
+[INFO] 17:21:11:137 CONSOLA/(5549:5549): Argumento: 5
+[INFO] 17:21:11:138 CONSOLA/(5549:5549): Argumento: 4
+[INFO] 17:21:11:139 CONSOLA/(5549:5549): 
 
-[INFO] 18:24:28:335 CONSOLA/(10089:10089): Instruccion: READ
-[INFO] 18:24:28:335 CONSOLA/(10089:10089): Tamanio de la instruccion: 4
-[INFO] 18:24:28:335 CONSOLA/(10089:10089): Argumento: 5
-[INFO] 18:24:28:335 CONSOLA/(10089:10089): 
+[INFO] 17:21:11:140 CONSOLA/(5549:5549): Instruccion: READ
+[INFO] 17:21:11:141 CONSOLA/(5549:5549): Tamanio de la instruccion: 4
+[INFO] 17:21:11:142 CONSOLA/(5549:5549): Argumento: 5
+[INFO] 17:21:11:145 CONSOLA/(5549:5549): 
 
-[INFO] 18:24:28:336 CONSOLA/(10089:10089): Instruccion: EXIT
-[INFO] 18:24:28:336 CONSOLA/(10089:10089): Tamanio de la instruccion: 4
-[INFO] 18:24:28:336 CONSOLA/(10089:10089): 
+[INFO] 17:21:11:146 CONSOLA/(5549:5549): Instruccion: EXIT
+[INFO] 17:21:11:148 CONSOLA/(5549:5549): Tamanio de la instruccion: 4
+[INFO] 17:21:11:149 CONSOLA/(5549:5549): 
 
-[INFO] 18:24:28:336 CONSOLA/(10089:10089): Cliente conectado en 127.0.0.1:8000 (a KERNEL)
+[INFO] 17:21:11:151 CONSOLA/(5549:5549): Cliente conectado en 127.0.0.1:8000 (a KERNEL)
 
-[INFO] 18:24:28:336 CONSOLA/(10089:10089): Se envio la lista de instrucciones al kernel
-[INFO] 18:24:28:337 CONSOLA/(10089:10089): Estoy esperando a que el kernel me avise que ya ejecuto mis instrucciones...
-[INFO] 18:24:30:372 CONSOLA/(10089:10089): El kernel me aviso que ya ejecute mis instrucciones :D
+[INFO] 17:21:11:161 CONSOLA/(5549:5549): Se envio la lista de instrucciones al kernel
+[INFO] 17:21:11:162 CONSOLA/(5549:5549): Estoy esperando a que el kernel me avise que ya ejecuto mis instrucciones...
+[ERROR] 17:22:06:601 CONSOLA/(5549:5549): No se pudo recibir el codigo de operacion
+[INFO] 17:24:08:363 CONSOLA/(6027:6027): Lista de instrucciones cargadas:
+[INFO] 17:24:08:364 CONSOLA/(6027:6027): Instruccion: NO_OP
+[INFO] 17:24:08:365 CONSOLA/(6027:6027): Tamanio de la instruccion: 5
+[INFO] 17:24:08:367 CONSOLA/(6027:6027): 
+
+[INFO] 17:24:08:369 CONSOLA/(6027:6027): Instruccion: NO_OP
+[INFO] 17:24:08:370 CONSOLA/(6027:6027): Tamanio de la instruccion: 5
+[INFO] 17:24:08:371 CONSOLA/(6027:6027): 
+
+[INFO] 17:24:08:371 CONSOLA/(6027:6027): Instruccion: WRITE
+[INFO] 17:24:08:372 CONSOLA/(6027:6027): Tamanio de la instruccion: 5
+[INFO] 17:24:08:373 CONSOLA/(6027:6027): Argumento: 4
+[INFO] 17:24:08:374 CONSOLA/(6027:6027): Argumento: 42
+[INFO] 17:24:08:374 CONSOLA/(6027:6027): 
+
+[INFO] 17:24:08:375 CONSOLA/(6027:6027): Instruccion: READ
+[INFO] 17:24:08:376 CONSOLA/(6027:6027): Tamanio de la instruccion: 4
+[INFO] 17:24:08:377 CONSOLA/(6027:6027): Argumento: 4
+[INFO] 17:24:08:378 CONSOLA/(6027:6027): 
+
+[INFO] 17:24:08:378 CONSOLA/(6027:6027): Instruccion: COPY
+[INFO] 17:24:08:379 CONSOLA/(6027:6027): Tamanio de la instruccion: 4
+[INFO] 17:24:08:380 CONSOLA/(6027:6027): Argumento: 5
+[INFO] 17:24:08:381 CONSOLA/(6027:6027): Argumento: 4
+[INFO] 17:24:08:382 CONSOLA/(6027:6027): 
+
+[INFO] 17:24:08:383 CONSOLA/(6027:6027): Instruccion: READ
+[INFO] 17:24:08:384 CONSOLA/(6027:6027): Tamanio de la instruccion: 4
+[INFO] 17:24:08:386 CONSOLA/(6027:6027): Argumento: 5
+[INFO] 17:24:08:389 CONSOLA/(6027:6027): 
+
+[INFO] 17:24:08:390 CONSOLA/(6027:6027): Instruccion: EXIT
+[INFO] 17:24:08:390 CONSOLA/(6027:6027): Tamanio de la instruccion: 4
+[INFO] 17:24:08:392 CONSOLA/(6027:6027): 
+
+[INFO] 17:24:08:393 CONSOLA/(6027:6027): Cliente conectado en 127.0.0.1:8000 (a KERNEL)
+
+[INFO] 17:24:08:394 CONSOLA/(6027:6027): Se envio la lista de instrucciones al kernel
+[INFO] 17:24:08:395 CONSOLA/(6027:6027): Estoy esperando a que el kernel me avise que ya ejecuto mis instrucciones...
+[ERROR] 17:24:15:635 CONSOLA/(6027:6027): No se pudo recibir el codigo de operacion
+[INFO] 17:26:28:832 CONSOLA/(6447:6447): Lista de instrucciones cargadas:
+[INFO] 17:26:28:833 CONSOLA/(6447:6447): Instruccion: NO_OP
+[INFO] 17:26:28:833 CONSOLA/(6447:6447): Tamanio de la instruccion: 5
+[INFO] 17:26:28:834 CONSOLA/(6447:6447): 
+
+[INFO] 17:26:28:835 CONSOLA/(6447:6447): Instruccion: NO_OP
+[INFO] 17:26:28:835 CONSOLA/(6447:6447): Tamanio de la instruccion: 5
+[INFO] 17:26:28:836 CONSOLA/(6447:6447): 
+
+[INFO] 17:26:28:838 CONSOLA/(6447:6447): Instruccion: WRITE
+[INFO] 17:26:28:846 CONSOLA/(6447:6447): Tamanio de la instruccion: 5
+[INFO] 17:26:28:847 CONSOLA/(6447:6447): Argumento: 4
+[INFO] 17:26:28:848 CONSOLA/(6447:6447): Argumento: 42
+[INFO] 17:26:28:849 CONSOLA/(6447:6447): 
+
+[INFO] 17:26:28:850 CONSOLA/(6447:6447): Instruccion: READ
+[INFO] 17:26:28:851 CONSOLA/(6447:6447): Tamanio de la instruccion: 4
+[INFO] 17:26:28:853 CONSOLA/(6447:6447): Argumento: 4
+[INFO] 17:26:28:859 CONSOLA/(6447:6447): 
+
+[INFO] 17:26:28:860 CONSOLA/(6447:6447): Instruccion: COPY
+[INFO] 17:26:28:861 CONSOLA/(6447:6447): Tamanio de la instruccion: 4
+[INFO] 17:26:28:862 CONSOLA/(6447:6447): Argumento: 5
+[INFO] 17:26:28:863 CONSOLA/(6447:6447): Argumento: 4
+[INFO] 17:26:28:864 CONSOLA/(6447:6447): 
+
+[INFO] 17:26:28:865 CONSOLA/(6447:6447): Instruccion: READ
+[INFO] 17:26:28:867 CONSOLA/(6447:6447): Tamanio de la instruccion: 4
+[INFO] 17:26:28:868 CONSOLA/(6447:6447): Argumento: 5
+[INFO] 17:26:28:869 CONSOLA/(6447:6447): 
+
+[INFO] 17:26:28:869 CONSOLA/(6447:6447): Instruccion: EXIT
+[INFO] 17:26:28:870 CONSOLA/(6447:6447): Tamanio de la instruccion: 4
+[INFO] 17:26:28:871 CONSOLA/(6447:6447): 
+
+[INFO] 17:26:28:873 CONSOLA/(6447:6447): Cliente conectado en 127.0.0.1:8000 (a KERNEL)
+
+[INFO] 17:26:28:897 CONSOLA/(6447:6447): Se envio la lista de instrucciones al kernel
+[INFO] 17:26:28:905 CONSOLA/(6447:6447): Estoy esperando a que el kernel me avise que ya ejecuto mis instrucciones...
+[ERROR] 17:27:18:669 CONSOLA/(6447:6447): No se pudo recibir el codigo de operacion
+[INFO] 17:28:33:131 CONSOLA/(6862:6862): Lista de instrucciones cargadas:
+[INFO] 17:28:33:138 CONSOLA/(6862:6862): Instruccion: NO_OP
+[INFO] 17:28:33:139 CONSOLA/(6862:6862): Tamanio de la instruccion: 5
+[INFO] 17:28:33:140 CONSOLA/(6862:6862): 
+
+[INFO] 17:28:33:141 CONSOLA/(6862:6862): Instruccion: NO_OP
+[INFO] 17:28:33:145 CONSOLA/(6862:6862): Tamanio de la instruccion: 5
+[INFO] 17:28:33:147 CONSOLA/(6862:6862): 
+
+[INFO] 17:28:33:149 CONSOLA/(6862:6862): Instruccion: WRITE
+[INFO] 17:28:33:150 CONSOLA/(6862:6862): Tamanio de la instruccion: 5
+[INFO] 17:28:33:150 CONSOLA/(6862:6862): Argumento: 4
+[INFO] 17:28:33:152 CONSOLA/(6862:6862): Argumento: 42
+[INFO] 17:28:33:153 CONSOLA/(6862:6862): 
+
+[INFO] 17:28:33:154 CONSOLA/(6862:6862): Instruccion: READ
+[INFO] 17:28:33:155 CONSOLA/(6862:6862): Tamanio de la instruccion: 4
+[INFO] 17:28:33:156 CONSOLA/(6862:6862): Argumento: 4
+[INFO] 17:28:33:157 CONSOLA/(6862:6862): 
+
+[INFO] 17:28:33:158 CONSOLA/(6862:6862): Instruccion: COPY
+[INFO] 17:28:33:159 CONSOLA/(6862:6862): Tamanio de la instruccion: 4
+[INFO] 17:28:33:162 CONSOLA/(6862:6862): Argumento: 5
+[INFO] 17:28:33:163 CONSOLA/(6862:6862): Argumento: 4
+[INFO] 17:28:33:171 CONSOLA/(6862:6862): 
+
+[INFO] 17:28:33:179 CONSOLA/(6862:6862): Instruccion: READ
+[INFO] 17:28:33:180 CONSOLA/(6862:6862): Tamanio de la instruccion: 4
+[INFO] 17:28:33:181 CONSOLA/(6862:6862): Argumento: 5
+[INFO] 17:28:33:182 CONSOLA/(6862:6862): 
+
+[INFO] 17:28:33:184 CONSOLA/(6862:6862): Instruccion: EXIT
+[INFO] 17:28:33:185 CONSOLA/(6862:6862): Tamanio de la instruccion: 4
+[INFO] 17:28:33:186 CONSOLA/(6862:6862): 
+
+[INFO] 17:28:33:194 CONSOLA/(6862:6862): Cliente conectado en 127.0.0.1:8000 (a KERNEL)
+
+[INFO] 17:28:33:195 CONSOLA/(6862:6862): Se envio la lista de instrucciones al kernel
+[INFO] 17:28:33:217 CONSOLA/(6862:6862): Estoy esperando a que el kernel me avise que ya ejecuto mis instrucciones...
+[ERROR] 17:30:14:240 CONSOLA/(6862:6862): No se pudo recibir el codigo de operacion
+[INFO] 17:31:31:207 CONSOLA/(7303:7303): Lista de instrucciones cargadas:
+[INFO] 17:31:31:209 CONSOLA/(7303:7303): Instruccion: NO_OP
+[INFO] 17:31:31:209 CONSOLA/(7303:7303): Tamanio de la instruccion: 5
+[INFO] 17:31:31:210 CONSOLA/(7303:7303): 
+
+[INFO] 17:31:31:211 CONSOLA/(7303:7303): Instruccion: NO_OP
+[INFO] 17:31:31:212 CONSOLA/(7303:7303): Tamanio de la instruccion: 5
+[INFO] 17:31:31:213 CONSOLA/(7303:7303): 
+
+[INFO] 17:31:31:214 CONSOLA/(7303:7303): Instruccion: WRITE
+[INFO] 17:31:31:214 CONSOLA/(7303:7303): Tamanio de la instruccion: 5
+[INFO] 17:31:31:216 CONSOLA/(7303:7303): Argumento: 4
+[INFO] 17:31:31:222 CONSOLA/(7303:7303): Argumento: 42
+[INFO] 17:31:31:223 CONSOLA/(7303:7303): 
+
+[INFO] 17:31:31:224 CONSOLA/(7303:7303): Instruccion: READ
+[INFO] 17:31:31:225 CONSOLA/(7303:7303): Tamanio de la instruccion: 4
+[INFO] 17:31:31:226 CONSOLA/(7303:7303): Argumento: 4
+[INFO] 17:31:31:227 CONSOLA/(7303:7303): 
+
+[INFO] 17:31:31:228 CONSOLA/(7303:7303): Instruccion: COPY
+[INFO] 17:31:31:229 CONSOLA/(7303:7303): Tamanio de la instruccion: 4
+[INFO] 17:31:31:231 CONSOLA/(7303:7303): Argumento: 5
+[INFO] 17:31:31:232 CONSOLA/(7303:7303): Argumento: 4
+[INFO] 17:31:31:233 CONSOLA/(7303:7303): 
+
+[INFO] 17:31:31:233 CONSOLA/(7303:7303): Instruccion: READ
+[INFO] 17:31:31:234 CONSOLA/(7303:7303): Tamanio de la instruccion: 4
+[INFO] 17:31:31:235 CONSOLA/(7303:7303): Argumento: 5
+[INFO] 17:31:31:236 CONSOLA/(7303:7303): 
+
+[INFO] 17:31:31:237 CONSOLA/(7303:7303): Instruccion: EXIT
+[INFO] 17:31:31:237 CONSOLA/(7303:7303): Tamanio de la instruccion: 4
+[INFO] 17:31:31:238 CONSOLA/(7303:7303): 
+
+[INFO] 17:31:31:243 CONSOLA/(7303:7303): Cliente conectado en 127.0.0.1:8000 (a KERNEL)
+
+[INFO] 17:31:31:244 CONSOLA/(7303:7303): Se envio la lista de instrucciones al kernel
+[INFO] 17:31:31:245 CONSOLA/(7303:7303): Estoy esperando a que el kernel me avise que ya ejecuto mis instrucciones...
+[ERROR] 17:31:43:736 CONSOLA/(7303:7303): No se pudo recibir el codigo de operacion
+[INFO] 17:34:53:634 CONSOLA/(7826:7826): Lista de instrucciones cargadas:
+[INFO] 17:34:53:636 CONSOLA/(7826:7826): Instruccion: NO_OP
+[INFO] 17:34:53:637 CONSOLA/(7826:7826): Tamanio de la instruccion: 5
+[INFO] 17:34:53:638 CONSOLA/(7826:7826): 
+
+[INFO] 17:34:53:639 CONSOLA/(7826:7826): Instruccion: NO_OP
+[INFO] 17:34:53:641 CONSOLA/(7826:7826): Tamanio de la instruccion: 5
+[INFO] 17:34:53:644 CONSOLA/(7826:7826): 
+
+[INFO] 17:34:53:645 CONSOLA/(7826:7826): Instruccion: WRITE
+[INFO] 17:34:53:646 CONSOLA/(7826:7826): Tamanio de la instruccion: 5
+[INFO] 17:34:53:647 CONSOLA/(7826:7826): Argumento: 4
+[INFO] 17:34:53:647 CONSOLA/(7826:7826): Argumento: 42
+[INFO] 17:34:53:648 CONSOLA/(7826:7826): 
+
+[INFO] 17:34:53:649 CONSOLA/(7826:7826): Instruccion: READ
+[INFO] 17:34:53:650 CONSOLA/(7826:7826): Tamanio de la instruccion: 4
+[INFO] 17:34:53:650 CONSOLA/(7826:7826): Argumento: 4
+[INFO] 17:34:53:651 CONSOLA/(7826:7826): 
+
+[INFO] 17:34:53:652 CONSOLA/(7826:7826): Instruccion: COPY
+[INFO] 17:34:53:653 CONSOLA/(7826:7826): Tamanio de la instruccion: 4
+[INFO] 17:34:53:654 CONSOLA/(7826:7826): Argumento: 5
+[INFO] 17:34:53:655 CONSOLA/(7826:7826): Argumento: 4
+[INFO] 17:34:53:656 CONSOLA/(7826:7826): 
+
+[INFO] 17:34:53:657 CONSOLA/(7826:7826): Instruccion: READ
+[INFO] 17:34:53:658 CONSOLA/(7826:7826): Tamanio de la instruccion: 4
+[INFO] 17:34:53:659 CONSOLA/(7826:7826): Argumento: 5
+[INFO] 17:34:53:660 CONSOLA/(7826:7826): 
+
+[INFO] 17:34:53:661 CONSOLA/(7826:7826): Instruccion: EXIT
+[INFO] 17:34:53:663 CONSOLA/(7826:7826): Tamanio de la instruccion: 4
+[INFO] 17:34:53:665 CONSOLA/(7826:7826): 
+
+[INFO] 17:34:53:666 CONSOLA/(7826:7826): Cliente conectado en 127.0.0.1:8000 (a KERNEL)
+
+[INFO] 17:34:53:669 CONSOLA/(7826:7826): Se envio la lista de instrucciones al kernel
+[INFO] 17:34:53:670 CONSOLA/(7826:7826): Estoy esperando a que el kernel me avise que ya ejecuto mis instrucciones...
+[ERROR] 17:35:34:127 CONSOLA/(7826:7826): No se pudo recibir el codigo de operacion
+[INFO] 17:37:44:380 CONSOLA/(8250:8250): Lista de instrucciones cargadas:
+[INFO] 17:37:44:383 CONSOLA/(8250:8250): Instruccion: NO_OP
+[INFO] 17:37:44:384 CONSOLA/(8250:8250): Tamanio de la instruccion: 5
+[INFO] 17:37:44:385 CONSOLA/(8250:8250): 
+
+[INFO] 17:37:44:386 CONSOLA/(8250:8250): Instruccion: NO_OP
+[INFO] 17:37:44:387 CONSOLA/(8250:8250): Tamanio de la instruccion: 5
+[INFO] 17:37:44:389 CONSOLA/(8250:8250): 
+
+[INFO] 17:37:44:390 CONSOLA/(8250:8250): Instruccion: WRITE
+[INFO] 17:37:44:391 CONSOLA/(8250:8250): Tamanio de la instruccion: 5
+[INFO] 17:37:44:392 CONSOLA/(8250:8250): Argumento: 4
+[INFO] 17:37:44:394 CONSOLA/(8250:8250): Argumento: 42
+[INFO] 17:37:44:395 CONSOLA/(8250:8250): 
+
+[INFO] 17:37:44:396 CONSOLA/(8250:8250): Instruccion: READ
+[INFO] 17:37:44:398 CONSOLA/(8250:8250): Tamanio de la instruccion: 4
+[INFO] 17:37:44:399 CONSOLA/(8250:8250): Argumento: 4
+[INFO] 17:37:44:400 CONSOLA/(8250:8250): 
+
+[INFO] 17:37:44:401 CONSOLA/(8250:8250): Instruccion: COPY
+[INFO] 17:37:44:403 CONSOLA/(8250:8250): Tamanio de la instruccion: 4
+[INFO] 17:37:44:404 CONSOLA/(8250:8250): Argumento: 5
+[INFO] 17:37:44:405 CONSOLA/(8250:8250): Argumento: 4
+[INFO] 17:37:44:407 CONSOLA/(8250:8250): 
+
+[INFO] 17:37:44:409 CONSOLA/(8250:8250): Instruccion: READ
+[INFO] 17:37:44:411 CONSOLA/(8250:8250): Tamanio de la instruccion: 4
+[INFO] 17:37:44:428 CONSOLA/(8250:8250): Argumento: 5
+[INFO] 17:37:44:429 CONSOLA/(8250:8250): 
+
+[INFO] 17:37:44:430 CONSOLA/(8250:8250): Instruccion: EXIT
+[INFO] 17:37:44:431 CONSOLA/(8250:8250): Tamanio de la instruccion: 4
+[INFO] 17:37:44:432 CONSOLA/(8250:8250): 
+
+[INFO] 17:37:44:435 CONSOLA/(8250:8250): Cliente conectado en 127.0.0.1:8000 (a KERNEL)
+
+[INFO] 17:37:44:437 CONSOLA/(8250:8250): Se envio la lista de instrucciones al kernel
+[INFO] 17:37:44:441 CONSOLA/(8250:8250): Estoy esperando a que el kernel me avise que ya ejecuto mis instrucciones...
+[INFO] 17:37:46:720 CONSOLA/(8250:8250): El kernel me aviso que ya ejecute mis instrucciones :D

@@ -1,37 +1,65 @@
-[INFO] 18:22:09:840 KERNEL/(9694:9694): Esperando a 127.0.0.1:8000 (CONSOLA)
+[INFO] 17:28:31:375 KERNEL/(6846:6846): Esperando a 127.0.0.1:8000 (CONSOLA)
 
-[INFO] 18:22:09:840 KERNEL/(9694:9695): Cliente conectado en 127.0.0.1:8001 (a CPU DISPATCH)
+[INFO] 17:28:31:378 KERNEL/(6846:6847): Cliente conectado en 127.0.0.1:8001 (a CPU DISPATCH)
 
-[INFO] 18:22:09:841 KERNEL/(9694:9695): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 17:28:31:382 KERNEL/(6846:6847): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 18:22:11:706 KERNEL/(9694:9694): Cliente conectado (a KERNEL)
+[INFO] 17:28:33:192 KERNEL/(6846:6846): Cliente conectado (a KERNEL)
 
-[INFO] 18:22:11:706 KERNEL/(9694:9705): Se recibieron las instrucciones
-[INFO] 18:22:11:706 KERNEL/(9694:9705): Cantidad de procesos en memoria: 0
+[INFO] 17:28:33:196 KERNEL/(6846:6863): Se recibieron las instrucciones
+[INFO] 17:28:33:218 KERNEL/(6846:6863): Cantidad de procesos en memoria: 0
 
-[INFO] 18:22:11:708 KERNEL/(9694:9705): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 17:28:33:220 KERNEL/(6846:6863): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[ERROR] 18:22:24:186 KERNEL/(9694:9705): Error al recibir el op_code INICIALIZAR_ESTRUCTURAS de la memoria
-[INFO] 18:24:18:540 KERNEL/(10061:10061): Esperando a 127.0.0.1:8000 (CONSOLA)
+[ERROR] 17:28:33:793 KERNEL/(6846:6863): Error al recibir el op_code INICIALIZAR_ESTRUCTURAS de la memoria
+[INFO] 17:31:28:506 KERNEL/(7286:7286): Esperando a 127.0.0.1:8000 (CONSOLA)
 
-[INFO] 18:24:18:540 KERNEL/(10061:10062): Cliente conectado en 127.0.0.1:8001 (a CPU DISPATCH)
+[INFO] 17:31:28:509 KERNEL/(7286:7287): Cliente conectado en 127.0.0.1:8001 (a CPU DISPATCH)
 
-[INFO] 18:24:18:541 KERNEL/(10061:10062): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 17:31:28:510 KERNEL/(7286:7287): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 18:24:28:336 KERNEL/(10061:10061): Cliente conectado (a KERNEL)
+[INFO] 17:31:31:240 KERNEL/(7286:7286): Cliente conectado (a KERNEL)
 
-[INFO] 18:24:28:337 KERNEL/(10061:10090): Se recibieron las instrucciones
-[INFO] 18:24:28:338 KERNEL/(10061:10090): Cantidad de procesos en memoria: 0
+[INFO] 17:31:31:246 KERNEL/(7286:7304): Se recibieron las instrucciones
+[INFO] 17:31:31:247 KERNEL/(7286:7304): Cantidad de procesos en memoria: 0
 
-[INFO] 18:24:28:339 KERNEL/(10061:10090): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 17:31:31:272 KERNEL/(7286:7304): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 18:24:28:340 KERNEL/(10061:10090): El id de la tabla de pagina del proceso 1 es 0
+[ERROR] 17:31:31:727 KERNEL/(7286:7304): Error al recibir el op_code INICIALIZAR_ESTRUCTURAS de la memoria
+[INFO] 17:34:51:273 KERNEL/(7810:7810): Esperando a 127.0.0.1:8000 (CONSOLA)
 
-[INFO] 18:24:28:340 KERNEL/(10061:10062): Se envio el proceso 1 a la CPU
+[INFO] 17:34:51:275 KERNEL/(7810:7811): Cliente conectado en 127.0.0.1:8001 (a CPU DISPATCH)
 
-[INFO] 18:24:30:366 KERNEL/(10061:10063): Orden EXIT recibida
-[INFO] 18:24:30:367 KERNEL/(10061:10063): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 17:34:51:277 KERNEL/(7810:7811): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 18:24:30:372 KERNEL/(10061:10065): Cantidad de procesos en memoria: 0
+[INFO] 17:34:53:666 KERNEL/(7810:7810): Cliente conectado (a KERNEL)
 
-[INFO] 18:24:30:372 KERNEL/(10061:10090): DISCONNECT
+[INFO] 17:34:53:670 KERNEL/(7810:7827): Se recibieron las instrucciones
+[INFO] 17:34:53:671 KERNEL/(7810:7827): Cantidad de procesos en memoria: 0
+
+[INFO] 17:34:53:674 KERNEL/(7810:7827): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[ERROR] 17:35:32:802 KERNEL/(7810:7827): Error al recibir el op_code INICIALIZAR_ESTRUCTURAS de la memoria
+[INFO] 17:37:41:502 KERNEL/(8233:8233): Esperando a 127.0.0.1:8000 (CONSOLA)
+
+[INFO] 17:37:41:505 KERNEL/(8233:8234): Cliente conectado en 127.0.0.1:8001 (a CPU DISPATCH)
+
+[INFO] 17:37:41:506 KERNEL/(8233:8234): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+
+[INFO] 17:37:44:433 KERNEL/(8233:8233): Cliente conectado (a KERNEL)
+
+[INFO] 17:37:44:438 KERNEL/(8233:8251): Se recibieron las instrucciones
+[INFO] 17:37:44:445 KERNEL/(8233:8251): Cantidad de procesos en memoria: 0
+
+[INFO] 17:37:44:463 KERNEL/(8233:8251): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 17:37:44:471 KERNEL/(8233:8251): El id de la tabla de pagina del proceso 1 es 0
+
+[INFO] 17:37:44:472 KERNEL/(8233:8234): Se envio el proceso 1 a la CPU
+
+[INFO] 17:37:46:695 KERNEL/(8233:8235): Orden EXIT recibida
+[INFO] 17:37:46:705 KERNEL/(8233:8235): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 17:37:46:717 KERNEL/(8233:8237): Cantidad de procesos en memoria: 0
+
+[INFO] 17:37:46:722 KERNEL/(8233:8251): DISCONNECT

@@ -66,6 +66,13 @@ void queue_push_con_mutex(t_queue* queue, t_pcb* pcb, pthread_mutex_t mutex){
     pthread_mutex_unlock(&mutex);
 }
 
+t_pcb* queue_peek_con_mutex(t_queue* queue, pthread_mutex_t mutex){
+    pthread_mutex_lock(&mutex);
+    t_pcb* pcb = queue_peek(queue);
+    pthread_mutex_unlock(&mutex);
+    return pcb;
+}
+
 void list_add_con_mutex(t_list* lista, t_pcb* pcb, pthread_mutex_t mutex){
     pthread_mutex_lock(&mutex);
     list_add(lista, pcb);
@@ -142,13 +149,6 @@ bool criterio_id(t_pcb* pcb_buscado, t_pcb* pcb_de_la_cola){
     return pcb_de_la_cola->id == pcb_buscado->id;
 }
 
-t_pcb* queue_peek_con_mutex(t_queue* queue, pthread_mutex_t mutex_cola_blocked){
-    pthread_mutex_lock(&mutex_cola_blocked);
-    t_pcb* pcb = queue_peek(queue);
-    pthread_mutex_unlock(&mutex_cola_blocked);
-    return pcb;
-}
-
 int list_size_con_mutex_tlb(t_list* lista, pthread_mutex_t mutex){
     pthread_mutex_lock(&mutex);
     int size = list_size(lista);
@@ -182,4 +182,19 @@ uint32_t list_find_con_mutex_tlb(t_list* lista, uint32_t tlb_buscado, pthread_mu
 
 bool criterio_pagina_tlb(uint32_t tlb_buscado, t_tlb* tlb_de_la_lista){
     return tlb_de_la_lista->pagina == tlb_buscado;
+}
+
+
+int list_size_con_mutex_marcos(t_list* lista, pthread_mutex_t mutex){
+    pthread_mutex_lock(&mutex);
+    int size = list_size(lista);
+    pthread_mutex_unlock(&mutex);
+    return size;
+}
+
+uint32_t* list_get_con_mutex_marcos(t_list* lista, int indice, pthread_mutex_t mutex){
+    pthread_mutex_lock(&mutex);
+    uint32_t *marco = list_get(lista, indice);
+    pthread_mutex_unlock(&mutex);
+    return marco;
 }
