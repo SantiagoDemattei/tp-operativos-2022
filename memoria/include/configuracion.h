@@ -22,6 +22,7 @@ pthread_mutex_t mutex_lista_estructuras;
 pthread_mutex_t mutex_tamanio_pagina;
 pthread_mutex_t mutex_estructura_proceso_actual;
 
-
-
+void* espacio_memoria;
+int cant_total_marcos;
+t_list* marcos_totales;
 #endif

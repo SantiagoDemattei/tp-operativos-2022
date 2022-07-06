@@ -19,8 +19,33 @@ bool crear_archivo_swap(t_estructura_proceso* estructura, uint32_t tamanio, t_lo
     memset(estructura->archivo_swap, 0, tamanio); // inicializo el archivo con 0's BYTES
 
     close(fd); // cierro el archivo
-    return true;
+    return true;  
 }
+
+
+void* buscar_contenido_pagina_en_swap(void* archivo_mappeado, uint32_t nro_pagina, uint32_t tam_pagina){
+    void* contenido_pagina = malloc(tam_pagina);
+    memcpy(contenido_pagina, archivo_mappeado + nro_pagina * tam_pagina, tam_pagina); // pagina ocupa desde donde arranca + tamanio de la pagina
+    return contenido_pagina; //chorizo de bytes
+}
+
+void escribir_contenido_pagina_en_marco(void* memoria_del_proceso, void* contenido_pagina, uint32_t nro_frame, uint32_t tamanio_frame){ //cargas el contenido de la pagina en memoria RAM
+    memcpy(memoria_del_proceso + nro_frame * tamanio_frame, contenido_pagina, tamanio_frame); 
+}
+
+void* buscar_contenido_pagina_en_memoria(void* memoria_del_proceso, uint32_t nro_frame, uint32_t tamanio_frame){ 
+    void* contenido_pagina = malloc(tamanio_frame);
+    memcpy(contenido_pagina, memoria_del_proceso + nro_frame * tamanio_frame, tamanio_frame);
+    return contenido_pagina;
+}
+
+void escribir_contenido_pagina_en_swap(void* archivo_mappeado, void* contenido_pagina, uint32_t nro_pagina, uint32_t tam_pagina){ //descargas la pagina de la RAM a swap
+    memcpy(archivo_mappeado + nro_pagina * tam_pagina, contenido_pagina, tam_pagina);
+}
+
+
+
+
 
 
 /*

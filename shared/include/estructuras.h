@@ -10,7 +10,7 @@
 typedef enum
 {
     // AGREGAR MAS CODIGOS PARA CONEXION
-    DEBUG, //0
+    DEBUG, // 0
     INICIAR_PROCESO,
     ENVIAR_PCB,
     INICIALIZAR_ESTRUCTURAS,
@@ -30,22 +30,22 @@ typedef enum
     EJECUTAR_READ,
     EJECUTAR_COPY,
     OK,
-    OK_READ, 
+    OK_READ,
     FRAME
 } op_code;
 
-typedef struct  //config para la consola
+typedef struct // config para la consola
 {
     char *ip;
     char *puerto;
 } t_configuracion_consola;
 
-typedef struct //para los argumentos de las instrucciones
+typedef struct // para los argumentos de las instrucciones
 {
-      uint32_t argumento;
+    uint32_t argumento;
 } t_argumento;
 
-typedef struct //cada instruccion tiene un identificador y una lista de argumentos ( NO_OP tiene la lista de argumentos vacia)
+typedef struct // cada instruccion tiene un identificador y una lista de argumentos ( NO_OP tiene la lista de argumentos vacia)
 {
     char *identificador;
     t_list *argumentos;
@@ -54,11 +54,11 @@ typedef struct //cada instruccion tiene un identificador y una lista de argument
 typedef struct
 {
     t_log *log;             // logger
-    uint32_t *fd;                 // int socket 
+    uint32_t *fd;           // int socket
     char *server_name;      // nombre del servidor
 } t_procesar_conexion_args; // para los hilos
 
-typedef struct t_configuracion_kernel 
+typedef struct t_configuracion_kernel
 {
     char *ip_memoria;
     char *ip_kernel;
@@ -111,47 +111,53 @@ typedef struct t_pcb
     uint32_t *cliente_socket;
     double rafaga_real_anterior;
     double estimacion_rafaga_anterior;
-    bool blocked_suspendido; 
+    bool blocked_suspendido;
 } t_pcb;
 
-typedef struct t_tlb{
+typedef struct t_tlb
+{
     uint32_t pagina;
     uint32_t marco;
     time_t ultima_referencia;
 } t_tlb;
 
-
-typedef struct t_marco_presencia{
+typedef struct t_marco_presencia
+{
     uint32_t marco;
     bool presencia;
 } t_marco_presencia;
 
-//por proceso: la cantidad de FILAS de la tabla de primer nivel es la cantidad de TABLAS de segundo nivel
+// por proceso: la cantidad de FILAS de la tabla de primer nivel es la cantidad de TABLAS de segundo nivel
 
-typedef struct t_tabla_pagina1{ 
-    uint32_t id_tabla; //el que se guarda en el pcb (es el que devuelve memoria, al inicializar las estructuras)
-    t_list* primer_nivel;  //filas de la tabla de primer nivel . Cada fila es el id de la tabla de 2do nivel.
-}t_tabla_pagina1;
+typedef struct t_tabla_pagina1
+{
+    uint32_t id_tabla;    // el que se guarda en el pcb (es el que devuelve memoria, al inicializar las estructuras)
+    t_list *primer_nivel; // filas de la tabla de primer nivel . Cada fila es el id de la tabla de 2do nivel.
+} t_tabla_pagina1;
 
-typedef struct t_tabla_pagina2{
+typedef struct t_tabla_pagina2
+{
     uint32_t id_tabla;
-    t_list* segundo_nivel; //filas de la tabla de segundo nivel
-}t_tabla_pagina2;
+    t_list *segundo_nivel; // filas de la tabla de segundo nivel
+} t_tabla_pagina2;
 
-typedef struct t_estructura_2do_nivel{
+typedef struct t_estructura_2do_nivel
+{
     uint32_t marco;
     bool presencia;
     bool uso;
     bool modificado;
-}t_estructura_2do_nivel;
+} t_estructura_2do_nivel;
 
-typedef struct t_estructura_proceso{
-uint32_t id_proceso;
-void * espacio_en_memoria; //espacio que ocupa el proceso en memoria
-t_tabla_pagina1 *tabla_pagina1; //cada proceso tiene la tabla de paginas de 1er nivel y
-t_list *lista_tablas_segundo_nivel; //lista de tablas de segundo nivel (tantas como entradas tenga la de 1er nivel)
-char* nombre_archivo_swap; //espacio de swap para los procesos
-void* archivo_swap;
-}t_estructura_proceso;
+typedef struct t_estructura_proceso
+{
+    uint32_t id_proceso;
+    int marco_comienzo;
+    int marco_fin;
+    t_tabla_pagina1 *tabla_pagina1;     // cada proceso tiene la tabla de paginas de 1er nivel y
+    t_list *lista_tablas_segundo_nivel; // lista de tablas de segundo nivel (tantas como entradas tenga la de 1er nivel)
+    char *nombre_archivo_swap;          // espacio de swap para los procesos
+    void *archivo_swap;
+} t_estructura_proceso;
 
 #endif

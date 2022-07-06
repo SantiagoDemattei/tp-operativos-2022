@@ -102,7 +102,7 @@ static void procesar_conexion(void *void_args)
                 *id = i;
                 tabla_segundo_nivel->id_tabla = i;                  // identificador de la tabla de segundo nivel
                 tabla_segundo_nivel->segundo_nivel = list_create(); // lista de las entradas (filas) de la tabla de segundo nivel, se guarda en cada entrada un struct
-                for (int j = 0; j < (configuracion_memoria->entradas_por_tabla); j++)
+                for (int j = 0; j < (configuracion_memoria->entradas_por_tabla); j++) 
                 { // llenamos cada entrada de la tabla de 2do nivel
                     t_estructura_2do_nivel *entrada_segundo_nivel = malloc(sizeof(t_estructura_2do_nivel));
                     entrada_segundo_nivel->marco = -2;
