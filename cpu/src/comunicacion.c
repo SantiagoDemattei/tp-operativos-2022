@@ -173,7 +173,7 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
             pthread_mutex_unlock(&mutex_running_cpu);
             break;
 
-        case READ: // READ(dirección_lógica): Se deberá leer el valor de memoria correspondiente a esa dirección lógica e imprimirlo por pantallA
+        case READ: // READ(dirección_lógica): Se deberá leer el valor de memoria correspondiente a esa dirección lógica e imprimirlo por pantalla
             direccion_logica = list_get(argumentos, 0);
             direccion_fisica = calcular_mmu(direccion_logica); // calculo la direccion fisica para ir a buscarlo a memoria
             printf("el numero de pagina es: %d\n", direccion_fisica->numero_pagina);
@@ -181,12 +181,12 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
             printf("la entrada de segundo nivel es: %d\n", direccion_fisica->entrada_tabla_2do_nivel);
             printf("El desplazamiento es: %d\n", direccion_fisica->desplazamiento);
 
-            marco = buscar(direccion_fisica->numero_pagina); // Buscamos si esta en la TLB
-            if (marco != -1)                                 // TLB HIT
+            //para leer algo necesitamos ver si la pagina esta en la TLB primero
+            marco = buscar(direccion_fisica->numero_pagina); // Buscamos si la pagina esta en la TLB
+            if (marco != -1)                                 // TLB HIT (lo encontro en la tlb)
             {
-
                 socket_memoria_cpu = crear_conexion_memoria(configuracion_cpu, logger_cpu); // creo la conexion con la memoria
-                // send a memoria del marco, el desplazamiento (este es el tercer acceso)
+                // send a memoria del marco, el desplazamiento (este es el tercer acceso -> para acceder al dato)
                 send_ejecutar_read(socket_memoria_cpu, marco, direccion_fisica->desplazamiento, running->id);
                 if (recv(socket_memoria_cpu, &cop, sizeof(op_code), 0) != sizeof(op_code))
                 {
@@ -196,7 +196,7 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
                 loggear_info(logger_cpu, string_from_format("El valor leido en la posicion es: %d\n", valor_leido), mutex_logger_cpu);
                 liberar_conexion(socket_memoria_cpu);
             }
-            else // TLB MISS -> 3 ACCESOS A LA MEMORIA
+            else // TLB MISS -> 3 ACCESOS A LA MEMORIA (vamos a buscar la pagina a la tabla de paginas)
             {
                 marco_presencia = obtener_marco(direccion_fisica->entrada_tabla_1er_nivel, direccion_fisica->entrada_tabla_2do_nivel, running->tabla_pagina, direccion_fisica->numero_pagina); // obtengo el marco;
 
@@ -211,7 +211,7 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
                     running->program_counter--; // reinicio la instruccion
                     pthread_mutex_unlock(&mutex_running_cpu);
                 }
-                else
+                else //vamos a buscar el marco a memoria porque ahi esta la pagina que necesito
                 {
                     socket_memoria_cpu = crear_conexion_memoria(configuracion_cpu, logger_cpu); // creo la conexion con la memoria
                     // send a memoria del marco, el desplazamiento (este es el tercer acceso)
@@ -439,9 +439,9 @@ INSTRUCCIONES_EJECUCION enumerar_instruccion(t_instruccion *instruccion)
 
 t_direccion_fisica *calcular_mmu(t_argumento *direc_logica) // calcula la direccion fisica
 {
-    // direccion logica: [entrada_tabla_1er_nivel | entrada_tabla_2do_nivel | desplazamiento]
+    // direccion logica: [nro pagina | entrada_tabla_1er_nivel | entrada_tabla_2do_nivel | desplazamiento]
     t_direccion_fisica *direccion_fisica = malloc(sizeof(t_direccion_fisica));
-    direccion_fisica->numero_pagina = (uint32_t)floor((direc_logica->argumento) / tamanio_pagina); // calculo el numero de pagina donde voy a escribir / leer el dato
+    direccion_fisica->numero_pagina = (uint32_t)floor((direc_logica->argumento) / tamanio_pagina); 
     direccion_fisica->entrada_tabla_1er_nivel = (uint32_t)floor(direccion_fisica->numero_pagina / cant_entradas_por_tabla);
     direccion_fisica->entrada_tabla_2do_nivel = direccion_fisica->numero_pagina % cant_entradas_por_tabla;
     direccion_fisica->desplazamiento = direc_logica->argumento - (direccion_fisica->numero_pagina * tamanio_pagina);

@@ -83,9 +83,9 @@ static void procesar_conexion(void *void_args)
             t_estructura_proceso *estructura = malloc(sizeof(t_estructura_proceso)); // creamos la estructura correspondiete al proceso
             estructura->id_proceso = id_proceso;
             // asigno el espacio de la memoria que va a ser del proceso
-            estructura->marco_comienzo = buscar_marcos_para_asignar();
+            estructura->marco_comienzo = buscar_marcos_para_asignar(); //primer frame de la memoria que le puedo asignar (donde arranca el proceso)
             printf("el marco comienzo %d\n", estructura->marco_comienzo);
-            if (estructura->marco_comienzo == -1)
+            if (estructura->marco_comienzo == -1) 
             {
                 send_valor_tb(*cliente_socket, -1); // send para kernel de que no se puede crear las estructuras para el proceso dado que no hay marcos libres
                 loggear_error(logger, "No hay marcos libres\n", mutex_logger_memoria);
@@ -93,24 +93,23 @@ static void procesar_conexion(void *void_args)
             }
 
             printf("marcos por proceso: %d\n", configuracion_memoria->marcos_por_proceso);
-            estructura->marco_fin = (estructura->marco_comienzo) + (configuracion_memoria->marcos_por_proceso);
+            estructura->marco_fin = (estructura->marco_comienzo) + (configuracion_memoria->marcos_por_proceso) - 1;
             printf("el marco fin %d\n", estructura->marco_fin);
-            llenar_marcos_para_el_proceso(estructura->marco_comienzo, estructura->marco_fin, 1);
+            llenar_marcos_para_el_proceso(estructura->marco_comienzo, estructura->marco_fin, 1); //cambia a 1 los marcos ocupados (de la memoria) que le asigno al proceso
 
-            estructura->vector_marcos = list_create();
-            llenar_marcos_para_el_proceso_local(estructura->vector_marcos, 0);
+            estructura->vector_marcos = list_create(); // marcos propios del proceso
+            llenar_marcos_para_el_proceso_local(estructura->vector_marcos, 0);  // lleno la lista de marcos propios del proceso (estado en 0 porque estan todos libres y num de pagona en -1 porque no tienen paginas los marcos)
 
             // averiguo cuantas paginas tiene mi proceso: tamanio en bytes del proceso / tamanio en bytes de una pagina
-            cant_paginas = ceil(tamanio_proceso / (configuracion_memoria->tam_pagina));
+            cant_paginas = ceil(tamanio_proceso / (configuracion_memoria->tam_pagina));//la funcion ceil redondea para arriba
             cant_tablas_segundo_nivel = ceil(cant_paginas / (configuracion_memoria->entradas_por_tabla)); // para saber cuantas tablas de 2do nivel crear
 
-            // estructura de memoria = espacio + lista de tablas + archivo (espacio en swap)
             t_tabla_pagina1 *tabla_pagina1 = malloc(sizeof(t_tabla_pagina1) + sizeof(uint32_t) * (configuracion_memoria->entradas_por_tabla));
             tabla_pagina1->id_tabla = contador;
-            tabla_pagina1->primer_nivel = list_create(); // entradas de la tabla de primer nivel (guarda los numeros de las tablas de segundo nivel)
+            tabla_pagina1->primer_nivel = list_create(); // filas de la tabla de primer nivel (guarda los numeros de las tablas de segundo nivel)
             estructura->tabla_pagina1 = tabla_pagina1;
 
-            estructura->lista_tablas_segundo_nivel = list_create(); // lista que guarda las tablas de segundo nivel
+            estructura->lista_tablas_segundo_nivel = list_create(); // lista que guarda las tablas de segundo nivel (cada nodo es una tabla)
             // creo cada una de las tablas de segundo nivel que necesita
             for (int i = 0; i < cant_tablas_segundo_nivel; i++)
             {
@@ -122,7 +121,7 @@ static void procesar_conexion(void *void_args)
                 for (int j = 0; j < (configuracion_memoria->entradas_por_tabla); j++)
                 { // llenamos cada entrada de la tabla de 2do nivel
                     t_estructura_2do_nivel *entrada_segundo_nivel = malloc(sizeof(t_estructura_2do_nivel));
-                    entrada_segundo_nivel->marco = -2;
+                    entrada_segundo_nivel->marco = -2; 
                     entrada_segundo_nivel->uso = false;
                     entrada_segundo_nivel->modificado = false;
                     entrada_segundo_nivel->presencia = false;
@@ -164,7 +163,7 @@ static void procesar_conexion(void *void_args)
         case PRIMER_ACCESO:
             recv_entrada_tabla_1er_nivel(*cliente_socket, &id_tabla1, &entrada_primer_nivel);
             loggear_info(logger, "Se recibio la entrada de la tabla de paginas de primer nivel\n", mutex_logger_memoria);
-            num_tabla_segundo_nivel = obtener_tabla_2do_nivel(id_tabla1, entrada_primer_nivel);
+            num_tabla_segundo_nivel = obtener_tabla_2do_nivel(id_tabla1, entrada_primer_nivel);//busco la tabla de segundo nivel
             send_num_tabla_2do_nivel(*cliente_socket, num_tabla_segundo_nivel);
             break;
 
@@ -336,7 +335,7 @@ t_marco_presencia *obtener_frame(uint32_t nro_tabla_2do_nivel, uint32_t entrada_
             2) bit de presencia original (1)
         */
     }
-    else // fallo de pagina (bit de presencia = 0)
+    else // fallo de pagina (bit de presencia = 0) -> hay que cargar la pagina en memoria (porque esta en swap)
     {
         // ir a buscar la pagina en swap
         void *contenido_pagina = buscar_contenido_pagina_en_swap(estructura_proceso_actual->archivo_swap, nro_pagina, configuracion_memoria->tam_pagina); // busca el contenido de la pagina en el archivo de swap (porque no esta en la memoria)
@@ -371,6 +370,7 @@ uint32_t buscar_marco_libre(uint32_t nro_pagina, void *contenido_pagina)
         elemento = list_get(estructura_proceso_actual->vector_marcos, marco_asignado); // busco el elemento a editar
         elemento->estado = 1;                                                          // pongo el marco ocupado en el vector del proceso
         elemento->nro_pagina = nro_pagina;                                             // pongo el numero de pagina en el vector del proceso
+        escribir_contenido_pagina_en_marco(estructura_proceso_actual->marco_comienzo, contenido_pagina, marco_asignado, configuracion_memoria->tam_pagina);
         pthread_mutex_unlock(&mutex_estructura_proceso_actual);
         return marco_asignado; // retorno el marco
     }
@@ -416,7 +416,7 @@ uint32_t buscar_marco_libre(uint32_t nro_pagina, void *contenido_pagina)
                 fila->uso--;
                 if (list_size(paginas_cargadas) - 1 == i)
                 { // si ya revise todos, vuelvo a arrancar desde el principio
-                    i = puntero_clock;
+                    i = puntero_clock; // ARREGLAR LO QUE DIJO JULI EL MAS CAPO!!
                 }
             }
         }
@@ -471,7 +471,7 @@ uint32_t buscar_marcos_para_asignar()
         if (*elemento == 0)
         {
             pthread_mutex_unlock(&mutex_marcos);
-            return i;
+            return i;//se guarda el indice de la lista donde esta ese marco libre
         }
     }
     pthread_mutex_unlock(&mutex_marcos);
@@ -513,7 +513,7 @@ uint32_t leer_valor(uint32_t frame, uint32_t desplazamiento)
     pthread_mutex_lock(&mutex_estructura_proceso_actual);
     pthread_mutex_lock(&mutex_espacio_memoria);
     uint32_t valor_leido;
-    uint32_t inicio = estructura_proceso_actual->marco_comienzo;
+    uint32_t inicio = estructura_proceso_actual->marco_comienzo; // marco donde comienza el proceso
     size_t comienzo_real = configuracion_memoria->tam_pagina * inicio;
     size_t frame_real = (configuracion_memoria->tam_pagina * frame); // lo que hago aca es calcular en donde esta ubicado el frame donde tengo que leer
     // tamanio pagina = tamanio frame (en paginacion)
@@ -539,15 +539,15 @@ void copiar_valor(uint32_t frame_origen, uint32_t desplazamiento_origen, uint32_
 
 void buscar_estructura_del_proceso(uint32_t pid) // setea la estrctura actual con el proceso que corresponde
 {
-    t_estructura_proceso *procesoAux;
+    t_estructura_proceso *proceso_aux;
     pthread_mutex_lock(&mutex_lista_estructuras);
     for (int i = 0; i < list_size(lista_estructuras); i++)
     {
-        procesoAux = list_get(lista_estructuras, i);
-        if (procesoAux->id_proceso == pid)
+        proceso_aux = list_get(lista_estructuras, i);
+        if (proceso_aux->id_proceso == pid)
         {
             pthread_mutex_lock(&mutex_estructura_proceso_actual);
-            estructura_proceso_actual = procesoAux;
+            estructura_proceso_actual = proceso_aux;
             pthread_mutex_unlock(&mutex_estructura_proceso_actual);
             break;
         }
@@ -560,20 +560,20 @@ void llenar_marcos_para_el_proceso(uint32_t inicio, uint32_t fin, uint32_t conte
     pthread_mutex_lock(&mutex_marcos);
     for (int i = inicio; i < fin; i++)
     {
-        // modifico 0 por 1
+        // modifico 0 por 1 los marcos de memoria que ahora le pertenecen al proceso
         uint32_t *elemento = list_get(marcos_totales, i);
         *elemento = contenido;
     }
     pthread_mutex_unlock(&mutex_marcos);
 }
 
-void llenar_marcos_para_el_proceso_local(t_list *lista_marcos_del_proceso, uint32_t contenido)
+void llenar_marcos_para_el_proceso_local(t_list *lista_marcos_del_proceso, uint32_t estado)
 {
     for (int i = 0; i < list_size(lista_marcos_del_proceso); i++)
     {
         t_vector_marcos *elemento = list_get(lista_marcos_del_proceso, i);
-        elemento->estado = contenido;
-        elemento->nro_pagina = -1;
+        elemento->estado = estado; //estado 0 = libre, estado 1 = ocupado
+        elemento->nro_pagina = -1; //en -1 los marcos que no tienen nada 
     }
 }
 

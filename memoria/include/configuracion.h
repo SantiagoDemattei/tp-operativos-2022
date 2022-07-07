@@ -26,5 +26,5 @@ pthread_mutex_t mutex_espacio_memoria;
 uint32_t puntero_clock;
 void* espacio_memoria;
 int cant_total_marcos;
-t_list* marcos_totales;
+t_list* marcos_totales; 
 #endif

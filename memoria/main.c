@@ -25,13 +25,13 @@ uint32_t main(void)
     socket_memoria = crear_comunicacion_kernel(configuracion_memoria, logger); // inicia el servidor para que el kernel y la cpu se conecten a la memoria
     espacio_memoria = malloc(configuracion_memoria->tam_memoria);
 
-    cant_total_marcos = configuracion_memoria->tam_memoria / configuracion_memoria->tam_pagina; // marcos totales que va a tener la memoria
-    marcos_totales = list_create();                                                             // especie de bitmap
+    cant_total_marcos = configuracion_memoria->tam_memoria / configuracion_memoria->tam_pagina; // marcos totales que va a tener la memoria (el tamaño de la pagina es igual al del marco)
+    marcos_totales = list_create();                                                             
 
     for (int i = 0; i < cant_total_marcos; i++)
     { // inicializo el bitmap con todos los marcos como libres
         uint32_t *elemento = malloc(sizeof(uint32_t));
-        *elemento = 0;
+        *elemento = 0; //inicializa con 0 porque al principio estan todos libres 
         list_add(marcos_totales, elemento);
     }
     puntero_clock = 0;

@@ -24,6 +24,15 @@ bool crear_archivo_swap(t_estructura_proceso *estructura, uint32_t tamanio, t_lo
     return true;
 }
 
+/*
+
+REVISAR SI EN MEMCPY CUANDO VOY A GUARDAR UN VALOR TENGO QUE PONER EL &:
+por ej:     .
+            .
+    memcpy( & contenido_pagina, archivo_mappeado + nro_pagina * tam_pagina, tam_pagina);
+
+*/
+
 void *buscar_contenido_pagina_en_swap(void *archivo_mappeado, uint32_t nro_pagina, uint32_t tam_pagina)
 {
     void *contenido_pagina = malloc(tam_pagina);
