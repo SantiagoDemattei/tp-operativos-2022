@@ -159,6 +159,7 @@ typedef struct t_estructura_proceso
     char *nombre_archivo_swap;          // espacio de swap para los procesos
     void *archivo_swap;
     t_list* vector_marcos;
+    uint32_t puntero_clock;
 } t_estructura_proceso;
 
 typedef struct t_vector_marcos{

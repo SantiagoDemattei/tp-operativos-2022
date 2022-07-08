@@ -48,7 +48,7 @@ uint32_t buscar_marcos_para_asignar();
 void llenar_marcos_para_el_proceso(uint32_t inicio, uint32_t fin, uint32_t contenido);
 uint32_t buscar_marco_libre(uint32_t nro_pagina, void *contenido_pagina);
 ALGORITMO_MEMORIA algoritmo_reemplazo();
-void llenar_marcos_para_el_proceso_local(t_list* lista_marcos_del_proceso, uint32_t contenido);
+void llenar_marcos_para_el_proceso_local(t_list* lista_marcos_del_proceso, uint32_t cant_marcos,uint32_t contenido);
 void llenar_marcos_para_el_proceso(uint32_t inicio, uint32_t fin, uint32_t contenido);
 t_list *buscar_paginas_con_presencia_en_1(t_list *lista_tablas_segundo_nivel);
 uint32_t buscar_marcos_para_asignar_local(t_list *lista);

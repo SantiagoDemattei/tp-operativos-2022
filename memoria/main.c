@@ -34,7 +34,6 @@ uint32_t main(void)
         *elemento = 0; //inicializa con 0 porque al principio estan todos libres 
         list_add(marcos_totales, elemento);
     }
-    puntero_clock = 0;
     inicializar_semaforos();
     lista_estructuras = list_create(); // lista de tablas de primer nivel para que la memoria se guarde las tablas de primer nivel de todos los procesos
 

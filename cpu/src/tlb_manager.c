@@ -4,6 +4,7 @@ void agregar(t_tlb *elemento_a_agregar)
 {
     ALGORITMO_REEMPLAZO algoritmo;
     t_tlb *victima;
+    
     if (list_size_con_mutex_tlb(tlb, mutex_tlb) < configuracion_cpu->entradas_tlb)
     { // si la tlb no esta llena ===> tiene espacio libre ===> agrego la entrada nueva
         elemento_a_agregar->ultima_referencia = time(NULL); //tiempo actual 
@@ -49,7 +50,7 @@ void* comparar_ultimas_referencias(t_tlb* entrada1, t_tlb* entrada2){
 }
 
 void borrar_entrada(t_tlb* victima){
-    uint32_t indice_victima = list_find_con_mutex_tlb(tlb, victima->pagina, mutex_tlb);
+    uint32_t indice_victima = list_find_con_mutex_tlb_indice(tlb, victima->pagina, mutex_tlb);
     free(list_remove(tlb, indice_victima));
 }
 

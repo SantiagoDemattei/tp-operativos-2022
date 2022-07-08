@@ -14,6 +14,25 @@ void loggear_lista_instrucciones(t_list* lista_instrucciones, t_log* logger){
     }
 }
 
+
+void loggear_tlb(t_list* lista_tlb ,t_log* logger ,pthread_mutex_t mutex){
+pthread_mutex_lock(&mutex);
+log_info(logger, "           TLB ");
+log_info(logger," |  PAGINA  | MARCO |");
+
+
+for (int i = 0; i < list_size(lista_tlb); i++)
+{
+    t_tlb* tlb = list_get(lista_tlb, i);
+    log_info(logger," |    %d    |   %d   |", tlb->pagina, tlb->marco);
+}
+
+log_info(logger,"----------------------\n");
+pthread_mutex_unlock(&mutex);
+
+}
+
+
 void destruir_argumentos(t_argumento* argumento){
     free(argumento);
 }
@@ -177,6 +196,22 @@ uint32_t list_find_con_mutex_tlb(t_list* lista, uint32_t tlb_buscado, pthread_mu
 
     tlb_encontrado->ultima_referencia = time(NULL); //si lo encuentra, es porque en ese momento se lo esta referenciando ===> actualizo la ultima referencia
     return tlb_encontrado->marco;
+}
+
+uint32_t list_find_con_mutex_tlb_indice(t_list* lista, uint32_t tlb_buscado, pthread_mutex_t mutex){
+    
+    pthread_mutex_lock(&mutex);
+    int index;
+    for(int i=0; i< list_size(lista); i++){
+        t_tlb *elemento = list_get(lista, i);
+        if(elemento->pagina == tlb_buscado){
+            pthread_mutex_unlock(&mutex);
+            return i;
+        }
+    }
+    pthread_mutex_unlock(&mutex);
+    return -1;
+    
 }
 
 

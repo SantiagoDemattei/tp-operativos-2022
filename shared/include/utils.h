@@ -12,6 +12,7 @@
 
 void loggear_info(t_log* logger, char* mensaje, pthread_mutex_t mutex);
 void loggear_error(t_log* logger, char* mensaje, pthread_mutex_t mutex);
+void loggear_tlb(t_list* lista_tlb ,t_log* logger ,pthread_mutex_t mutex);
 void loggear_warning(t_log* logger, char* mensaje, pthread_mutex_t mutex);
 void loggear_lista_instrucciones(t_list* lista_instrucciones, t_log* logger);
 void destruir_argumentos(t_argumento* argumento);
@@ -33,6 +34,7 @@ void* queue_find(t_queue *self, bool(*condition)(void*));
 int list_size_con_mutex_tlb(t_list* lista, pthread_mutex_t mutex);
 void list_add_con_mutex_tlb(t_list* lista, t_tlb* tlb, pthread_mutex_t mutex);
 uint32_t list_find_con_mutex_tlb(t_list* lista, uint32_t tlb_buscado, pthread_mutex_t mutex);
+uint32_t list_find_con_mutex_tlb_indice(t_list* lista, uint32_t tlb_buscado, pthread_mutex_t mutex);
 bool criterio_pagina_tlb(uint32_t tlb_buscado, t_tlb* tlb_de_la_lista);
 uint32_t* list_get_con_mutex_marcos(t_list* lista, int indice, pthread_mutex_t mutex);
 int list_size_con_mutex_marcos(t_list* lista, pthread_mutex_t mutex);

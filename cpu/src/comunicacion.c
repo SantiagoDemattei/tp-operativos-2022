@@ -204,7 +204,7 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
                 entrada_tlb->pagina = direccion_fisica->numero_pagina;
                 entrada_tlb->marco = marco_presencia->marco;
                 agregar(entrada_tlb); // agrego la entrada a la tlb
-
+                loggear_tlb(tlb, logger_cpu, mutex_tlb);
                 if (marco_presencia->presencia == 0) // si presencia = 0, reiniciamos la instruccion xq hubo PF
                 {
                     pthread_mutex_lock(&mutex_running_cpu);
@@ -254,12 +254,12 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
             else // TLB MISS
             {
                 marco_presencia = obtener_marco(direccion_fisica->entrada_tabla_1er_nivel, direccion_fisica->entrada_tabla_2do_nivel, running->tabla_pagina, direccion_fisica->numero_pagina); // obtengo el marco;
-
+                printf("el marco es: %d\n", marco_presencia->marco);
                 t_tlb *entrada_tlb = malloc(sizeof(t_tlb));
                 entrada_tlb->pagina = direccion_fisica->numero_pagina;
                 entrada_tlb->marco = marco_presencia->marco;
                 agregar(entrada_tlb); // agrego la entrada a la tlb
-
+                loggear_tlb(tlb, logger_cpu, mutex_tlb);
                 if (marco_presencia->presencia == 0) // si presencia = 0, reiniciamos la instruccion
                 {
                     pthread_mutex_lock(&mutex_running_cpu);
@@ -323,6 +323,7 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
                     entrada_tlb->pagina = direccion_fisica_origen->numero_pagina;
                     entrada_tlb->marco = marco_presencia_origen->marco;
                     agregar(entrada_tlb); // agrego la entrada a la tlb
+                    loggear_tlb(tlb, logger_cpu, mutex_tlb);
                 }
                 else
                 {
@@ -332,6 +333,7 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
                     entrada_tlb->pagina = direccion_fisica_destino->numero_pagina;
                     entrada_tlb->marco = marco_presencia_destino->marco;
                     agregar(entrada_tlb); // agrego la entrada a la tlb
+                    loggear_tlb(tlb, logger_cpu, mutex_tlb);
                 }
 
                 // ARREGLAR EN EL CASO DE QUE LOS DOS NO ESTEN EN LA TLB
@@ -466,6 +468,7 @@ t_marco_presencia *obtener_marco(uint32_t entrada_tabla_1er_nivel, uint32_t entr
         loggear_error(logger_cpu, "Error en conexion", mutex_logger_cpu);
     }
     recv_num_tabla_2do_nivel(socket_memoria_cpu, &num_segundo_nivel);
+    printf("num_segundo_nivel: %d\n", num_segundo_nivel);
     liberar_conexion(socket_memoria_cpu);
 
     // SEGUNDO ACCESO A MEMORIA:
@@ -479,7 +482,7 @@ t_marco_presencia *obtener_marco(uint32_t entrada_tabla_1er_nivel, uint32_t entr
         loggear_error(logger_cpu, "Error en conexion", mutex_logger_cpu);
     }
     recv_frame(socket_memoria_cpu, &marco_presencia);
-
+    
     liberar_conexion(socket_memoria_cpu);
     return marco_presencia;
 }

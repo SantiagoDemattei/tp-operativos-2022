@@ -36,6 +36,7 @@ por ej:     .
 void *buscar_contenido_pagina_en_swap(void *archivo_mappeado, uint32_t nro_pagina, uint32_t tam_pagina)
 {
     void *contenido_pagina = malloc(tam_pagina);
+    printf("Contenido de la pagina: %d\n", nro_pagina);
     memcpy(contenido_pagina, archivo_mappeado + nro_pagina * tam_pagina, tam_pagina); // pagina ocupa desde donde arranca + tamanio de la pagina
     return contenido_pagina;                                                          // chorizo de bytes
 }
@@ -45,6 +46,7 @@ void escribir_contenido_pagina_en_marco(uint32_t inicio, void *contenido_pagina,
     pthread_mutex_lock(&mutex_espacio_memoria);
     size_t inicio_real = inicio * tamanio_frame; // donde arranca el proceso en memoria RAM
     memcpy(espacio_memoria + inicio_real + nro_frame * tamanio_frame, contenido_pagina, tamanio_frame); // copio el contenido de la pagina dentro del frame
+   loggear_info(logger, "Se escribio en marco\n", mutex_logger_memoria);
     free(contenido_pagina); // libero la variable del contenido de la pagina
     pthread_mutex_unlock(&mutex_espacio_memoria);
 }
@@ -62,6 +64,7 @@ void *buscar_contenido_pagina_en_memoria(uint32_t inicio, uint32_t nro_frame, ui
 void escribir_contenido_pagina_en_swap(void *archivo_mappeado, void *contenido_pagina, uint32_t nro_pagina, uint32_t tam_pagina)
 { // descargas la pagina de la RAM a swap
     memcpy(archivo_mappeado + nro_pagina * tam_pagina, contenido_pagina, tam_pagina);
+    loggear_info(logger, "Se escribio en swap\n", mutex_logger_memoria);
     free(contenido_pagina);
 }
 
