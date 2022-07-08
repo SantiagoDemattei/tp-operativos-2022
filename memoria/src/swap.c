@@ -46,7 +46,7 @@ void escribir_contenido_pagina_en_marco(uint32_t inicio, void *contenido_pagina,
     pthread_mutex_lock(&mutex_espacio_memoria);
     size_t inicio_real = inicio * tamanio_frame; // donde arranca el proceso en memoria RAM
     memcpy(espacio_memoria + inicio_real + nro_frame * tamanio_frame, contenido_pagina, tamanio_frame); // copio el contenido de la pagina dentro del frame
-   loggear_info(logger, "Se escribio en marco\n", mutex_logger_memoria);
+   loggear_info(logger,string_from_format("Se escribio en marco %d\n",nro_frame), mutex_logger_memoria);
     free(contenido_pagina); // libero la variable del contenido de la pagina
     pthread_mutex_unlock(&mutex_espacio_memoria);
 }
