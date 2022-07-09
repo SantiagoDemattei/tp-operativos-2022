@@ -24,48 +24,56 @@ bool crear_archivo_swap(t_estructura_proceso *estructura, uint32_t tamanio, t_lo
     return true;
 }
 
-/*
 
-REVISAR SI EN MEMCPY CUANDO VOY A GUARDAR UN VALOR TENGO QUE PONER EL &:
-por ej:     .
-            .
-    memcpy( & contenido_pagina, archivo_mappeado + nro_pagina * tam_pagina, tam_pagina);
-
-*/
-
-void *buscar_contenido_pagina_en_swap(void *archivo_mappeado, uint32_t nro_pagina, uint32_t tam_pagina)
+void *buscar_contenido_pagina_en_swap(void *archivo_mappeado, uint32_t nro_pagina, size_t tam_pagina)
 {
     void *contenido_pagina = malloc(tam_pagina);
-    printf("Contenido de la pagina: %d\n", nro_pagina);
     memcpy(contenido_pagina, archivo_mappeado + nro_pagina * tam_pagina, tam_pagina); // pagina ocupa desde donde arranca + tamanio de la pagina
+    //printf("Contenido de la pagina (%d) traida de SWAP: \n\n", nro_pagina);
+    //mostrar_contenido(contenido_pagina, tam_pagina);
     return contenido_pagina;                                                          // chorizo de bytes
 }
 
-void escribir_contenido_pagina_en_marco(uint32_t inicio, void *contenido_pagina, uint32_t nro_frame, uint32_t tamanio_frame)
+void escribir_contenido_pagina_en_marco(uint32_t inicio, void *contenido_pagina, uint32_t nro_frame, size_t tamanio_frame)
 { // cargas el contenido de la pagina en memoria RAM
     pthread_mutex_lock(&mutex_espacio_memoria);
     size_t inicio_real = inicio * tamanio_frame; // donde arranca el proceso en memoria RAM
     memcpy(espacio_memoria + inicio_real + nro_frame * tamanio_frame, contenido_pagina, tamanio_frame); // copio el contenido de la pagina dentro del frame
-   loggear_info(logger,string_from_format("Se escribio en marco %d\n",nro_frame), mutex_logger_memoria);
+    loggear_info(logger,string_from_format("Se escribio en marco %d\n", nro_frame), mutex_logger_memoria);
     free(contenido_pagina); // libero la variable del contenido de la pagina
     pthread_mutex_unlock(&mutex_espacio_memoria);
 }
 
-void *buscar_contenido_pagina_en_memoria(uint32_t inicio, uint32_t nro_frame, uint32_t tamanio_frame)
+void *buscar_contenido_pagina_en_memoria(uint32_t inicio, uint32_t nro_frame, size_t tamanio_frame)
 {
     pthread_mutex_lock(&mutex_espacio_memoria);
     void *contenido_pagina = malloc(tamanio_frame);
     size_t inicio_real = inicio * tamanio_frame;
     memcpy(contenido_pagina, espacio_memoria + inicio_real + nro_frame * tamanio_frame, tamanio_frame);
     pthread_mutex_unlock(&mutex_espacio_memoria);
+    //printf("Contenido de la pagina leida de memoria: \n\n");
+    //mostrar_contenido(contenido_pagina, tamanio_frame);
     return contenido_pagina;
 }
 
-void escribir_contenido_pagina_en_swap(void *archivo_mappeado, void *contenido_pagina, uint32_t nro_pagina, uint32_t tam_pagina)
+void escribir_contenido_pagina_en_swap(void *archivo_mappeado, void *contenido_pagina, uint32_t nro_pagina, size_t tam_pagina)
 { // descargas la pagina de la RAM a swap
+    //printf("Contenido de la pagina (%d) que se va a escribir en SWAP: \n\n", nro_pagina);
+    //mostrar_contenido(contenido_pagina, tam_pagina);
     memcpy(archivo_mappeado + nro_pagina * tam_pagina, contenido_pagina, tam_pagina);
+    msync(archivo_mappeado, tam_pagina, MS_SYNC); // https://man7.org/linux/man-pages/man2/msync.2.html 
     loggear_info(logger, "Se escribio en swap\n", mutex_logger_memoria);
     free(contenido_pagina);
+}
+
+void mostrar_contenido(void* contenido, size_t tam_pagina){
+    // mostrar cada byte del void*
+    int i;
+    for(i = 0; i < tam_pagina; i++){
+        printf("%d ", ((char*)contenido)[i]);
+    }
+    printf("\n");
+    printf("\n");
 }
 
 
