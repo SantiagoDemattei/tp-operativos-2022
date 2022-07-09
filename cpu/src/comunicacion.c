@@ -187,6 +187,7 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
             {
                 socket_memoria_cpu = crear_conexion_memoria(configuracion_cpu, logger_cpu); // creo la conexion con la memoria
                 // send a memoria del marco, el desplazamiento (este es el tercer acceso -> para acceder al dato)
+                printf("encontro en la TLB\n");
                 send_ejecutar_read(socket_memoria_cpu, marco, direccion_fisica->desplazamiento, running->id);
                 if (recv(socket_memoria_cpu, &cop, sizeof(op_code), 0) != sizeof(op_code))
                 {
@@ -215,7 +216,7 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
                 {
                     socket_memoria_cpu = crear_conexion_memoria(configuracion_cpu, logger_cpu); // creo la conexion con la memoria
                     // send a memoria del marco, el desplazamiento (este es el tercer acceso)
-                    send_ejecutar_read(socket_memoria_cpu, marco, direccion_fisica->desplazamiento, running->id);
+                    send_ejecutar_read(socket_memoria_cpu, marco_presencia->marco, direccion_fisica->desplazamiento, running->id);
                     if (recv(socket_memoria_cpu, &cop, sizeof(op_code), 0) != sizeof(op_code))
                     {
                         loggear_error(logger_cpu, "Error al leer", mutex_logger_cpu);
@@ -270,7 +271,7 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
                 {
                     socket_memoria_cpu = crear_conexion_memoria(configuracion_cpu, logger_cpu); // creo la conexion con la memoria
                     // send a memoria del marco, el desplazamaiento y el valor a escribir (este es el tercer acceso)
-                    send_ejecutar_write(socket_memoria_cpu, marco, direccion_fisica->desplazamiento, valor->argumento, running->id);
+                    send_ejecutar_write(socket_memoria_cpu, marco_presencia->marco, direccion_fisica->desplazamiento, valor->argumento, running->id);
                     recv(socket_memoria_cpu, &cop, sizeof(op_code), 0); // espero el OK
                     loggear_info(logger_cpu, "Se escribio el valor en la posicion correspondiente\n", mutex_logger_cpu);
                     liberar_conexion(socket_memoria_cpu);
@@ -347,7 +348,7 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
                 {
                     socket_memoria_cpu = crear_conexion_memoria(configuracion_cpu, logger_cpu); // creo la conexion con la memoria
                     // send a memoria del marco y desplazamiento, tanto del origen como del destino
-                    send_ejecutar_copy(socket_memoria_cpu, marco_origen, direccion_fisica_origen->desplazamiento, marco_destino, direccion_fisica_destino->desplazamiento, running->id);
+                    send_ejecutar_copy(socket_memoria_cpu, marco_presencia_origen->marco, direccion_fisica_origen->desplazamiento, marco_presencia_origen->marco, direccion_fisica_destino->desplazamiento, running->id);
                     recv(socket_memoria_cpu, &cop, sizeof(op_code), 0); // espero el OK
                     loggear_info(logger_cpu, "Se copio el valor en la posicion correspondiente\n", mutex_logger_cpu);
                     liberar_conexion(socket_memoria_cpu);

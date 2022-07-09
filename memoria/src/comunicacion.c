@@ -404,7 +404,6 @@ uint32_t buscar_marco_libre(uint32_t nro_pagina, void *contenido_pagina)
                     elemento = list_get(estructura_proceso_actual->vector_marcos, fila->marco);
                     void *contenido_pagina_que_esta_cargada = buscar_contenido_pagina_en_memoria(estructura_proceso_actual->marco_comienzo, fila->marco, configuracion_memoria->tam_pagina); // busco el contenido de la pagina actual (la que esta modificada) en la memoria
                     escribir_contenido_pagina_en_swap(estructura_proceso_actual->archivo_swap, contenido_pagina_que_esta_cargada, elemento->nro_pagina, configuracion_memoria->tam_pagina);  // escribo el contenido de la pagina actual en el archivo swap
-                    free(contenido_pagina_que_esta_cargada);
                     escribir_contenido_pagina_en_marco(estructura_proceso_actual->marco_comienzo, contenido_pagina, fila->marco, configuracion_memoria->tam_pagina); // escribo el contenido de la pagina que tengo que cargar en el marco
                     loggear_info(logger, string_from_format("Reemplazando pagina %d con bit de uso en 0 y modificado en 1", elemento->nro_pagina), mutex_logger_memoria);
                     fila->presencia = 0;
@@ -515,6 +514,8 @@ void escribir_valor(uint32_t frame, uint32_t desplazamiento, uint32_t valor_a_es
     printf("valor a escribir: %d\n", valor_a_escribir);
     memcpy(espacio_memoria + comienzo_real + frame_real + desplazamiento, &valor_a_escribir, sizeof(valor_a_escribir)); // comienzo de la memoria + todos los bytes que hay hasta el frame elegido + el desplazamiento sobre el frame
     encender_bit_modificado(frame); // pongo modificado = 1
+    printf("Mostrando contenido de la pagina: \n\n");
+    mostrar_contenido(espacio_memoria + comienzo_real + frame_real, configuracion_memoria->tam_pagina);
     pthread_mutex_unlock(&mutex_espacio_memoria);
     pthread_mutex_unlock(&mutex_estructura_proceso_actual);
 }
@@ -523,12 +524,17 @@ uint32_t leer_valor(uint32_t frame, uint32_t desplazamiento)
 {
     pthread_mutex_lock(&mutex_estructura_proceso_actual);
     pthread_mutex_lock(&mutex_espacio_memoria);
+    printf("leyendo en frame %d\n", frame);  
+    printf("desplazamiento: %d\n", desplazamiento);   
     uint32_t valor_leido;
     uint32_t inicio = estructura_proceso_actual->marco_comienzo; // marco donde comienza el proceso
     size_t comienzo_real = configuracion_memoria->tam_pagina * inicio;
     size_t frame_real = (configuracion_memoria->tam_pagina * frame); // lo que hago aca es calcular en donde esta ubicado el frame donde tengo que leer
     // tamanio pagina = tamanio frame (en paginacion)
     memcpy(&valor_leido, espacio_memoria + comienzo_real + frame_real + desplazamiento, sizeof(valor_leido)); // comienzo de la memoria + todos los bytes que hay hasta el frame elegido + el desplazamiento sobre el frame
+    printf("valor leido: %d\n", valor_leido);
+    printf("MOstrando contenido de la pagina: \n\n");
+    mostrar_contenido(espacio_memoria + comienzo_real + frame_real, configuracion_memoria->tam_pagina);
     pthread_mutex_unlock(&mutex_espacio_memoria);
     pthread_mutex_unlock(&mutex_estructura_proceso_actual);
     return valor_leido;
@@ -555,11 +561,12 @@ void encender_bit_modificado(uint32_t frame){
     // 2) poner modificado = true
     // printf("\n\n\nVOY A BUSCAR EL FRAME CON PRESENCIA EN 1 PARA MODIFICARLE EL BIT DE MODIFICADO\n\n\n");
     for(int i = 0; i<list_size(estructura_proceso_actual->lista_tablas_segundo_nivel); i++){
-        t_list* tabla_2do_nivel = list_get(estructura_proceso_actual->lista_tablas_segundo_nivel, i);
-        for(int j = 0; j<list_size(tabla_2do_nivel); j++){
-            t_estructura_2do_nivel* fila = list_get(tabla_2do_nivel, j);
+        t_tabla_pagina2* tabla_2do_nivel = list_get(estructura_proceso_actual->lista_tablas_segundo_nivel, i);
+        for(int j = 0; j<list_size(tabla_2do_nivel->segundo_nivel); j++){
+            t_estructura_2do_nivel* fila = list_get(tabla_2do_nivel->segundo_nivel, j);
             if(fila->marco == frame && fila->presencia){
                 fila->modificado = true;
+                printf("\n\n\nENCENDI EL BIT DE MODIFICADO EN LA FILA\n\n\n");
                 return;
             }
         }

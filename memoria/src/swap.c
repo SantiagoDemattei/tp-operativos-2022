@@ -29,8 +29,8 @@ void *buscar_contenido_pagina_en_swap(void *archivo_mappeado, uint32_t nro_pagin
 {
     void *contenido_pagina = malloc(tam_pagina);
     memcpy(contenido_pagina, archivo_mappeado + nro_pagina * tam_pagina, tam_pagina); // pagina ocupa desde donde arranca + tamanio de la pagina
-    //printf("Contenido de la pagina (%d) traida de SWAP: \n\n", nro_pagina);
-    //mostrar_contenido(contenido_pagina, tam_pagina);
+    printf("Contenido de la pagina (%d) traida de SWAP: \n\n", nro_pagina);
+    mostrar_contenido(contenido_pagina, tam_pagina);
     return contenido_pagina;                                                          // chorizo de bytes
 }
 
