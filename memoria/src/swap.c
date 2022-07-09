@@ -77,7 +77,6 @@ void mostrar_contenido(void* contenido, size_t tam_pagina){
 }
 
 
-
 /*
 ENCICLOPEDIA: NO BORRAR
 

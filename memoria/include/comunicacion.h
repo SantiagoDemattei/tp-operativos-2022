@@ -52,4 +52,5 @@ void llenar_marcos_para_el_proceso_local(t_list* lista_marcos_del_proceso, uint3
 void llenar_marcos_para_el_proceso(uint32_t inicio, uint32_t fin, uint32_t contenido);
 t_list *buscar_paginas_con_presencia_en_1(t_list *lista_tablas_segundo_nivel);
 uint32_t buscar_marcos_para_asignar_local(t_list *lista);
+void encender_bit_modificado(uint32_t frame);
 #endif

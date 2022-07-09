@@ -514,6 +514,7 @@ void escribir_valor(uint32_t frame, uint32_t desplazamiento, uint32_t valor_a_es
     printf("desplazamiento: %d\n", desplazamiento);
     printf("valor a escribir: %d\n", valor_a_escribir);
     memcpy(espacio_memoria + comienzo_real + frame_real + desplazamiento, &valor_a_escribir, sizeof(valor_a_escribir)); // comienzo de la memoria + todos los bytes que hay hasta el frame elegido + el desplazamiento sobre el frame
+    encender_bit_modificado(frame); // pongo modificado = 1
     pthread_mutex_unlock(&mutex_espacio_memoria);
     pthread_mutex_unlock(&mutex_estructura_proceso_actual);
 }
@@ -543,9 +544,28 @@ void copiar_valor(uint32_t frame_origen, uint32_t desplazamiento_origen, uint32_
     size_t frame_real_destino = (configuracion_memoria->tam_pagina * frame_destino); // lo que hago aca es calcular en donde esta ubicado el frame donde tengo que leer
     // tamanio pagina = tamanio frame (en paginacion)
     memcpy(espacio_memoria + comienzo_real + frame_real_destino + desplazamiento_destino, espacio_memoria + comienzo_real + frame_real_origen + desplazamiento_origen, sizeof(uint32_t)); // comienzo de la memoria + todos los bytes que hay hasta el frame elegido + el desplazamiento sobre el frame
+    void encender_bit_modificado(uint32_t frame_destino); // pongo modificado = 1 (solo en el destino, porque en el origen solo lei un valor);
     pthread_mutex_unlock(&mutex_espacio_memoria);
     pthread_mutex_unlock(&mutex_estructura_proceso_actual);
 }
+
+void encender_bit_modificado(uint32_t frame){
+    // pasos:
+    // 1) buscar en la lista de tablas de segundo nivel, la tabla de paginas que contiene el marco (y en su fila tiene el bit de presencia en 1)
+    // 2) poner modificado = true
+    // printf("\n\n\nVOY A BUSCAR EL FRAME CON PRESENCIA EN 1 PARA MODIFICARLE EL BIT DE MODIFICADO\n\n\n");
+    for(int i = 0; i<list_size(estructura_proceso_actual->lista_tablas_segundo_nivel); i++){
+        t_list* tabla_2do_nivel = list_get(estructura_proceso_actual->lista_tablas_segundo_nivel, i);
+        for(int j = 0; j<list_size(tabla_2do_nivel); j++){
+            t_estructura_2do_nivel* fila = list_get(tabla_2do_nivel, j);
+            if(fila->marco == frame && fila->presencia){
+                fila->modificado = true;
+                return;
+            }
+        }
+    }
+}
+
 
 void buscar_estructura_del_proceso(uint32_t pid) // setea la estrctura actual con el proceso que corresponde
 {
