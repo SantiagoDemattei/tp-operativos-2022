@@ -53,4 +53,8 @@ void llenar_marcos_para_el_proceso(uint32_t inicio, uint32_t fin, uint32_t conte
 t_list *buscar_paginas_con_presencia_en_1(t_list *lista_tablas_segundo_nivel);
 uint32_t buscar_marcos_para_asignar_local(t_list *lista);
 void encender_bit_modificado(uint32_t frame);
+void suspender_proceso(uint32_t pid);
+t_estructura_proceso* buscar_estructura_del_proceso_suspension(uint32_t pid);
+void liberar_estructuras(uint32_t pid);
+void destruir_vector_marcos(t_vector_marcos* marco);
 #endif

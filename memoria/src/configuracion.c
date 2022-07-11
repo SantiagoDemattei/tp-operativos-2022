@@ -42,11 +42,15 @@ t_configuracion_memoria *leer_configuracion()
 }
 
 void inicializar_semaforos()
-{
+{   
+    sem_init(&sem_swap, 0, 0);
+    sem_init(&sem_fin_swap, 0, 0);
     pthread_mutex_init(&mutex_logger_memoria, NULL);
     pthread_mutex_init(&mutex_valor_tp, NULL);
     pthread_mutex_init(&mutex_lista_estructuras, NULL);
     pthread_mutex_init(&mutex_estructura_proceso_actual, NULL);
     pthread_mutex_init(&mutex_marcos, NULL);
     pthread_mutex_init(&mutex_espacio_memoria, NULL);
+    pthread_mutex_init(&mutex_variable_global, NULL);
+    
 }

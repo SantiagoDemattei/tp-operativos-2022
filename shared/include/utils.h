@@ -37,5 +37,6 @@ uint32_t list_find_con_mutex_tlb(t_list* lista, uint32_t tlb_buscado, pthread_mu
 uint32_t list_find_con_mutex_tlb_indice(t_list* lista, uint32_t tlb_buscado, pthread_mutex_t mutex);
 bool criterio_pagina_tlb(uint32_t tlb_buscado, t_tlb* tlb_de_la_lista);
 uint32_t* list_get_con_mutex_marcos(t_list* lista, int indice, pthread_mutex_t mutex);
+void loggear_tabla_pagina2(t_list *lista_tabla_segundo_nivel, t_log *logger, pthread_mutex_t mutex);
 int list_size_con_mutex_marcos(t_list* lista, pthread_mutex_t mutex);
 #endif

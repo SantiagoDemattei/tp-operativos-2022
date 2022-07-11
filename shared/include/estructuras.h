@@ -152,13 +152,14 @@ typedef struct t_estructura_2do_nivel
 typedef struct t_estructura_proceso
 {
     uint32_t id_proceso;
+    uint32_t tamanio_proceso;
     uint32_t marco_comienzo;            // marco donde comienza el proceso
     uint32_t marco_fin;
     t_tabla_pagina1 *tabla_pagina1;     // cada proceso tiene la tabla de paginas de 1er nivel y
     t_list *lista_tablas_segundo_nivel; // lista de tablas de segundo nivel (tantas como entradas tenga la de 1er nivel)
     char *nombre_archivo_swap;          // espacio de swap para los procesos
     void *archivo_swap;
-    t_list* vector_marcos;
+    t_list* vector_marcos;              //marcos propios del proceso
     uint32_t puntero_clock;
 } t_estructura_proceso;
 
@@ -166,5 +167,24 @@ typedef struct t_vector_marcos{
     uint32_t estado; // 1 = ocupado, 0 = libre (por el proceso)
     uint32_t nro_pagina; //que pagina esta guardando en ese marco
 }t_vector_marcos;
+
+
+typedef enum{
+    CREAR_ARCHIVO_SWAP,
+    ESCRIBIR_PAGINA_SWAP,
+    BUSCAR_CONTENIDO_PAGINA_EN_SWAP,
+}INDICADOR;
+
+
+typedef struct t_estructura_swap{
+    t_estructura_proceso *proceso;
+    INDICADOR indicador;
+    void* contenido_pagina_que_esta_cargada;
+    void* contenido_pagina;
+    uint32_t nro_pagina;
+    uint32_t marco;
+    uint32_t tamanio_proceso;
+    bool es_de_cpu;
+}t_estructura_swap;
 
 #endif

@@ -29,4 +29,5 @@ void* buscar_contenido_pagina_en_memoria(uint32_t inicio, uint32_t nro_frame, si
 void escribir_contenido_pagina_en_marco(uint32_t inicio, void *contenido_pagina, uint32_t nro_frame, size_t tamanio_frame);
 void escribir_contenido_pagina_en_swap(void *archivo_mappeado, void *contenido_pagina, uint32_t nro_pagina, size_t tam_pagina);
 void mostrar_contenido(void* contenido, size_t tam_pagina);
+void swap();
 #endif

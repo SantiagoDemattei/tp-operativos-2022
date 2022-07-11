@@ -173,13 +173,9 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
             pthread_mutex_unlock(&mutex_running_cpu);
             break;
 
-        case READ: // READ(dirección_lógica): Se deberá leer el valor de memoria correspondiente a esa dirección lógica e imprimirlo por pantalla
+        case READ: // READ(direccion_logica): Se debera leer el valor de memoria correspondiente a esa direccion logica e imprimirlo por pantalla
             direccion_logica = list_get(argumentos, 0);
             direccion_fisica = calcular_mmu(direccion_logica); // calculo la direccion fisica para ir a buscarlo a memoria
-            printf("el numero de pagina es: %d\n", direccion_fisica->numero_pagina);
-            printf("la entrada de primer nivel es: %d\n", direccion_fisica->entrada_tabla_1er_nivel);
-            printf("la entrada de segundo nivel es: %d\n", direccion_fisica->entrada_tabla_2do_nivel);
-            printf("El desplazamiento es: %d\n", direccion_fisica->desplazamiento);
 
             //para leer algo necesitamos ver si la pagina esta en la TLB primero
             marco = buscar(direccion_fisica->numero_pagina); // Buscamos si la pagina esta en la TLB
@@ -187,14 +183,13 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
             {
                 socket_memoria_cpu = crear_conexion_memoria(configuracion_cpu, logger_cpu); // creo la conexion con la memoria
                 // send a memoria del marco, el desplazamiento (este es el tercer acceso -> para acceder al dato)
-                printf("encontro en la TLB\n");
                 send_ejecutar_read(socket_memoria_cpu, marco, direccion_fisica->desplazamiento, running->id);
                 if (recv(socket_memoria_cpu, &cop, sizeof(op_code), 0) != sizeof(op_code))
                 {
                     loggear_error(logger_cpu, "Error al leer", mutex_logger_cpu);
                 };
                 recv_ok_read(socket_memoria_cpu, &valor_leido);
-                loggear_info(logger_cpu, string_from_format("El valor leido en la posicion es: %d\n", valor_leido), mutex_logger_cpu);
+                loggear_info(logger_cpu, string_from_format("\x1b[32m El valor leido en la posicion es: %d\n", valor_leido), mutex_logger_cpu);
                 liberar_conexion(socket_memoria_cpu);
             }
             else // TLB MISS -> 3 ACCESOS A LA MEMORIA (vamos a buscar la pagina a la tabla de paginas)
@@ -222,7 +217,7 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
                         loggear_error(logger_cpu, "Error al leer", mutex_logger_cpu);
                     }
                     recv_ok_read(socket_memoria_cpu, &valor_leido);
-                    loggear_info(logger_cpu, string_from_format("El valor leido en la posicion es: %d\n", valor_leido), mutex_logger_cpu);
+                    loggear_info(logger_cpu, string_from_format("\x1b[32m El valor leido es: %d\n", valor_leido), mutex_logger_cpu);
                     liberar_conexion(socket_memoria_cpu);
                 }
             }
@@ -236,10 +231,6 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
         case WRITE:
             direccion_logica = list_get(argumentos, 0);
             direccion_fisica = calcular_mmu(direccion_logica);
-            printf("el numero de pagina es: %d\n", direccion_fisica->numero_pagina);
-            printf("la entrada de primer nivel es: %d\n", direccion_fisica->entrada_tabla_1er_nivel);
-            printf("la entrada de segundo nivel es: %d\n", direccion_fisica->entrada_tabla_2do_nivel);
-            printf("El desplazamiento es: %d\n", direccion_fisica->desplazamiento);
 
             valor = list_get(argumentos, 1);
             marco = buscar(direccion_fisica->numero_pagina); // BUSCA EN LA TLB
@@ -255,7 +246,6 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
             else // TLB MISS
             {
                 marco_presencia = obtener_marco(direccion_fisica->entrada_tabla_1er_nivel, direccion_fisica->entrada_tabla_2do_nivel, running->tabla_pagina, direccion_fisica->numero_pagina); // obtengo el marco;
-                printf("el marco es: %d\n", marco_presencia->marco);
                 t_tlb *entrada_tlb = malloc(sizeof(t_tlb));
                 entrada_tlb->pagina = direccion_fisica->numero_pagina;
                 entrada_tlb->marco = marco_presencia->marco;
@@ -289,20 +279,8 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
         case COPY:
             direccion_logica_origen = list_get(argumentos, 1); // direccion logica del valor que queremos escribir
             direccion_fisica_origen = calcular_mmu(direccion_logica_origen);
-            printf("ORIGEN: \n");
-            printf("el numero de pagina es: %d\n", direccion_fisica_origen->numero_pagina);
-            printf("la entrada de primer nivel es: %d\n", direccion_fisica_origen->entrada_tabla_1er_nivel);
-            printf("la entrada de segundo nivel es: %d\n", direccion_fisica_origen->entrada_tabla_2do_nivel);
-            printf("El desplazamiento es: %d\n", direccion_fisica_origen->desplazamiento);
-
             direccion_logica_destino = list_get(argumentos, 0);
             direccion_fisica_destino = calcular_mmu(direccion_logica_destino);
-            printf("DESTINO: \n");
-            printf("el numero de pagina es: %d\n", direccion_fisica_destino->numero_pagina);
-            printf("la entrada de primer nivel es: %d\n", direccion_fisica_destino->entrada_tabla_1er_nivel);
-            printf("la entrada de segundo nivel es: %d\n", direccion_fisica_destino->entrada_tabla_2do_nivel);
-            printf("El desplazamiento es: %d\n", direccion_fisica_destino->desplazamiento);
-
             marco_origen = buscar(direccion_fisica_origen->numero_pagina);   // buscamos en la TLB el origen
             marco_destino = buscar(direccion_fisica_destino->numero_pagina); // buscamos en la TLB el destino
             if (marco_origen != -1 && marco_destino != -1)                   // TLB HIT
@@ -469,7 +447,6 @@ t_marco_presencia *obtener_marco(uint32_t entrada_tabla_1er_nivel, uint32_t entr
         loggear_error(logger_cpu, "Error en conexion", mutex_logger_cpu);
     }
     recv_num_tabla_2do_nivel(socket_memoria_cpu, &num_segundo_nivel);
-    printf("num_segundo_nivel: %d\n", num_segundo_nivel);
     liberar_conexion(socket_memoria_cpu);
 
     // SEGUNDO ACCESO A MEMORIA:

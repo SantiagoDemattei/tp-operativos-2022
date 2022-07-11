@@ -59,7 +59,7 @@ uint32_t buscar(uint32_t numero_pagina) //sirve para ver si esta en la TLB y si 
     uint32_t marco_buscado = list_find_con_mutex_tlb(tlb, numero_pagina, mutex_tlb); //busca el numero de pagina en la TLB
     if (marco_buscado == -1)
     {
-        loggear_error(logger_cpu, "No se encontro la pagina en la tlb", mutex_logger_cpu);
+        loggear_warning(logger_cpu, "No se encontro la pagina en la tlb", mutex_logger_cpu);
         return -1;
     }
     loggear_warning(logger_cpu, "Se encontro la pagina en la tlb", mutex_logger_cpu);

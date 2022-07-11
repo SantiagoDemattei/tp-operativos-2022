@@ -316,6 +316,7 @@ void recibir() // de cpu
     op_code cop2;
     t_pcb *pcb;
     t_pcb *pcb_exit;
+    uint32_t id;
     float alfa = atof(configuracion_kernel->alfa);
 
     while (true)
@@ -379,13 +380,14 @@ void recibir() // de cpu
             sem_post(&sem_planificar); // como se libero la cpu por EXIT, puedo poner a otro a planificar
 
             socket_memoria = crear_conexion_memoria(configuracion_kernel, logger);
-            send_fin_proceso(socket_memoria); // le aviso a la memoria que el proceso termino para que libere las estructuras
+            send_fin_proceso(socket_memoria, pcb_exit->id); // le aviso a la memoria que el proceso termino para que libere las estructuras
 
             if (recv(socket_memoria, &cop2, sizeof(op_code), 0) != sizeof(op_code))
             {
                 loggear_error(logger, "Error al recibir el op code LIBERAR ESTRUCTURAS", mutex_logger_kernel);
                 return;
             }
+            recv_fin_proceso(socket_memoria, &id); 
             liberar_conexion(socket_memoria); // libero la conexion con la memoria
 
             pthread_mutex_lock(&mutex_cantidad_procesos);

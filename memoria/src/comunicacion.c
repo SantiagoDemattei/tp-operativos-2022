@@ -82,11 +82,11 @@ static void procesar_conexion(void *void_args)
             loggear_info(logger, "INICIALIZANDO ESTRUCTURAS\n", mutex_logger_memoria);
             t_estructura_proceso *estructura = malloc(sizeof(t_estructura_proceso)); // creamos la estructura correspondiete al proceso
             estructura->id_proceso = id_proceso;
-            // asigno el espacio de la memoria que va a ser del proceso
-            estructura->marco_comienzo = buscar_marcos_para_asignar(); // primer frame de la memoria que le puedo asignar (donde arranca el proceso)
+            estructura->tamanio_proceso = tamanio_proceso;
+            estructura->marco_comienzo = buscar_marcos_para_asignar(); // primer frame de la memoria que le puedo asignar (donde arranca el proceso), se fija en el bitmap si alguno esta libre
             if (estructura->marco_comienzo == -1)
             {
-                send_valor_tb(*cliente_socket, -1); // send para kernel de que no se puede crear las estructuras para el proceso dado que no hay marcos libres
+                send_valor_tb(*cliente_socket, -1); // send para kernel de que no se puede crear las estructuras para el proceso dado que no hay marcos libres (no hay memoria disponible)
                 loggear_error(logger, "No hay marcos libres\n", mutex_logger_memoria);
                 break;
             }
@@ -95,7 +95,7 @@ static void procesar_conexion(void *void_args)
             llenar_marcos_para_el_proceso(estructura->marco_comienzo, estructura->marco_fin, 1); // cambia a 1 los marcos ocupados (de la memoria) que le asigno al proceso
 
             estructura->vector_marcos = list_create();                                                                    // marcos propios del proceso
-            llenar_marcos_para_el_proceso_local(estructura->vector_marcos, configuracion_memoria->marcos_por_proceso, 0); // lleno la lista de marcos propios del proceso (estado en 0 porque estan todos libres y num de pagona en -1 porque no tienen paginas los marcos)
+            llenar_marcos_para_el_proceso_local(estructura->vector_marcos, configuracion_memoria->marcos_por_proceso, 0); // lleno la lista de marcos propios del proceso (estado en 0 porque estan todos libres y num de pagona en -1 porque no tienen paginas los marcos) para saber si un proceso tiene marcos libres, etc
 
             // averiguo cuantas paginas tiene mi proceso: tamanio en bytes del proceso / tamanio en bytes de una pagina
             cant_paginas = ceil(tamanio_proceso / (configuracion_memoria->tam_pagina));                   // la funcion ceil redondea para arriba
@@ -137,11 +137,12 @@ static void procesar_conexion(void *void_args)
             estructura->nombre_archivo_swap = malloc(strlen(path_archivo)); // "/home/utnso/id.swap"
             string_append(&estructura->nombre_archivo_swap, path_archivo);  // agrego el path completo a la estructura
 
-            if (!crear_archivo_swap(estructura, tamanio_proceso, logger, mutex_logger_memoria))
-            {
-                loggear_error(logger, "No se pudo crear el archivo de swap\n", mutex_logger_memoria);
-                break;
-            }
+            pthread_mutex_lock(&mutex_variable_global);
+            variable_global->proceso = estructura;
+            variable_global->indicador = CREAR_ARCHIVO_SWAP;
+            variable_global->tamanio_proceso = tamanio_proceso;
+            sem_post(&sem_swap); // habilito al swap a crear el archivo
+            pthread_mutex_unlock(&mutex_variable_global);
 
             loggear_info(logger, string_from_format("El nombre del archivo es: %s\n", estructura->nombre_archivo_swap), mutex_logger_memoria);
             list_add_con_mutex_tablas(lista_estructuras, estructura, mutex_lista_estructuras); // agrega la estructura a la lista de estructuras global donde estan las de todos los procesos
@@ -161,6 +162,7 @@ static void procesar_conexion(void *void_args)
             recv_entrada_tabla_1er_nivel(*cliente_socket, &id_tabla1, &entrada_primer_nivel);
             loggear_info(logger, "Se recibio la entrada de la tabla de paginas de primer nivel\n", mutex_logger_memoria);
             num_tabla_segundo_nivel = obtener_tabla_2do_nivel(id_tabla1, entrada_primer_nivel); // busco la tabla de segundo nivel
+            usleep(configuracion_memoria->retardo_memoria);
             send_num_tabla_2do_nivel(*cliente_socket, num_tabla_segundo_nivel);
             break;
 
@@ -169,7 +171,7 @@ static void procesar_conexion(void *void_args)
             loggear_info(logger, "Se recibio la entrada de la tabla de pagina de segundo nivel\n", mutex_logger_memoria);
             // busco el frame en la tabla de segundo nivel
             marco_presencia = obtener_frame(num_segundo_nivel, entrada_tabla_2do_nivel, nro_pagina);
-            printf("\nle mando a la cpu el marco: %d\n\n", marco_presencia->marco);
+            usleep(configuracion_memoria->retardo_memoria);
             send_frame(*cliente_socket, marco_presencia);
             break;
 
@@ -178,7 +180,7 @@ static void procesar_conexion(void *void_args)
             loggear_warning(logger, "Se recibio orden de escritura\n", mutex_logger_memoria);
             buscar_estructura_del_proceso(id_proceso); // setea el proceso actual buscandolo en la lista de estructuras global
             escribir_valor(frame, desplazamiento, valor_a_escribir);
-            printf("Enviando a kernel que se escribio\n");
+            usleep(configuracion_memoria->retardo_memoria);
             send_ok(*cliente_socket);
             break;
 
@@ -187,6 +189,7 @@ static void procesar_conexion(void *void_args)
             buscar_estructura_del_proceso(id_proceso);
             loggear_warning(logger, "Se recibio orden de lectura\n", mutex_logger_memoria);
             valor_leido = leer_valor(frame, desplazamiento);
+            usleep(configuracion_memoria->retardo_memoria);
             send_ok_read(*cliente_socket, valor_leido);
             break;
 
@@ -195,21 +198,23 @@ static void procesar_conexion(void *void_args)
             buscar_estructura_del_proceso(id_proceso); // setea la estrctura actual
             loggear_warning(logger, "Se recibio orden de copia\n", mutex_logger_memoria);
             copiar_valor(frame_origen, desplazamiento_origen, frame_destino, desplazamiento_destino);
+            usleep(configuracion_memoria->retardo_memoria);
             send_ok(*cliente_socket);
             break;
 
         case LIBERAR_ESTRUCTURAS:
             loggear_info(logger, "LIBERANDO ESTRUCTURAS", mutex_logger_memoria);
-
-            // ACA VA EL CODIGO PARA LIBERAR LAS ESTRUCTURAS
-            send_fin_proceso(*cliente_socket);
+            recv_fin_proceso(*cliente_socket, &id_proceso);
+            // HACER LO QUE SE PIDE
+            liberar_estructuras(id_proceso);
+            send_fin_proceso(*cliente_socket, id_proceso);
             free(cliente_socket);
             break;
 
         case SUSPENSION:
             loggear_info(logger, "SUSPENDIENDO PROCESO\n", mutex_logger_memoria);
             recv_suspension(*cliente_socket, &id_proceso);
-            // FALTA VER QUE HACE
+            suspender_proceso(id_proceso);
             loggear_warning(logger, string_from_format("Se suspendio el proceso %d\n", id_proceso), mutex_logger_memoria);
             send_confirmacion_suspension(*cliente_socket);
             free(cliente_socket);
@@ -298,6 +303,7 @@ t_list *buscar_tabla_segundo_nivel(uint32_t nro_tabla_2do_nivel) // busca la tab
 {
     pthread_mutex_lock(&mutex_estructura_proceso_actual);
     t_list *lista_tablas_2do_nivel = estructura_proceso_actual->lista_tablas_segundo_nivel;
+    loggear_tabla_pagina2(lista_tablas_2do_nivel, logger, mutex_logger_memoria);
     pthread_mutex_unlock(&mutex_estructura_proceso_actual);
     for (int i = 0; i < list_size(lista_tablas_2do_nivel); i++)
     {
@@ -315,9 +321,7 @@ t_marco_presencia *obtener_frame(uint32_t nro_tabla_2do_nivel, uint32_t entrada_
     t_estructura_2do_nivel *fila_2do_nivel;
     t_marco_presencia *marco_presencia = malloc(sizeof(t_marco_presencia));
     pthread_mutex_lock(&mutex_lista_estructuras);
-    ;
     t_list *tabla_segundo_nivel = buscar_tabla_segundo_nivel(nro_tabla_2do_nivel);
-    printf("Estoy en obtener_frame que tiene %d tablas\n", list_size(tabla_segundo_nivel));
     fila_2do_nivel = list_get(tabla_segundo_nivel, entrada_tabla_2do_nivel); // obtiene la fila que quiere de la tabla de segundo nivel
     if (fila_2do_nivel->presencia == 1)
     {
@@ -333,10 +337,15 @@ t_marco_presencia *obtener_frame(uint32_t nro_tabla_2do_nivel, uint32_t entrada_
     else // fallo de pagina (bit de presencia = 0) -> hay que cargar la pagina en memoria (porque esta en swap)
     {
         // ir a buscar la pagina en swap
-        printf("El bit de presencia es 0\n");
-        void *contenido_pagina = buscar_contenido_pagina_en_swap(estructura_proceso_actual->archivo_swap, nro_pagina, configuracion_memoria->tam_pagina); // busca el contenido de la pagina en el archivo de swap (porque no esta en la memoria)
-        uint32_t marco_asignado = buscar_marco_libre(nro_pagina, contenido_pagina);                                                                       // obtengo un frame libre y le cargo el contenido
 
+        pthread_mutex_lock(&mutex_variable_global);
+        variable_global->nro_pagina = nro_pagina;
+        variable_global->proceso = estructura_proceso_actual;
+        variable_global->indicador = BUSCAR_CONTENIDO_PAGINA_EN_SWAP;
+        sem_post(&sem_swap);
+        sem_wait(&sem_fin_swap);
+        uint32_t marco_asignado = buscar_marco_libre(nro_pagina, variable_global->contenido_pagina); // obtengo un frame libre y le cargo el contenido
+        pthread_mutex_unlock(&mutex_variable_global);
         fila_2do_nivel->marco = marco_asignado; // cambio el marco de la fila de la tabla de paginas al marco en el que cargue la pagina
         fila_2do_nivel->presencia = 1;          // cambio el bit de presencia a 1 en la fila de la tabla de paginas
         fila_2do_nivel->uso = 1;
@@ -372,18 +381,15 @@ uint32_t buscar_marco_libre(uint32_t nro_pagina, void *contenido_pagina)
     }
     // ELSE
     ALGORITMO_MEMORIA algoritmo_memoria = algoritmo_reemplazo();
-
     t_list *paginas_cargadas = buscar_paginas_con_presencia_en_1(estructura_proceso_actual->lista_tablas_segundo_nivel); // busco las paginas con presencia en 1 en la tabla de paginas del proceso actual
-    printf("\nPaginas cargadas: %d\n", list_size(paginas_cargadas));
+    uint32_t vuelta = 0;
+    uint32_t cant_marcos_leidos = 0;
     switch (algoritmo_memoria)
     {
     case CLOCK:
-        printf("entre al algoritmo de reemplazo CLOCK\n");
-        printf("marco asignado: %d\n", marco_asignado);
-        for (int i = estructura_proceso_actual->puntero_clock; i < list_size(paginas_cargadas); i++)
-        {                               // recorro todas las paginas con presencia en 1
+        for (int i = estructura_proceso_actual->puntero_clock; i < list_size(paginas_cargadas); i++) // recorro todas las paginas con presencia en 1
+        {
             t_estructura_2do_nivel *fila = list_get(paginas_cargadas, i); // obtengo una fila
-                                                                          // TODO: QUE PASA SI LA PAGINA SON IGUALES
             if (fila->uso == 0)                                           // si la fila que obtuve tiene U = 0
             {
                 if (fila->modificado == 0)
@@ -392,10 +398,17 @@ uint32_t buscar_marco_libre(uint32_t nro_pagina, void *contenido_pagina)
                     elemento = list_get(estructura_proceso_actual->vector_marcos, marco_asignado);
                     escribir_contenido_pagina_en_marco(estructura_proceso_actual->marco_comienzo, contenido_pagina, marco_asignado, configuracion_memoria->tam_pagina); // escribo el contenido de la nueva pagina en el marco asignado
                     loggear_info(logger, string_from_format("Reemplazando pagina %d con bit de uso en 0 y modificado en 0", elemento->nro_pagina), mutex_logger_memoria);
-                    fila->presencia = 0;               // como descarte una pagina, edito su entrada de la tabla de paginas poniendole el bit de presencia en 0 (ya que no esta mas presente en memoria)
-                    elemento->nro_pagina = nro_pagina; // le actualizo la pagina
-                    elemento->estado = 1;              // el estado permanece en 1 xq saque una pagina e inmediatamente meti otra
-                    estructura_proceso_actual->puntero_clock = i + 1;
+                    fila->presencia = 0;                      // como descarte una pagina, edito su entrada de la tabla de paginas poniendole el bit de presencia en 0 (ya que no esta mas presente en memoria)
+                    elemento->nro_pagina = nro_pagina;        // le actualizo la pagina
+                    elemento->estado = 1;                     // el estado permanece en 1 xq saque una pagina e inmediatamente meti otra
+                    if (i == list_size(paginas_cargadas) - 1) // si es el ultimo elemento, pongo el puntero en el primer elemento
+                    {
+                        estructura_proceso_actual->puntero_clock = 0;
+                    }
+                    else
+                    {
+                        estructura_proceso_actual->puntero_clock = i + 1;
+                    }
                     pthread_mutex_unlock(&mutex_estructura_proceso_actual);
                     return marco_asignado;
                 }
@@ -403,13 +416,27 @@ uint32_t buscar_marco_libre(uint32_t nro_pagina, void *contenido_pagina)
                 {
                     elemento = list_get(estructura_proceso_actual->vector_marcos, fila->marco);
                     void *contenido_pagina_que_esta_cargada = buscar_contenido_pagina_en_memoria(estructura_proceso_actual->marco_comienzo, fila->marco, configuracion_memoria->tam_pagina); // busco el contenido de la pagina actual (la que esta modificada) en la memoria
-                    escribir_contenido_pagina_en_swap(estructura_proceso_actual->archivo_swap, contenido_pagina_que_esta_cargada, elemento->nro_pagina, configuracion_memoria->tam_pagina);  // escribo el contenido de la pagina actual en el archivo swap
+                                                                                                                                                                                             // escribo la pagina actual en swap
+                    variable_global->contenido_pagina_que_esta_cargada = contenido_pagina_que_esta_cargada;
+                    variable_global->nro_pagina = elemento->nro_pagina;
+                    variable_global->proceso = estructura_proceso_actual;
+                    variable_global->es_de_cpu = true;
+                    variable_global->indicador = ESCRIBIR_PAGINA_SWAP;
+                    sem_post(&sem_swap);
+                    sem_wait(&sem_fin_swap);
                     escribir_contenido_pagina_en_marco(estructura_proceso_actual->marco_comienzo, contenido_pagina, fila->marco, configuracion_memoria->tam_pagina); // escribo el contenido de la pagina que tengo que cargar en el marco
                     loggear_info(logger, string_from_format("Reemplazando pagina %d con bit de uso en 0 y modificado en 1", elemento->nro_pagina), mutex_logger_memoria);
                     fila->presencia = 0;
                     elemento->nro_pagina = nro_pagina;
                     elemento->estado = 1;
-                    estructura_proceso_actual->puntero_clock = i + 1;
+                    if (i == list_size(paginas_cargadas) - 1) // si es el ultimo elemento, pongo el puntero en el primer elemento
+                    {
+                        estructura_proceso_actual->puntero_clock = 0;
+                    }
+                    else
+                    {
+                        estructura_proceso_actual->puntero_clock = i + 1;
+                    }
                     marco_asignado = fila->marco;
                     pthread_mutex_unlock(&mutex_estructura_proceso_actual);
                     return marco_asignado;
@@ -430,6 +457,78 @@ uint32_t buscar_marco_libre(uint32_t nro_pagina, void *contenido_pagina)
         break;
 
     case CLOCK_M:
+        for (int i = estructura_proceso_actual->puntero_clock; i < list_size(paginas_cargadas); i++)
+        {
+            cant_marcos_leidos++;                                         // contamos los marcos que vamos leyendo
+            t_estructura_2do_nivel *fila = list_get(paginas_cargadas, i); // obtengo una fila
+
+            if ((vuelta % 2 == 0) && (fila->uso == 0) && (fila->modificado == 0)) // la vuelta es par (la vuelta 1 es par porque es la 0)
+            {
+                marco_asignado = fila->marco; // el marco que le asigno a la nueva pagina, es el mismo que tenia la pagina que descarte
+                elemento = list_get(estructura_proceso_actual->vector_marcos, marco_asignado);
+                escribir_contenido_pagina_en_marco(estructura_proceso_actual->marco_comienzo, contenido_pagina, marco_asignado, configuracion_memoria->tam_pagina); // escribo el contenido de la nueva pagina en el marco asignado
+                loggear_info(logger, string_from_format("Reemplazando pagina %d con bit de uso en 0 y modificado en 0", elemento->nro_pagina), mutex_logger_memoria);
+                fila->presencia = 0;                      // como descarte una pagina, edito su entrada de la tabla de paginas poniendole el bit de presencia en 0 (ya que no esta mas presente en memoria)
+                elemento->nro_pagina = nro_pagina;        // le actualizo la pagina
+                elemento->estado = 1;                     // el estado permanece en 1 xq saque una pagina e inmediatamente meti otra
+                if (i == list_size(paginas_cargadas) - 1) // si es el ultimo elemento, pongo el puntero en el primer elemento
+                {
+                    estructura_proceso_actual->puntero_clock = 0;
+                }
+                else
+                {
+                    estructura_proceso_actual->puntero_clock = i + 1; // avanza el puntero
+                }
+                pthread_mutex_unlock(&mutex_estructura_proceso_actual);
+                return marco_asignado;
+            }
+
+            if ((vuelta % 2 != 0) && (fila->uso == 0) && (fila->modificado == 1))
+            {
+                elemento = list_get(estructura_proceso_actual->vector_marcos, fila->marco);
+                void *contenido_pagina_que_esta_cargada = buscar_contenido_pagina_en_memoria(estructura_proceso_actual->marco_comienzo, fila->marco, configuracion_memoria->tam_pagina); // busco el contenido de la pagina actual (la que esta modificada) en la memoria
+                variable_global->contenido_pagina_que_esta_cargada = contenido_pagina_que_esta_cargada;
+                variable_global->nro_pagina = elemento->nro_pagina;
+                variable_global->proceso = estructura_proceso_actual;
+                variable_global->es_de_cpu = true;
+                variable_global->indicador = ESCRIBIR_PAGINA_SWAP;
+                sem_post(&sem_swap);
+                sem_wait(&sem_fin_swap);
+                escribir_contenido_pagina_en_marco(estructura_proceso_actual->marco_comienzo, contenido_pagina, fila->marco, configuracion_memoria->tam_pagina); // escribo el contenido de la pagina que tengo que cargar en el marco
+                loggear_info(logger, string_from_format("Reemplazando pagina %d con bit de uso en 0 y modificado en 1", elemento->nro_pagina), mutex_logger_memoria);
+                fila->presencia = 0;
+                elemento->nro_pagina = nro_pagina;
+                elemento->estado = 1;
+
+                if (i == list_size(paginas_cargadas) - 1) // si es el ultimo elemento, pongo el puntero en el primer elemento
+                {
+                    estructura_proceso_actual->puntero_clock = 0;
+                }
+                else
+                {
+                    estructura_proceso_actual->puntero_clock = i + 1; // avanza el puntero
+                }
+                pthread_mutex_unlock(&mutex_estructura_proceso_actual);
+                marco_asignado = fila->marco; // escribo la pagina actual en swap
+                return marco_asignado;
+            }
+            else if (vuelta % 2 != 0)
+            {
+                elemento = list_get(estructura_proceso_actual->vector_marcos, fila->marco);
+                fila->uso = false; // a todos los marcos que no elija les baja el bit de uso a 0
+                loggear_info(logger, string_from_format("Pagina %d con bit de uso en 1, ahora 0 ", elemento->nro_pagina), mutex_logger_memoria);
+            }
+
+            if (i == list_size(paginas_cargadas) - 1) // si i es igual al tope menos 1. Para que vuelva a correr el for desde el principio
+            {
+                i = -1; // para que vuelva a empezar desde el primer marco
+            }
+            if (cant_marcos_leidos == list_size(paginas_cargadas))
+            {
+                vuelta++; // si ya paso por todos los marcos, aumenta la cantidad de vueltas
+                cant_marcos_leidos = 0;
+            }
+        }
         break;
 
     default:
@@ -443,15 +542,12 @@ uint32_t buscar_marco_libre(uint32_t nro_pagina, void *contenido_pagina)
 t_list *buscar_paginas_con_presencia_en_1(t_list *lista_tablas_segundo_nivel)
 { // recorro cada fila de cada tabla de paginas de segundo nivel y devuelvo una lista con las paginas con presencia en 1
     t_list *paginas_cargadas = list_create();
-    printf("List size: %d\n", list_size(lista_tablas_segundo_nivel));
     for (int i = 0; i < list_size(lista_tablas_segundo_nivel); i++)
     {
         t_tabla_pagina2 *tabla_segundo_nivel = list_get(lista_tablas_segundo_nivel, i);
-        printf("Tabla de segundo nivel id : %d\n", tabla_segundo_nivel->id_tabla); // ACA TIRAba CUALQUIER COSA
         for (int j = 0; j < list_size(tabla_segundo_nivel->segundo_nivel); j++)
         { // recorro las filas de cada tabla
             t_estructura_2do_nivel *fila = list_get(tabla_segundo_nivel->segundo_nivel, j);
-            printf("el marco es: %d y el bit de uso es %d\n", fila->marco, fila->uso);
             if (fila->presencia == 1)
             {
                 list_add(paginas_cargadas, fila);
@@ -480,7 +576,7 @@ uint32_t buscar_marcos_para_asignar()
         if (*elemento == 0)
         {
             pthread_mutex_unlock(&mutex_marcos);
-            return i; // se guarda el indice de la lista donde esta ese marco libre
+            return i; // devuelve el indice de la lista donde esta ese marco libre
         }
     }
     pthread_mutex_unlock(&mutex_marcos);
@@ -507,15 +603,10 @@ void escribir_valor(uint32_t frame, uint32_t desplazamiento, uint32_t valor_a_es
     size_t frame_real = (configuracion_memoria->tam_pagina * frame); // lo que hago aca es calcular en donde esta ubicado el frame donde tengo que escribir
     // tamanio pagina = tamanio frame (en paginacion)
     uint32_t inicio = estructura_proceso_actual->marco_comienzo;
-    size_t comienzo_real = configuracion_memoria->tam_pagina * inicio; // donde verdaderamente comienza el proceso
-    printf("Escribiendo en frame %d\n", frame);
-    printf("frame real: %d\n", frame_real);
-    printf("desplazamiento: %d\n", desplazamiento);
-    printf("valor a escribir: %d\n", valor_a_escribir);
+    size_t comienzo_real = configuracion_memoria->tam_pagina * inicio;                                                  // donde verdaderamente comienza el proceso
     memcpy(espacio_memoria + comienzo_real + frame_real + desplazamiento, &valor_a_escribir, sizeof(valor_a_escribir)); // comienzo de la memoria + todos los bytes que hay hasta el frame elegido + el desplazamiento sobre el frame
-    encender_bit_modificado(frame); // pongo modificado = 1
-    printf("Mostrando contenido de la pagina: \n\n");
-    mostrar_contenido(espacio_memoria + comienzo_real + frame_real, configuracion_memoria->tam_pagina);
+    encender_bit_modificado(frame);                                                                                     // pongo modificado = 1
+    // mostrar_contenido(espacio_memoria + comienzo_real + frame_real, configuracion_memoria->tam_pagina);
     pthread_mutex_unlock(&mutex_espacio_memoria);
     pthread_mutex_unlock(&mutex_estructura_proceso_actual);
 }
@@ -524,17 +615,13 @@ uint32_t leer_valor(uint32_t frame, uint32_t desplazamiento)
 {
     pthread_mutex_lock(&mutex_estructura_proceso_actual);
     pthread_mutex_lock(&mutex_espacio_memoria);
-    printf("leyendo en frame %d\n", frame);  
-    printf("desplazamiento: %d\n", desplazamiento);   
     uint32_t valor_leido;
     uint32_t inicio = estructura_proceso_actual->marco_comienzo; // marco donde comienza el proceso
     size_t comienzo_real = configuracion_memoria->tam_pagina * inicio;
     size_t frame_real = (configuracion_memoria->tam_pagina * frame); // lo que hago aca es calcular en donde esta ubicado el frame donde tengo que leer
     // tamanio pagina = tamanio frame (en paginacion)
     memcpy(&valor_leido, espacio_memoria + comienzo_real + frame_real + desplazamiento, sizeof(valor_leido)); // comienzo de la memoria + todos los bytes que hay hasta el frame elegido + el desplazamiento sobre el frame
-    printf("valor leido: %d\n", valor_leido);
-    printf("MOstrando contenido de la pagina: \n\n");
-    mostrar_contenido(espacio_memoria + comienzo_real + frame_real, configuracion_memoria->tam_pagina);
+    // mostrar_contenido(espacio_memoria + comienzo_real + frame_real, configuracion_memoria->tam_pagina);
     pthread_mutex_unlock(&mutex_espacio_memoria);
     pthread_mutex_unlock(&mutex_estructura_proceso_actual);
     return valor_leido;
@@ -550,29 +637,30 @@ void copiar_valor(uint32_t frame_origen, uint32_t desplazamiento_origen, uint32_
     size_t frame_real_destino = (configuracion_memoria->tam_pagina * frame_destino); // lo que hago aca es calcular en donde esta ubicado el frame donde tengo que leer
     // tamanio pagina = tamanio frame (en paginacion)
     memcpy(espacio_memoria + comienzo_real + frame_real_destino + desplazamiento_destino, espacio_memoria + comienzo_real + frame_real_origen + desplazamiento_origen, sizeof(uint32_t)); // comienzo de la memoria + todos los bytes que hay hasta el frame elegido + el desplazamiento sobre el frame
-    void encender_bit_modificado(uint32_t frame_destino); // pongo modificado = 1 (solo en el destino, porque en el origen solo lei un valor);
+    void encender_bit_modificado(uint32_t frame_destino);                                                                                                                                 // pongo modificado = 1 (solo en el destino, porque en el origen solo lei un valor);
     pthread_mutex_unlock(&mutex_espacio_memoria);
     pthread_mutex_unlock(&mutex_estructura_proceso_actual);
 }
 
-void encender_bit_modificado(uint32_t frame){
+void encender_bit_modificado(uint32_t frame)
+{
     // pasos:
     // 1) buscar en la lista de tablas de segundo nivel, la tabla de paginas que contiene el marco (y en su fila tiene el bit de presencia en 1)
     // 2) poner modificado = true
-    // printf("\n\n\nVOY A BUSCAR EL FRAME CON PRESENCIA EN 1 PARA MODIFICARLE EL BIT DE MODIFICADO\n\n\n");
-    for(int i = 0; i<list_size(estructura_proceso_actual->lista_tablas_segundo_nivel); i++){
-        t_tabla_pagina2* tabla_2do_nivel = list_get(estructura_proceso_actual->lista_tablas_segundo_nivel, i);
-        for(int j = 0; j<list_size(tabla_2do_nivel->segundo_nivel); j++){
-            t_estructura_2do_nivel* fila = list_get(tabla_2do_nivel->segundo_nivel, j);
-            if(fila->marco == frame && fila->presencia){
+    for (int i = 0; i < list_size(estructura_proceso_actual->lista_tablas_segundo_nivel); i++)
+    {
+        t_tabla_pagina2 *tabla_2do_nivel = list_get(estructura_proceso_actual->lista_tablas_segundo_nivel, i);
+        for (int j = 0; j < list_size(tabla_2do_nivel->segundo_nivel); j++)
+        {
+            t_estructura_2do_nivel *fila = list_get(tabla_2do_nivel->segundo_nivel, j);
+            if (fila->marco == frame && fila->presencia)
+            {
                 fila->modificado = true;
-                printf("\n\n\nENCENDI EL BIT DE MODIFICADO EN LA FILA\n\n\n");
                 return;
             }
         }
     }
 }
-
 
 void buscar_estructura_del_proceso(uint32_t pid) // setea la estrctura actual con el proceso que corresponde
 {
@@ -622,9 +710,104 @@ ALGORITMO_MEMORIA algoritmo_reemplazo()
     {
         return CLOCK;
     }
-    else if (strcmp(configuracion_memoria->algoritmo_reemplazo, "CLOCK-M"))
+    else if (strcmp(configuracion_memoria->algoritmo_reemplazo, "CLOCK-M") == 0)
     {
         return CLOCK_M;
     }
     return -1;
+}
+
+t_estructura_proceso *buscar_estructura_del_proceso_suspension(uint32_t pid)
+{ // devuelve la estructura del proceso que vamos a suspender
+
+    t_estructura_proceso *proceso_aux;
+    for (int i = 0; i < list_size(lista_estructuras); i++)
+    {
+        proceso_aux = list_get(lista_estructuras, i);
+        if (proceso_aux->id_proceso == pid)
+        {
+            return proceso_aux;
+        }
+    }
+}
+
+void suspender_proceso(uint32_t pid)
+{
+    pthread_mutex_lock(&mutex_lista_estructuras);
+    t_estructura_proceso *estructura_del_proceso = buscar_estructura_del_proceso_suspension(pid);
+    uint32_t comienzo = estructura_del_proceso->marco_comienzo;
+    t_list *marcos_del_proceso = estructura_del_proceso->vector_marcos;
+    pthread_mutex_unlock(&mutex_lista_estructuras);
+
+    pthread_mutex_lock(&mutex_variable_global);
+    variable_global->proceso = estructura_del_proceso;
+    variable_global->es_de_cpu = false; // la cpu necesita de swap para leer/escribir, y el kernel para suspender e inicializar estructuras. Si suspendemos un proceso, (no es de CPU) el swap no tiene que dormirse.
+    // descargarmos las paginas modificadas a disco
+    for (int i = 0; i < list_size(marcos_del_proceso); i++)
+    { // agarramos cada marco de los marcos propios del proceso
+        t_vector_marcos *marco = list_get(marcos_del_proceso, i);
+        if (marco->estado)
+        { // si el marco esta ocupado
+            for (int j = 0; j < list_size(estructura_del_proceso->lista_tablas_segundo_nivel); j++)
+            {                                                                                                       // agarro la lista de tablas de 2do nivel
+                t_tabla_pagina2 *tabla_2do_nivel = list_get(estructura_del_proceso->lista_tablas_segundo_nivel, j); // tomo una de las tablas
+                for (int k = 0; k < list_size(tabla_2do_nivel->segundo_nivel); k++)
+                { // voy a tomar cada fila de la tabla para buscar el marco que necesito
+                    t_estructura_2do_nivel *fila = list_get(tabla_2do_nivel->segundo_nivel, k);
+                    if (fila->marco == i && fila->presencia)
+                    { // si encuentra el marco y el bit de presencia esta en 1
+                        if (fila->modificado)
+                        { // si esta modificada tenemos que escribir el contenido de la pagina en swap
+                            variable_global->indicador = ESCRIBIR_PAGINA_SWAP;
+                            variable_global->contenido_pagina_que_esta_cargada = buscar_contenido_pagina_en_memoria(comienzo, i, configuracion_memoria->tam_pagina);
+                            variable_global->nro_pagina = marco->nro_pagina;
+                            sem_post(&sem_swap);
+                            loggear_warning(logger, string_from_format("Suspendiendo proceso %d, descargando pagina %d modificada", pid, marco->nro_pagina), mutex_logger_memoria);
+                            sem_wait(&sem_fin_swap);
+                            fila->modificado = false;
+                            marco->estado = false;
+                            marco->nro_pagina = -1;
+                        }
+                        fila->presencia = false; // cambio el bit de presencia de todas las paginas.
+                    }
+                }
+            }
+        }
+    }
+    pthread_mutex_unlock(&mutex_variable_global);
+    pthread_mutex_lock(&mutex_marcos);
+    for (int i = comienzo; i < comienzo + configuracion_memoria->marcos_por_proceso; i++)
+    {
+        uint32_t *elemento = list_get(marcos_totales, i);
+        *elemento = 0; // los marcos que tenia asignados el proceso ahora estan libres
+    }
+    pthread_mutex_unlock(&mutex_marcos);
+    msync(estructura_del_proceso->archivo_swap, estructura_del_proceso->tamanio_proceso, MS_SYNC); // actualizo lo que tiene la variable del archivo mapeado en swap (archivo fisico)
+}
+
+void liberar_estructuras(uint32_t pid)
+{
+    pthread_mutex_lock(&mutex_lista_estructuras);
+    t_estructura_proceso *estructura_del_proceso = buscar_estructura_del_proceso_suspension(pid); // LA FUNCION DICE SUSPENSION, pero busca la estructura en la lista de estructuras por pid
+    pthread_mutex_unlock(&mutex_lista_estructuras);
+    uint32_t comienzo = estructura_del_proceso->marco_comienzo;
+    t_list *marcos_del_proceso = estructura_del_proceso->vector_marcos;
+
+    pthread_mutex_lock(&mutex_marcos);
+    for (int i = comienzo; i < comienzo + configuracion_memoria->marcos_por_proceso; i++)
+    {
+        uint32_t *elemento = list_get(marcos_totales, i);
+        *elemento = 0; // los marcos que tenia asignados el proceso ahora estan libres
+    }
+    pthread_mutex_unlock(&mutex_marcos);
+
+    munmap(estructura_del_proceso->archivo_swap, estructura_del_proceso->tamanio_proceso); // desmapeamos el archivo swap del proceso (liberamos la variable)
+    remove(estructura_del_proceso->nombre_archivo_swap);
+    list_destroy_and_destroy_elements(estructura_del_proceso->vector_marcos, (void *)destruir_vector_marcos); // destruimos la lista de marcos del proceso
+    free(estructura_del_proceso);
+}
+
+void destruir_vector_marcos(t_vector_marcos *marco)
+{
+    free(marco);
 }

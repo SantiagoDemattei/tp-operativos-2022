@@ -23,7 +23,8 @@ bool recv_inicializar_estructuras(uint32_t fd, uint32_t* tamanio_proceso, uint32
 bool send_valor_tb(uint32_t fd, uint32_t valor_tb);
 bool recv_valor_tb(uint32_t fd, uint32_t* valor_tb);
 bool send_interrupcion_por_nuevo_ready(uint32_t fd);
-bool send_fin_proceso(uint32_t fd);
+bool send_fin_proceso(uint32_t fd, uint32_t id);
+bool recv_fin_proceso(uint32_t fd, uint32_t *id);
 bool send_suspension(uint32_t fd, uint32_t id);
 bool recv_suspension(uint32_t fd, uint32_t* id);
 bool send_confirmacion_suspension(uint32_t fd);

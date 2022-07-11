@@ -23,7 +23,7 @@ static void *serializar_t_list_instrucciones(size_t *size, t_list *lista)
     {
         t_instruccion *instruccion = list_iterator_next(list_it);
         uint32_t tamanioCadena = strlen(instruccion->identificador);
-        memcpy(stream + offset, &tamanioCadena, sizeof(uint32_t)); // longitud identificador
+        memcpy(stream + offset, &tamanioCadena, sizeof(uint32_t)); //longitud identificador
         offset += sizeof(uint32_t);
 
         memcpy(stream + offset, instruccion->identificador, strlen(instruccion->identificador)); // identificador
@@ -313,13 +313,44 @@ bool recv_inicializar_estructuras(uint32_t fd, uint32_t* tamanio_proceso, uint32
 #pragma endregion
 
 #pragma region FIN_PROCESO
-bool send_fin_proceso(uint32_t fd)
+
+bool send_fin_proceso(uint32_t fd, uint32_t id)
 {
     op_code cop = LIBERAR_ESTRUCTURAS;
-    if (send(fd, &cop, sizeof(op_code), 0) != sizeof(op_code))
+    size_t size = sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t);
+    void *stream = malloc(size);
+    size_t size_payload = size - sizeof(op_code) - sizeof(size_t);
+    memcpy(stream, &cop, sizeof(op_code));
+    memcpy(stream + sizeof(op_code), &size_payload, sizeof(size_t));
+    memcpy(stream + sizeof(op_code) + sizeof(size_t), &id, sizeof(uint32_t));
+    if (send(fd, stream, size, 0) == -1)
+    {
+        free(stream);
         return false;
+    }
+    free(stream);
     return true;
 }
+
+bool recv_fin_proceso(uint32_t fd, uint32_t *id)
+{
+    size_t size;
+    if (recv(fd, &size, sizeof(size_t), 0) != sizeof(size_t)) // payload
+    {
+        return false;
+    }
+    void *stream = malloc(size);
+    if (recv(fd, stream, size, 0) != size)
+    {
+        free(stream);
+        return false;
+    }
+    // recibe el  payload
+    memcpy(id, stream, sizeof(uint32_t));
+    free(stream);
+    return true;
+}
+
 #pragma endregion
 
 #pragma region VALOR_TB

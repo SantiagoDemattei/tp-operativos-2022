@@ -13,7 +13,7 @@
 #include "../../shared/include/utils.h"
 
 t_configuracion_memoria* leer_configuracion();
-
+t_estructura_swap* variable_global;
 t_configuracion_memoria* configuracion_memoria;
 t_log* logger;
 pthread_mutex_t mutex_logger_memoria;
@@ -23,6 +23,9 @@ pthread_mutex_t mutex_tamanio_pagina;
 pthread_mutex_t mutex_estructura_proceso_actual;
 pthread_mutex_t mutex_marcos;
 pthread_mutex_t mutex_espacio_memoria;
+pthread_mutex_t mutex_variable_global;
+sem_t sem_swap;
+sem_t sem_fin_swap;
 void* espacio_memoria;
 int cant_total_marcos;
 t_list* marcos_totales; 

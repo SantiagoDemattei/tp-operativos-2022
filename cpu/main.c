@@ -31,7 +31,7 @@ uint32_t main(void){
     {   
      loggear_error(logger_cpu, "ERROR DE CONEXION", mutex_logger_cpu);
     }
-    recv_tamanio_y_cant_entradas(socket_memoria_cpu, &tamanio_pagina, &cant_entradas_por_tabla); //recibo el tamano de la pagina y la cantidad de entradas por tabla que me manda la memoria
+    recv_tamanio_y_cant_entradas(socket_memoria_cpu, &tamanio_pagina, &cant_entradas_por_tabla); //recibo el tamano de la pagina y la cantidad de entradas por tabla que me manda la memoria para la MMU
     liberar_conexion(socket_memoria_cpu);
     
     while(server_escuchar(logger_cpu, "CPU DISPATCH", socket_cpu_dispatch) != 0 && server_escuchar(logger_cpu, "CPU INTERRUPT", socket_cpu_interrupt) != 0);
