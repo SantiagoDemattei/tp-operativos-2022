@@ -1,0 +1,30 @@
+[INFO] 17:13:13:506 CPU/(17486:17486): Esperando a 127.0.0.1:8001 (KERNEL DISPATCH)
+
+[INFO] 17:13:13:508 CPU/(17486:17486): Esperando a 127.0.0.1:8005 (KERNEL INTERRUPT)
+
+[INFO] 17:13:13:510 CPU/(17486:17486): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 17:13:16:122 CPU/(17486:17486): Cliente conectado (a CPU DISPATCH)
+
+[INFO] 17:13:16:125 CPU/(17486:17486): Cliente conectado (a CPU INTERRUPT)
+
+[INFO] 17:13:19:440 CPU/(17486:17501): Se recibio un pcb para ejecutar
+
+[INFO] 17:13:19:441 CPU/(17486:17501): Ejecutando la instruccion: NO_OP
+
+[INFO] 17:13:20:478 CPU/(17486:17501): Ejecutando la instruccion: NO_OP
+
+[INFO] 17:13:21:481 CPU/(17486:17501): Ejecutando la instruccion: NO_OP
+
+[INFO] 17:13:22:484 CPU/(17486:17501): Ejecutando la instruccion: I/O
+
+[INFO] 17:13:22:515 CPU/(17486:17501): Se recibio un pcb para ejecutar
+
+[INFO] 17:13:22:521 CPU/(17486:17501): Ejecutando la instruccion: NO_OP
+
+[INFO] 17:13:23:524 CPU/(17486:17501): Ejecutando la instruccion: NO_OP
+
+[INFO] 17:13:24:528 CPU/(17486:17501): Ejecutando la instruccion: NO_OP
+
+[INFO] 17:13:25:531 CPU/(17486:17501): Ejecutando la instruccion: I/O
+

@@ -24,4 +24,6 @@ void agregar(t_tlb* elemento_a_agregar);
 void* comparar_ultimas_referencias(t_tlb* entrada1, t_tlb* entrada2);
 uint32_t buscar(uint32_t numero_pagina);
 ALGORITMO_REEMPLAZO algoritmo_remplazo (char* algoritmo);
+void limpiar_tlb();
+void freeTLB(t_tlb *tlb_a_liberar);
 #endif

@@ -78,3 +78,12 @@ ALGORITMO_REEMPLAZO algoritmo_remplazo(char *algoritmo)
     }
     return -1;
 }
+
+
+void limpiar_tlb()
+{
+    pthread_mutex_lock(&mutex_tlb);
+    list_clean(tlb);
+    pthread_mutex_unlock(&mutex_tlb);
+}
+

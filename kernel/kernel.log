@@ -1,0 +1,50 @@
+[INFO] 17:13:16:120 KERNEL/(17496:17496): Esperando a 127.0.0.1:8000 (CONSOLA)
+
+[INFO] 17:13:16:123 KERNEL/(17496:17497): Cliente conectado en 127.0.0.1:8001 (a CPU DISPATCH)
+
+[INFO] 17:13:16:125 KERNEL/(17496:17497): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+
+[INFO] 17:13:19:275 KERNEL/(17496:17496): Cliente conectado (a KERNEL)
+
+[INFO] 17:13:19:284 KERNEL/(17496:17510): Se recibieron las instrucciones
+[INFO] 17:13:19:285 KERNEL/(17496:17510): Cantidad de procesos en memoria: 0
+
+[INFO] 17:13:19:286 KERNEL/(17496:17510): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 17:13:19:294 KERNEL/(17496:17510): El id de la tabla de pagina del proceso 1 es 0
+
+[INFO] 17:13:19:295 KERNEL/(17496:17497): Se envio el proceso 1 a la CPU
+
+[INFO] 17:13:19:558 KERNEL/(17496:17496): Cliente conectado (a KERNEL)
+
+[INFO] 17:13:19:562 KERNEL/(17496:17515): Se recibieron las instrucciones
+[INFO] 17:13:19:562 KERNEL/(17496:17515): Cantidad de procesos en memoria: 1
+
+[INFO] 17:13:19:565 KERNEL/(17496:17515): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 17:13:19:581 KERNEL/(17496:17515): El id de la tabla de pagina del proceso 2 es 1
+
+[INFO] 17:13:20:040 KERNEL/(17496:17496): Cliente conectado (a KERNEL)
+
+[INFO] 17:13:20:042 KERNEL/(17496:17518): Se recibieron las instrucciones
+[INFO] 17:13:20:044 KERNEL/(17496:17518): Cantidad de procesos en memoria: 2
+
+[INFO] 17:13:22:508 KERNEL/(17496:17498): Nuevo proceso en cola blocked
+
+[INFO] 17:13:22:508 KERNEL/(17496:17497): Se envio el proceso 2 a la CPU
+
+[INFO] 17:13:25:535 KERNEL/(17496:17498): Nuevo proceso en cola blocked
+
+[WARNING] 17:13:30:523 KERNEL/(17496:17523): Se va a suspender el proceso: 1
+
+[INFO] 17:13:30:529 KERNEL/(17496:17523): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 17:13:30:577 KERNEL/(17496:17523): Confirmacion de suspension recibida
+[INFO] 17:13:30:578 KERNEL/(17496:17500): Cantidad de procesos en memoria: 1
+
+[ERROR] 17:13:30:580 KERNEL/(17496:17500): Error al recibir el op_code INICIALIZAR_ESTRUCTURAS de la memoria
+[WARNING] 17:13:33:539 KERNEL/(17496:17527): Se va a suspender el proceso: 2
+
+[INFO] 17:13:33:542 KERNEL/(17496:17527): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 17:13:33:561 KERNEL/(17496:17527): Confirmacion de suspension recibida

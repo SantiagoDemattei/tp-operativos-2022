@@ -80,6 +80,7 @@ static void procesar_conexion(void *void_args)
         case INICIALIZAR_ESTRUCTURAS:
             recv_inicializar_estructuras(*cliente_socket, &tamanio_proceso, &id_proceso);
             loggear_info(logger, "INICIALIZANDO ESTRUCTURAS\n", mutex_logger_memoria);
+            printf("INICIALIZANDO DEL PROCESO %d\n", id_proceso);
             t_estructura_proceso *estructura = malloc(sizeof(t_estructura_proceso)); // creamos la estructura correspondiete al proceso
             estructura->id_proceso = id_proceso;
             estructura->tamanio_proceso = tamanio_proceso;
@@ -205,7 +206,6 @@ static void procesar_conexion(void *void_args)
         case LIBERAR_ESTRUCTURAS:
             loggear_info(logger, "LIBERANDO ESTRUCTURAS", mutex_logger_memoria);
             recv_fin_proceso(*cliente_socket, &id_proceso);
-            // HACER LO QUE SE PIDE
             liberar_estructuras(id_proceso);
             send_fin_proceso(*cliente_socket, id_proceso);
             free(cliente_socket);
@@ -726,6 +726,7 @@ t_estructura_proceso *buscar_estructura_del_proceso_suspension(uint32_t pid)
         proceso_aux = list_get(lista_estructuras, i);
         if (proceso_aux->id_proceso == pid)
         {
+            printf("ACA LLEGUE\n");
             return proceso_aux;
         }
     }
@@ -787,12 +788,14 @@ void suspender_proceso(uint32_t pid)
 
 void liberar_estructuras(uint32_t pid)
 {
+    printf("Liberando estructuras del proceso %d\n", pid);
     pthread_mutex_lock(&mutex_lista_estructuras);
     t_estructura_proceso *estructura_del_proceso = buscar_estructura_del_proceso_suspension(pid); // LA FUNCION DICE SUSPENSION, pero busca la estructura en la lista de estructuras por pid
     pthread_mutex_unlock(&mutex_lista_estructuras);
     uint32_t comienzo = estructura_del_proceso->marco_comienzo;
+    printf("Comienzo: %d\n", comienzo);
     t_list *marcos_del_proceso = estructura_del_proceso->vector_marcos;
-
+    printf("AUN NO ROMPIO LOS MARCOS 1\n");
     pthread_mutex_lock(&mutex_marcos);
     for (int i = comienzo; i < comienzo + configuracion_memoria->marcos_por_proceso; i++)
     {
@@ -800,7 +803,7 @@ void liberar_estructuras(uint32_t pid)
         *elemento = 0; // los marcos que tenia asignados el proceso ahora estan libres
     }
     pthread_mutex_unlock(&mutex_marcos);
-
+    printf("AUN NO ROMPIO LOS MARCOS\n");
     munmap(estructura_del_proceso->archivo_swap, estructura_del_proceso->tamanio_proceso); // desmapeamos el archivo swap del proceso (liberamos la variable)
     remove(estructura_del_proceso->nombre_archivo_swap);
     list_destroy_and_destroy_elements(estructura_del_proceso->vector_marcos, (void *)destruir_vector_marcos); // destruimos la lista de marcos del proceso

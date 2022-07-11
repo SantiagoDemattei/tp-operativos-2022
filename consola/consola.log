@@ -1,0 +1,768 @@
+[INFO] 16:50:48:809 CONSOLA/(14660:14660): Lista de instrucciones cargadas:
+[INFO] 16:50:48:810 CONSOLA/(14660:14660): Instruccion: NO_OP
+[INFO] 16:50:48:811 CONSOLA/(14660:14660): Tamanio de la instruccion: 5
+[INFO] 16:50:48:812 CONSOLA/(14660:14660): 
+
+[INFO] 16:50:48:813 CONSOLA/(14660:14660): Instruccion: NO_OP
+[INFO] 16:50:48:814 CONSOLA/(14660:14660): Tamanio de la instruccion: 5
+[INFO] 16:50:48:814 CONSOLA/(14660:14660): 
+
+[INFO] 16:50:48:815 CONSOLA/(14660:14660): Instruccion: NO_OP
+[INFO] 16:50:48:816 CONSOLA/(14660:14660): Tamanio de la instruccion: 5
+[INFO] 16:50:48:817 CONSOLA/(14660:14660): 
+
+[INFO] 16:50:48:817 CONSOLA/(14660:14660): Instruccion: I/O
+[INFO] 16:50:48:821 CONSOLA/(14660:14660): Tamanio de la instruccion: 3
+[INFO] 16:50:48:831 CONSOLA/(14660:14660): Argumento: 13000
+[INFO] 16:50:48:832 CONSOLA/(14660:14660): 
+
+[INFO] 16:50:48:833 CONSOLA/(14660:14660): Instruccion: NO_OP
+[INFO] 16:50:48:834 CONSOLA/(14660:14660): Tamanio de la instruccion: 5
+[INFO] 16:50:48:835 CONSOLA/(14660:14660): 
+
+[INFO] 16:50:48:835 CONSOLA/(14660:14660): Instruccion: NO_OP
+[INFO] 16:50:48:836 CONSOLA/(14660:14660): Tamanio de la instruccion: 5
+[INFO] 16:50:48:837 CONSOLA/(14660:14660): 
+
+[INFO] 16:50:48:838 CONSOLA/(14660:14660): Instruccion: NO_OP
+[INFO] 16:50:48:838 CONSOLA/(14660:14660): Tamanio de la instruccion: 5
+[INFO] 16:50:48:839 CONSOLA/(14660:14660): 
+
+[INFO] 16:50:48:840 CONSOLA/(14660:14660): Instruccion: EXIT
+[INFO] 16:50:48:840 CONSOLA/(14660:14660): Tamanio de la instruccion: 4
+[INFO] 16:50:48:841 CONSOLA/(14660:14660): 
+
+[INFO] 16:50:48:842 CONSOLA/(14660:14660): Cliente conectado en 127.0.0.1:8000 (a KERNEL)
+
+[INFO] 16:50:48:843 CONSOLA/(14660:14660): Se envio la lista de instrucciones al kernel
+[INFO] 16:50:48:844 CONSOLA/(14660:14660): Estoy esperando a que el kernel me avise que ya ejecuto mis instrucciones...
+[INFO] 16:50:49:105 CONSOLA/(14665:14665): Lista de instrucciones cargadas:
+[INFO] 16:50:49:106 CONSOLA/(14665:14665): Instruccion: NO_OP
+[INFO] 16:50:49:107 CONSOLA/(14665:14665): Tamanio de la instruccion: 5
+[INFO] 16:50:49:108 CONSOLA/(14665:14665): 
+
+[INFO] 16:50:49:109 CONSOLA/(14665:14665): Instruccion: NO_OP
+[INFO] 16:50:49:109 CONSOLA/(14665:14665): Tamanio de la instruccion: 5
+[INFO] 16:50:49:110 CONSOLA/(14665:14665): 
+
+[INFO] 16:50:49:110 CONSOLA/(14665:14665): Instruccion: NO_OP
+[INFO] 16:50:49:111 CONSOLA/(14665:14665): Tamanio de la instruccion: 5
+[INFO] 16:50:49:112 CONSOLA/(14665:14665): 
+
+[INFO] 16:50:49:117 CONSOLA/(14665:14665): Instruccion: I/O
+[INFO] 16:50:49:118 CONSOLA/(14665:14665): Tamanio de la instruccion: 3
+[INFO] 16:50:49:119 CONSOLA/(14665:14665): Argumento: 5000
+[INFO] 16:50:49:120 CONSOLA/(14665:14665): 
+
+[INFO] 16:50:49:121 CONSOLA/(14665:14665): Instruccion: NO_OP
+[INFO] 16:50:49:122 CONSOLA/(14665:14665): Tamanio de la instruccion: 5
+[INFO] 16:50:49:123 CONSOLA/(14665:14665): 
+
+[INFO] 16:50:49:124 CONSOLA/(14665:14665): Instruccion: NO_OP
+[INFO] 16:50:49:125 CONSOLA/(14665:14665): Tamanio de la instruccion: 5
+[INFO] 16:50:49:125 CONSOLA/(14665:14665): 
+
+[INFO] 16:50:49:126 CONSOLA/(14665:14665): Instruccion: NO_OP
+[INFO] 16:50:49:127 CONSOLA/(14665:14665): Tamanio de la instruccion: 5
+[INFO] 16:50:49:128 CONSOLA/(14665:14665): 
+
+[INFO] 16:50:49:128 CONSOLA/(14665:14665): Instruccion: EXIT
+[INFO] 16:50:49:129 CONSOLA/(14665:14665): Tamanio de la instruccion: 4
+[INFO] 16:50:49:131 CONSOLA/(14665:14665): 
+
+[INFO] 16:50:49:132 CONSOLA/(14665:14665): Cliente conectado en 127.0.0.1:8000 (a KERNEL)
+
+[INFO] 16:50:49:133 CONSOLA/(14665:14665): Se envio la lista de instrucciones al kernel
+[INFO] 16:50:49:134 CONSOLA/(14665:14665): Estoy esperando a que el kernel me avise que ya ejecuto mis instrucciones...
+[INFO] 16:50:49:676 CONSOLA/(14671:14671): Lista de instrucciones cargadas:
+[INFO] 16:50:49:677 CONSOLA/(14671:14671): Instruccion: NO_OP
+[INFO] 16:50:49:677 CONSOLA/(14671:14671): Tamanio de la instruccion: 5
+[INFO] 16:50:49:678 CONSOLA/(14671:14671): 
+
+[INFO] 16:50:49:679 CONSOLA/(14671:14671): Instruccion: NO_OP
+[INFO] 16:50:49:680 CONSOLA/(14671:14671): Tamanio de la instruccion: 5
+[INFO] 16:50:49:680 CONSOLA/(14671:14671): 
+
+[INFO] 16:50:49:681 CONSOLA/(14671:14671): Instruccion: NO_OP
+[INFO] 16:50:49:682 CONSOLA/(14671:14671): Tamanio de la instruccion: 5
+[INFO] 16:50:49:682 CONSOLA/(14671:14671): 
+
+[INFO] 16:50:49:683 CONSOLA/(14671:14671): Instruccion: NO_OP
+[INFO] 16:50:49:684 CONSOLA/(14671:14671): Tamanio de la instruccion: 5
+[INFO] 16:50:49:685 CONSOLA/(14671:14671): 
+
+[INFO] 16:50:49:686 CONSOLA/(14671:14671): Instruccion: NO_OP
+[INFO] 16:50:49:689 CONSOLA/(14671:14671): Tamanio de la instruccion: 5
+[INFO] 16:50:49:690 CONSOLA/(14671:14671): 
+
+[INFO] 16:50:49:691 CONSOLA/(14671:14671): Instruccion: NO_OP
+[INFO] 16:50:49:692 CONSOLA/(14671:14671): Tamanio de la instruccion: 5
+[INFO] 16:50:49:692 CONSOLA/(14671:14671): 
+
+[INFO] 16:50:49:693 CONSOLA/(14671:14671): Instruccion: NO_OP
+[INFO] 16:50:49:695 CONSOLA/(14671:14671): Tamanio de la instruccion: 5
+[INFO] 16:50:49:696 CONSOLA/(14671:14671): 
+
+[INFO] 16:50:49:696 CONSOLA/(14671:14671): Instruccion: NO_OP
+[INFO] 16:50:49:697 CONSOLA/(14671:14671): Tamanio de la instruccion: 5
+[INFO] 16:50:49:698 CONSOLA/(14671:14671): 
+
+[INFO] 16:50:49:699 CONSOLA/(14671:14671): Instruccion: NO_OP
+[INFO] 16:50:49:700 CONSOLA/(14671:14671): Tamanio de la instruccion: 5
+[INFO] 16:50:49:700 CONSOLA/(14671:14671): 
+
+[INFO] 16:50:49:701 CONSOLA/(14671:14671): Instruccion: NO_OP
+[INFO] 16:50:49:702 CONSOLA/(14671:14671): Tamanio de la instruccion: 5
+[INFO] 16:50:49:702 CONSOLA/(14671:14671): 
+
+[INFO] 16:50:49:703 CONSOLA/(14671:14671): Instruccion: EXIT
+[INFO] 16:50:49:704 CONSOLA/(14671:14671): Tamanio de la instruccion: 4
+[INFO] 16:50:49:704 CONSOLA/(14671:14671): 
+
+[INFO] 16:50:49:706 CONSOLA/(14671:14671): Cliente conectado en 127.0.0.1:8000 (a KERNEL)
+
+[INFO] 16:50:49:706 CONSOLA/(14671:14671): Se envio la lista de instrucciones al kernel
+[INFO] 16:50:49:707 CONSOLA/(14671:14671): Estoy esperando a que el kernel me avise que ya ejecuto mis instrucciones...
+[ERROR] 16:51:29:765 CONSOLA/(14671:14671): No se pudo recibir el codigo de operacion
+[ERROR] 16:51:29:766 CONSOLA/(14665:14665): No se pudo recibir el codigo de operacion
+[ERROR] 16:51:29:767 CONSOLA/(14660:14660): No se pudo recibir el codigo de operacion
+[INFO] 16:52:48:926 CONSOLA/(14994:14994): Lista de instrucciones cargadas:
+[INFO] 16:52:48:928 CONSOLA/(14994:14994): Instruccion: NO_OP
+[INFO] 16:52:48:929 CONSOLA/(14994:14994): Tamanio de la instruccion: 5
+[INFO] 16:52:48:930 CONSOLA/(14994:14994): 
+
+[INFO] 16:52:48:931 CONSOLA/(14994:14994): Instruccion: NO_OP
+[INFO] 16:52:48:932 CONSOLA/(14994:14994): Tamanio de la instruccion: 5
+[INFO] 16:52:48:933 CONSOLA/(14994:14994): 
+
+[INFO] 16:52:48:934 CONSOLA/(14994:14994): Instruccion: NO_OP
+[INFO] 16:52:48:934 CONSOLA/(14994:14994): Tamanio de la instruccion: 5
+[INFO] 16:52:48:936 CONSOLA/(14994:14994): 
+
+[INFO] 16:52:48:940 CONSOLA/(14994:14994): Instruccion: I/O
+[INFO] 16:52:48:941 CONSOLA/(14994:14994): Tamanio de la instruccion: 3
+[INFO] 16:52:48:942 CONSOLA/(14994:14994): Argumento: 13000
+[INFO] 16:52:48:943 CONSOLA/(14994:14994): 
+
+[INFO] 16:52:48:944 CONSOLA/(14994:14994): Instruccion: NO_OP
+[INFO] 16:52:48:944 CONSOLA/(14994:14994): Tamanio de la instruccion: 5
+[INFO] 16:52:48:945 CONSOLA/(14994:14994): 
+
+[INFO] 16:52:48:946 CONSOLA/(14994:14994): Instruccion: NO_OP
+[INFO] 16:52:48:947 CONSOLA/(14994:14994): Tamanio de la instruccion: 5
+[INFO] 16:52:48:947 CONSOLA/(14994:14994): 
+
+[INFO] 16:52:48:948 CONSOLA/(14994:14994): Instruccion: NO_OP
+[INFO] 16:52:48:948 CONSOLA/(14994:14994): Tamanio de la instruccion: 5
+[INFO] 16:52:48:949 CONSOLA/(14994:14994): 
+
+[INFO] 16:52:48:950 CONSOLA/(14994:14994): Instruccion: EXIT
+[INFO] 16:52:48:951 CONSOLA/(14994:14994): Tamanio de la instruccion: 4
+[INFO] 16:52:48:951 CONSOLA/(14994:14994): 
+
+[INFO] 16:52:48:953 CONSOLA/(14994:14994): Cliente conectado en 127.0.0.1:8000 (a KERNEL)
+
+[INFO] 16:52:48:954 CONSOLA/(14994:14994): Se envio la lista de instrucciones al kernel
+[INFO] 16:52:48:954 CONSOLA/(14994:14994): Estoy esperando a que el kernel me avise que ya ejecuto mis instrucciones...
+[INFO] 16:52:49:184 CONSOLA/(14999:14999): Lista de instrucciones cargadas:
+[INFO] 16:52:49:185 CONSOLA/(14999:14999): Instruccion: NO_OP
+[INFO] 16:52:49:186 CONSOLA/(14999:14999): Tamanio de la instruccion: 5
+[INFO] 16:52:49:186 CONSOLA/(14999:14999): 
+
+[INFO] 16:52:49:187 CONSOLA/(14999:14999): Instruccion: NO_OP
+[INFO] 16:52:49:188 CONSOLA/(14999:14999): Tamanio de la instruccion: 5
+[INFO] 16:52:49:189 CONSOLA/(14999:14999): 
+
+[INFO] 16:52:49:190 CONSOLA/(14999:14999): Instruccion: NO_OP
+[INFO] 16:52:49:190 CONSOLA/(14999:14999): Tamanio de la instruccion: 5
+[INFO] 16:52:49:191 CONSOLA/(14999:14999): 
+
+[INFO] 16:52:49:192 CONSOLA/(14999:14999): Instruccion: I/O
+[INFO] 16:52:49:192 CONSOLA/(14999:14999): Tamanio de la instruccion: 3
+[INFO] 16:52:49:193 CONSOLA/(14999:14999): Argumento: 5000
+[INFO] 16:52:49:195 CONSOLA/(14999:14999): 
+
+[INFO] 16:52:49:198 CONSOLA/(14999:14999): Instruccion: NO_OP
+[INFO] 16:52:49:199 CONSOLA/(14999:14999): Tamanio de la instruccion: 5
+[INFO] 16:52:49:200 CONSOLA/(14999:14999): 
+
+[INFO] 16:52:49:201 CONSOLA/(14999:14999): Instruccion: NO_OP
+[INFO] 16:52:49:202 CONSOLA/(14999:14999): Tamanio de la instruccion: 5
+[INFO] 16:52:49:202 CONSOLA/(14999:14999): 
+
+[INFO] 16:52:49:203 CONSOLA/(14999:14999): Instruccion: NO_OP
+[INFO] 16:52:49:204 CONSOLA/(14999:14999): Tamanio de la instruccion: 5
+[INFO] 16:52:49:207 CONSOLA/(14999:14999): 
+
+[INFO] 16:52:49:210 CONSOLA/(14999:14999): Instruccion: EXIT
+[INFO] 16:52:49:211 CONSOLA/(14999:14999): Tamanio de la instruccion: 4
+[INFO] 16:52:49:212 CONSOLA/(14999:14999): 
+
+[INFO] 16:52:49:213 CONSOLA/(14999:14999): Cliente conectado en 127.0.0.1:8000 (a KERNEL)
+
+[INFO] 16:52:49:215 CONSOLA/(14999:14999): Se envio la lista de instrucciones al kernel
+[INFO] 16:52:49:218 CONSOLA/(14999:14999): Estoy esperando a que el kernel me avise que ya ejecuto mis instrucciones...
+[INFO] 16:52:49:605 CONSOLA/(15005:15005): Lista de instrucciones cargadas:
+[INFO] 16:52:49:606 CONSOLA/(15005:15005): Instruccion: NO_OP
+[INFO] 16:52:49:607 CONSOLA/(15005:15005): Tamanio de la instruccion: 5
+[INFO] 16:52:49:608 CONSOLA/(15005:15005): 
+
+[INFO] 16:52:49:609 CONSOLA/(15005:15005): Instruccion: NO_OP
+[INFO] 16:52:49:609 CONSOLA/(15005:15005): Tamanio de la instruccion: 5
+[INFO] 16:52:49:610 CONSOLA/(15005:15005): 
+
+[INFO] 16:52:49:610 CONSOLA/(15005:15005): Instruccion: NO_OP
+[INFO] 16:52:49:611 CONSOLA/(15005:15005): Tamanio de la instruccion: 5
+[INFO] 16:52:49:612 CONSOLA/(15005:15005): 
+
+[INFO] 16:52:49:613 CONSOLA/(15005:15005): Instruccion: NO_OP
+[INFO] 16:52:49:613 CONSOLA/(15005:15005): Tamanio de la instruccion: 5
+[INFO] 16:52:49:614 CONSOLA/(15005:15005): 
+
+[INFO] 16:52:49:615 CONSOLA/(15005:15005): Instruccion: NO_OP
+[INFO] 16:52:49:618 CONSOLA/(15005:15005): Tamanio de la instruccion: 5
+[INFO] 16:52:49:619 CONSOLA/(15005:15005): 
+
+[INFO] 16:52:49:620 CONSOLA/(15005:15005): Instruccion: NO_OP
+[INFO] 16:52:49:621 CONSOLA/(15005:15005): Tamanio de la instruccion: 5
+[INFO] 16:52:49:622 CONSOLA/(15005:15005): 
+
+[INFO] 16:52:49:623 CONSOLA/(15005:15005): Instruccion: NO_OP
+[INFO] 16:52:49:623 CONSOLA/(15005:15005): Tamanio de la instruccion: 5
+[INFO] 16:52:49:624 CONSOLA/(15005:15005): 
+
+[INFO] 16:52:49:625 CONSOLA/(15005:15005): Instruccion: NO_OP
+[INFO] 16:52:49:626 CONSOLA/(15005:15005): Tamanio de la instruccion: 5
+[INFO] 16:52:49:626 CONSOLA/(15005:15005): 
+
+[INFO] 16:52:49:627 CONSOLA/(15005:15005): Instruccion: NO_OP
+[INFO] 16:52:49:628 CONSOLA/(15005:15005): Tamanio de la instruccion: 5
+[INFO] 16:52:49:628 CONSOLA/(15005:15005): 
+
+[INFO] 16:52:49:629 CONSOLA/(15005:15005): Instruccion: NO_OP
+[INFO] 16:52:49:630 CONSOLA/(15005:15005): Tamanio de la instruccion: 5
+[INFO] 16:52:49:631 CONSOLA/(15005:15005): 
+
+[INFO] 16:52:49:631 CONSOLA/(15005:15005): Instruccion: EXIT
+[INFO] 16:52:49:632 CONSOLA/(15005:15005): Tamanio de la instruccion: 4
+[INFO] 16:52:49:633 CONSOLA/(15005:15005): 
+
+[INFO] 16:52:49:634 CONSOLA/(15005:15005): Cliente conectado en 127.0.0.1:8000 (a KERNEL)
+
+[INFO] 16:52:49:635 CONSOLA/(15005:15005): Se envio la lista de instrucciones al kernel
+[INFO] 16:52:49:636 CONSOLA/(15005:15005): Estoy esperando a que el kernel me avise que ya ejecuto mis instrucciones...
+[ERROR] 16:53:47:453 CONSOLA/(15005:15005): No se pudo recibir el codigo de operacion
+[ERROR] 16:53:47:453 CONSOLA/(14999:14999): No se pudo recibir el codigo de operacion
+[ERROR] 16:53:47:455 CONSOLA/(14994:14994): No se pudo recibir el codigo de operacion
+[INFO] 16:55:10:220 CONSOLA/(15408:15408): Lista de instrucciones cargadas:
+[INFO] 16:55:10:220 CONSOLA/(15408:15408): Instruccion: NO_OP
+[INFO] 16:55:10:221 CONSOLA/(15408:15408): Tamanio de la instruccion: 5
+[INFO] 16:55:10:222 CONSOLA/(15408:15408): 
+
+[INFO] 16:55:10:223 CONSOLA/(15408:15408): Instruccion: NO_OP
+[INFO] 16:55:10:224 CONSOLA/(15408:15408): Tamanio de la instruccion: 5
+[INFO] 16:55:10:225 CONSOLA/(15408:15408): 
+
+[INFO] 16:55:10:226 CONSOLA/(15408:15408): Instruccion: NO_OP
+[INFO] 16:55:10:227 CONSOLA/(15408:15408): Tamanio de la instruccion: 5
+[INFO] 16:55:10:228 CONSOLA/(15408:15408): 
+
+[INFO] 16:55:10:232 CONSOLA/(15408:15408): Instruccion: I/O
+[INFO] 16:55:10:233 CONSOLA/(15408:15408): Tamanio de la instruccion: 3
+[INFO] 16:55:10:234 CONSOLA/(15408:15408): Argumento: 13000
+[INFO] 16:55:10:234 CONSOLA/(15408:15408): 
+
+[INFO] 16:55:10:235 CONSOLA/(15408:15408): Instruccion: NO_OP
+[INFO] 16:55:10:236 CONSOLA/(15408:15408): Tamanio de la instruccion: 5
+[INFO] 16:55:10:237 CONSOLA/(15408:15408): 
+
+[INFO] 16:55:10:237 CONSOLA/(15408:15408): Instruccion: NO_OP
+[INFO] 16:55:10:238 CONSOLA/(15408:15408): Tamanio de la instruccion: 5
+[INFO] 16:55:10:239 CONSOLA/(15408:15408): 
+
+[INFO] 16:55:10:240 CONSOLA/(15408:15408): Instruccion: NO_OP
+[INFO] 16:55:10:240 CONSOLA/(15408:15408): Tamanio de la instruccion: 5
+[INFO] 16:55:10:241 CONSOLA/(15408:15408): 
+
+[INFO] 16:55:10:242 CONSOLA/(15408:15408): Instruccion: EXIT
+[INFO] 16:55:10:243 CONSOLA/(15408:15408): Tamanio de la instruccion: 4
+[INFO] 16:55:10:244 CONSOLA/(15408:15408): 
+
+[INFO] 16:55:10:245 CONSOLA/(15408:15408): Cliente conectado en 127.0.0.1:8000 (a KERNEL)
+
+[INFO] 16:55:10:249 CONSOLA/(15408:15408): Se envio la lista de instrucciones al kernel
+[INFO] 16:55:10:260 CONSOLA/(15408:15408): Estoy esperando a que el kernel me avise que ya ejecuto mis instrucciones...
+[INFO] 16:55:10:544 CONSOLA/(15413:15413): Lista de instrucciones cargadas:
+[INFO] 16:55:10:545 CONSOLA/(15413:15413): Instruccion: NO_OP
+[INFO] 16:55:10:546 CONSOLA/(15413:15413): Tamanio de la instruccion: 5
+[INFO] 16:55:10:546 CONSOLA/(15413:15413): 
+
+[INFO] 16:55:10:547 CONSOLA/(15413:15413): Instruccion: NO_OP
+[INFO] 16:55:10:548 CONSOLA/(15413:15413): Tamanio de la instruccion: 5
+[INFO] 16:55:10:549 CONSOLA/(15413:15413): 
+
+[INFO] 16:55:10:549 CONSOLA/(15413:15413): Instruccion: NO_OP
+[INFO] 16:55:10:550 CONSOLA/(15413:15413): Tamanio de la instruccion: 5
+[INFO] 16:55:10:551 CONSOLA/(15413:15413): 
+
+[INFO] 16:55:10:552 CONSOLA/(15413:15413): Instruccion: I/O
+[INFO] 16:55:10:555 CONSOLA/(15413:15413): Tamanio de la instruccion: 3
+[INFO] 16:55:10:556 CONSOLA/(15413:15413): Argumento: 5000
+[INFO] 16:55:10:557 CONSOLA/(15413:15413): 
+
+[INFO] 16:55:10:558 CONSOLA/(15413:15413): Instruccion: NO_OP
+[INFO] 16:55:10:559 CONSOLA/(15413:15413): Tamanio de la instruccion: 5
+[INFO] 16:55:10:559 CONSOLA/(15413:15413): 
+
+[INFO] 16:55:10:560 CONSOLA/(15413:15413): Instruccion: NO_OP
+[INFO] 16:55:10:561 CONSOLA/(15413:15413): Tamanio de la instruccion: 5
+[INFO] 16:55:10:562 CONSOLA/(15413:15413): 
+
+[INFO] 16:55:10:563 CONSOLA/(15413:15413): Instruccion: NO_OP
+[INFO] 16:55:10:564 CONSOLA/(15413:15413): Tamanio de la instruccion: 5
+[INFO] 16:55:10:564 CONSOLA/(15413:15413): 
+
+[INFO] 16:55:10:565 CONSOLA/(15413:15413): Instruccion: EXIT
+[INFO] 16:55:10:566 CONSOLA/(15413:15413): Tamanio de la instruccion: 4
+[INFO] 16:55:10:567 CONSOLA/(15413:15413): 
+
+[INFO] 16:55:10:568 CONSOLA/(15413:15413): Cliente conectado en 127.0.0.1:8000 (a KERNEL)
+
+[INFO] 16:55:10:569 CONSOLA/(15413:15413): Se envio la lista de instrucciones al kernel
+[INFO] 16:55:10:570 CONSOLA/(15413:15413): Estoy esperando a que el kernel me avise que ya ejecuto mis instrucciones...
+[INFO] 16:55:11:077 CONSOLA/(15416:15416): Lista de instrucciones cargadas:
+[INFO] 16:55:11:078 CONSOLA/(15416:15416): Instruccion: NO_OP
+[INFO] 16:55:11:080 CONSOLA/(15416:15416): Tamanio de la instruccion: 5
+[INFO] 16:55:11:081 CONSOLA/(15416:15416): 
+
+[INFO] 16:55:11:082 CONSOLA/(15416:15416): Instruccion: NO_OP
+[INFO] 16:55:11:083 CONSOLA/(15416:15416): Tamanio de la instruccion: 5
+[INFO] 16:55:11:084 CONSOLA/(15416:15416): 
+
+[INFO] 16:55:11:085 CONSOLA/(15416:15416): Instruccion: NO_OP
+[INFO] 16:55:11:089 CONSOLA/(15416:15416): Tamanio de la instruccion: 5
+[INFO] 16:55:11:090 CONSOLA/(15416:15416): 
+
+[INFO] 16:55:11:091 CONSOLA/(15416:15416): Instruccion: NO_OP
+[INFO] 16:55:11:091 CONSOLA/(15416:15416): Tamanio de la instruccion: 5
+[INFO] 16:55:11:092 CONSOLA/(15416:15416): 
+
+[INFO] 16:55:11:093 CONSOLA/(15416:15416): Instruccion: NO_OP
+[INFO] 16:55:11:094 CONSOLA/(15416:15416): Tamanio de la instruccion: 5
+[INFO] 16:55:11:094 CONSOLA/(15416:15416): 
+
+[INFO] 16:55:11:095 CONSOLA/(15416:15416): Instruccion: NO_OP
+[INFO] 16:55:11:096 CONSOLA/(15416:15416): Tamanio de la instruccion: 5
+[INFO] 16:55:11:097 CONSOLA/(15416:15416): 
+
+[INFO] 16:55:11:098 CONSOLA/(15416:15416): Instruccion: NO_OP
+[INFO] 16:55:11:099 CONSOLA/(15416:15416): Tamanio de la instruccion: 5
+[INFO] 16:55:11:099 CONSOLA/(15416:15416): 
+
+[INFO] 16:55:11:100 CONSOLA/(15416:15416): Instruccion: NO_OP
+[INFO] 16:55:11:101 CONSOLA/(15416:15416): Tamanio de la instruccion: 5
+[INFO] 16:55:11:101 CONSOLA/(15416:15416): 
+
+[INFO] 16:55:11:102 CONSOLA/(15416:15416): Instruccion: NO_OP
+[INFO] 16:55:11:103 CONSOLA/(15416:15416): Tamanio de la instruccion: 5
+[INFO] 16:55:11:104 CONSOLA/(15416:15416): 
+
+[INFO] 16:55:11:105 CONSOLA/(15416:15416): Instruccion: NO_OP
+[INFO] 16:55:11:106 CONSOLA/(15416:15416): Tamanio de la instruccion: 5
+[INFO] 16:55:11:107 CONSOLA/(15416:15416): 
+
+[INFO] 16:55:11:108 CONSOLA/(15416:15416): Instruccion: EXIT
+[INFO] 16:55:11:108 CONSOLA/(15416:15416): Tamanio de la instruccion: 4
+[INFO] 16:55:11:109 CONSOLA/(15416:15416): 
+
+[INFO] 16:55:11:110 CONSOLA/(15416:15416): Cliente conectado en 127.0.0.1:8000 (a KERNEL)
+
+[INFO] 16:55:11:111 CONSOLA/(15416:15416): Se envio la lista de instrucciones al kernel
+[INFO] 16:55:11:112 CONSOLA/(15416:15416): Estoy esperando a que el kernel me avise que ya ejecuto mis instrucciones...
+[ERROR] 16:56:02:603 CONSOLA/(15416:15416): No se pudo recibir el codigo de operacion
+[ERROR] 16:56:02:603 CONSOLA/(15413:15413): No se pudo recibir el codigo de operacion
+[ERROR] 16:56:02:603 CONSOLA/(15408:15408): No se pudo recibir el codigo de operacion
+[INFO] 17:00:27:220 CONSOLA/(15986:15986): Lista de instrucciones cargadas:
+[INFO] 17:00:27:221 CONSOLA/(15986:15986): Instruccion: NO_OP
+[INFO] 17:00:27:222 CONSOLA/(15986:15986): Tamanio de la instruccion: 5
+[INFO] 17:00:27:223 CONSOLA/(15986:15986): 
+
+[INFO] 17:00:27:224 CONSOLA/(15986:15986): Instruccion: NO_OP
+[INFO] 17:00:27:225 CONSOLA/(15986:15986): Tamanio de la instruccion: 5
+[INFO] 17:00:27:226 CONSOLA/(15986:15986): 
+
+[INFO] 17:00:27:226 CONSOLA/(15986:15986): Instruccion: NO_OP
+[INFO] 17:00:27:228 CONSOLA/(15986:15986): Tamanio de la instruccion: 5
+[INFO] 17:00:27:231 CONSOLA/(15986:15986): 
+
+[INFO] 17:00:27:232 CONSOLA/(15986:15986): Instruccion: I/O
+[INFO] 17:00:27:233 CONSOLA/(15986:15986): Tamanio de la instruccion: 3
+[INFO] 17:00:27:234 CONSOLA/(15986:15986): Argumento: 13000
+[INFO] 17:00:27:235 CONSOLA/(15986:15986): 
+
+[INFO] 17:00:27:236 CONSOLA/(15986:15986): Instruccion: NO_OP
+[INFO] 17:00:27:237 CONSOLA/(15986:15986): Tamanio de la instruccion: 5
+[INFO] 17:00:27:237 CONSOLA/(15986:15986): 
+
+[INFO] 17:00:27:238 CONSOLA/(15986:15986): Instruccion: NO_OP
+[INFO] 17:00:27:242 CONSOLA/(15986:15986): Tamanio de la instruccion: 5
+[INFO] 17:00:27:243 CONSOLA/(15986:15986): 
+
+[INFO] 17:00:27:244 CONSOLA/(15986:15986): Instruccion: NO_OP
+[INFO] 17:00:27:245 CONSOLA/(15986:15986): Tamanio de la instruccion: 5
+[INFO] 17:00:27:246 CONSOLA/(15986:15986): 
+
+[INFO] 17:00:27:247 CONSOLA/(15986:15986): Instruccion: EXIT
+[INFO] 17:00:27:248 CONSOLA/(15986:15986): Tamanio de la instruccion: 4
+[INFO] 17:00:27:249 CONSOLA/(15986:15986): 
+
+[INFO] 17:00:27:250 CONSOLA/(15986:15986): Cliente conectado en 127.0.0.1:8000 (a KERNEL)
+
+[INFO] 17:00:27:251 CONSOLA/(15986:15986): Se envio la lista de instrucciones al kernel
+[INFO] 17:00:27:252 CONSOLA/(15986:15986): Estoy esperando a que el kernel me avise que ya ejecuto mis instrucciones...
+[INFO] 17:00:27:592 CONSOLA/(15991:15991): Lista de instrucciones cargadas:
+[INFO] 17:00:27:594 CONSOLA/(15991:15991): Instruccion: NO_OP
+[INFO] 17:00:27:595 CONSOLA/(15991:15991): Tamanio de la instruccion: 5
+[INFO] 17:00:27:597 CONSOLA/(15991:15991): 
+
+[INFO] 17:00:27:599 CONSOLA/(15991:15991): Instruccion: NO_OP
+[INFO] 17:00:27:601 CONSOLA/(15991:15991): Tamanio de la instruccion: 5
+[INFO] 17:00:27:602 CONSOLA/(15991:15991): 
+
+[INFO] 17:00:27:603 CONSOLA/(15991:15991): Instruccion: NO_OP
+[INFO] 17:00:27:604 CONSOLA/(15991:15991): Tamanio de la instruccion: 5
+[INFO] 17:00:27:604 CONSOLA/(15991:15991): 
+
+[INFO] 17:00:27:605 CONSOLA/(15991:15991): Instruccion: I/O
+[INFO] 17:00:27:606 CONSOLA/(15991:15991): Tamanio de la instruccion: 3
+[INFO] 17:00:27:606 CONSOLA/(15991:15991): Argumento: 5000
+[INFO] 17:00:27:607 CONSOLA/(15991:15991): 
+
+[INFO] 17:00:27:610 CONSOLA/(15991:15991): Instruccion: NO_OP
+[INFO] 17:00:27:611 CONSOLA/(15991:15991): Tamanio de la instruccion: 5
+[INFO] 17:00:27:612 CONSOLA/(15991:15991): 
+
+[INFO] 17:00:27:613 CONSOLA/(15991:15991): Instruccion: NO_OP
+[INFO] 17:00:27:614 CONSOLA/(15991:15991): Tamanio de la instruccion: 5
+[INFO] 17:00:27:615 CONSOLA/(15991:15991): 
+
+[INFO] 17:00:27:616 CONSOLA/(15991:15991): Instruccion: NO_OP
+[INFO] 17:00:27:618 CONSOLA/(15991:15991): Tamanio de la instruccion: 5
+[INFO] 17:00:27:619 CONSOLA/(15991:15991): 
+
+[INFO] 17:00:27:621 CONSOLA/(15991:15991): Instruccion: EXIT
+[INFO] 17:00:27:622 CONSOLA/(15991:15991): Tamanio de la instruccion: 4
+[INFO] 17:00:27:622 CONSOLA/(15991:15991): 
+
+[INFO] 17:00:27:626 CONSOLA/(15991:15991): Cliente conectado en 127.0.0.1:8000 (a KERNEL)
+
+[INFO] 17:00:27:629 CONSOLA/(15991:15991): Se envio la lista de instrucciones al kernel
+[INFO] 17:00:27:634 CONSOLA/(15991:15991): Estoy esperando a que el kernel me avise que ya ejecuto mis instrucciones...
+[INFO] 17:00:28:162 CONSOLA/(15997:15997): Lista de instrucciones cargadas:
+[INFO] 17:00:28:164 CONSOLA/(15997:15997): Instruccion: NO_OP
+[INFO] 17:00:28:164 CONSOLA/(15997:15997): Tamanio de la instruccion: 5
+[INFO] 17:00:28:165 CONSOLA/(15997:15997): 
+
+[INFO] 17:00:28:166 CONSOLA/(15997:15997): Instruccion: NO_OP
+[INFO] 17:00:28:166 CONSOLA/(15997:15997): Tamanio de la instruccion: 5
+[INFO] 17:00:28:167 CONSOLA/(15997:15997): 
+
+[INFO] 17:00:28:168 CONSOLA/(15997:15997): Instruccion: NO_OP
+[INFO] 17:00:28:168 CONSOLA/(15997:15997): Tamanio de la instruccion: 5
+[INFO] 17:00:28:169 CONSOLA/(15997:15997): 
+
+[INFO] 17:00:28:169 CONSOLA/(15997:15997): Instruccion: NO_OP
+[INFO] 17:00:28:170 CONSOLA/(15997:15997): Tamanio de la instruccion: 5
+[INFO] 17:00:28:171 CONSOLA/(15997:15997): 
+
+[INFO] 17:00:28:174 CONSOLA/(15997:15997): Instruccion: NO_OP
+[INFO] 17:00:28:175 CONSOLA/(15997:15997): Tamanio de la instruccion: 5
+[INFO] 17:00:28:176 CONSOLA/(15997:15997): 
+
+[INFO] 17:00:28:177 CONSOLA/(15997:15997): Instruccion: NO_OP
+[INFO] 17:00:28:178 CONSOLA/(15997:15997): Tamanio de la instruccion: 5
+[INFO] 17:00:28:179 CONSOLA/(15997:15997): 
+
+[INFO] 17:00:28:180 CONSOLA/(15997:15997): Instruccion: NO_OP
+[INFO] 17:00:28:181 CONSOLA/(15997:15997): Tamanio de la instruccion: 5
+[INFO] 17:00:28:182 CONSOLA/(15997:15997): 
+
+[INFO] 17:00:28:182 CONSOLA/(15997:15997): Instruccion: NO_OP
+[INFO] 17:00:28:183 CONSOLA/(15997:15997): Tamanio de la instruccion: 5
+[INFO] 17:00:28:184 CONSOLA/(15997:15997): 
+
+[INFO] 17:00:28:185 CONSOLA/(15997:15997): Instruccion: NO_OP
+[INFO] 17:00:28:186 CONSOLA/(15997:15997): Tamanio de la instruccion: 5
+[INFO] 17:00:28:187 CONSOLA/(15997:15997): 
+
+[INFO] 17:00:28:187 CONSOLA/(15997:15997): Instruccion: NO_OP
+[INFO] 17:00:28:188 CONSOLA/(15997:15997): Tamanio de la instruccion: 5
+[INFO] 17:00:28:189 CONSOLA/(15997:15997): 
+
+[INFO] 17:00:28:189 CONSOLA/(15997:15997): Instruccion: EXIT
+[INFO] 17:00:28:190 CONSOLA/(15997:15997): Tamanio de la instruccion: 4
+[INFO] 17:00:28:191 CONSOLA/(15997:15997): 
+
+[INFO] 17:00:28:192 CONSOLA/(15997:15997): Cliente conectado en 127.0.0.1:8000 (a KERNEL)
+
+[INFO] 17:00:28:193 CONSOLA/(15997:15997): Se envio la lista de instrucciones al kernel
+[INFO] 17:00:28:193 CONSOLA/(15997:15997): Estoy esperando a que el kernel me avise que ya ejecuto mis instrucciones...
+[ERROR] 17:01:40:104 CONSOLA/(15997:15997): No se pudo recibir el codigo de operacion
+[ERROR] 17:01:40:104 CONSOLA/(15991:15991): No se pudo recibir el codigo de operacion
+[ERROR] 17:01:40:104 CONSOLA/(15986:15986): No se pudo recibir el codigo de operacion
+[INFO] 17:07:14:697 CONSOLA/(16694:16694): Lista de instrucciones cargadas:
+[INFO] 17:07:14:700 CONSOLA/(16694:16694): Instruccion: NO_OP
+[INFO] 17:07:14:701 CONSOLA/(16694:16694): Tamanio de la instruccion: 5
+[INFO] 17:07:14:702 CONSOLA/(16694:16694): 
+
+[INFO] 17:07:14:703 CONSOLA/(16694:16694): Instruccion: NO_OP
+[INFO] 17:07:14:704 CONSOLA/(16694:16694): Tamanio de la instruccion: 5
+[INFO] 17:07:14:705 CONSOLA/(16694:16694): 
+
+[INFO] 17:07:14:706 CONSOLA/(16694:16694): Instruccion: NO_OP
+[INFO] 17:07:14:708 CONSOLA/(16694:16694): Tamanio de la instruccion: 5
+[INFO] 17:07:14:734 CONSOLA/(16694:16694): 
+
+[INFO] 17:07:14:735 CONSOLA/(16694:16694): Instruccion: I/O
+[INFO] 17:07:14:737 CONSOLA/(16694:16694): Tamanio de la instruccion: 3
+[INFO] 17:07:14:750 CONSOLA/(16694:16694): Argumento: 13000
+[INFO] 17:07:14:756 CONSOLA/(16694:16694): 
+
+[INFO] 17:07:14:757 CONSOLA/(16694:16694): Instruccion: NO_OP
+[INFO] 17:07:14:766 CONSOLA/(16694:16694): Tamanio de la instruccion: 5
+[INFO] 17:07:14:767 CONSOLA/(16694:16694): 
+
+[INFO] 17:07:14:769 CONSOLA/(16694:16694): Instruccion: NO_OP
+[INFO] 17:07:14:784 CONSOLA/(16694:16694): Tamanio de la instruccion: 5
+[INFO] 17:07:14:785 CONSOLA/(16694:16694): 
+
+[INFO] 17:07:14:787 CONSOLA/(16694:16694): Instruccion: NO_OP
+[INFO] 17:07:14:792 CONSOLA/(16694:16694): Tamanio de la instruccion: 5
+[INFO] 17:07:14:796 CONSOLA/(16694:16694): 
+
+[INFO] 17:07:14:797 CONSOLA/(16694:16694): Instruccion: EXIT
+[INFO] 17:07:14:798 CONSOLA/(16694:16694): Tamanio de la instruccion: 4
+[INFO] 17:07:14:799 CONSOLA/(16694:16694): 
+
+[INFO] 17:07:14:801 CONSOLA/(16694:16694): Cliente conectado en 127.0.0.1:8000 (a KERNEL)
+
+[INFO] 17:07:14:804 CONSOLA/(16694:16694): Se envio la lista de instrucciones al kernel
+[INFO] 17:07:14:805 CONSOLA/(16694:16694): Estoy esperando a que el kernel me avise que ya ejecuto mis instrucciones...
+[INFO] 17:07:15:153 CONSOLA/(16699:16699): Lista de instrucciones cargadas:
+[INFO] 17:07:15:156 CONSOLA/(16699:16699): Instruccion: NO_OP
+[INFO] 17:07:15:156 CONSOLA/(16699:16699): Tamanio de la instruccion: 5
+[INFO] 17:07:15:157 CONSOLA/(16699:16699): 
+
+[INFO] 17:07:15:158 CONSOLA/(16699:16699): Instruccion: NO_OP
+[INFO] 17:07:15:158 CONSOLA/(16699:16699): Tamanio de la instruccion: 5
+[INFO] 17:07:15:159 CONSOLA/(16699:16699): 
+
+[INFO] 17:07:15:165 CONSOLA/(16699:16699): Instruccion: NO_OP
+[INFO] 17:07:15:166 CONSOLA/(16699:16699): Tamanio de la instruccion: 5
+[INFO] 17:07:15:167 CONSOLA/(16699:16699): 
+
+[INFO] 17:07:15:168 CONSOLA/(16699:16699): Instruccion: I/O
+[INFO] 17:07:15:170 CONSOLA/(16699:16699): Tamanio de la instruccion: 3
+[INFO] 17:07:15:171 CONSOLA/(16699:16699): Argumento: 5000
+[INFO] 17:07:15:173 CONSOLA/(16699:16699): 
+
+[INFO] 17:07:15:174 CONSOLA/(16699:16699): Instruccion: NO_OP
+[INFO] 17:07:15:175 CONSOLA/(16699:16699): Tamanio de la instruccion: 5
+[INFO] 17:07:15:176 CONSOLA/(16699:16699): 
+
+[INFO] 17:07:15:178 CONSOLA/(16699:16699): Instruccion: NO_OP
+[INFO] 17:07:15:180 CONSOLA/(16699:16699): Tamanio de la instruccion: 5
+[INFO] 17:07:15:182 CONSOLA/(16699:16699): 
+
+[INFO] 17:07:15:183 CONSOLA/(16699:16699): Instruccion: NO_OP
+[INFO] 17:07:15:184 CONSOLA/(16699:16699): Tamanio de la instruccion: 5
+[INFO] 17:07:15:185 CONSOLA/(16699:16699): 
+
+[INFO] 17:07:15:188 CONSOLA/(16699:16699): Instruccion: EXIT
+[INFO] 17:07:15:189 CONSOLA/(16699:16699): Tamanio de la instruccion: 4
+[INFO] 17:07:15:190 CONSOLA/(16699:16699): 
+
+[INFO] 17:07:15:192 CONSOLA/(16699:16699): Cliente conectado en 127.0.0.1:8000 (a KERNEL)
+
+[INFO] 17:07:15:193 CONSOLA/(16699:16699): Se envio la lista de instrucciones al kernel
+[INFO] 17:07:15:193 CONSOLA/(16699:16699): Estoy esperando a que el kernel me avise que ya ejecuto mis instrucciones...
+[INFO] 17:07:15:644 CONSOLA/(16702:16702): Lista de instrucciones cargadas:
+[INFO] 17:07:15:645 CONSOLA/(16702:16702): Instruccion: NO_OP
+[INFO] 17:07:15:646 CONSOLA/(16702:16702): Tamanio de la instruccion: 5
+[INFO] 17:07:15:646 CONSOLA/(16702:16702): 
+
+[INFO] 17:07:15:647 CONSOLA/(16702:16702): Instruccion: NO_OP
+[INFO] 17:07:15:649 CONSOLA/(16702:16702): Tamanio de la instruccion: 5
+[INFO] 17:07:15:650 CONSOLA/(16702:16702): 
+
+[INFO] 17:07:15:650 CONSOLA/(16702:16702): Instruccion: NO_OP
+[INFO] 17:07:15:651 CONSOLA/(16702:16702): Tamanio de la instruccion: 5
+[INFO] 17:07:15:652 CONSOLA/(16702:16702): 
+
+[INFO] 17:07:15:653 CONSOLA/(16702:16702): Instruccion: NO_OP
+[INFO] 17:07:15:653 CONSOLA/(16702:16702): Tamanio de la instruccion: 5
+[INFO] 17:07:15:654 CONSOLA/(16702:16702): 
+
+[INFO] 17:07:15:655 CONSOLA/(16702:16702): Instruccion: NO_OP
+[INFO] 17:07:15:658 CONSOLA/(16702:16702): Tamanio de la instruccion: 5
+[INFO] 17:07:15:660 CONSOLA/(16702:16702): 
+
+[INFO] 17:07:15:660 CONSOLA/(16702:16702): Instruccion: NO_OP
+[INFO] 17:07:15:661 CONSOLA/(16702:16702): Tamanio de la instruccion: 5
+[INFO] 17:07:15:662 CONSOLA/(16702:16702): 
+
+[INFO] 17:07:15:663 CONSOLA/(16702:16702): Instruccion: NO_OP
+[INFO] 17:07:15:663 CONSOLA/(16702:16702): Tamanio de la instruccion: 5
+[INFO] 17:07:15:665 CONSOLA/(16702:16702): 
+
+[INFO] 17:07:15:666 CONSOLA/(16702:16702): Instruccion: NO_OP
+[INFO] 17:07:15:667 CONSOLA/(16702:16702): Tamanio de la instruccion: 5
+[INFO] 17:07:15:668 CONSOLA/(16702:16702): 
+
+[INFO] 17:07:15:669 CONSOLA/(16702:16702): Instruccion: NO_OP
+[INFO] 17:07:15:669 CONSOLA/(16702:16702): Tamanio de la instruccion: 5
+[INFO] 17:07:15:670 CONSOLA/(16702:16702): 
+
+[INFO] 17:07:15:671 CONSOLA/(16702:16702): Instruccion: NO_OP
+[INFO] 17:07:15:672 CONSOLA/(16702:16702): Tamanio de la instruccion: 5
+[INFO] 17:07:15:672 CONSOLA/(16702:16702): 
+
+[INFO] 17:07:15:673 CONSOLA/(16702:16702): Instruccion: EXIT
+[INFO] 17:07:15:674 CONSOLA/(16702:16702): Tamanio de la instruccion: 4
+[INFO] 17:07:15:675 CONSOLA/(16702:16702): 
+
+[INFO] 17:07:15:676 CONSOLA/(16702:16702): Cliente conectado en 127.0.0.1:8000 (a KERNEL)
+
+[INFO] 17:07:15:677 CONSOLA/(16702:16702): Se envio la lista de instrucciones al kernel
+[INFO] 17:07:15:677 CONSOLA/(16702:16702): Estoy esperando a que el kernel me avise que ya ejecuto mis instrucciones...
+[ERROR] 17:08:00:692 CONSOLA/(16702:16702): No se pudo recibir el codigo de operacion
+[ERROR] 17:08:00:693 CONSOLA/(16699:16699): No se pudo recibir el codigo de operacion
+[ERROR] 17:08:00:696 CONSOLA/(16694:16694): No se pudo recibir el codigo de operacion
+[INFO] 17:13:19:240 CONSOLA/(17509:17509): Lista de instrucciones cargadas:
+[INFO] 17:13:19:242 CONSOLA/(17509:17509): Instruccion: NO_OP
+[INFO] 17:13:19:242 CONSOLA/(17509:17509): Tamanio de la instruccion: 5
+[INFO] 17:13:19:243 CONSOLA/(17509:17509): 
+
+[INFO] 17:13:19:244 CONSOLA/(17509:17509): Instruccion: NO_OP
+[INFO] 17:13:19:245 CONSOLA/(17509:17509): Tamanio de la instruccion: 5
+[INFO] 17:13:19:246 CONSOLA/(17509:17509): 
+
+[INFO] 17:13:19:251 CONSOLA/(17509:17509): Instruccion: NO_OP
+[INFO] 17:13:19:252 CONSOLA/(17509:17509): Tamanio de la instruccion: 5
+[INFO] 17:13:19:253 CONSOLA/(17509:17509): 
+
+[INFO] 17:13:19:254 CONSOLA/(17509:17509): Instruccion: I/O
+[INFO] 17:13:19:255 CONSOLA/(17509:17509): Tamanio de la instruccion: 3
+[INFO] 17:13:19:257 CONSOLA/(17509:17509): Argumento: 13000
+[INFO] 17:13:19:258 CONSOLA/(17509:17509): 
+
+[INFO] 17:13:19:259 CONSOLA/(17509:17509): Instruccion: NO_OP
+[INFO] 17:13:19:260 CONSOLA/(17509:17509): Tamanio de la instruccion: 5
+[INFO] 17:13:19:261 CONSOLA/(17509:17509): 
+
+[INFO] 17:13:19:263 CONSOLA/(17509:17509): Instruccion: NO_OP
+[INFO] 17:13:19:264 CONSOLA/(17509:17509): Tamanio de la instruccion: 5
+[INFO] 17:13:19:265 CONSOLA/(17509:17509): 
+
+[INFO] 17:13:19:267 CONSOLA/(17509:17509): Instruccion: NO_OP
+[INFO] 17:13:19:268 CONSOLA/(17509:17509): Tamanio de la instruccion: 5
+[INFO] 17:13:19:270 CONSOLA/(17509:17509): 
+
+[INFO] 17:13:19:271 CONSOLA/(17509:17509): Instruccion: EXIT
+[INFO] 17:13:19:272 CONSOLA/(17509:17509): Tamanio de la instruccion: 4
+[INFO] 17:13:19:273 CONSOLA/(17509:17509): 
+
+[INFO] 17:13:19:275 CONSOLA/(17509:17509): Cliente conectado en 127.0.0.1:8000 (a KERNEL)
+
+[INFO] 17:13:19:278 CONSOLA/(17509:17509): Se envio la lista de instrucciones al kernel
+[INFO] 17:13:19:279 CONSOLA/(17509:17509): Estoy esperando a que el kernel me avise que ya ejecuto mis instrucciones...
+[INFO] 17:13:19:529 CONSOLA/(17514:17514): Lista de instrucciones cargadas:
+[INFO] 17:13:19:530 CONSOLA/(17514:17514): Instruccion: NO_OP
+[INFO] 17:13:19:531 CONSOLA/(17514:17514): Tamanio de la instruccion: 5
+[INFO] 17:13:19:533 CONSOLA/(17514:17514): 
+
+[INFO] 17:13:19:534 CONSOLA/(17514:17514): Instruccion: NO_OP
+[INFO] 17:13:19:535 CONSOLA/(17514:17514): Tamanio de la instruccion: 5
+[INFO] 17:13:19:535 CONSOLA/(17514:17514): 
+
+[INFO] 17:13:19:539 CONSOLA/(17514:17514): Instruccion: NO_OP
+[INFO] 17:13:19:541 CONSOLA/(17514:17514): Tamanio de la instruccion: 5
+[INFO] 17:13:19:542 CONSOLA/(17514:17514): 
+
+[INFO] 17:13:19:542 CONSOLA/(17514:17514): Instruccion: I/O
+[INFO] 17:13:19:543 CONSOLA/(17514:17514): Tamanio de la instruccion: 3
+[INFO] 17:13:19:544 CONSOLA/(17514:17514): Argumento: 5000
+[INFO] 17:13:19:545 CONSOLA/(17514:17514): 
+
+[INFO] 17:13:19:546 CONSOLA/(17514:17514): Instruccion: NO_OP
+[INFO] 17:13:19:547 CONSOLA/(17514:17514): Tamanio de la instruccion: 5
+[INFO] 17:13:19:548 CONSOLA/(17514:17514): 
+
+[INFO] 17:13:19:549 CONSOLA/(17514:17514): Instruccion: NO_OP
+[INFO] 17:13:19:550 CONSOLA/(17514:17514): Tamanio de la instruccion: 5
+[INFO] 17:13:19:551 CONSOLA/(17514:17514): 
+
+[INFO] 17:13:19:552 CONSOLA/(17514:17514): Instruccion: NO_OP
+[INFO] 17:13:19:552 CONSOLA/(17514:17514): Tamanio de la instruccion: 5
+[INFO] 17:13:19:553 CONSOLA/(17514:17514): 
+
+[INFO] 17:13:19:554 CONSOLA/(17514:17514): Instruccion: EXIT
+[INFO] 17:13:19:555 CONSOLA/(17514:17514): Tamanio de la instruccion: 4
+[INFO] 17:13:19:557 CONSOLA/(17514:17514): 
+
+[INFO] 17:13:19:558 CONSOLA/(17514:17514): Cliente conectado en 127.0.0.1:8000 (a KERNEL)
+
+[INFO] 17:13:19:560 CONSOLA/(17514:17514): Se envio la lista de instrucciones al kernel
+[INFO] 17:13:19:561 CONSOLA/(17514:17514): Estoy esperando a que el kernel me avise que ya ejecuto mis instrucciones...
+[INFO] 17:13:20:009 CONSOLA/(17517:17517): Lista de instrucciones cargadas:
+[INFO] 17:13:20:010 CONSOLA/(17517:17517): Instruccion: NO_OP
+[INFO] 17:13:20:010 CONSOLA/(17517:17517): Tamanio de la instruccion: 5
+[INFO] 17:13:20:011 CONSOLA/(17517:17517): 
+
+[INFO] 17:13:20:012 CONSOLA/(17517:17517): Instruccion: NO_OP
+[INFO] 17:13:20:012 CONSOLA/(17517:17517): Tamanio de la instruccion: 5
+[INFO] 17:13:20:013 CONSOLA/(17517:17517): 
+
+[INFO] 17:13:20:014 CONSOLA/(17517:17517): Instruccion: NO_OP
+[INFO] 17:13:20:015 CONSOLA/(17517:17517): Tamanio de la instruccion: 5
+[INFO] 17:13:20:016 CONSOLA/(17517:17517): 
+
+[INFO] 17:13:20:017 CONSOLA/(17517:17517): Instruccion: NO_OP
+[INFO] 17:13:20:018 CONSOLA/(17517:17517): Tamanio de la instruccion: 5
+[INFO] 17:13:20:018 CONSOLA/(17517:17517): 
+
+[INFO] 17:13:20:019 CONSOLA/(17517:17517): Instruccion: NO_OP
+[INFO] 17:13:20:023 CONSOLA/(17517:17517): Tamanio de la instruccion: 5
+[INFO] 17:13:20:024 CONSOLA/(17517:17517): 
+
+[INFO] 17:13:20:025 CONSOLA/(17517:17517): Instruccion: NO_OP
+[INFO] 17:13:20:026 CONSOLA/(17517:17517): Tamanio de la instruccion: 5
+[INFO] 17:13:20:026 CONSOLA/(17517:17517): 
+
+[INFO] 17:13:20:027 CONSOLA/(17517:17517): Instruccion: NO_OP
+[INFO] 17:13:20:028 CONSOLA/(17517:17517): Tamanio de la instruccion: 5
+[INFO] 17:13:20:029 CONSOLA/(17517:17517): 
+
+[INFO] 17:13:20:031 CONSOLA/(17517:17517): Instruccion: NO_OP
+[INFO] 17:13:20:032 CONSOLA/(17517:17517): Tamanio de la instruccion: 5
+[INFO] 17:13:20:033 CONSOLA/(17517:17517): 
+
+[INFO] 17:13:20:034 CONSOLA/(17517:17517): Instruccion: NO_OP
+[INFO] 17:13:20:035 CONSOLA/(17517:17517): Tamanio de la instruccion: 5
+[INFO] 17:13:20:035 CONSOLA/(17517:17517): 
+
+[INFO] 17:13:20:036 CONSOLA/(17517:17517): Instruccion: NO_OP
+[INFO] 17:13:20:036 CONSOLA/(17517:17517): Tamanio de la instruccion: 5
+[INFO] 17:13:20:037 CONSOLA/(17517:17517): 
+
+[INFO] 17:13:20:038 CONSOLA/(17517:17517): Instruccion: EXIT
+[INFO] 17:13:20:038 CONSOLA/(17517:17517): Tamanio de la instruccion: 4
+[INFO] 17:13:20:039 CONSOLA/(17517:17517): 
+
+[INFO] 17:13:20:041 CONSOLA/(17517:17517): Cliente conectado en 127.0.0.1:8000 (a KERNEL)
+
+[INFO] 17:13:20:042 CONSOLA/(17517:17517): Se envio la lista de instrucciones al kernel
+[INFO] 17:13:20:042 CONSOLA/(17517:17517): Estoy esperando a que el kernel me avise que ya ejecuto mis instrucciones...
+[ERROR] 17:17:02:932 CONSOLA/(17517:17517): No se pudo recibir el codigo de operacion
+[ERROR] 17:17:02:932 CONSOLA/(17514:17514): No se pudo recibir el codigo de operacion
+[ERROR] 17:17:02:932 CONSOLA/(17509:17509): No se pudo recibir el codigo de operacion

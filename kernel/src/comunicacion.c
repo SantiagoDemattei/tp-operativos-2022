@@ -71,7 +71,7 @@ static void procesar_conexion(void *void_args)
         case INICIAR_PROCESO:
             if (recv_iniciar_consola(*cliente_socket, &instrucciones, &tamanio))
             {
-                loggear_info(logger, "Se recibieron las instrucciones", mutex_logger_kernel);               
+                loggear_info(logger, "Se recibieron las instrucciones", mutex_logger_kernel);
                 t_pcb *pcb = crear_pcb(instrucciones, logger, tamanio, cliente_socket);
 
                 verificacion_multiprogramacion(pcb);
@@ -149,6 +149,7 @@ void verificacion_multiprogramacion(t_pcb *pcb)
 
         socket_memoria = crear_conexion_memoria(configuracion_kernel, logger);                   // se conecta con el server de memoria
         send_inicializar_estructuras(socket_memoria, tope_cola_new->tamanio, tope_cola_new->id); // mando el proceso para que la memoria inicialice las estructuras                        // para que la memoria inicialice estructuras y obtenga el valor de la TP
+        printf("INICIALICE ESTRUCTURAS DE %d\n", tope_cola_new->id);
         if (recv(socket_memoria, &cop, sizeof(op_code), 0) != sizeof(op_code))
         {
             loggear_error(logger, "Error al recibir el op_code INICIALIZAR_ESTRUCTURAS de la memoria", mutex_logger_kernel);
@@ -156,7 +157,7 @@ void verificacion_multiprogramacion(t_pcb *pcb)
         }
         recv_valor_tb(socket_memoria, &tope_cola_new->tabla_pagina); // recibe el id de la tabla de paginas y lo guarda en el pcb
 
-        if(tope_cola_new->tabla_pagina == -1)//se lo mando si no encontre un marco libre para el proceso
+        if (tope_cola_new->tabla_pagina == -1) // se lo mando si no encontre un marco libre para el proceso
         {
             loggear_error(logger, "Error al inicializar estructuras del proceso", mutex_logger_kernel);
             return;
@@ -387,7 +388,7 @@ void recibir() // de cpu
                 loggear_error(logger, "Error al recibir el op code LIBERAR ESTRUCTURAS", mutex_logger_kernel);
                 return;
             }
-            recv_fin_proceso(socket_memoria, &id); 
+            recv_fin_proceso(socket_memoria, &id);
             liberar_conexion(socket_memoria); // libero la conexion con la memoria
 
             pthread_mutex_lock(&mutex_cantidad_procesos);
@@ -427,6 +428,7 @@ void recibir() // de cpu
 
 void revisar_entrada_a_ready() // reviso si hay algun proceso en new o en suspended ready para meterlo en ready, lo hace el hilo de largo plazo
 {
+    op_code cop;
     while (true)
     {
         sem_wait(&sem_queue_suspended);                                                                                                                           // espera que se haya bajado el grado de multiprogramacion (porque suspendi un proceso o porque alguno termino)
@@ -443,6 +445,20 @@ void revisar_entrada_a_ready() // reviso si hay algun proceso en new o en suspen
             else
             { // sino pongo en ready al que este en new
                 t_pcb *pcb = queue_pop_con_mutex(cola_new, mutex_cola_new);
+                printf("Por inicializar estructuras\n", pcb->id);
+                send_inicializar_estructuras(socket_memoria, pcb->tamanio, pcb->id); // le aviso a la memoria que el proceso esta listo para ejecutarse
+                if (recv(socket_memoria, &cop, sizeof(op_code), 0) != sizeof(op_code))
+                {
+                    loggear_error(logger, "Error al recibir el op_code INICIALIZAR_ESTRUCTURAS de la memoria", mutex_logger_kernel);
+                    return;
+                }
+                recv_valor_tb(socket_memoria, &pcb->tabla_pagina); // recibe el id de la tabla de paginas y lo guarda en el pcb
+
+                if (pcb->tabla_pagina == -1) // se lo mando si no encontre un marco libre para el proceso
+                {
+                    loggear_error(logger, "Error al inicializar estructuras del proceso", mutex_logger_kernel);
+                    return;
+                }
                 list_add_con_mutex(cola_ready, pcb, mutex_cola_ready);
             }
 

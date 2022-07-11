@@ -21,7 +21,7 @@ void loggear_tlb(t_list *lista_tlb, t_log *logger, pthread_mutex_t mutex)
 {
     pthread_mutex_lock(&mutex);
     log_info(logger, "           TLB ");
-    log_info(logger, " |  PAGINA  | MARCO |");
+    log_info(logger, " |  PAGINA | MARCO |");
 
     for (int i = 0; i < list_size(lista_tlb); i++)
     {
