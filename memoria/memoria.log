@@ -1,48 +1,309 @@
-[INFO] 17:13:11:556 MEMORIA/(17481:17481): Esperando a 127.0.0.1:8002 (KERNEL)
+[INFO] 13:54:22:258 MEMORIA/(1545:1545): Esperando a 127.0.0.1:8002 (KERNEL)
 
-[INFO] 17:13:13:509 MEMORIA/(17481:17481): Cliente conectado (a MEMORIA)
+[INFO] 13:54:23:584 MEMORIA/(1545:1545): Cliente conectado (a MEMORIA)
 
-[INFO] 17:13:13:512 MEMORIA/(17481:17487): Envie tamanio de pagina a CPU
+[INFO] 13:54:23:586 MEMORIA/(1545:1551): Envie tamanio de pagina a CPU
 
-[INFO] 17:13:13:513 MEMORIA/(17481:17487): DISCONNECT!
+[INFO] 13:54:23:587 MEMORIA/(1545:1551): DISCONNECT!
 
-[INFO] 17:13:19:286 MEMORIA/(17481:17481): Cliente conectado (a MEMORIA)
+[INFO] 13:55:29:182 MEMORIA/(1545:1545): Cliente conectado (a MEMORIA)
 
-[INFO] 17:13:19:291 MEMORIA/(17481:17511): INICIALIZANDO ESTRUCTURAS
+[INFO] 13:55:29:198 MEMORIA/(1545:1673): INICIALIZANDO ESTRUCTURAS DEL PROCESO 1
 
-[INFO] 17:13:19:292 MEMORIA/(17481:17482): Creando archivo SWAP
+[INFO] 13:55:29:204 MEMORIA/(1545:1546): Creando archivo SWAP
 
-[INFO] 17:13:19:292 MEMORIA/(17481:17511): El nombre del archivo es: /home/utnso/swap/1.swap
+[INFO] 13:55:29:211 MEMORIA/(1545:1673): El nombre del archivo es: /home/utnso/swap/1.swap
 
-[INFO] 17:13:19:296 MEMORIA/(17481:17511): Se envio el valor de la tabla de paginas al kernel
+[INFO] 13:55:29:213 MEMORIA/(1545:1673): Se envio el valor de la tabla de paginas al kernel
 
-[INFO] 17:13:19:440 MEMORIA/(17481:17511): DISCONNECT!
+[INFO] 13:55:29:226 MEMORIA/(1545:1673): DISCONNECT!
 
-[INFO] 17:13:19:565 MEMORIA/(17481:17481): Cliente conectado (a MEMORIA)
+[INFO] 13:55:29:780 MEMORIA/(1545:1545): Cliente conectado (a MEMORIA)
 
-[INFO] 17:13:19:578 MEMORIA/(17481:17516): INICIALIZANDO ESTRUCTURAS
+[INFO] 13:55:29:782 MEMORIA/(1545:1678): INICIALIZANDO ESTRUCTURAS DEL PROCESO 2
 
-[INFO] 17:13:19:579 MEMORIA/(17481:17516): El nombre del archivo es: /home/utnso/swap/2.swap
+[INFO] 13:55:29:785 MEMORIA/(1545:1678): El nombre del archivo es: /home/utnso/swap/2.swap
 
-[INFO] 17:13:19:583 MEMORIA/(17481:17516): Se envio el valor de la tabla de paginas al kernel
+[INFO] 13:55:29:786 MEMORIA/(1545:1678): Se envio el valor de la tabla de paginas al kernel
 
-[INFO] 17:13:19:584 MEMORIA/(17481:17516): DISCONNECT!
+[INFO] 13:55:29:788 MEMORIA/(1545:1678): DISCONNECT!
 
-[INFO] 17:13:21:293 MEMORIA/(17481:17482): Creando archivo SWAP
+[INFO] 13:55:30:208 MEMORIA/(1545:1546): Creando archivo SWAP
 
-[INFO] 17:13:30:527 MEMORIA/(17481:17481): Cliente conectado (a MEMORIA)
+[INFO] 13:55:30:761 MEMORIA/(1545:1545): Cliente conectado (a MEMORIA)
 
-[INFO] 17:13:30:533 MEMORIA/(17481:17534): SUSPENDIENDO PROCESO
+[INFO] 13:55:30:770 MEMORIA/(1545:1682): INICIALIZANDO ESTRUCTURAS DEL PROCESO 3
 
-[WARNING] 17:13:30:575 MEMORIA/(17481:17534): Se suspendio el proceso 1
+[INFO] 13:55:30:771 MEMORIA/(1545:1682): El nombre del archivo es: /home/utnso/swap/3.swap
 
-[INFO] 17:13:30:576 MEMORIA/(17481:17534): DISCONNECT!
+[INFO] 13:55:30:778 MEMORIA/(1545:1682): Se envio el valor de la tabla de paginas al kernel
 
-[INFO] 17:13:33:542 MEMORIA/(17481:17481): Cliente conectado (a MEMORIA)
+[INFO] 13:55:30:778 MEMORIA/(1545:1682): DISCONNECT!
 
-[INFO] 17:13:33:544 MEMORIA/(17481:17538): SUSPENDIENDO PROCESO
+[INFO] 13:55:30:921 MEMORIA/(1545:1545): Cliente conectado (a MEMORIA)
 
-[WARNING] 17:13:33:553 MEMORIA/(17481:17538): Se suspendio el proceso 2
+[INFO] 13:55:30:922 MEMORIA/(1545:1683): Se recibio la entrada de la tabla de paginas de primer nivel
 
-[INFO] 17:13:33:561 MEMORIA/(17481:17538): DISCONNECT!
+[INFO] 13:55:30:928 MEMORIA/(1545:1683): el id de la tabla de primer nivel es: 1 y la entrada es 0
+
+[INFO] 13:55:30:931 MEMORIA/(1545:1545): Cliente conectado (a MEMORIA)
+
+[INFO] 13:55:30:932 MEMORIA/(1545:1683): DISCONNECT!
+
+[INFO] 13:55:30:933 MEMORIA/(1545:1684): Se recibio la entrada de la tabla de pagina de segundo nivel
+
+[INFO] 13:55:30:934 MEMORIA/(1545:1684):        TABLA DE PAGINAS 2 NIVEL
+[INFO] 13:55:30:936 MEMORIA/(1545:1684): Tabla id: 0
+
+[INFO] 13:55:30:942 MEMORIA/(1545:1684):  |  MARCO   | P  | U   | M |
+[INFO] 13:55:30:948 MEMORIA/(1545:1684):  |  -2      |  0  |  0  |  0  |
+[INFO] 13:55:30:949 MEMORIA/(1545:1684):  |  -2      |  0  |  0  |  0  |
+[INFO] 13:55:30:950 MEMORIA/(1545:1684):  |  -2      |  0  |  0  |  0  |
+[INFO] 13:55:30:950 MEMORIA/(1545:1684):  |  -2      |  0  |  0  |  0  |
+[INFO] 13:55:30:951 MEMORIA/(1545:1684): ---------------------
+
+[INFO] 13:55:30:952 MEMORIA/(1545:1684): Tabla id: 1
+
+[INFO] 13:55:30:952 MEMORIA/(1545:1684):  |  MARCO   | P  | U   | M |
+[INFO] 13:55:30:953 MEMORIA/(1545:1684):  |  -2      |  0  |  0  |  0  |
+[INFO] 13:55:30:954 MEMORIA/(1545:1684):  |  -2      |  0  |  0  |  0  |
+[INFO] 13:55:30:954 MEMORIA/(1545:1684):  |  -2      |  0  |  0  |  0  |
+[INFO] 13:55:30:955 MEMORIA/(1545:1684):  |  -2      |  0  |  0  |  0  |
+[INFO] 13:55:30:956 MEMORIA/(1545:1684): ---------------------
+
+[INFO] 13:55:31:022 MEMORIA/(1545:1545): Cliente conectado (a MEMORIA)
+
+[INFO] 13:55:31:023 MEMORIA/(1545:1686): INICIALIZANDO ESTRUCTURAS DEL PROCESO 4
+
+[INFO] 13:55:31:787 MEMORIA/(1545:1545): Cliente conectado (a MEMORIA)
+
+[INFO] 13:55:31:790 MEMORIA/(1545:1691): INICIALIZANDO ESTRUCTURAS DEL PROCESO 4
+
+[INFO] 13:55:32:221 MEMORIA/(1545:1684): Se escribio en marco 0
+
+[INFO] 13:55:32:222 MEMORIA/(1545:1686): El nombre del archivo es: /home/utnso/swap/4.swap
+
+[INFO] 13:55:32:223 MEMORIA/(1545:1686): Se envio el valor de la tabla de paginas al kernel
+
+[INFO] 13:55:32:223 MEMORIA/(1545:1691): El nombre del archivo es: /home/utnso/swap/4.swap
+
+[INFO] 13:55:32:226 MEMORIA/(1545:1686): DISCONNECT!
+
+[INFO] 13:55:32:230 MEMORIA/(1545:1691): Se envio el valor de la tabla de paginas al kernel
+
+[INFO] 13:55:32:228 MEMORIA/(1545:1684): DISCONNECT!
+
+[INFO] 13:55:32:232 MEMORIA/(1545:1691): DISCONNECT!
+
+[INFO] 13:55:32:235 MEMORIA/(1545:1545): Cliente conectado (a MEMORIA)
+
+[INFO] 13:55:32:236 MEMORIA/(1545:1692): Se recibio la entrada de la tabla de paginas de primer nivel
+
+[INFO] 13:55:32:237 MEMORIA/(1545:1692): el id de la tabla de primer nivel es: 1 y la entrada es 0
+
+[INFO] 13:55:32:239 MEMORIA/(1545:1545): Cliente conectado (a MEMORIA)
+
+[INFO] 13:55:32:240 MEMORIA/(1545:1692): DISCONNECT!
+
+[INFO] 13:55:32:240 MEMORIA/(1545:1696): Se recibio la entrada de la tabla de pagina de segundo nivel
+
+[INFO] 13:55:32:242 MEMORIA/(1545:1696):        TABLA DE PAGINAS 2 NIVEL
+[INFO] 13:55:32:243 MEMORIA/(1545:1696): Tabla id: 0
+
+[INFO] 13:55:32:244 MEMORIA/(1545:1696):  |  MARCO   | P  | U   | M |
+[INFO] 13:55:32:251 MEMORIA/(1545:1696):  |  0      |  1  |  1  |  0  |
+[INFO] 13:55:32:252 MEMORIA/(1545:1696):  |  -2      |  0  |  0  |  0  |
+[INFO] 13:55:32:254 MEMORIA/(1545:1696):  |  -2      |  0  |  0  |  0  |
+[INFO] 13:55:32:255 MEMORIA/(1545:1696):  |  -2      |  0  |  0  |  0  |
+[INFO] 13:55:32:256 MEMORIA/(1545:1696): ---------------------
+
+[INFO] 13:55:32:258 MEMORIA/(1545:1696): Tabla id: 1
+
+[INFO] 13:55:32:259 MEMORIA/(1545:1696):  |  MARCO   | P  | U   | M |
+[INFO] 13:55:32:269 MEMORIA/(1545:1696):  |  -2      |  0  |  0  |  0  |
+[INFO] 13:55:32:269 MEMORIA/(1545:1696):  |  -2      |  0  |  0  |  0  |
+[INFO] 13:55:32:270 MEMORIA/(1545:1696):  |  -2      |  0  |  0  |  0  |
+[INFO] 13:55:32:271 MEMORIA/(1545:1696):  |  -2      |  0  |  0  |  0  |
+[INFO] 13:55:32:272 MEMORIA/(1545:1696): ---------------------
+
+[INFO] 13:55:32:275 MEMORIA/(1545:1696): DISCONNECT!
+
+[INFO] 13:55:32:278 MEMORIA/(1545:1545): Cliente conectado (a MEMORIA)
+
+[WARNING] 13:55:32:279 MEMORIA/(1545:1697): Se recibio orden de escritura
+
+[INFO] 13:55:32:282 MEMORIA/(1545:1697): DISCONNECT!
+
+[INFO] 13:55:32:788 MEMORIA/(1545:1545): Cliente conectado (a MEMORIA)
+
+[INFO] 13:55:32:789 MEMORIA/(1545:1698): Se recibio la entrada de la tabla de paginas de primer nivel
+
+[INFO] 13:55:32:790 MEMORIA/(1545:1698): el id de la tabla de primer nivel es: 1 y la entrada es 0
+
+[INFO] 13:55:32:791 MEMORIA/(1545:1545): Cliente conectado (a MEMORIA)
+
+[INFO] 13:55:32:792 MEMORIA/(1545:1698): DISCONNECT!
+
+[INFO] 13:55:32:792 MEMORIA/(1545:1699): Se recibio la entrada de la tabla de pagina de segundo nivel
+
+[INFO] 13:55:32:794 MEMORIA/(1545:1699):        TABLA DE PAGINAS 2 NIVEL
+[INFO] 13:55:32:794 MEMORIA/(1545:1699): Tabla id: 0
+
+[INFO] 13:55:32:795 MEMORIA/(1545:1699):  |  MARCO   | P  | U   | M |
+[INFO] 13:55:32:796 MEMORIA/(1545:1699):  |  0      |  1  |  1  |  1  |
+[INFO] 13:55:32:796 MEMORIA/(1545:1699):  |  -2      |  0  |  0  |  0  |
+[INFO] 13:55:32:797 MEMORIA/(1545:1699):  |  -2      |  0  |  0  |  0  |
+[INFO] 13:55:32:799 MEMORIA/(1545:1699):  |  -2      |  0  |  0  |  0  |
+[INFO] 13:55:32:802 MEMORIA/(1545:1699): ---------------------
+
+[INFO] 13:55:32:803 MEMORIA/(1545:1699): Tabla id: 1
+
+[INFO] 13:55:32:804 MEMORIA/(1545:1699):  |  MARCO   | P  | U   | M |
+[INFO] 13:55:32:804 MEMORIA/(1545:1699):  |  -2      |  0  |  0  |  0  |
+[INFO] 13:55:32:805 MEMORIA/(1545:1699):  |  -2      |  0  |  0  |  0  |
+[INFO] 13:55:32:806 MEMORIA/(1545:1699):  |  -2      |  0  |  0  |  0  |
+[INFO] 13:55:32:807 MEMORIA/(1545:1699):  |  -2      |  0  |  0  |  0  |
+[INFO] 13:55:32:807 MEMORIA/(1545:1699): ---------------------
+
+[INFO] 13:55:33:222 MEMORIA/(1545:1699): Se escribio en marco 1
+
+[INFO] 13:55:33:223 MEMORIA/(1545:1699): DISCONNECT!
+
+[INFO] 13:55:33:228 MEMORIA/(1545:1545): Cliente conectado (a MEMORIA)
+
+[WARNING] 13:55:33:228 MEMORIA/(1545:1703): Se recibio orden de escritura
+
+[INFO] 13:55:33:231 MEMORIA/(1545:1703): DISCONNECT!
+
+[INFO] 13:55:33:737 MEMORIA/(1545:1545): Cliente conectado (a MEMORIA)
+
+[INFO] 13:55:33:738 MEMORIA/(1545:1704): Se recibio la entrada de la tabla de paginas de primer nivel
+
+[INFO] 13:55:33:739 MEMORIA/(1545:1704): el id de la tabla de primer nivel es: 1 y la entrada es 0
+
+[INFO] 13:55:33:740 MEMORIA/(1545:1545): Cliente conectado (a MEMORIA)
+
+[INFO] 13:55:33:742 MEMORIA/(1545:1704): DISCONNECT!
+
+[INFO] 13:55:33:742 MEMORIA/(1545:1705): Se recibio la entrada de la tabla de pagina de segundo nivel
+
+[INFO] 13:55:33:743 MEMORIA/(1545:1705):        TABLA DE PAGINAS 2 NIVEL
+[INFO] 13:55:33:744 MEMORIA/(1545:1705): Tabla id: 0
+
+[INFO] 13:55:33:745 MEMORIA/(1545:1705):  |  MARCO   | P  | U   | M |
+[INFO] 13:55:33:745 MEMORIA/(1545:1705):  |  0      |  1  |  1  |  1  |
+[INFO] 13:55:33:746 MEMORIA/(1545:1705):  |  1      |  1  |  1  |  1  |
+[INFO] 13:55:33:747 MEMORIA/(1545:1705):  |  -2      |  0  |  0  |  0  |
+[INFO] 13:55:33:748 MEMORIA/(1545:1705):  |  -2      |  0  |  0  |  0  |
+[INFO] 13:55:33:751 MEMORIA/(1545:1705): ---------------------
+
+[INFO] 13:55:33:752 MEMORIA/(1545:1705): Tabla id: 1
+
+[INFO] 13:55:33:753 MEMORIA/(1545:1705):  |  MARCO   | P  | U   | M |
+[INFO] 13:55:33:754 MEMORIA/(1545:1705):  |  -2      |  0  |  0  |  0  |
+[INFO] 13:55:33:755 MEMORIA/(1545:1705):  |  -2      |  0  |  0  |  0  |
+[INFO] 13:55:33:755 MEMORIA/(1545:1705):  |  -2      |  0  |  0  |  0  |
+[INFO] 13:55:33:756 MEMORIA/(1545:1705):  |  -2      |  0  |  0  |  0  |
+[INFO] 13:55:33:757 MEMORIA/(1545:1705): ---------------------
+
+[INFO] 13:55:34:222 MEMORIA/(1545:1705): Se escribio en marco 2
+
+[INFO] 13:55:34:224 MEMORIA/(1545:1705): DISCONNECT!
+
+[INFO] 13:55:34:228 MEMORIA/(1545:1545): Cliente conectado (a MEMORIA)
+
+[WARNING] 13:55:34:230 MEMORIA/(1545:1707): Se recibio orden de escritura
+
+[INFO] 13:55:34:232 MEMORIA/(1545:1707): DISCONNECT!
+
+[INFO] 13:55:34:744 MEMORIA/(1545:1545): Cliente conectado (a MEMORIA)
+
+[INFO] 13:55:34:746 MEMORIA/(1545:1708): Se recibio la entrada de la tabla de paginas de primer nivel
+
+[INFO] 13:55:34:747 MEMORIA/(1545:1708): el id de la tabla de primer nivel es: 1 y la entrada es 0
+
+[INFO] 13:55:34:748 MEMORIA/(1545:1545): Cliente conectado (a MEMORIA)
+
+[INFO] 13:55:34:749 MEMORIA/(1545:1708): DISCONNECT!
+
+[INFO] 13:55:34:750 MEMORIA/(1545:1709): Se recibio la entrada de la tabla de pagina de segundo nivel
+
+[INFO] 13:55:34:751 MEMORIA/(1545:1709):        TABLA DE PAGINAS 2 NIVEL
+[INFO] 13:55:34:751 MEMORIA/(1545:1709): Tabla id: 0
+
+[INFO] 13:55:34:752 MEMORIA/(1545:1709):  |  MARCO   | P  | U   | M |
+[INFO] 13:55:34:753 MEMORIA/(1545:1709):  |  0      |  1  |  1  |  1  |
+[INFO] 13:55:34:754 MEMORIA/(1545:1709):  |  1      |  1  |  1  |  1  |
+[INFO] 13:55:34:755 MEMORIA/(1545:1709):  |  2      |  1  |  1  |  1  |
+[INFO] 13:55:34:760 MEMORIA/(1545:1709):  |  -2      |  0  |  0  |  0  |
+[INFO] 13:55:34:760 MEMORIA/(1545:1709): ---------------------
+
+[INFO] 13:55:34:761 MEMORIA/(1545:1709): Tabla id: 1
+
+[INFO] 13:55:34:762 MEMORIA/(1545:1709):  |  MARCO   | P  | U   | M |
+[INFO] 13:55:34:763 MEMORIA/(1545:1709):  |  -2      |  0  |  0  |  0  |
+[INFO] 13:55:34:764 MEMORIA/(1545:1709):  |  -2      |  0  |  0  |  0  |
+[INFO] 13:55:34:765 MEMORIA/(1545:1709):  |  -2      |  0  |  0  |  0  |
+[INFO] 13:55:34:765 MEMORIA/(1545:1709):  |  -2      |  0  |  0  |  0  |
+[INFO] 13:55:34:766 MEMORIA/(1545:1709): ---------------------
+
+[INFO] 13:55:35:226 MEMORIA/(1545:1709): Se escribio en marco 3
+
+[INFO] 13:55:35:230 MEMORIA/(1545:1709): DISCONNECT!
+
+[INFO] 13:55:35:255 MEMORIA/(1545:1545): Cliente conectado (a MEMORIA)
+
+[WARNING] 13:55:35:261 MEMORIA/(1545:1711): Se recibio orden de escritura
+
+[INFO] 13:55:35:265 MEMORIA/(1545:1711): DISCONNECT!
+
+[INFO] 13:55:35:777 MEMORIA/(1545:1545): Cliente conectado (a MEMORIA)
+
+[INFO] 13:55:35:781 MEMORIA/(1545:1714): Se recibio la entrada de la tabla de paginas de primer nivel
+
+[INFO] 13:55:35:782 MEMORIA/(1545:1714): el id de la tabla de primer nivel es: 1 y la entrada es 1
+
+[INFO] 13:55:35:785 MEMORIA/(1545:1545): Cliente conectado (a MEMORIA)
+
+[INFO] 13:55:35:793 MEMORIA/(1545:1714): DISCONNECT!
+
+[INFO] 13:55:35:795 MEMORIA/(1545:1715): Se recibio la entrada de la tabla de pagina de segundo nivel
+
+[INFO] 13:55:35:796 MEMORIA/(1545:1715):        TABLA DE PAGINAS 2 NIVEL
+[INFO] 13:55:35:797 MEMORIA/(1545:1715): Tabla id: 0
+
+[INFO] 13:55:35:798 MEMORIA/(1545:1715):  |  MARCO   | P  | U   | M |
+[INFO] 13:55:35:799 MEMORIA/(1545:1715):  |  0      |  1  |  1  |  1  |
+[INFO] 13:55:35:800 MEMORIA/(1545:1715):  |  1      |  1  |  1  |  1  |
+[INFO] 13:55:35:808 MEMORIA/(1545:1715):  |  2      |  1  |  1  |  1  |
+[INFO] 13:55:35:809 MEMORIA/(1545:1715):  |  3      |  1  |  1  |  1  |
+[INFO] 13:55:35:810 MEMORIA/(1545:1715): ---------------------
+
+[INFO] 13:55:35:811 MEMORIA/(1545:1715): Tabla id: 1
+
+[INFO] 13:55:35:812 MEMORIA/(1545:1715):  |  MARCO   | P  | U   | M |
+[INFO] 13:55:35:813 MEMORIA/(1545:1715):  |  -2      |  0  |  0  |  0  |
+[INFO] 13:55:35:814 MEMORIA/(1545:1715):  |  -2      |  0  |  0  |  0  |
+[INFO] 13:55:35:815 MEMORIA/(1545:1715):  |  -2      |  0  |  0  |  0  |
+[INFO] 13:55:35:816 MEMORIA/(1545:1715):  |  -2      |  0  |  0  |  0  |
+[INFO] 13:55:35:818 MEMORIA/(1545:1715): ---------------------
+
+[INFO] 13:55:36:226 MEMORIA/(1545:1715): Pagina 0 con bit de uso en 1, ahora 0 
+[INFO] 13:55:36:227 MEMORIA/(1545:1715): Pagina 1 con bit de uso en 1, ahora 0 
+[INFO] 13:55:36:228 MEMORIA/(1545:1715): Pagina 2 con bit de uso en 1, ahora 0 
+[INFO] 13:55:36:229 MEMORIA/(1545:1715): Pagina 3 con bit de uso en 1, ahora 0 
+[INFO] 13:55:37:227 MEMORIA/(1545:1546): Se escribio en swap
+
+[INFO] 13:55:37:228 MEMORIA/(1545:1715): Se escribio en marco 0
+
+[INFO] 13:55:37:232 MEMORIA/(1545:1715): Reemplazando pagina 0 con bit de uso en 0 y modificado en 1
+[INFO] 13:55:37:236 MEMORIA/(1545:1715): DISCONNECT!
+
+[INFO] 13:55:37:271 MEMORIA/(1545:1545): Cliente conectado (a MEMORIA)
+
+[WARNING] 13:55:37:272 MEMORIA/(1545:1716): Se recibio orden de escritura
+
+[INFO] 13:55:37:275 MEMORIA/(1545:1716): DISCONNECT!
+
+[INFO] 13:55:38:233 MEMORIA/(1545:1546): Se escribio en swap
 

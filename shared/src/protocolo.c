@@ -281,7 +281,6 @@ bool send_inicializar_estructuras(uint32_t fd, uint32_t tamanio_proceso, uint32_
     memcpy(stream + sizeof(op_code), &size_payload, sizeof(size_t));
     memcpy(stream + sizeof(op_code) + sizeof(size_t), &tamanio_proceso, sizeof(uint32_t));
     memcpy(stream + sizeof(op_code) + sizeof(size_t) + sizeof(uint32_t), &id_proceso, sizeof(uint32_t));
-    printf("ENVIANDO EL TAMANIO DE LA MEMORIA: %d\n", tamanio_proceso);
     if (send(fd, stream, size, 0) == -1)
     {
         free(stream);
@@ -306,7 +305,6 @@ bool recv_inicializar_estructuras(uint32_t fd, uint32_t* tamanio_proceso, uint32
     // recibe el  payload
     memcpy(tamanio_proceso, stream, sizeof(uint32_t));
     memcpy(id_proceso, stream + sizeof(uint32_t), sizeof(uint32_t));
-    printf("RECIBI EL TAMANIO DE LA MEMORIA: %d\n", tamanio_proceso);
     free(stream);
     return true;
 }

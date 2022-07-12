@@ -1,50 +1,80 @@
-[INFO] 17:13:16:120 KERNEL/(17496:17496): Esperando a 127.0.0.1:8000 (CONSOLA)
+[INFO] 13:54:25:353 KERNEL/(1552:1552): Cliente conectado (a KERNEL)
 
-[INFO] 17:13:16:123 KERNEL/(17496:17497): Cliente conectado en 127.0.0.1:8001 (a CPU DISPATCH)
+[INFO] 13:55:19:876 KERNEL/(1657:1657): Esperando a 127.0.0.1:8000 (CONSOLA)
 
-[INFO] 17:13:16:125 KERNEL/(17496:17497): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 13:55:19:878 KERNEL/(1657:1658): Cliente conectado en 127.0.0.1:8001 (a CPU DISPATCH)
 
-[INFO] 17:13:19:275 KERNEL/(17496:17496): Cliente conectado (a KERNEL)
+[INFO] 13:55:19:879 KERNEL/(1657:1658): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 17:13:19:284 KERNEL/(17496:17510): Se recibieron las instrucciones
-[INFO] 17:13:19:285 KERNEL/(17496:17510): Cantidad de procesos en memoria: 0
+[INFO] 13:55:29:132 KERNEL/(1657:1657): Cliente conectado (a KERNEL)
 
-[INFO] 17:13:19:286 KERNEL/(17496:17510): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 13:55:29:179 KERNEL/(1657:1672): Se recibieron las instrucciones
+[INFO] 13:55:29:179 KERNEL/(1657:1672): Cantidad de procesos en memoria: 0
 
-[INFO] 17:13:19:294 KERNEL/(17496:17510): El id de la tabla de pagina del proceso 1 es 0
+[INFO] 13:55:29:182 KERNEL/(1657:1672): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 17:13:19:295 KERNEL/(17496:17497): Se envio el proceso 1 a la CPU
+[INFO] 13:55:29:212 KERNEL/(1657:1672): Se inicializo el proceso 1 con el id 0 de la tabla de pagina 1 
 
-[INFO] 17:13:19:558 KERNEL/(17496:17496): Cliente conectado (a KERNEL)
+[INFO] 13:55:29:215 KERNEL/(1657:1672): Se agrega el proceso 1 a la cola de ready
+[INFO] 13:55:29:216 KERNEL/(1657:1658): Se envio el proceso 1 a la CPU
 
-[INFO] 17:13:19:562 KERNEL/(17496:17515): Se recibieron las instrucciones
-[INFO] 17:13:19:562 KERNEL/(17496:17515): Cantidad de procesos en memoria: 1
+[INFO] 13:55:29:752 KERNEL/(1657:1657): Cliente conectado (a KERNEL)
 
-[INFO] 17:13:19:565 KERNEL/(17496:17515): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 13:55:29:770 KERNEL/(1657:1677): Se recibieron las instrucciones
+[INFO] 13:55:29:771 KERNEL/(1657:1677): Cantidad de procesos en memoria: 1
 
-[INFO] 17:13:19:581 KERNEL/(17496:17515): El id de la tabla de pagina del proceso 2 es 1
+[INFO] 13:55:29:781 KERNEL/(1657:1677): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 17:13:20:040 KERNEL/(17496:17496): Cliente conectado (a KERNEL)
+[INFO] 13:55:29:787 KERNEL/(1657:1677): Se inicializo el proceso 2 con el id 1 de la tabla de pagina 1 
 
-[INFO] 17:13:20:042 KERNEL/(17496:17518): Se recibieron las instrucciones
-[INFO] 17:13:20:044 KERNEL/(17496:17518): Cantidad de procesos en memoria: 2
+[INFO] 13:55:29:787 KERNEL/(1657:1677): Se agrega el proceso 2 a la cola de ready
+[INFO] 13:55:29:837 KERNEL/(1657:1658): Se envio el proceso 2 a la CPU
 
-[INFO] 17:13:22:508 KERNEL/(17496:17498): Nuevo proceso en cola blocked
+[INFO] 13:55:30:746 KERNEL/(1657:1657): Cliente conectado (a KERNEL)
 
-[INFO] 17:13:22:508 KERNEL/(17496:17497): Se envio el proceso 2 a la CPU
+[INFO] 13:55:30:754 KERNEL/(1657:1681): Se recibieron las instrucciones
+[INFO] 13:55:30:759 KERNEL/(1657:1681): Cantidad de procesos en memoria: 2
 
-[INFO] 17:13:25:535 KERNEL/(17496:17498): Nuevo proceso en cola blocked
+[INFO] 13:55:30:761 KERNEL/(1657:1681): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[WARNING] 17:13:30:523 KERNEL/(17496:17523): Se va a suspender el proceso: 1
+[INFO] 13:55:30:773 KERNEL/(1657:1681): Se inicializo el proceso 3 con el id 2 de la tabla de pagina 1 
 
-[INFO] 17:13:30:529 KERNEL/(17496:17523): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 13:55:30:774 KERNEL/(1657:1681): Se agrega el proceso 3 a la cola de ready
+[INFO] 13:55:30:815 KERNEL/(1657:1658): Se envio el proceso 2 a la CPU
 
-[INFO] 17:13:30:577 KERNEL/(17496:17523): Confirmacion de suspension recibida
-[INFO] 17:13:30:578 KERNEL/(17496:17500): Cantidad de procesos en memoria: 1
+[INFO] 13:55:31:011 KERNEL/(1657:1657): Cliente conectado (a KERNEL)
 
-[ERROR] 17:13:30:580 KERNEL/(17496:17500): Error al recibir el op_code INICIALIZAR_ESTRUCTURAS de la memoria
-[WARNING] 17:13:33:539 KERNEL/(17496:17527): Se va a suspender el proceso: 2
+[INFO] 13:55:31:020 KERNEL/(1657:1685): Se recibieron las instrucciones
+[INFO] 13:55:31:021 KERNEL/(1657:1685): Cantidad de procesos en memoria: 3
 
-[INFO] 17:13:33:542 KERNEL/(17496:17527): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 13:55:31:022 KERNEL/(1657:1685): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 17:13:33:561 KERNEL/(17496:17527): Confirmacion de suspension recibida
+[INFO] 13:55:31:777 KERNEL/(1657:1657): Cliente conectado (a KERNEL)
+
+[INFO] 13:55:31:782 KERNEL/(1657:1690): Se recibieron las instrucciones
+[INFO] 13:55:31:783 KERNEL/(1657:1690): Cantidad de procesos en memoria: 4
+
+[INFO] 13:55:31:788 KERNEL/(1657:1690): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 13:55:32:227 KERNEL/(1657:1690): Se inicializo el proceso 4 con el id 3 de la tabla de pagina 1 
+
+[INFO] 13:55:32:228 KERNEL/(1657:1690): Se agrega el proceso 4 a la cola de ready
+[INFO] 13:55:32:231 KERNEL/(1657:1658): Se envio el proceso 2 a la CPU
+
+[INFO] 13:55:38:295 KERNEL/(1657:1659): Nuevo proceso en cola blocked
+
+[INFO] 13:55:38:297 KERNEL/(1657:1658): Se envio el proceso 1 a la CPU
+
+[INFO] 13:55:38:514 KERNEL/(1657:1685): Se inicializo el proceso 4 con el id 3 de la tabla de pagina 1 
+
+[INFO] 13:55:38:515 KERNEL/(1657:1685): Se agrega el proceso 4 a la cola de ready
+[INFO] 13:55:38:619 KERNEL/(1657:1658): Se envio el proceso 3 a la CPU
+
+[WARNING] 13:55:39:306 KERNEL/(1657:1721): Se va a suspender el proceso: 2
+
+[ERROR] 13:55:39:307 KERNEL/(1657:1721): Error al conectar (a MEMORIA)
+
+[ERROR] 13:55:39:307 KERNEL/(1657:1721): Error al recibir el op code CONFIRMACION SUSPENSION
+[INFO] 13:55:39:308 KERNEL/(1657:1661): Cantidad de procesos en memoria: 4
+
+[INFO] 13:55:39:648 KERNEL/(1657:1659): DISCONNECT

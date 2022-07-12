@@ -1,30 +1,266 @@
-[INFO] 17:13:13:506 CPU/(17486:17486): Esperando a 127.0.0.1:8001 (KERNEL DISPATCH)
+[INFO] 13:54:23:582 CPU/(1550:1550): Esperando a 127.0.0.1:8001 (KERNEL DISPATCH)
 
-[INFO] 17:13:13:508 CPU/(17486:17486): Esperando a 127.0.0.1:8005 (KERNEL INTERRUPT)
+[INFO] 13:54:23:583 CPU/(1550:1550): Esperando a 127.0.0.1:8005 (KERNEL INTERRUPT)
 
-[INFO] 17:13:13:510 CPU/(17486:17486): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 13:54:23:584 CPU/(1550:1550): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 17:13:16:122 CPU/(17486:17486): Cliente conectado (a CPU DISPATCH)
+[INFO] 13:55:19:878 CPU/(1550:1550): Cliente conectado (a CPU DISPATCH)
 
-[INFO] 17:13:16:125 CPU/(17486:17486): Cliente conectado (a CPU INTERRUPT)
+[INFO] 13:55:19:879 CPU/(1550:1550): Cliente conectado (a CPU INTERRUPT)
 
-[INFO] 17:13:19:440 CPU/(17486:17501): Se recibio un pcb para ejecutar
+[INFO] 13:55:29:218 CPU/(1550:1662): Se recibio un pcb para ejecutar
 
-[INFO] 17:13:19:441 CPU/(17486:17501): Ejecutando la instruccion: NO_OP
+[INFO] 13:55:29:218 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
 
-[INFO] 17:13:20:478 CPU/(17486:17501): Ejecutando la instruccion: NO_OP
+[INFO] 13:55:29:322 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
 
-[INFO] 17:13:21:481 CPU/(17486:17501): Ejecutando la instruccion: NO_OP
+[INFO] 13:55:29:425 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
 
-[INFO] 17:13:22:484 CPU/(17486:17501): Ejecutando la instruccion: I/O
+[INFO] 13:55:29:527 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
 
-[INFO] 17:13:22:515 CPU/(17486:17501): Se recibio un pcb para ejecutar
+[INFO] 13:55:29:631 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
 
-[INFO] 17:13:22:521 CPU/(17486:17501): Ejecutando la instruccion: NO_OP
+[INFO] 13:55:29:733 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
 
-[INFO] 17:13:23:524 CPU/(17486:17501): Ejecutando la instruccion: NO_OP
+[INFO] 13:55:29:789 CPU/(1550:1663): Interrumpiendo proceso
+[WARNING] 13:55:29:842 CPU/(1550:1662): Proceso 1 interrumpido
+[INFO] 13:55:29:843 CPU/(1550:1662): Se recibio un pcb para ejecutar
 
-[INFO] 17:13:24:528 CPU/(17486:17501): Ejecutando la instruccion: NO_OP
+[INFO] 13:55:29:844 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
 
-[INFO] 17:13:25:531 CPU/(17486:17501): Ejecutando la instruccion: I/O
+[INFO] 13:55:29:949 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+
+[INFO] 13:55:30:051 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+
+[INFO] 13:55:30:185 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+
+[INFO] 13:55:30:288 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+
+[INFO] 13:55:30:390 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+
+[INFO] 13:55:30:493 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+
+[INFO] 13:55:30:597 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+
+[INFO] 13:55:30:703 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+
+[INFO] 13:55:30:774 CPU/(1550:1663): Interrumpiendo proceso
+[WARNING] 13:55:30:814 CPU/(1550:1662): Proceso 2 interrumpido
+[INFO] 13:55:30:816 CPU/(1550:1662): Se recibio un pcb para ejecutar
+
+[INFO] 13:55:30:818 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+
+[INFO] 13:55:30:919 CPU/(1550:1662): Ejecutando la instruccion: WRITE
+
+[WARNING] 13:55:30:920 CPU/(1550:1662): No se encontro la pagina en la tlb
+[INFO] 13:55:30:921 CPU/(1550:1662): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 13:55:30:931 CPU/(1550:1662): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 13:55:32:225 CPU/(1550:1662):            TLB 
+[INFO] 13:55:32:225 CPU/(1550:1662):  |  PAGINA | MARCO |
+[INFO] 13:55:32:227 CPU/(1550:1662):  |    0    |   0   |
+[INFO] 13:55:32:228 CPU/(1550:1663): Interrumpiendo proceso
+[INFO] 13:55:32:229 CPU/(1550:1662): ----------------------
+
+[WARNING] 13:55:32:232 CPU/(1550:1662): Proceso 2 interrumpido
+[INFO] 13:55:32:233 CPU/(1550:1662): Se recibio un pcb para ejecutar
+
+[INFO] 13:55:32:233 CPU/(1550:1662): Ejecutando la instruccion: WRITE
+
+[WARNING] 13:55:32:234 CPU/(1550:1662): No se encontro la pagina en la tlb
+[INFO] 13:55:32:235 CPU/(1550:1662): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 13:55:32:239 CPU/(1550:1662): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 13:55:32:275 CPU/(1550:1662):            TLB 
+[INFO] 13:55:32:276 CPU/(1550:1662):  |  PAGINA | MARCO |
+[INFO] 13:55:32:276 CPU/(1550:1662):  |    0    |   0   |
+[INFO] 13:55:32:277 CPU/(1550:1662): ----------------------
+
+[INFO] 13:55:32:278 CPU/(1550:1662): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 13:55:32:281 CPU/(1550:1662): Se escribio el valor en la posicion correspondiente
+
+[INFO] 13:55:32:281 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+
+[INFO] 13:55:32:382 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+
+[INFO] 13:55:32:483 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+
+[INFO] 13:55:32:584 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+
+[INFO] 13:55:32:685 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+
+[INFO] 13:55:32:786 CPU/(1550:1662): Ejecutando la instruccion: WRITE
+
+[WARNING] 13:55:32:787 CPU/(1550:1662): No se encontro la pagina en la tlb
+[INFO] 13:55:32:788 CPU/(1550:1662): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 13:55:32:791 CPU/(1550:1662): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 13:55:33:223 CPU/(1550:1662):            TLB 
+[INFO] 13:55:33:224 CPU/(1550:1662):  |  PAGINA | MARCO |
+[INFO] 13:55:33:225 CPU/(1550:1662):  |    0    |   0   |
+[INFO] 13:55:33:225 CPU/(1550:1662):  |    1    |   1   |
+[INFO] 13:55:33:226 CPU/(1550:1662): ----------------------
+
+[INFO] 13:55:33:226 CPU/(1550:1662): Ejecutando la instruccion: WRITE
+
+[WARNING] 13:55:33:227 CPU/(1550:1662): Se encontro la pagina en la tlb
+[INFO] 13:55:33:228 CPU/(1550:1662): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 13:55:33:230 CPU/(1550:1662): Se escribio el valor en la posicion correspondiente
+
+[INFO] 13:55:33:231 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+
+[INFO] 13:55:33:332 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+
+[INFO] 13:55:33:433 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+
+[INFO] 13:55:33:534 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+
+[INFO] 13:55:33:635 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+
+[INFO] 13:55:33:736 CPU/(1550:1662): Ejecutando la instruccion: WRITE
+
+[WARNING] 13:55:33:736 CPU/(1550:1662): No se encontro la pagina en la tlb
+[INFO] 13:55:33:737 CPU/(1550:1662): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 13:55:33:741 CPU/(1550:1662): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 13:55:34:224 CPU/(1550:1662):            TLB 
+[INFO] 13:55:34:225 CPU/(1550:1662):  |  PAGINA | MARCO |
+[INFO] 13:55:34:225 CPU/(1550:1662):  |    1    |   1   |
+[INFO] 13:55:34:226 CPU/(1550:1662):  |    2    |   2   |
+[INFO] 13:55:34:227 CPU/(1550:1662): ----------------------
+
+[INFO] 13:55:34:227 CPU/(1550:1662): Ejecutando la instruccion: WRITE
+
+[WARNING] 13:55:34:228 CPU/(1550:1662): Se encontro la pagina en la tlb
+[INFO] 13:55:34:229 CPU/(1550:1662): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 13:55:34:231 CPU/(1550:1662): Se escribio el valor en la posicion correspondiente
+
+[INFO] 13:55:34:232 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+
+[INFO] 13:55:34:334 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+
+[INFO] 13:55:34:436 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+
+[INFO] 13:55:34:538 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+
+[INFO] 13:55:34:639 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+
+[INFO] 13:55:34:741 CPU/(1550:1662): Ejecutando la instruccion: WRITE
+
+[WARNING] 13:55:34:743 CPU/(1550:1662): No se encontro la pagina en la tlb
+[INFO] 13:55:34:745 CPU/(1550:1662): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 13:55:34:748 CPU/(1550:1662): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 13:55:35:229 CPU/(1550:1662):            TLB 
+[INFO] 13:55:35:231 CPU/(1550:1662):  |  PAGINA | MARCO |
+[INFO] 13:55:35:234 CPU/(1550:1662):  |    2    |   2   |
+[INFO] 13:55:35:237 CPU/(1550:1662):  |    3    |   3   |
+[INFO] 13:55:35:248 CPU/(1550:1662): ----------------------
+
+[INFO] 13:55:35:251 CPU/(1550:1662): Ejecutando la instruccion: WRITE
+
+[WARNING] 13:55:35:254 CPU/(1550:1662): Se encontro la pagina en la tlb
+[INFO] 13:55:35:255 CPU/(1550:1662): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 13:55:35:263 CPU/(1550:1662): Se escribio el valor en la posicion correspondiente
+
+[INFO] 13:55:35:264 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+
+[INFO] 13:55:35:365 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+
+[INFO] 13:55:35:467 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+
+[INFO] 13:55:35:568 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+
+[INFO] 13:55:35:670 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+
+[INFO] 13:55:35:772 CPU/(1550:1662): Ejecutando la instruccion: WRITE
+
+[WARNING] 13:55:35:774 CPU/(1550:1662): No se encontro la pagina en la tlb
+[INFO] 13:55:35:779 CPU/(1550:1662): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 13:55:35:789 CPU/(1550:1662): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 13:55:37:236 CPU/(1550:1662):            TLB 
+[INFO] 13:55:37:238 CPU/(1550:1662):  |  PAGINA | MARCO |
+[INFO] 13:55:37:241 CPU/(1550:1662):  |    3    |   3   |
+[INFO] 13:55:37:250 CPU/(1550:1662):  |    4    |   0   |
+[INFO] 13:55:37:257 CPU/(1550:1662): ----------------------
+
+[INFO] 13:55:37:268 CPU/(1550:1662): Ejecutando la instruccion: WRITE
+
+[WARNING] 13:55:37:269 CPU/(1550:1662): Se encontro la pagina en la tlb
+[INFO] 13:55:37:271 CPU/(1550:1662): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 13:55:37:274 CPU/(1550:1662): Se escribio el valor en la posicion correspondiente
+
+[INFO] 13:55:37:274 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+
+[INFO] 13:55:37:376 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+
+[INFO] 13:55:37:477 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+
+[INFO] 13:55:37:577 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+
+[INFO] 13:55:37:679 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+
+[INFO] 13:55:37:780 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+
+[INFO] 13:55:37:882 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+
+[INFO] 13:55:37:984 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+
+[INFO] 13:55:38:086 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+
+[INFO] 13:55:38:188 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+
+[INFO] 13:55:38:294 CPU/(1550:1662): Ejecutando la instruccion: I/O
+
+[INFO] 13:55:38:298 CPU/(1550:1662): Se recibio un pcb para ejecutar
+
+[INFO] 13:55:38:305 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+
+[INFO] 13:55:38:412 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+
+[INFO] 13:55:38:515 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+
+[INFO] 13:55:38:517 CPU/(1550:1663): Interrumpiendo proceso
+[WARNING] 13:55:38:618 CPU/(1550:1662): Proceso 1 interrumpido
+[INFO] 13:55:38:620 CPU/(1550:1662): Se recibio un pcb para ejecutar
+
+[INFO] 13:55:38:621 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+
+[INFO] 13:55:38:722 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+
+[INFO] 13:55:38:823 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+
+[INFO] 13:55:38:925 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+
+[INFO] 13:55:39:027 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+
+[INFO] 13:55:39:130 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+
+[INFO] 13:55:39:234 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+
+[INFO] 13:55:39:335 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+
+[INFO] 13:55:39:438 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+
+[INFO] 13:55:39:541 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+
+[INFO] 13:55:39:642 CPU/(1550:1662): Ejecutando la instruccion: WRITE
+
+[WARNING] 13:55:39:644 CPU/(1550:1662): No se encontro la pagina en la tlb
+[ERROR] 13:55:39:645 CPU/(1550:1662): Error al conectar (a MEMORIA)
+
+[ERROR] 13:55:39:646 CPU/(1550:1662): Error en conexion
+[ERROR] 13:55:39:647 CPU/(1550:1662): Error al conectar (a MEMORIA)
 

@@ -148,8 +148,9 @@ void verificacion_multiprogramacion(t_pcb *pcb)
         pthread_mutex_unlock(&mutex_cantidad_procesos);
 
         socket_memoria = crear_conexion_memoria(configuracion_kernel, logger);                   // se conecta con el server de memoria
+        printf("Inicializando proceso %d\n", tope_cola_new->id);                              // imprime el ID del proceso
         send_inicializar_estructuras(socket_memoria, tope_cola_new->tamanio, tope_cola_new->id); // mando el proceso para que la memoria inicialice las estructuras                        // para que la memoria inicialice estructuras y obtenga el valor de la TP
-        printf("INICIALICE ESTRUCTURAS DE %d\n", tope_cola_new->id);
+
         if (recv(socket_memoria, &cop, sizeof(op_code), 0) != sizeof(op_code))
         {
             loggear_error(logger, "Error al recibir el op_code INICIALIZAR_ESTRUCTURAS de la memoria", mutex_logger_kernel);
@@ -163,11 +164,11 @@ void verificacion_multiprogramacion(t_pcb *pcb)
             return;
         }
         queue_pop_con_mutex(cola_new, mutex_cola_new); // saca el pcb de la cola de NEW
-        loggear_info(logger, string_from_format("El id de la tabla de pagina del proceso %d es %d\n", tope_cola_new->id, tope_cola_new->tabla_pagina), mutex_logger_kernel);
+        loggear_info(logger, string_from_format("Se inicializo el proceso %d con el id %d de la tabla de pagina 1 \n", tope_cola_new->id, tope_cola_new->tabla_pagina), mutex_logger_kernel);
         liberar_conexion(socket_memoria);
 
         list_add_con_mutex(cola_ready, tope_cola_new, mutex_cola_ready); // agrega el pcb a la cola de ready
-
+        loggear_info(logger, string_from_format("Se agrega el proceso %d a la cola de ready", tope_cola_new->id), mutex_logger_kernel);
         sem_post(&sem_nuevo_ready); // nuevo pcb en ready para que sepa el planificador
 
         if (list_size_con_mutex(cola_ready, mutex_cola_ready) == 1)
@@ -304,7 +305,8 @@ void controlador_tiempo_blocked_proceso(t_pcb *pcb)
         loggear_warning(logger, string_from_format("Se va a suspender el proceso: %d\n", pcb->id), mutex_logger_kernel);
         comunicacion_suspension_memoria(pcb); // cuando suspendo al proceso aviso a la memoria
         pthread_mutex_lock(&mutex_cantidad_procesos);
-        cantidad_procesos_en_memoria--;
+        if (cantidad_procesos_en_memoria > 0)
+            cantidad_procesos_en_memoria--;
         pthread_mutex_unlock(&mutex_cantidad_procesos);
         sem_post(&sem_queue_suspended); // habilito al hilo de largo plazo que revise si hay alguien que pueda pasar a ready porque baje el grado de multiprogramacion
     }
@@ -392,7 +394,8 @@ void recibir() // de cpu
             liberar_conexion(socket_memoria); // libero la conexion con la memoria
 
             pthread_mutex_lock(&mutex_cantidad_procesos);
-            cantidad_procesos_en_memoria--; // baja el nivel de multiprogramacion
+            if (cantidad_procesos_en_memoria > 0)
+                cantidad_procesos_en_memoria--; // baja el nivel de multiprogramacion
             pthread_mutex_unlock(&mutex_cantidad_procesos);
             sem_post(&sem_queue_suspended); // habilito al hilo de largo plazo que revise si hay alguien que pueda pasar a ready porque baje el grado de multiprogramacion
             send(*(pcb_exit->cliente_socket), &cop2, sizeof(op_code), 0) != sizeof(op_code);
@@ -434,18 +437,19 @@ void revisar_entrada_a_ready() // reviso si hay algun proceso en new o en suspen
         sem_wait(&sem_queue_suspended);                                                                                                                           // espera que se haya bajado el grado de multiprogramacion (porque suspendi un proceso o porque alguno termino)
         if (consulta_grado() && (!queue_vacia_con_mutex(cola_new, mutex_cola_new) || !queue_vacia_con_mutex(cola_ready_suspendido, mutex_cola_ready_suspendido))) // chequeo si hay algun proceso en new o en suspended ready y que el grado de multiprogramacion me lo permita
         {
-
+            t_pcb *pcb;
             if (!queue_vacia_con_mutex(cola_ready_suspendido, mutex_cola_ready_suspendido)) // si hay alguien en ready suspendido -> lo priorizo y lo pongo en ready primero
             {
-                t_pcb *pcb = queue_pop_con_mutex(cola_ready_suspendido, mutex_cola_ready_suspendido); // lo desuspende
+                pcb = queue_pop_con_mutex(cola_ready_suspendido, mutex_cola_ready_suspendido); // lo desuspende
                 loggear_info(logger, string_from_format("El proceso %d pasara de ready suspendido a ready\n", pcb->id), mutex_logger_kernel);
                 pcb->blocked_suspendido = false;                       // pone el flag de suspendido a false
                 list_add_con_mutex(cola_ready, pcb, mutex_cola_ready); // lo mete en la cola de ready normal (no la de ready suspendido)
             }
             else
             { // sino pongo en ready al que este en new
-                t_pcb *pcb = queue_pop_con_mutex(cola_new, mutex_cola_new);
-                printf("Por inicializar estructuras\n", pcb->id);
+                socket_memoria = crear_conexion_memoria(configuracion_kernel, logger);
+                pcb = queue_peek_con_mutex(cola_new, mutex_cola_new);
+                printf("Inicializando estructuras de proceso %d\n", pcb->id);
                 send_inicializar_estructuras(socket_memoria, pcb->tamanio, pcb->id); // le aviso a la memoria que el proceso esta listo para ejecutarse
                 if (recv(socket_memoria, &cop, sizeof(op_code), 0) != sizeof(op_code))
                 {
@@ -459,6 +463,9 @@ void revisar_entrada_a_ready() // reviso si hay algun proceso en new o en suspen
                     loggear_error(logger, "Error al inicializar estructuras del proceso", mutex_logger_kernel);
                     return;
                 }
+                queue_pop_con_mutex(cola_new, mutex_cola_new);
+                loggear_info(logger, string_from_format("Se inicializo el proceso %d con el id %d de la tabla de pagina 1 \n", pcb->id, pcb->tabla_pagina), mutex_logger_kernel);
+                liberar_conexion(socket_memoria);
                 list_add_con_mutex(cola_ready, pcb, mutex_cola_ready);
             }
 
@@ -471,7 +478,7 @@ void revisar_entrada_a_ready() // reviso si hay algun proceso en new o en suspen
             {
                 sem_post(&sem_planificar); // si es SJF, como llego un proceso a ready tiene que planificar
             }
-            loggear_info(logger, "Nuevo proceso en cola ready", mutex_logger_kernel);
+            loggear_info(logger, string_from_format("Se puso el proceso %d en la cola ready\n", pcb->id), mutex_logger_kernel);
         }
     }
 }

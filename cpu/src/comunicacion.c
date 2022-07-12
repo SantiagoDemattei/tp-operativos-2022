@@ -218,7 +218,7 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
                         loggear_error(logger_cpu, "Error al leer", mutex_logger_cpu);
                     }
                     recv_ok_read(socket_memoria_cpu, &valor_leido);
-                    loggear_info(logger_cpu, string_from_format("\x1b[32m El valor leido es: %d\n", valor_leido), mutex_logger_cpu);
+                    loggear_info(logger_cpu, string_from_format("\x1b[32m El valor leido en la posicion es: %d\n", valor_leido), mutex_logger_cpu);
                     liberar_conexion(socket_memoria_cpu);
                 }
             }

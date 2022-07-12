@@ -79,8 +79,7 @@ static void procesar_conexion(void *void_args)
 
         case INICIALIZAR_ESTRUCTURAS:
             recv_inicializar_estructuras(*cliente_socket, &tamanio_proceso, &id_proceso);
-            loggear_info(logger, "INICIALIZANDO ESTRUCTURAS\n", mutex_logger_memoria);
-            printf("INICIALIZANDO DEL PROCESO %d\n", id_proceso);
+            loggear_info(logger, string_from_format("INICIALIZANDO ESTRUCTURAS DEL PROCESO %d\n", id_proceso), mutex_logger_memoria);
             t_estructura_proceso *estructura = malloc(sizeof(t_estructura_proceso)); // creamos la estructura correspondiete al proceso
             estructura->id_proceso = id_proceso;
             estructura->tamanio_proceso = tamanio_proceso;
@@ -101,7 +100,6 @@ static void procesar_conexion(void *void_args)
             // averiguo cuantas paginas tiene mi proceso: tamanio en bytes del proceso / tamanio en bytes de una pagina
             cant_paginas = ceil(tamanio_proceso / (configuracion_memoria->tam_pagina));                   // la funcion ceil redondea para arriba
             cant_tablas_segundo_nivel = ceil(cant_paginas / (configuracion_memoria->entradas_por_tabla)); // para saber cuantas tablas de 2do nivel crear
-
             t_tabla_pagina1 *tabla_pagina1 = malloc(sizeof(t_tabla_pagina1) + sizeof(uint32_t) * (configuracion_memoria->entradas_por_tabla));
             tabla_pagina1->id_tabla = contador;
             tabla_pagina1->primer_nivel = list_create(); // filas de la tabla de primer nivel (guarda los numeros de las tablas de segundo nivel)
@@ -132,8 +130,9 @@ static void procesar_conexion(void *void_args)
             char *proceso_string = malloc(sizeof(id_proceso) + strlen("/.swap")); // para agregarlo en la url del archivo de swap
             proceso_string = string_from_format("/%d.swap", id_proceso);
             char *path_archivo = malloc(strlen(configuracion_memoria->path_swap + strlen(proceso_string)));
-            string_append(&path_archivo, configuracion_memoria->path_swap);
-            string_append(&path_archivo, proceso_string);
+            path_archivo = string_from_format("%s%s", configuracion_memoria->path_swap, proceso_string);
+            // string_append(&path_archivo, configuracion_memoria->path_swap);
+            // string_append(&path_archivo, proceso_string);
 
             estructura->nombre_archivo_swap = malloc(strlen(path_archivo)); // "/home/utnso/id.swap"
             string_append(&estructura->nombre_archivo_swap, path_archivo);  // agrego el path completo a la estructura
@@ -162,6 +161,7 @@ static void procesar_conexion(void *void_args)
         case PRIMER_ACCESO:
             recv_entrada_tabla_1er_nivel(*cliente_socket, &id_tabla1, &entrada_primer_nivel);
             loggear_info(logger, "Se recibio la entrada de la tabla de paginas de primer nivel\n", mutex_logger_memoria);
+            loggear_info(logger, string_from_format("el id de la tabla de primer nivel es: %d y la entrada es %d\n", id_tabla1, entrada_primer_nivel), mutex_logger_memoria);
             num_tabla_segundo_nivel = obtener_tabla_2do_nivel(id_tabla1, entrada_primer_nivel); // busco la tabla de segundo nivel
             usleep(configuracion_memoria->retardo_memoria);
             send_num_tabla_2do_nivel(*cliente_socket, num_tabla_segundo_nivel);
@@ -293,8 +293,9 @@ uint32_t buscar_nro_tabla_segundo_nivel(t_tabla_pagina1 *tabla_pagina1, uint32_t
 uint32_t obtener_tabla_2do_nivel(uint32_t id_tabla, uint32_t entrada_primer_nivel)
 {
     pthread_mutex_lock(&mutex_lista_estructuras);
-    t_tabla_pagina1 *tabla_pagina1 = buscar_tabla_pagina1(id_tabla);                                        // busca en la lista de estructuras de todos los procesos la tabla de paginas de primer nivel corresponiente al proceso
+    t_tabla_pagina1 *tabla_pagina1 = buscar_tabla_pagina1(id_tabla); // busca en la lista de estructuras de todos los procesos la tabla de paginas de primer nivel corresponiente al proceso
     uint32_t nro_tabla_segundo_nivel = buscar_nro_tabla_segundo_nivel(tabla_pagina1, entrada_primer_nivel); // busco el numero de tabla de segundo nivel en la tabla de primer nivel (lo voy a encontrar porque conozco la entrada/fila a la que necesito ir)
+
     pthread_mutex_unlock(&mutex_lista_estructuras);
     return nro_tabla_segundo_nivel;
 }
@@ -726,7 +727,6 @@ t_estructura_proceso *buscar_estructura_del_proceso_suspension(uint32_t pid)
         proceso_aux = list_get(lista_estructuras, i);
         if (proceso_aux->id_proceso == pid)
         {
-            printf("ACA LLEGUE\n");
             return proceso_aux;
         }
     }
@@ -788,14 +788,12 @@ void suspender_proceso(uint32_t pid)
 
 void liberar_estructuras(uint32_t pid)
 {
-    printf("Liberando estructuras del proceso %d\n", pid);
+
     pthread_mutex_lock(&mutex_lista_estructuras);
     t_estructura_proceso *estructura_del_proceso = buscar_estructura_del_proceso_suspension(pid); // LA FUNCION DICE SUSPENSION, pero busca la estructura en la lista de estructuras por pid
     pthread_mutex_unlock(&mutex_lista_estructuras);
     uint32_t comienzo = estructura_del_proceso->marco_comienzo;
-    printf("Comienzo: %d\n", comienzo);
     t_list *marcos_del_proceso = estructura_del_proceso->vector_marcos;
-    printf("AUN NO ROMPIO LOS MARCOS 1\n");
     pthread_mutex_lock(&mutex_marcos);
     for (int i = comienzo; i < comienzo + configuracion_memoria->marcos_por_proceso; i++)
     {
@@ -803,11 +801,10 @@ void liberar_estructuras(uint32_t pid)
         *elemento = 0; // los marcos que tenia asignados el proceso ahora estan libres
     }
     pthread_mutex_unlock(&mutex_marcos);
-    printf("AUN NO ROMPIO LOS MARCOS\n");
     munmap(estructura_del_proceso->archivo_swap, estructura_del_proceso->tamanio_proceso); // desmapeamos el archivo swap del proceso (liberamos la variable)
     remove(estructura_del_proceso->nombre_archivo_swap);
     list_destroy_and_destroy_elements(estructura_del_proceso->vector_marcos, (void *)destruir_vector_marcos); // destruimos la lista de marcos del proceso
-    free(estructura_del_proceso);
+    //free(estructura_del_proceso); TODO: EN EL MAIN
 }
 
 void destruir_vector_marcos(t_vector_marcos *marco)

@@ -12,7 +12,6 @@ bool crear_archivo_swap(t_estructura_proceso *estructura, uint32_t tamanio, t_lo
     }
 
     ftruncate(fd, tamanio); // ajusto el tamaño del archivo creado al tamaño del proceso
-
     estructura->archivo_swap = mmap(NULL, tamanio, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0); // mapeo el archivo creado en memoria
     if (errno != 0)
         log_error(logger, "Error en mmap: errno %i", errno); // si hay un error al hacer mmap devuelve el codigo de error (errno = "error number")
