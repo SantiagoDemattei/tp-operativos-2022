@@ -885,3 +885,15 @@ bool recv_ejecutar_copy(uint32_t fd, uint32_t* marco_origen, uint32_t* desplazam
 
 
 #pragma endregion
+
+#pragma region EXTRANIO
+
+bool send_extranio(uint32_t fd)
+{
+    op_code cop = EXTRANIO;
+    if (send(fd, &cop, sizeof(op_code), 0) != sizeof(op_code))
+        return false;
+    return true;
+}
+
+#pragma endregion

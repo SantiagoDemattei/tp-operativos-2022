@@ -31,7 +31,8 @@ typedef enum
     EJECUTAR_COPY,
     OK,
     OK_READ,
-    FRAME
+    FRAME,
+    EXTRANIO
 } op_code;
 
 typedef struct // config para la consola

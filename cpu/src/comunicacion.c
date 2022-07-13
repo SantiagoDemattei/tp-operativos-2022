@@ -377,6 +377,7 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
             pthread_mutex_lock(&mutex_interrupcion);
             interrupciones = false;
             pthread_mutex_unlock(&mutex_interrupcion);
+            send_extranio(cliente_socket);
             printf("RUNNING ES NULL\n");
         }
         pthread_mutex_lock(&mutex_running_cpu);
