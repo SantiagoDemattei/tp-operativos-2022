@@ -149,7 +149,7 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
         argumentos = instruccion_actual->argumentos;
 
         pthread_mutex_lock(&mutex_logger_cpu);
-        log_info(logger, "Ejecutando la instruccion: %s\n", instruccion_actual->identificador);
+        log_info(logger, "Ejecutando la instruccion: %s, del proceso: %d\n", instruccion_actual->identificador, running->id);
         pthread_mutex_unlock(&mutex_logger_cpu);
 
         switch (instruccion_actual_enum)
@@ -168,6 +168,9 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
             running->tiempo_bloqueo = tiempo_bloqueo1->argumento; // en el pcb me guardo el tiempo de bloqueo
             running->program_counter++;                           // avanzo el program counter
             send_pcb(*cliente_socket, running, BLOQUEO_IO);       // mando el pcb para que lo reciba el kernel y bloquee al pcb
+            pthread_mutex_lock(&mutex_interrupcion);
+            interrupciones = false;
+            pthread_mutex_unlock(&mutex_interrupcion); // interrupciones desactivadas
             destruir_pcb(running);
             limpiar_tlb();
             running = NULL; // proceso bloqueado por I/O -> en running no hay nadie
@@ -178,7 +181,7 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
             direccion_logica = list_get(argumentos, 0);
             direccion_fisica = calcular_mmu(direccion_logica); // calculo la direccion fisica para ir a buscarlo a memoria
 
-            //para leer algo necesitamos ver si la pagina esta en la TLB primero
+            // para leer algo necesitamos ver si la pagina esta en la TLB primero
             marco = buscar(direccion_fisica->numero_pagina); // Buscamos si la pagina esta en la TLB
             if (marco != -1)                                 // TLB HIT (lo encontro en la tlb)
             {
@@ -208,7 +211,7 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
                     running->program_counter--; // reinicio la instruccion
                     pthread_mutex_unlock(&mutex_running_cpu);
                 }
-                else //vamos a buscar el marco a memoria porque ahi esta la pagina que necesito
+                else // vamos a buscar el marco a memoria porque ahi esta la pagina que necesito
                 {
                     socket_memoria_cpu = crear_conexion_memoria(configuracion_cpu, logger_cpu); // creo la conexion con la memoria
                     // send a memoria del marco, el desplazamiento (este es el tercer acceso)
@@ -344,6 +347,9 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
         case EXIT:
             pthread_mutex_lock(&mutex_running_cpu);
             send_pcb(*cliente_socket, running, ENVIAR_PCB);
+            pthread_mutex_lock(&mutex_interrupcion);
+            interrupciones = false;
+            pthread_mutex_unlock(&mutex_interrupcion);
             running->program_counter++;
             limpiar_tlb();
             running = NULL;
@@ -361,7 +367,18 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
 
             break;
         }
-        chequear_interrupciones(cliente_socket); // cuando termina de ejecutar una instruccion chequeo si hay interrupciones
+        if (running != NULL)
+        {
+            printf("RUNNING NO ES NULL\n");
+            chequear_interrupciones(cliente_socket); // cuando termina de ejecutar una instruccion chequeo si hay interrupciones
+        }
+        else
+        {
+            pthread_mutex_lock(&mutex_interrupcion);
+            interrupciones = false;
+            pthread_mutex_unlock(&mutex_interrupcion);
+            printf("RUNNING ES NULL\n");
+        }
         pthread_mutex_lock(&mutex_running_cpu);
     }
     pthread_mutex_unlock(&mutex_running_cpu);
@@ -372,9 +389,14 @@ void chequear_interrupciones(uint32_t *cliente_socket)
     pthread_mutex_lock(&mutex_interrupcion);
     if (interrupciones)
     { // si hay interrupciones hay que desalojar un proceso
+        printf("ESTOY CHEQUEANDO INTERRUPCIONES\n");
         pthread_mutex_unlock(&mutex_interrupcion);
-
         pthread_mutex_lock(&mutex_running_cpu);
+        if (running == NULL)
+        {
+            printf("RUNNING ES NULL EN LA INTERRUPCION\n");
+        }
+
         send_pcb(*cliente_socket, running, INTERRUPCION); // desalojo el pcb y mando el pcb para que lo reciba el kernel
         pthread_mutex_unlock(&mutex_running_cpu);
 
@@ -384,6 +406,10 @@ void chequear_interrupciones(uint32_t *cliente_socket)
         pthread_mutex_lock(&mutex_running_cpu);
         running = NULL; // desalojo el pcb
         pthread_mutex_unlock(&mutex_running_cpu);
+
+        pthread_mutex_lock(&mutex_interrupcion);
+        // interrupciones = false;
+        pthread_mutex_unlock(&mutex_interrupcion);
 
         pthread_mutex_lock(&mutex_interrupcion);
     }
@@ -424,7 +450,7 @@ t_direccion_fisica *calcular_mmu(t_argumento *direc_logica) // calcula la direcc
 {
     // direccion logica: [nro pagina | entrada_tabla_1er_nivel | entrada_tabla_2do_nivel | desplazamiento]
     t_direccion_fisica *direccion_fisica = malloc(sizeof(t_direccion_fisica));
-    direccion_fisica->numero_pagina = (uint32_t)floor((direc_logica->argumento) / tamanio_pagina); 
+    direccion_fisica->numero_pagina = (uint32_t)floor((direc_logica->argumento) / tamanio_pagina);
     direccion_fisica->entrada_tabla_1er_nivel = (uint32_t)floor(direccion_fisica->numero_pagina / cant_entradas_por_tabla);
     direccion_fisica->entrada_tabla_2do_nivel = direccion_fisica->numero_pagina % cant_entradas_por_tabla;
     direccion_fisica->desplazamiento = direc_logica->argumento - (direccion_fisica->numero_pagina * tamanio_pagina);
@@ -447,6 +473,7 @@ t_marco_presencia *obtener_marco(uint32_t entrada_tabla_1er_nivel, uint32_t entr
     if (recv(socket_memoria_cpu, &cop, sizeof(op_code), 0) != sizeof(op_code))
     {
         loggear_error(logger_cpu, "Error en conexion", mutex_logger_cpu);
+        return NULL;
     }
     recv_num_tabla_2do_nivel(socket_memoria_cpu, &num_segundo_nivel);
     liberar_conexion(socket_memoria_cpu);
@@ -460,9 +487,10 @@ t_marco_presencia *obtener_marco(uint32_t entrada_tabla_1er_nivel, uint32_t entr
     if (recv(socket_memoria_cpu, &cop, sizeof(op_code), 0) != sizeof(op_code))
     {
         loggear_error(logger_cpu, "Error en conexion", mutex_logger_cpu);
+        return NULL;
     }
     recv_frame(socket_memoria_cpu, &marco_presencia);
-    
+
     liberar_conexion(socket_memoria_cpu);
     return marco_presencia;
 }

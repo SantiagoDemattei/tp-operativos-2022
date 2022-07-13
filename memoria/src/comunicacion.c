@@ -58,6 +58,7 @@ static void procesar_conexion(void *void_args)
     uint32_t cant_paginas;
     uint32_t cant_tablas_segundo_nivel;
     uint32_t nro_pagina;
+    t_estructura_proceso *estructura_proceso_existente;
 
     while (*cliente_socket != -1)
     { // mientras el cliente no se haya desconectado
@@ -79,6 +80,26 @@ static void procesar_conexion(void *void_args)
 
         case INICIALIZAR_ESTRUCTURAS:
             recv_inicializar_estructuras(*cliente_socket, &tamanio_proceso, &id_proceso);
+            if (estructura_proceso_existente = buscar_estructura_del_proceso_suspension(id_proceso) != NULL) //si la estructura del proceso ya estaba en la lista (porque se desperto de una suspension)
+            {   
+                printf("INICIALIZAR ESTRUCTURAS LUEGO DE DESPERTAR UN PROCESO SUSPENDIDO");
+                estructura_proceso_existente->marco_comienzo = buscar_marcos_para_asignar();
+                if (estructura_proceso_existente->marco_comienzo == -1)
+                {
+                    send_valor_tb(*cliente_socket, -1); // send para kernel de que no se puede crear las estructuras para el proceso dado que no hay marcos libres (no hay memoria disponible)
+                    loggear_error(logger, "No hay marcos libres\n", mutex_logger_memoria);
+                    break;
+                }
+                estructura_proceso_existente->marco_fin = (estructura_proceso_existente->marco_comienzo) + (configuracion_memoria->marcos_por_proceso) - 1;
+                llenar_marcos_para_el_proceso(estructura_proceso_existente->marco_comienzo, estructura_proceso_existente->marco_fin, 1);                                            // cambia a 1 los marcos ocupados (de la memoria) que le asigno al proceso
+                llenar_marcos_para_el_proceso_local(estructura_proceso_existente->vector_marcos, configuracion_memoria->marcos_por_proceso, 0); // lleno la lista de marcos propios del proceso (estado en 0 porque estan todos libres y num de pagona en -1 porque no tienen paginas los marcos) para saber si un proceso tiene marcos libres, etc
+                send_valor_tb(*cliente_socket, estructura_proceso_existente->tabla_pagina1->id_tabla);
+                free(cliente_socket);
+
+                loggear_info(logger, "Se envio el valor de la tabla de paginas al kernel\n", mutex_logger_memoria);
+                break;
+            }
+
             loggear_info(logger, string_from_format("INICIALIZANDO ESTRUCTURAS DEL PROCESO %d\n", id_proceso), mutex_logger_memoria);
             t_estructura_proceso *estructura = malloc(sizeof(t_estructura_proceso)); // creamos la estructura correspondiete al proceso
             estructura->id_proceso = id_proceso;
@@ -141,7 +162,8 @@ static void procesar_conexion(void *void_args)
             variable_global->proceso = estructura;
             variable_global->indicador = CREAR_ARCHIVO_SWAP;
             variable_global->tamanio_proceso = tamanio_proceso;
-            sem_post(&sem_swap); // habilito al swap a crear el archivo
+            sem_post(&sem_swap);     // habilito al swap a crear el archivo
+            sem_wait(&sem_fin_swap); // espero que el swap termine de crear el archivo
             pthread_mutex_unlock(&mutex_variable_global);
 
             loggear_info(logger, string_from_format("El nombre del archivo es: %s\n", estructura->nombre_archivo_swap), mutex_logger_memoria);
@@ -293,7 +315,7 @@ uint32_t buscar_nro_tabla_segundo_nivel(t_tabla_pagina1 *tabla_pagina1, uint32_t
 uint32_t obtener_tabla_2do_nivel(uint32_t id_tabla, uint32_t entrada_primer_nivel)
 {
     pthread_mutex_lock(&mutex_lista_estructuras);
-    t_tabla_pagina1 *tabla_pagina1 = buscar_tabla_pagina1(id_tabla); // busca en la lista de estructuras de todos los procesos la tabla de paginas de primer nivel corresponiente al proceso
+    t_tabla_pagina1 *tabla_pagina1 = buscar_tabla_pagina1(id_tabla);                                        // busca en la lista de estructuras de todos los procesos la tabla de paginas de primer nivel corresponiente al proceso
     uint32_t nro_tabla_segundo_nivel = buscar_nro_tabla_segundo_nivel(tabla_pagina1, entrada_primer_nivel); // busco el numero de tabla de segundo nivel en la tabla de primer nivel (lo voy a encontrar porque conozco la entrada/fila a la que necesito ir)
 
     pthread_mutex_unlock(&mutex_lista_estructuras);
@@ -481,6 +503,7 @@ uint32_t buscar_marco_libre(uint32_t nro_pagina, void *contenido_pagina)
                     estructura_proceso_actual->puntero_clock = i + 1; // avanza el puntero
                 }
                 pthread_mutex_unlock(&mutex_estructura_proceso_actual);
+
                 return marco_asignado;
             }
 
@@ -730,6 +753,7 @@ t_estructura_proceso *buscar_estructura_del_proceso_suspension(uint32_t pid)
             return proceso_aux;
         }
     }
+    return NULL;
 }
 
 void suspender_proceso(uint32_t pid)
@@ -804,7 +828,7 @@ void liberar_estructuras(uint32_t pid)
     munmap(estructura_del_proceso->archivo_swap, estructura_del_proceso->tamanio_proceso); // desmapeamos el archivo swap del proceso (liberamos la variable)
     remove(estructura_del_proceso->nombre_archivo_swap);
     list_destroy_and_destroy_elements(estructura_del_proceso->vector_marcos, (void *)destruir_vector_marcos); // destruimos la lista de marcos del proceso
-    //free(estructura_del_proceso); TODO: EN EL MAIN
+    // free(estructura_del_proceso); TODO: EN EL MAIN
 }
 
 void destruir_vector_marcos(t_vector_marcos *marco)

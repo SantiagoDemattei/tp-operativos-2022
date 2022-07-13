@@ -1,266 +1,2719 @@
-[INFO] 13:54:23:582 CPU/(1550:1550): Esperando a 127.0.0.1:8001 (KERNEL DISPATCH)
+[INFO] 00:51:22:572 CPU/(27189:27189): Esperando a 127.0.0.1:8001 (KERNEL DISPATCH)
 
-[INFO] 13:54:23:583 CPU/(1550:1550): Esperando a 127.0.0.1:8005 (KERNEL INTERRUPT)
+[INFO] 00:51:22:573 CPU/(27189:27189): Esperando a 127.0.0.1:8005 (KERNEL INTERRUPT)
 
-[INFO] 13:54:23:584 CPU/(1550:1550): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 00:51:22:573 CPU/(27189:27189): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 13:55:19:878 CPU/(1550:1550): Cliente conectado (a CPU DISPATCH)
+[INFO] 00:51:29:122 CPU/(27189:27189): Cliente conectado (a CPU DISPATCH)
 
-[INFO] 13:55:19:879 CPU/(1550:1550): Cliente conectado (a CPU INTERRUPT)
+[INFO] 00:51:29:123 CPU/(27189:27189): Cliente conectado (a CPU INTERRUPT)
 
-[INFO] 13:55:29:218 CPU/(1550:1662): Se recibio un pcb para ejecutar
+[INFO] 00:51:41:749 CPU/(27189:27250): Se recibio un pcb para ejecutar
 
-[INFO] 13:55:29:218 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+[INFO] 00:51:41:749 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
 
-[INFO] 13:55:29:322 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+[INFO] 00:51:41:850 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
 
-[INFO] 13:55:29:425 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+[INFO] 00:51:41:950 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
 
-[INFO] 13:55:29:527 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+[INFO] 00:51:42:050 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
 
-[INFO] 13:55:29:631 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+[INFO] 00:51:42:151 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
 
-[INFO] 13:55:29:733 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+[INFO] 00:51:42:251 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
 
-[INFO] 13:55:29:789 CPU/(1550:1663): Interrumpiendo proceso
-[WARNING] 13:55:29:842 CPU/(1550:1662): Proceso 1 interrumpido
-[INFO] 13:55:29:843 CPU/(1550:1662): Se recibio un pcb para ejecutar
+[INFO] 00:51:42:351 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
 
-[INFO] 13:55:29:844 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+[INFO] 00:51:42:451 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
 
-[INFO] 13:55:29:949 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+[INFO] 00:51:42:552 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
 
-[INFO] 13:55:30:051 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+[INFO] 00:51:42:652 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
 
-[INFO] 13:55:30:185 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+[INFO] 00:51:42:752 CPU/(27189:27250): Ejecutando la instruccion: WRITE, del proceso: 1
 
-[INFO] 13:55:30:288 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+[WARNING] 00:51:42:752 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:51:42:752 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 13:55:30:390 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+[INFO] 00:51:42:756 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 13:55:30:493 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+[INFO] 00:51:43:769 CPU/(27189:27250):            TLB 
+[INFO] 00:51:43:769 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:51:43:770 CPU/(27189:27250):  |    0    |   0   |
+[INFO] 00:51:43:772 CPU/(27189:27251): Interrumpiendo proceso
+[INFO] 00:51:43:772 CPU/(27189:27250): ----------------------
 
-[INFO] 13:55:30:597 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+[WARNING] 00:51:43:777 CPU/(27189:27250): Proceso 1 interrumpido
+[INFO] 00:51:43:780 CPU/(27189:27250): Se recibio un pcb para ejecutar
 
-[INFO] 13:55:30:703 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+[INFO] 00:51:43:785 CPU/(27189:27250): Ejecutando la instruccion: WRITE, del proceso: 1
 
-[INFO] 13:55:30:774 CPU/(1550:1663): Interrumpiendo proceso
-[WARNING] 13:55:30:814 CPU/(1550:1662): Proceso 2 interrumpido
-[INFO] 13:55:30:816 CPU/(1550:1662): Se recibio un pcb para ejecutar
+[WARNING] 00:51:43:786 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:51:43:787 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 13:55:30:818 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+[INFO] 00:51:43:794 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 13:55:30:919 CPU/(1550:1662): Ejecutando la instruccion: WRITE
+[INFO] 00:51:43:812 CPU/(27189:27250):            TLB 
+[INFO] 00:51:43:812 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:51:43:812 CPU/(27189:27250):  |    0    |   0   |
+[INFO] 00:51:43:813 CPU/(27189:27250): ----------------------
 
-[WARNING] 13:55:30:920 CPU/(1550:1662): No se encontro la pagina en la tlb
-[INFO] 13:55:30:921 CPU/(1550:1662): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 00:51:43:813 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 13:55:30:931 CPU/(1550:1662): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 00:51:43:815 CPU/(27189:27250): Se escribio el valor en la posicion correspondiente
 
-[INFO] 13:55:32:225 CPU/(1550:1662):            TLB 
-[INFO] 13:55:32:225 CPU/(1550:1662):  |  PAGINA | MARCO |
-[INFO] 13:55:32:227 CPU/(1550:1662):  |    0    |   0   |
-[INFO] 13:55:32:228 CPU/(1550:1663): Interrumpiendo proceso
-[INFO] 13:55:32:229 CPU/(1550:1662): ----------------------
+[INFO] 00:51:43:815 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
 
-[WARNING] 13:55:32:232 CPU/(1550:1662): Proceso 2 interrumpido
-[INFO] 13:55:32:233 CPU/(1550:1662): Se recibio un pcb para ejecutar
+[INFO] 00:51:43:916 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
 
-[INFO] 13:55:32:233 CPU/(1550:1662): Ejecutando la instruccion: WRITE
+[INFO] 00:51:44:016 CPU/(27189:27250): Ejecutando la instruccion: WRITE, del proceso: 1
 
-[WARNING] 13:55:32:234 CPU/(1550:1662): No se encontro la pagina en la tlb
-[INFO] 13:55:32:235 CPU/(1550:1662): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[WARNING] 00:51:44:017 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:51:44:017 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 13:55:32:239 CPU/(1550:1662): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 00:51:44:020 CPU/(27189:27250): Se escribio el valor en la posicion correspondiente
 
-[INFO] 13:55:32:275 CPU/(1550:1662):            TLB 
-[INFO] 13:55:32:276 CPU/(1550:1662):  |  PAGINA | MARCO |
-[INFO] 13:55:32:276 CPU/(1550:1662):  |    0    |   0   |
-[INFO] 13:55:32:277 CPU/(1550:1662): ----------------------
+[INFO] 00:51:44:020 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
 
-[INFO] 13:55:32:278 CPU/(1550:1662): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 00:51:44:121 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
 
-[INFO] 13:55:32:281 CPU/(1550:1662): Se escribio el valor en la posicion correspondiente
+[INFO] 00:51:44:221 CPU/(27189:27250): Ejecutando la instruccion: WRITE, del proceso: 1
 
-[INFO] 13:55:32:281 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+[WARNING] 00:51:44:221 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:51:44:221 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 13:55:32:382 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+[INFO] 00:51:44:222 CPU/(27189:27250): Se escribio el valor en la posicion correspondiente
 
-[INFO] 13:55:32:483 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+[INFO] 00:51:44:222 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
 
-[INFO] 13:55:32:584 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+[INFO] 00:51:44:322 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
 
-[INFO] 13:55:32:685 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+[INFO] 00:51:44:423 CPU/(27189:27250): Ejecutando la instruccion: WRITE, del proceso: 1
 
-[INFO] 13:55:32:786 CPU/(1550:1662): Ejecutando la instruccion: WRITE
+[WARNING] 00:51:44:423 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:51:44:423 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[WARNING] 13:55:32:787 CPU/(1550:1662): No se encontro la pagina en la tlb
-[INFO] 13:55:32:788 CPU/(1550:1662): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 00:51:44:424 CPU/(27189:27250): Se escribio el valor en la posicion correspondiente
 
-[INFO] 13:55:32:791 CPU/(1550:1662): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 00:51:44:424 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
 
-[INFO] 13:55:33:223 CPU/(1550:1662):            TLB 
-[INFO] 13:55:33:224 CPU/(1550:1662):  |  PAGINA | MARCO |
-[INFO] 13:55:33:225 CPU/(1550:1662):  |    0    |   0   |
-[INFO] 13:55:33:225 CPU/(1550:1662):  |    1    |   1   |
-[INFO] 13:55:33:226 CPU/(1550:1662): ----------------------
+[INFO] 00:51:44:524 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
 
-[INFO] 13:55:33:226 CPU/(1550:1662): Ejecutando la instruccion: WRITE
+[INFO] 00:51:44:625 CPU/(27189:27250): Ejecutando la instruccion: WRITE, del proceso: 1
 
-[WARNING] 13:55:33:227 CPU/(1550:1662): Se encontro la pagina en la tlb
-[INFO] 13:55:33:228 CPU/(1550:1662): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[WARNING] 00:51:44:625 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:51:44:625 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 13:55:33:230 CPU/(1550:1662): Se escribio el valor en la posicion correspondiente
+[INFO] 00:51:44:626 CPU/(27189:27250): Se escribio el valor en la posicion correspondiente
 
-[INFO] 13:55:33:231 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+[INFO] 00:51:44:626 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
 
-[INFO] 13:55:33:332 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+[INFO] 00:51:44:726 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
 
-[INFO] 13:55:33:433 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+[INFO] 00:51:44:772 CPU/(27189:27251): Interrumpiendo proceso
+[WARNING] 00:51:44:827 CPU/(27189:27250): Proceso 1 interrumpido
+[INFO] 00:51:44:827 CPU/(27189:27250): Se recibio un pcb para ejecutar
 
-[INFO] 13:55:33:534 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+[INFO] 00:51:44:827 CPU/(27189:27250): Ejecutando la instruccion: WRITE, del proceso: 1
 
-[INFO] 13:55:33:635 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+[WARNING] 00:51:44:827 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:51:44:828 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 13:55:33:736 CPU/(1550:1662): Ejecutando la instruccion: WRITE
+[INFO] 00:51:44:829 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[WARNING] 13:55:33:736 CPU/(1550:1662): No se encontro la pagina en la tlb
-[INFO] 13:55:33:737 CPU/(1550:1662): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 00:51:46:769 CPU/(27189:27250):            TLB 
+[INFO] 00:51:46:769 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:51:46:770 CPU/(27189:27250):  |    1    |   1   |
+[INFO] 00:51:46:770 CPU/(27189:27250): ----------------------
 
-[INFO] 13:55:33:741 CPU/(1550:1662): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 00:51:46:770 CPU/(27189:27251): Interrumpiendo proceso
+[INFO] 00:51:46:770 CPU/(27189:27250): Ejecutando la instruccion: WRITE, del proceso: 1
 
-[INFO] 13:55:34:224 CPU/(1550:1662):            TLB 
-[INFO] 13:55:34:225 CPU/(1550:1662):  |  PAGINA | MARCO |
-[INFO] 13:55:34:225 CPU/(1550:1662):  |    1    |   1   |
-[INFO] 13:55:34:226 CPU/(1550:1662):  |    2    |   2   |
-[INFO] 13:55:34:227 CPU/(1550:1662): ----------------------
+[WARNING] 00:51:46:771 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:51:46:771 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 13:55:34:227 CPU/(1550:1662): Ejecutando la instruccion: WRITE
+[INFO] 00:51:46:774 CPU/(27189:27250): Se escribio el valor en la posicion correspondiente
 
-[WARNING] 13:55:34:228 CPU/(1550:1662): Se encontro la pagina en la tlb
-[INFO] 13:55:34:229 CPU/(1550:1662): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[WARNING] 00:51:46:774 CPU/(27189:27250): Proceso 1 interrumpido
+[INFO] 00:51:46:774 CPU/(27189:27250): Se recibio un pcb para ejecutar
 
-[INFO] 13:55:34:231 CPU/(1550:1662): Se escribio el valor en la posicion correspondiente
+[INFO] 00:51:46:775 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
 
-[INFO] 13:55:34:232 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+[INFO] 00:51:46:875 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
 
-[INFO] 13:55:34:334 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+[INFO] 00:51:46:976 CPU/(27189:27250): Ejecutando la instruccion: WRITE, del proceso: 1
 
-[INFO] 13:55:34:436 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+[WARNING] 00:51:46:976 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:51:46:976 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 13:55:34:538 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+[INFO] 00:51:46:977 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 13:55:34:639 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+[INFO] 00:51:46:981 CPU/(27189:27250):            TLB 
+[INFO] 00:51:46:981 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:51:46:981 CPU/(27189:27250):  |    1    |   1   |
+[INFO] 00:51:46:981 CPU/(27189:27250): ----------------------
 
-[INFO] 13:55:34:741 CPU/(1550:1662): Ejecutando la instruccion: WRITE
+[INFO] 00:51:46:981 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[WARNING] 13:55:34:743 CPU/(1550:1662): No se encontro la pagina en la tlb
-[INFO] 13:55:34:745 CPU/(1550:1662): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 00:51:46:982 CPU/(27189:27250): Se escribio el valor en la posicion correspondiente
 
-[INFO] 13:55:34:748 CPU/(1550:1662): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 00:51:46:983 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
 
-[INFO] 13:55:35:229 CPU/(1550:1662):            TLB 
-[INFO] 13:55:35:231 CPU/(1550:1662):  |  PAGINA | MARCO |
-[INFO] 13:55:35:234 CPU/(1550:1662):  |    2    |   2   |
-[INFO] 13:55:35:237 CPU/(1550:1662):  |    3    |   3   |
-[INFO] 13:55:35:248 CPU/(1550:1662): ----------------------
+[INFO] 00:51:47:083 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
 
-[INFO] 13:55:35:251 CPU/(1550:1662): Ejecutando la instruccion: WRITE
+[INFO] 00:51:47:183 CPU/(27189:27250): Ejecutando la instruccion: WRITE, del proceso: 1
 
-[WARNING] 13:55:35:254 CPU/(1550:1662): Se encontro la pagina en la tlb
-[INFO] 13:55:35:255 CPU/(1550:1662): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[WARNING] 00:51:47:183 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:51:47:184 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 13:55:35:263 CPU/(1550:1662): Se escribio el valor en la posicion correspondiente
+[INFO] 00:51:47:185 CPU/(27189:27250): Se escribio el valor en la posicion correspondiente
 
-[INFO] 13:55:35:264 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+[INFO] 00:51:47:185 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
 
-[INFO] 13:55:35:365 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+[INFO] 00:51:47:285 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
 
-[INFO] 13:55:35:467 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+[INFO] 00:51:47:386 CPU/(27189:27250): Ejecutando la instruccion: WRITE, del proceso: 1
 
-[INFO] 13:55:35:568 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+[WARNING] 00:51:47:386 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:51:47:386 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 13:55:35:670 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+[INFO] 00:51:47:387 CPU/(27189:27250): Se escribio el valor en la posicion correspondiente
 
-[INFO] 13:55:35:772 CPU/(1550:1662): Ejecutando la instruccion: WRITE
+[INFO] 00:51:47:387 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
 
-[WARNING] 13:55:35:774 CPU/(1550:1662): No se encontro la pagina en la tlb
-[INFO] 13:55:35:779 CPU/(1550:1662): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 00:51:47:487 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
 
-[INFO] 13:55:35:789 CPU/(1550:1662): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 00:51:47:588 CPU/(27189:27250): Ejecutando la instruccion: WRITE, del proceso: 1
 
-[INFO] 13:55:37:236 CPU/(1550:1662):            TLB 
-[INFO] 13:55:37:238 CPU/(1550:1662):  |  PAGINA | MARCO |
-[INFO] 13:55:37:241 CPU/(1550:1662):  |    3    |   3   |
-[INFO] 13:55:37:250 CPU/(1550:1662):  |    4    |   0   |
-[INFO] 13:55:37:257 CPU/(1550:1662): ----------------------
+[WARNING] 00:51:47:589 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:51:47:589 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 13:55:37:268 CPU/(1550:1662): Ejecutando la instruccion: WRITE
+[INFO] 00:51:47:591 CPU/(27189:27250): Se escribio el valor en la posicion correspondiente
 
-[WARNING] 13:55:37:269 CPU/(1550:1662): Se encontro la pagina en la tlb
-[INFO] 13:55:37:271 CPU/(1550:1662): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 00:51:47:591 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
 
-[INFO] 13:55:37:274 CPU/(1550:1662): Se escribio el valor en la posicion correspondiente
+[INFO] 00:51:47:692 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
 
-[INFO] 13:55:37:274 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+[INFO] 00:51:47:771 CPU/(27189:27251): Interrumpiendo proceso
+[WARNING] 00:51:47:792 CPU/(27189:27250): Proceso 1 interrumpido
+[INFO] 00:51:47:793 CPU/(27189:27250): Se recibio un pcb para ejecutar
 
-[INFO] 13:55:37:376 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+[INFO] 00:51:47:793 CPU/(27189:27250): Ejecutando la instruccion: WRITE, del proceso: 1
 
-[INFO] 13:55:37:477 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+[WARNING] 00:51:47:793 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:51:47:793 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 13:55:37:577 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+[INFO] 00:51:47:794 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 13:55:37:679 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+[INFO] 00:51:49:770 CPU/(27189:27250):            TLB 
+[INFO] 00:51:49:770 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:51:49:770 CPU/(27189:27250):  |    2    |   2   |
+[INFO] 00:51:49:770 CPU/(27189:27250): ----------------------
 
-[INFO] 13:55:37:780 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+[INFO] 00:51:49:770 CPU/(27189:27250): Ejecutando la instruccion: WRITE, del proceso: 1
 
-[INFO] 13:55:37:882 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+[WARNING] 00:51:49:770 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:51:49:771 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 13:55:37:984 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+[INFO] 00:51:49:773 CPU/(27189:27250): Se escribio el valor en la posicion correspondiente
 
-[INFO] 13:55:38:086 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+[INFO] 00:51:49:773 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
 
-[INFO] 13:55:38:188 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+[INFO] 00:51:49:873 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
 
-[INFO] 13:55:38:294 CPU/(1550:1662): Ejecutando la instruccion: I/O
+[INFO] 00:51:49:974 CPU/(27189:27250): Ejecutando la instruccion: WRITE, del proceso: 1
 
-[INFO] 13:55:38:298 CPU/(1550:1662): Se recibio un pcb para ejecutar
+[WARNING] 00:51:49:974 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:51:49:974 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 13:55:38:305 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+[INFO] 00:51:49:975 CPU/(27189:27250): Se escribio el valor en la posicion correspondiente
 
-[INFO] 13:55:38:412 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+[INFO] 00:51:49:975 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
 
-[INFO] 13:55:38:515 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+[INFO] 00:51:50:076 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
 
-[INFO] 13:55:38:517 CPU/(1550:1663): Interrumpiendo proceso
-[WARNING] 13:55:38:618 CPU/(1550:1662): Proceso 1 interrumpido
-[INFO] 13:55:38:620 CPU/(1550:1662): Se recibio un pcb para ejecutar
+[INFO] 00:51:50:176 CPU/(27189:27250): Ejecutando la instruccion: WRITE, del proceso: 1
 
-[INFO] 13:55:38:621 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+[WARNING] 00:51:50:177 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:51:50:177 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 13:55:38:722 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+[INFO] 00:51:50:178 CPU/(27189:27250): Se escribio el valor en la posicion correspondiente
 
-[INFO] 13:55:38:823 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+[INFO] 00:51:50:178 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
 
-[INFO] 13:55:38:925 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+[INFO] 00:51:50:279 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
 
-[INFO] 13:55:39:027 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+[INFO] 00:51:50:379 CPU/(27189:27250): Ejecutando la instruccion: WRITE, del proceso: 1
 
-[INFO] 13:55:39:130 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+[WARNING] 00:51:50:379 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:51:50:379 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 13:55:39:234 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+[INFO] 00:51:50:381 CPU/(27189:27250): Se escribio el valor en la posicion correspondiente
 
-[INFO] 13:55:39:335 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+[INFO] 00:51:50:381 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
 
-[INFO] 13:55:39:438 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+[INFO] 00:51:50:481 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
 
-[INFO] 13:55:39:541 CPU/(1550:1662): Ejecutando la instruccion: NO_OP
+[INFO] 00:51:50:581 CPU/(27189:27250): Ejecutando la instruccion: WRITE, del proceso: 1
 
-[INFO] 13:55:39:642 CPU/(1550:1662): Ejecutando la instruccion: WRITE
+[WARNING] 00:51:50:582 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:51:50:582 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[WARNING] 13:55:39:644 CPU/(1550:1662): No se encontro la pagina en la tlb
-[ERROR] 13:55:39:645 CPU/(1550:1662): Error al conectar (a MEMORIA)
+[INFO] 00:51:50:583 CPU/(27189:27250): Se escribio el valor en la posicion correspondiente
 
-[ERROR] 13:55:39:646 CPU/(1550:1662): Error en conexion
-[ERROR] 13:55:39:647 CPU/(1550:1662): Error al conectar (a MEMORIA)
+[INFO] 00:51:50:583 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
 
+[INFO] 00:51:50:684 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
+
+[INFO] 00:51:50:784 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
+
+[INFO] 00:51:50:884 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
+
+[INFO] 00:51:50:986 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
+
+[INFO] 00:51:51:086 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
+
+[INFO] 00:51:51:187 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
+
+[INFO] 00:51:51:287 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
+
+[INFO] 00:51:51:388 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
+
+[INFO] 00:51:51:489 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
+
+[INFO] 00:51:51:589 CPU/(27189:27250): Ejecutando la instruccion: I/O, del proceso: 1
+
+[INFO] 00:51:51:592 CPU/(27189:27250): Se recibio un pcb para ejecutar
+
+[INFO] 00:51:51:592 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:51:51:693 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:51:51:795 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:51:51:895 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:51:51:996 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:51:52:096 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:51:52:197 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:51:52:297 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:51:52:398 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:51:52:499 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:51:52:599 CPU/(27189:27250): Ejecutando la instruccion: WRITE, del proceso: 2
+
+[WARNING] 00:51:52:599 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:51:52:600 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:51:52:601 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:51:53:611 CPU/(27189:27250):            TLB 
+[INFO] 00:51:53:612 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:51:53:612 CPU/(27189:27250):  |    0    |   0   |
+[INFO] 00:51:53:613 CPU/(27189:27250): ----------------------
+
+[INFO] 00:51:53:613 CPU/(27189:27250): Ejecutando la instruccion: WRITE, del proceso: 2
+
+[WARNING] 00:51:53:614 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:51:53:614 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:51:53:617 CPU/(27189:27250): Se escribio el valor en la posicion correspondiente
+
+[INFO] 00:51:53:618 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:51:53:719 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:51:53:819 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:51:53:928 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:51:54:028 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:51:54:128 CPU/(27189:27250): Ejecutando la instruccion: WRITE, del proceso: 2
+
+[WARNING] 00:51:54:129 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:51:54:129 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:51:54:134 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:51:55:147 CPU/(27189:27250):            TLB 
+[INFO] 00:51:55:148 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:51:55:148 CPU/(27189:27250):  |    0    |   0   |
+[INFO] 00:51:55:148 CPU/(27189:27250):  |    1    |   1   |
+[INFO] 00:51:55:148 CPU/(27189:27250): ----------------------
+
+[INFO] 00:51:55:148 CPU/(27189:27250): Ejecutando la instruccion: WRITE, del proceso: 2
+
+[WARNING] 00:51:55:148 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:51:55:148 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:51:55:149 CPU/(27189:27250): Se escribio el valor en la posicion correspondiente
+
+[INFO] 00:51:55:150 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:51:55:250 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:51:55:350 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:51:55:451 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:51:55:552 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:51:55:652 CPU/(27189:27250): Ejecutando la instruccion: WRITE, del proceso: 2
+
+[WARNING] 00:51:55:653 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:51:55:654 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:51:55:657 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:51:56:594 CPU/(27189:27251): Interrumpiendo proceso
+[INFO] 00:51:56:671 CPU/(27189:27250):            TLB 
+[INFO] 00:51:56:671 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:51:56:671 CPU/(27189:27250):  |    1    |   1   |
+[INFO] 00:51:56:671 CPU/(27189:27250):  |    2    |   2   |
+[INFO] 00:51:56:672 CPU/(27189:27250): ----------------------
+
+[WARNING] 00:51:56:672 CPU/(27189:27250): Proceso 2 interrumpido
+[INFO] 00:51:56:673 CPU/(27189:27250): Se recibio un pcb para ejecutar
+
+[INFO] 00:51:56:673 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
+
+[INFO] 00:51:56:774 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
+
+[INFO] 00:51:56:875 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
+
+[INFO] 00:51:56:976 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
+
+[INFO] 00:51:57:077 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
+
+[INFO] 00:51:57:177 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
+
+[INFO] 00:51:57:278 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
+
+[INFO] 00:51:57:379 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
+
+[INFO] 00:51:57:480 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
+
+[INFO] 00:51:57:580 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
+
+[INFO] 00:51:57:681 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 1
+
+[WARNING] 00:51:57:681 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:51:57:681 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:51:57:684 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:51:58:696 CPU/(27189:27250):            TLB 
+[INFO] 00:51:58:696 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:51:58:696 CPU/(27189:27250):  |    0    |   0   |
+[INFO] 00:51:58:697 CPU/(27189:27250): ----------------------
+
+[INFO] 00:51:58:697 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 1
+
+[WARNING] 00:51:58:697 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:51:58:697 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:51:58:699 CPU/(27189:27250): [32m El valor leido en la posicion es: 1
+
+[INFO] 00:51:58:699 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
+
+[INFO] 00:51:58:799 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
+
+[INFO] 00:51:58:900 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 1
+
+[WARNING] 00:51:58:901 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:51:58:901 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:51:58:903 CPU/(27189:27250): [32m El valor leido en la posicion es: 2
+
+[INFO] 00:51:58:903 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
+
+[INFO] 00:51:59:005 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
+
+[INFO] 00:51:59:105 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 1
+
+[WARNING] 00:51:59:106 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:51:59:106 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:51:59:107 CPU/(27189:27250): [32m El valor leido en la posicion es: 3
+
+[INFO] 00:51:59:107 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
+
+[INFO] 00:51:59:207 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
+
+[INFO] 00:51:59:308 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 1
+
+[WARNING] 00:51:59:308 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:51:59:308 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:51:59:309 CPU/(27189:27250): [32m El valor leido en la posicion es: 4
+
+[INFO] 00:51:59:310 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
+
+[INFO] 00:51:59:410 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
+
+[INFO] 00:51:59:511 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 1
+
+[WARNING] 00:51:59:511 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:51:59:511 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:51:59:512 CPU/(27189:27250): [32m El valor leido en la posicion es: 5
+
+[INFO] 00:51:59:512 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
+
+[INFO] 00:51:59:613 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
+
+[INFO] 00:51:59:714 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 1
+
+[WARNING] 00:51:59:714 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:51:59:714 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:51:59:715 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:00:721 CPU/(27189:27250):            TLB 
+[INFO] 00:52:00:721 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:52:00:721 CPU/(27189:27250):  |    0    |   0   |
+[INFO] 00:52:00:721 CPU/(27189:27250):  |    1    |   1   |
+[INFO] 00:52:00:721 CPU/(27189:27250): ----------------------
+
+[INFO] 00:52:00:721 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 1
+
+[WARNING] 00:52:00:722 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:52:00:722 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:00:723 CPU/(27189:27250): [32m El valor leido en la posicion es: 11
+
+[INFO] 00:52:00:723 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
+
+[INFO] 00:52:00:824 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
+
+[INFO] 00:52:00:926 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 1
+
+[WARNING] 00:52:00:926 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:52:00:927 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:00:928 CPU/(27189:27250): [32m El valor leido en la posicion es: 12
+
+[INFO] 00:52:00:928 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
+
+[INFO] 00:52:01:028 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
+
+[INFO] 00:52:01:128 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 1
+
+[WARNING] 00:52:01:129 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:52:01:129 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:01:130 CPU/(27189:27250): [32m El valor leido en la posicion es: 13
+
+[INFO] 00:52:01:130 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
+
+[INFO] 00:52:01:231 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
+
+[INFO] 00:52:01:332 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 1
+
+[WARNING] 00:52:01:332 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:52:01:332 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:01:333 CPU/(27189:27250): [32m El valor leido en la posicion es: 14
+
+[INFO] 00:52:01:333 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
+
+[INFO] 00:52:01:433 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
+
+[INFO] 00:52:01:534 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 1
+
+[WARNING] 00:52:01:534 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:52:01:535 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:01:536 CPU/(27189:27250): [32m El valor leido en la posicion es: 15
+
+[INFO] 00:52:01:536 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
+
+[INFO] 00:52:01:637 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
+
+[INFO] 00:52:01:737 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 1
+
+[WARNING] 00:52:01:737 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:52:01:737 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:01:738 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:02:744 CPU/(27189:27250):            TLB 
+[INFO] 00:52:02:744 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:52:02:744 CPU/(27189:27250):  |    1    |   1   |
+[INFO] 00:52:02:744 CPU/(27189:27250):  |    2    |   2   |
+[INFO] 00:52:02:745 CPU/(27189:27250): ----------------------
+
+[INFO] 00:52:02:745 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 1
+
+[WARNING] 00:52:02:745 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:52:02:745 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:02:746 CPU/(27189:27250): [32m El valor leido en la posicion es: 21
+
+[INFO] 00:52:02:747 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
+
+[INFO] 00:52:02:848 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
+
+[INFO] 00:52:02:948 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 1
+
+[WARNING] 00:52:02:949 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:52:02:949 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:02:951 CPU/(27189:27250): [32m El valor leido en la posicion es: 22
+
+[INFO] 00:52:02:952 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
+
+[INFO] 00:52:03:053 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
+
+[INFO] 00:52:03:153 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 1
+
+[WARNING] 00:52:03:153 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:52:03:154 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:03:156 CPU/(27189:27250): [32m El valor leido en la posicion es: 23
+
+[INFO] 00:52:03:156 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
+
+[INFO] 00:52:03:257 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
+
+[INFO] 00:52:03:358 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 1
+
+[WARNING] 00:52:03:358 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:52:03:358 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:03:360 CPU/(27189:27250): [32m El valor leido en la posicion es: 24
+
+[INFO] 00:52:03:361 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
+
+[INFO] 00:52:03:461 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
+
+[INFO] 00:52:03:562 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 1
+
+[WARNING] 00:52:03:562 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:52:03:562 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:03:564 CPU/(27189:27250): [32m El valor leido en la posicion es: 25
+
+[INFO] 00:52:03:565 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
+
+[INFO] 00:52:03:666 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
+
+[INFO] 00:52:03:767 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
+
+[INFO] 00:52:03:868 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
+
+[INFO] 00:52:03:968 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
+
+[INFO] 00:52:04:069 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
+
+[INFO] 00:52:04:170 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
+
+[INFO] 00:52:04:271 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
+
+[INFO] 00:52:04:372 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
+
+[INFO] 00:52:04:472 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 1
+
+[INFO] 00:52:04:573 CPU/(27189:27250): Ejecutando la instruccion: EXIT, del proceso: 1
+
+[INFO] 00:52:04:574 CPU/(27189:27250): Se recibio un pcb para ejecutar
+
+[INFO] 00:52:04:575 CPU/(27189:27250): Ejecutando la instruccion: WRITE, del proceso: 2
+
+[WARNING] 00:52:04:575 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:52:04:575 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:04:584 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:04:597 CPU/(27189:27250):            TLB 
+[INFO] 00:52:04:597 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:52:04:597 CPU/(27189:27250):  |    2    |   2   |
+[INFO] 00:52:04:597 CPU/(27189:27250): ----------------------
+
+[INFO] 00:52:04:597 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:04:599 CPU/(27189:27250): Se escribio el valor en la posicion correspondiente
+
+[INFO] 00:52:04:599 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:04:700 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:04:800 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:04:901 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:05:001 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:05:102 CPU/(27189:27250): Ejecutando la instruccion: WRITE, del proceso: 2
+
+[WARNING] 00:52:05:102 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:52:05:102 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:05:103 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:06:108 CPU/(27189:27250):            TLB 
+[INFO] 00:52:06:109 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:52:06:109 CPU/(27189:27250):  |    2    |   2   |
+[INFO] 00:52:06:109 CPU/(27189:27250):  |    3    |   3   |
+[INFO] 00:52:06:109 CPU/(27189:27250): ----------------------
+
+[INFO] 00:52:06:109 CPU/(27189:27250): Ejecutando la instruccion: WRITE, del proceso: 2
+
+[WARNING] 00:52:06:109 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:52:06:109 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:06:111 CPU/(27189:27250): Se escribio el valor en la posicion correspondiente
+
+[INFO] 00:52:06:111 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:06:211 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:06:312 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:06:412 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:06:514 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:06:614 CPU/(27189:27250): Ejecutando la instruccion: WRITE, del proceso: 2
+
+[WARNING] 00:52:06:614 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:52:06:615 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:06:617 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:08:630 CPU/(27189:27250):            TLB 
+[INFO] 00:52:08:630 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:52:08:630 CPU/(27189:27250):  |    3    |   3   |
+[INFO] 00:52:08:631 CPU/(27189:27250):  |    4    |   0   |
+[INFO] 00:52:08:631 CPU/(27189:27250): ----------------------
+
+[INFO] 00:52:08:631 CPU/(27189:27250): Ejecutando la instruccion: WRITE, del proceso: 2
+
+[WARNING] 00:52:08:631 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:52:08:632 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:08:633 CPU/(27189:27250): Se escribio el valor en la posicion correspondiente
+
+[INFO] 00:52:08:634 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:08:734 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:08:835 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:08:936 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:09:037 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:09:138 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:09:238 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:09:339 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:09:439 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:09:540 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:09:641 CPU/(27189:27250): Ejecutando la instruccion: I/O, del proceso: 2
+
+[INFO] 00:52:09:642 CPU/(27189:27250): Se recibio un pcb para ejecutar
+
+[INFO] 00:52:09:642 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:09:743 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:09:844 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:09:944 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:10:045 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:10:145 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:10:246 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:10:346 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:10:447 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:10:547 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:10:648 CPU/(27189:27250): Ejecutando la instruccion: WRITE, del proceso: 3
+
+[WARNING] 00:52:10:648 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:52:10:648 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:10:650 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:11:657 CPU/(27189:27250):            TLB 
+[INFO] 00:52:11:657 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:52:11:657 CPU/(27189:27250):  |    0    |   0   |
+[INFO] 00:52:11:657 CPU/(27189:27250): ----------------------
+
+[INFO] 00:52:11:657 CPU/(27189:27250): Ejecutando la instruccion: WRITE, del proceso: 3
+
+[WARNING] 00:52:11:657 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:52:11:657 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:11:658 CPU/(27189:27250): Se escribio el valor en la posicion correspondiente
+
+[INFO] 00:52:11:659 CPU/(27189:27250): Ejecutando la instruccion: WRITE, del proceso: 3
+
+[WARNING] 00:52:11:659 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:52:11:659 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:11:660 CPU/(27189:27250): Se escribio el valor en la posicion correspondiente
+
+[INFO] 00:52:11:661 CPU/(27189:27250): Ejecutando la instruccion: WRITE, del proceso: 3
+
+[WARNING] 00:52:11:661 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:52:11:661 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:11:663 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:12:670 CPU/(27189:27250):            TLB 
+[INFO] 00:52:12:671 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:52:12:671 CPU/(27189:27250):  |    0    |   0   |
+[INFO] 00:52:12:671 CPU/(27189:27250):  |    1    |   1   |
+[INFO] 00:52:12:671 CPU/(27189:27250): ----------------------
+
+[INFO] 00:52:12:671 CPU/(27189:27250): Ejecutando la instruccion: WRITE, del proceso: 3
+
+[WARNING] 00:52:12:672 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:52:12:672 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:12:674 CPU/(27189:27250): Se escribio el valor en la posicion correspondiente
+
+[INFO] 00:52:12:674 CPU/(27189:27250): Ejecutando la instruccion: WRITE, del proceso: 3
+
+[WARNING] 00:52:12:675 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:52:12:675 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:12:677 CPU/(27189:27250): Se escribio el valor en la posicion correspondiente
+
+[INFO] 00:52:12:678 CPU/(27189:27250): Ejecutando la instruccion: WRITE, del proceso: 3
+
+[WARNING] 00:52:12:678 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:52:12:678 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:12:684 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:13:691 CPU/(27189:27250):            TLB 
+[INFO] 00:52:13:691 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:52:13:691 CPU/(27189:27250):  |    1    |   1   |
+[INFO] 00:52:13:691 CPU/(27189:27250):  |    2    |   2   |
+[INFO] 00:52:13:691 CPU/(27189:27250): ----------------------
+
+[INFO] 00:52:13:691 CPU/(27189:27250): Ejecutando la instruccion: WRITE, del proceso: 3
+
+[WARNING] 00:52:13:692 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:52:13:692 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:13:693 CPU/(27189:27250): Se escribio el valor en la posicion correspondiente
+
+[INFO] 00:52:13:693 CPU/(27189:27250): Ejecutando la instruccion: WRITE, del proceso: 3
+
+[WARNING] 00:52:13:693 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:52:13:694 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:13:695 CPU/(27189:27250): Se escribio el valor en la posicion correspondiente
+
+[INFO] 00:52:13:696 CPU/(27189:27250): Ejecutando la instruccion: WRITE, del proceso: 3
+
+[WARNING] 00:52:13:696 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:52:13:696 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:13:698 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:14:642 CPU/(27189:27251): Interrumpiendo proceso
+[INFO] 00:52:14:708 CPU/(27189:27250):            TLB 
+[INFO] 00:52:14:708 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:52:14:708 CPU/(27189:27250):  |    2    |   2   |
+[INFO] 00:52:14:709 CPU/(27189:27250):  |    3    |   3   |
+[INFO] 00:52:14:709 CPU/(27189:27250): ----------------------
+
+[WARNING] 00:52:14:709 CPU/(27189:27250): Proceso 3 interrumpido
+[INFO] 00:52:14:712 CPU/(27189:27250): Se recibio un pcb para ejecutar
+
+[INFO] 00:52:14:712 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:14:812 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:14:913 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:15:013 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:15:114 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:15:214 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:15:315 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:15:416 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:15:516 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:15:617 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:15:717 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 2
+
+[WARNING] 00:52:15:717 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:52:15:718 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:15:720 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:16:732 CPU/(27189:27250):            TLB 
+[INFO] 00:52:16:732 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:52:16:732 CPU/(27189:27250):  |    4    |   0   |
+[INFO] 00:52:16:732 CPU/(27189:27250): ----------------------
+
+[INFO] 00:52:16:732 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 2
+
+[WARNING] 00:52:16:732 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:52:16:733 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:16:734 CPU/(27189:27250): [32m El valor leido en la posicion es: 41
+
+[INFO] 00:52:16:735 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:16:836 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:16:936 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:17:037 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:17:137 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:17:238 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 2
+
+[WARNING] 00:52:17:238 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:52:17:238 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:17:240 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:18:252 CPU/(27189:27250):            TLB 
+[INFO] 00:52:18:253 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:52:18:253 CPU/(27189:27250):  |    4    |   0   |
+[INFO] 00:52:18:253 CPU/(27189:27250):  |    3    |   1   |
+[INFO] 00:52:18:253 CPU/(27189:27250): ----------------------
+
+[INFO] 00:52:18:253 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 2
+
+[WARNING] 00:52:18:254 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:52:18:254 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:18:256 CPU/(27189:27250): [32m El valor leido en la posicion es: 31
+
+[INFO] 00:52:18:256 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:18:358 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:18:458 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:18:559 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:18:659 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:18:760 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 2
+
+[WARNING] 00:52:18:760 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:52:18:761 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:18:763 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:19:775 CPU/(27189:27250):            TLB 
+[INFO] 00:52:19:775 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:52:19:775 CPU/(27189:27250):  |    3    |   1   |
+[INFO] 00:52:19:775 CPU/(27189:27250):  |    2    |   2   |
+[INFO] 00:52:19:776 CPU/(27189:27250): ----------------------
+
+[INFO] 00:52:19:776 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 2
+
+[WARNING] 00:52:19:776 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:52:19:777 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:19:778 CPU/(27189:27250): [32m El valor leido en la posicion es: 21
+
+[INFO] 00:52:19:778 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:19:879 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:19:979 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:20:080 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:20:180 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:20:282 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 2
+
+[WARNING] 00:52:20:282 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:52:20:282 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:20:284 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:21:293 CPU/(27189:27250):            TLB 
+[INFO] 00:52:21:294 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:52:21:294 CPU/(27189:27250):  |    2    |   2   |
+[INFO] 00:52:21:294 CPU/(27189:27250):  |    1    |   3   |
+[INFO] 00:52:21:295 CPU/(27189:27250): ----------------------
+
+[INFO] 00:52:21:295 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 2
+
+[WARNING] 00:52:21:295 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:52:21:296 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:21:298 CPU/(27189:27250): [32m El valor leido en la posicion es: 11
+
+[INFO] 00:52:21:298 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:21:399 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:21:499 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:21:600 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:21:701 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:21:801 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 2
+
+[WARNING] 00:52:21:802 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:52:21:802 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:21:807 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:22:822 CPU/(27189:27250):            TLB 
+[INFO] 00:52:22:823 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:52:22:823 CPU/(27189:27250):  |    1    |   3   |
+[INFO] 00:52:22:823 CPU/(27189:27250):  |    0    |   1   |
+[INFO] 00:52:22:823 CPU/(27189:27250): ----------------------
+
+[INFO] 00:52:22:824 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 2
+
+[WARNING] 00:52:22:824 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:52:22:824 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:22:826 CPU/(27189:27250): [32m El valor leido en la posicion es: 1
+
+[INFO] 00:52:22:826 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:22:927 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:23:028 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:23:129 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:23:229 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:23:330 CPU/(27189:27250): Ejecutando la instruccion: I/O, del proceso: 2
+
+[INFO] 00:52:23:332 CPU/(27189:27250): Se recibio un pcb para ejecutar
+
+[INFO] 00:52:23:333 CPU/(27189:27250): Ejecutando la instruccion: WRITE, del proceso: 3
+
+[WARNING] 00:52:23:333 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:52:23:333 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:23:335 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:23:346 CPU/(27189:27250):            TLB 
+[INFO] 00:52:23:347 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:52:23:347 CPU/(27189:27250):  |    3    |   3   |
+[INFO] 00:52:23:347 CPU/(27189:27250): ----------------------
+
+[INFO] 00:52:23:347 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:23:349 CPU/(27189:27250): Se escribio el valor en la posicion correspondiente
+
+[INFO] 00:52:23:349 CPU/(27189:27250): Ejecutando la instruccion: WRITE, del proceso: 3
+
+[WARNING] 00:52:23:349 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:52:23:349 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:23:351 CPU/(27189:27250): Se escribio el valor en la posicion correspondiente
+
+[INFO] 00:52:23:352 CPU/(27189:27250): Ejecutando la instruccion: WRITE, del proceso: 3
+
+[WARNING] 00:52:23:352 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:52:23:352 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:23:355 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:23:432 CPU/(27189:27251): Interrumpiendo proceso
+[INFO] 00:52:25:369 CPU/(27189:27250):            TLB 
+[INFO] 00:52:25:369 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:52:25:369 CPU/(27189:27250):  |    3    |   3   |
+[INFO] 00:52:25:369 CPU/(27189:27250):  |    4    |   0   |
+[INFO] 00:52:25:369 CPU/(27189:27250): ----------------------
+
+[WARNING] 00:52:25:370 CPU/(27189:27250): Proceso 3 interrumpido
+[INFO] 00:52:25:371 CPU/(27189:27250): Se recibio un pcb para ejecutar
+
+[INFO] 00:52:25:371 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:25:472 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:25:572 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:25:672 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:25:773 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:25:874 CPU/(27189:27250): Ejecutando la instruccion: I/O, del proceso: 2
+
+[INFO] 00:52:25:877 CPU/(27189:27250): Se recibio un pcb para ejecutar
+
+[INFO] 00:52:25:877 CPU/(27189:27250): Ejecutando la instruccion: WRITE, del proceso: 3
+
+[WARNING] 00:52:25:877 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:52:25:878 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:25:880 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:25:889 CPU/(27189:27250):            TLB 
+[INFO] 00:52:25:889 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:52:25:889 CPU/(27189:27250):  |    4    |   0   |
+[INFO] 00:52:25:889 CPU/(27189:27250): ----------------------
+
+[INFO] 00:52:25:889 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:25:891 CPU/(27189:27250): Se escribio el valor en la posicion correspondiente
+
+[INFO] 00:52:25:891 CPU/(27189:27250): Ejecutando la instruccion: WRITE, del proceso: 3
+
+[WARNING] 00:52:25:891 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:52:25:891 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:25:893 CPU/(27189:27250): Se escribio el valor en la posicion correspondiente
+
+[INFO] 00:52:25:893 CPU/(27189:27250): Ejecutando la instruccion: WRITE, del proceso: 3
+
+[WARNING] 00:52:25:893 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:52:25:893 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:25:896 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:25:975 CPU/(27189:27251): Interrumpiendo proceso
+[INFO] 00:52:27:912 CPU/(27189:27250):            TLB 
+[INFO] 00:52:27:912 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:52:27:913 CPU/(27189:27250):  |    4    |   0   |
+[INFO] 00:52:27:913 CPU/(27189:27250):  |    5    |   1   |
+[INFO] 00:52:27:913 CPU/(27189:27250): ----------------------
+
+[WARNING] 00:52:27:914 CPU/(27189:27250): Proceso 3 interrumpido
+[INFO] 00:52:27:918 CPU/(27189:27250): Se recibio un pcb para ejecutar
+
+[INFO] 00:52:27:919 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:28:020 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:28:120 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:28:221 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:28:322 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:28:423 CPU/(27189:27250): Ejecutando la instruccion: I/O, del proceso: 2
+
+[INFO] 00:52:28:426 CPU/(27189:27250): Se recibio un pcb para ejecutar
+
+[INFO] 00:52:28:427 CPU/(27189:27250): Ejecutando la instruccion: WRITE, del proceso: 3
+
+[WARNING] 00:52:28:427 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:52:28:428 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:28:430 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:28:442 CPU/(27189:27250):            TLB 
+[INFO] 00:52:28:442 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:52:28:442 CPU/(27189:27250):  |    5    |   1   |
+[INFO] 00:52:28:443 CPU/(27189:27250): ----------------------
+
+[INFO] 00:52:28:444 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:28:445 CPU/(27189:27250): Se escribio el valor en la posicion correspondiente
+
+[INFO] 00:52:28:446 CPU/(27189:27250): Ejecutando la instruccion: WRITE, del proceso: 3
+
+[WARNING] 00:52:28:446 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:52:28:447 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:28:453 CPU/(27189:27250): Se escribio el valor en la posicion correspondiente
+
+[INFO] 00:52:28:454 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:28:526 CPU/(27189:27251): Interrumpiendo proceso
+[WARNING] 00:52:28:554 CPU/(27189:27250): Proceso 3 interrumpido
+[INFO] 00:52:28:556 CPU/(27189:27250): Se recibio un pcb para ejecutar
+
+[INFO] 00:52:28:556 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:28:656 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:28:757 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:28:857 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:28:958 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:29:059 CPU/(27189:27250): Ejecutando la instruccion: I/O, del proceso: 2
+
+[INFO] 00:52:29:061 CPU/(27189:27250): Se recibio un pcb para ejecutar
+
+[INFO] 00:52:29:061 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:29:160 CPU/(27189:27251): Interrumpiendo proceso
+[WARNING] 00:52:29:163 CPU/(27189:27250): Proceso 3 interrumpido
+[INFO] 00:52:29:165 CPU/(27189:27250): Se recibio un pcb para ejecutar
+
+[INFO] 00:52:29:165 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:29:266 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:29:366 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:29:467 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:29:567 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:29:668 CPU/(27189:27250): Ejecutando la instruccion: I/O, del proceso: 2
+
+[INFO] 00:52:29:671 CPU/(27189:27250): Se recibio un pcb para ejecutar
+
+[INFO] 00:52:29:671 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:29:771 CPU/(27189:27251): Interrumpiendo proceso
+[WARNING] 00:52:29:772 CPU/(27189:27250): Proceso 3 interrumpido
+[INFO] 00:52:29:774 CPU/(27189:27250): Se recibio un pcb para ejecutar
+
+[INFO] 00:52:29:775 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:29:875 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:29:976 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:30:077 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:30:178 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:30:279 CPU/(27189:27250): Ejecutando la instruccion: I/O, del proceso: 2
+
+[INFO] 00:52:30:281 CPU/(27189:27250): Se recibio un pcb para ejecutar
+
+[INFO] 00:52:30:282 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:30:381 CPU/(27189:27251): Interrumpiendo proceso
+[WARNING] 00:52:30:382 CPU/(27189:27250): Proceso 3 interrumpido
+[INFO] 00:52:30:384 CPU/(27189:27250): Se recibio un pcb para ejecutar
+
+[INFO] 00:52:30:384 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:30:485 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:30:585 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:30:686 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:30:787 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:30:887 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:30:988 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:31:089 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:31:190 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:31:290 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 2
+
+[INFO] 00:52:31:391 CPU/(27189:27250): Ejecutando la instruccion: EXIT, del proceso: 2
+
+[INFO] 00:52:31:394 CPU/(27189:27250): Se recibio un pcb para ejecutar
+
+[INFO] 00:52:31:394 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:31:495 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:31:595 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:31:696 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:31:797 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:31:897 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:31:998 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:52:31:999 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:52:31:999 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:32:000 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:34:010 CPU/(27189:27250):            TLB 
+[INFO] 00:52:34:010 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:52:34:011 CPU/(27189:27250):  |    0    |   2   |
+[INFO] 00:52:34:011 CPU/(27189:27250): ----------------------
+
+[INFO] 00:52:34:011 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:52:34:012 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:52:34:012 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:34:013 CPU/(27189:27250): [32m El valor leido en la posicion es: 11
+
+[INFO] 00:52:34:014 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:52:34:014 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:52:34:014 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:34:016 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:36:026 CPU/(27189:27250):            TLB 
+[INFO] 00:52:36:026 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:52:36:026 CPU/(27189:27250):  |    0    |   2   |
+[INFO] 00:52:36:026 CPU/(27189:27250):  |    1    |   3   |
+[INFO] 00:52:36:026 CPU/(27189:27250): ----------------------
+
+[INFO] 00:52:36:026 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:52:36:026 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:52:36:027 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:36:028 CPU/(27189:27250): [32m El valor leido en la posicion es: 11
+
+[INFO] 00:52:36:028 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:52:36:028 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:52:36:028 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:36:029 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:37:035 CPU/(27189:27250):            TLB 
+[INFO] 00:52:37:035 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:52:37:035 CPU/(27189:27250):  |    1    |   3   |
+[INFO] 00:52:37:036 CPU/(27189:27250):  |    2    |   2   |
+[INFO] 00:52:37:036 CPU/(27189:27250): ----------------------
+
+[INFO] 00:52:37:036 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:52:37:036 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:52:37:036 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:37:037 CPU/(27189:27250): [32m El valor leido en la posicion es: 21
+
+[INFO] 00:52:37:037 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:52:37:037 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:52:37:038 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:37:039 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:38:044 CPU/(27189:27250):            TLB 
+[INFO] 00:52:38:045 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:52:38:045 CPU/(27189:27250):  |    2    |   2   |
+[INFO] 00:52:38:045 CPU/(27189:27250):  |    3    |   3   |
+[INFO] 00:52:38:045 CPU/(27189:27250): ----------------------
+
+[INFO] 00:52:38:046 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:52:38:046 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:52:38:046 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:38:048 CPU/(27189:27250): [32m El valor leido en la posicion es: 31
+
+[INFO] 00:52:38:048 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:52:38:048 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:52:38:049 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:38:051 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:38:060 CPU/(27189:27250):            TLB 
+[INFO] 00:52:38:061 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:52:38:061 CPU/(27189:27250):  |    3    |   3   |
+[INFO] 00:52:38:061 CPU/(27189:27250):  |    4    |   0   |
+[INFO] 00:52:38:061 CPU/(27189:27250): ----------------------
+
+[INFO] 00:52:38:061 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:38:063 CPU/(27189:27250): [32m El valor leido en la posicion es: 41
+
+[INFO] 00:52:38:063 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:52:38:063 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:52:38:063 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:38:065 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:38:075 CPU/(27189:27250):            TLB 
+[INFO] 00:52:38:076 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:52:38:076 CPU/(27189:27250):  |    4    |   0   |
+[INFO] 00:52:38:076 CPU/(27189:27250):  |    5    |   1   |
+[INFO] 00:52:38:076 CPU/(27189:27250): ----------------------
+
+[INFO] 00:52:38:076 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:38:077 CPU/(27189:27250): [32m El valor leido en la posicion es: 51
+
+[INFO] 00:52:38:077 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:38:178 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:38:278 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:38:379 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:38:479 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:38:581 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:38:681 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:38:782 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:38:883 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:38:983 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:39:084 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:52:39:084 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:52:39:085 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:39:087 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:41:099 CPU/(27189:27250):            TLB 
+[INFO] 00:52:41:100 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:52:41:100 CPU/(27189:27250):  |    5    |   1   |
+[INFO] 00:52:41:100 CPU/(27189:27250):  |    0    |   0   |
+[INFO] 00:52:41:100 CPU/(27189:27250): ----------------------
+
+[INFO] 00:52:41:100 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:52:41:100 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:52:41:101 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:41:102 CPU/(27189:27250): [32m El valor leido en la posicion es: 0
+
+[INFO] 00:52:41:102 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:52:41:102 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:52:41:102 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:41:104 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:43:114 CPU/(27189:27250):            TLB 
+[INFO] 00:52:43:115 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:52:43:115 CPU/(27189:27250):  |    0    |   0   |
+[INFO] 00:52:43:115 CPU/(27189:27250):  |    1    |   1   |
+[INFO] 00:52:43:115 CPU/(27189:27250): ----------------------
+
+[INFO] 00:52:43:115 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:52:43:115 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:52:43:115 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:43:116 CPU/(27189:27250): [32m El valor leido en la posicion es: 12
+
+[INFO] 00:52:43:117 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:52:43:117 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:52:43:117 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:43:119 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:43:124 CPU/(27189:27250):            TLB 
+[INFO] 00:52:43:124 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:52:43:124 CPU/(27189:27250):  |    1    |   1   |
+[INFO] 00:52:43:125 CPU/(27189:27250):  |    2    |   2   |
+[INFO] 00:52:43:125 CPU/(27189:27250): ----------------------
+
+[INFO] 00:52:43:125 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:43:128 CPU/(27189:27250): [32m El valor leido en la posicion es: 22
+
+[INFO] 00:52:43:128 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:52:43:129 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:52:43:129 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:43:130 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:43:135 CPU/(27189:27250):            TLB 
+[INFO] 00:52:43:135 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:52:43:135 CPU/(27189:27250):  |    2    |   2   |
+[INFO] 00:52:43:135 CPU/(27189:27250):  |    3    |   3   |
+[INFO] 00:52:43:136 CPU/(27189:27250): ----------------------
+
+[INFO] 00:52:43:136 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:43:137 CPU/(27189:27250): [32m El valor leido en la posicion es: 32
+
+[INFO] 00:52:43:137 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:52:43:137 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:52:43:137 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:43:139 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:44:148 CPU/(27189:27250):            TLB 
+[INFO] 00:52:44:148 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:52:44:148 CPU/(27189:27250):  |    3    |   3   |
+[INFO] 00:52:44:148 CPU/(27189:27250):  |    4    |   2   |
+[INFO] 00:52:44:148 CPU/(27189:27250): ----------------------
+
+[INFO] 00:52:44:149 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:52:44:149 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:52:44:149 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:44:150 CPU/(27189:27250): [32m El valor leido en la posicion es: 42
+
+[INFO] 00:52:44:150 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:52:44:150 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:52:44:150 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:44:152 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:45:158 CPU/(27189:27250):            TLB 
+[INFO] 00:52:45:158 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:52:45:158 CPU/(27189:27250):  |    4    |   2   |
+[INFO] 00:52:45:158 CPU/(27189:27250):  |    5    |   3   |
+[INFO] 00:52:45:158 CPU/(27189:27250): ----------------------
+
+[INFO] 00:52:45:158 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:52:45:159 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:52:45:159 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:45:160 CPU/(27189:27250): [32m El valor leido en la posicion es: 52
+
+[INFO] 00:52:45:160 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:45:262 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:45:363 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:45:463 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:45:564 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:45:665 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:45:765 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:45:866 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:45:967 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:46:068 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:46:168 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:52:46:169 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:52:46:169 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:46:172 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:46:184 CPU/(27189:27250):            TLB 
+[INFO] 00:52:46:185 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:52:46:185 CPU/(27189:27250):  |    5    |   3   |
+[INFO] 00:52:46:185 CPU/(27189:27250):  |    0    |   0   |
+[INFO] 00:52:46:185 CPU/(27189:27250): ----------------------
+
+[INFO] 00:52:46:186 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:46:187 CPU/(27189:27250): [32m El valor leido en la posicion es: 11
+
+[INFO] 00:52:46:188 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:52:46:188 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:52:46:189 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:46:192 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:46:201 CPU/(27189:27250):            TLB 
+[INFO] 00:52:46:202 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:52:46:202 CPU/(27189:27250):  |    0    |   0   |
+[INFO] 00:52:46:202 CPU/(27189:27250):  |    1    |   1   |
+[INFO] 00:52:46:202 CPU/(27189:27250): ----------------------
+
+[INFO] 00:52:46:202 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:46:203 CPU/(27189:27250): [32m El valor leido en la posicion es: 11
+
+[INFO] 00:52:46:204 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:52:46:204 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:52:46:204 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:46:206 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:47:214 CPU/(27189:27250):            TLB 
+[INFO] 00:52:47:215 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:52:47:215 CPU/(27189:27250):  |    1    |   1   |
+[INFO] 00:52:47:216 CPU/(27189:27250):  |    2    |   0   |
+[INFO] 00:52:47:216 CPU/(27189:27250): ----------------------
+
+[INFO] 00:52:47:217 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:52:47:217 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:52:47:218 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:47:221 CPU/(27189:27250): [32m El valor leido en la posicion es: 21
+
+[INFO] 00:52:47:221 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:52:47:222 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:52:47:223 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:47:231 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:48:245 CPU/(27189:27250):            TLB 
+[INFO] 00:52:48:246 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:52:48:246 CPU/(27189:27250):  |    2    |   0   |
+[INFO] 00:52:48:246 CPU/(27189:27250):  |    3    |   1   |
+[INFO] 00:52:48:247 CPU/(27189:27250): ----------------------
+
+[INFO] 00:52:48:247 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:52:48:247 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:52:48:248 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:48:249 CPU/(27189:27250): [32m El valor leido en la posicion es: 31
+
+[INFO] 00:52:48:250 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:52:48:250 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:52:48:251 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:48:254 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:48:264 CPU/(27189:27250):            TLB 
+[INFO] 00:52:48:264 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:52:48:264 CPU/(27189:27250):  |    3    |   1   |
+[INFO] 00:52:48:265 CPU/(27189:27250):  |    4    |   2   |
+[INFO] 00:52:48:265 CPU/(27189:27250): ----------------------
+
+[INFO] 00:52:48:265 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:48:267 CPU/(27189:27250): [32m El valor leido en la posicion es: 41
+
+[INFO] 00:52:48:267 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:52:48:267 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:52:48:267 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:48:270 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:48:282 CPU/(27189:27250):            TLB 
+[INFO] 00:52:48:282 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:52:48:282 CPU/(27189:27250):  |    4    |   2   |
+[INFO] 00:52:48:282 CPU/(27189:27250):  |    5    |   3   |
+[INFO] 00:52:48:282 CPU/(27189:27250): ----------------------
+
+[INFO] 00:52:48:283 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:48:284 CPU/(27189:27250): [32m El valor leido en la posicion es: 51
+
+[INFO] 00:52:48:284 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:48:385 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:48:485 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:48:586 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:48:687 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:48:788 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:48:888 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:48:989 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:49:090 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:49:191 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:49:292 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:52:49:293 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:52:49:293 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:49:296 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:50:309 CPU/(27189:27250):            TLB 
+[INFO] 00:52:50:310 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:52:50:310 CPU/(27189:27250):  |    5    |   3   |
+[INFO] 00:52:50:310 CPU/(27189:27250):  |    0    |   2   |
+[INFO] 00:52:50:310 CPU/(27189:27250): ----------------------
+
+[INFO] 00:52:50:311 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:52:50:311 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:52:50:311 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:50:313 CPU/(27189:27250): [32m El valor leido en la posicion es: 0
+
+[INFO] 00:52:50:313 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:52:50:313 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:52:50:314 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:50:317 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:51:327 CPU/(27189:27250):            TLB 
+[INFO] 00:52:51:327 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:52:51:328 CPU/(27189:27250):  |    0    |   2   |
+[INFO] 00:52:51:328 CPU/(27189:27250):  |    1    |   3   |
+[INFO] 00:52:51:328 CPU/(27189:27250): ----------------------
+
+[INFO] 00:52:51:329 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:52:51:329 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:52:51:329 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:51:331 CPU/(27189:27250): [32m El valor leido en la posicion es: 12
+
+[INFO] 00:52:51:331 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:52:51:331 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:52:51:332 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:51:335 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:51:344 CPU/(27189:27250):            TLB 
+[INFO] 00:52:51:345 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:52:51:345 CPU/(27189:27250):  |    1    |   3   |
+[INFO] 00:52:51:345 CPU/(27189:27250):  |    2    |   0   |
+[INFO] 00:52:51:345 CPU/(27189:27250): ----------------------
+
+[INFO] 00:52:51:346 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:51:348 CPU/(27189:27250): [32m El valor leido en la posicion es: 22
+
+[INFO] 00:52:51:348 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:52:51:348 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:52:51:349 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:51:356 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:51:361 CPU/(27189:27250):            TLB 
+[INFO] 00:52:51:361 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:52:51:361 CPU/(27189:27250):  |    2    |   0   |
+[INFO] 00:52:51:361 CPU/(27189:27250):  |    3    |   1   |
+[INFO] 00:52:51:361 CPU/(27189:27250): ----------------------
+
+[INFO] 00:52:51:361 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:51:363 CPU/(27189:27250): [32m El valor leido en la posicion es: 32
+
+[INFO] 00:52:51:363 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:52:51:363 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:52:51:363 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:51:365 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:52:371 CPU/(27189:27250):            TLB 
+[INFO] 00:52:52:372 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:52:52:372 CPU/(27189:27250):  |    3    |   1   |
+[INFO] 00:52:52:373 CPU/(27189:27250):  |    4    |   0   |
+[INFO] 00:52:52:373 CPU/(27189:27250): ----------------------
+
+[INFO] 00:52:52:373 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:52:52:373 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:52:52:374 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:52:376 CPU/(27189:27250): [32m El valor leido en la posicion es: 42
+
+[INFO] 00:52:52:376 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:52:52:377 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:52:52:377 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:52:381 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:53:393 CPU/(27189:27250):            TLB 
+[INFO] 00:52:53:393 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:52:53:393 CPU/(27189:27250):  |    4    |   0   |
+[INFO] 00:52:53:393 CPU/(27189:27250):  |    5    |   1   |
+[INFO] 00:52:53:393 CPU/(27189:27250): ----------------------
+
+[INFO] 00:52:53:393 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:52:53:393 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:52:53:394 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:53:395 CPU/(27189:27250): [32m El valor leido en la posicion es: 52
+
+[INFO] 00:52:53:395 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:53:495 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:53:596 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:53:696 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:53:797 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:53:898 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:53:998 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:54:099 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:54:199 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:54:300 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:54:401 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:52:54:402 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:52:54:402 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:54:405 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:54:416 CPU/(27189:27250):            TLB 
+[INFO] 00:52:54:417 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:52:54:417 CPU/(27189:27250):  |    5    |   1   |
+[INFO] 00:52:54:417 CPU/(27189:27250):  |    0    |   2   |
+[INFO] 00:52:54:417 CPU/(27189:27250): ----------------------
+
+[INFO] 00:52:54:417 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:54:419 CPU/(27189:27250): [32m El valor leido en la posicion es: 11
+
+[INFO] 00:52:54:419 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:52:54:419 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:52:54:419 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:54:422 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:54:435 CPU/(27189:27250):            TLB 
+[INFO] 00:52:54:436 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:52:54:436 CPU/(27189:27250):  |    0    |   2   |
+[INFO] 00:52:54:436 CPU/(27189:27250):  |    1    |   3   |
+[INFO] 00:52:54:436 CPU/(27189:27250): ----------------------
+
+[INFO] 00:52:54:437 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:54:438 CPU/(27189:27250): [32m El valor leido en la posicion es: 11
+
+[INFO] 00:52:54:438 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:52:54:438 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:52:54:439 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:54:441 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:55:449 CPU/(27189:27250):            TLB 
+[INFO] 00:52:55:449 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:52:55:450 CPU/(27189:27250):  |    1    |   3   |
+[INFO] 00:52:55:450 CPU/(27189:27250):  |    2    |   2   |
+[INFO] 00:52:55:450 CPU/(27189:27250): ----------------------
+
+[INFO] 00:52:55:450 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:52:55:451 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:52:55:451 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:55:452 CPU/(27189:27250): [32m El valor leido en la posicion es: 21
+
+[INFO] 00:52:55:453 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:52:55:453 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:52:55:454 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:55:456 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:56:465 CPU/(27189:27250):            TLB 
+[INFO] 00:52:56:465 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:52:56:466 CPU/(27189:27250):  |    2    |   2   |
+[INFO] 00:52:56:466 CPU/(27189:27250):  |    3    |   3   |
+[INFO] 00:52:56:466 CPU/(27189:27250): ----------------------
+
+[INFO] 00:52:56:466 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:52:56:467 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:52:56:467 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:56:468 CPU/(27189:27250): [32m El valor leido en la posicion es: 31
+
+[INFO] 00:52:56:469 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:52:56:469 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:52:56:469 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:56:472 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:56:481 CPU/(27189:27250):            TLB 
+[INFO] 00:52:56:481 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:52:56:481 CPU/(27189:27250):  |    3    |   3   |
+[INFO] 00:52:56:481 CPU/(27189:27250):  |    4    |   0   |
+[INFO] 00:52:56:482 CPU/(27189:27250): ----------------------
+
+[INFO] 00:52:56:482 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:56:483 CPU/(27189:27250): [32m El valor leido en la posicion es: 41
+
+[INFO] 00:52:56:484 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:52:56:484 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:52:56:484 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:56:487 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:56:501 CPU/(27189:27250):            TLB 
+[INFO] 00:52:56:501 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:52:56:501 CPU/(27189:27250):  |    4    |   0   |
+[INFO] 00:52:56:501 CPU/(27189:27250):  |    5    |   1   |
+[INFO] 00:52:56:502 CPU/(27189:27250): ----------------------
+
+[INFO] 00:52:56:502 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:56:503 CPU/(27189:27250): [32m El valor leido en la posicion es: 51
+
+[INFO] 00:52:56:504 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:56:605 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:56:705 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:56:806 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:56:908 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:57:009 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:57:110 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:57:211 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:57:312 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:57:413 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:52:57:514 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:52:57:514 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:52:57:515 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:57:517 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:58:528 CPU/(27189:27250):            TLB 
+[INFO] 00:52:58:528 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:52:58:528 CPU/(27189:27250):  |    5    |   1   |
+[INFO] 00:52:58:529 CPU/(27189:27250):  |    0    |   0   |
+[INFO] 00:52:58:529 CPU/(27189:27250): ----------------------
+
+[INFO] 00:52:58:529 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:52:58:529 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:52:58:529 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:58:530 CPU/(27189:27250): [32m El valor leido en la posicion es: 0
+
+[INFO] 00:52:58:531 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:52:58:531 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:52:58:531 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:58:533 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:59:543 CPU/(27189:27250):            TLB 
+[INFO] 00:52:59:543 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:52:59:543 CPU/(27189:27250):  |    0    |   0   |
+[INFO] 00:52:59:543 CPU/(27189:27250):  |    1    |   1   |
+[INFO] 00:52:59:543 CPU/(27189:27250): ----------------------
+
+[INFO] 00:52:59:543 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:52:59:543 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:52:59:544 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:59:545 CPU/(27189:27250): [32m El valor leido en la posicion es: 12
+
+[INFO] 00:52:59:545 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:52:59:545 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:52:59:545 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:59:547 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:59:551 CPU/(27189:27250):            TLB 
+[INFO] 00:52:59:551 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:52:59:551 CPU/(27189:27250):  |    1    |   1   |
+[INFO] 00:52:59:552 CPU/(27189:27250):  |    2    |   2   |
+[INFO] 00:52:59:552 CPU/(27189:27250): ----------------------
+
+[INFO] 00:52:59:552 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:59:555 CPU/(27189:27250): [32m El valor leido en la posicion es: 22
+
+[INFO] 00:52:59:555 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:52:59:555 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:52:59:555 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:59:557 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:59:562 CPU/(27189:27250):            TLB 
+[INFO] 00:52:59:562 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:52:59:562 CPU/(27189:27250):  |    2    |   2   |
+[INFO] 00:52:59:562 CPU/(27189:27250):  |    3    |   3   |
+[INFO] 00:52:59:562 CPU/(27189:27250): ----------------------
+
+[INFO] 00:52:59:562 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:59:564 CPU/(27189:27250): [32m El valor leido en la posicion es: 32
+
+[INFO] 00:52:59:564 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:52:59:564 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:52:59:564 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:52:59:566 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:00:576 CPU/(27189:27250):            TLB 
+[INFO] 00:53:00:576 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:53:00:576 CPU/(27189:27250):  |    3    |   3   |
+[INFO] 00:53:00:576 CPU/(27189:27250):  |    4    |   2   |
+[INFO] 00:53:00:576 CPU/(27189:27250): ----------------------
+
+[INFO] 00:53:00:576 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:53:00:576 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:53:00:577 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:00:578 CPU/(27189:27250): [32m El valor leido en la posicion es: 42
+
+[INFO] 00:53:00:578 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:53:00:578 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:53:00:578 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:00:580 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:01:589 CPU/(27189:27250):            TLB 
+[INFO] 00:53:01:589 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:53:01:590 CPU/(27189:27250):  |    4    |   2   |
+[INFO] 00:53:01:590 CPU/(27189:27250):  |    5    |   3   |
+[INFO] 00:53:01:590 CPU/(27189:27250): ----------------------
+
+[INFO] 00:53:01:590 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:53:01:591 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:53:01:591 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:01:593 CPU/(27189:27250): [32m El valor leido en la posicion es: 52
+
+[INFO] 00:53:01:594 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:53:01:694 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:53:01:795 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:53:01:896 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:53:01:996 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:53:02:097 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:53:02:197 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:53:02:298 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:53:02:398 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:53:02:499 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:53:02:600 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:53:02:700 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:53:02:801 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:53:02:902 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:53:03:002 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:53:03:103 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:53:03:203 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:53:03:304 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:53:03:404 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:53:03:505 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:53:03:605 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:53:03:605 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:53:03:606 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:03:608 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:03:619 CPU/(27189:27250):            TLB 
+[INFO] 00:53:03:619 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:53:03:619 CPU/(27189:27250):  |    5    |   3   |
+[INFO] 00:53:03:620 CPU/(27189:27250):  |    0    |   0   |
+[INFO] 00:53:03:620 CPU/(27189:27250): ----------------------
+
+[INFO] 00:53:03:620 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:03:622 CPU/(27189:27250): [32m El valor leido en la posicion es: 11
+
+[INFO] 00:53:03:622 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:53:03:622 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:53:03:623 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:03:624 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:03:630 CPU/(27189:27250):            TLB 
+[INFO] 00:53:03:630 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:53:03:631 CPU/(27189:27250):  |    0    |   0   |
+[INFO] 00:53:03:631 CPU/(27189:27250):  |    1    |   1   |
+[INFO] 00:53:03:631 CPU/(27189:27250): ----------------------
+
+[INFO] 00:53:03:631 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:03:637 CPU/(27189:27250): [32m El valor leido en la posicion es: 11
+
+[INFO] 00:53:03:638 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:53:03:638 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:53:03:638 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:03:640 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:04:646 CPU/(27189:27250):            TLB 
+[INFO] 00:53:04:646 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:53:04:646 CPU/(27189:27250):  |    1    |   1   |
+[INFO] 00:53:04:646 CPU/(27189:27250):  |    2    |   0   |
+[INFO] 00:53:04:646 CPU/(27189:27250): ----------------------
+
+[INFO] 00:53:04:647 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:53:04:647 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:53:04:647 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:04:648 CPU/(27189:27250): [32m El valor leido en la posicion es: 21
+
+[INFO] 00:53:04:648 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:53:04:648 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:53:04:648 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:04:649 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:05:655 CPU/(27189:27250):            TLB 
+[INFO] 00:53:05:655 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:53:05:655 CPU/(27189:27250):  |    2    |   0   |
+[INFO] 00:53:05:655 CPU/(27189:27250):  |    3    |   1   |
+[INFO] 00:53:05:655 CPU/(27189:27250): ----------------------
+
+[INFO] 00:53:05:655 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:53:05:655 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:53:05:655 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:05:657 CPU/(27189:27250): [32m El valor leido en la posicion es: 31
+
+[INFO] 00:53:05:657 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:53:05:657 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:53:05:657 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:05:659 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:05:664 CPU/(27189:27250):            TLB 
+[INFO] 00:53:05:665 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:53:05:668 CPU/(27189:27250):  |    3    |   1   |
+[INFO] 00:53:05:669 CPU/(27189:27250):  |    4    |   2   |
+[INFO] 00:53:05:669 CPU/(27189:27250): ----------------------
+
+[INFO] 00:53:05:669 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:05:671 CPU/(27189:27250): [32m El valor leido en la posicion es: 41
+
+[INFO] 00:53:05:672 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:53:05:672 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:53:05:673 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:05:675 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:05:691 CPU/(27189:27250):            TLB 
+[INFO] 00:53:05:691 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:53:05:691 CPU/(27189:27250):  |    4    |   2   |
+[INFO] 00:53:05:691 CPU/(27189:27250):  |    5    |   3   |
+[INFO] 00:53:05:692 CPU/(27189:27250): ----------------------
+
+[INFO] 00:53:05:692 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:05:693 CPU/(27189:27250): [32m El valor leido en la posicion es: 51
+
+[INFO] 00:53:05:694 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:53:05:794 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:53:05:895 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:53:05:995 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:53:06:096 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:53:06:197 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:53:06:297 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:53:06:397 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:53:06:498 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:53:06:599 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:53:06:699 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:53:06:699 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:53:06:699 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:06:700 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:07:710 CPU/(27189:27250):            TLB 
+[INFO] 00:53:07:711 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:53:07:711 CPU/(27189:27250):  |    5    |   3   |
+[INFO] 00:53:07:711 CPU/(27189:27250):  |    0    |   2   |
+[INFO] 00:53:07:712 CPU/(27189:27250): ----------------------
+
+[INFO] 00:53:07:712 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:53:07:713 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:53:07:713 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:07:721 CPU/(27189:27250): [32m El valor leido en la posicion es: 0
+
+[INFO] 00:53:07:721 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:53:07:722 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:53:07:722 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:07:727 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:08:737 CPU/(27189:27250):            TLB 
+[INFO] 00:53:08:737 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:53:08:737 CPU/(27189:27250):  |    0    |   2   |
+[INFO] 00:53:08:737 CPU/(27189:27250):  |    1    |   3   |
+[INFO] 00:53:08:738 CPU/(27189:27250): ----------------------
+
+[INFO] 00:53:08:738 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:53:08:738 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:53:08:738 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:08:740 CPU/(27189:27250): [32m El valor leido en la posicion es: 12
+
+[INFO] 00:53:08:740 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:53:08:740 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:53:08:741 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:08:743 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:08:753 CPU/(27189:27250):            TLB 
+[INFO] 00:53:08:753 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:53:08:753 CPU/(27189:27250):  |    1    |   3   |
+[INFO] 00:53:08:753 CPU/(27189:27250):  |    2    |   0   |
+[INFO] 00:53:08:754 CPU/(27189:27250): ----------------------
+
+[INFO] 00:53:08:754 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:08:755 CPU/(27189:27250): [32m El valor leido en la posicion es: 22
+
+[INFO] 00:53:08:756 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:53:08:756 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:53:08:756 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:08:759 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:08:773 CPU/(27189:27250):            TLB 
+[INFO] 00:53:08:773 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:53:08:773 CPU/(27189:27250):  |    2    |   0   |
+[INFO] 00:53:08:774 CPU/(27189:27250):  |    3    |   1   |
+[INFO] 00:53:08:774 CPU/(27189:27250): ----------------------
+
+[INFO] 00:53:08:774 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:08:776 CPU/(27189:27250): [32m El valor leido en la posicion es: 32
+
+[INFO] 00:53:08:776 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:53:08:776 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:53:08:777 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:08:779 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:09:787 CPU/(27189:27250):            TLB 
+[INFO] 00:53:09:787 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:53:09:787 CPU/(27189:27250):  |    3    |   1   |
+[INFO] 00:53:09:787 CPU/(27189:27250):  |    4    |   0   |
+[INFO] 00:53:09:787 CPU/(27189:27250): ----------------------
+
+[INFO] 00:53:09:788 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:53:09:788 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:53:09:788 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:09:790 CPU/(27189:27250): [32m El valor leido en la posicion es: 42
+
+[INFO] 00:53:09:790 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:53:09:790 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:53:09:791 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:09:793 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:10:804 CPU/(27189:27250):            TLB 
+[INFO] 00:53:10:804 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:53:10:805 CPU/(27189:27250):  |    4    |   0   |
+[INFO] 00:53:10:805 CPU/(27189:27250):  |    5    |   1   |
+[INFO] 00:53:10:805 CPU/(27189:27250): ----------------------
+
+[INFO] 00:53:10:805 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:53:10:805 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:53:10:805 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:10:806 CPU/(27189:27250): [32m El valor leido en la posicion es: 52
+
+[INFO] 00:53:10:807 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:53:10:907 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:53:11:008 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:53:11:108 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:53:11:209 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:53:11:309 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:53:11:410 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:53:11:511 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:53:11:611 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:53:11:712 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:53:11:812 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:53:11:813 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:53:11:813 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:11:816 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:11:830 CPU/(27189:27250):            TLB 
+[INFO] 00:53:11:830 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:53:11:830 CPU/(27189:27250):  |    5    |   1   |
+[INFO] 00:53:11:831 CPU/(27189:27250):  |    0    |   2   |
+[INFO] 00:53:11:831 CPU/(27189:27250): ----------------------
+
+[INFO] 00:53:11:831 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:11:833 CPU/(27189:27250): [32m El valor leido en la posicion es: 11
+
+[INFO] 00:53:11:834 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:53:11:834 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:53:11:835 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:11:839 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:11:848 CPU/(27189:27250):            TLB 
+[INFO] 00:53:11:848 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:53:11:849 CPU/(27189:27250):  |    0    |   2   |
+[INFO] 00:53:11:849 CPU/(27189:27250):  |    1    |   3   |
+[INFO] 00:53:11:849 CPU/(27189:27250): ----------------------
+
+[INFO] 00:53:11:849 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:11:850 CPU/(27189:27250): [32m El valor leido en la posicion es: 11
+
+[INFO] 00:53:11:850 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:53:11:850 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:53:11:851 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:11:852 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:12:861 CPU/(27189:27250):            TLB 
+[INFO] 00:53:12:861 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:53:12:862 CPU/(27189:27250):  |    1    |   3   |
+[INFO] 00:53:12:862 CPU/(27189:27250):  |    2    |   2   |
+[INFO] 00:53:12:862 CPU/(27189:27250): ----------------------
+
+[INFO] 00:53:12:862 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:53:12:863 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:53:12:863 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:12:864 CPU/(27189:27250): [32m El valor leido en la posicion es: 21
+
+[INFO] 00:53:12:865 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:53:12:865 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:53:12:865 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:12:868 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:13:877 CPU/(27189:27250):            TLB 
+[INFO] 00:53:13:877 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:53:13:877 CPU/(27189:27250):  |    2    |   2   |
+[INFO] 00:53:13:878 CPU/(27189:27250):  |    3    |   3   |
+[INFO] 00:53:13:878 CPU/(27189:27250): ----------------------
+
+[INFO] 00:53:13:878 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:53:13:878 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:53:13:878 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:13:879 CPU/(27189:27250): [32m El valor leido en la posicion es: 31
+
+[INFO] 00:53:13:879 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:53:13:879 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:53:13:879 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:13:881 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:13:885 CPU/(27189:27250):            TLB 
+[INFO] 00:53:13:885 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:53:13:885 CPU/(27189:27250):  |    3    |   3   |
+[INFO] 00:53:13:885 CPU/(27189:27250):  |    4    |   0   |
+[INFO] 00:53:13:885 CPU/(27189:27250): ----------------------
+
+[INFO] 00:53:13:885 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:13:887 CPU/(27189:27250): [32m El valor leido en la posicion es: 41
+
+[INFO] 00:53:13:887 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:53:13:888 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:53:13:888 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:13:890 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:13:894 CPU/(27189:27250):            TLB 
+[INFO] 00:53:13:894 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:53:13:894 CPU/(27189:27250):  |    4    |   0   |
+[INFO] 00:53:13:894 CPU/(27189:27250):  |    5    |   1   |
+[INFO] 00:53:13:894 CPU/(27189:27250): ----------------------
+
+[INFO] 00:53:13:894 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:13:896 CPU/(27189:27250): [32m El valor leido en la posicion es: 51
+
+[INFO] 00:53:13:896 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:53:13:996 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:53:14:097 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:53:14:198 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:53:14:298 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:53:14:399 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:53:14:500 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:53:14:600 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:53:14:701 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:53:14:801 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:53:14:902 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:53:14:902 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:53:14:903 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:14:904 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:15:912 CPU/(27189:27250):            TLB 
+[INFO] 00:53:15:912 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:53:15:912 CPU/(27189:27250):  |    5    |   1   |
+[INFO] 00:53:15:912 CPU/(27189:27250):  |    0    |   0   |
+[INFO] 00:53:15:912 CPU/(27189:27250): ----------------------
+
+[INFO] 00:53:15:913 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:53:15:913 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:53:15:913 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:15:914 CPU/(27189:27250): [32m El valor leido en la posicion es: 0
+
+[INFO] 00:53:15:914 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:53:15:914 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:53:15:915 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:15:916 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:16:927 CPU/(27189:27250):            TLB 
+[INFO] 00:53:16:928 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:53:16:928 CPU/(27189:27250):  |    0    |   0   |
+[INFO] 00:53:16:928 CPU/(27189:27250):  |    1    |   1   |
+[INFO] 00:53:16:928 CPU/(27189:27250): ----------------------
+
+[INFO] 00:53:16:928 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:53:16:928 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:53:16:929 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:16:930 CPU/(27189:27250): [32m El valor leido en la posicion es: 12
+
+[INFO] 00:53:16:930 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:53:16:930 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:53:16:931 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:16:932 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:16:940 CPU/(27189:27250):            TLB 
+[INFO] 00:53:16:940 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:53:16:941 CPU/(27189:27250):  |    1    |   1   |
+[INFO] 00:53:16:941 CPU/(27189:27250):  |    2    |   2   |
+[INFO] 00:53:16:941 CPU/(27189:27250): ----------------------
+
+[INFO] 00:53:16:941 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:16:942 CPU/(27189:27250): [32m El valor leido en la posicion es: 22
+
+[INFO] 00:53:16:943 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:53:16:943 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:53:16:943 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:16:945 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:16:951 CPU/(27189:27250):            TLB 
+[INFO] 00:53:16:951 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:53:16:952 CPU/(27189:27250):  |    2    |   2   |
+[INFO] 00:53:16:952 CPU/(27189:27250):  |    3    |   3   |
+[INFO] 00:53:16:952 CPU/(27189:27250): ----------------------
+
+[INFO] 00:53:16:952 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:16:959 CPU/(27189:27250): [32m El valor leido en la posicion es: 32
+
+[INFO] 00:53:16:959 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:53:16:959 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:53:16:959 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:16:961 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:17:969 CPU/(27189:27250):            TLB 
+[INFO] 00:53:17:969 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:53:17:969 CPU/(27189:27250):  |    3    |   3   |
+[INFO] 00:53:17:969 CPU/(27189:27250):  |    4    |   2   |
+[INFO] 00:53:17:970 CPU/(27189:27250): ----------------------
+
+[INFO] 00:53:17:970 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:53:17:970 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:53:17:970 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:17:971 CPU/(27189:27250): [32m El valor leido en la posicion es: 42
+
+[INFO] 00:53:17:971 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:53:17:971 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:53:17:971 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:17:973 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:18:979 CPU/(27189:27250):            TLB 
+[INFO] 00:53:18:979 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:53:18:979 CPU/(27189:27250):  |    4    |   2   |
+[INFO] 00:53:18:980 CPU/(27189:27250):  |    5    |   3   |
+[INFO] 00:53:18:980 CPU/(27189:27250): ----------------------
+
+[INFO] 00:53:18:980 CPU/(27189:27250): Ejecutando la instruccion: READ, del proceso: 3
+
+[WARNING] 00:53:18:980 CPU/(27189:27250): Se encontro la pagina en la tlb
+[INFO] 00:53:18:980 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:18:981 CPU/(27189:27250): [32m El valor leido en la posicion es: 52
+
+[INFO] 00:53:18:982 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:53:19:082 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:53:19:182 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:53:19:283 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:53:19:383 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:53:19:484 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:53:19:585 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:53:19:685 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:53:19:786 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:53:19:887 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 3
+
+[INFO] 00:53:19:988 CPU/(27189:27250): Ejecutando la instruccion: EXIT, del proceso: 3
+
+[INFO] 00:53:19:990 CPU/(27189:27250): Se recibio un pcb para ejecutar
+
+[INFO] 00:53:19:990 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 4
+
+[INFO] 00:53:20:091 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 4
+
+[INFO] 00:53:20:192 CPU/(27189:27250): Ejecutando la instruccion: I/O, del proceso: 4
+
+[INFO] 00:53:20:196 CPU/(27189:27250): Se recibio un pcb para ejecutar
+
+[INFO] 00:53:20:197 CPU/(27189:27250): Ejecutando la instruccion: WRITE, del proceso: 5
+
+[WARNING] 00:53:20:197 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:53:20:198 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:20:202 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:20:295 CPU/(27189:27251): Interrumpiendo proceso
+[INFO] 00:53:21:216 CPU/(27189:27250):            TLB 
+[INFO] 00:53:21:217 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:53:21:217 CPU/(27189:27250):  |    0    |   0   |
+[INFO] 00:53:21:217 CPU/(27189:27250): ----------------------
+
+[WARNING] 00:53:21:220 CPU/(27189:27250): Proceso 5 interrumpido
+[INFO] 00:53:21:223 CPU/(27189:27250): Se recibio un pcb para ejecutar
+
+[INFO] 00:53:21:223 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 4
+
+[INFO] 00:53:21:324 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 4
+
+[INFO] 00:53:21:425 CPU/(27189:27250): Ejecutando la instruccion: I/O, del proceso: 4
+
+[INFO] 00:53:21:430 CPU/(27189:27250): Se recibio un pcb para ejecutar
+
+[INFO] 00:53:21:430 CPU/(27189:27250): Ejecutando la instruccion: WRITE, del proceso: 5
+
+[WARNING] 00:53:21:431 CPU/(27189:27250): No se encontro la pagina en la tlb
+[INFO] 00:53:21:432 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:21:435 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:21:445 CPU/(27189:27250):            TLB 
+[INFO] 00:53:21:446 CPU/(27189:27250):  |  PAGINA | MARCO |
+[INFO] 00:53:21:446 CPU/(27189:27250):  |    0    |   0   |
+[INFO] 00:53:21:446 CPU/(27189:27250): ----------------------
+
+[INFO] 00:53:21:447 CPU/(27189:27250): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 00:53:21:449 CPU/(27189:27250): Se escribio el valor en la posicion correspondiente
+
+[INFO] 00:53:21:449 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 5
+
+[INFO] 00:53:21:528 CPU/(27189:27251): Interrumpiendo proceso
+[WARNING] 00:53:21:550 CPU/(27189:27250): Proceso 5 interrumpido
+[INFO] 00:53:21:551 CPU/(27189:27250): Se recibio un pcb para ejecutar
+
+[INFO] 00:53:21:551 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 4
+
+[INFO] 00:53:21:652 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 4
+
+[INFO] 00:53:21:752 CPU/(27189:27250): Ejecutando la instruccion: I/O, del proceso: 4
+
+[INFO] 00:53:21:755 CPU/(27189:27250): Se recibio un pcb para ejecutar
+
+[INFO] 00:53:21:755 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 5
+
+[INFO] 00:53:21:855 CPU/(27189:27251): Interrumpiendo proceso
+[WARNING] 00:53:21:856 CPU/(27189:27250): Proceso 5 interrumpido
+[INFO] 00:53:21:858 CPU/(27189:27250): Se recibio un pcb para ejecutar
+
+[INFO] 00:53:21:859 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 4
+
+[INFO] 00:53:21:960 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 4
+
+[INFO] 00:53:22:060 CPU/(27189:27250): Ejecutando la instruccion: I/O, del proceso: 4
+
+[INFO] 00:53:22:063 CPU/(27189:27250): Se recibio un pcb para ejecutar
+
+[INFO] 00:53:22:063 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 5
+
+[INFO] 00:53:22:162 CPU/(27189:27251): Interrumpiendo proceso
+[WARNING] 00:53:22:163 CPU/(27189:27250): Proceso 5 interrumpido
+[INFO] 00:53:22:165 CPU/(27189:27250): Se recibio un pcb para ejecutar
+
+[INFO] 00:53:22:165 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 4
+
+[INFO] 00:53:22:266 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 4
+
+[INFO] 00:53:22:367 CPU/(27189:27250): Ejecutando la instruccion: I/O, del proceso: 4
+
+[INFO] 00:53:22:368 CPU/(27189:27250): Se recibio un pcb para ejecutar
+
+[INFO] 00:53:22:368 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 5
+
+[INFO] 00:53:22:468 CPU/(27189:27251): Interrumpiendo proceso
+[INFO] 00:53:22:469 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 5
+
+[WARNING] 00:53:22:569 CPU/(27189:27250): Proceso 5 interrumpido
+[INFO] 00:53:22:570 CPU/(27189:27250): Se recibio un pcb para ejecutar
+
+[INFO] 00:53:22:570 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 4
+
+[INFO] 00:53:22:670 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 4
+
+[INFO] 00:53:22:771 CPU/(27189:27250): Ejecutando la instruccion: I/O, del proceso: 4
+
+[INFO] 00:53:22:774 CPU/(27189:27250): Se recibio un pcb para ejecutar
+
+[INFO] 00:53:22:774 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 5
+
+[INFO] 00:53:22:873 CPU/(27189:27251): Interrumpiendo proceso
+[WARNING] 00:53:22:875 CPU/(27189:27250): Proceso 5 interrumpido
+[INFO] 00:53:22:876 CPU/(27189:27250): Se recibio un pcb para ejecutar
+
+[INFO] 00:53:22:876 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 4
+
+[INFO] 00:53:22:977 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 4
+
+[INFO] 00:53:23:077 CPU/(27189:27250): Ejecutando la instruccion: I/O, del proceso: 4
+
+[INFO] 00:53:23:078 CPU/(27189:27250): Se recibio un pcb para ejecutar
+
+[INFO] 00:53:23:078 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 5
+
+[INFO] 00:53:23:178 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 5
+
+[INFO] 00:53:23:279 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 5
+
+[INFO] 00:53:23:379 CPU/(27189:27250): Ejecutando la instruccion: NO_OP, del proceso: 5
+
+[INFO] 00:53:23:479 CPU/(27189:27250): Ejecutando la instruccion: I/O, del proceso: 5
+
+[INFO] 00:55:41:138 CPU/(27189:27250): DISCONNECT
