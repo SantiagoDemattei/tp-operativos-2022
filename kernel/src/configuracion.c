@@ -69,6 +69,7 @@ void inicializar_semaforos()
     pthread_mutex_init(&mutex_cola_ready_suspendido, NULL);
     pthread_mutex_init(&mutex_variable_contador, NULL);
     pthread_mutex_init(&mutex_info_desalojado, NULL);
+    pthread_mutex_init(&mutex_socket_memoria, NULL);
     sem_init(&sem_planificar, 0, 0);
     sem_init(&sem_nuevo_ready, 0, 0);
     sem_init(&sem_nuevo_bloqued, 0, 0);

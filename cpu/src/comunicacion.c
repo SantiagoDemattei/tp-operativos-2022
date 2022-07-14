@@ -170,9 +170,9 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
             running->program_counter++;                           // avanzo el program counter
             send_pcb(*cliente_socket, running, BLOQUEO_IO);       // mando el pcb para que lo reciba el kernel y bloquee al pcb
             printf("Envie proceso %d a bloquearse por I/O\n", running->id);
-            pthread_mutex_lock(&mutex_interrupcion);
-            interrupciones = false;
-            pthread_mutex_unlock(&mutex_interrupcion); // interrupciones desactivadas
+           // pthread_mutex_lock(&mutex_interrupcion);
+            //interrupciones = false; 
+           // pthread_mutex_unlock(&mutex_interrupcion); // interrupciones desactivadas
             destruir_pcb(running);
             limpiar_tlb();
             running = NULL; // proceso bloqueado por I/O -> en running no hay nadie
@@ -353,9 +353,9 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
         case EXIT:
             pthread_mutex_lock(&mutex_running_cpu);
             send_pcb(*cliente_socket, running, ENVIAR_PCB);
-            pthread_mutex_lock(&mutex_interrupcion);
-            interrupciones = false;
-            pthread_mutex_unlock(&mutex_interrupcion);
+           // pthread_mutex_lock(&mutex_interrupcion);
+            //interrupciones = false;
+            //pthread_mutex_unlock(&mutex_interrupcion);
             running->program_counter++;
             limpiar_tlb();
             running = NULL;
@@ -418,7 +418,7 @@ void chequear_interrupciones(uint32_t *cliente_socket)
         pthread_mutex_unlock(&mutex_running_cpu);
 
         pthread_mutex_lock(&mutex_interrupcion);
-        // interrupciones = false;
+        interrupciones = false;
         pthread_mutex_unlock(&mutex_interrupcion);
 
         pthread_mutex_lock(&mutex_interrupcion);

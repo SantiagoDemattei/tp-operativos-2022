@@ -1,548 +1,197 @@
-[INFO] 23:57:54:596 KERNEL/(14237:14237): Esperando a 127.0.0.1:8000 (CONSOLA)
+[INFO] 15:16:28:183 KERNEL/(18736:18736): Cliente conectado (a KERNEL)
 
-[INFO] 23:57:54:705 KERNEL/(14237:14241): Cliente conectado en 127.0.0.1:8001 (a CPU DISPATCH)
+[INFO] 15:16:53:397 KERNEL/(18776:18776): Esperando a 127.0.0.1:8000 (CONSOLA)
 
-[INFO] 23:57:54:714 KERNEL/(14237:14241): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 15:16:53:397 KERNEL/(18776:18777): Cliente conectado en 127.0.0.1:8001 (a CPU DISPATCH)
 
-[INFO] 23:57:57:708 KERNEL/(14237:14237): Cliente conectado (a KERNEL)
+[INFO] 15:16:53:398 KERNEL/(18776:18777): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 23:57:57:737 KERNEL/(14237:14251): Se recibieron las instrucciones
-[INFO] 23:57:57:746 KERNEL/(14237:14251): Cantidad de procesos en memoria: 0
+[INFO] 15:16:57:662 KERNEL/(18776:18776): Cliente conectado (a KERNEL)
 
-[INFO] 23:57:57:754 KERNEL/(14237:14251): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 15:16:57:663 KERNEL/(18776:18796): Se recibieron las instrucciones
+[INFO] 15:16:57:666 KERNEL/(18776:18796): Cantidad de procesos en memoria: 0
 
-[INFO] 23:57:57:788 KERNEL/(14237:14251): Se inicializo el proceso 1 con el id 0 de la tabla de pagina 1 
+[INFO] 15:16:57:667 KERNEL/(18776:18796): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 23:57:57:798 KERNEL/(14237:14251): Se agrega el proceso 1 a la cola de ready
-[INFO] 23:57:57:823 KERNEL/(14237:14241): Se envio el proceso 1 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 15:16:57:710 KERNEL/(18776:18796): Se inicializo el proceso 1 con el id 0 de la tabla de pagina 1 
 
-[INFO] 23:57:58:746 KERNEL/(14237:14237): Cliente conectado (a KERNEL)
+[INFO] 15:16:57:722 KERNEL/(18776:18796): Se agrega el proceso 1 a la cola de ready
+[INFO] 15:16:57:722 KERNEL/(18776:18777): Se envio el proceso 1 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 23:57:58:763 KERNEL/(14237:14259): Se recibieron las instrucciones
-[INFO] 23:57:58:765 KERNEL/(14237:14259): Cantidad de procesos en memoria: 1
+[INFO] 15:16:58:134 KERNEL/(18776:18776): Cliente conectado (a KERNEL)
 
-[INFO] 23:57:58:766 KERNEL/(14237:14259): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 15:16:58:135 KERNEL/(18776:18801): Se recibieron las instrucciones
+[INFO] 15:16:58:135 KERNEL/(18776:18801): Cantidad de procesos en memoria: 1
 
-[INFO] 23:57:58:794 KERNEL/(14237:14259): Se inicializo el proceso 2 con el id 1 de la tabla de pagina 1 
+[INFO] 15:16:58:135 KERNEL/(18776:18801): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 23:57:58:795 KERNEL/(14237:14259): Se agrega el proceso 2 a la cola de ready
-[INFO] 23:57:58:919 KERNEL/(14237:14241): Se envio el proceso 1 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
+[INFO] 15:16:58:674 KERNEL/(18776:18776): Cliente conectado (a KERNEL)
 
-[INFO] 23:57:59:920 KERNEL/(14237:14237): Cliente conectado (a KERNEL)
+[INFO] 15:16:58:677 KERNEL/(18776:18804): Se recibieron las instrucciones
+[INFO] 15:16:58:677 KERNEL/(18776:18804): Cantidad de procesos en memoria: 2
 
-[INFO] 23:57:59:936 KERNEL/(14237:14271): Se recibieron las instrucciones
-[INFO] 23:57:59:937 KERNEL/(14237:14271): Cantidad de procesos en memoria: 2
+[INFO] 15:16:58:677 KERNEL/(18776:18804): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 23:57:59:939 KERNEL/(14237:14271): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 15:16:59:241 KERNEL/(18776:18776): Cliente conectado (a KERNEL)
 
-[INFO] 23:58:00:810 KERNEL/(14237:14271): Se inicializo el proceso 3 con el id 2 de la tabla de pagina 1 
+[INFO] 15:16:59:242 KERNEL/(18776:18810): Se recibieron las instrucciones
+[INFO] 15:16:59:242 KERNEL/(18776:18810): Cantidad de procesos en memoria: 3
 
-[INFO] 23:58:00:813 KERNEL/(14237:14271): Se agrega el proceso 3 a la cola de ready
-[INFO] 23:58:00:850 KERNEL/(14237:14241): Se envio el proceso 1 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
+[INFO] 15:16:59:242 KERNEL/(18776:18810): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 23:58:01:351 KERNEL/(14237:14237): Cliente conectado (a KERNEL)
+[INFO] 15:16:59:785 KERNEL/(18776:18776): Cliente conectado (a KERNEL)
 
-[INFO] 23:58:01:362 KERNEL/(14237:14282): Se recibieron las instrucciones
-[INFO] 23:58:01:363 KERNEL/(14237:14282): Cantidad de procesos en memoria: 3
+[INFO] 15:16:59:786 KERNEL/(18776:18817): Se recibieron las instrucciones
+[INFO] 15:16:59:786 KERNEL/(18776:18817): Cantidad de procesos en memoria: 4
 
-[INFO] 23:58:01:369 KERNEL/(14237:14282): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 15:16:59:787 KERNEL/(18776:18817): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 23:58:01:828 KERNEL/(14237:14282): Se inicializo el proceso 4 con el id 3 de la tabla de pagina 1 
+[INFO] 15:17:02:743 KERNEL/(18776:18817): Se inicializo el proceso 5 con el id 2 de la tabla de pagina 1 
 
-[INFO] 23:58:01:833 KERNEL/(14237:14282): Se agrega el proceso 4 a la cola de ready
-[INFO] 23:58:01:883 KERNEL/(14237:14241): Se envio el proceso 1 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
+[INFO] 15:17:02:743 KERNEL/(18776:18817): Se agrega el proceso 5 a la cola de ready
+[INFO] 15:17:02:802 KERNEL/(18776:18777): Se envio el proceso 1 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
 
-[INFO] 23:58:02:563 KERNEL/(14237:14237): Cliente conectado (a KERNEL)
+[INFO] 15:17:08:673 KERNEL/(18776:18778): Nuevo proceso en cola blocked
 
-[INFO] 23:58:02:576 KERNEL/(14237:14290): Se recibieron las instrucciones
-[INFO] 23:58:02:576 KERNEL/(14237:14290): Cantidad de procesos en memoria: 4
+[INFO] 15:17:08:674 KERNEL/(18776:18777): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 23:58:02:578 KERNEL/(14237:14290): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[WARNING] 15:17:09:675 KERNEL/(18776:18858): Se va a suspender el proceso: 1
 
-[INFO] 23:58:07:790 KERNEL/(14237:14242): Nuevo proceso en cola blocked
+[INFO] 15:17:09:676 KERNEL/(18776:18858): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 23:58:07:797 KERNEL/(14237:14241): Se envio el proceso 2 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 15:17:09:723 KERNEL/(18776:18858): Confirmacion de suspension recibida
+[INFO] 15:17:09:724 KERNEL/(18776:18780): Cantidad de procesos en memoria: 4
 
-[WARNING] 23:58:08:810 KERNEL/(14237:14317): Se va a suspender el proceso: 1
+[INFO] 15:17:10:730 KERNEL/(18776:18778): Nuevo proceso en cola blocked
 
-[INFO] 23:58:08:812 KERNEL/(14237:14317): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[WARNING] 15:17:11:730 KERNEL/(18776:18867): Se va a suspender el proceso: 5
 
-[INFO] 23:58:08:839 KERNEL/(14237:14317): Confirmacion de suspension recibida
-[INFO] 23:58:08:841 KERNEL/(14237:14244): Cantidad de procesos en memoria: 4
+[INFO] 15:17:11:731 KERNEL/(18776:18867): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 23:58:08:855 KERNEL/(14237:14244): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 15:17:11:738 KERNEL/(18776:18867): Confirmacion de suspension recibida
+[INFO] 15:17:11:738 KERNEL/(18776:18780): Cantidad de procesos en memoria: 3
 
-[INFO] 23:58:09:863 KERNEL/(14237:14244): Se inicializo el proceso 5 con el id 4 de la tabla de pagina 1 
+[INFO] 15:17:13:673 KERNEL/(18776:18779): El proceso 1 se desbloqueo, hilo bloquear
 
-[INFO] 23:58:09:871 KERNEL/(14237:14244): Se puso el proceso 5 en la cola ready
+[INFO] 15:17:13:673 KERNEL/(18776:18780): Cantidad de procesos en memoria: 3
 
-[INFO] 23:58:09:884 KERNEL/(14237:14241): Se envio el proceso 2 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
+[INFO] 15:17:13:673 KERNEL/(18776:18780): El proceso 1 pasara de ready suspendido a ready, , hilo sem queue suspended
 
-[INFO] 23:58:12:790 KERNEL/(14237:14243): El proceso 1 se desbloqueo, hilo bloquear
+[INFO] 15:17:13:673 KERNEL/(18776:18780): Se puso el proceso 1 en la cola ready
 
-[INFO] 23:58:12:792 KERNEL/(14237:14244): Cantidad de procesos en memoria: 5
+[INFO] 15:17:13:673 KERNEL/(18776:18777): Se envio el proceso 1 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 23:58:12:793 KERNEL/(14237:14244): El proceso 1 pasara de ready suspendido a ready, , hilo sem queue suspended
+[INFO] 15:17:13:773 KERNEL/(18776:18779): El proceso 5 se desbloqueo, hilo bloquear
 
-[INFO] 23:58:12:794 KERNEL/(14237:14244): Se puso el proceso 1 en la cola ready
+[INFO] 15:17:13:773 KERNEL/(18776:18780): Cantidad de procesos en memoria: 4
 
-[INFO] 23:58:13:400 KERNEL/(14237:14241): Se envio el proceso 1 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
+[INFO] 15:17:13:774 KERNEL/(18776:18780): El proceso 5 pasara de ready suspendido a ready, , hilo sem queue suspended
 
-[INFO] 23:58:21:648 KERNEL/(14237:14242): Orden EXIT recibida
-[INFO] 23:58:21:659 KERNEL/(14237:14241): Se envio el proceso 2 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 15:17:13:774 KERNEL/(18776:18780): Se puso el proceso 5 en la cola ready
 
-[INFO] 23:58:21:663 KERNEL/(14237:14242): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 15:17:13:875 KERNEL/(18776:18777): Se envio el proceso 1 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
 
-[INFO] 23:58:21:682 KERNEL/(14237:14244): Cantidad de procesos en memoria: 5
+[INFO] 15:17:21:689 KERNEL/(18776:18778): Orden EXIT recibida
+[INFO] 15:17:21:691 KERNEL/(18776:18777): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 23:58:21:685 KERNEL/(14237:14251): DISCONNECT
-[INFO] 23:58:26:899 KERNEL/(14237:14242): Nuevo proceso en cola blocked
+[INFO] 15:17:21:693 KERNEL/(18776:18778): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 23:58:26:914 KERNEL/(14237:14241): Se envio el proceso 3 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 15:17:21:737 KERNEL/(18776:18780): Cantidad de procesos en memoria: 4
 
-[WARNING] 23:58:27:900 KERNEL/(14237:14397): Se va a suspender el proceso: 2
+[INFO] 15:17:21:737 KERNEL/(18776:18796): DISCONNECT
+[INFO] 15:17:22:777 KERNEL/(18776:18778): Nuevo proceso en cola blocked
 
-[INFO] 23:58:27:900 KERNEL/(14237:14397): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 15:17:22:878 KERNEL/(18776:18779): El proceso 5 se desbloqueo, hilo bloquear
 
-[INFO] 23:58:27:907 KERNEL/(14237:14397): Confirmacion de suspension recibida
-[INFO] 23:58:27:908 KERNEL/(14237:14244): Cantidad de procesos en memoria: 4
+[INFO] 15:17:22:878 KERNEL/(18776:18777): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 23:58:31:894 KERNEL/(14237:14243): El proceso 2 se desbloqueo, hilo bloquear
+[INFO] 15:17:24:906 KERNEL/(18776:18778): Nuevo proceso en cola blocked
 
-[INFO] 23:58:31:897 KERNEL/(14237:14244): Cantidad de procesos en memoria: 4
+[INFO] 15:17:25:006 KERNEL/(18776:18779): El proceso 5 se desbloqueo, hilo bloquear
 
-[INFO] 23:58:31:900 KERNEL/(14237:14244): El proceso 2 pasara de ready suspendido a ready, , hilo sem queue suspended
+[INFO] 15:17:25:008 KERNEL/(18776:18777): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 23:58:31:910 KERNEL/(14237:14244): Se puso el proceso 2 en la cola ready
+[INFO] 15:17:26:068 KERNEL/(18776:18778): Nuevo proceso en cola blocked
 
-[INFO] 23:58:32:089 KERNEL/(14237:14241): Se envio el proceso 2 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
+[INFO] 15:17:26:168 KERNEL/(18776:18779): El proceso 5 se desbloqueo, hilo bloquear
 
-[INFO] 23:58:40:826 KERNEL/(14237:14242): Nuevo proceso en cola blocked
+[INFO] 15:17:26:171 KERNEL/(18776:18777): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 23:58:40:834 KERNEL/(14237:14241): Se envio el proceso 3 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 15:17:27:243 KERNEL/(18776:18778): Nuevo proceso en cola blocked
 
-[INFO] 23:58:40:926 KERNEL/(14237:14243): El proceso 2 se desbloqueo, hilo bloquear
+[INFO] 15:17:27:343 KERNEL/(18776:18779): El proceso 5 se desbloqueo, hilo bloquear
 
-[INFO] 23:58:42:958 KERNEL/(14237:14241): Se envio el proceso 2 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
+[INFO] 15:17:27:346 KERNEL/(18776:18777): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 23:58:43:504 KERNEL/(14237:14242): Nuevo proceso en cola blocked
+[INFO] 15:17:28:409 KERNEL/(18776:18778): Nuevo proceso en cola blocked
 
-[INFO] 23:58:43:514 KERNEL/(14237:14241): Se envio el proceso 3 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 15:17:28:509 KERNEL/(18776:18779): El proceso 5 se desbloqueo, hilo bloquear
 
-[INFO] 23:58:43:605 KERNEL/(14237:14243): El proceso 2 se desbloqueo, hilo bloquear
+[INFO] 15:17:28:511 KERNEL/(18776:18777): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 23:58:45:596 KERNEL/(14237:14241): Se envio el proceso 2 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
+[INFO] 15:17:29:565 KERNEL/(18776:18778): Nuevo proceso en cola blocked
 
-[INFO] 23:58:46:123 KERNEL/(14237:14242): Nuevo proceso en cola blocked
+[INFO] 15:17:29:665 KERNEL/(18776:18779): El proceso 5 se desbloqueo, hilo bloquear
 
-[INFO] 23:58:46:130 KERNEL/(14237:14241): Se envio el proceso 3 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 15:17:29:666 KERNEL/(18776:18777): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 23:58:46:223 KERNEL/(14237:14243): El proceso 2 se desbloqueo, hilo bloquear
+[INFO] 15:17:30:697 KERNEL/(18776:18778): Nuevo proceso en cola blocked
 
-[INFO] 23:58:46:281 KERNEL/(14237:14241): Se envio el proceso 2 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
+[INFO] 15:17:30:797 KERNEL/(18776:18779): El proceso 5 se desbloqueo, hilo bloquear
 
-[INFO] 23:58:46:815 KERNEL/(14237:14242): Nuevo proceso en cola blocked
+[INFO] 15:17:30:798 KERNEL/(18776:18777): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 23:58:46:822 KERNEL/(14237:14241): Se envio el proceso 3 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 15:17:32:829 KERNEL/(18776:18778): Nuevo proceso en cola blocked
 
-[INFO] 23:58:46:916 KERNEL/(14237:14243): El proceso 2 se desbloqueo, hilo bloquear
+[INFO] 15:17:32:929 KERNEL/(18776:18779): El proceso 5 se desbloqueo, hilo bloquear
 
-[INFO] 23:58:46:952 KERNEL/(14237:14241): Se envio el proceso 2 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
+[INFO] 15:17:32:930 KERNEL/(18776:18777): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 23:58:47:477 KERNEL/(14237:14242): Nuevo proceso en cola blocked
+[INFO] 15:17:33:976 KERNEL/(18776:18778): Nuevo proceso en cola blocked
 
-[INFO] 23:58:47:482 KERNEL/(14237:14241): Se envio el proceso 3 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 15:17:34:076 KERNEL/(18776:18779): El proceso 5 se desbloqueo, hilo bloquear
 
-[INFO] 23:58:47:577 KERNEL/(14237:14243): El proceso 2 se desbloqueo, hilo bloquear
+[INFO] 15:17:34:077 KERNEL/(18776:18777): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 23:58:47:612 KERNEL/(14237:14241): Se envio el proceso 2 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
+[INFO] 15:17:36:103 KERNEL/(18776:18778): Nuevo proceso en cola blocked
 
-[INFO] 23:58:48:171 KERNEL/(14237:14242): Nuevo proceso en cola blocked
+[INFO] 15:17:36:203 KERNEL/(18776:18779): El proceso 5 se desbloqueo, hilo bloquear
 
-[INFO] 23:58:48:182 KERNEL/(14237:14241): Se envio el proceso 3 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 15:17:36:205 KERNEL/(18776:18777): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 23:58:48:272 KERNEL/(14237:14243): El proceso 2 se desbloqueo, hilo bloquear
+[INFO] 15:17:37:261 KERNEL/(18776:18778): Nuevo proceso en cola blocked
 
-[INFO] 23:58:48:341 KERNEL/(14237:14241): Se envio el proceso 2 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
+[INFO] 15:17:37:362 KERNEL/(18776:18779): El proceso 5 se desbloqueo, hilo bloquear
 
-[INFO] 23:58:49:407 KERNEL/(14237:14242): Orden EXIT recibida
-[INFO] 23:58:49:419 KERNEL/(14237:14242): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 15:17:37:363 KERNEL/(18776:18777): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 23:58:49:419 KERNEL/(14237:14241): Se envio el proceso 3 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 15:17:38:418 KERNEL/(18776:18778): Nuevo proceso en cola blocked
 
-[INFO] 23:58:49:428 KERNEL/(14237:14244): Cantidad de procesos en memoria: 4
+[INFO] 15:17:38:518 KERNEL/(18776:18779): El proceso 5 se desbloqueo, hilo bloquear
 
-[INFO] 23:58:49:429 KERNEL/(14237:14259): DISCONNECT
-[INFO] 23:59:39:637 KERNEL/(14237:14242): Orden EXIT recibida
-[INFO] 23:59:39:642 KERNEL/(14237:14241): Se envio el proceso 4 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 15:17:38:519 KERNEL/(18776:18777): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 23:59:39:644 KERNEL/(14237:14242): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 15:17:39:578 KERNEL/(18776:18778): Nuevo proceso en cola blocked
 
-[INFO] 23:59:39:653 KERNEL/(14237:14244): Cantidad de procesos en memoria: 3
+[INFO] 15:17:39:678 KERNEL/(18776:18779): El proceso 5 se desbloqueo, hilo bloquear
 
-[INFO] 23:59:39:653 KERNEL/(14237:14271): DISCONNECT
-[INFO] 23:59:39:900 KERNEL/(14237:14242): Nuevo proceso en cola blocked
+[INFO] 15:17:39:680 KERNEL/(18776:18777): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 23:59:39:906 KERNEL/(14237:14241): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 15:17:40:725 KERNEL/(18776:18778): Nuevo proceso en cola blocked
 
-[INFO] 23:59:40:001 KERNEL/(14237:14243): El proceso 4 se desbloqueo, hilo bloquear
+[INFO] 15:17:40:826 KERNEL/(18776:18779): El proceso 5 se desbloqueo, hilo bloquear
 
-[INFO] 23:59:40:986 KERNEL/(14237:14241): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
+[INFO] 15:17:40:828 KERNEL/(18776:18777): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 23:59:41:230 KERNEL/(14237:14242): Nuevo proceso en cola blocked
+[INFO] 15:17:41:889 KERNEL/(18776:18778): Nuevo proceso en cola blocked
 
-[INFO] 23:59:41:242 KERNEL/(14237:14241): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 15:17:41:989 KERNEL/(18776:18779): El proceso 5 se desbloqueo, hilo bloquear
 
-[INFO] 23:59:41:331 KERNEL/(14237:14243): El proceso 4 se desbloqueo, hilo bloquear
+[INFO] 15:17:41:991 KERNEL/(18776:18777): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 23:59:41:400 KERNEL/(14237:14241): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
+[INFO] 15:17:41:993 KERNEL/(18776:18778): Orden EXIT recibida
+[INFO] 15:17:41:995 KERNEL/(18776:18778): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 23:59:41:639 KERNEL/(14237:14242): Nuevo proceso en cola blocked
+[INFO] 15:17:42:003 KERNEL/(18776:18780): Cantidad de procesos en memoria: 3
 
-[INFO] 23:59:41:654 KERNEL/(14237:14241): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 23:59:41:740 KERNEL/(14237:14243): El proceso 4 se desbloqueo, hilo bloquear
-
-[INFO] 23:59:41:813 KERNEL/(14237:14241): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 23:59:42:070 KERNEL/(14237:14242): Nuevo proceso en cola blocked
-
-[INFO] 23:59:42:077 KERNEL/(14237:14241): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 23:59:42:171 KERNEL/(14237:14243): El proceso 4 se desbloqueo, hilo bloquear
-
-[INFO] 23:59:42:254 KERNEL/(14237:14241): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 23:59:42:488 KERNEL/(14237:14242): Nuevo proceso en cola blocked
-
-[INFO] 23:59:42:494 KERNEL/(14237:14241): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 23:59:42:589 KERNEL/(14237:14243): El proceso 4 se desbloqueo, hilo bloquear
-
-[INFO] 23:59:42:623 KERNEL/(14237:14241): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 23:59:42:848 KERNEL/(14237:14242): Nuevo proceso en cola blocked
-
-[INFO] 23:59:42:854 KERNEL/(14237:14241): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 23:59:42:948 KERNEL/(14237:14243): El proceso 4 se desbloqueo, hilo bloquear
-
-[INFO] 23:59:42:984 KERNEL/(14237:14241): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 23:59:43:210 KERNEL/(14237:14242): Nuevo proceso en cola blocked
-
-[INFO] 23:59:43:218 KERNEL/(14237:14241): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 23:59:43:310 KERNEL/(14237:14243): El proceso 4 se desbloqueo, hilo bloquear
-
-[INFO] 23:59:43:347 KERNEL/(14237:14241): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 23:59:43:570 KERNEL/(14237:14242): Nuevo proceso en cola blocked
-
-[INFO] 23:59:43:578 KERNEL/(14237:14241): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 23:59:43:671 KERNEL/(14237:14243): El proceso 4 se desbloqueo, hilo bloquear
-
-[INFO] 23:59:43:707 KERNEL/(14237:14241): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 23:59:43:931 KERNEL/(14237:14242): Nuevo proceso en cola blocked
-
-[INFO] 23:59:43:938 KERNEL/(14237:14241): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 23:59:44:031 KERNEL/(14237:14243): El proceso 4 se desbloqueo, hilo bloquear
-
-[INFO] 23:59:44:067 KERNEL/(14237:14241): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 23:59:44:306 KERNEL/(14237:14242): Nuevo proceso en cola blocked
-
-[INFO] 23:59:44:317 KERNEL/(14237:14241): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 23:59:44:406 KERNEL/(14237:14243): El proceso 4 se desbloqueo, hilo bloquear
-
-[INFO] 23:59:44:448 KERNEL/(14237:14241): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 23:59:44:691 KERNEL/(14237:14242): Nuevo proceso en cola blocked
-
-[INFO] 23:59:44:702 KERNEL/(14237:14241): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 23:59:44:793 KERNEL/(14237:14243): El proceso 4 se desbloqueo, hilo bloquear
-
-[INFO] 23:59:44:840 KERNEL/(14237:14241): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 23:59:45:078 KERNEL/(14237:14242): Nuevo proceso en cola blocked
-
-[INFO] 23:59:45:089 KERNEL/(14237:14241): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 23:59:45:128 KERNEL/(14237:14242): Nuevo proceso en cola blocked
-
-[INFO] 23:59:45:179 KERNEL/(14237:14243): El proceso 4 se desbloqueo, hilo bloquear
-
-[INFO] 23:59:45:186 KERNEL/(14237:14241): Se envio el proceso 4 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 23:59:45:286 KERNEL/(14237:14243): El proceso 5 se desbloqueo, hilo bloquear
-
-[INFO] 23:59:45:320 KERNEL/(14237:14241): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 23:59:45:442 KERNEL/(14237:14242): Nuevo proceso en cola blocked
-
-[INFO] 23:59:45:450 KERNEL/(14237:14241): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 23:59:45:543 KERNEL/(14237:14243): El proceso 4 se desbloqueo, hilo bloquear
-
-[INFO] 23:59:45:595 KERNEL/(14237:14241): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 23:59:45:828 KERNEL/(14237:14242): Nuevo proceso en cola blocked
-
-[INFO] 23:59:45:834 KERNEL/(14237:14241): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 23:59:45:929 KERNEL/(14237:14243): El proceso 4 se desbloqueo, hilo bloquear
-
-[INFO] 23:59:45:963 KERNEL/(14237:14241): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 23:59:46:187 KERNEL/(14237:14242): Nuevo proceso en cola blocked
-
-[INFO] 23:59:46:191 KERNEL/(14237:14241): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 23:59:46:288 KERNEL/(14237:14243): El proceso 4 se desbloqueo, hilo bloquear
-
-[INFO] 23:59:46:324 KERNEL/(14237:14241): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 23:59:46:546 KERNEL/(14237:14242): Nuevo proceso en cola blocked
-
-[INFO] 23:59:46:554 KERNEL/(14237:14241): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 23:59:46:647 KERNEL/(14237:14243): El proceso 4 se desbloqueo, hilo bloquear
-
-[INFO] 23:59:46:684 KERNEL/(14237:14241): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 23:59:46:909 KERNEL/(14237:14242): Nuevo proceso en cola blocked
-
-[INFO] 23:59:46:914 KERNEL/(14237:14241): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 23:59:47:009 KERNEL/(14237:14243): El proceso 4 se desbloqueo, hilo bloquear
-
-[INFO] 23:59:47:044 KERNEL/(14237:14241): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 23:59:47:269 KERNEL/(14237:14242): Nuevo proceso en cola blocked
-
-[INFO] 23:59:47:274 KERNEL/(14237:14241): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 23:59:47:369 KERNEL/(14237:14243): El proceso 4 se desbloqueo, hilo bloquear
-
-[INFO] 23:59:47:408 KERNEL/(14237:14241): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 23:59:47:631 KERNEL/(14237:14242): Nuevo proceso en cola blocked
-
-[INFO] 23:59:47:638 KERNEL/(14237:14241): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 23:59:47:731 KERNEL/(14237:14243): El proceso 4 se desbloqueo, hilo bloquear
-
-[INFO] 23:59:47:769 KERNEL/(14237:14241): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 23:59:47:993 KERNEL/(14237:14242): Nuevo proceso en cola blocked
-
-[INFO] 23:59:47:998 KERNEL/(14237:14241): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 23:59:48:093 KERNEL/(14237:14243): El proceso 4 se desbloqueo, hilo bloquear
-
-[INFO] 23:59:48:129 KERNEL/(14237:14241): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 23:59:48:354 KERNEL/(14237:14242): Nuevo proceso en cola blocked
-
-[INFO] 23:59:48:358 KERNEL/(14237:14241): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 23:59:48:454 KERNEL/(14237:14243): El proceso 4 se desbloqueo, hilo bloquear
-
-[INFO] 23:59:48:490 KERNEL/(14237:14241): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 23:59:48:734 KERNEL/(14237:14242): Nuevo proceso en cola blocked
-
-[INFO] 23:59:48:742 KERNEL/(14237:14241): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 23:59:48:834 KERNEL/(14237:14243): El proceso 4 se desbloqueo, hilo bloquear
-
-[INFO] 23:59:48:876 KERNEL/(14237:14241): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 23:59:49:099 KERNEL/(14237:14242): Nuevo proceso en cola blocked
-
-[INFO] 23:59:49:106 KERNEL/(14237:14241): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 23:59:49:131 KERNEL/(14237:14242): Nuevo proceso en cola blocked
-
-[INFO] 23:59:49:200 KERNEL/(14237:14243): El proceso 4 se desbloqueo, hilo bloquear
-
-[INFO] 23:59:49:206 KERNEL/(14237:14241): Se envio el proceso 4 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 23:59:49:302 KERNEL/(14237:14243): El proceso 5 se desbloqueo, hilo bloquear
-
-[INFO] 23:59:49:341 KERNEL/(14237:14241): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 23:59:49:490 KERNEL/(14237:14242): Nuevo proceso en cola blocked
-
-[INFO] 23:59:49:496 KERNEL/(14237:14241): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 23:59:49:590 KERNEL/(14237:14243): El proceso 4 se desbloqueo, hilo bloquear
-
-[INFO] 23:59:50:574 KERNEL/(14237:14241): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 23:59:50:813 KERNEL/(14237:14242): Nuevo proceso en cola blocked
-
-[INFO] 23:59:50:824 KERNEL/(14237:14241): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 23:59:50:913 KERNEL/(14237:14243): El proceso 4 se desbloqueo, hilo bloquear
-
-[INFO] 23:59:50:974 KERNEL/(14237:14241): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 23:59:51:220 KERNEL/(14237:14242): Nuevo proceso en cola blocked
-
-[INFO] 23:59:51:226 KERNEL/(14237:14241): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 23:59:51:320 KERNEL/(14237:14243): El proceso 4 se desbloqueo, hilo bloquear
-
-[INFO] 23:59:51:378 KERNEL/(14237:14241): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 23:59:51:636 KERNEL/(14237:14242): Nuevo proceso en cola blocked
-
-[INFO] 23:59:51:646 KERNEL/(14237:14241): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 23:59:51:737 KERNEL/(14237:14243): El proceso 4 se desbloqueo, hilo bloquear
-
-[INFO] 23:59:51:798 KERNEL/(14237:14241): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 23:59:52:065 KERNEL/(14237:14242): Nuevo proceso en cola blocked
-
-[INFO] 23:59:52:074 KERNEL/(14237:14241): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 23:59:52:166 KERNEL/(14237:14243): El proceso 4 se desbloqueo, hilo bloquear
-
-[INFO] 23:59:52:229 KERNEL/(14237:14241): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 23:59:52:458 KERNEL/(14237:14242): Nuevo proceso en cola blocked
-
-[INFO] 23:59:52:466 KERNEL/(14237:14241): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 23:59:52:559 KERNEL/(14237:14243): El proceso 4 se desbloqueo, hilo bloquear
-
-[INFO] 23:59:52:594 KERNEL/(14237:14241): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 23:59:52:818 KERNEL/(14237:14242): Nuevo proceso en cola blocked
-
-[INFO] 23:59:52:826 KERNEL/(14237:14241): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 23:59:52:918 KERNEL/(14237:14243): El proceso 4 se desbloqueo, hilo bloquear
-
-[INFO] 23:59:52:954 KERNEL/(14237:14241): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 23:59:53:180 KERNEL/(14237:14242): Nuevo proceso en cola blocked
-
-[INFO] 23:59:53:186 KERNEL/(14237:14241): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 23:59:53:279 KERNEL/(14237:14243): El proceso 4 se desbloqueo, hilo bloquear
-
-[INFO] 23:59:53:316 KERNEL/(14237:14241): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 23:59:53:541 KERNEL/(14237:14242): Nuevo proceso en cola blocked
-
-[INFO] 23:59:53:546 KERNEL/(14237:14241): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 23:59:53:641 KERNEL/(14237:14243): El proceso 4 se desbloqueo, hilo bloquear
-
-[INFO] 23:59:53:677 KERNEL/(14237:14241): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 23:59:53:700 KERNEL/(14237:14242): Orden EXIT recibida
-[INFO] 23:59:53:706 KERNEL/(14237:14241): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 23:59:53:711 KERNEL/(14237:14242): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
-
-[INFO] 23:59:53:715 KERNEL/(14237:14244): Cantidad de procesos en memoria: 2
-
-[INFO] 23:59:53:716 KERNEL/(14237:14282): DISCONNECT
-[INFO] 23:59:53:958 KERNEL/(14237:14242): Nuevo proceso en cola blocked
-
-[INFO] 23:59:54:059 KERNEL/(14237:14243): El proceso 5 se desbloqueo, hilo bloquear
-
-[INFO] 23:59:54:065 KERNEL/(14237:14241): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 23:59:55:156 KERNEL/(14237:14242): Nuevo proceso en cola blocked
-
-[INFO] 23:59:55:257 KERNEL/(14237:14243): El proceso 5 se desbloqueo, hilo bloquear
-
-[INFO] 23:59:55:262 KERNEL/(14237:14241): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 23:59:56:381 KERNEL/(14237:14242): Nuevo proceso en cola blocked
-
-[INFO] 23:59:56:482 KERNEL/(14237:14243): El proceso 5 se desbloqueo, hilo bloquear
-
-[INFO] 23:59:56:490 KERNEL/(14237:14241): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 23:59:57:555 KERNEL/(14237:14242): Nuevo proceso en cola blocked
-
-[INFO] 23:59:57:656 KERNEL/(14237:14243): El proceso 5 se desbloqueo, hilo bloquear
-
-[INFO] 23:59:57:661 KERNEL/(14237:14241): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 23:59:58:719 KERNEL/(14237:14242): Nuevo proceso en cola blocked
-
-[INFO] 23:59:58:820 KERNEL/(14237:14243): El proceso 5 se desbloqueo, hilo bloquear
-
-[INFO] 23:59:58:828 KERNEL/(14237:14241): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 23:59:59:921 KERNEL/(14237:14242): Nuevo proceso en cola blocked
-
-[INFO] 00:00:00:022 KERNEL/(14237:14243): El proceso 5 se desbloqueo, hilo bloquear
-
-[INFO] 00:00:00:030 KERNEL/(14237:14241): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 00:00:02:186 KERNEL/(14237:14242): Nuevo proceso en cola blocked
-
-[INFO] 00:00:02:298 KERNEL/(14237:14243): El proceso 5 se desbloqueo, hilo bloquear
-
-[INFO] 00:00:02:313 KERNEL/(14237:14241): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 00:00:03:442 KERNEL/(14237:14242): Nuevo proceso en cola blocked
-
-[INFO] 00:00:03:543 KERNEL/(14237:14243): El proceso 5 se desbloqueo, hilo bloquear
-
-[INFO] 00:00:03:554 KERNEL/(14237:14241): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 00:00:05:680 KERNEL/(14237:14242): Nuevo proceso en cola blocked
-
-[INFO] 00:00:05:781 KERNEL/(14237:14243): El proceso 5 se desbloqueo, hilo bloquear
-
-[INFO] 00:00:05:802 KERNEL/(14237:14241): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 00:00:06:923 KERNEL/(14237:14242): Nuevo proceso en cola blocked
-
-[INFO] 00:00:07:024 KERNEL/(14237:14243): El proceso 5 se desbloqueo, hilo bloquear
-
-[INFO] 00:00:07:029 KERNEL/(14237:14241): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 00:00:08:084 KERNEL/(14237:14242): Nuevo proceso en cola blocked
-
-[INFO] 00:00:08:185 KERNEL/(14237:14243): El proceso 5 se desbloqueo, hilo bloquear
-
-[INFO] 00:00:08:199 KERNEL/(14237:14241): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 00:00:09:321 KERNEL/(14237:14242): Nuevo proceso en cola blocked
-
-[INFO] 00:00:09:422 KERNEL/(14237:14243): El proceso 5 se desbloqueo, hilo bloquear
-
-[INFO] 00:00:09:430 KERNEL/(14237:14241): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 00:00:10:545 KERNEL/(14237:14242): Nuevo proceso en cola blocked
-
-[INFO] 00:00:10:646 KERNEL/(14237:14243): El proceso 5 se desbloqueo, hilo bloquear
-
-[INFO] 00:00:10:652 KERNEL/(14237:14241): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 00:00:11:743 KERNEL/(14237:14242): Nuevo proceso en cola blocked
-
-[INFO] 00:00:11:844 KERNEL/(14237:14243): El proceso 5 se desbloqueo, hilo bloquear
-
-[INFO] 00:00:11:854 KERNEL/(14237:14241): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 00:00:11:906 KERNEL/(14237:14242): Orden EXIT recibida
-[INFO] 00:00:11:909 KERNEL/(14237:14242): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
-
-[INFO] 00:00:11:919 KERNEL/(14237:14244): Cantidad de procesos en memoria: 1
-
+[INFO] 15:17:42:007 KERNEL/(18776:18817): DISCONNECT

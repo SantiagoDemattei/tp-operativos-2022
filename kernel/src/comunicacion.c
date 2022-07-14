@@ -142,7 +142,7 @@ void verificacion_multiprogramacion(t_pcb *pcb)
     queue_push_con_mutex(cola_new, pcb, mutex_cola_new); // agrega el pcb a la cola de NEW
     if (consulta_grado())                                // si el grado de multiprogramacion lo permite
     {
-        t_pcb *tope_cola_new = queue_peek_con_mutex(cola_new, mutex_cola_new); // obtiene el pcb del tope de la cola de NEW
+        t_pcb *tope_cola_new = queue_pop_con_mutex(cola_new, mutex_cola_new); // obtiene el pcb del tope de la cola de NEW
 
         pthread_mutex_lock(&mutex_cantidad_procesos);
         cantidad_procesos_en_memoria++; // aumenta el grado de multiprogramacion
@@ -165,7 +165,7 @@ void verificacion_multiprogramacion(t_pcb *pcb)
             loggear_error(logger, "Error al inicializar estructuras del proceso", mutex_logger_kernel);
             return;
         }
-        queue_pop_con_mutex(cola_new, mutex_cola_new); // saca el pcb de la cola de NEW
+        //queue_pop_con_mutex(cola_new, mutex_cola_new); // saca el pcb de la cola de NEW
         mensaje = string_from_format("Se inicializo el proceso %d con el id %d de la tabla de pagina 1 \n", tope_cola_new->id, tope_cola_new->tabla_pagina);
         loggear_info(logger, mensaje, mutex_logger_kernel);
         free(mensaje);
@@ -254,6 +254,14 @@ void planificar()
         {
             char *mensaje1;
             char *mensaje2;
+            int valor_semaforo_ready;
+            int valor_semaforo_planificar;
+
+            sem_getvalue(&sem_nuevo_ready, &valor_semaforo_ready);
+            sem_getvalue(&sem_planificar, &valor_semaforo_planificar);
+            printf("Al principio de todo de la planificacion, los valores de los semaforos son: \n");
+            printf("sem_nuevo_ready: %d\n", valor_semaforo_ready);
+            printf("sem_planificar: %d\n", valor_semaforo_planificar);
 
             sem_wait(&sem_nuevo_ready); // espera a que llegue alguien a ready
             sem_wait(&sem_planificar);  // espera que lo habiliten a planificar
@@ -411,12 +419,14 @@ void recibir() // de cpu
 
             pthread_mutex_lock(&mutex_estado_running);
             running = NULL; // modifico el running de kernel
-            sem_post(&sem_running);
             pthread_mutex_unlock(&mutex_estado_running);
+            sem_post(&sem_running);
 
             if (list_size_con_mutex(cola_ready, mutex_cola_ready) > 0)
+                printf("active la planificacion porque hay alguien en ready y un proceso se fue por exit\n");
                 sem_post(&sem_planificar); // como se libero la cpu por EXIT, puedo poner a otro a planificar
-
+            
+            pthread_mutex_lock(&mutex_socket_memoria);
             socket_memoria = crear_conexion_memoria(configuracion_kernel, logger);
             send_fin_proceso(socket_memoria, pcb_exit->id); // le aviso a la memoria que el proceso termino para que libere las estructuras
 
@@ -427,11 +437,20 @@ void recibir() // de cpu
             }
             recv_fin_proceso(socket_memoria, &id);
             liberar_conexion(socket_memoria); // libero la conexion con la memoria
-
+            pthread_mutex_unlock(&mutex_socket_memoria);
             pthread_mutex_lock(&mutex_cantidad_procesos);
             if (cantidad_procesos_en_memoria > 0)
                 cantidad_procesos_en_memoria--; // baja el nivel de multiprogramacion
             printf("\x1b[32m Cantidad de procesos en memoria: %d\n", cantidad_procesos_en_memoria);
+
+            pthread_mutex_lock(&mutex_cola_ready);
+            for(int i = 0; i<list_size(cola_ready); i++){
+                t_pcb* pcb_ready = list_get(cola_ready, i);
+                printf("proceso %d en ready\n", pcb_ready->id);
+                
+            }
+            pthread_mutex_unlock(&mutex_cola_ready);
+
             pthread_mutex_unlock(&mutex_cantidad_procesos);
             sem_post(&sem_queue_suspended);                               // habilito al hilo de largo plazo que revise si hay alguien que pueda pasar a ready porque baje el grado de multiprogramacion
             send(*(pcb_exit->cliente_socket), &cop2, sizeof(op_code), 0); // el send es para la consola correspondiente para avisarle que se termino de ejecutar sus instrucciones
@@ -483,13 +502,17 @@ void revisar_entrada_a_ready() // reviso si hay algun proceso en new o en suspen
     op_code cop;
     int valor;
     char *mensaje;
+    bool isVaciaReadySuspendido;
+    bool isVaciaNew;
     while (true)
     {
-        sem_wait(&sem_queue_suspended);                                                                                                                           // espera que se haya bajado el grado de multiprogramacion (porque suspendi un proceso o porque alguno termino)
-        if (consulta_grado() && (!queue_vacia_con_mutex(cola_new, mutex_cola_new) || !queue_vacia_con_mutex(cola_ready_suspendido, mutex_cola_ready_suspendido))) // chequeo si hay algun proceso en new o en suspended ready y que el grado de multiprogramacion me lo permita
+        sem_wait(&sem_queue_suspended); // espera que se haya bajado el grado de multiprogramacion (porque suspendi un proceso o porque alguno termino)
+        isVaciaNew = queue_vacia_con_mutex(cola_new, mutex_cola_new); 
+        isVaciaReadySuspendido = queue_vacia_con_mutex(cola_ready_suspendido, mutex_cola_ready_suspendido);                                                                                                                   
+        if (consulta_grado() && (!isVaciaNew || !isVaciaReadySuspendido)) // chequeo si hay algun proceso en new o en suspended ready y que el grado de multiprogramacion me lo permita
         {
             t_pcb *pcb;
-            if (!queue_vacia_con_mutex(cola_ready_suspendido, mutex_cola_ready_suspendido)) // si hay alguien en ready suspendido -> lo priorizo y lo pongo en ready primero
+            if (!isVaciaReadySuspendido) // si hay alguien en ready suspendido -> lo priorizo y lo pongo en ready primero
             {
 
                 pcb = queue_pop_con_mutex(cola_ready_suspendido, mutex_cola_ready_suspendido); // lo desuspende
@@ -583,7 +606,7 @@ void bloquear()
         if (pcb->blocked_suspendido) // si el proceso estaba suspendido y termino su tiempo de I/O, lo pongo en ready suspendido
         {
 
-            queue_push_con_mutex(cola_ready_suspendido, pcb, mutex_cola_ready_suspendido);
+            queue_push_con_mutex(cola_ready_suspendido, pc b, mutex_cola_ready_suspendido);
             sem_post(&sem_queue_suspended);
         }
 
@@ -635,7 +658,8 @@ bool criterio_id_lista(t_pcb *pcb_buscado, t_pcb *pcb_de_la_cola)
 }
 
 void comunicacion_suspension_memoria(t_pcb *pcb)
-{
+{   
+    pthread_mutex_lock(&mutex_socket_memoria);
     socket_memoria = crear_conexion_memoria(configuracion_kernel, logger); // creo la conexion con la memoria
     op_code cop3;
 
@@ -650,4 +674,6 @@ void comunicacion_suspension_memoria(t_pcb *pcb)
     loggear_info(logger, "Confirmacion de suspension recibida", mutex_logger_kernel);
     pcb->blocked_suspendido = true;   // suspendo al proceso
     liberar_conexion(socket_memoria); // cierro la conexion con la memoria
+    pthread_mutex_unlock(&mutex_socket_memoria);
+    
 }

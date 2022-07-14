@@ -57,6 +57,7 @@ void destruir_semaforos(){
     pthread_mutex_destroy(&mutex_cola_exit);
     pthread_mutex_destroy(&mutex_cola_ready_suspendido);
     pthread_mutex_destroy(&mutex_info_desalojado);
+    pthread_mutex_destroy(&mutex_socket_memoria);
     sem_destroy(&sem_planificar);
     sem_destroy(&sem_nuevo_ready);
     sem_destroy(&sem_nuevo_bloqued);
