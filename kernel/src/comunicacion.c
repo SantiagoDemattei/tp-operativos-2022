@@ -144,11 +144,6 @@ void verificacion_multiprogramacion(t_pcb *pcb)
     {
         t_pcb *tope_cola_new = queue_pop_con_mutex(cola_new, mutex_cola_new); // obtiene el pcb del tope de la cola de NEW
 
-        pthread_mutex_lock(&mutex_cantidad_procesos);
-        cantidad_procesos_en_memoria++; // aumenta el grado de multiprogramacion
-        // printf("\x1b[32m Cantidad de procesos en memoria: %d\n", cantidad_procesos_en_memoria);
-        pthread_mutex_unlock(&mutex_cantidad_procesos);
-
         socket_memoria = crear_conexion_memoria(configuracion_kernel, logger); // se conecta con el server de memoria
         // printf("Inicializando proceso %d\n", tope_cola_new->id);                                 // imprime el ID del proceso
         send_inicializar_estructuras(socket_memoria, tope_cola_new->tamanio, tope_cola_new->id); // mando el proceso para que la memoria inicialice las estructuras                        // para que la memoria inicialice estructuras y obtenga el valor de la TP
@@ -173,19 +168,29 @@ void verificacion_multiprogramacion(t_pcb *pcb)
 
         list_add_con_mutex(cola_ready, tope_cola_new, mutex_cola_ready); // agrega el pcb a la cola de ready
         sem_post(&sem_nuevo_ready);                                      // nuevo pcb en ready para que sepa el planificador
+
+        pthread_mutex_lock(&mutex_cantidad_procesos);
+        cantidad_procesos_en_memoria++; // aumenta el grado de multiprogramacion
+        printf("\x1b[32m Cantidad de procesos en memoria: %d\n", cantidad_procesos_en_memoria);
+        pthread_mutex_unlock(&mutex_cantidad_procesos);
+
         mensaje = string_from_format("Se agrega el proceso %d a la cola de ready", tope_cola_new->id);
         loggear_info(logger, mensaje, mutex_logger_kernel);
         free(mensaje);
 
-        if (list_size_con_mutex(cola_ready, mutex_cola_ready) == 1)
+        if (list_size_con_mutex(cola_ready, mutex_cola_ready) == 1 && running == NULL)
         {                              // si el pcb recien agregado es el primero (o sea no habia nadie en ready antes), planifico (tanto en fifo como en sjf)
+            printf("LLAME A PLANIFICAR desde verificar multiprogramacion xq SOS EL PRIMERO QUE ENTRAS PELOTUDO!!\n");
             sem_post(&sem_planificar); // habilito al planificador
+
             return;
         }
         // HAY QUE PLANIFICAR SI SOS SJF
         if (strcmp(configuracion_kernel->algoritmo_planificacion, "SRT") == 0)
         {
+            printf("LLAME A PLANIFICAR desde verificar multiprogramacion porque es SJF\n");
             sem_post(&sem_planificar);
+            
         }
     }
     return;
@@ -233,6 +238,7 @@ void planificar()
 
                 pthread_mutex_lock(&mutex_estado_running);
                 running = pcb_tope_lista; // modifico el running de kernel
+                printf("en running esta el proceso: %d\n", running->id);
                 pthread_mutex_unlock(&mutex_estado_running);
 
                 send_pcb(socket_cpu_dispatch, pcb_tope_lista, ENVIAR_PCB); // mando el pcb a la CPU a traves del socket dispatch
@@ -262,19 +268,21 @@ void planificar()
             printf("Al principio de todo de la planificacion, los valores de los semaforos son: \n");
             printf("sem_nuevo_ready: %d\n", valor_semaforo_ready);
             printf("sem_planificar: %d\n", valor_semaforo_planificar);
-
+            
             sem_wait(&sem_nuevo_ready); // espera a que llegue alguien a ready
             sem_wait(&sem_planificar);  // espera que lo habiliten a planificar
-
+            printf("voy a planificar checkkkkkkkkkkk \n" );
             pthread_mutex_lock(&mutex_estado_running);
 
             if (running == NULL) // va a ser null solo la primera vez o si estan todos bloqueados (si estan todos bloqueados no hay ninguno corriendo)
             {
+                printf("entro a planificar porque no hay nadie en running\n");
                 t_pcb *pcb_elegido = realizar_estimacion(); // si un proceso termina de ejecutar en running no hay nadie pero tenemos que estimar de los procesos que estan en ready quien ejecuta
                 pthread_mutex_unlock(&mutex_estado_running);
 
                 pthread_mutex_lock(&mutex_estado_running);
                 running = pcb_elegido;     // modifico el running
+                printf("en running esta el proceso: %d\n", running->id);
                 fecha_inicio = time(NULL); // guarda la hora actual de inicio de ejecucion
                 pthread_mutex_unlock(&mutex_estado_running);
 
@@ -292,6 +300,7 @@ void planificar()
             }
             else // si hay alguien corriendo (viene aca a partir del segundo proceso, nunca entra aca con el primero)
             {
+                printf("entro a planificar porque  hay alguien en running\n");
                 pthread_mutex_unlock(&mutex_estado_running);
                 send_interrupcion_por_nuevo_ready(socket_cpu_interrupt); // aviso a la cpu que hay un nuevo proceso en ready para que interrumpa al proceso que esta ejecutando
                 // printf("INTERRUMPIENDO PROCESO: %d, hilo planificar\n", running->id);
@@ -312,6 +321,7 @@ void planificar()
                 sem_post(&sem_recibir);
                 pthread_mutex_lock(&mutex_estado_running);
                 running = pcb_elegido;     // modifico el running
+                printf("en running esta el proceso: %d\n", running->id);
                 fecha_inicio = time(NULL); // setea la fecha de inicio de ejecucion porque es un proceso nuevo o continua el mismo(fue desalojado y se volvio a elegir)
                 pthread_mutex_unlock(&mutex_estado_running);
                 mensaje1 = string_from_format("Se envio el proceso %d a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar\n", pcb_elegido->id);
@@ -329,14 +339,17 @@ void planificar()
 void controlador_tiempo_blocked_proceso(t_pcb *pcb)
 {
     char *mensaje;
+    pcb->tid_controlador = pthread_self(); 
+    printf("EL HILO INCIADO ES: %d\n", pcb->tid_controlador);
     usleep((atoi(configuracion_kernel->tiempo_maximo_bloqueado)) * 1000); // espero el tiempo maximo de bloqueado definido en el archivo de config
-
+     
     // si el proceso sigue en la cola de bloqueados, pongo pcb->suspendido=true;
     if (queue_find_con_mutex(cola_blocked, pcb, mutex_cola_blocked) != NULL) // si el proceso sigue en la cola de bloqueados, lo suspedno porque supero el tiempo maximo que podia estar bloqueado
     {
         mensaje = string_from_format("Se va a suspender el proceso: %d\n", pcb->id);
         loggear_warning(logger, mensaje, mutex_logger_kernel);
         free(mensaje);
+        
         comunicacion_suspension_memoria(pcb); // cuando suspendo al proceso aviso a la memoria
         pthread_mutex_lock(&mutex_cantidad_procesos);
         if (cantidad_procesos_en_memoria > 0)
@@ -399,17 +412,19 @@ void recibir() // de cpu
             sem_post(&sem_nuevo_bloqued);                                // aviso que hay un nuevo pcb en la cola de blocked
             // creo hilo para controlar el tiempo maximo que puede pasar un proceso en la cola de blocked
             pthread_t controlador_tiempo_blocked;
-
             pthread_create(&controlador_tiempo_blocked, NULL, (void *)controlador_tiempo_blocked_proceso, (void *)pcb);
             pthread_detach(controlador_tiempo_blocked);
 
             loggear_info(logger, "Nuevo proceso en cola blocked\n", mutex_logger_kernel);
             printf("PROCESOS BLOQUEADOS: %d\n", queue_size(cola_blocked));
+            if(running == NULL){
+                printf("RUNNING ES NULL TODAVIA NO PLANIFICO!!!!!!!!!!!!!\n");
+            }
 
             if (list_size_con_mutex(cola_ready, mutex_cola_ready) > 0)
-            {                              // planifico si hay alguien en ready
+            {   
+                printf("LLAME A PLANIFICAR desde el hilo recibir\n");        // planifico si hay alguien en ready
                 sem_post(&sem_planificar); // como se libero la cpu por I/O, puedo poner a otro a planificar
-                printf("LLAME A PLANIFICAR\n");
             }
             break;
 
@@ -424,6 +439,7 @@ void recibir() // de cpu
 
             if (list_size_con_mutex(cola_ready, mutex_cola_ready) > 0)
                 printf("active la planificacion porque hay alguien en ready y un proceso se fue por exit\n");
+                printf("llame a planificar desde el hilo recibir por EXIT");
                 sem_post(&sem_planificar); // como se libero la cpu por EXIT, puedo poner a otro a planificar
             
             pthread_mutex_lock(&mutex_socket_memoria);
@@ -554,16 +570,21 @@ void revisar_entrada_a_ready() // reviso si hay algun proceso en new o en suspen
             pthread_mutex_unlock(&mutex_cantidad_procesos);
 
             pthread_mutex_lock(&mutex_estado_running);
+            if(running != NULL)
+                printf("en running esta el proceso: %d\n", running->id);
+                
             if (running == NULL) // si no hay nadie en running, planifico tanto en fifo como en sjf
             {
                 pthread_mutex_unlock(&mutex_estado_running);
                 sem_post(&sem_planificar);
+                printf("LLAME A PLANIFICAR desde el hilo revisar entrada ready porque en runnning no hay nadie\n");
                 pthread_mutex_lock(&mutex_estado_running);
             }
             else
             {
                 if (strcmp(configuracion_kernel->algoritmo_planificacion, "SRT") == 0)
-                {
+                {   
+                    printf("llame a planificar desde el hilo revisar entrada a ready porque en running hay un proceso\n");
                     sem_post(&sem_planificar); // si es SJF, como llego un proceso a ready tiene que planificar
                 }
             }
@@ -599,6 +620,8 @@ void bloquear()
         pcb = queue_peek_con_mutex(cola_blocked, mutex_cola_blocked); // agarra el pcb del proceso que se bloquea pero no lo saca de la cola block para poder suspenderlo si tuviera que hacerlo
         tiempo = pcb->tiempo_bloqueo;
         usleep(tiempo * 1000);                                 // bloquea al proceso
+        printf("VOY A MATAR AL HILO: %d\n", pcb->tid_controlador);
+        pthread_cancel(pcb->tid_controlador);
         queue_pop_con_mutex(cola_blocked, mutex_cola_blocked); // cuando termina el tiempo de bloqueo, saca el pcb de la cola de blocked
         mensaje = string_from_format("El proceso %d se desbloqueo, hilo bloquear\n", pcb->id);
         loggear_info(logger, mensaje, mutex_logger_kernel);
@@ -606,7 +629,7 @@ void bloquear()
         if (pcb->blocked_suspendido) // si el proceso estaba suspendido y termino su tiempo de I/O, lo pongo en ready suspendido
         {
 
-            queue_push_con_mutex(cola_ready_suspendido, pc b, mutex_cola_ready_suspendido);
+            queue_push_con_mutex(cola_ready_suspendido, pcb, mutex_cola_ready_suspendido);
             sem_post(&sem_queue_suspended);
         }
 
@@ -623,6 +646,7 @@ void bloquear()
                     printf("ID DE PROCESO EN READY: %d, hilo bloquear\n", ((t_pcb *)list_get(cola_ready, i))->id);
                 }
                 pthread_mutex_unlock(&mutex_cola_ready);
+                printf("llame a planificar desde el hilo bloquear\n");
                 sem_post(&sem_planificar); // planifica solo si es SJF cuando llega uno a ready
             }
         }
@@ -648,7 +672,8 @@ t_pcb *realizar_estimacion()
 }
 
 void *comparar_estimaciones(t_pcb *pcb1, t_pcb *pcb2)
-{
+{   
+    printf("comparando estimaciones: %f, %f\n", pcb1->estimacion_rafaga_anterior, pcb2->estimacion_rafaga_anterior);
     return pcb1->estimacion_rafaga_anterior <= pcb2->estimacion_rafaga_anterior ? pcb1 : pcb2;
 }
 

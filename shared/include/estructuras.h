@@ -113,6 +113,7 @@ typedef struct t_pcb
     double rafaga_real_anterior;
     double estimacion_rafaga_anterior;
     bool blocked_suspendido;
+    pthread_t tid_controlador;
 } t_pcb;
 
 typedef struct t_tlb
