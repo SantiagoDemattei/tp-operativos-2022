@@ -4,10 +4,13 @@ t_configuracion_memoria *leer_configuracion()
 {
 
     t_config *nuevo_config; // revisar struct (no importa el de commons)
+    char* mensaje;
     nuevo_config = config_create("./memoria.config");
     if (nuevo_config == NULL)
-    {
-        loggear_error(logger, string_from_format("Error: No se pudo abrir el archivo de configuracion de memoria \n"), mutex_logger_memoria);
+    {   
+        mensaje = string_from_format("Error: No se pudo abrir el archivo de configuracion de memoria \n");
+        loggear_error(logger, mensaje, mutex_logger_memoria);
+        free(mensaje);
         exit(EXIT_FAILURE);
     }
 

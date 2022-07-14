@@ -4,12 +4,16 @@ t_configuracion_kernel *leer_configuracion()
 {
 
     t_config *nuevo_config; // revisar struct (no importa el de commons)
+    char* mensaje;
     nuevo_config = config_create("./kernel.config");
+    mensaje = string_from_format("Error: No se pudo abrir el archivo de configuracion de kernel \n");
     if (nuevo_config == NULL)
     {
-        loggear_error(logger, string_from_format("Error: No se pudo abrir el archivo de configuracion de kernel \n"), mutex_logger_kernel);
+        loggear_error(logger, mensaje, mutex_logger_kernel);
+        free(mensaje);
         exit(EXIT_FAILURE);
     }
+    free(mensaje);
 
     char *ip_memoria = config_get_string_value(nuevo_config, "IP_MEMORIA");                           // leo ip de memoria
     char *ip_kernel = config_get_string_value(nuevo_config, "IP_KERNEL");                             // leo ip de memoria

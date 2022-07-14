@@ -136,6 +136,7 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
     t_argumento *valor;
     uint32_t valor_leido;
     op_code cop;
+    char * mensaje;
 
     pthread_mutex_lock(&mutex_running_cpu);
     while ((running != NULL) && (running->program_counter < cantidad_instrucciones)) // recorro tomando como punto de partida la instrucción que indique el Program Counter del PCB recibido -> FETCH
@@ -168,6 +169,7 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
             running->tiempo_bloqueo = tiempo_bloqueo1->argumento; // en el pcb me guardo el tiempo de bloqueo
             running->program_counter++;                           // avanzo el program counter
             send_pcb(*cliente_socket, running, BLOQUEO_IO);       // mando el pcb para que lo reciba el kernel y bloquee al pcb
+            printf("Envie proceso %d a bloquearse por I/O\n", running->id);
             pthread_mutex_lock(&mutex_interrupcion);
             interrupciones = false;
             pthread_mutex_unlock(&mutex_interrupcion); // interrupciones desactivadas
@@ -193,7 +195,9 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
                     loggear_error(logger_cpu, "Error al leer", mutex_logger_cpu);
                 };
                 recv_ok_read(socket_memoria_cpu, &valor_leido);
-                loggear_info(logger_cpu, string_from_format("\x1b[32m El valor leido en la posicion es: %d\n", valor_leido), mutex_logger_cpu);
+                mensaje = string_from_format("\x1b[32m El valor leido en la posicion es: %d\n", valor_leido);
+                loggear_info(logger_cpu, mensaje, mutex_logger_cpu);
+                free(mensaje);
                 liberar_conexion(socket_memoria_cpu);
             }
             else // TLB MISS -> 3 ACCESOS A LA MEMORIA (vamos a buscar la pagina a la tabla de paginas)
@@ -221,7 +225,9 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
                         loggear_error(logger_cpu, "Error al leer", mutex_logger_cpu);
                     }
                     recv_ok_read(socket_memoria_cpu, &valor_leido);
-                    loggear_info(logger_cpu, string_from_format("\x1b[32m El valor leido en la posicion es: %d\n", valor_leido), mutex_logger_cpu);
+                    mensaje = string_from_format("\x1b[32m El valor leido en la posicion es: %d\n", valor_leido);
+                    loggear_info(logger_cpu, mensaje, mutex_logger_cpu);
+                    free(mensaje);
                     liberar_conexion(socket_memoria_cpu);
                 }
             }
@@ -373,12 +379,13 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
             chequear_interrupciones(cliente_socket); // cuando termina de ejecutar una instruccion chequeo si hay interrupciones
         }
         else
-        {
+        {   
+            if(interrupciones){
             pthread_mutex_lock(&mutex_interrupcion);
             interrupciones = false;
             pthread_mutex_unlock(&mutex_interrupcion);
-            send_extranio(cliente_socket);
-            printf("RUNNING ES NULL\n");
+            send_extranio(*cliente_socket);
+            printf("RUNNING ES NULL\n");}
         }
         pthread_mutex_lock(&mutex_running_cpu);
     }
@@ -388,6 +395,7 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
 void chequear_interrupciones(uint32_t *cliente_socket)
 {
     pthread_mutex_lock(&mutex_interrupcion);
+    char* mensaje;
     if (interrupciones)
     { // si hay interrupciones hay que desalojar un proceso
         printf("ESTOY CHEQUEANDO INTERRUPCIONES\n");
@@ -400,8 +408,9 @@ void chequear_interrupciones(uint32_t *cliente_socket)
 
         send_pcb(*cliente_socket, running, INTERRUPCION); // desalojo el pcb y mando el pcb para que lo reciba el kernel
         pthread_mutex_unlock(&mutex_running_cpu);
-
-        loggear_warning(logger_cpu, string_from_format("Proceso %d interrumpido", running->id), mutex_logger_cpu);
+        mensaje = string_from_format("Proceso %d interrumpido", running->id);
+        loggear_warning(logger_cpu, mensaje, mutex_logger_cpu);
+        free(mensaje);
         limpiar_tlb();
         destruir_pcb(running);
         pthread_mutex_lock(&mutex_running_cpu);
