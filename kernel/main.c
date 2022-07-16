@@ -27,7 +27,7 @@ uint32_t main(void){
     crear_colas_estados();
     
     pthread_t planificador; 
-    pthread_t receptor; 
+    pthread_t receptor;
     pthread_t bloqueador; 
     pthread_t largo_plazo; 
     pthread_create(&planificador, NULL, (void*)planificar, NULL); // encargado de planificar sacando de ready y mandando el pcb a la CPU

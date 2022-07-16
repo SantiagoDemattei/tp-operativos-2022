@@ -58,12 +58,14 @@ void destruir_semaforos(){
     pthread_mutex_destroy(&mutex_cola_ready_suspendido);
     pthread_mutex_destroy(&mutex_info_desalojado);
     pthread_mutex_destroy(&mutex_socket_memoria);
+    pthread_mutex_destroy(&mutex_estoy_planificando);
     sem_destroy(&sem_planificar);
     sem_destroy(&sem_nuevo_ready);
     sem_destroy(&sem_nuevo_bloqued);
     sem_destroy(&sem_recibir);
     sem_destroy(&sem_esperar_confirmacion);
     sem_destroy(&sem_queue_suspended);
+    sem_destroy(&sem_inicio);
 }
 
 void destruir_hilos(){

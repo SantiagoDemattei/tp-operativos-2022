@@ -94,7 +94,10 @@ static void procesar_conexion(void *void_args)
                 estructura_proceso_existente->marco_fin = (estructura_proceso_existente->marco_comienzo) + (configuracion_memoria->marcos_por_proceso) - 1;
                 llenar_marcos_para_el_proceso(estructura_proceso_existente->marco_comienzo, estructura_proceso_existente->marco_fin, 1);                                            // cambia a 1 los marcos ocupados (de la memoria) que le asigno al proceso
                 llenar_marcos_para_el_proceso_local(estructura_proceso_existente->vector_marcos, configuracion_memoria->marcos_por_proceso, 0); // lleno la lista de marcos propios del proceso (estado en 0 porque estan todos libres y num de pagona en -1 porque no tienen paginas los marcos) para saber si un proceso tiene marcos libres, etc
-                send_valor_tb(*cliente_socket, estructura_proceso_existente->tabla_pagina1->id_tabla);
+                if(send_valor_tb(*cliente_socket, estructura_proceso_existente->tabla_pagina1->id_tabla))
+                    printf("ENVIE EL ID DE LA TABLA 1\n");
+                else 
+                    printf("NO ENVIE EL ID DE LA TABLA 1\n");
                 free(cliente_socket);
 
                 loggear_info(logger, "Se envio el valor de la tabla de paginas al kernel\n", mutex_logger_memoria);

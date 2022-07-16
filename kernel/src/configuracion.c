@@ -70,6 +70,7 @@ void inicializar_semaforos()
     pthread_mutex_init(&mutex_variable_contador, NULL);
     pthread_mutex_init(&mutex_info_desalojado, NULL);
     pthread_mutex_init(&mutex_socket_memoria, NULL);
+    pthread_mutex_init(&mutex_estoy_planificando, NULL);
     sem_init(&sem_planificar, 0, 0);
     sem_init(&sem_nuevo_ready, 0, 0);
     sem_init(&sem_nuevo_bloqued, 0, 0);
@@ -78,5 +79,6 @@ void inicializar_semaforos()
     sem_init(&sem_desalojo, 0, 0);
     sem_init(&sem_esperar_confirmacion, 0, 0);
     sem_init(&sem_queue_suspended, 0, 0);
+    sem_init(&sem_inicio, 0, 1);
     // sem_init(&finalizar_planificar, 0, 0);
 }

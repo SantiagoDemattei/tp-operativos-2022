@@ -5,6 +5,7 @@ uint32_t contador = 1;                     // variable global para asignar el ID
 uint32_t id_desalojado;
 double estimacion_desalojado = 0;
 double real_desalojado = 0;
+bool estoy_planificando = false;
 
 uint32_t crear_comunicacion(t_configuracion_kernel *configuracion_kernel, t_log *logger) // inicio el servidor
 {
@@ -142,15 +143,20 @@ void verificacion_multiprogramacion(t_pcb *pcb)
     queue_push_con_mutex(cola_new, pcb, mutex_cola_new); // agrega el pcb a la cola de NEW
     if (consulta_grado())                                // si el grado de multiprogramacion lo permite
     {
+        printf("Estoy esperando inicializar\n ");
+        sem_wait(&sem_inicio);
+        printf("Entro a inicializar\n ");
         t_pcb *tope_cola_new = queue_pop_con_mutex(cola_new, mutex_cola_new); // obtiene el pcb del tope de la cola de NEW
 
         socket_memoria = crear_conexion_memoria(configuracion_kernel, logger); // se conecta con el server de memoria
         // printf("Inicializando proceso %d\n", tope_cola_new->id);                                 // imprime el ID del proceso
+        
         send_inicializar_estructuras(socket_memoria, tope_cola_new->tamanio, tope_cola_new->id); // mando el proceso para que la memoria inicialice las estructuras                        // para que la memoria inicialice estructuras y obtenga el valor de la TP
 
         if (recv(socket_memoria, &cop, sizeof(op_code), 0) != sizeof(op_code))
         {
             loggear_error(logger, "Error al recibir el op_code INICIALIZAR_ESTRUCTURAS de la memoria", mutex_logger_kernel);
+            sem_post(&sem_inicio);
             return;
         }
         recv_valor_tb(socket_memoria, &tope_cola_new->tabla_pagina); // recibe el id de la tabla de paginas y lo guarda en el pcb
@@ -158,12 +164,14 @@ void verificacion_multiprogramacion(t_pcb *pcb)
         if (tope_cola_new->tabla_pagina == -1) // se lo mando si no encontre un marco libre para el proceso
         {
             loggear_error(logger, "Error al inicializar estructuras del proceso", mutex_logger_kernel);
+            sem_post(&sem_inicio);
             return;
         }
         //queue_pop_con_mutex(cola_new, mutex_cola_new); // saca el pcb de la cola de NEW
         mensaje = string_from_format("Se inicializo el proceso %d con el id %d de la tabla de pagina 1 \n", tope_cola_new->id, tope_cola_new->tabla_pagina);
         loggear_info(logger, mensaje, mutex_logger_kernel);
         free(mensaje);
+        sem_post(&sem_inicio);
         liberar_conexion(socket_memoria);
 
         list_add_con_mutex(cola_ready, tope_cola_new, mutex_cola_ready); // agrega el pcb a la cola de ready
@@ -217,7 +225,6 @@ void planificar()
 {
     ALGORITMO algoritmo = algortimo_de_planificacion(configuracion_kernel->algoritmo_planificacion);
     socket_cpu_dispatch = crear_conexion_cpu_dispatch(configuracion_kernel, logger);   // linea donde estan conectados la cpu (dispatch) y el kernel
-    socket_cpu_interrupt = crear_conexion_cpu_interrupt(configuracion_kernel, logger); // linea donde estan conectados la cpu (interrupt) y el kernel
     t_pcb *pcb_tope_lista;
     switch (algoritmo) // segun el algortimo planifica
     {
@@ -231,11 +238,13 @@ void planificar()
 
             pcb_tope_lista = list_get_and_remove_con_mutex(cola_ready, 0, mutex_cola_ready); // saco proceso de la lista de ready
             pthread_mutex_lock(&mutex_estado_running);
+
+            pthread_mutex_lock(&mutex_estoy_planificando);
+            estoy_planificando = true;
+            pthread_mutex_unlock(&mutex_estoy_planificando);
             if (running == NULL) // no hay nadie ejecutando lo pongo a ejecutar
             {
-
                 pthread_mutex_unlock(&mutex_estado_running);
-
                 pthread_mutex_lock(&mutex_estado_running);
                 running = pcb_tope_lista; // modifico el running de kernel
                 printf("en running esta el proceso: %d\n", running->id);
@@ -247,9 +256,11 @@ void planificar()
                 loggear_info(logger, mensaje, mutex_logger_kernel);
                 destruir_pcb(pcb_tope_lista);
                 free(mensaje);
-
                 pthread_mutex_lock(&mutex_estado_running);
             }
+            pthread_mutex_lock(&mutex_estoy_planificando);
+            estoy_planificando = false;
+            pthread_mutex_unlock(&mutex_estoy_planificando);
 
             pthread_mutex_unlock(&mutex_estado_running);
         }
@@ -274,6 +285,10 @@ void planificar()
             printf("voy a planificar checkkkkkkkkkkk \n" );
             pthread_mutex_lock(&mutex_estado_running);
 
+            pthread_mutex_lock(&mutex_estoy_planificando);
+            estoy_planificando = true;
+            pthread_mutex_unlock(&mutex_estoy_planificando);
+            
             if (running == NULL) // va a ser null solo la primera vez o si estan todos bloqueados (si estan todos bloqueados no hay ninguno corriendo)
             {
                 printf("entro a planificar porque no hay nadie en running\n");
@@ -299,13 +314,17 @@ void planificar()
                 pthread_mutex_lock(&mutex_estado_running);
             }
             else // si hay alguien corriendo (viene aca a partir del segundo proceso, nunca entra aca con el primero)
-            {
+            { 
                 printf("entro a planificar porque  hay alguien en running\n");
                 pthread_mutex_unlock(&mutex_estado_running);
-                send_interrupcion_por_nuevo_ready(socket_cpu_interrupt); // aviso a la cpu que hay un nuevo proceso en ready para que interrumpa al proceso que esta ejecutando
+                socket_cpu_interrupt = crear_conexion_cpu_interrupt(configuracion_kernel, logger); // linea donde estan conectados la cpu (interrupt) y el kernel
+                if(send_interrupcion_por_nuevo_ready(socket_cpu_interrupt)) // aviso a la cpu que hay un nuevo proceso en ready para que interrumpa al proceso que esta ejecutando
+                    printf("Mande la interrupcion a la cpu\n");
+                else printf("No mande la interrupcion a la cpu\n");
                 // printf("INTERRUMPIENDO PROCESO: %d, hilo planificar\n", running->id);
                 sem_post(&sem_recibir);  // activo al hilo recibir para que se ponga a la espera de un mensaje de la CPU
                 sem_wait(&sem_desalojo); // espera que lo habilite el kernel cuando le llega el pcb del proceso desalojado
+                liberar_conexion(socket_cpu_interrupt);
                 t_pcb *pcb_elegido = realizar_estimacion();
 
                 pthread_mutex_lock(&mutex_info_desalojado);
@@ -329,6 +348,11 @@ void planificar()
                 free(mensaje1);
                 pthread_mutex_lock(&mutex_estado_running);
             }
+            
+            pthread_mutex_lock(&mutex_estoy_planificando);
+            estoy_planificando = false;
+            pthread_mutex_unlock(&mutex_estoy_planificando);
+            
             pthread_mutex_unlock(&mutex_estado_running);
         }
         break;
@@ -370,6 +394,7 @@ void recibir() // de cpu
     t_pcb *pcb;
     t_pcb *pcb_exit;
     uint32_t id;
+    int valor;
     float alfa = atof(configuracion_kernel->alfa);
 
     while (true)
@@ -420,12 +445,14 @@ void recibir() // de cpu
             if(running == NULL){
                 printf("RUNNING ES NULL TODAVIA NO PLANIFICO!!!!!!!!!!!!!\n");
             }
-
-            if (list_size_con_mutex(cola_ready, mutex_cola_ready) > 0)
+            
+            pthread_mutex_lock(&mutex_estoy_planificando);
+            if (list_size_con_mutex(cola_ready, mutex_cola_ready) > 0 && !estoy_planificando)
             {   
                 printf("LLAME A PLANIFICAR desde el hilo recibir\n");        // planifico si hay alguien en ready
                 sem_post(&sem_planificar); // como se libero la cpu por I/O, puedo poner a otro a planificar
             }
+            pthread_mutex_unlock(&mutex_estoy_planificando);
             break;
 
         case ENVIAR_PCB: // kernel recibe el pcb para terminar el proceso (exit)
@@ -437,11 +464,14 @@ void recibir() // de cpu
             pthread_mutex_unlock(&mutex_estado_running);
             sem_post(&sem_running);
 
-            if (list_size_con_mutex(cola_ready, mutex_cola_ready) > 0)
+            pthread_mutex_lock(&mutex_estoy_planificando);
+            if (list_size_con_mutex(cola_ready, mutex_cola_ready) > 0 && !estoy_planificando){
                 printf("active la planificacion porque hay alguien en ready y un proceso se fue por exit\n");
                 printf("llame a planificar desde el hilo recibir por EXIT");
                 sem_post(&sem_planificar); // como se libero la cpu por EXIT, puedo poner a otro a planificar
-            
+            }
+            pthread_mutex_unlock(&mutex_estoy_planificando);
+
             pthread_mutex_lock(&mutex_socket_memoria);
             socket_memoria = crear_conexion_memoria(configuracion_kernel, logger);
             send_fin_proceso(socket_memoria, pcb_exit->id); // le aviso a la memoria que el proceso termino para que libere las estructuras
@@ -468,6 +498,7 @@ void recibir() // de cpu
             pthread_mutex_unlock(&mutex_cola_ready);
 
             pthread_mutex_unlock(&mutex_cantidad_procesos);
+            
             sem_post(&sem_queue_suspended);                               // habilito al hilo de largo plazo que revise si hay alguien que pueda pasar a ready porque baje el grado de multiprogramacion
             send(*(pcb_exit->cliente_socket), &cop2, sizeof(op_code), 0); // el send es para la consola correspondiente para avisarle que se termino de ejecutar sus instrucciones
             free(pcb_exit->cliente_socket);
@@ -547,6 +578,7 @@ void revisar_entrada_a_ready() // reviso si hay algun proceso en new o en suspen
                 if (recv(socket_memoria, &cop, sizeof(op_code), 0) != sizeof(op_code))
                 {
                     loggear_error(logger, "Error al recibir el op_code INICIALIZAR_ESTRUCTURAS de la memoria", mutex_logger_kernel);
+                    sem_post(&sem_inicio);
                     return;
                 }
                 recv_valor_tb(socket_memoria, &pcb->tabla_pagina); // recibe el id de la tabla de paginas y lo guarda en el pcb
@@ -554,12 +586,14 @@ void revisar_entrada_a_ready() // reviso si hay algun proceso en new o en suspen
                 if (pcb->tabla_pagina == -1) // se lo mando si no encontre un marco libre para el proceso
                 {
                     loggear_error(logger, "Error al inicializar estructuras del proceso", mutex_logger_kernel);
+                    sem_post(&sem_inicio);
                     return;
                 }
                 queue_pop_con_mutex(cola_new, mutex_cola_new);
                 mensaje = string_from_format("Se inicializo el proceso %d con el id %d de la tabla de pagina 1 \n", pcb->id, pcb->tabla_pagina);
                 loggear_info(logger, mensaje, mutex_logger_kernel);
                 free(mensaje);
+                sem_post(&sem_inicio);
                 liberar_conexion(socket_memoria);
                 list_add_con_mutex(cola_ready, pcb, mutex_cola_ready);
                 sem_post(&sem_nuevo_ready); // avisa que llego alguien a ready
