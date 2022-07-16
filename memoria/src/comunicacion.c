@@ -1,5 +1,6 @@
 #include "../include/comunicacion.h"
 uint32_t contador = 0;
+bool pedido_inicializar = false;
 
 uint32_t crear_comunicacion_kernel(t_configuracion_memoria *configuracion_memoria, t_log *logger)
 { // SERVIDOR DE KERNEL
@@ -59,7 +60,7 @@ static void procesar_conexion(void *void_args)
     uint32_t cant_tablas_segundo_nivel;
     uint32_t nro_pagina;
     t_estructura_proceso *estructura_proceso_existente;
-    char* mensaje;
+    char *mensaje;
 
     while (*cliente_socket != -1)
     { // mientras el cliente no se haya desconectado
@@ -81,8 +82,9 @@ static void procesar_conexion(void *void_args)
 
         case INICIALIZAR_ESTRUCTURAS:
             recv_inicializar_estructuras(*cliente_socket, &tamanio_proceso, &id_proceso);
-            if (estructura_proceso_existente = buscar_estructura_del_proceso_suspension(id_proceso) != NULL) //si la estructura del proceso ya estaba en la lista (porque se desperto de una suspension)
-            {   
+            pedido_inicializar = true;
+            if (estructura_proceso_existente = buscar_estructura_del_proceso_suspension(id_proceso) != NULL) // si la estructura del proceso ya estaba en la lista (porque se desperto de una suspension)
+            {
                 printf("INICIALIZAR ESTRUCTURAS LUEGO DE DESPERTAR UN PROCESO SUSPENDIDO");
                 estructura_proceso_existente->marco_comienzo = buscar_marcos_para_asignar();
                 if (estructura_proceso_existente->marco_comienzo == -1)
@@ -92,11 +94,11 @@ static void procesar_conexion(void *void_args)
                     break;
                 }
                 estructura_proceso_existente->marco_fin = (estructura_proceso_existente->marco_comienzo) + (configuracion_memoria->marcos_por_proceso) - 1;
-                llenar_marcos_para_el_proceso(estructura_proceso_existente->marco_comienzo, estructura_proceso_existente->marco_fin, 1);                                            // cambia a 1 los marcos ocupados (de la memoria) que le asigno al proceso
+                llenar_marcos_para_el_proceso(estructura_proceso_existente->marco_comienzo, estructura_proceso_existente->marco_fin, 1);        // cambia a 1 los marcos ocupados (de la memoria) que le asigno al proceso
                 llenar_marcos_para_el_proceso_local(estructura_proceso_existente->vector_marcos, configuracion_memoria->marcos_por_proceso, 0); // lleno la lista de marcos propios del proceso (estado en 0 porque estan todos libres y num de pagona en -1 porque no tienen paginas los marcos) para saber si un proceso tiene marcos libres, etc
-                if(send_valor_tb(*cliente_socket, estructura_proceso_existente->tabla_pagina1->id_tabla))
+                if (send_valor_tb(*cliente_socket, estructura_proceso_existente->tabla_pagina1->id_tabla))
                     printf("ENVIE EL ID DE LA TABLA 1\n");
-                else 
+                else
                     printf("NO ENVIE EL ID DE LA TABLA 1\n");
                 free(cliente_socket);
 
@@ -169,24 +171,25 @@ static void procesar_conexion(void *void_args)
             variable_global->proceso = estructura;
             variable_global->indicador = CREAR_ARCHIVO_SWAP;
             variable_global->tamanio_proceso = tamanio_proceso;
-            sem_post(&sem_swap);     // habilito al swap a crear el archivo
-            sem_wait(&sem_fin_swap); // espero que el swap termine de crear el archivo
+            sem_post(&sem_swap);                  // habilito al swap a crear el archivo
+            sem_wait(&sem_creacion_archivo_swap); // espero que el swap termine de crear el archivo
             pthread_mutex_unlock(&mutex_variable_global);
 
             mensaje = string_from_format("El nombre del archivo es: %s\n", estructura->nombre_archivo_swap);
             loggear_info(logger, mensaje, mutex_logger_memoria);
             free(mensaje);
-            list_add_con_mutex_tablas(lista_estructuras, estructura, mutex_lista_estructuras); // agrega la estructura a la lista de estructuras global donde estan las de todos los procesos
+            list_add_con_mutex_tablas(lista_estructuras, estructura); // agrega la estructura a la lista de estructuras global donde estan las de todos los procesos
 
-            send_valor_tb(*cliente_socket, tabla_pagina1->id_tabla); // le mandamos el id de la tabla que corresponde al proceso (es lo mismo que el contador)
+            if (send_valor_tb(*cliente_socket, tabla_pagina1->id_tabla)) // le mandamos el id de la tabla que corresponde al proceso (es lo mismo que el contador)
+                loggear_info(logger, "Se envio el valor de la tabla de paginas al kernel\n", mutex_logger_memoria);
 
             pthread_mutex_lock(&mutex_valor_tp);
             contador++; // para el id de la tabla de 1er nivel
             pthread_mutex_unlock(&mutex_valor_tp);
 
+            pedido_inicializar = false;
             free(cliente_socket);
 
-            loggear_info(logger, "Se envio el valor de la tabla de paginas al kernel\n", mutex_logger_memoria);
             break;
 
         case PRIMER_ACCESO:
@@ -292,11 +295,13 @@ uint32_t server_escuchar(t_log *logger, char *server_name, uint32_t server_socke
     return 0;
 }
 
-void list_add_con_mutex_tablas(t_list *lista, t_estructura_proceso *tabla_pagina1, pthread_mutex_t mutex)
+void list_add_con_mutex_tablas(t_list *lista, t_estructura_proceso *tabla_pagina1)
 {
-    pthread_mutex_lock(&mutex);
+    loggear_info(logger, "AGREGANDO A LA LISTA\n", mutex_logger_memoria);
+    pthread_mutex_lock(&mutex_lista_estructuras);
     list_add(lista, tabla_pagina1);
-    pthread_mutex_unlock(&mutex);
+    loggear_info(logger, "Se agrega una tabla de paginas a la lista\n", mutex_logger_memoria);
+    pthread_mutex_unlock(&mutex_lista_estructuras);
 }
 
 t_tabla_pagina1 *buscar_tabla_pagina1(uint32_t id_tabla) // busca en la lista de estructuras de todos los procesos la tabla de paginas de primer nivel corresponiente al proceso
@@ -356,6 +361,7 @@ t_marco_presencia *obtener_frame(uint32_t nro_tabla_2do_nivel, uint32_t entrada_
 {
     t_estructura_2do_nivel *fila_2do_nivel;
     t_marco_presencia *marco_presencia = malloc(sizeof(t_marco_presencia));
+
     pthread_mutex_lock(&mutex_lista_estructuras);
     t_list *tabla_segundo_nivel = buscar_tabla_segundo_nivel(nro_tabla_2do_nivel);
     fila_2do_nivel = list_get(tabla_segundo_nivel, entrada_tabla_2do_nivel); // obtiene la fila que quiere de la tabla de segundo nivel
@@ -403,7 +409,7 @@ t_marco_presencia *obtener_frame(uint32_t nro_tabla_2do_nivel, uint32_t entrada_
 uint32_t buscar_marco_libre(uint32_t nro_pagina, void *contenido_pagina)
 { // busca un marco libre en la tabla de paginas y lo carga con el contenido de la pagina){
     uint32_t marco_asignado;
-    char* mensaje;
+    char *mensaje;
     pthread_mutex_lock(&mutex_estructura_proceso_actual);
     t_vector_marcos *elemento;
     marco_asignado = buscar_marcos_para_asignar_local(estructura_proceso_actual->vector_marcos); // busco un marco libre en el vector de marcos del proceso actual+
@@ -786,12 +792,13 @@ t_estructura_proceso *buscar_estructura_del_proceso_suspension(uint32_t pid)
 
 void suspender_proceso(uint32_t pid)
 {
+
     pthread_mutex_lock(&mutex_lista_estructuras);
     t_estructura_proceso *estructura_del_proceso = buscar_estructura_del_proceso_suspension(pid);
     uint32_t comienzo = estructura_del_proceso->marco_comienzo;
     t_list *marcos_del_proceso = estructura_del_proceso->vector_marcos;
     pthread_mutex_unlock(&mutex_lista_estructuras);
-    char* mensaje;
+    char *mensaje;
     pthread_mutex_lock(&mutex_variable_global);
     variable_global->proceso = estructura_del_proceso;
     variable_global->es_de_cpu = false; // la cpu necesita de swap para leer/escribir, y el kernel para suspender e inicializar estructuras. Si suspendemos un proceso, (no es de CPU) el swap no tiene que dormirse.

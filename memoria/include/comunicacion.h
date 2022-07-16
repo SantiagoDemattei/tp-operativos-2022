@@ -31,7 +31,7 @@ typedef enum
 t_estructura_proceso* estructura_proceso_actual;
 
 t_list *lista_estructuras; //lista de estructuras de cada proceso que va llegando 
-void list_add_con_mutex_tablas(t_list* lista, t_estructura_proceso* tabla_pagina1 , pthread_mutex_t mutex);
+void list_add_con_mutex_tablas(t_list* lista, t_estructura_proceso* tabla_pagina1);
 uint32_t crear_comunicacion_kernel(t_configuracion_memoria* configuracion_memoria, t_log* logger);
 uint32_t server_escuchar(t_log* logger, char* server_name, uint32_t server_socket);
 static void procesar_conexion(void* void_args);

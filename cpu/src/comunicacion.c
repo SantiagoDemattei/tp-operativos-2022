@@ -64,9 +64,10 @@ static void procesar_conexion(void *void_args)
             if (recv_pcb(*cliente_socket, &running)) // en running guardo el pcb que va a ejecutar
             {
                 loggear_info(logger, "Se recibio un pcb para ejecutar\n", mutex_logger_cpu);
-                pthread_mutex_lock(&mutex_interrupcion);
-                interrupciones = false; // interrupciones desactivadas para chequearlas cuando termine de ejecutar una instruccion
-                pthread_mutex_unlock(&mutex_interrupcion);
+                //pthread_mutex_lock(&mutex_interrupcion);
+                //interrupciones = false; // interrupciones desactivadas para chequearlas cuando termine de ejecutar una instruccion
+                //pthread_mutex_unlock(&mutex_interrupcion);
+                printf("valor de socket original: %d\n", *cliente_socket);
                 cliente_socket_aux = cliente_socket;
                 ciclo_instruccion(cliente_socket, logger); // cuando la cpu recibe el pcb simula un ciclo de instruccion
             
@@ -80,6 +81,7 @@ static void procesar_conexion(void *void_args)
             interrupciones = true; // interrupciones activadas para chequearlas cuando termine de ejecutar una instruccion
             pthread_mutex_unlock(&mutex_interrupcion);
 
+            printf("valor de socket aux: %d\n", *cliente_socket_aux);
             if(running == NULL){
                 send_extranio(*cliente_socket_aux);
                 loggear_info(logger, "MANDE EXTRANIO\n", mutex_logger_cpu);
@@ -430,6 +432,10 @@ void chequear_interrupciones(uint32_t *cliente_socket)
         pthread_mutex_lock(&mutex_running_cpu);
         running = NULL; // desalojo el pcb
         pthread_mutex_unlock(&mutex_running_cpu);
+
+        pthread_mutex_lock(&mutex_interrupcion);
+        interrupciones = false;
+        pthread_mutex_unlock(&mutex_interrupcion);
 
         pthread_mutex_lock(&mutex_interrupcion);
     }

@@ -83,9 +83,8 @@ void swap()
         switch (variable_global->indicador)
         {
         case CREAR_ARCHIVO_SWAP:
-            printf("WDGIOWHDFHNSDHNFJSHDFJSHDFJHNSDJF\n");
             crear_archivo_swap(variable_global->proceso, variable_global->tamanio_proceso, logger, mutex_logger_memoria);
-            sem_post(&sem_fin_swap);
+            sem_post(&sem_creacion_archivo_swap);
             usleep(configuracion_memoria->retardo_swap * 1000); // tiempo que se debera esperar para cada operacion del SWAP
             break;
 

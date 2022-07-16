@@ -48,6 +48,7 @@ void inicializar_semaforos()
 {   
     sem_init(&sem_swap, 0, 0);
     sem_init(&sem_fin_swap, 0, 0);
+    sem_init(&sem_creacion_archivo_swap, 0, 0);
     pthread_mutex_init(&mutex_logger_memoria, NULL);
     pthread_mutex_init(&mutex_valor_tp, NULL);
     pthread_mutex_init(&mutex_lista_estructuras, NULL);

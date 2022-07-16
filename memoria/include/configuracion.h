@@ -26,6 +26,7 @@ pthread_mutex_t mutex_espacio_memoria;
 pthread_mutex_t mutex_variable_global;
 sem_t sem_swap;
 sem_t sem_fin_swap;
+sem_t sem_creacion_archivo_swap;
 void* espacio_memoria;
 int cant_total_marcos;
 t_list* marcos_totales; 

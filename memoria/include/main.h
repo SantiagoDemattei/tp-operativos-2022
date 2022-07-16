@@ -36,6 +36,7 @@ void destruir_semaforos(){
     pthread_mutex_destroy(&mutex_variable_global);
     sem_destroy(&sem_swap);
     sem_destroy(&sem_fin_swap);
+    sem_destroy(&sem_creacion_archivo_swap);
 }
 
 
