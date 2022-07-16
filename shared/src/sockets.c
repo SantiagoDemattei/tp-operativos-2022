@@ -57,6 +57,10 @@ uint32_t* esperar_cliente(t_log* logger, const char* name, uint32_t socket_servi
     *socket_cliente = accept(socket_servidor, (void*) &dir_cliente, &tam_direccion); //accept devuelve la linea donde quedan conectados
     // si el name del servidor es "CPU INTERRUPT", printf del valor del socket_cliente
     log_info(logger, "Cliente conectado (a %s)\n", name);
+    if(strcmp(name, "CPU INTERRUPT") == 0){
+        printf("%d\n", *socket_cliente);
+        log_info(logger, "Socket Cliente: %d\n", *socket_cliente);
+    }
 
     return socket_cliente;
 }

@@ -46,7 +46,7 @@ static void procesar_conexion(void *void_args)
     op_code cop;
 
     while (*cliente_socket != -1)
-    {
+    {   
         if (recv(*cliente_socket, &cop, sizeof(op_code), 0) != sizeof(op_code))
         {
             loggear_info(logger, "DISCONNECT", mutex_logger_cpu);
