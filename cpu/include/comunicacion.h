@@ -22,6 +22,7 @@
 uint32_t crear_comunicacion_dispatch(t_configuracion_cpu* configuracion_cpu, t_log* logger);
 uint32_t crear_comunicacion_interrupt(t_configuracion_cpu* configuracion_cpu, t_log* logger);
 uint32_t crear_conexion_memoria(t_configuracion_cpu* configuracion_cpu, t_log* logger);
+uint32_t server_escuchar_interrupcion(t_log *logger, char *server_name, uint32_t server_socket);
 uint32_t server_escuchar(t_log* logger, char* server_name, uint32_t server_socket);
 uint32_t enumerar_instruccion (t_instruccion* instruccion);
 void controlador_tiempo_blocked_proceso(t_pcb *pcb);

@@ -16,7 +16,7 @@ void sighandler(int x)
 
 void interrupt()
 {
-    while(server_escuchar(logger_cpu, "CPU INTERRUPT", socket_cpu_interrupt) != 0);
+    while(server_escuchar_interrupcion(logger_cpu, "CPU INTERRUPT", socket_cpu_interrupt) != 0);
     pthread_exit(NULL);
 }
 

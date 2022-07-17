@@ -46,7 +46,7 @@ static void procesar_conexion(void *void_args)
     op_code cop;
 
     while (*cliente_socket != -1)
-    {   
+    {
         if (recv(*cliente_socket, &cop, sizeof(op_code), 0) != sizeof(op_code))
         {
             loggear_info(logger, "DISCONNECT", mutex_logger_cpu);
@@ -64,13 +64,12 @@ static void procesar_conexion(void *void_args)
             if (recv_pcb(*cliente_socket, &running)) // en running guardo el pcb que va a ejecutar
             {
                 loggear_info(logger, "Se recibio un pcb para ejecutar\n", mutex_logger_cpu);
-                //pthread_mutex_lock(&mutex_interrupcion);
-                //interrupciones = false; // interrupciones desactivadas para chequearlas cuando termine de ejecutar una instruccion
-                //pthread_mutex_unlock(&mutex_interrupcion);
+                // pthread_mutex_lock(&mutex_interrupcion);
+                // interrupciones = false; // interrupciones desactivadas para chequearlas cuando termine de ejecutar una instruccion
+                // pthread_mutex_unlock(&mutex_interrupcion);
                 printf("valor de socket original: %d\n", *cliente_socket);
                 cliente_socket_aux = cliente_socket;
                 ciclo_instruccion(cliente_socket, logger); // cuando la cpu recibe el pcb simula un ciclo de instruccion
-            
             }
             break;
 
@@ -82,7 +81,8 @@ static void procesar_conexion(void *void_args)
             pthread_mutex_unlock(&mutex_interrupcion);
 
             printf("valor de socket aux: %d\n", *cliente_socket_aux);
-            if(running == NULL){
+            if (running == NULL)
+            {
                 send_extranio(*cliente_socket_aux);
                 loggear_info(logger, "MANDE EXTRANIO\n", mutex_logger_cpu);
             }
@@ -106,6 +106,34 @@ static void procesar_conexion(void *void_args)
     log_info(logger, "El cliente se desconecto de %s server", server_name);
     pthread_mutex_unlock(&mutex_logger_cpu);
     return;
+}
+
+uint32_t server_escuchar_interrupcion(t_log *logger, char *server_name, uint32_t server_socket)
+{
+    uint32_t *cliente_socket = esperar_cliente(logger, server_name, server_socket); // espera a que se conecte un cliente
+    printf("cliente socket interrupcion es: %d\n", *cliente_socket);
+    if (*cliente_socket != -1)
+    {   
+        printf("cliente socket interrupcion 2 es: %d\n", *cliente_socket);
+        
+        pthread_mutex_lock(&mutex_logger_cpu);
+        log_info(logger, "cliente socket interrupcion 3 es: %d\n");
+        pthread_mutex_unlock(&mutex_logger_cpu);
+
+        pthread_mutex_lock(&mutex_interrupcion);
+        interrupciones = true; // interrupciones activadas para chequearlas cuando termine de ejecutar una instruccion
+        pthread_mutex_unlock(&mutex_interrupcion);
+
+        printf("valor de socket aux: %d\n", *cliente_socket_aux);
+        if (running == NULL)
+        {
+            send_extranio(*cliente_socket_aux);
+            loggear_info(logger, "MANDE EXTRANIO\n", mutex_logger_cpu);
+        }
+
+        return 1;
+    }
+    return 0;
 }
 
 uint32_t server_escuchar(t_log *logger, char *server_name, uint32_t server_socket) // hilos al pedo
@@ -392,9 +420,9 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
             chequear_interrupciones(cliente_socket); // cuando termina de ejecutar una instruccion chequeo si hay interrupciones
         }
         else
-        {   
+        {
             printf("el valor de interrupciones es: %d\n", interrupciones);
-            if (interrupciones) 
+            if (interrupciones)
             {
                 pthread_mutex_lock(&mutex_interrupcion);
                 interrupciones = false;
