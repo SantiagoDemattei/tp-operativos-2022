@@ -1,0 +1,47 @@
+[INFO] 19:19:51:503 KERNEL/(28615:28615): Cliente conectado (a KERNEL)
+
+[INFO] 19:20:24:722 KERNEL/(28663:28663): Esperando a 127.0.0.1:8000 (CONSOLA)
+
+[INFO] 19:20:24:722 KERNEL/(28663:28664): Cliente conectado en 127.0.0.1:8001 (a CPU DISPATCH)
+
+[INFO] 19:20:26:247 KERNEL/(28663:28663): Cliente conectado (a KERNEL)
+
+[INFO] 19:20:26:248 KERNEL/(28663:28671): Se recibieron las instrucciones
+[INFO] 19:20:26:248 KERNEL/(28663:28671): Cantidad de procesos en memoria: 0
+
+[INFO] 19:20:26:248 KERNEL/(28663:28671): valor del semaforo sem_inicio antes del wait: 1
+
+[INFO] 19:20:26:249 KERNEL/(28663:28671): Entro a inicializar (POR VERIFICACION_MULTIPROGRAMACION)
+
+[INFO] 19:20:26:249 KERNEL/(28663:28671): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 19:20:26:251 KERNEL/(28663:28671): Se inicializo el proceso 1 con el id 0 de la tabla de pagina 1 
+
+[INFO] 19:20:26:252 KERNEL/(28663:28671): Se agrega el proceso 1 a la cola de ready
+[INFO] 19:20:26:252 KERNEL/(28663:28664): Se envio el proceso 1 a la CPU, (RUNNING ESTABA EN NULL)
+
+[INFO] 19:20:34:168 KERNEL/(28663:28665): Nuevo proceso en cola blocked
+
+[WARNING] 19:20:35:169 KERNEL/(28663:28708): Se va a suspender el proceso: 1
+
+[INFO] 19:20:35:169 KERNEL/(28663:28708): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 19:20:35:175 KERNEL/(28663:28708): Confirmacion de suspension recibida
+[INFO] 19:20:35:175 KERNEL/(28663:28667): Cantidad de procesos en memoria: 0
+
+[INFO] 19:20:39:168 KERNEL/(28663:28666): El proceso 1 se desbloqueo, hilo bloquear
+
+[INFO] 19:20:39:168 KERNEL/(28663:28667): Cantidad de procesos en memoria: 0
+
+[INFO] 19:20:39:168 KERNEL/(28663:28667): El proceso 1 pasara de ready suspendido a ready, , hilo sem queue suspended
+
+[INFO] 19:20:39:169 KERNEL/(28663:28667): Se puso el proceso 1 en la cola ready
+
+[INFO] 19:20:39:169 KERNEL/(28663:28664): Se envio el proceso 1 a la CPU, (RUNNING ESTABA EN NULL)
+
+[INFO] 19:20:47:059 KERNEL/(28663:28665): Orden EXIT recibida
+[INFO] 19:20:47:059 KERNEL/(28663:28665): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 19:20:47:060 KERNEL/(28663:28667): Cantidad de procesos en memoria: 0
+
+[INFO] 19:20:47:061 KERNEL/(28663:28671): DISCONNECT
