@@ -49,4 +49,5 @@ bool recv_frame(uint32_t fd, t_marco_presencia** marco_presencia);
 bool send_ejecutar_copy(uint32_t fd, uint32_t marco_origen, uint32_t desplazamiento_origen, uint32_t marco_destino, uint32_t desplazamiento_destino, uint32_t id_proceso);
 bool recv_ejecutar_copy(uint32_t fd, uint32_t* marco_origen, uint32_t* desplazamiento_origen, uint32_t* marco_destino, uint32_t* desplazamiento_destino, uint32_t* id_proceso);
 bool send_extranio(uint32_t fd);
+bool send_confirmacion_interrupcion(uint32_t fd);
 #endif
