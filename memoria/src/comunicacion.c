@@ -48,7 +48,7 @@ static void procesar_conexion(void *void_args)
     uint32_t num_tabla_segundo_nivel;
     uint32_t num_segundo_nivel;
     uint32_t entrada_tabla_2do_nivel;
-    t_marco_presencia *marco_presencia = malloc(sizeof(t_marco_presencia));
+    t_marco_presencia *marco_presencia;
     uint32_t frame;
     uint32_t desplazamiento;
     uint32_t valor_leido;
@@ -67,6 +67,7 @@ static void procesar_conexion(void *void_args)
         if (recv(*cliente_socket, &cop, sizeof(op_code), 0) != sizeof(op_code))
         { // desconectamos al cliente xq no le esta mandando el cop bien
             loggear_info(logger, "DISCONNECT!\n", mutex_logger_memoria);
+            free(cliente_socket);
             return;
         }
         switch (cop)
@@ -155,9 +156,9 @@ static void procesar_conexion(void *void_args)
                 list_add(estructura->lista_tablas_segundo_nivel, tabla_segundo_nivel); // guarda la tabla de 2do nivel en la lista de tablas de segundo nivel de la estrcutura del proceso
             }
 
-            char *proceso_string = malloc(sizeof(id_proceso) + strlen("/.swap")); // para agregarlo en la url del archivo de swap
+            char *proceso_string; // para agregarlo en la url del archivo de swap
             proceso_string = string_from_format("/%d.swap", id_proceso);
-            char *path_archivo = malloc(strlen(configuracion_memoria->path_swap + strlen(proceso_string)));;
+            char *path_archivo;
             path_archivo = string_from_format("%s%s", configuracion_memoria->path_swap, proceso_string);
             free(proceso_string);
             // string_append(&path_archivo, configuracion_memoria->path_swap);
@@ -210,7 +211,7 @@ static void procesar_conexion(void *void_args)
             marco_presencia = obtener_frame(num_segundo_nivel, entrada_tabla_2do_nivel, nro_pagina);
             usleep(configuracion_memoria->retardo_memoria);
             send_frame(*cliente_socket, marco_presencia);
-            //free(marco_presencia);
+            free(marco_presencia);
             break;
 
         case EJECUTAR_WRITE:
@@ -456,7 +457,7 @@ uint32_t buscar_marco_libre(uint32_t nro_pagina, void *contenido_pagina)
                         estructura_proceso_actual->puntero_clock = i + 1;
                     }
                     pthread_mutex_unlock(&mutex_estructura_proceso_actual);
-                    //list_destroy_and_destroy_elements(paginas_cargadas, free);
+                    list_destroy_and_destroy_elements(paginas_cargadas, free);
                     return marco_asignado;
                 }
                 else
