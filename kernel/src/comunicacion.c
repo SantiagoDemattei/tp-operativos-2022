@@ -56,11 +56,10 @@ static void procesar_conexion(void *void_args)
     t_pcb *pcb;
 
     while (*cliente_socket != -1) // mientras el cliente no se haya desconectado. (Es el socket de la consola)
-    {   
+    {
         if (recv(*cliente_socket, &cop, sizeof(op_code), 0) != sizeof(op_code))
         {
             loggear_info(logger, "DISCONNECT", mutex_logger_kernel);
-            free(cliente_socket);
             return;
         }
 
@@ -110,7 +109,10 @@ uint32_t server_escuchar(t_log *logger, char *server_name, uint32_t server_socke
         args->log = logger;                                                        // guarda el logger en la estructura
         args->fd = cliente_socket;                                                 // guarda el socket del cliente en la estructura
         args->server_name = server_name;                                           // guarda el nombre del servidor en la estructura
-        pthread_create(&thread, NULL, (void *)procesar_conexion, args); 
+        valor = pthread_create(&thread, NULL, (void *)procesar_conexion, args); 
+        if( valor == 0){
+            loggear_info(logger, "Hilo para procesar conexion creado correctamente", mutex_logger_kernel);
+        }
         pthread_detach(thread);
         return 1; // devuelve 1 para indicar que se conecto un cliente
     }
@@ -280,7 +282,6 @@ void planificar()
             char *mensaje2;
             int valor_semaforo_ready;
             int valor_semaforo_planificar;
-            op_code cop;
 
             sem_getvalue(&sem_nuevo_ready, &valor_semaforo_ready);
             sem_getvalue(&sem_planificar, &valor_semaforo_planificar);
@@ -330,16 +331,10 @@ void planificar()
                     printf("Mande la interrupcion a la cpu\n");
                 else
                     printf("No mande la interrupcion a la cpu\n");
-                
-                if(recv(socket_cpu_interrupt, &cop, sizeof(op_code), 0) != sizeof(op_code)){ // para esperar la confirmacion de interrupcion
-                    loggear_info(logger, "DISCONNECT", mutex_logger_kernel);
-                    return;
-                }
-                printf("recibi el op_code %d\n", cop);
-                liberar_conexion(socket_cpu_interrupt);
-
+                // printf("INTERRUMPIENDO PROCESO: %d, hilo planificar\n", running->id);
                 sem_post(&sem_recibir);  // activo al hilo recibir para que se ponga a la espera de un mensaje de la CPU
                 sem_wait(&sem_desalojo); // espera que lo habilite el kernel cuando le llega el pcb del proceso desalojado
+                liberar_conexion(socket_cpu_interrupt);
                 t_pcb *pcb_elegido = realizar_estimacion();
 
                 pthread_mutex_lock(&mutex_info_desalojado);
@@ -358,9 +353,6 @@ void planificar()
                 printf("en running esta el proceso: %d\n", running->id);
                 fecha_inicio = time(NULL); // setea la fecha de inicio de ejecucion porque es un proceso nuevo o continua el mismo(fue desalojado y se volvio a elegir)
                 pthread_mutex_unlock(&mutex_estado_running);
-
-                destruir_pcb(pcb_elegido);
-
                 mensaje1 = string_from_format("Se envio el proceso %d a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar\n", pcb_elegido->id);
                 loggear_info(logger, mensaje1, mutex_logger_kernel);
                 free(mensaje1);
@@ -653,7 +645,6 @@ void revisar_entrada_a_ready() // reviso si hay algun proceso en new o en suspen
             mensaje = string_from_format("Se puso el proceso %d en la cola ready\n", pcb->id);
             pthread_mutex_unlock(&mutex_estado_running);
             loggear_info(logger, mensaje, mutex_logger_kernel);
-            free(mensaje);
         }
     }
 }

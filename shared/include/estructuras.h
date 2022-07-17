@@ -32,8 +32,7 @@ typedef enum
     OK,
     OK_READ,
     FRAME,
-    EXTRANIO,
-    CONFIRMACION_INTERRUPCION
+    EXTRANIO
 } op_code;
 
 typedef struct // config para la consola

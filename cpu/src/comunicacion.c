@@ -42,28 +42,14 @@ static void procesar_conexion(void *void_args)
     uint32_t *cliente_socket = args->fd; // el cliente socket puede ser interrupt o dispatch
     char *server_name = args->server_name;
     free(args);
-    char* mensaje;
 
     op_code cop;
-    pthread_t thread;
-    thread = pthread_self();
-    if (strcmp(server_name, "CPU INTERRUPT") == 0){
-        mensaje = string_from_format("Thread %d: procesar_conexion, con cliente %d", thread, *cliente_socket);
-        loggear_info(logger, mensaje, mutex_logger_cpu);
-        free(mensaje);
-    }
-    while (*cliente_socket != -1)
-    {
-        if (strcmp(server_name, "CPU INTERRUPT") == 0){
-            mensaje = string_from_format("Estoy esperando interrupcion en el hilo %d", thread);
-            loggear_info(logger, mensaje, mutex_logger_cpu);
-            free(mensaje);
-        }
 
+    while (*cliente_socket != -1)
+    {   
         if (recv(*cliente_socket, &cop, sizeof(op_code), 0) != sizeof(op_code))
         {
             loggear_info(logger, "DISCONNECT", mutex_logger_cpu);
-            free(cliente_socket);
             return;
         }
 
@@ -78,12 +64,13 @@ static void procesar_conexion(void *void_args)
             if (recv_pcb(*cliente_socket, &running)) // en running guardo el pcb que va a ejecutar
             {
                 loggear_info(logger, "Se recibio un pcb para ejecutar\n", mutex_logger_cpu);
-                // pthread_mutex_lock(&mutex_interrupcion);
-                // interrupciones = false; // interrupciones desactivadas para chequearlas cuando termine de ejecutar una instruccion
-                // pthread_mutex_unlock(&mutex_interrupcion);
+                //pthread_mutex_lock(&mutex_interrupcion);
+                //interrupciones = false; // interrupciones desactivadas para chequearlas cuando termine de ejecutar una instruccion
+                //pthread_mutex_unlock(&mutex_interrupcion);
                 printf("valor de socket original: %d\n", *cliente_socket);
                 cliente_socket_aux = cliente_socket;
                 ciclo_instruccion(cliente_socket, logger); // cuando la cpu recibe el pcb simula un ciclo de instruccion
+            
             }
             break;
 
@@ -94,10 +81,8 @@ static void procesar_conexion(void *void_args)
             interrupciones = true; // interrupciones activadas para chequearlas cuando termine de ejecutar una instruccion
             pthread_mutex_unlock(&mutex_interrupcion);
 
-            send_confirmacion_interrupcion(*cliente_socket);
             printf("valor de socket aux: %d\n", *cliente_socket_aux);
-            if (running == NULL)
-            {
+            if(running == NULL){
                 send_extranio(*cliente_socket_aux);
                 loggear_info(logger, "MANDE EXTRANIO\n", mutex_logger_cpu);
             }
@@ -127,27 +112,16 @@ uint32_t server_escuchar(t_log *logger, char *server_name, uint32_t server_socke
 {
     uint32_t *cliente_socket = esperar_cliente(logger, server_name, server_socket); // espera a que se conecte un cliente
     printf("cliente socket es: %d\n", *cliente_socket);
-    int valor;
     if (*cliente_socket != -1)
-    {                                                                                 // si se conecto un cliente
-        pthread_t hilo;                                                               // crea un hilo para procesar la conexion
-        t_procesar_conexion_args *args = malloc(sizeof(t_procesar_conexion_args));    // crea una estructura para pasarle los argumentos al hilo
-        args->log = logger;                                                           // guarda el logger en la estructura
-        args->fd = cliente_socket;                                                    // guarda el socket del cliente en la estructura
-        args->server_name = server_name;                                              // guarda el nombre del servidor en la estructura
-        valor = pthread_create(&hilo, NULL, (void *)procesar_conexion, (void *)args); // crea el hilo
-        if (valor == 0)
-        {
-            loggear_info(logger, "Hilo para procesar conexion creado correctamente", mutex_logger_cpu);
-        }
-        else
-            loggear_info(logger, "Error al crear hilo para procesar conexion", mutex_logger_cpu);
-
-        if(strcmp(server_name, "CPU INTERRUPT") == 0) // si el cliente se conecto por el servidor CPU INTERRUPT, espero a que termine de hacerse la interrupcion, para poder anteder otra
-            pthread_join(hilo, NULL);
-        else 
-            pthread_detach(hilo); // lo desconecta del hilo
-        return 1;                 // devuelve 1 para indicar que se conecto un cliente
+    {                                                                              // si se conecto un cliente
+        pthread_t hilo;                                                            // crea un hilo para procesar la conexion
+        t_procesar_conexion_args *args = malloc(sizeof(t_procesar_conexion_args)); // crea una estructura para pasarle los argumentos al hilo
+        args->log = logger;                                                        // guarda el logger en la estructura
+        args->fd = cliente_socket;                                                 // guarda el socket del cliente en la estructura
+        args->server_name = server_name;                                           // guarda el nombre del servidor en la estructura
+        pthread_create(&hilo, NULL, (void *)procesar_conexion, (void *)args);      // crea el hilo
+        pthread_detach(hilo);                                                      // lo desconecta del hilo
+        return 1;                                                                  // devuelve 1 para indicar que se conecto un cliente
     }
     return 0;
 }
@@ -268,7 +242,6 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
                     free(mensaje);
                     liberar_conexion(socket_memoria_cpu);
                 }
-                free(marco_presencia);
             }
 
             pthread_mutex_lock(&mutex_running_cpu);
@@ -315,7 +288,6 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
                     loggear_info(logger_cpu, "Se escribio el valor en la posicion correspondiente\n", mutex_logger_cpu);
                     liberar_conexion(socket_memoria_cpu);
                 }
-                free(marco_presencia);
             }
 
             pthread_mutex_lock(&mutex_running_cpu);
@@ -388,8 +360,6 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
             pthread_mutex_unlock(&mutex_running_cpu);
             free(direccion_fisica_origen);
             free(direccion_fisica_destino);
-            free(marco_presencia_origen);
-            free(marco_presencia_destino);
             break;
 
         case EXIT:
@@ -400,7 +370,6 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
             // pthread_mutex_unlock(&mutex_interrupcion);
             running->program_counter++;
             limpiar_tlb();
-            destruir_pcb(running);
             running = NULL;
             pthread_mutex_unlock(&mutex_running_cpu);
             break;
@@ -423,9 +392,9 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
             chequear_interrupciones(cliente_socket); // cuando termina de ejecutar una instruccion chequeo si hay interrupciones
         }
         else
-        {
+        {   
             printf("el valor de interrupciones es: %d\n", interrupciones);
-            if (interrupciones)
+            if (interrupciones) 
             {
                 pthread_mutex_lock(&mutex_interrupcion);
                 interrupciones = false;

@@ -9,7 +9,6 @@ void sighandler(int x)
         liberar_conexion(socket_cpu_interrupt);
         destruir_semaforos();
         log_destroy(logger_cpu);
-        limpiar_tlb();
         liberar_estructuras_cpu(configuracion_cpu);
         exit(EXIT_SUCCESS);
     }

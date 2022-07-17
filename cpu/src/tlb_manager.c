@@ -83,7 +83,7 @@ ALGORITMO_REEMPLAZO algoritmo_remplazo(char *algoritmo)
 void limpiar_tlb()
 {
     pthread_mutex_lock(&mutex_tlb);
-    list_clean_and_destroy_elements(tlb, free);
+    list_clean(tlb);
     pthread_mutex_unlock(&mutex_tlb);
 }
 

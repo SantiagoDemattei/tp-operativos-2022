@@ -11,7 +11,6 @@
 pthread_t planificador;
 pthread_t receptor;
 pthread_t bloqueador;
-pthread_t largo_plazo;
 
 void liberar_estructuras_kernel(t_configuracion_kernel*);
 void crear_colas_estados();
@@ -70,10 +69,9 @@ void destruir_semaforos(){
 }
 
 void destruir_hilos(){
-    pthread_cancel(planificador);
-    pthread_cancel(receptor);
-    pthread_cancel(bloqueador);
-    pthread_cancel(largo_plazo);
+    pthread_detach(planificador);
+    pthread_detach(receptor);
+    pthread_detach(bloqueador);
 }
 
 #endif 

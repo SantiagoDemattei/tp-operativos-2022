@@ -901,14 +901,8 @@ bool send_extranio(uint32_t fd)
 
 #pragma endregion
 
-#pragma region CONFIRMACION_INTERRUPCION
+#pragma region SEND_PCB_RARO
 
-bool send_confirmacion_interrupcion(uint32_t fd){
-    op_code cop = CONFIRMACION_INTERRUPCION;
-    if(send(fd, &cop, sizeof(op_code), 0) != sizeof(op_code)){
-        return false;
-    }
-    return true;
-}
+
 
 #pragma endregion
