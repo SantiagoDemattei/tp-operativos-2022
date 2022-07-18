@@ -15,7 +15,6 @@
 #include "../../shared/include/utils.h"
 
 
-
 void liberar_estructuras_cpu(t_configuracion_cpu*);
 void destruir_semaforos();
 

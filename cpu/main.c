@@ -10,6 +10,9 @@ void sighandler(int x)
         destruir_semaforos();
         log_destroy(logger_cpu);
         liberar_estructuras_cpu(configuracion_cpu);
+        limpiar_tlb();
+        if(running != NULL)
+            destruir_pcb(running);
         exit(EXIT_SUCCESS);
     }
 }

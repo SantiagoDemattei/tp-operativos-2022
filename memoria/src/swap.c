@@ -25,9 +25,7 @@ bool crear_archivo_swap(t_estructura_proceso *estructura, uint32_t tamanio, t_lo
 void *buscar_contenido_pagina_en_swap(void *archivo_mappeado, uint32_t nro_pagina, size_t tam_pagina)
 {
     void *contenido_pagina = malloc(tam_pagina);
-    printf("voy a hacer el memcpy\n");
     memcpy(contenido_pagina, archivo_mappeado + nro_pagina * tam_pagina, tam_pagina); // pagina ocupa desde donde arranca + tamanio de la pagina
-    printf("hice el memcpy\n");
     //mostrar_contenido(contenido_pagina, tam_pagina);
     return contenido_pagina; // chorizo de bytes
 }
@@ -79,7 +77,6 @@ void swap()
     while (true)
     {
         sem_wait(&sem_swap);
-        printf("despues del semaforo\n");
         switch (variable_global->indicador)
         {
         case CREAR_ARCHIVO_SWAP:

@@ -64,27 +64,22 @@ static void procesar_conexion(void *void_args)
             if (recv_pcb(*cliente_socket, &running)) // en running guardo el pcb que va a ejecutar
             {
                 loggear_info(logger, "Se recibio un pcb para ejecutar\n", mutex_logger_cpu);
-                // pthread_mutex_lock(&mutex_interrupcion);
-                // interrupciones = false; // interrupciones desactivadas para chequearlas cuando termine de ejecutar una instruccion
-                // pthread_mutex_unlock(&mutex_interrupcion);
-                printf("valor de socket original: %d\n", *cliente_socket);
                 cliente_socket_aux = cliente_socket;
                 ciclo_instruccion(cliente_socket, logger); // cuando la cpu recibe el pcb simula un ciclo de instruccion
             }
             break;
 
         case INT_NUEVO_READY: // solo se usa para interrumpir (si llega aca vino por el socket_interrupt)
-            loggear_info(logger, "Interrumpiendo proceso", mutex_logger_cpu);
+            loggear_warning(logger, "Interrupcion Recibida", mutex_logger_cpu);
 
             pthread_mutex_lock(&mutex_interrupcion);
             interrupciones = true; // interrupciones activadas para chequearlas cuando termine de ejecutar una instruccion
             pthread_mutex_unlock(&mutex_interrupcion);
 
-            printf("valor de socket aux: %d\n", *cliente_socket_aux);
             if (running == NULL)
             {
                 send_extranio(*cliente_socket_aux);
-                loggear_info(logger, "MANDE EXTRANIO\n", mutex_logger_cpu);
+                loggear_info(logger, "No hay nadie para desalojar, aviso al Kernel\n", mutex_logger_cpu);
             }
 
             break;
@@ -111,35 +106,32 @@ static void procesar_conexion(void *void_args)
 uint32_t server_escuchar_interrupcion(t_log *logger, char *server_name, uint32_t server_socket)
 {
     uint32_t *cliente_socket = esperar_cliente(logger, server_name, server_socket); // espera a que se conecte un cliente
-    printf("cliente socket interrupcion es: %d\n", *cliente_socket);
     if (*cliente_socket != -1)
-    {   
-        printf("cliente socket interrupcion 2 es: %d\n", *cliente_socket);
-        
+    {
+
         pthread_mutex_lock(&mutex_logger_cpu);
-        log_info(logger, "cliente socket interrupcion 3 es: %d\n");
+        log_info(logger_cpu, "Interrupcion Recibida");
         pthread_mutex_unlock(&mutex_logger_cpu);
 
         pthread_mutex_lock(&mutex_interrupcion);
         interrupciones = true; // interrupciones activadas para chequearlas cuando termine de ejecutar una instruccion
         pthread_mutex_unlock(&mutex_interrupcion);
 
-        printf("valor de socket aux: %d\n", *cliente_socket_aux);
         if (running == NULL)
         {
             send_extranio(*cliente_socket_aux);
-            loggear_info(logger, "MANDE EXTRANIO\n", mutex_logger_cpu);
+            log_info(logger_cpu, "No hay nadie para desalojar, aviso al Kernel\n", mutex_logger_cpu);
         }
-
         return 1;
     }
+    free(cliente_socket);
+    free(cliente_socket_aux);
     return 0;
 }
 
 uint32_t server_escuchar(t_log *logger, char *server_name, uint32_t server_socket) // hilos al pedo
 {
     uint32_t *cliente_socket = esperar_cliente(logger, server_name, server_socket); // espera a que se conecte un cliente
-    printf("cliente socket es: %d\n", *cliente_socket);
     if (*cliente_socket != -1)
     {                                                                              // si se conecto un cliente
         pthread_t hilo;                                                            // crea un hilo para procesar la conexion
@@ -189,7 +181,7 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
         argumentos = instruccion_actual->argumentos;
 
         pthread_mutex_lock(&mutex_logger_cpu);
-        log_info(logger, "Ejecutando la instruccion: %s, del proceso: %d\n", instruccion_actual->identificador, running->id);
+        log_info(logger_cpu, "Ejecutando la instruccion: %s, del proceso: %d\n", instruccion_actual->identificador, running->id);
         pthread_mutex_unlock(&mutex_logger_cpu);
 
         switch (instruccion_actual_enum)
@@ -208,15 +200,13 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
             running->tiempo_bloqueo = tiempo_bloqueo1->argumento; // en el pcb me guardo el tiempo de bloqueo
             running->program_counter++;                           // avanzo el program counter
             send_pcb(*cliente_socket, running, BLOQUEO_IO);       // mando el pcb para que lo reciba el kernel y bloquee al pcb
-            printf("Envie proceso %d a bloquearse por I/O\n", running->id);
-            // pthread_mutex_lock(&mutex_interrupcion);
-            // interrupciones = false;
-            // pthread_mutex_unlock(&mutex_interrupcion); // interrupciones desactivadas
+            mensaje = string_from_format("Proceso %d enviado a kernel para bloquearse por I/O", running->id);
+            loggear_info(logger_cpu, mensaje, mutex_logger_cpu);
+            free(mensaje);
             destruir_pcb(running);
             limpiar_tlb();
             running = NULL; // proceso bloqueado por I/O -> en running no hay nadie
             pthread_mutex_unlock(&mutex_running_cpu);
-            printf("el valor de interrupciones es (EN BLOQUEO_IO): %d\n", interrupciones);
             break;
 
         case READ: // READ(direccion_logica): Se debera leer el valor de memoria correspondiente a esa direccion logica e imprimirlo por pantalla
@@ -227,6 +217,8 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
             marco = buscar(direccion_fisica->numero_pagina); // Buscamos si la pagina esta en la TLB
             if (marco != -1)                                 // TLB HIT (lo encontro en la tlb)
             {
+                loggear_info(logger_cpu, "\x1b[TLB HIT", mutex_logger_cpu);
+                loggear_info(logger_cpu, "ACCEDO A MEMORIA DIRECTAMENTE", mutex_logger_cpu);
                 socket_memoria_cpu = crear_conexion_memoria(configuracion_cpu, logger_cpu); // creo la conexion con la memoria
                 // send a memoria del marco, el desplazamiento (este es el tercer acceso -> para acceder al dato)
                 send_ejecutar_read(socket_memoria_cpu, marco, direccion_fisica->desplazamiento, running->id);
@@ -242,6 +234,7 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
             }
             else // TLB MISS -> 3 ACCESOS A LA MEMORIA (vamos a buscar la pagina a la tabla de paginas)
             {
+                loggear_error(logger, "TLB MISS", mutex_logger_cpu);
                 marco_presencia = obtener_marco(direccion_fisica->entrada_tabla_1er_nivel, direccion_fisica->entrada_tabla_2do_nivel, running->tabla_pagina, direccion_fisica->numero_pagina); // obtengo el marco;
 
                 t_tlb *entrada_tlb = malloc(sizeof(t_tlb));
@@ -251,6 +244,7 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
                 loggear_tlb(tlb, logger_cpu, mutex_tlb);
                 if (marco_presencia->presencia == 0) // si presencia = 0, reiniciamos la instruccion xq hubo PF
                 {
+                    loggear_warning(logger, "Hubo PAGE FAULT, REINICIAMOS LA INSTRUCCION!", mutex_logger_cpu);
                     pthread_mutex_lock(&mutex_running_cpu);
                     running->program_counter--; // reinicio la instruccion
                     pthread_mutex_unlock(&mutex_running_cpu);
@@ -270,6 +264,7 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
                     free(mensaje);
                     liberar_conexion(socket_memoria_cpu);
                 }
+                free(marco_presencia);
             }
 
             pthread_mutex_lock(&mutex_running_cpu);
@@ -286,15 +281,20 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
             marco = buscar(direccion_fisica->numero_pagina); // BUSCA EN LA TLB
             if (marco != -1)                                 // TLB HIT
             {
+                loggear_info(logger_cpu, "\x1b[TLB HIT", mutex_logger_cpu);
+                loggear_info(logger_cpu, "ACCEDO A MEMORIA DIRECTAMENTE", mutex_logger_cpu);
                 socket_memoria_cpu = crear_conexion_memoria(configuracion_cpu, logger_cpu); // creo la conexion con la memoria
                 // send a memoria del marco, el desplazamaiento y el valor a escribir (este es el tercer acceso)
                 send_ejecutar_write(socket_memoria_cpu, marco, direccion_fisica->desplazamiento, valor->argumento, running->id);
                 recv(socket_memoria_cpu, &cop, sizeof(op_code), 0); // espero el OK
-                loggear_info(logger_cpu, "Se escribio el valor en la posicion correspondiente\n", mutex_logger_cpu);
+                mensaje = string_from_format("\x1b[32m El valor escrito en el marco %d con desplazamiento %d es: %d\n", marco, direccion_fisica->desplazamiento, valor->argumento);
+                loggear_info(logger_cpu, mensaje, mutex_logger_cpu);
+                free(mensaje);
                 liberar_conexion(socket_memoria_cpu);
             }
             else // TLB MISS
             {
+                loggear_error(logger, "TLB MISS", mutex_logger_cpu);
                 marco_presencia = obtener_marco(direccion_fisica->entrada_tabla_1er_nivel, direccion_fisica->entrada_tabla_2do_nivel, running->tabla_pagina, direccion_fisica->numero_pagina); // obtengo el marco;
                 t_tlb *entrada_tlb = malloc(sizeof(t_tlb));
                 entrada_tlb->pagina = direccion_fisica->numero_pagina;
@@ -313,9 +313,12 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
                     // send a memoria del marco, el desplazamaiento y el valor a escribir (este es el tercer acceso)
                     send_ejecutar_write(socket_memoria_cpu, marco_presencia->marco, direccion_fisica->desplazamiento, valor->argumento, running->id);
                     recv(socket_memoria_cpu, &cop, sizeof(op_code), 0); // espero el OK
-                    loggear_info(logger_cpu, "Se escribio el valor en la posicion correspondiente\n", mutex_logger_cpu);
+                    mensaje = string_from_format("\x1b[32m El valor escrito en el marco %d con desplazamiento %d es: %d\n", marco_presencia->marco, direccion_fisica->desplazamiento, valor->argumento);
+                    loggear_info(logger_cpu, mensaje, mutex_logger_cpu);
+                    free(mensaje);
                     liberar_conexion(socket_memoria_cpu);
                 }
+                free(marco_presencia);
             }
 
             pthread_mutex_lock(&mutex_running_cpu);
@@ -335,15 +338,20 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
             marco_destino = buscar(direccion_fisica_destino->numero_pagina); // buscamos en la TLB el destino
             if (marco_origen != -1 && marco_destino != -1)                   // TLB HIT
             {
+                loggear_info(logger_cpu, "\x1b[TLB HIT", mutex_logger_cpu);
+                loggear_info(logger_cpu, "ACCEDO A MEMORIA DIRECTAMENTE", mutex_logger_cpu);
                 socket_memoria_cpu = crear_conexion_memoria(configuracion_cpu, logger_cpu); // creo la conexion con la memoria
                 // send a memoria del marco y desplazamiento, tanto del origen como del destino
                 send_ejecutar_copy(socket_memoria_cpu, marco_origen, direccion_fisica_origen->desplazamiento, marco_destino, direccion_fisica_destino->desplazamiento, running->id);
                 recv(socket_memoria_cpu, &cop, sizeof(op_code), 0); // espero el OK
-                loggear_info(logger_cpu, "Se copio el valor en la posicion correspondiente\n", mutex_logger_cpu);
+                mensaje = string_from_format("\x1b[32m Se copio el valor del marco %d con desplazamiento %d al marco %d con desplazamiento %d\n", marco_origen, direccion_fisica_origen->desplazamiento, marco_destino, direccion_fisica_destino->desplazamiento);
+                loggear_info(logger_cpu, mensaje, mutex_logger_cpu);
+                free(mensaje);
                 liberar_conexion(socket_memoria_cpu);
             }
             else // TLB MISS
             {
+                loggear_error(logger, "TLB MISS: No se encontro el marco origen", mutex_logger_cpu);
                 if (marco_origen == -1) // no encontro el marco origen en la tlb
                 {
                     marco_presencia_origen = obtener_marco(direccion_fisica_origen->entrada_tabla_1er_nivel, direccion_fisica_origen->entrada_tabla_2do_nivel, running->tabla_pagina, direccion_fisica_origen->numero_pagina); // obtengo el marco de la tabla de paginas;
@@ -356,6 +364,7 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
                 }
                 else
                 {
+                    loggear_error(logger, "TLB MISS: No se encontro el marco destino", mutex_logger_cpu);
                     marco_presencia_destino = obtener_marco(direccion_fisica_destino->entrada_tabla_1er_nivel, direccion_fisica_destino->entrada_tabla_2do_nivel, running->tabla_pagina, direccion_fisica_destino->numero_pagina); // obtengo el marco;
 
                     t_tlb *entrada_tlb = malloc(sizeof(t_tlb));
@@ -368,17 +377,22 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
                 // ARREGLAR EN EL CASO DE QUE LOS DOS NO ESTEN EN LA TLB
                 if (marco_presencia_origen->presencia == 0 || marco_presencia_destino->presencia == 0) // si presencia = 0 es porque hubo fallo de pagina y tenemos que reiniciar la instruccion
                 {
+                    loggear_error(logger, "Se reinicia la instruccion porque hubo Page Fault", mutex_logger_cpu);
                     pthread_mutex_lock(&mutex_running_cpu);
                     running->program_counter--; // reinicio la instruccion
                     pthread_mutex_unlock(&mutex_running_cpu);
                 }
                 else // si presencia = 1 (las dos paginas estan en la memoria), ejecutamos la instruccion
                 {
+                    loggear_info(logger_cpu, "TERCER ACCESO A MEMORIA", mutex_logger_cpu);
+                    loggear_info(logger_cpu, "\x1b[32m Ambas paginas estan presentes en la memoria", mutex_logger_cpu);
                     socket_memoria_cpu = crear_conexion_memoria(configuracion_cpu, logger_cpu); // creo la conexion con la memoria
                     // send a memoria del marco y desplazamiento, tanto del origen como del destino
                     send_ejecutar_copy(socket_memoria_cpu, marco_presencia_origen->marco, direccion_fisica_origen->desplazamiento, marco_presencia_destino->marco, direccion_fisica_destino->desplazamiento, running->id);
                     recv(socket_memoria_cpu, &cop, sizeof(op_code), 0); // espero el OK
-                    loggear_info(logger_cpu, "Se copio el valor en la posicion correspondiente\n", mutex_logger_cpu);
+                    mensaje = string_from_format("\x1b[32m Se copio el valor del marco %d con desplazamiento %d al marco %d con desplazamiento %d\n", marco_presencia_origen->marco, direccion_fisica_origen->desplazamiento, marco_presencia_destino->marco, direccion_fisica_destino->desplazamiento);
+                    loggear_info(logger_cpu, mensaje, mutex_logger_cpu);
+                    free(mensaje);
                     liberar_conexion(socket_memoria_cpu);
                 }
             }
@@ -388,16 +402,16 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
             pthread_mutex_unlock(&mutex_running_cpu);
             free(direccion_fisica_origen);
             free(direccion_fisica_destino);
+            free(marco_presencia_origen);
+            free(marco_presencia_destino);
             break;
 
         case EXIT:
             pthread_mutex_lock(&mutex_running_cpu);
             send_pcb(*cliente_socket, running, ENVIAR_PCB);
-            // pthread_mutex_lock(&mutex_interrupcion);
-            // interrupciones = false;
-            // pthread_mutex_unlock(&mutex_interrupcion);
             running->program_counter++;
             limpiar_tlb();
+            destruir_pcb(running);
             running = NULL;
             pthread_mutex_unlock(&mutex_running_cpu);
             break;
@@ -415,13 +429,10 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
         }
         if (running != NULL)
         {
-            printf("RUNNING NO ES NULL\n");
-            printf("EN RUNNING ESTA: %d\n", running->id);
             chequear_interrupciones(cliente_socket); // cuando termina de ejecutar una instruccion chequeo si hay interrupciones
         }
         else
         {
-            printf("el valor de interrupciones es: %d\n", interrupciones);
             if (interrupciones)
             {
                 pthread_mutex_lock(&mutex_interrupcion);
@@ -440,20 +451,16 @@ void chequear_interrupciones(uint32_t *cliente_socket)
 {
     pthread_mutex_lock(&mutex_interrupcion);
     char *mensaje;
+    log_info(logger_cpu, "Chequeando interrupciones");
     if (interrupciones)
     { // si hay interrupciones hay que desalojar un proceso
-        printf("ESTOY CHEQUEANDO INTERRUPCIONES\n");
+        log_warning(logger_cpu, "Hay una interrupcion");
         pthread_mutex_unlock(&mutex_interrupcion);
-        pthread_mutex_lock(&mutex_running_cpu);
-        if (running == NULL)
-        {
-            printf("RUNNING ES NULL EN LA INTERRUPCION\n");
-        }
-
+        
         send_pcb(*cliente_socket, running, INTERRUPCION); // desalojo el pcb y mando el pcb para que lo reciba el kernel
-        pthread_mutex_unlock(&mutex_running_cpu);
+
         mensaje = string_from_format("Proceso %d interrumpido", running->id);
-        loggear_warning(logger_cpu, mensaje, mutex_logger_cpu);
+        log_warning(logger_cpu, mensaje);
         free(mensaje);
         limpiar_tlb();
         destruir_pcb(running);
@@ -521,6 +528,7 @@ t_marco_presencia *obtener_marco(uint32_t entrada_tabla_1er_nivel, uint32_t entr
     uint32_t marco;
     t_marco_presencia *marco_presencia;
 
+    loggear_info(logger_cpu, "Obteniendo marco: PRIMER ACCESO A MEMORIA", mutex_logger_cpu);
     socket_memoria_cpu = crear_conexion_memoria(configuracion_cpu, logger_cpu);
     send_entrada_tabla_1er_nivel(socket_memoria_cpu, id_tabla_1, entrada_tabla_1er_nivel);
 
@@ -536,6 +544,7 @@ t_marco_presencia *obtener_marco(uint32_t entrada_tabla_1er_nivel, uint32_t entr
     // send de la entrada 2
     // recv el frame = marco
 
+    loggear_info(logger_cpu, "Obteniendo marco: SEGUNDO ACCESO A MEMORIA", mutex_logger_cpu);
     socket_memoria_cpu = crear_conexion_memoria(configuracion_cpu, logger_cpu);
     send_entrada_tabla_2do_nivel(socket_memoria_cpu, num_segundo_nivel, entrada_tabla_2do_nivel, nro_pagina);
     if (recv(socket_memoria_cpu, &cop, sizeof(op_code), 0) != sizeof(op_code))

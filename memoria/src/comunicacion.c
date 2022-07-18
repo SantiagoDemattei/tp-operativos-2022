@@ -1,6 +1,5 @@
 #include "../include/comunicacion.h"
 uint32_t contador = 0;
-bool pedido_inicializar = false;
 
 uint32_t crear_comunicacion_kernel(t_configuracion_memoria *configuracion_memoria, t_log *logger)
 { // SERVIDOR DE KERNEL
@@ -48,7 +47,7 @@ static void procesar_conexion(void *void_args)
     uint32_t num_tabla_segundo_nivel;
     uint32_t num_segundo_nivel;
     uint32_t entrada_tabla_2do_nivel;
-    t_marco_presencia *marco_presencia = malloc(sizeof(t_marco_presencia));
+    t_marco_presencia *marco_presencia;
     uint32_t frame;
     uint32_t desplazamiento;
     uint32_t valor_leido;
@@ -67,6 +66,7 @@ static void procesar_conexion(void *void_args)
         if (recv(*cliente_socket, &cop, sizeof(op_code), 0) != sizeof(op_code))
         { // desconectamos al cliente xq no le esta mandando el cop bien
             loggear_info(logger, "DISCONNECT!\n", mutex_logger_memoria);
+            //free(cliente_socket); ACA HAY LEAK. Con valgrind corre bien, pero al correrlo sin valgrind tira "Double free or corruption"
             return;
         }
         switch (cop)
@@ -77,15 +77,15 @@ static void procesar_conexion(void *void_args)
 
         case ORDEN_ENVIO_TAMANIO:
             send_tamanio_y_cant_entradas(*cliente_socket, (configuracion_memoria->tam_pagina), (configuracion_memoria->entradas_por_tabla)); // envio el tamanio de pagina y cantidad de entradas de la tabla a la cpu
-            loggear_info(logger, "Envie tamanio de pagina a CPU\n", mutex_logger_memoria);
+            loggear_info(logger, "Tamanio de pagina y cantidad de entradas por tabla enviados a la CPU\n", mutex_logger_memoria);
+            free(cliente_socket);
             break;
 
         case INICIALIZAR_ESTRUCTURAS:
             recv_inicializar_estructuras(*cliente_socket, &tamanio_proceso, &id_proceso);
-            pedido_inicializar = true;
+        
             if (estructura_proceso_existente = buscar_estructura_del_proceso_suspension(id_proceso) != NULL) // si la estructura del proceso ya estaba en la lista (porque se desperto de una suspension)
             {
-                printf("INICIALIZAR ESTRUCTURAS LUEGO DE DESPERTAR UN PROCESO SUSPENDIDO");
                 estructura_proceso_existente->marco_comienzo = buscar_marcos_para_asignar();
                 if (estructura_proceso_existente->marco_comienzo == -1)
                 {
@@ -97,9 +97,9 @@ static void procesar_conexion(void *void_args)
                 llenar_marcos_para_el_proceso(estructura_proceso_existente->marco_comienzo, estructura_proceso_existente->marco_fin, 1);        // cambia a 1 los marcos ocupados (de la memoria) que le asigno al proceso
                 llenar_marcos_para_el_proceso_local(estructura_proceso_existente->vector_marcos, configuracion_memoria->marcos_por_proceso, 0); // lleno la lista de marcos propios del proceso (estado en 0 porque estan todos libres y num de pagona en -1 porque no tienen paginas los marcos) para saber si un proceso tiene marcos libres, etc
                 if (send_valor_tb(*cliente_socket, estructura_proceso_existente->tabla_pagina1->id_tabla))
-                    printf("ENVIE EL ID DE LA TABLA 1\n");
+                    loggear_info(logger, "ID de tabla de paginas de primer nivel enviado a la CPU\n", mutex_logger_memoria);
                 else
-                    printf("NO ENVIE EL ID DE LA TABLA 1\n");
+                    loggear_error(logger, "No se pudo enviar el ID de tabla de paginas de primer nivel\n", mutex_logger_memoria);
                 free(cliente_socket);
 
                 loggear_info(logger, "Se envio el valor de la tabla de paginas al kernel\n", mutex_logger_memoria);
@@ -155,13 +155,11 @@ static void procesar_conexion(void *void_args)
                 list_add(estructura->lista_tablas_segundo_nivel, tabla_segundo_nivel); // guarda la tabla de 2do nivel en la lista de tablas de segundo nivel de la estrcutura del proceso
             }
 
-            char *proceso_string = malloc(sizeof(id_proceso) + strlen("/.swap")); // para agregarlo en la url del archivo de swap
+            char *proceso_string; // para agregarlo en la url del archivo de swap
             proceso_string = string_from_format("/%d.swap", id_proceso);
-            char *path_archivo = malloc(strlen(configuracion_memoria->path_swap + strlen(proceso_string)));
+            char *path_archivo;
             path_archivo = string_from_format("%s%s", configuracion_memoria->path_swap, proceso_string);
             free(proceso_string);
-            // string_append(&path_archivo, configuracion_memoria->path_swap);
-            // string_append(&path_archivo, proceso_string);
 
             estructura->nombre_archivo_swap = malloc(strlen(path_archivo)); // "/home/utnso/id.swap"
             string_append(&estructura->nombre_archivo_swap, path_archivo);  // agrego el path completo a la estructura
@@ -187,7 +185,6 @@ static void procesar_conexion(void *void_args)
             contador++; // para el id de la tabla de 1er nivel
             pthread_mutex_unlock(&mutex_valor_tp);
 
-            pedido_inicializar = false;
             free(cliente_socket);
 
             break;
@@ -195,23 +192,23 @@ static void procesar_conexion(void *void_args)
         case PRIMER_ACCESO:
             recv_entrada_tabla_1er_nivel(*cliente_socket, &id_tabla1, &entrada_primer_nivel);
             loggear_info(logger, "Se recibio la entrada de la tabla de paginas de primer nivel\n", mutex_logger_memoria);
-            mensaje = string_from_format("el id de la tabla de primer nivel es: %d y la entrada es %d\n", id_tabla1, entrada_primer_nivel);
+            mensaje = string_from_format("El id de la tabla de primer nivel es: %d y la entrada es %d\n", id_tabla1, entrada_primer_nivel);
             loggear_info(logger, mensaje, mutex_logger_memoria);
             free(mensaje);
             num_tabla_segundo_nivel = obtener_tabla_2do_nivel(id_tabla1, entrada_primer_nivel); // busco la tabla de segundo nivel
             usleep(configuracion_memoria->retardo_memoria);
             send_num_tabla_2do_nivel(*cliente_socket, num_tabla_segundo_nivel);
+            free(cliente_socket);
             break;
 
         case SEGUNDO_ACCESO:
             recv_entrada_tabla_2do_nivel(*cliente_socket, &num_segundo_nivel, &entrada_tabla_2do_nivel, &nro_pagina);
             loggear_info(logger, "Se recibio la entrada de la tabla de pagina de segundo nivel\n", mutex_logger_memoria);
-            printf("la tabla de segundo nivel es: %d", num_segundo_nivel);
-            printf("la entrada de la tabla de pagina de segundo nivel: %d\n", entrada_tabla_2do_nivel);
             // busco el frame en la tabla de segundo nivel
             marco_presencia = obtener_frame(num_segundo_nivel, entrada_tabla_2do_nivel, nro_pagina);
             usleep(configuracion_memoria->retardo_memoria);
             send_frame(*cliente_socket, marco_presencia);
+            free(cliente_socket);
             break;
 
         case EJECUTAR_WRITE:
@@ -221,6 +218,7 @@ static void procesar_conexion(void *void_args)
             escribir_valor(frame, desplazamiento, valor_a_escribir);
             usleep(configuracion_memoria->retardo_memoria);
             send_ok(*cliente_socket);
+            free(cliente_socket);
             break;
 
         case EJECUTAR_READ:
@@ -230,6 +228,7 @@ static void procesar_conexion(void *void_args)
             valor_leido = leer_valor(frame, desplazamiento);
             usleep(configuracion_memoria->retardo_memoria);
             send_ok_read(*cliente_socket, valor_leido);
+            free(cliente_socket);
             break;
 
         case EJECUTAR_COPY:
@@ -239,6 +238,7 @@ static void procesar_conexion(void *void_args)
             copiar_valor(frame_origen, desplazamiento_origen, frame_destino, desplazamiento_destino);
             usleep(configuracion_memoria->retardo_memoria);
             send_ok(*cliente_socket);
+            free(cliente_socket);
             break;
 
         case LIBERAR_ESTRUCTURAS:
@@ -299,7 +299,6 @@ uint32_t server_escuchar(t_log *logger, char *server_name, uint32_t server_socke
 
 void list_add_con_mutex_tablas(t_list *lista, t_estructura_proceso *tabla_pagina1)
 {
-    loggear_info(logger, "AGREGANDO A LA LISTA\n", mutex_logger_memoria);
     pthread_mutex_lock(&mutex_lista_estructuras);
     list_add(lista, tabla_pagina1);
     loggear_info(logger, "Se agrega una tabla de paginas a la lista\n", mutex_logger_memoria);
@@ -344,7 +343,6 @@ uint32_t obtener_tabla_2do_nivel(uint32_t id_tabla, uint32_t entrada_primer_nive
 
 t_list *buscar_tabla_segundo_nivel(uint32_t nro_tabla_2do_nivel) // busca la tabla de segundo nivel en la lista de todas las tablas de segundo nivel del proceso actual
 {
-    printf("buscando la tabla de segundo nivel\n");
     pthread_mutex_lock(&mutex_estructura_proceso_actual);
     t_list *lista_tablas_2do_nivel = estructura_proceso_actual->lista_tablas_segundo_nivel;
     loggear_tabla_pagina2(lista_tablas_2do_nivel, logger, mutex_logger_memoria);
@@ -367,11 +365,10 @@ t_marco_presencia *obtener_frame(uint32_t nro_tabla_2do_nivel, uint32_t entrada_
 
     pthread_mutex_lock(&mutex_lista_estructuras);
     t_list *tabla_segundo_nivel = buscar_tabla_segundo_nivel(nro_tabla_2do_nivel);
-    printf("estoy por obtener la fila en obtener frame!\n");
+
     fila_2do_nivel = list_get(tabla_segundo_nivel, entrada_tabla_2do_nivel); // obtiene la fila que quiere de la tabla de segundo nivel
     if (fila_2do_nivel->presencia == 1)
     {
-        printf("entre por el if de obtener frame porque el bit de presencia esta en 1\n");
         marco_presencia->marco = fila_2do_nivel->marco;
         marco_presencia->presencia = 1;
         /*
@@ -383,7 +380,6 @@ t_marco_presencia *obtener_frame(uint32_t nro_tabla_2do_nivel, uint32_t entrada_
     else // fallo de pagina (bit de presencia = 0) -> hay que cargar la pagina en memoria (porque esta en swap)
     {
         // ir a buscar la pagina en swap
-        printf("entre por el else de obtener marco\n");
         pthread_mutex_lock(&mutex_variable_global);
         variable_global->nro_pagina = nro_pagina;
         variable_global->proceso = estructura_proceso_actual;
@@ -405,7 +401,6 @@ t_marco_presencia *obtener_frame(uint32_t nro_tabla_2do_nivel, uint32_t entrada_
             2) bit de presencia original (0)
         */
     }
-    printf("llegue al final de obtener marco\n");
     pthread_mutex_unlock(&mutex_lista_estructuras);
     return marco_presencia;
 }
@@ -448,7 +443,6 @@ uint32_t buscar_marco_libre(uint32_t nro_pagina, void *contenido_pagina)
                     loggear_info(logger, mensaje, mutex_logger_memoria);
                     free(mensaje);
                     fila->presencia = 0;                      // como descarte una pagina, edito su entrada de la tabla de paginas poniendole el bit de presencia en 0 (ya que no esta mas presente en memoria)
-                    printf("Poniendo nueva pagina: %d\n", nro_pagina);
                     elemento->nro_pagina = nro_pagina;        // le actualizo la pagina
                     elemento->estado = 1;                     // el estado permanece en 1 xq saque una pagina e inmediatamente meti otra
                     if (i == list_size(paginas_cargadas) - 1) // si es el ultimo elemento, pongo el puntero en el primer elemento
@@ -460,7 +454,7 @@ uint32_t buscar_marco_libre(uint32_t nro_pagina, void *contenido_pagina)
                         estructura_proceso_actual->puntero_clock = i + 1;
                     }
                     pthread_mutex_unlock(&mutex_estructura_proceso_actual);
-                    //list_destroy_and_destroy_elements(paginas_cargadas, free); VER ESTO: cuando reemplazaba rompia todo
+                    list_destroy(paginas_cargadas);
                     return marco_asignado;
                 }
                 else
@@ -492,7 +486,7 @@ uint32_t buscar_marco_libre(uint32_t nro_pagina, void *contenido_pagina)
                     }
                     marco_asignado = fila->marco;
                     pthread_mutex_unlock(&mutex_estructura_proceso_actual);
-                    //list_destroy_and_destroy_elements(paginas_cargadas, free); VER ESTO: cuando reemplazaba rompia todo
+                    list_destroy(paginas_cargadas);
                     return marco_asignado;
                 }
             }
@@ -538,7 +532,7 @@ uint32_t buscar_marco_libre(uint32_t nro_pagina, void *contenido_pagina)
                     estructura_proceso_actual->puntero_clock = i + 1; // avanza el puntero
                 }
                 pthread_mutex_unlock(&mutex_estructura_proceso_actual);
-
+                list_destroy(paginas_cargadas);
                 return marco_asignado;
             }
 
@@ -571,6 +565,7 @@ uint32_t buscar_marco_libre(uint32_t nro_pagina, void *contenido_pagina)
                 }
                 pthread_mutex_unlock(&mutex_estructura_proceso_actual);
                 marco_asignado = fila->marco; // escribo la pagina actual en swap
+                list_destroy(paginas_cargadas);
                 return marco_asignado;
             }
             else if (vuelta % 2 != 0)

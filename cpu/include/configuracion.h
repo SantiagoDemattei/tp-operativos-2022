@@ -15,7 +15,6 @@ t_pcb* running; //global de la cpu
 uint32_t tamanio_pagina;
 uint32_t cant_entradas_por_tabla;
 t_list* tlb; 
-
 t_log* logger_cpu;
 t_configuracion_cpu* configuracion_cpu;
 
