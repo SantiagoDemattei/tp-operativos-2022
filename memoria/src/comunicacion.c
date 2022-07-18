@@ -206,6 +206,8 @@ static void procesar_conexion(void *void_args)
         case SEGUNDO_ACCESO:
             recv_entrada_tabla_2do_nivel(*cliente_socket, &num_segundo_nivel, &entrada_tabla_2do_nivel, &nro_pagina);
             loggear_info(logger, "Se recibio la entrada de la tabla de pagina de segundo nivel\n", mutex_logger_memoria);
+            printf("la tabla de segundo nivel es: %d", num_segundo_nivel);
+            printf("la entrada de la tabla de pagina de segundo nivel: %d\n", entrada_tabla_2do_nivel);
             // busco el frame en la tabla de segundo nivel
             marco_presencia = obtener_frame(num_segundo_nivel, entrada_tabla_2do_nivel, nro_pagina);
             usleep(configuracion_memoria->retardo_memoria);
@@ -342,6 +344,7 @@ uint32_t obtener_tabla_2do_nivel(uint32_t id_tabla, uint32_t entrada_primer_nive
 
 t_list *buscar_tabla_segundo_nivel(uint32_t nro_tabla_2do_nivel) // busca la tabla de segundo nivel en la lista de todas las tablas de segundo nivel del proceso actual
 {
+    printf("buscando la tabla de segundo nivel\n");
     pthread_mutex_lock(&mutex_estructura_proceso_actual);
     t_list *lista_tablas_2do_nivel = estructura_proceso_actual->lista_tablas_segundo_nivel;
     loggear_tabla_pagina2(lista_tablas_2do_nivel, logger, mutex_logger_memoria);
@@ -364,10 +367,11 @@ t_marco_presencia *obtener_frame(uint32_t nro_tabla_2do_nivel, uint32_t entrada_
 
     pthread_mutex_lock(&mutex_lista_estructuras);
     t_list *tabla_segundo_nivel = buscar_tabla_segundo_nivel(nro_tabla_2do_nivel);
+    printf("estoy por obtener la fila en obtener frame!\n");
     fila_2do_nivel = list_get(tabla_segundo_nivel, entrada_tabla_2do_nivel); // obtiene la fila que quiere de la tabla de segundo nivel
     if (fila_2do_nivel->presencia == 1)
     {
-
+        printf("entre por el if de obtener frame porque el bit de presencia esta en 1\n");
         marco_presencia->marco = fila_2do_nivel->marco;
         marco_presencia->presencia = 1;
         /*
@@ -379,7 +383,7 @@ t_marco_presencia *obtener_frame(uint32_t nro_tabla_2do_nivel, uint32_t entrada_
     else // fallo de pagina (bit de presencia = 0) -> hay que cargar la pagina en memoria (porque esta en swap)
     {
         // ir a buscar la pagina en swap
-
+        printf("entre por el else de obtener marco\n");
         pthread_mutex_lock(&mutex_variable_global);
         variable_global->nro_pagina = nro_pagina;
         variable_global->proceso = estructura_proceso_actual;
@@ -401,7 +405,7 @@ t_marco_presencia *obtener_frame(uint32_t nro_tabla_2do_nivel, uint32_t entrada_
             2) bit de presencia original (0)
         */
     }
-
+    printf("llegue al final de obtener marco\n");
     pthread_mutex_unlock(&mutex_lista_estructuras);
     return marco_presencia;
 }
@@ -444,6 +448,7 @@ uint32_t buscar_marco_libre(uint32_t nro_pagina, void *contenido_pagina)
                     loggear_info(logger, mensaje, mutex_logger_memoria);
                     free(mensaje);
                     fila->presencia = 0;                      // como descarte una pagina, edito su entrada de la tabla de paginas poniendole el bit de presencia en 0 (ya que no esta mas presente en memoria)
+                    printf("Poniendo nueva pagina: %d\n", nro_pagina);
                     elemento->nro_pagina = nro_pagina;        // le actualizo la pagina
                     elemento->estado = 1;                     // el estado permanece en 1 xq saque una pagina e inmediatamente meti otra
                     if (i == list_size(paginas_cargadas) - 1) // si es el ultimo elemento, pongo el puntero en el primer elemento
@@ -455,7 +460,7 @@ uint32_t buscar_marco_libre(uint32_t nro_pagina, void *contenido_pagina)
                         estructura_proceso_actual->puntero_clock = i + 1;
                     }
                     pthread_mutex_unlock(&mutex_estructura_proceso_actual);
-                    list_destroy_and_destroy_elements(paginas_cargadas, free);
+                    //list_destroy_and_destroy_elements(paginas_cargadas, free); VER ESTO: cuando reemplazaba rompia todo
                     return marco_asignado;
                 }
                 else
@@ -487,7 +492,7 @@ uint32_t buscar_marco_libre(uint32_t nro_pagina, void *contenido_pagina)
                     }
                     marco_asignado = fila->marco;
                     pthread_mutex_unlock(&mutex_estructura_proceso_actual);
-                    list_destroy_and_destroy_elements(paginas_cargadas, free);
+                    //list_destroy_and_destroy_elements(paginas_cargadas, free); VER ESTO: cuando reemplazaba rompia todo
                     return marco_asignado;
                 }
             }

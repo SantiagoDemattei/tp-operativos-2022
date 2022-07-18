@@ -1,1576 +1,852 @@
-[INFO] 19:46:19:981 KERNEL/(31147:31147): Esperando a 127.0.0.1:8000 (CONSOLA)
+[INFO] 11:31:26:917 KERNEL/(18382:18382): Esperando a 127.0.0.1:8000 (CONSOLA)
 
-[INFO] 19:46:19:982 KERNEL/(31147:31148): Cliente conectado en 127.0.0.1:8001 (a CPU DISPATCH)
+[INFO] 11:31:26:918 KERNEL/(18382:18383): Cliente conectado en 127.0.0.1:8001 (a CPU DISPATCH)
 
-[INFO] 19:46:24:434 KERNEL/(31147:31147): Cliente conectado (a KERNEL)
+[INFO] 11:31:29:935 KERNEL/(18382:18382): Cliente conectado (a KERNEL)
 
-[INFO] 19:46:24:434 KERNEL/(31147:31147): Hilo para procesar conexion creado correctamente
-[INFO] 19:46:24:435 KERNEL/(31147:31160): Se recibieron las instrucciones
-[INFO] 19:46:24:435 KERNEL/(31147:31160): Cantidad de procesos en memoria: 0
+[INFO] 11:31:29:936 KERNEL/(18382:18382): Hilo para procesar conexion creado correctamente
+[INFO] 11:31:29:936 KERNEL/(18382:18398): Se recibieron las instrucciones
+[INFO] 11:31:29:937 KERNEL/(18382:18398): Cantidad de procesos en memoria: 0
 
-[INFO] 19:46:24:435 KERNEL/(31147:31160): valor del semaforo sem_inicio antes del wait: 1
+[INFO] 11:31:29:937 KERNEL/(18382:18398): valor del semaforo sem_inicio antes del wait: 1
 
-[INFO] 19:46:24:436 KERNEL/(31147:31160): Entro a inicializar (POR VERIFICACION_MULTIPROGRAMACION)
+[INFO] 11:31:29:937 KERNEL/(18382:18398): Entro a inicializar (POR VERIFICACION_MULTIPROGRAMACION)
 
-[INFO] 19:46:24:436 KERNEL/(31147:31160): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 11:31:29:938 KERNEL/(18382:18398): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 19:46:24:439 KERNEL/(31147:31160): Se inicializo el proceso 1 con el id 0 de la tabla de pagina 1 
+[INFO] 11:31:29:947 KERNEL/(18382:18398): Se inicializo el proceso 1 con el id 0 de la tabla de pagina 1 
 
-[INFO] 19:46:24:439 KERNEL/(31147:31160): Se agrega el proceso 1 a la cola de ready
-[INFO] 19:46:24:440 KERNEL/(31147:31148): Se envio el proceso 1 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 11:31:29:948 KERNEL/(18382:18398): Se agrega el proceso 1 a la cola de ready
+[INFO] 11:31:29:948 KERNEL/(18382:18383): Se envio el proceso 1 a la CPU
 
-[INFO] 19:46:25:094 KERNEL/(31147:31147): Cliente conectado (a KERNEL)
+[INFO] 11:31:50:006 KERNEL/(18382:18384): Nuevo proceso en cola blocked
 
-[INFO] 19:46:25:094 KERNEL/(31147:31147): Hilo para procesar conexion creado correctamente
-[INFO] 19:46:25:094 KERNEL/(31147:31165): Se recibieron las instrucciones
-[INFO] 19:46:25:095 KERNEL/(31147:31165): Cantidad de procesos en memoria: 1
+[WARNING] 11:31:55:011 KERNEL/(18382:18450): Se va a suspender el proceso: 1
 
-[INFO] 19:46:25:095 KERNEL/(31147:31165): valor del semaforo sem_inicio antes del wait: 1
+[INFO] 11:31:55:012 KERNEL/(18382:18450): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 19:46:25:095 KERNEL/(31147:31165): Entro a inicializar (POR VERIFICACION_MULTIPROGRAMACION)
+[INFO] 11:31:55:021 KERNEL/(18382:18450): Confirmacion de suspension recibida
+[INFO] 11:31:55:022 KERNEL/(18382:18386): Cantidad de procesos en memoria: 0
 
-[INFO] 19:46:25:095 KERNEL/(31147:31165): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 11:31:56:007 KERNEL/(18382:18385): El proceso 1 se desbloqueo, hilo bloquear
 
-[INFO] 19:46:25:440 KERNEL/(31147:31165): Se inicializo el proceso 2 con el id 1 de la tabla de pagina 1 
+[INFO] 11:31:56:007 KERNEL/(18382:18386): Cantidad de procesos en memoria: 0
 
-[INFO] 19:46:25:440 KERNEL/(31147:31165): Se agrega el proceso 2 a la cola de ready
-[INFO] 19:46:25:441 KERNEL/(31147:31148): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 11:31:56:008 KERNEL/(18382:18386): El proceso 1 pasara de ready suspendido a ready, , hilo sem queue suspended
 
-[INFO] 19:46:25:446 KERNEL/(31147:31148): Se envio el proceso 1 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
+[INFO] 11:31:56:008 KERNEL/(18382:18386): Se puso el proceso 1 en la cola ready
 
-[INFO] 19:46:25:856 KERNEL/(31147:31147): Cliente conectado (a KERNEL)
+[INFO] 11:31:56:008 KERNEL/(18382:18383): Se envio el proceso 1 a la CPU
 
-[INFO] 19:46:25:856 KERNEL/(31147:31147): Hilo para procesar conexion creado correctamente
-[INFO] 19:46:25:857 KERNEL/(31147:31171): Se recibieron las instrucciones
-[INFO] 19:46:25:857 KERNEL/(31147:31171): Cantidad de procesos en memoria: 2
+[INFO] 11:32:31:139 KERNEL/(18382:18384): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 19:46:25:858 KERNEL/(31147:31171): valor del semaforo sem_inicio antes del wait: 1
+[INFO] 11:32:31:141 KERNEL/(18382:18386): Cantidad de procesos en memoria: 0
 
-[INFO] 19:46:25:858 KERNEL/(31147:31171): Entro a inicializar (POR VERIFICACION_MULTIPROGRAMACION)
+[INFO] 11:32:31:142 KERNEL/(18382:18398): DISCONNECT
+[INFO] 11:33:33:285 KERNEL/(18689:18689): Esperando a 127.0.0.1:8000 (CONSOLA)
 
-[INFO] 19:46:25:859 KERNEL/(31147:31171): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 11:33:33:289 KERNEL/(18689:18690): Cliente conectado en 127.0.0.1:8001 (a CPU DISPATCH)
 
-[INFO] 19:46:26:630 KERNEL/(31147:31147): Cliente conectado (a KERNEL)
+[INFO] 11:33:36:680 KERNEL/(18689:18689): Cliente conectado (a KERNEL)
 
-[INFO] 19:46:26:630 KERNEL/(31147:31147): Hilo para procesar conexion creado correctamente
-[INFO] 19:46:26:630 KERNEL/(31147:31174): Se recibieron las instrucciones
-[INFO] 19:46:26:631 KERNEL/(31147:31174): Cantidad de procesos en memoria: 2
+[INFO] 11:33:36:680 KERNEL/(18689:18689): Hilo para procesar conexion creado correctamente
+[INFO] 11:33:36:681 KERNEL/(18689:18699): Se recibieron las instrucciones
+[INFO] 11:33:36:681 KERNEL/(18689:18699): Cantidad de procesos en memoria: 0
 
-[INFO] 19:46:26:631 KERNEL/(31147:31174): valor del semaforo sem_inicio antes del wait: 0
+[INFO] 11:33:36:682 KERNEL/(18689:18699): valor del semaforo sem_inicio antes del wait: 1
 
-[INFO] 19:46:27:441 KERNEL/(31147:31171): Se inicializo el proceso 3 con el id 2 de la tabla de pagina 1 
+[INFO] 11:33:36:682 KERNEL/(18689:18699): Entro a inicializar (POR VERIFICACION_MULTIPROGRAMACION)
 
-[INFO] 19:46:27:441 KERNEL/(31147:31174): Entro a inicializar (POR VERIFICACION_MULTIPROGRAMACION)
+[INFO] 11:33:36:683 KERNEL/(18689:18699): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 19:46:27:441 KERNEL/(31147:31174): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 11:33:36:685 KERNEL/(18689:18699): Se inicializo el proceso 1 con el id 0 de la tabla de pagina 1 
 
-[INFO] 19:46:27:441 KERNEL/(31147:31171): Se agrega el proceso 3 a la cola de ready
-[INFO] 19:46:27:442 KERNEL/(31147:31148): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 11:33:36:685 KERNEL/(18689:18699): Se agrega el proceso 1 a la cola de ready
+[INFO] 11:33:36:685 KERNEL/(18689:18690): Se envio el proceso 1 a la CPU
 
-[INFO] 19:46:28:443 KERNEL/(31147:31174): Se inicializo el proceso 4 con el id 3 de la tabla de pagina 1 
+[INFO] 11:33:56:748 KERNEL/(18689:18691): Nuevo proceso en cola blocked
 
-[INFO] 19:46:28:443 KERNEL/(31147:31174): Se agrega el proceso 4 a la cola de ready
-[INFO] 19:46:34:331 KERNEL/(31147:31149): Nuevo proceso en cola blocked
+[WARNING] 11:34:01:749 KERNEL/(18689:18753): Se va a suspender el proceso: 1
 
-[WARNING] 19:46:35:332 KERNEL/(31147:31224): Se va a suspender el proceso: 1
+[INFO] 11:34:01:750 KERNEL/(18689:18753): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 19:46:35:332 KERNEL/(31147:31224): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 11:34:01:758 KERNEL/(18689:18753): Confirmacion de suspension recibida
+[INFO] 11:34:01:759 KERNEL/(18689:18693): Cantidad de procesos en memoria: 0
 
-[INFO] 19:46:35:336 KERNEL/(31147:31224): Confirmacion de suspension recibida
-[INFO] 19:46:35:336 KERNEL/(31147:31151): Cantidad de procesos en memoria: 3
+[INFO] 11:34:02:747 KERNEL/(18689:18692): El proceso 1 se desbloqueo, hilo bloquear
 
-[INFO] 19:46:39:331 KERNEL/(31147:31150): El proceso 1 se desbloqueo, hilo bloquear
+[INFO] 11:34:02:748 KERNEL/(18689:18693): Cantidad de procesos en memoria: 0
 
-[INFO] 19:46:39:331 KERNEL/(31147:31151): Cantidad de procesos en memoria: 3
+[INFO] 11:34:02:748 KERNEL/(18689:18693): El proceso 1 pasara de ready suspendido a ready, , hilo sem queue suspended
 
-[INFO] 19:46:39:332 KERNEL/(31147:31151): El proceso 1 pasara de ready suspendido a ready, , hilo sem queue suspended
+[INFO] 11:34:02:748 KERNEL/(18689:18693): Se puso el proceso 1 en la cola ready
 
-[INFO] 19:46:39:332 KERNEL/(31147:31151): Se puso el proceso 1 en la cola ready
+[INFO] 11:34:02:748 KERNEL/(18689:18690): Se envio el proceso 1 a la CPU
 
-[INFO] 19:47:57:307 KERNEL/(31147:31149): DISCONNECT
-[INFO] 19:49:06:257 KERNEL/(31646:31646): Esperando a 127.0.0.1:8000 (CONSOLA)
+[INFO] 11:34:27:892 KERNEL/(18689:18691): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 19:49:06:258 KERNEL/(31646:31647): Cliente conectado en 127.0.0.1:8001 (a CPU DISPATCH)
+[INFO] 11:34:27:896 KERNEL/(18689:18693): Cantidad de procesos en memoria: 0
 
-[INFO] 19:49:15:477 KERNEL/(31646:31646): Cliente conectado (a KERNEL)
+[INFO] 11:34:27:896 KERNEL/(18689:18699): DISCONNECT
+[INFO] 11:37:07:188 KERNEL/(19190:19190): Esperando a 127.0.0.1:8000 (CONSOLA)
 
-[INFO] 19:49:15:477 KERNEL/(31646:31646): Hilo para procesar conexion creado correctamente
-[INFO] 19:49:15:478 KERNEL/(31646:31667): Se recibieron las instrucciones
-[INFO] 19:49:15:478 KERNEL/(31646:31667): Cantidad de procesos en memoria: 0
+[INFO] 11:37:07:189 KERNEL/(19190:19191): Cliente conectado en 127.0.0.1:8001 (a CPU DISPATCH)
 
-[INFO] 19:49:15:478 KERNEL/(31646:31667): valor del semaforo sem_inicio antes del wait: 1
+[INFO] 11:37:10:304 KERNEL/(19190:19190): Cliente conectado (a KERNEL)
 
-[INFO] 19:49:15:478 KERNEL/(31646:31667): Entro a inicializar (POR VERIFICACION_MULTIPROGRAMACION)
+[INFO] 11:37:10:304 KERNEL/(19190:19190): Hilo para procesar conexion creado correctamente
+[INFO] 11:37:10:305 KERNEL/(19190:19206): Se recibieron las instrucciones
+[INFO] 11:37:10:305 KERNEL/(19190:19206): Cantidad de procesos en memoria: 0
 
-[INFO] 19:49:15:479 KERNEL/(31646:31667): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 11:37:10:305 KERNEL/(19190:19206): valor del semaforo sem_inicio antes del wait: 1
 
-[INFO] 19:49:15:483 KERNEL/(31646:31667): Se inicializo el proceso 1 con el id 0 de la tabla de pagina 1 
+[INFO] 11:37:10:306 KERNEL/(19190:19206): Entro a inicializar (POR VERIFICACION_MULTIPROGRAMACION)
 
-[INFO] 19:49:15:483 KERNEL/(31646:31667): Se agrega el proceso 1 a la cola de ready
-[INFO] 19:49:15:484 KERNEL/(31646:31647): Se envio el proceso 1 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 11:37:10:306 KERNEL/(19190:19206): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 19:49:15:832 KERNEL/(31646:31646): Cliente conectado (a KERNEL)
+[INFO] 11:37:10:308 KERNEL/(19190:19206): Se inicializo el proceso 1 con el id 0 de la tabla de pagina 1 
 
-[INFO] 19:49:15:832 KERNEL/(31646:31646): Hilo para procesar conexion creado correctamente
-[INFO] 19:49:15:833 KERNEL/(31646:31671): Se recibieron las instrucciones
-[INFO] 19:49:15:833 KERNEL/(31646:31671): Cantidad de procesos en memoria: 1
+[INFO] 11:37:10:309 KERNEL/(19190:19206): Se agrega el proceso 1 a la cola de ready
+[INFO] 11:37:10:309 KERNEL/(19190:19191): Se envio el proceso 1 a la CPU
 
-[INFO] 19:49:15:833 KERNEL/(31646:31671): valor del semaforo sem_inicio antes del wait: 1
+[INFO] 11:37:11:636 KERNEL/(19190:19190): Cliente conectado (a KERNEL)
 
-[INFO] 19:49:15:834 KERNEL/(31646:31671): Entro a inicializar (POR VERIFICACION_MULTIPROGRAMACION)
+[INFO] 11:37:11:636 KERNEL/(19190:19190): Hilo para procesar conexion creado correctamente
+[INFO] 11:37:11:637 KERNEL/(19190:19211): Se recibieron las instrucciones
+[INFO] 11:37:11:637 KERNEL/(19190:19211): Cantidad de procesos en memoria: 1
 
-[INFO] 19:49:15:834 KERNEL/(31646:31671): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 11:37:11:638 KERNEL/(19190:19211): valor del semaforo sem_inicio antes del wait: 1
 
-[INFO] 19:49:16:290 KERNEL/(31646:31646): Cliente conectado (a KERNEL)
+[INFO] 11:37:11:638 KERNEL/(19190:19211): Entro a inicializar (POR VERIFICACION_MULTIPROGRAMACION)
 
-[INFO] 19:49:16:291 KERNEL/(31646:31646): Hilo para procesar conexion creado correctamente
-[INFO] 19:49:16:292 KERNEL/(31646:31674): Se recibieron las instrucciones
-[INFO] 19:49:16:292 KERNEL/(31646:31674): Cantidad de procesos en memoria: 1
+[INFO] 11:37:11:639 KERNEL/(19190:19211): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 19:49:16:292 KERNEL/(31646:31674): valor del semaforo sem_inicio antes del wait: 0
+[INFO] 11:37:16:310 KERNEL/(19190:19211): Se inicializo el proceso 2 con el id 1 de la tabla de pagina 1 
 
-[INFO] 19:49:16:481 KERNEL/(31646:31671): Se inicializo el proceso 2 con el id 1 de la tabla de pagina 1 
+[INFO] 11:37:16:311 KERNEL/(19190:19211): Se agrega el proceso 2 a la cola de ready
+[INFO] 11:37:31:459 KERNEL/(19190:19192): Nuevo proceso en cola blocked
 
-[INFO] 19:49:16:482 KERNEL/(31646:31674): Entro a inicializar (POR VERIFICACION_MULTIPROGRAMACION)
+[INFO] 11:37:31:459 KERNEL/(19190:19191): Se envio el proceso 2 a la CPU
 
-[INFO] 19:49:16:482 KERNEL/(31646:31674): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 11:37:34:460 KERNEL/(19190:19193): El proceso 1 se desbloqueo, hilo bloquear
 
-[INFO] 19:49:16:482 KERNEL/(31646:31671): Se agrega el proceso 2 a la cola de ready
-[INFO] 19:49:16:482 KERNEL/(31646:31647): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 11:37:37:527 KERNEL/(19190:19191): Se envio el proceso 1 a la CPU
 
-[INFO] 19:49:16:490 KERNEL/(31646:31647): Se envio el proceso 1 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
+[INFO] 11:37:37:528 KERNEL/(19190:19192): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 19:49:16:684 KERNEL/(31646:31646): Cliente conectado (a KERNEL)
+[INFO] 11:37:37:530 KERNEL/(19190:19194): Cantidad de procesos en memoria: 1
 
-[INFO] 19:49:16:684 KERNEL/(31646:31646): Hilo para procesar conexion creado correctamente
-[INFO] 19:49:16:685 KERNEL/(31646:31680): Se recibieron las instrucciones
-[INFO] 19:49:16:685 KERNEL/(31646:31680): Cantidad de procesos en memoria: 2
+[INFO] 11:37:37:530 KERNEL/(19190:19211): DISCONNECT
+[INFO] 11:37:37:598 KERNEL/(19190:19192): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 19:49:16:686 KERNEL/(31646:31680): valor del semaforo sem_inicio antes del wait: 0
+[INFO] 11:37:37:599 KERNEL/(19190:19194): Cantidad de procesos en memoria: 0
 
-[INFO] 19:49:19:484 KERNEL/(31646:31674): Se inicializo el proceso 3 con el id 2 de la tabla de pagina 1 
+[INFO] 11:37:37:600 KERNEL/(19190:19206): DISCONNECT
+[INFO] 11:38:20:386 KERNEL/(19393:19393): Esperando a 127.0.0.1:8000 (CONSOLA)
 
-[INFO] 19:49:19:486 KERNEL/(31646:31680): Entro a inicializar (POR VERIFICACION_MULTIPROGRAMACION)
+[INFO] 11:38:20:387 KERNEL/(19393:19394): Cliente conectado en 127.0.0.1:8001 (a CPU DISPATCH)
 
-[INFO] 19:49:19:487 KERNEL/(31646:31674): Se agrega el proceso 3 a la cola de ready
-[INFO] 19:49:19:488 KERNEL/(31646:31680): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 11:38:23:751 KERNEL/(19393:19393): Cliente conectado (a KERNEL)
 
-[INFO] 19:49:19:489 KERNEL/(31646:31647): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 11:38:23:751 KERNEL/(19393:19393): Hilo para procesar conexion creado correctamente
+[INFO] 11:38:23:752 KERNEL/(19393:19406): Se recibieron las instrucciones
+[INFO] 11:38:23:752 KERNEL/(19393:19406): Cantidad de procesos en memoria: 0
 
-[INFO] 19:49:19:494 KERNEL/(31646:31647): Se envio el proceso 1 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
+[INFO] 11:38:23:752 KERNEL/(19393:19406): valor del semaforo sem_inicio antes del wait: 1
 
-[INFO] 19:49:19:508 KERNEL/(31646:31680): Se inicializo el proceso 4 con el id 3 de la tabla de pagina 1 
+[INFO] 11:38:23:752 KERNEL/(19393:19406): Entro a inicializar (POR VERIFICACION_MULTIPROGRAMACION)
 
-[INFO] 19:49:19:509 KERNEL/(31646:31680): Se agrega el proceso 4 a la cola de ready
-[INFO] 19:49:19:510 KERNEL/(31646:31647): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 11:38:23:753 KERNEL/(19393:19406): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 19:49:19:534 KERNEL/(31646:31647): Se envio el proceso 1 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
+[INFO] 11:38:23:754 KERNEL/(19393:19406): Se inicializo el proceso 1 con el id 0 de la tabla de pagina 1 
 
-[INFO] 19:49:25:467 KERNEL/(31646:31648): Nuevo proceso en cola blocked
+[INFO] 11:38:23:755 KERNEL/(19393:19406): Se agrega el proceso 1 a la cola de ready
+[INFO] 11:38:23:755 KERNEL/(19393:19394): Se envio el proceso 1 a la CPU
 
-[INFO] 19:49:25:468 KERNEL/(31646:31647): Se envio el proceso 2 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 11:38:24:850 KERNEL/(19393:19393): Cliente conectado (a KERNEL)
 
-[WARNING] 19:49:26:469 KERNEL/(31646:31723): Se va a suspender el proceso: 1
+[INFO] 11:38:24:850 KERNEL/(19393:19393): Hilo para procesar conexion creado correctamente
+[INFO] 11:38:24:850 KERNEL/(19393:19414): Se recibieron las instrucciones
+[INFO] 11:38:24:851 KERNEL/(19393:19414): Cantidad de procesos en memoria: 1
 
-[INFO] 19:49:26:470 KERNEL/(31646:31723): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 11:38:24:851 KERNEL/(19393:19414): valor del semaforo sem_inicio antes del wait: 1
 
-[INFO] 19:49:26:476 KERNEL/(31646:31723): Confirmacion de suspension recibida
-[INFO] 19:49:26:477 KERNEL/(31646:31650): Cantidad de procesos en memoria: 3
+[INFO] 11:38:24:852 KERNEL/(19393:19414): Entro a inicializar (POR VERIFICACION_MULTIPROGRAMACION)
 
-[INFO] 19:49:30:467 KERNEL/(31646:31649): El proceso 1 se desbloqueo, hilo bloquear
+[INFO] 11:38:24:852 KERNEL/(19393:19414): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 19:49:30:468 KERNEL/(31646:31650): Cantidad de procesos en memoria: 3
+[INFO] 11:38:29:756 KERNEL/(19393:19414): Se inicializo el proceso 2 con el id 1 de la tabla de pagina 1 
 
-[INFO] 19:49:30:469 KERNEL/(31646:31650): El proceso 1 pasara de ready suspendido a ready, , hilo sem queue suspended
+[INFO] 11:38:29:756 KERNEL/(19393:19414): Se agrega el proceso 2 a la cola de ready
+[INFO] 11:38:44:878 KERNEL/(19393:19395): Nuevo proceso en cola blocked
 
-[INFO] 19:49:30:469 KERNEL/(31646:31650): Se puso el proceso 1 en la cola ready
+[INFO] 11:38:44:878 KERNEL/(19393:19394): Se envio el proceso 2 a la CPU
 
-[INFO] 19:49:30:470 KERNEL/(31646:31647): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 11:38:47:879 KERNEL/(19393:19396): El proceso 1 se desbloqueo, hilo bloquear
 
-[INFO] 19:49:30:554 KERNEL/(31646:31647): Se envio el proceso 1 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
+[INFO] 11:38:50:944 KERNEL/(19393:19394): Se envio el proceso 1 a la CPU
 
-[INFO] 19:49:38:499 KERNEL/(31646:31648): Orden EXIT recibida
-[INFO] 19:49:38:501 KERNEL/(31646:31647): Se envio el proceso 2 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 11:38:50:944 KERNEL/(19393:19395): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 19:49:38:501 KERNEL/(31646:31648): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 11:38:50:951 KERNEL/(19393:19397): Cantidad de procesos en memoria: 1
 
-[INFO] 19:49:38:507 KERNEL/(31646:31650): Cantidad de procesos en memoria: 3
+[INFO] 11:38:50:951 KERNEL/(19393:19414): DISCONNECT
+[INFO] 11:38:51:014 KERNEL/(19393:19395): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 19:49:38:507 KERNEL/(31646:31667): DISCONNECT
-[INFO] 19:49:43:603 KERNEL/(31646:31648): Nuevo proceso en cola blocked
+[INFO] 11:38:51:017 KERNEL/(19393:19397): Cantidad de procesos en memoria: 0
 
-[INFO] 19:49:43:604 KERNEL/(31646:31647): Se envio el proceso 3 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 11:38:51:017 KERNEL/(19393:19406): DISCONNECT
+[INFO] 11:40:29:965 KERNEL/(19737:19737): Esperando a 127.0.0.1:8000 (CONSOLA)
 
-[WARNING] 19:49:44:605 KERNEL/(31646:31793): Se va a suspender el proceso: 2
+[INFO] 11:40:29:966 KERNEL/(19737:19738): Cliente conectado en 127.0.0.1:8001 (a CPU DISPATCH)
 
-[INFO] 19:49:44:606 KERNEL/(31646:31793): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 11:40:37:743 KERNEL/(19737:19737): Cliente conectado (a KERNEL)
 
-[INFO] 19:49:44:609 KERNEL/(31646:31793): Confirmacion de suspension recibida
-[INFO] 19:49:44:609 KERNEL/(31646:31650): Cantidad de procesos en memoria: 2
+[INFO] 11:40:37:743 KERNEL/(19737:19737): Hilo para procesar conexion creado correctamente
+[INFO] 11:40:37:743 KERNEL/(19737:19756): Se recibieron las instrucciones
+[INFO] 11:40:37:744 KERNEL/(19737:19756): Cantidad de procesos en memoria: 0
 
-[INFO] 19:49:48:604 KERNEL/(31646:31649): El proceso 2 se desbloqueo, hilo bloquear
+[INFO] 11:40:37:744 KERNEL/(19737:19756): valor del semaforo sem_inicio antes del wait: 1
 
-[INFO] 19:49:48:604 KERNEL/(31646:31650): Cantidad de procesos en memoria: 2
+[INFO] 11:40:37:744 KERNEL/(19737:19756): Entro a inicializar (POR VERIFICACION_MULTIPROGRAMACION)
 
-[INFO] 19:49:48:604 KERNEL/(31646:31650): El proceso 2 pasara de ready suspendido a ready, , hilo sem queue suspended
+[INFO] 11:40:37:745 KERNEL/(19737:19756): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 19:49:48:604 KERNEL/(31646:31650): Se puso el proceso 2 en la cola ready
+[INFO] 11:40:37:747 KERNEL/(19737:19756): Se inicializo el proceso 1 con el id 0 de la tabla de pagina 1 
 
-[INFO] 19:49:48:605 KERNEL/(31646:31647): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 11:40:37:765 KERNEL/(19737:19756): Se agrega el proceso 1 a la cola de ready
+[INFO] 11:40:37:767 KERNEL/(19737:19738): Se envio el proceso 1 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 19:49:48:680 KERNEL/(31646:31647): Se envio el proceso 2 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
+[INFO] 11:40:39:534 KERNEL/(19737:19737): Cliente conectado (a KERNEL)
 
-[INFO] 19:49:57:302 KERNEL/(31646:31648): Nuevo proceso en cola blocked
+[INFO] 11:40:39:535 KERNEL/(19737:19737): Hilo para procesar conexion creado correctamente
+[INFO] 11:40:39:535 KERNEL/(19737:19769): Se recibieron las instrucciones
+[INFO] 11:40:39:535 KERNEL/(19737:19769): Cantidad de procesos en memoria: 1
 
-[INFO] 19:49:57:303 KERNEL/(31646:31647): Se envio el proceso 3 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 11:40:39:536 KERNEL/(19737:19769): valor del semaforo sem_inicio antes del wait: 1
 
-[INFO] 19:49:57:403 KERNEL/(31646:31649): El proceso 2 se desbloqueo, hilo bloquear
+[INFO] 11:40:39:536 KERNEL/(19737:19769): Entro a inicializar (POR VERIFICACION_MULTIPROGRAMACION)
 
-[INFO] 19:49:57:403 KERNEL/(31646:31647): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 11:40:39:537 KERNEL/(19737:19769): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 19:49:59:345 KERNEL/(31646:31647): Se envio el proceso 2 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
+[INFO] 11:40:39:793 KERNEL/(19737:19769): Se inicializo el proceso 2 con el id 1 de la tabla de pagina 1 
 
-[INFO] 19:49:59:851 KERNEL/(31646:31648): Nuevo proceso en cola blocked
+[INFO] 11:40:39:794 KERNEL/(19737:19769): Se agrega el proceso 2 a la cola de ready
+[INFO] 11:40:39:794 KERNEL/(19737:19738): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 19:49:59:853 KERNEL/(31646:31647): Se envio el proceso 3 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 11:40:39:796 KERNEL/(19737:19738): Se envio el proceso 1 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
 
-[INFO] 19:49:59:952 KERNEL/(31646:31649): El proceso 2 se desbloqueo, hilo bloquear
+[INFO] 11:40:40:452 KERNEL/(19737:19737): Cliente conectado (a KERNEL)
 
-[INFO] 19:49:59:952 KERNEL/(31646:31647): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 11:40:40:453 KERNEL/(19737:19737): Hilo para procesar conexion creado correctamente
+[INFO] 11:40:40:455 KERNEL/(19737:19779): Se recibieron las instrucciones
+[INFO] 11:40:40:455 KERNEL/(19737:19779): Cantidad de procesos en memoria: 2
 
-[INFO] 19:50:01:892 KERNEL/(31646:31647): Se envio el proceso 2 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
+[INFO] 11:40:40:456 KERNEL/(19737:19779): valor del semaforo sem_inicio antes del wait: 1
 
-[INFO] 19:50:02:401 KERNEL/(31646:31648): Nuevo proceso en cola blocked
+[INFO] 11:40:40:456 KERNEL/(19737:19779): Entro a inicializar (POR VERIFICACION_MULTIPROGRAMACION)
 
-[INFO] 19:50:02:402 KERNEL/(31646:31647): Se envio el proceso 3 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 11:40:40:457 KERNEL/(19737:19779): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 19:50:02:501 KERNEL/(31646:31649): El proceso 2 se desbloqueo, hilo bloquear
+[INFO] 11:40:40:793 KERNEL/(19737:19779): Se inicializo el proceso 3 con el id 2 de la tabla de pagina 1 
 
-[INFO] 19:50:02:502 KERNEL/(31646:31647): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 11:40:40:793 KERNEL/(19737:19779): Se agrega el proceso 3 a la cola de ready
+[INFO] 11:40:40:794 KERNEL/(19737:19738): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 19:50:02:522 KERNEL/(31646:31647): Se envio el proceso 2 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
+[INFO] 11:40:40:827 KERNEL/(19737:19738): Se envio el proceso 1 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
 
-[INFO] 19:50:03:031 KERNEL/(31646:31648): Nuevo proceso en cola blocked
+[INFO] 11:40:41:260 KERNEL/(19737:19737): Cliente conectado (a KERNEL)
 
-[INFO] 19:50:03:032 KERNEL/(31646:31647): Se envio el proceso 3 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 11:40:41:261 KERNEL/(19737:19737): Hilo para procesar conexion creado correctamente
+[INFO] 11:40:41:261 KERNEL/(19737:19786): Se recibieron las instrucciones
+[INFO] 11:40:41:261 KERNEL/(19737:19786): Cantidad de procesos en memoria: 3
 
-[INFO] 19:50:03:131 KERNEL/(31646:31649): El proceso 2 se desbloqueo, hilo bloquear
+[INFO] 11:40:41:262 KERNEL/(19737:19786): valor del semaforo sem_inicio antes del wait: 1
 
-[INFO] 19:50:03:132 KERNEL/(31646:31647): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 11:40:41:262 KERNEL/(19737:19786): Entro a inicializar (POR VERIFICACION_MULTIPROGRAMACION)
 
-[INFO] 19:50:03:140 KERNEL/(31646:31647): Se envio el proceso 2 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
+[INFO] 11:40:41:262 KERNEL/(19737:19786): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 19:50:03:647 KERNEL/(31646:31648): Nuevo proceso en cola blocked
+[INFO] 11:40:42:329 KERNEL/(19737:19737): Cliente conectado (a KERNEL)
 
-[INFO] 19:50:03:649 KERNEL/(31646:31647): Se envio el proceso 3 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 11:40:42:329 KERNEL/(19737:19737): Hilo para procesar conexion creado correctamente
+[INFO] 11:40:42:330 KERNEL/(19737:19789): Se recibieron las instrucciones
+[INFO] 11:40:42:330 KERNEL/(19737:19789): Cantidad de procesos en memoria: 3
 
-[INFO] 19:50:03:748 KERNEL/(31646:31649): El proceso 2 se desbloqueo, hilo bloquear
+[INFO] 11:40:42:330 KERNEL/(19737:19789): valor del semaforo sem_inicio antes del wait: 0
 
-[INFO] 19:50:03:748 KERNEL/(31646:31647): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 11:40:42:794 KERNEL/(19737:19786): Se inicializo el proceso 4 con el id 3 de la tabla de pagina 1 
 
-[INFO] 19:50:03:755 KERNEL/(31646:31647): Se envio el proceso 2 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
+[INFO] 11:40:42:794 KERNEL/(19737:19789): Entro a inicializar (POR VERIFICACION_MULTIPROGRAMACION)
 
-[INFO] 19:50:04:261 KERNEL/(31646:31648): Nuevo proceso en cola blocked
+[INFO] 11:40:42:794 KERNEL/(19737:19789): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 19:50:04:262 KERNEL/(31646:31647): Se envio el proceso 3 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 11:40:42:794 KERNEL/(19737:19786): Se agrega el proceso 4 a la cola de ready
+[INFO] 11:40:42:795 KERNEL/(19737:19738): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 19:50:04:361 KERNEL/(31646:31649): El proceso 2 se desbloqueo, hilo bloquear
+[INFO] 11:40:42:803 KERNEL/(19737:19738): Se envio el proceso 1 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
 
-[INFO] 19:50:04:362 KERNEL/(31646:31647): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 11:40:43:795 KERNEL/(19737:19789): Se inicializo el proceso 5 con el id 4 de la tabla de pagina 1 
 
-[INFO] 19:50:04:367 KERNEL/(31646:31647): Se envio el proceso 2 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
+[INFO] 11:40:43:796 KERNEL/(19737:19789): Se agrega el proceso 5 a la cola de ready
+[INFO] 11:40:43:796 KERNEL/(19737:19738): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 19:50:05:378 KERNEL/(31646:31648): Orden EXIT recibida
-[INFO] 19:50:05:380 KERNEL/(31646:31647): Se envio el proceso 3 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 11:40:43:835 KERNEL/(19737:19738): Se envio el proceso 1 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
 
-[INFO] 19:50:05:380 KERNEL/(31646:31648): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 11:40:47:621 KERNEL/(19737:19739): Nuevo proceso en cola blocked
 
-[INFO] 19:50:05:387 KERNEL/(31646:31650): Cantidad de procesos en memoria: 2
+[INFO] 11:40:47:621 KERNEL/(19737:19738): Se envio el proceso 2 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 19:50:05:388 KERNEL/(31646:31671): DISCONNECT
-[INFO] 19:50:54:281 KERNEL/(31646:31648): Orden EXIT recibida
-[INFO] 19:50:54:281 KERNEL/(31646:31647): Se envio el proceso 4 a la CPU, (RUNNING ESTABA EN NULL)
+[WARNING] 11:40:48:622 KERNEL/(19737:19826): Se va a suspender el proceso: 1
 
-[INFO] 19:50:54:281 KERNEL/(31646:31648): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 11:40:48:623 KERNEL/(19737:19826): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 19:50:54:283 KERNEL/(31646:31650): Cantidad de procesos en memoria: 1
+[INFO] 11:40:48:633 KERNEL/(19737:19826): Confirmacion de suspension recibida
+[INFO] 11:40:48:633 KERNEL/(19737:19741): Cantidad de procesos en memoria: 4
 
-[INFO] 19:50:54:283 KERNEL/(31646:31674): DISCONNECT
-[INFO] 19:50:54:483 KERNEL/(31646:31648): Nuevo proceso en cola blocked
+[INFO] 11:40:52:621 KERNEL/(19737:19740): El proceso 1 se desbloqueo, hilo bloquear
 
-[INFO] 19:50:54:583 KERNEL/(31646:31649): El proceso 4 se desbloqueo, hilo bloquear
+[INFO] 11:40:52:621 KERNEL/(19737:19741): Cantidad de procesos en memoria: 4
 
-[INFO] 19:50:54:585 KERNEL/(31646:31647): Se envio el proceso 4 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 11:40:52:622 KERNEL/(19737:19741): El proceso 1 pasara de ready suspendido a ready, , hilo sem queue suspended
 
-[INFO] 19:50:54:788 KERNEL/(31646:31648): Nuevo proceso en cola blocked
+[INFO] 11:40:52:622 KERNEL/(19737:19741): Se puso el proceso 1 en la cola ready
 
-[INFO] 19:50:54:888 KERNEL/(31646:31649): El proceso 4 se desbloqueo, hilo bloquear
+[INFO] 11:40:52:622 KERNEL/(19737:19738): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 19:50:54:889 KERNEL/(31646:31647): Se envio el proceso 4 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 11:40:52:682 KERNEL/(19737:19738): Se envio el proceso 1 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
 
-[INFO] 19:50:55:093 KERNEL/(31646:31648): Nuevo proceso en cola blocked
+[INFO] 11:41:00:598 KERNEL/(19737:19738): Se envio el proceso 2 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 19:50:55:194 KERNEL/(31646:31649): El proceso 4 se desbloqueo, hilo bloquear
+[INFO] 11:41:00:599 KERNEL/(19737:19739): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 19:50:55:194 KERNEL/(31646:31647): Se envio el proceso 4 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 11:41:00:601 KERNEL/(19737:19741): Cantidad de procesos en memoria: 4
 
-[INFO] 19:50:55:396 KERNEL/(31646:31648): Nuevo proceso en cola blocked
+[INFO] 11:41:00:602 KERNEL/(19737:19756): DISCONNECT
+[INFO] 11:41:05:665 KERNEL/(19737:19739): Nuevo proceso en cola blocked
 
-[INFO] 19:50:55:496 KERNEL/(31646:31649): El proceso 4 se desbloqueo, hilo bloquear
+[INFO] 11:41:05:666 KERNEL/(19737:19738): Se envio el proceso 3 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 19:50:55:497 KERNEL/(31646:31647): Se envio el proceso 4 a la CPU, (RUNNING ESTABA EN NULL)
+[WARNING] 11:41:06:667 KERNEL/(19737:19918): Se va a suspender el proceso: 2
 
-[INFO] 19:50:55:699 KERNEL/(31646:31648): Nuevo proceso en cola blocked
+[INFO] 11:41:06:668 KERNEL/(19737:19918): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 19:50:55:799 KERNEL/(31646:31649): El proceso 4 se desbloqueo, hilo bloquear
+[INFO] 11:41:06:694 KERNEL/(19737:19918): Confirmacion de suspension recibida
+[INFO] 11:41:06:694 KERNEL/(19737:19741): Cantidad de procesos en memoria: 3
 
-[INFO] 19:50:55:801 KERNEL/(31646:31647): Se envio el proceso 4 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 11:41:10:665 KERNEL/(19737:19740): El proceso 2 se desbloqueo, hilo bloquear
 
-[INFO] 19:50:56:005 KERNEL/(31646:31648): Nuevo proceso en cola blocked
+[INFO] 11:41:10:665 KERNEL/(19737:19741): Cantidad de procesos en memoria: 3
 
-[INFO] 19:50:56:106 KERNEL/(31646:31649): El proceso 4 se desbloqueo, hilo bloquear
+[INFO] 11:41:10:666 KERNEL/(19737:19741): El proceso 2 pasara de ready suspendido a ready, , hilo sem queue suspended
 
-[INFO] 19:50:56:107 KERNEL/(31646:31647): Se envio el proceso 4 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 11:41:10:666 KERNEL/(19737:19741): Se puso el proceso 2 en la cola ready
 
-[INFO] 19:50:56:310 KERNEL/(31646:31648): Nuevo proceso en cola blocked
+[INFO] 11:41:10:666 KERNEL/(19737:19738): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 19:50:56:410 KERNEL/(31646:31649): El proceso 4 se desbloqueo, hilo bloquear
+[INFO] 11:41:10:739 KERNEL/(19737:19738): Se envio el proceso 2 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
 
-[INFO] 19:50:56:412 KERNEL/(31646:31647): Se envio el proceso 4 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 11:41:19:339 KERNEL/(19737:19739): Nuevo proceso en cola blocked
 
-[INFO] 19:50:56:616 KERNEL/(31646:31648): Nuevo proceso en cola blocked
+[INFO] 11:41:19:340 KERNEL/(19737:19738): Se envio el proceso 3 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 19:50:56:716 KERNEL/(31646:31649): El proceso 4 se desbloqueo, hilo bloquear
+[INFO] 11:41:19:440 KERNEL/(19737:19740): El proceso 2 se desbloqueo, hilo bloquear
 
-[INFO] 19:50:56:717 KERNEL/(31646:31647): Se envio el proceso 4 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 11:41:19:440 KERNEL/(19737:19738): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 19:50:56:920 KERNEL/(31646:31648): Nuevo proceso en cola blocked
+[INFO] 11:41:21:376 KERNEL/(19737:19738): Se envio el proceso 2 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
 
-[INFO] 19:50:57:021 KERNEL/(31646:31649): El proceso 4 se desbloqueo, hilo bloquear
+[INFO] 11:41:21:880 KERNEL/(19737:19739): Nuevo proceso en cola blocked
 
-[INFO] 19:50:57:022 KERNEL/(31646:31647): Se envio el proceso 4 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 11:41:21:882 KERNEL/(19737:19738): Se envio el proceso 3 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 19:50:57:224 KERNEL/(31646:31648): Nuevo proceso en cola blocked
+[INFO] 11:41:21:981 KERNEL/(19737:19740): El proceso 2 se desbloqueo, hilo bloquear
 
-[INFO] 19:50:57:324 KERNEL/(31646:31649): El proceso 4 se desbloqueo, hilo bloquear
+[INFO] 11:41:21:981 KERNEL/(19737:19738): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 19:50:57:325 KERNEL/(31646:31647): Se envio el proceso 4 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 11:41:23:922 KERNEL/(19737:19738): Se envio el proceso 2 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
 
-[INFO] 19:50:57:528 KERNEL/(31646:31648): Nuevo proceso en cola blocked
+[INFO] 11:41:24:426 KERNEL/(19737:19739): Nuevo proceso en cola blocked
 
-[INFO] 19:50:57:629 KERNEL/(31646:31649): El proceso 4 se desbloqueo, hilo bloquear
+[INFO] 11:41:24:426 KERNEL/(19737:19738): Se envio el proceso 3 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 19:50:57:630 KERNEL/(31646:31647): Se envio el proceso 4 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 11:41:24:526 KERNEL/(19737:19740): El proceso 2 se desbloqueo, hilo bloquear
 
-[INFO] 19:50:57:833 KERNEL/(31646:31648): Nuevo proceso en cola blocked
+[INFO] 11:41:24:526 KERNEL/(19737:19738): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 19:50:57:933 KERNEL/(31646:31649): El proceso 4 se desbloqueo, hilo bloquear
+[INFO] 11:41:24:542 KERNEL/(19737:19738): Se envio el proceso 2 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
 
-[INFO] 19:50:57:935 KERNEL/(31646:31647): Se envio el proceso 4 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 11:41:25:047 KERNEL/(19737:19739): Nuevo proceso en cola blocked
 
-[INFO] 19:50:58:138 KERNEL/(31646:31648): Nuevo proceso en cola blocked
+[INFO] 11:41:25:047 KERNEL/(19737:19738): Se envio el proceso 3 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 19:50:58:238 KERNEL/(31646:31649): El proceso 4 se desbloqueo, hilo bloquear
+[INFO] 11:41:25:147 KERNEL/(19737:19740): El proceso 2 se desbloqueo, hilo bloquear
 
-[INFO] 19:50:58:239 KERNEL/(31646:31647): Se envio el proceso 4 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 11:41:25:147 KERNEL/(19737:19738): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 19:50:58:442 KERNEL/(31646:31648): Nuevo proceso en cola blocked
+[INFO] 11:41:25:249 KERNEL/(19737:19738): Se envio el proceso 2 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
 
-[INFO] 19:50:58:543 KERNEL/(31646:31649): El proceso 4 se desbloqueo, hilo bloquear
+[INFO] 11:41:25:754 KERNEL/(19737:19739): Nuevo proceso en cola blocked
 
-[INFO] 19:50:58:544 KERNEL/(31646:31647): Se envio el proceso 4 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 11:41:25:755 KERNEL/(19737:19738): Se envio el proceso 3 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 19:50:58:748 KERNEL/(31646:31648): Nuevo proceso en cola blocked
+[INFO] 11:41:25:855 KERNEL/(19737:19740): El proceso 2 se desbloqueo, hilo bloquear
 
-[INFO] 19:50:58:849 KERNEL/(31646:31649): El proceso 4 se desbloqueo, hilo bloquear
+[INFO] 11:41:25:855 KERNEL/(19737:19738): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 19:50:58:850 KERNEL/(31646:31647): Se envio el proceso 4 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 11:41:25:958 KERNEL/(19737:19738): Se envio el proceso 2 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
 
-[INFO] 19:50:59:054 KERNEL/(31646:31648): Nuevo proceso en cola blocked
+[INFO] 11:41:26:461 KERNEL/(19737:19739): Nuevo proceso en cola blocked
 
-[INFO] 19:50:59:154 KERNEL/(31646:31649): El proceso 4 se desbloqueo, hilo bloquear
+[INFO] 11:41:26:461 KERNEL/(19737:19738): Se envio el proceso 3 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 19:50:59:155 KERNEL/(31646:31647): Se envio el proceso 4 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 11:41:26:561 KERNEL/(19737:19740): El proceso 2 se desbloqueo, hilo bloquear
 
-[INFO] 19:50:59:357 KERNEL/(31646:31648): Nuevo proceso en cola blocked
+[INFO] 11:41:26:562 KERNEL/(19737:19738): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 19:50:59:457 KERNEL/(31646:31649): El proceso 4 se desbloqueo, hilo bloquear
+[INFO] 11:41:26:563 KERNEL/(19737:19738): Se envio el proceso 2 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
 
-[INFO] 19:50:59:458 KERNEL/(31646:31647): Se envio el proceso 4 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 11:41:27:571 KERNEL/(19737:19739): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 19:50:59:659 KERNEL/(31646:31648): Nuevo proceso en cola blocked
+[INFO] 11:41:27:571 KERNEL/(19737:19738): Se envio el proceso 3 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 19:50:59:760 KERNEL/(31646:31649): El proceso 4 se desbloqueo, hilo bloquear
+[INFO] 11:41:27:574 KERNEL/(19737:19741): Cantidad de procesos en memoria: 3
 
-[INFO] 19:50:59:761 KERNEL/(31646:31647): Se envio el proceso 4 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 11:41:27:574 KERNEL/(19737:19769): DISCONNECT
+[INFO] 11:42:43:984 KERNEL/(19737:19738): Se envio el proceso 4 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 19:50:59:963 KERNEL/(31646:31648): Nuevo proceso en cola blocked
+[INFO] 11:42:43:984 KERNEL/(19737:19739): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 19:51:00:063 KERNEL/(31646:31649): El proceso 4 se desbloqueo, hilo bloquear
+[INFO] 11:42:43:986 KERNEL/(19737:19741): Cantidad de procesos en memoria: 2
 
-[INFO] 19:51:00:065 KERNEL/(31646:31647): Se envio el proceso 4 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 11:42:43:987 KERNEL/(19737:19779): DISCONNECT
+[INFO] 11:42:44:185 KERNEL/(19737:19739): Nuevo proceso en cola blocked
 
-[INFO] 19:51:00:267 KERNEL/(31646:31648): Nuevo proceso en cola blocked
+[INFO] 11:42:44:185 KERNEL/(19737:19738): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 19:51:00:367 KERNEL/(31646:31649): El proceso 4 se desbloqueo, hilo bloquear
+[INFO] 11:42:44:285 KERNEL/(19737:19740): El proceso 4 se desbloqueo, hilo bloquear
 
-[INFO] 19:51:00:368 KERNEL/(31646:31647): Se envio el proceso 4 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 11:42:44:286 KERNEL/(19737:19738): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 19:51:00:570 KERNEL/(31646:31648): Nuevo proceso en cola blocked
+[INFO] 11:42:45:197 KERNEL/(19737:19738): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
 
-[INFO] 19:51:00:670 KERNEL/(31646:31649): El proceso 4 se desbloqueo, hilo bloquear
+[INFO] 11:42:45:400 KERNEL/(19737:19739): Nuevo proceso en cola blocked
 
-[INFO] 19:51:00:671 KERNEL/(31646:31647): Se envio el proceso 4 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 11:42:45:401 KERNEL/(19737:19738): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 19:51:00:873 KERNEL/(31646:31648): Nuevo proceso en cola blocked
+[INFO] 11:42:45:501 KERNEL/(19737:19740): El proceso 4 se desbloqueo, hilo bloquear
 
-[INFO] 19:51:00:974 KERNEL/(31646:31649): El proceso 4 se desbloqueo, hilo bloquear
+[INFO] 11:42:45:501 KERNEL/(19737:19738): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 19:51:00:975 KERNEL/(31646:31647): Se envio el proceso 4 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 11:42:45:515 KERNEL/(19737:19738): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
 
-[INFO] 19:51:01:177 KERNEL/(31646:31648): Nuevo proceso en cola blocked
+[INFO] 11:42:45:717 KERNEL/(19737:19739): Nuevo proceso en cola blocked
 
-[INFO] 19:51:01:277 KERNEL/(31646:31649): El proceso 4 se desbloqueo, hilo bloquear
+[INFO] 11:42:45:718 KERNEL/(19737:19738): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 19:51:01:278 KERNEL/(31646:31647): Se envio el proceso 4 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 11:42:45:818 KERNEL/(19737:19740): El proceso 4 se desbloqueo, hilo bloquear
 
-[INFO] 19:51:01:480 KERNEL/(31646:31648): Nuevo proceso en cola blocked
+[INFO] 11:42:45:818 KERNEL/(19737:19738): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 19:51:01:580 KERNEL/(31646:31649): El proceso 4 se desbloqueo, hilo bloquear
+[INFO] 11:42:45:919 KERNEL/(19737:19738): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
 
-[INFO] 19:51:01:581 KERNEL/(31646:31647): Se envio el proceso 4 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 11:42:46:121 KERNEL/(19737:19739): Nuevo proceso en cola blocked
 
-[INFO] 19:51:01:783 KERNEL/(31646:31648): Nuevo proceso en cola blocked
+[INFO] 11:42:46:121 KERNEL/(19737:19738): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 19:51:01:883 KERNEL/(31646:31649): El proceso 4 se desbloqueo, hilo bloquear
+[INFO] 11:42:46:222 KERNEL/(19737:19740): El proceso 4 se desbloqueo, hilo bloquear
 
-[INFO] 19:51:01:884 KERNEL/(31646:31647): Se envio el proceso 4 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 11:42:46:223 KERNEL/(19737:19738): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 19:51:02:087 KERNEL/(31646:31648): Nuevo proceso en cola blocked
+[INFO] 11:42:46:323 KERNEL/(19737:19738): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
 
-[INFO] 19:51:02:187 KERNEL/(31646:31649): El proceso 4 se desbloqueo, hilo bloquear
+[INFO] 11:42:46:525 KERNEL/(19737:19739): Nuevo proceso en cola blocked
 
-[INFO] 19:51:02:187 KERNEL/(31646:31647): Se envio el proceso 4 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 11:42:46:526 KERNEL/(19737:19738): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 19:51:02:389 KERNEL/(31646:31648): Nuevo proceso en cola blocked
+[INFO] 11:42:46:626 KERNEL/(19737:19740): El proceso 4 se desbloqueo, hilo bloquear
 
-[INFO] 19:51:02:489 KERNEL/(31646:31649): El proceso 4 se desbloqueo, hilo bloquear
+[INFO] 11:42:46:626 KERNEL/(19737:19738): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 19:51:02:490 KERNEL/(31646:31647): Se envio el proceso 4 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 11:42:46:727 KERNEL/(19737:19738): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
 
-[INFO] 19:51:02:693 KERNEL/(31646:31648): Nuevo proceso en cola blocked
+[INFO] 11:42:46:931 KERNEL/(19737:19739): Nuevo proceso en cola blocked
 
-[INFO] 19:51:02:793 KERNEL/(31646:31649): El proceso 4 se desbloqueo, hilo bloquear
+[INFO] 11:42:46:932 KERNEL/(19737:19738): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 19:51:02:795 KERNEL/(31646:31647): Se envio el proceso 4 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 11:42:47:032 KERNEL/(19737:19740): El proceso 4 se desbloqueo, hilo bloquear
 
-[INFO] 19:51:02:998 KERNEL/(31646:31648): Nuevo proceso en cola blocked
+[INFO] 11:42:47:032 KERNEL/(19737:19738): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 19:51:03:098 KERNEL/(31646:31649): El proceso 4 se desbloqueo, hilo bloquear
+[INFO] 11:42:47:134 KERNEL/(19737:19738): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
 
-[INFO] 19:51:03:099 KERNEL/(31646:31647): Se envio el proceso 4 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 11:42:47:336 KERNEL/(19737:19739): Nuevo proceso en cola blocked
 
-[INFO] 19:51:03:301 KERNEL/(31646:31648): Nuevo proceso en cola blocked
+[INFO] 11:42:47:336 KERNEL/(19737:19738): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 19:51:03:401 KERNEL/(31646:31649): El proceso 4 se desbloqueo, hilo bloquear
+[INFO] 11:42:47:436 KERNEL/(19737:19740): El proceso 4 se desbloqueo, hilo bloquear
 
-[INFO] 19:51:03:401 KERNEL/(31646:31647): Se envio el proceso 4 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 11:42:47:437 KERNEL/(19737:19738): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 19:51:03:603 KERNEL/(31646:31648): Nuevo proceso en cola blocked
+[INFO] 11:42:47:438 KERNEL/(19737:19739): Nuevo proceso en cola blocked
 
-[INFO] 19:51:03:703 KERNEL/(31646:31649): El proceso 4 se desbloqueo, hilo bloquear
+[INFO] 11:42:47:475 KERNEL/(19737:19738): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
 
-[INFO] 19:51:03:704 KERNEL/(31646:31647): Se envio el proceso 4 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 11:42:47:538 KERNEL/(19737:19740): El proceso 5 se desbloqueo, hilo bloquear
 
-[INFO] 19:51:03:907 KERNEL/(31646:31648): Nuevo proceso en cola blocked
+[INFO] 11:42:47:539 KERNEL/(19737:19738): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 19:51:04:007 KERNEL/(31646:31649): El proceso 4 se desbloqueo, hilo bloquear
+[INFO] 11:42:47:576 KERNEL/(19737:19738): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
 
-[INFO] 19:51:04:008 KERNEL/(31646:31647): Se envio el proceso 4 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 11:42:47:678 KERNEL/(19737:19739): Nuevo proceso en cola blocked
 
-[INFO] 19:51:04:008 KERNEL/(31646:31648): Orden EXIT recibida
-[INFO] 19:51:04:009 KERNEL/(31646:31648): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 11:42:47:678 KERNEL/(19737:19738): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 19:51:04:013 KERNEL/(31646:31650): Cantidad de procesos en memoria: 0
+[INFO] 11:42:47:779 KERNEL/(19737:19740): El proceso 4 se desbloqueo, hilo bloquear
 
-[INFO] 19:51:04:014 KERNEL/(31646:31680): DISCONNECT
-[INFO] 19:51:10:239 KERNEL/(31646:31648): DISCONNECT
-[INFO] 19:52:37:610 KERNEL/(32299:32299): Esperando a 127.0.0.1:8000 (CONSOLA)
+[INFO] 11:42:47:779 KERNEL/(19737:19738): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 19:52:37:610 KERNEL/(32299:32300): Cliente conectado en 127.0.0.1:8001 (a CPU DISPATCH)
+[INFO] 11:42:47:792 KERNEL/(19737:19738): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
 
-[INFO] 19:52:39:695 KERNEL/(32299:32299): Cliente conectado (a KERNEL)
+[INFO] 11:42:47:994 KERNEL/(19737:19739): Nuevo proceso en cola blocked
 
-[INFO] 19:52:39:696 KERNEL/(32299:32299): Hilo para procesar conexion creado correctamente
-[INFO] 19:52:39:696 KERNEL/(32299:32312): Se recibieron las instrucciones
-[INFO] 19:52:39:696 KERNEL/(32299:32312): Cantidad de procesos en memoria: 0
+[INFO] 11:42:47:995 KERNEL/(19737:19738): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 19:52:39:696 KERNEL/(32299:32312): valor del semaforo sem_inicio antes del wait: 1
+[INFO] 11:42:48:095 KERNEL/(19737:19740): El proceso 4 se desbloqueo, hilo bloquear
 
-[INFO] 19:52:39:697 KERNEL/(32299:32312): Entro a inicializar (POR VERIFICACION_MULTIPROGRAMACION)
+[INFO] 11:42:48:096 KERNEL/(19737:19738): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 19:52:39:697 KERNEL/(32299:32312): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 11:42:48:198 KERNEL/(19737:19738): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
 
-[INFO] 19:52:39:698 KERNEL/(32299:32312): Se inicializo el proceso 1 con el id 0 de la tabla de pagina 1 
+[INFO] 11:42:48:399 KERNEL/(19737:19739): Nuevo proceso en cola blocked
 
-[INFO] 19:52:39:698 KERNEL/(32299:32312): Se agrega el proceso 1 a la cola de ready
-[INFO] 19:52:39:698 KERNEL/(32299:32300): Se envio el proceso 1 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 11:42:48:400 KERNEL/(19737:19738): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 19:52:40:337 KERNEL/(32299:32299): Cliente conectado (a KERNEL)
+[INFO] 11:42:48:500 KERNEL/(19737:19740): El proceso 4 se desbloqueo, hilo bloquear
 
-[INFO] 19:52:40:337 KERNEL/(32299:32299): Hilo para procesar conexion creado correctamente
-[INFO] 19:52:40:338 KERNEL/(32299:32317): Se recibieron las instrucciones
-[INFO] 19:52:40:338 KERNEL/(32299:32317): Cantidad de procesos en memoria: 1
+[INFO] 11:42:48:501 KERNEL/(19737:19738): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 19:52:40:338 KERNEL/(32299:32317): valor del semaforo sem_inicio antes del wait: 1
+[INFO] 11:42:48:602 KERNEL/(19737:19738): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
 
-[INFO] 19:52:40:338 KERNEL/(32299:32317): Entro a inicializar (POR VERIFICACION_MULTIPROGRAMACION)
+[INFO] 11:42:48:803 KERNEL/(19737:19739): Nuevo proceso en cola blocked
 
-[INFO] 19:52:40:339 KERNEL/(32299:32317): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 11:42:48:804 KERNEL/(19737:19738): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 19:52:40:699 KERNEL/(32299:32317): Se inicializo el proceso 2 con el id 1 de la tabla de pagina 1 
+[INFO] 11:42:48:904 KERNEL/(19737:19740): El proceso 4 se desbloqueo, hilo bloquear
 
-[INFO] 19:52:40:699 KERNEL/(32299:32317): Se agrega el proceso 2 a la cola de ready
-[INFO] 19:52:40:699 KERNEL/(32299:32300): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 11:42:48:904 KERNEL/(19737:19738): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 19:52:40:702 KERNEL/(32299:32300): Se envio el proceso 1 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
+[INFO] 11:42:49:006 KERNEL/(19737:19738): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
 
-[INFO] 19:52:41:182 KERNEL/(32299:32299): Cliente conectado (a KERNEL)
+[INFO] 11:42:49:208 KERNEL/(19737:19739): Nuevo proceso en cola blocked
 
-[INFO] 19:52:41:182 KERNEL/(32299:32299): Hilo para procesar conexion creado correctamente
-[INFO] 19:52:41:183 KERNEL/(32299:32325): Se recibieron las instrucciones
-[INFO] 19:52:41:183 KERNEL/(32299:32325): Cantidad de procesos en memoria: 2
+[INFO] 11:42:49:209 KERNEL/(19737:19738): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 19:52:41:183 KERNEL/(32299:32325): valor del semaforo sem_inicio antes del wait: 1
+[INFO] 11:42:49:310 KERNEL/(19737:19740): El proceso 4 se desbloqueo, hilo bloquear
 
-[INFO] 19:52:41:183 KERNEL/(32299:32325): Entro a inicializar (POR VERIFICACION_MULTIPROGRAMACION)
+[INFO] 11:42:49:310 KERNEL/(19737:19738): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 19:52:41:184 KERNEL/(32299:32325): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 11:42:49:411 KERNEL/(19737:19738): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
 
-[INFO] 19:52:41:928 KERNEL/(32299:32299): Cliente conectado (a KERNEL)
+[INFO] 11:42:49:613 KERNEL/(19737:19739): Nuevo proceso en cola blocked
 
-[INFO] 19:52:41:928 KERNEL/(32299:32299): Hilo para procesar conexion creado correctamente
-[INFO] 19:52:41:928 KERNEL/(32299:32328): Se recibieron las instrucciones
-[INFO] 19:52:41:928 KERNEL/(32299:32328): Cantidad de procesos en memoria: 2
+[INFO] 11:42:49:613 KERNEL/(19737:19738): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 19:52:41:929 KERNEL/(32299:32328): valor del semaforo sem_inicio antes del wait: 0
+[INFO] 11:42:49:714 KERNEL/(19737:19740): El proceso 4 se desbloqueo, hilo bloquear
 
-[INFO] 19:52:42:700 KERNEL/(32299:32325): Se inicializo el proceso 3 con el id 2 de la tabla de pagina 1 
+[INFO] 11:42:49:715 KERNEL/(19737:19739): Nuevo proceso en cola blocked
 
-[INFO] 19:52:42:700 KERNEL/(32299:32328): Entro a inicializar (POR VERIFICACION_MULTIPROGRAMACION)
+[INFO] 11:42:49:715 KERNEL/(19737:19738): Se envio el proceso 4 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 19:52:42:700 KERNEL/(32299:32325): Se agrega el proceso 3 a la cola de ready
-[INFO] 19:52:42:700 KERNEL/(32299:32300): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 11:42:49:816 KERNEL/(19737:19740): El proceso 5 se desbloqueo, hilo bloquear
 
-[INFO] 19:52:42:700 KERNEL/(32299:32328): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 11:42:49:816 KERNEL/(19737:19738): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 19:52:42:705 KERNEL/(32299:32300): Se envio el proceso 1 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
+[INFO] 11:42:49:917 KERNEL/(19737:19738): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
 
-[INFO] 19:52:42:744 KERNEL/(32299:32299): Cliente conectado (a KERNEL)
+[INFO] 11:42:49:918 KERNEL/(19737:19739): Nuevo proceso en cola blocked
 
-[INFO] 19:52:42:744 KERNEL/(32299:32299): Hilo para procesar conexion creado correctamente
-[INFO] 19:52:42:745 KERNEL/(32299:32333): Se recibieron las instrucciones
-[INFO] 19:52:42:745 KERNEL/(32299:32333): Cantidad de procesos en memoria: 3
+[INFO] 11:42:49:918 KERNEL/(19737:19738): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 19:52:42:745 KERNEL/(32299:32333): valor del semaforo sem_inicio antes del wait: 0
+[INFO] 11:42:50:018 KERNEL/(19737:19740): El proceso 4 se desbloqueo, hilo bloquear
 
-[INFO] 19:52:43:702 KERNEL/(32299:32328): Se inicializo el proceso 4 con el id 3 de la tabla de pagina 1 
+[INFO] 11:42:50:018 KERNEL/(19737:19738): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 19:52:43:702 KERNEL/(32299:32333): Entro a inicializar (POR VERIFICACION_MULTIPROGRAMACION)
+[INFO] 11:42:50:930 KERNEL/(19737:19738): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
 
-[INFO] 19:52:43:702 KERNEL/(32299:32333): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 11:42:51:131 KERNEL/(19737:19739): Nuevo proceso en cola blocked
 
-[INFO] 19:52:43:702 KERNEL/(32299:32328): Se agrega el proceso 4 a la cola de ready
-[INFO] 19:52:43:703 KERNEL/(32299:32300): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 11:42:51:132 KERNEL/(19737:19738): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 19:52:43:728 KERNEL/(32299:32300): Se envio el proceso 1 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
+[INFO] 11:42:51:232 KERNEL/(19737:19740): El proceso 4 se desbloqueo, hilo bloquear
 
-[INFO] 19:52:46:702 KERNEL/(32299:32333): Se inicializo el proceso 5 con el id 4 de la tabla de pagina 1 
+[INFO] 11:42:51:232 KERNEL/(19737:19738): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 19:52:46:703 KERNEL/(32299:32333): Se agrega el proceso 5 a la cola de ready
-[INFO] 19:52:46:704 KERNEL/(32299:32300): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 11:42:51:246 KERNEL/(19737:19738): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
 
-[INFO] 19:52:46:709 KERNEL/(32299:32300): Se envio el proceso 1 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
+[INFO] 11:42:51:448 KERNEL/(19737:19739): Nuevo proceso en cola blocked
 
-[INFO] 19:52:50:612 KERNEL/(32299:32301): Nuevo proceso en cola blocked
+[INFO] 11:42:51:448 KERNEL/(19737:19738): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 19:52:50:613 KERNEL/(32299:32300): Se envio el proceso 2 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 11:42:51:548 KERNEL/(19737:19740): El proceso 4 se desbloqueo, hilo bloquear
 
-[WARNING] 19:52:51:614 KERNEL/(32299:32375): Se va a suspender el proceso: 1
+[INFO] 11:42:51:548 KERNEL/(19737:19738): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 19:52:51:615 KERNEL/(32299:32375): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 11:42:51:549 KERNEL/(19737:19738): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
 
-[INFO] 19:52:51:622 KERNEL/(32299:32375): Confirmacion de suspension recibida
-[INFO] 19:52:51:622 KERNEL/(32299:32303): Cantidad de procesos en memoria: 4
+[INFO] 11:42:51:751 KERNEL/(19737:19739): Nuevo proceso en cola blocked
 
-[INFO] 19:52:55:613 KERNEL/(32299:32302): El proceso 1 se desbloqueo, hilo bloquear
+[INFO] 11:42:51:752 KERNEL/(19737:19738): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 19:52:55:614 KERNEL/(32299:32303): Cantidad de procesos en memoria: 4
+[INFO] 11:42:51:852 KERNEL/(19737:19740): El proceso 4 se desbloqueo, hilo bloquear
 
-[INFO] 19:52:55:614 KERNEL/(32299:32303): El proceso 1 pasara de ready suspendido a ready, , hilo sem queue suspended
+[INFO] 11:42:51:852 KERNEL/(19737:19738): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 19:52:55:614 KERNEL/(32299:32303): Se puso el proceso 1 en la cola ready
+[INFO] 11:42:51:953 KERNEL/(19737:19738): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
 
-[INFO] 19:52:55:615 KERNEL/(32299:32300): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 11:42:52:155 KERNEL/(19737:19739): Nuevo proceso en cola blocked
 
-[INFO] 19:52:55:701 KERNEL/(32299:32300): Se envio el proceso 1 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
+[INFO] 11:42:52:156 KERNEL/(19737:19738): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 19:53:03:638 KERNEL/(32299:32301): Orden EXIT recibida
-[INFO] 19:53:03:640 KERNEL/(32299:32300): Se envio el proceso 2 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 11:42:52:257 KERNEL/(19737:19740): El proceso 4 se desbloqueo, hilo bloquear
 
-[INFO] 19:53:03:640 KERNEL/(32299:32301): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 11:42:52:257 KERNEL/(19737:19738): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 19:53:03:652 KERNEL/(32299:32303): Cantidad de procesos en memoria: 4
+[INFO] 11:42:52:360 KERNEL/(19737:19738): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
 
-[INFO] 19:53:03:653 KERNEL/(32299:32312): DISCONNECT
-[INFO] 19:53:08:733 KERNEL/(32299:32301): Nuevo proceso en cola blocked
+[INFO] 11:42:52:564 KERNEL/(19737:19739): Nuevo proceso en cola blocked
 
-[INFO] 19:53:08:734 KERNEL/(32299:32300): Se envio el proceso 3 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 11:42:52:564 KERNEL/(19737:19738): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[WARNING] 19:53:09:736 KERNEL/(32299:32435): Se va a suspender el proceso: 2
+[INFO] 11:42:52:664 KERNEL/(19737:19740): El proceso 4 se desbloqueo, hilo bloquear
 
-[INFO] 19:53:09:737 KERNEL/(32299:32435): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 11:42:52:665 KERNEL/(19737:19738): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 19:53:09:750 KERNEL/(32299:32435): Confirmacion de suspension recibida
-[INFO] 19:53:09:751 KERNEL/(32299:32303): Cantidad de procesos en memoria: 3
+[INFO] 11:42:52:766 KERNEL/(19737:19738): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
 
-[INFO] 19:53:13:733 KERNEL/(32299:32302): El proceso 2 se desbloqueo, hilo bloquear
+[INFO] 11:42:52:969 KERNEL/(19737:19739): Nuevo proceso en cola blocked
 
-[INFO] 19:53:13:734 KERNEL/(32299:32303): Cantidad de procesos en memoria: 3
+[INFO] 11:42:52:969 KERNEL/(19737:19738): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 19:53:13:734 KERNEL/(32299:32303): El proceso 2 pasara de ready suspendido a ready, , hilo sem queue suspended
+[INFO] 11:42:53:069 KERNEL/(19737:19740): El proceso 4 se desbloqueo, hilo bloquear
 
-[INFO] 19:53:13:735 KERNEL/(32299:32303): Se puso el proceso 2 en la cola ready
+[INFO] 11:42:53:070 KERNEL/(19737:19738): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 19:53:13:736 KERNEL/(32299:32300): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 11:42:53:171 KERNEL/(19737:19738): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
 
-[INFO] 19:53:13:833 KERNEL/(32299:32300): Se envio el proceso 2 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
+[INFO] 11:42:53:374 KERNEL/(19737:19739): Nuevo proceso en cola blocked
 
-[INFO] 19:53:22:470 KERNEL/(32299:32301): Nuevo proceso en cola blocked
+[INFO] 11:42:53:374 KERNEL/(19737:19738): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 19:53:22:472 KERNEL/(32299:32300): Se envio el proceso 3 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 11:42:53:375 KERNEL/(19737:19739): Nuevo proceso en cola blocked
 
-[INFO] 19:53:22:571 KERNEL/(32299:32302): El proceso 2 se desbloqueo, hilo bloquear
+[INFO] 11:42:53:474 KERNEL/(19737:19740): El proceso 4 se desbloqueo, hilo bloquear
 
-[INFO] 19:53:22:572 KERNEL/(32299:32300): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 11:42:53:475 KERNEL/(19737:19738): Se envio el proceso 4 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 19:53:24:536 KERNEL/(32299:32300): Se envio el proceso 2 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
+[INFO] 11:42:53:575 KERNEL/(19737:19740): El proceso 5 se desbloqueo, hilo bloquear
 
-[INFO] 19:53:25:048 KERNEL/(32299:32301): Nuevo proceso en cola blocked
+[INFO] 11:42:53:575 KERNEL/(19737:19738): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 19:53:25:048 KERNEL/(32299:32300): Se envio el proceso 3 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 11:42:53:676 KERNEL/(19737:19738): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
 
-[INFO] 19:53:25:148 KERNEL/(32299:32302): El proceso 2 se desbloqueo, hilo bloquear
+[INFO] 11:42:53:677 KERNEL/(19737:19739): Nuevo proceso en cola blocked
 
-[INFO] 19:53:25:148 KERNEL/(32299:32300): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 11:42:53:677 KERNEL/(19737:19738): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 19:53:27:071 KERNEL/(32299:32300): Se envio el proceso 2 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
+[INFO] 11:42:53:778 KERNEL/(19737:19740): El proceso 4 se desbloqueo, hilo bloquear
 
-[INFO] 19:53:27:579 KERNEL/(32299:32301): Nuevo proceso en cola blocked
+[INFO] 11:42:53:778 KERNEL/(19737:19738): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 19:53:27:580 KERNEL/(32299:32300): Se envio el proceso 3 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 11:42:53:793 KERNEL/(19737:19738): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
 
-[INFO] 19:53:27:680 KERNEL/(32299:32302): El proceso 2 se desbloqueo, hilo bloquear
+[INFO] 11:42:53:996 KERNEL/(19737:19739): Nuevo proceso en cola blocked
 
-[INFO] 19:53:27:680 KERNEL/(32299:32300): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 11:42:53:997 KERNEL/(19737:19738): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 19:53:27:714 KERNEL/(32299:32300): Se envio el proceso 2 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
+[INFO] 11:42:54:097 KERNEL/(19737:19740): El proceso 4 se desbloqueo, hilo bloquear
 
-[INFO] 19:53:28:219 KERNEL/(32299:32301): Nuevo proceso en cola blocked
+[INFO] 11:42:54:098 KERNEL/(19737:19738): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 19:53:28:220 KERNEL/(32299:32300): Se envio el proceso 3 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 11:42:54:199 KERNEL/(19737:19738): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
 
-[INFO] 19:53:28:319 KERNEL/(32299:32302): El proceso 2 se desbloqueo, hilo bloquear
+[INFO] 11:42:54:401 KERNEL/(19737:19739): Nuevo proceso en cola blocked
 
-[INFO] 19:53:28:321 KERNEL/(32299:32300): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 11:42:54:401 KERNEL/(19737:19738): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 19:53:28:326 KERNEL/(32299:32300): Se envio el proceso 2 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
+[INFO] 11:42:54:501 KERNEL/(19737:19740): El proceso 4 se desbloqueo, hilo bloquear
 
-[INFO] 19:53:28:833 KERNEL/(32299:32301): Nuevo proceso en cola blocked
+[INFO] 11:42:54:502 KERNEL/(19737:19738): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 19:53:28:834 KERNEL/(32299:32300): Se envio el proceso 3 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 11:42:54:603 KERNEL/(19737:19738): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
 
-[INFO] 19:53:28:933 KERNEL/(32299:32302): El proceso 2 se desbloqueo, hilo bloquear
+[INFO] 11:42:54:806 KERNEL/(19737:19739): Nuevo proceso en cola blocked
 
-[INFO] 19:53:28:934 KERNEL/(32299:32300): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 11:42:54:806 KERNEL/(19737:19738): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 19:53:28:940 KERNEL/(32299:32300): Se envio el proceso 2 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
+[INFO] 11:42:54:906 KERNEL/(19737:19740): El proceso 4 se desbloqueo, hilo bloquear
 
-[INFO] 19:53:29:448 KERNEL/(32299:32301): Nuevo proceso en cola blocked
+[INFO] 11:42:54:906 KERNEL/(19737:19738): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 19:53:29:452 KERNEL/(32299:32300): Se envio el proceso 3 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 11:42:55:008 KERNEL/(19737:19738): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
 
-[INFO] 19:53:29:548 KERNEL/(32299:32302): El proceso 2 se desbloqueo, hilo bloquear
+[INFO] 11:42:55:209 KERNEL/(19737:19739): Nuevo proceso en cola blocked
 
-[INFO] 19:53:29:549 KERNEL/(32299:32300): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 11:42:55:210 KERNEL/(19737:19738): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 19:53:29:557 KERNEL/(32299:32300): Se envio el proceso 2 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
+[INFO] 11:42:55:310 KERNEL/(19737:19740): El proceso 4 se desbloqueo, hilo bloquear
 
-[INFO] 19:53:30:565 KERNEL/(32299:32301): Orden EXIT recibida
-[INFO] 19:53:30:568 KERNEL/(32299:32300): Se envio el proceso 3 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 11:42:55:311 KERNEL/(19737:19738): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 19:53:30:568 KERNEL/(32299:32301): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 11:42:55:412 KERNEL/(19737:19738): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
 
-[INFO] 19:53:30:573 KERNEL/(32299:32303): Cantidad de procesos en memoria: 3
+[INFO] 11:42:55:614 KERNEL/(19737:19739): Nuevo proceso en cola blocked
 
-[INFO] 19:53:30:574 KERNEL/(32299:32317): DISCONNECT
-[INFO] 19:54:19:467 KERNEL/(32299:32301): Orden EXIT recibida
-[INFO] 19:54:19:469 KERNEL/(32299:32300): Se envio el proceso 4 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 11:42:55:615 KERNEL/(19737:19738): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 19:54:19:470 KERNEL/(32299:32301): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 11:42:55:714 KERNEL/(19737:19740): El proceso 4 se desbloqueo, hilo bloquear
 
-[INFO] 19:54:19:480 KERNEL/(32299:32303): Cantidad de procesos en memoria: 2
+[INFO] 11:42:55:715 KERNEL/(19737:19738): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 19:54:19:481 KERNEL/(32299:32325): DISCONNECT
-[INFO] 19:54:19:671 KERNEL/(32299:32301): Nuevo proceso en cola blocked
+[INFO] 11:42:55:716 KERNEL/(19737:19738): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
 
-[INFO] 19:54:19:672 KERNEL/(32299:32300): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 11:42:55:918 KERNEL/(19737:19739): Nuevo proceso en cola blocked
 
-[INFO] 19:54:19:771 KERNEL/(32299:32302): El proceso 4 se desbloqueo, hilo bloquear
+[INFO] 11:42:55:918 KERNEL/(19737:19738): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 19:54:19:772 KERNEL/(32299:32300): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 11:42:55:919 KERNEL/(19737:19739): Nuevo proceso en cola blocked
 
-[INFO] 19:54:20:695 KERNEL/(32299:32300): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
+[INFO] 11:42:56:019 KERNEL/(19737:19740): El proceso 4 se desbloqueo, hilo bloquear
 
-[INFO] 19:54:20:900 KERNEL/(32299:32301): Nuevo proceso en cola blocked
+[INFO] 11:42:56:020 KERNEL/(19737:19738): Se envio el proceso 4 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 19:54:20:901 KERNEL/(32299:32300): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 11:42:56:121 KERNEL/(19737:19740): El proceso 5 se desbloqueo, hilo bloquear
 
-[INFO] 19:54:21:001 KERNEL/(32299:32302): El proceso 4 se desbloqueo, hilo bloquear
+[INFO] 11:42:56:121 KERNEL/(19737:19738): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 19:54:21:001 KERNEL/(32299:32300): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 11:42:56:222 KERNEL/(19737:19738): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
 
-[INFO] 19:54:21:038 KERNEL/(32299:32300): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
+[INFO] 11:42:56:222 KERNEL/(19737:19739): Nuevo proceso en cola blocked
 
-[INFO] 19:54:21:241 KERNEL/(32299:32301): Nuevo proceso en cola blocked
+[INFO] 11:42:56:222 KERNEL/(19737:19738): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 19:54:21:242 KERNEL/(32299:32300): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 11:42:56:323 KERNEL/(19737:19740): El proceso 4 se desbloqueo, hilo bloquear
 
-[INFO] 19:54:21:342 KERNEL/(32299:32302): El proceso 4 se desbloqueo, hilo bloquear
+[INFO] 11:42:56:324 KERNEL/(19737:19738): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 19:54:21:342 KERNEL/(32299:32300): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 11:42:56:340 KERNEL/(19737:19738): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
 
-[INFO] 19:54:21:346 KERNEL/(32299:32300): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
+[INFO] 11:42:56:542 KERNEL/(19737:19739): Nuevo proceso en cola blocked
 
-[INFO] 19:54:21:549 KERNEL/(32299:32301): Nuevo proceso en cola blocked
+[INFO] 11:42:56:542 KERNEL/(19737:19738): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 19:54:21:549 KERNEL/(32299:32300): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 11:42:56:642 KERNEL/(19737:19740): El proceso 4 se desbloqueo, hilo bloquear
 
-[INFO] 19:54:21:649 KERNEL/(32299:32302): El proceso 4 se desbloqueo, hilo bloquear
+[INFO] 11:42:56:642 KERNEL/(19737:19738): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 19:54:21:650 KERNEL/(32299:32300): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 11:42:56:744 KERNEL/(19737:19738): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
 
-[INFO] 19:54:21:653 KERNEL/(32299:32300): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
+[INFO] 11:42:56:947 KERNEL/(19737:19739): Nuevo proceso en cola blocked
 
-[INFO] 19:54:21:857 KERNEL/(32299:32301): Nuevo proceso en cola blocked
+[INFO] 11:42:56:947 KERNEL/(19737:19738): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 19:54:21:858 KERNEL/(32299:32300): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 11:42:57:047 KERNEL/(19737:19740): El proceso 4 se desbloqueo, hilo bloquear
 
-[INFO] 19:54:21:958 KERNEL/(32299:32302): El proceso 4 se desbloqueo, hilo bloquear
+[INFO] 11:42:57:048 KERNEL/(19737:19738): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 19:54:21:959 KERNEL/(32299:32300): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 11:42:57:149 KERNEL/(19737:19738): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
 
-[INFO] 19:54:22:062 KERNEL/(32299:32300): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
+[INFO] 11:42:57:351 KERNEL/(19737:19739): Nuevo proceso en cola blocked
 
-[INFO] 19:54:22:267 KERNEL/(32299:32301): Nuevo proceso en cola blocked
+[INFO] 11:42:57:352 KERNEL/(19737:19738): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 19:54:22:268 KERNEL/(32299:32300): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 11:42:57:452 KERNEL/(19737:19740): El proceso 4 se desbloqueo, hilo bloquear
 
-[INFO] 19:54:22:368 KERNEL/(32299:32302): El proceso 4 se desbloqueo, hilo bloquear
+[INFO] 11:42:57:452 KERNEL/(19737:19738): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 19:54:22:369 KERNEL/(32299:32300): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 11:42:57:554 KERNEL/(19737:19738): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
 
-[INFO] 19:54:22:472 KERNEL/(32299:32300): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
+[INFO] 11:42:57:555 KERNEL/(19737:19738): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 19:54:22:676 KERNEL/(32299:32301): Nuevo proceso en cola blocked
+[INFO] 11:42:57:555 KERNEL/(19737:19739): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 19:54:22:676 KERNEL/(32299:32300): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 11:42:57:559 KERNEL/(19737:19741): Cantidad de procesos en memoria: 1
 
-[INFO] 19:54:22:776 KERNEL/(32299:32302): El proceso 4 se desbloqueo, hilo bloquear
+[INFO] 11:42:57:559 KERNEL/(19737:19786): DISCONNECT
+[INFO] 11:42:57:860 KERNEL/(19737:19739): Nuevo proceso en cola blocked
 
-[INFO] 19:54:22:777 KERNEL/(32299:32300): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 11:42:57:960 KERNEL/(19737:19740): El proceso 5 se desbloqueo, hilo bloquear
 
-[INFO] 19:54:22:781 KERNEL/(32299:32300): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
+[INFO] 11:42:57:961 KERNEL/(19737:19738): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 19:54:22:984 KERNEL/(32299:32301): Nuevo proceso en cola blocked
+[INFO] 11:42:58:982 KERNEL/(19737:19739): Nuevo proceso en cola blocked
 
-[INFO] 19:54:22:985 KERNEL/(32299:32300): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 11:42:59:083 KERNEL/(19737:19740): El proceso 5 se desbloqueo, hilo bloquear
 
-[INFO] 19:54:23:086 KERNEL/(32299:32302): El proceso 4 se desbloqueo, hilo bloquear
+[INFO] 11:42:59:084 KERNEL/(19737:19738): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 19:54:23:087 KERNEL/(32299:32300): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 11:43:00:105 KERNEL/(19737:19739): Nuevo proceso en cola blocked
 
-[INFO] 19:54:23:191 KERNEL/(32299:32301): Nuevo proceso en cola blocked
+[INFO] 11:43:00:206 KERNEL/(19737:19740): El proceso 5 se desbloqueo, hilo bloquear
 
-[INFO] 19:54:23:291 KERNEL/(32299:32302): El proceso 5 se desbloqueo, hilo bloquear
+[INFO] 11:43:00:207 KERNEL/(19737:19738): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 19:56:39:604 KERNEL/(32299:32301): DISCONNECT
-[INFO] 19:57:52:364 KERNEL/(670:670): Esperando a 127.0.0.1:8000 (CONSOLA)
+[INFO] 11:43:01:228 KERNEL/(19737:19739): Nuevo proceso en cola blocked
 
-[INFO] 19:57:52:364 KERNEL/(670:671): Cliente conectado en 127.0.0.1:8001 (a CPU DISPATCH)
+[INFO] 11:43:01:329 KERNEL/(19737:19740): El proceso 5 se desbloqueo, hilo bloquear
 
-[INFO] 19:57:54:515 KERNEL/(670:670): Cliente conectado (a KERNEL)
+[INFO] 11:43:01:330 KERNEL/(19737:19738): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 19:57:54:516 KERNEL/(670:670): Hilo para procesar conexion creado correctamente
-[INFO] 19:57:54:516 KERNEL/(670:684): Se recibieron las instrucciones
-[INFO] 19:57:54:517 KERNEL/(670:684): Cantidad de procesos en memoria: 0
+[INFO] 11:43:03:351 KERNEL/(19737:19739): Nuevo proceso en cola blocked
 
-[INFO] 19:57:54:517 KERNEL/(670:684): valor del semaforo sem_inicio antes del wait: 1
+[INFO] 11:43:03:452 KERNEL/(19737:19740): El proceso 5 se desbloqueo, hilo bloquear
 
-[INFO] 19:57:54:517 KERNEL/(670:684): Entro a inicializar (POR VERIFICACION_MULTIPROGRAMACION)
+[INFO] 11:43:03:453 KERNEL/(19737:19738): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 19:57:54:517 KERNEL/(670:684): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 11:43:04:475 KERNEL/(19737:19739): Nuevo proceso en cola blocked
 
-[INFO] 19:57:54:519 KERNEL/(670:684): Se inicializo el proceso 1 con el id 0 de la tabla de pagina 1 
+[INFO] 11:43:04:576 KERNEL/(19737:19740): El proceso 5 se desbloqueo, hilo bloquear
 
-[INFO] 19:57:54:519 KERNEL/(670:684): Se agrega el proceso 1 a la cola de ready
-[INFO] 19:57:54:519 KERNEL/(670:671): Se envio el proceso 1 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 11:43:04:576 KERNEL/(19737:19738): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 19:57:54:931 KERNEL/(670:670): Cliente conectado (a KERNEL)
+[INFO] 11:43:06:597 KERNEL/(19737:19739): Nuevo proceso en cola blocked
 
-[INFO] 19:57:54:932 KERNEL/(670:670): Hilo para procesar conexion creado correctamente
-[INFO] 19:57:54:932 KERNEL/(670:689): Se recibieron las instrucciones
-[INFO] 19:57:54:933 KERNEL/(670:689): Cantidad de procesos en memoria: 1
+[INFO] 11:43:06:698 KERNEL/(19737:19740): El proceso 5 se desbloqueo, hilo bloquear
 
-[INFO] 19:57:54:933 KERNEL/(670:689): valor del semaforo sem_inicio antes del wait: 1
+[INFO] 11:43:06:698 KERNEL/(19737:19738): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 19:57:54:933 KERNEL/(670:689): Entro a inicializar (POR VERIFICACION_MULTIPROGRAMACION)
+[INFO] 11:43:07:719 KERNEL/(19737:19739): Nuevo proceso en cola blocked
 
-[INFO] 19:57:54:934 KERNEL/(670:689): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 11:43:07:820 KERNEL/(19737:19740): El proceso 5 se desbloqueo, hilo bloquear
 
-[INFO] 19:57:55:520 KERNEL/(670:689): Se inicializo el proceso 2 con el id 1 de la tabla de pagina 1 
+[INFO] 11:43:07:823 KERNEL/(19737:19738): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 19:57:55:520 KERNEL/(670:689): Se agrega el proceso 2 a la cola de ready
-[INFO] 19:57:55:520 KERNEL/(670:671): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 11:43:08:844 KERNEL/(19737:19739): Nuevo proceso en cola blocked
 
-[INFO] 19:57:55:524 KERNEL/(670:671): Se envio el proceso 1 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
+[INFO] 11:43:08:944 KERNEL/(19737:19740): El proceso 5 se desbloqueo, hilo bloquear
 
-[INFO] 19:57:55:570 KERNEL/(670:670): Cliente conectado (a KERNEL)
+[INFO] 11:43:08:945 KERNEL/(19737:19738): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 19:57:55:570 KERNEL/(670:670): Hilo para procesar conexion creado correctamente
-[INFO] 19:57:55:571 KERNEL/(670:695): Se recibieron las instrucciones
-[INFO] 19:57:55:571 KERNEL/(670:695): Cantidad de procesos en memoria: 2
+[INFO] 11:43:09:966 KERNEL/(19737:19739): Nuevo proceso en cola blocked
 
-[INFO] 19:57:55:573 KERNEL/(670:695): valor del semaforo sem_inicio antes del wait: 1
+[INFO] 11:43:10:066 KERNEL/(19737:19740): El proceso 5 se desbloqueo, hilo bloquear
 
-[INFO] 19:57:55:574 KERNEL/(670:695): Entro a inicializar (POR VERIFICACION_MULTIPROGRAMACION)
+[INFO] 11:43:10:067 KERNEL/(19737:19738): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 19:57:55:575 KERNEL/(670:695): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 11:43:11:093 KERNEL/(19737:19739): Nuevo proceso en cola blocked
 
-[INFO] 19:57:56:096 KERNEL/(670:670): Cliente conectado (a KERNEL)
+[INFO] 11:43:11:194 KERNEL/(19737:19740): El proceso 5 se desbloqueo, hilo bloquear
 
-[INFO] 19:57:56:097 KERNEL/(670:670): Hilo para procesar conexion creado correctamente
-[INFO] 19:57:56:097 KERNEL/(670:698): Se recibieron las instrucciones
-[INFO] 19:57:56:097 KERNEL/(670:698): Cantidad de procesos en memoria: 2
+[INFO] 11:43:11:195 KERNEL/(19737:19738): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 19:57:56:098 KERNEL/(670:698): valor del semaforo sem_inicio antes del wait: 0
+[INFO] 11:43:12:217 KERNEL/(19737:19739): Nuevo proceso en cola blocked
 
-[INFO] 19:57:56:758 KERNEL/(670:670): Cliente conectado (a KERNEL)
+[INFO] 11:43:12:317 KERNEL/(19737:19740): El proceso 5 se desbloqueo, hilo bloquear
 
-[INFO] 19:57:56:759 KERNEL/(670:670): Hilo para procesar conexion creado correctamente
-[INFO] 19:57:56:759 KERNEL/(670:700): Se recibieron las instrucciones
-[INFO] 19:57:56:759 KERNEL/(670:700): Cantidad de procesos en memoria: 2
+[INFO] 11:43:12:318 KERNEL/(19737:19738): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 19:57:56:760 KERNEL/(670:700): valor del semaforo sem_inicio antes del wait: 0
+[INFO] 11:43:12:319 KERNEL/(19737:19739): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 19:57:57:525 KERNEL/(670:695): Se inicializo el proceso 3 con el id 2 de la tabla de pagina 1 
+[INFO] 11:43:12:323 KERNEL/(19737:19741): Cantidad de procesos en memoria: 0
 
-[INFO] 19:57:57:526 KERNEL/(670:698): Entro a inicializar (POR VERIFICACION_MULTIPROGRAMACION)
-
-[INFO] 19:57:57:527 KERNEL/(670:698): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
-
-[INFO] 19:57:57:526 KERNEL/(670:695): Se agrega el proceso 3 a la cola de ready
-[INFO] 19:57:57:528 KERNEL/(670:671): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
-
-[INFO] 19:57:57:543 KERNEL/(670:671): Se envio el proceso 1 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 19:57:58:524 KERNEL/(670:698): Se inicializo el proceso 4 con el id 3 de la tabla de pagina 1 
-
-[INFO] 19:57:58:524 KERNEL/(670:700): Entro a inicializar (POR VERIFICACION_MULTIPROGRAMACION)
-
-[INFO] 19:57:58:525 KERNEL/(670:700): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
-
-[INFO] 19:57:58:525 KERNEL/(670:698): Se agrega el proceso 4 a la cola de ready
-[INFO] 19:57:58:526 KERNEL/(670:671): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
-
-[INFO] 19:57:58:585 KERNEL/(670:671): Se envio el proceso 1 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 19:58:01:525 KERNEL/(670:700): Se inicializo el proceso 5 con el id 4 de la tabla de pagina 1 
-
-[INFO] 19:58:01:527 KERNEL/(670:700): Se agrega el proceso 5 a la cola de ready
-[INFO] 19:58:01:528 KERNEL/(670:671): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
-
-[INFO] 19:58:05:411 KERNEL/(670:672): Nuevo proceso en cola blocked
-
-[WARNING] 19:58:06:413 KERNEL/(670:743): Se va a suspender el proceso: 1
-
-[INFO] 19:58:06:413 KERNEL/(670:743): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
-
-[INFO] 19:58:06:418 KERNEL/(670:743): Confirmacion de suspension recibida
-[INFO] 19:58:06:418 KERNEL/(670:675): Cantidad de procesos en memoria: 4
-
-[INFO] 19:58:10:411 KERNEL/(670:674): El proceso 1 se desbloqueo, hilo bloquear
-
-[INFO] 19:58:10:411 KERNEL/(670:675): Cantidad de procesos en memoria: 4
-
-[INFO] 19:58:10:411 KERNEL/(670:675): El proceso 1 pasara de ready suspendido a ready, , hilo sem queue suspended
-
-[INFO] 19:58:10:412 KERNEL/(670:675): Se puso el proceso 1 en la cola ready
-
-[INFO] 19:59:46:022 KERNEL/(670:672): DISCONNECT
-[INFO] 20:01:08:689 KERNEL/(1096:1096): Esperando a 127.0.0.1:8000 (CONSOLA)
-
-[INFO] 20:01:08:690 KERNEL/(1096:1097): Cliente conectado en 127.0.0.1:8001 (a CPU DISPATCH)
-
-[INFO] 20:01:10:733 KERNEL/(1096:1096): Cliente conectado (a KERNEL)
-
-[INFO] 20:01:10:733 KERNEL/(1096:1096): Hilo para procesar conexion creado correctamente
-[INFO] 20:01:10:733 KERNEL/(1096:1109): Se recibieron las instrucciones
-[INFO] 20:01:10:734 KERNEL/(1096:1109): Cantidad de procesos en memoria: 0
-
-[INFO] 20:01:10:734 KERNEL/(1096:1109): valor del semaforo sem_inicio antes del wait: 1
-
-[INFO] 20:01:10:734 KERNEL/(1096:1109): Entro a inicializar (POR VERIFICACION_MULTIPROGRAMACION)
-
-[INFO] 20:01:10:735 KERNEL/(1096:1109): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
-
-[INFO] 20:01:10:736 KERNEL/(1096:1109): Se inicializo el proceso 1 con el id 0 de la tabla de pagina 1 
-
-[INFO] 20:01:10:737 KERNEL/(1096:1109): Se agrega el proceso 1 a la cola de ready
-[INFO] 20:01:10:737 KERNEL/(1096:1097): Se envio el proceso 1 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 20:01:11:142 KERNEL/(1096:1096): Cliente conectado (a KERNEL)
-
-[INFO] 20:01:11:142 KERNEL/(1096:1096): Hilo para procesar conexion creado correctamente
-[INFO] 20:01:11:143 KERNEL/(1096:1114): Se recibieron las instrucciones
-[INFO] 20:01:11:143 KERNEL/(1096:1114): Cantidad de procesos en memoria: 1
-
-[INFO] 20:01:11:143 KERNEL/(1096:1114): valor del semaforo sem_inicio antes del wait: 1
-
-[INFO] 20:01:11:144 KERNEL/(1096:1114): Entro a inicializar (POR VERIFICACION_MULTIPROGRAMACION)
-
-[INFO] 20:01:11:144 KERNEL/(1096:1114): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
-
-[INFO] 20:01:11:547 KERNEL/(1096:1096): Cliente conectado (a KERNEL)
-
-[INFO] 20:01:11:548 KERNEL/(1096:1096): Hilo para procesar conexion creado correctamente
-[INFO] 20:01:11:549 KERNEL/(1096:1117): Se recibieron las instrucciones
-[INFO] 20:01:11:549 KERNEL/(1096:1117): Cantidad de procesos en memoria: 1
-
-[INFO] 20:01:11:549 KERNEL/(1096:1117): valor del semaforo sem_inicio antes del wait: 0
-
-[INFO] 20:01:11:738 KERNEL/(1096:1114): Se inicializo el proceso 2 con el id 1 de la tabla de pagina 1 
-
-[INFO] 20:01:11:739 KERNEL/(1096:1117): Entro a inicializar (POR VERIFICACION_MULTIPROGRAMACION)
-
-[INFO] 20:01:11:739 KERNEL/(1096:1117): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
-
-[INFO] 20:01:11:739 KERNEL/(1096:1114): Se agrega el proceso 2 a la cola de ready
-[INFO] 20:01:11:739 KERNEL/(1096:1097): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
-
-[INFO] 20:01:11:740 KERNEL/(1096:1097): Se envio el proceso 1 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 20:01:11:943 KERNEL/(1096:1096): Cliente conectado (a KERNEL)
-
-[INFO] 20:01:11:944 KERNEL/(1096:1096): Hilo para procesar conexion creado correctamente
-[INFO] 20:01:11:944 KERNEL/(1096:1124): Se recibieron las instrucciones
-[INFO] 20:01:11:944 KERNEL/(1096:1124): Cantidad de procesos en memoria: 2
-
-[INFO] 20:01:11:945 KERNEL/(1096:1124): valor del semaforo sem_inicio antes del wait: 0
-
-[INFO] 20:01:12:414 KERNEL/(1096:1096): Cliente conectado (a KERNEL)
-
-[INFO] 20:01:12:415 KERNEL/(1096:1096): Hilo para procesar conexion creado correctamente
-[INFO] 20:01:12:415 KERNEL/(1096:1126): Se recibieron las instrucciones
-[INFO] 20:01:12:415 KERNEL/(1096:1126): Cantidad de procesos en memoria: 2
-
-[INFO] 20:01:12:415 KERNEL/(1096:1126): valor del semaforo sem_inicio antes del wait: 0
-
-[INFO] 20:01:14:740 KERNEL/(1096:1117): Se inicializo el proceso 3 con el id 2 de la tabla de pagina 1 
-
-[INFO] 20:01:14:741 KERNEL/(1096:1124): Entro a inicializar (POR VERIFICACION_MULTIPROGRAMACION)
-
-[INFO] 20:01:14:742 KERNEL/(1096:1117): Se agrega el proceso 3 a la cola de ready
-[INFO] 20:01:14:742 KERNEL/(1096:1124): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
-
-[INFO] 20:01:14:744 KERNEL/(1096:1097): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
-
-[INFO] 20:01:14:759 KERNEL/(1096:1097): Se envio el proceso 1 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 20:01:14:765 KERNEL/(1096:1124): Se inicializo el proceso 4 con el id 3 de la tabla de pagina 1 
-
-[INFO] 20:01:14:765 KERNEL/(1096:1126): Entro a inicializar (POR VERIFICACION_MULTIPROGRAMACION)
-
-[INFO] 20:01:14:766 KERNEL/(1096:1126): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
-
-[INFO] 20:01:14:766 KERNEL/(1096:1124): Se agrega el proceso 4 a la cola de ready
-[INFO] 20:01:14:766 KERNEL/(1096:1097): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
-
-[INFO] 20:01:14:868 KERNEL/(1096:1097): Se envio el proceso 1 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 20:01:15:756 KERNEL/(1096:1126): Se inicializo el proceso 5 con el id 4 de la tabla de pagina 1 
-
-[INFO] 20:01:15:757 KERNEL/(1096:1126): Se agrega el proceso 5 a la cola de ready
-[INFO] 20:01:15:757 KERNEL/(1096:1097): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
-
-[INFO] 20:01:15:804 KERNEL/(1096:1097): Se envio el proceso 1 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 20:01:21:632 KERNEL/(1096:1098): Nuevo proceso en cola blocked
-
-[INFO] 20:01:21:633 KERNEL/(1096:1097): Se envio el proceso 2 a la CPU, (RUNNING ESTABA EN NULL)
-
-[WARNING] 20:01:22:634 KERNEL/(1096:1170): Se va a suspender el proceso: 1
-
-[INFO] 20:01:22:636 KERNEL/(1096:1170): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
-
-[INFO] 20:01:22:651 KERNEL/(1096:1170): Confirmacion de suspension recibida
-[INFO] 20:01:22:653 KERNEL/(1096:1100): Cantidad de procesos en memoria: 4
-
-[INFO] 20:01:26:633 KERNEL/(1096:1099): El proceso 1 se desbloqueo, hilo bloquear
-
-[INFO] 20:01:26:633 KERNEL/(1096:1100): Cantidad de procesos en memoria: 4
-
-[INFO] 20:01:26:633 KERNEL/(1096:1100): El proceso 1 pasara de ready suspendido a ready, , hilo sem queue suspended
-
-[INFO] 20:01:26:634 KERNEL/(1096:1100): Se puso el proceso 1 en la cola ready
-
-[INFO] 20:01:26:634 KERNEL/(1096:1097): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
-
-[INFO] 20:01:26:706 KERNEL/(1096:1097): Se envio el proceso 1 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 20:01:34:645 KERNEL/(1096:1098): Orden EXIT recibida
-[INFO] 20:01:34:646 KERNEL/(1096:1097): Se envio el proceso 2 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 20:01:34:647 KERNEL/(1096:1098): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
-
-[INFO] 20:01:34:654 KERNEL/(1096:1100): Cantidad de procesos en memoria: 4
-
-[INFO] 20:01:34:654 KERNEL/(1096:1109): DISCONNECT
-[INFO] 20:01:39:737 KERNEL/(1096:1098): Nuevo proceso en cola blocked
-
-[INFO] 20:01:39:737 KERNEL/(1096:1097): Se envio el proceso 3 a la CPU, (RUNNING ESTABA EN NULL)
-
-[WARNING] 20:01:40:740 KERNEL/(1096:1237): Se va a suspender el proceso: 2
-
-[INFO] 20:01:40:741 KERNEL/(1096:1237): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
-
-[INFO] 20:01:40:754 KERNEL/(1096:1237): Confirmacion de suspension recibida
-[INFO] 20:01:40:755 KERNEL/(1096:1100): Cantidad de procesos en memoria: 3
-
-[INFO] 20:01:44:737 KERNEL/(1096:1099): El proceso 2 se desbloqueo, hilo bloquear
-
-[INFO] 20:01:44:738 KERNEL/(1096:1100): Cantidad de procesos en memoria: 3
-
-[INFO] 20:01:44:738 KERNEL/(1096:1100): El proceso 2 pasara de ready suspendido a ready, , hilo sem queue suspended
-
-[INFO] 20:01:44:739 KERNEL/(1096:1100): Se puso el proceso 2 en la cola ready
-
-[INFO] 20:01:44:740 KERNEL/(1096:1097): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
-
-[INFO] 20:01:44:870 KERNEL/(1096:1097): Se envio el proceso 2 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 20:01:53:514 KERNEL/(1096:1098): Nuevo proceso en cola blocked
-
-[INFO] 20:01:53:514 KERNEL/(1096:1097): Se envio el proceso 3 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 20:01:53:614 KERNEL/(1096:1099): El proceso 2 se desbloqueo, hilo bloquear
-
-[INFO] 20:01:53:614 KERNEL/(1096:1097): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
-
-[INFO] 20:01:55:569 KERNEL/(1096:1097): Se envio el proceso 2 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 20:01:56:081 KERNEL/(1096:1098): Nuevo proceso en cola blocked
-
-[INFO] 20:01:56:081 KERNEL/(1096:1097): Se envio el proceso 3 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 20:01:56:181 KERNEL/(1096:1099): El proceso 2 se desbloqueo, hilo bloquear
-
-[INFO] 20:01:56:181 KERNEL/(1096:1097): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
-
-[INFO] 20:01:58:124 KERNEL/(1096:1097): Se envio el proceso 2 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 20:01:58:633 KERNEL/(1096:1098): Nuevo proceso en cola blocked
-
-[INFO] 20:01:58:635 KERNEL/(1096:1097): Se envio el proceso 3 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 20:01:58:734 KERNEL/(1096:1099): El proceso 2 se desbloqueo, hilo bloquear
-
-[INFO] 20:01:58:735 KERNEL/(1096:1097): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
-
-[INFO] 20:01:58:786 KERNEL/(1096:1097): Se envio el proceso 2 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 20:01:59:291 KERNEL/(1096:1098): Nuevo proceso en cola blocked
-
-[INFO] 20:01:59:293 KERNEL/(1096:1097): Se envio el proceso 3 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 20:01:59:392 KERNEL/(1096:1099): El proceso 2 se desbloqueo, hilo bloquear
-
-[INFO] 20:01:59:393 KERNEL/(1096:1097): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
-
-[INFO] 20:01:59:401 KERNEL/(1096:1097): Se envio el proceso 2 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 20:01:59:906 KERNEL/(1096:1098): Nuevo proceso en cola blocked
-
-[INFO] 20:01:59:907 KERNEL/(1096:1097): Se envio el proceso 3 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 20:02:00:007 KERNEL/(1096:1099): El proceso 2 se desbloqueo, hilo bloquear
-
-[INFO] 20:02:00:007 KERNEL/(1096:1097): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
-
-[INFO] 20:02:00:010 KERNEL/(1096:1097): Se envio el proceso 2 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 20:02:00:517 KERNEL/(1096:1098): Nuevo proceso en cola blocked
-
-[INFO] 20:02:00:520 KERNEL/(1096:1097): Se envio el proceso 3 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 20:02:00:617 KERNEL/(1096:1099): El proceso 2 se desbloqueo, hilo bloquear
-
-[INFO] 20:02:00:618 KERNEL/(1096:1097): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
-
-[INFO] 20:02:00:628 KERNEL/(1096:1097): Se envio el proceso 2 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 20:02:01:642 KERNEL/(1096:1098): Orden EXIT recibida
-[INFO] 20:02:01:646 KERNEL/(1096:1097): Se envio el proceso 3 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 20:02:01:647 KERNEL/(1096:1098): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
-
-[INFO] 20:02:01:656 KERNEL/(1096:1100): Cantidad de procesos en memoria: 3
-
-[INFO] 20:02:01:657 KERNEL/(1096:1114): DISCONNECT
-[INFO] 20:02:50:578 KERNEL/(1096:1098): Orden EXIT recibida
-[INFO] 20:02:50:579 KERNEL/(1096:1097): Se envio el proceso 4 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 20:02:50:580 KERNEL/(1096:1098): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
-
-[INFO] 20:02:50:585 KERNEL/(1096:1100): Cantidad de procesos en memoria: 2
-
-[INFO] 20:02:50:585 KERNEL/(1096:1117): DISCONNECT
-[INFO] 20:02:50:782 KERNEL/(1096:1098): Nuevo proceso en cola blocked
-
-[INFO] 20:02:50:783 KERNEL/(1096:1097): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 20:02:50:882 KERNEL/(1096:1099): El proceso 4 se desbloqueo, hilo bloquear
-
-[INFO] 20:02:50:882 KERNEL/(1096:1097): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
-
-[INFO] 20:02:51:802 KERNEL/(1096:1097): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 20:02:52:006 KERNEL/(1096:1098): Nuevo proceso en cola blocked
-
-[INFO] 20:02:52:006 KERNEL/(1096:1097): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 20:02:52:106 KERNEL/(1096:1099): El proceso 4 se desbloqueo, hilo bloquear
-
-[INFO] 20:02:52:107 KERNEL/(1096:1097): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
-
-[INFO] 20:02:52:128 KERNEL/(1096:1097): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 20:02:52:331 KERNEL/(1096:1098): Nuevo proceso en cola blocked
-
-[INFO] 20:02:52:332 KERNEL/(1096:1097): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 20:02:52:432 KERNEL/(1096:1099): El proceso 4 se desbloqueo, hilo bloquear
-
-[INFO] 20:02:52:432 KERNEL/(1096:1097): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
-
-[INFO] 20:02:52:436 KERNEL/(1096:1097): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 20:02:52:639 KERNEL/(1096:1098): Nuevo proceso en cola blocked
-
-[INFO] 20:02:52:639 KERNEL/(1096:1097): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 20:02:52:739 KERNEL/(1096:1099): El proceso 4 se desbloqueo, hilo bloquear
-
-[INFO] 20:02:52:741 KERNEL/(1096:1097): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
-
-[INFO] 20:02:52:845 KERNEL/(1096:1097): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 20:02:53:048 KERNEL/(1096:1098): Nuevo proceso en cola blocked
-
-[INFO] 20:02:53:050 KERNEL/(1096:1097): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 20:02:53:148 KERNEL/(1096:1099): El proceso 4 se desbloqueo, hilo bloquear
-
-[INFO] 20:02:53:149 KERNEL/(1096:1097): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
-
-[INFO] 20:02:53:153 KERNEL/(1096:1097): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 20:02:53:356 KERNEL/(1096:1098): Nuevo proceso en cola blocked
-
-[INFO] 20:02:53:357 KERNEL/(1096:1097): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 20:02:53:457 KERNEL/(1096:1099): El proceso 4 se desbloqueo, hilo bloquear
-
-[INFO] 20:02:53:457 KERNEL/(1096:1097): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
-
-[INFO] 20:02:53:462 KERNEL/(1096:1097): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 20:02:53:666 KERNEL/(1096:1098): Nuevo proceso en cola blocked
-
-[INFO] 20:02:53:666 KERNEL/(1096:1097): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 20:02:53:766 KERNEL/(1096:1099): El proceso 4 se desbloqueo, hilo bloquear
-
-[INFO] 20:02:53:766 KERNEL/(1096:1097): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
-
-[INFO] 20:02:53:770 KERNEL/(1096:1097): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 20:02:53:972 KERNEL/(1096:1098): Nuevo proceso en cola blocked
-
-[INFO] 20:02:53:973 KERNEL/(1096:1097): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 20:02:54:073 KERNEL/(1096:1099): El proceso 4 se desbloqueo, hilo bloquear
-
-[INFO] 20:02:54:073 KERNEL/(1096:1097): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
-
-[INFO] 20:02:54:076 KERNEL/(1096:1097): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 20:02:54:279 KERNEL/(1096:1098): Nuevo proceso en cola blocked
-
-[INFO] 20:02:54:280 KERNEL/(1096:1097): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 20:02:54:379 KERNEL/(1096:1099): El proceso 4 se desbloqueo, hilo bloquear
-
-[INFO] 20:02:54:380 KERNEL/(1096:1097): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
-
-[INFO] 20:02:54:384 KERNEL/(1096:1097): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 20:02:54:587 KERNEL/(1096:1098): Nuevo proceso en cola blocked
-
-[INFO] 20:02:54:587 KERNEL/(1096:1097): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 20:02:54:688 KERNEL/(1096:1099): El proceso 4 se desbloqueo, hilo bloquear
-
-[INFO] 20:02:54:691 KERNEL/(1096:1098): Nuevo proceso en cola blocked
-
-[INFO] 20:02:54:691 KERNEL/(1096:1097): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
-
-[INFO] 20:02:54:729 KERNEL/(1096:1097): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 20:02:54:791 KERNEL/(1096:1099): El proceso 5 se desbloqueo, hilo bloquear
-
-[INFO] 20:02:54:791 KERNEL/(1096:1097): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
-
-[INFO] 20:02:54:830 KERNEL/(1096:1097): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 20:02:54:932 KERNEL/(1096:1098): Nuevo proceso en cola blocked
-
-[INFO] 20:02:54:933 KERNEL/(1096:1097): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 20:02:55:033 KERNEL/(1096:1099): El proceso 4 se desbloqueo, hilo bloquear
-
-[INFO] 20:02:55:034 KERNEL/(1096:1097): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
-
-[INFO] 20:02:55:053 KERNEL/(1096:1097): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 20:02:55:257 KERNEL/(1096:1098): Nuevo proceso en cola blocked
-
-[INFO] 20:02:55:258 KERNEL/(1096:1097): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 20:02:55:358 KERNEL/(1096:1099): El proceso 4 se desbloqueo, hilo bloquear
-
-[INFO] 20:02:55:358 KERNEL/(1096:1097): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
-
-[INFO] 20:02:55:365 KERNEL/(1096:1097): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 20:02:55:569 KERNEL/(1096:1098): Nuevo proceso en cola blocked
-
-[INFO] 20:02:55:570 KERNEL/(1096:1097): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 20:02:55:669 KERNEL/(1096:1099): El proceso 4 se desbloqueo, hilo bloquear
-
-[INFO] 20:02:55:671 KERNEL/(1096:1097): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
-
-[INFO] 20:02:55:675 KERNEL/(1096:1097): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 20:02:55:879 KERNEL/(1096:1098): Nuevo proceso en cola blocked
-
-[INFO] 20:02:55:880 KERNEL/(1096:1097): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 20:02:55:979 KERNEL/(1096:1099): El proceso 4 se desbloqueo, hilo bloquear
-
-[INFO] 20:02:55:980 KERNEL/(1096:1097): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
-
-[INFO] 20:02:55:986 KERNEL/(1096:1097): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 20:02:56:191 KERNEL/(1096:1098): Nuevo proceso en cola blocked
-
-[INFO] 20:02:56:192 KERNEL/(1096:1097): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 20:02:56:291 KERNEL/(1096:1099): El proceso 4 se desbloqueo, hilo bloquear
-
-[INFO] 20:02:56:292 KERNEL/(1096:1097): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
-
-[INFO] 20:02:56:297 KERNEL/(1096:1097): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 20:02:56:502 KERNEL/(1096:1098): Nuevo proceso en cola blocked
-
-[INFO] 20:02:56:503 KERNEL/(1096:1097): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 20:02:56:603 KERNEL/(1096:1099): El proceso 4 se desbloqueo, hilo bloquear
-
-[INFO] 20:02:56:604 KERNEL/(1096:1097): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
-
-[INFO] 20:02:56:609 KERNEL/(1096:1097): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 20:02:56:812 KERNEL/(1096:1098): Nuevo proceso en cola blocked
-
-[INFO] 20:02:56:813 KERNEL/(1096:1097): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 20:02:56:912 KERNEL/(1096:1099): El proceso 4 se desbloqueo, hilo bloquear
-
-[INFO] 20:02:56:913 KERNEL/(1096:1097): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
-
-[INFO] 20:02:56:916 KERNEL/(1096:1097): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 20:02:57:118 KERNEL/(1096:1098): Nuevo proceso en cola blocked
-
-[INFO] 20:02:57:119 KERNEL/(1096:1097): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 20:02:57:218 KERNEL/(1096:1099): El proceso 4 se desbloqueo, hilo bloquear
-
-[INFO] 20:02:57:219 KERNEL/(1096:1097): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
-
-[INFO] 20:02:57:222 KERNEL/(1096:1097): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 20:02:57:425 KERNEL/(1096:1098): Nuevo proceso en cola blocked
-
-[INFO] 20:02:57:425 KERNEL/(1096:1097): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 20:02:57:525 KERNEL/(1096:1099): El proceso 4 se desbloqueo, hilo bloquear
-
-[INFO] 20:02:57:526 KERNEL/(1096:1097): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
-
-[INFO] 20:02:57:529 KERNEL/(1096:1097): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 20:02:57:733 KERNEL/(1096:1098): Nuevo proceso en cola blocked
-
-[INFO] 20:02:57:733 KERNEL/(1096:1097): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 20:02:57:833 KERNEL/(1096:1099): El proceso 4 se desbloqueo, hilo bloquear
-
-[INFO] 20:02:57:833 KERNEL/(1096:1097): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
-
-[INFO] 20:02:57:836 KERNEL/(1096:1097): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 20:02:58:040 KERNEL/(1096:1098): Nuevo proceso en cola blocked
-
-[INFO] 20:02:58:041 KERNEL/(1096:1097): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 20:02:58:046 KERNEL/(1096:1098): Nuevo proceso en cola blocked
-
-[INFO] 20:02:58:140 KERNEL/(1096:1099): El proceso 4 se desbloqueo, hilo bloquear
-
-[INFO] 20:02:58:142 KERNEL/(1096:1097): Se envio el proceso 4 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 20:02:58:241 KERNEL/(1096:1099): El proceso 5 se desbloqueo, hilo bloquear
-
-[INFO] 20:02:58:242 KERNEL/(1096:1097): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
-
-[INFO] 20:02:58:346 KERNEL/(1096:1097): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 20:02:58:349 KERNEL/(1096:1098): Nuevo proceso en cola blocked
-
-[INFO] 20:02:58:350 KERNEL/(1096:1097): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 20:02:58:449 KERNEL/(1096:1099): El proceso 4 se desbloqueo, hilo bloquear
-
-[INFO] 20:02:58:450 KERNEL/(1096:1097): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
-
-[INFO] 20:02:59:380 KERNEL/(1096:1097): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 20:02:59:586 KERNEL/(1096:1098): Nuevo proceso en cola blocked
-
-[INFO] 20:02:59:587 KERNEL/(1096:1097): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 20:02:59:687 KERNEL/(1096:1099): El proceso 4 se desbloqueo, hilo bloquear
-
-[INFO] 20:02:59:688 KERNEL/(1096:1097): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
-
-[INFO] 20:02:59:710 KERNEL/(1096:1097): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 20:02:59:914 KERNEL/(1096:1098): Nuevo proceso en cola blocked
-
-[INFO] 20:02:59:915 KERNEL/(1096:1097): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 20:03:00:015 KERNEL/(1096:1099): El proceso 4 se desbloqueo, hilo bloquear
-
-[INFO] 20:03:00:015 KERNEL/(1096:1097): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
-
-[INFO] 20:03:00:019 KERNEL/(1096:1097): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 20:03:00:221 KERNEL/(1096:1098): Nuevo proceso en cola blocked
-
-[INFO] 20:03:00:221 KERNEL/(1096:1097): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 20:03:00:321 KERNEL/(1096:1099): El proceso 4 se desbloqueo, hilo bloquear
-
-[INFO] 20:03:00:322 KERNEL/(1096:1097): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
-
-[INFO] 20:03:00:324 KERNEL/(1096:1097): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 20:03:00:528 KERNEL/(1096:1098): Nuevo proceso en cola blocked
-
-[INFO] 20:03:00:529 KERNEL/(1096:1097): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 20:03:00:628 KERNEL/(1096:1099): El proceso 4 se desbloqueo, hilo bloquear
-
-[INFO] 20:03:00:629 KERNEL/(1096:1097): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
-
-[INFO] 20:03:00:635 KERNEL/(1096:1097): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 20:03:00:840 KERNEL/(1096:1098): Nuevo proceso en cola blocked
-
-[INFO] 20:03:00:840 KERNEL/(1096:1097): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 20:03:00:940 KERNEL/(1096:1099): El proceso 4 se desbloqueo, hilo bloquear
-
-[INFO] 20:03:00:940 KERNEL/(1096:1097): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
-
-[INFO] 20:03:00:943 KERNEL/(1096:1097): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 20:03:01:146 KERNEL/(1096:1098): Nuevo proceso en cola blocked
-
-[INFO] 20:03:01:147 KERNEL/(1096:1097): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 20:03:01:246 KERNEL/(1096:1099): El proceso 4 se desbloqueo, hilo bloquear
-
-[INFO] 20:03:01:246 KERNEL/(1096:1097): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
-
-[INFO] 20:03:01:251 KERNEL/(1096:1097): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 20:03:01:455 KERNEL/(1096:1098): Nuevo proceso en cola blocked
-
-[INFO] 20:03:01:455 KERNEL/(1096:1097): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 20:03:01:555 KERNEL/(1096:1099): El proceso 4 se desbloqueo, hilo bloquear
-
-[INFO] 20:03:01:556 KERNEL/(1096:1097): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
-
-[INFO] 20:03:01:557 KERNEL/(1096:1097): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 20:03:01:760 KERNEL/(1096:1098): Nuevo proceso en cola blocked
-
-[INFO] 20:03:01:761 KERNEL/(1096:1097): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 20:03:01:861 KERNEL/(1096:1099): El proceso 4 se desbloqueo, hilo bloquear
-
-[INFO] 20:03:01:862 KERNEL/(1096:1097): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
-
-[INFO] 20:03:01:966 KERNEL/(1096:1097): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 20:03:02:169 KERNEL/(1096:1098): Nuevo proceso en cola blocked
-
-[INFO] 20:03:02:170 KERNEL/(1096:1097): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 20:03:02:270 KERNEL/(1096:1099): El proceso 4 se desbloqueo, hilo bloquear
-
-[INFO] 20:03:02:271 KERNEL/(1096:1097): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
-
-[INFO] 20:03:02:276 KERNEL/(1096:1097): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO), hilo planificar
-
-[INFO] 20:03:02:480 KERNEL/(1096:1098): Nuevo proceso en cola blocked
-
-[INFO] 20:03:02:481 KERNEL/(1096:1097): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 20:03:02:484 KERNEL/(1096:1098): Nuevo proceso en cola blocked
-
-[INFO] 20:03:02:581 KERNEL/(1096:1099): El proceso 4 se desbloqueo, hilo bloquear
-
-[INFO] 20:03:02:582 KERNEL/(1096:1097): Se envio el proceso 4 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 20:03:02:583 KERNEL/(1096:1098): Orden EXIT recibida
-[INFO] 20:03:02:583 KERNEL/(1096:1098): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
-
-[INFO] 20:03:02:589 KERNEL/(1096:1100): Cantidad de procesos en memoria: 1
-
-[INFO] 20:03:02:590 KERNEL/(1096:1124): DISCONNECT
-[INFO] 20:03:02:682 KERNEL/(1096:1099): El proceso 5 se desbloqueo, hilo bloquear
-
-[INFO] 20:03:02:683 KERNEL/(1096:1097): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 20:03:03:706 KERNEL/(1096:1098): Nuevo proceso en cola blocked
-
-[INFO] 20:03:03:807 KERNEL/(1096:1099): El proceso 5 se desbloqueo, hilo bloquear
-
-[INFO] 20:03:03:808 KERNEL/(1096:1097): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 20:03:04:839 KERNEL/(1096:1098): Nuevo proceso en cola blocked
-
-[INFO] 20:03:04:939 KERNEL/(1096:1099): El proceso 5 se desbloqueo, hilo bloquear
-
-[INFO] 20:03:04:941 KERNEL/(1096:1097): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 20:03:05:971 KERNEL/(1096:1098): Nuevo proceso en cola blocked
-
-[INFO] 20:03:06:071 KERNEL/(1096:1099): El proceso 5 se desbloqueo, hilo bloquear
-
-[INFO] 20:03:06:074 KERNEL/(1096:1097): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 20:03:07:107 KERNEL/(1096:1098): Nuevo proceso en cola blocked
-
-[INFO] 20:03:07:207 KERNEL/(1096:1099): El proceso 5 se desbloqueo, hilo bloquear
-
-[INFO] 20:03:07:209 KERNEL/(1096:1097): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 20:03:08:235 KERNEL/(1096:1098): Nuevo proceso en cola blocked
-
-[INFO] 20:03:08:336 KERNEL/(1096:1099): El proceso 5 se desbloqueo, hilo bloquear
-
-[INFO] 20:03:08:337 KERNEL/(1096:1097): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 20:03:10:371 KERNEL/(1096:1098): Nuevo proceso en cola blocked
-
-[INFO] 20:03:10:471 KERNEL/(1096:1099): El proceso 5 se desbloqueo, hilo bloquear
-
-[INFO] 20:03:10:474 KERNEL/(1096:1097): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 20:03:11:512 KERNEL/(1096:1098): Nuevo proceso en cola blocked
-
-[INFO] 20:03:11:612 KERNEL/(1096:1099): El proceso 5 se desbloqueo, hilo bloquear
-
-[INFO] 20:03:11:613 KERNEL/(1096:1097): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 20:03:13:642 KERNEL/(1096:1098): Nuevo proceso en cola blocked
-
-[INFO] 20:03:13:742 KERNEL/(1096:1099): El proceso 5 se desbloqueo, hilo bloquear
-
-[INFO] 20:03:13:744 KERNEL/(1096:1097): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 20:03:14:791 KERNEL/(1096:1098): Nuevo proceso en cola blocked
-
-[INFO] 20:03:14:891 KERNEL/(1096:1099): El proceso 5 se desbloqueo, hilo bloquear
-
-[INFO] 20:03:14:894 KERNEL/(1096:1097): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 20:03:15:929 KERNEL/(1096:1098): Nuevo proceso en cola blocked
-
-[INFO] 20:03:16:029 KERNEL/(1096:1099): El proceso 5 se desbloqueo, hilo bloquear
-
-[INFO] 20:03:16:032 KERNEL/(1096:1097): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 20:03:17:063 KERNEL/(1096:1098): Nuevo proceso en cola blocked
-
-[INFO] 20:03:17:164 KERNEL/(1096:1099): El proceso 5 se desbloqueo, hilo bloquear
-
-[INFO] 20:03:17:165 KERNEL/(1096:1097): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 20:03:18:187 KERNEL/(1096:1098): Nuevo proceso en cola blocked
-
-[INFO] 20:03:18:287 KERNEL/(1096:1099): El proceso 5 se desbloqueo, hilo bloquear
-
-[INFO] 20:03:18:289 KERNEL/(1096:1097): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 20:03:19:321 KERNEL/(1096:1098): Nuevo proceso en cola blocked
-
-[INFO] 20:03:19:421 KERNEL/(1096:1099): El proceso 5 se desbloqueo, hilo bloquear
-
-[INFO] 20:03:19:423 KERNEL/(1096:1097): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
-
-[INFO] 20:03:19:425 KERNEL/(1096:1098): Orden EXIT recibida
-[INFO] 20:03:19:426 KERNEL/(1096:1098): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
-
-[INFO] 20:03:19:430 KERNEL/(1096:1100): Cantidad de procesos en memoria: 0
-
-[INFO] 20:03:19:431 KERNEL/(1096:1126): DISCONNECT
-[INFO] 20:03:24:636 KERNEL/(1096:1098): DISCONNECT
+[INFO] 11:43:12:323 KERNEL/(19737:19789): DISCONNECT
