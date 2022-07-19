@@ -7,8 +7,10 @@ uint32_t crear_comunicacion_kernel(t_configuracion_memoria *configuracion_memori
     uint32_t socket_memoria = iniciar_servidor(logger, "KERNEL", configuracion_memoria->ip_memoria, configuracion_memoria->puerto_escucha);
 
     if (socket_memoria == -1)
-    {
-        loggear_error(logger, "No se pudo iniciar el servidor de comunicacion\n", mutex_logger_memoria);
+    {   
+        pthread_mutex_lock(&mutex_logger_memoria);
+        log_error(logger, "No se pudo iniciar el servidor de comunicacion\n");
+        pthread_mutex_unlock(&mutex_logger_memoria);
         return -1;
     }
 
@@ -21,8 +23,10 @@ uint32_t crear_comunicacion_cpu(t_configuracion_memoria *configuracion_memoria, 
     socket_cpu_dispatch = iniciar_servidor(logger, "CPU", configuracion_memoria->ip_memoria, configuracion_memoria->puerto_escucha);
 
     if (socket_cpu_dispatch == -1)
-    {
-        loggear_error(logger, "No se pudo iniciar el servidor de comunicacion\n", mutex_logger_memoria);
+    {   
+        pthread_mutex_lock(&mutex_logger_memoria);
+        log_error(logger, "No se pudo iniciar el servidor de comunicacion\n");
+        pthread_mutex_unlock(&mutex_logger_memoria);
         return -1;
     }
 
@@ -65,19 +69,25 @@ static void procesar_conexion(void *void_args)
     { // mientras el cliente no se haya desconectado
         if (recv(*cliente_socket, &cop, sizeof(op_code), 0) != sizeof(op_code))
         { // desconectamos al cliente xq no le esta mandando el cop bien
-            loggear_info(logger, "DISCONNECT!\n", mutex_logger_memoria);
+            pthread_mutex_lock(&mutex_logger_memoria);
+            log_info(logger, "DISCONNECT!\n");
+            pthread_mutex_unlock(&mutex_logger_memoria);
             //free(cliente_socket); ACA HAY LEAK. Con valgrind corre bien, pero al correrlo sin valgrind tira "Double free or corruption"
             return;
         }
         switch (cop)
         {
         case DEBUG:
-            loggear_info(logger, "DEBUG\n", mutex_logger_memoria);
+            pthread_mutex_lock(&mutex_logger_memoria);
+            log_info(logger, "DEBUG\n");
+            pthread_mutex_unlock(&mutex_logger_memoria);
             break;
 
         case ORDEN_ENVIO_TAMANIO:
             send_tamanio_y_cant_entradas(*cliente_socket, (configuracion_memoria->tam_pagina), (configuracion_memoria->entradas_por_tabla)); // envio el tamanio de pagina y cantidad de entradas de la tabla a la cpu
-            loggear_info(logger, "Tamanio de pagina y cantidad de entradas por tabla enviados a la CPU\n", mutex_logger_memoria);
+            pthread_mutex_lock(&mutex_logger_memoria);
+            log_info(logger, "Tamanio de pagina y cantidad de entradas por tabla enviados a la CPU\n");
+            pthread_mutex_unlock(&mutex_logger_memoria);
             free(cliente_socket);
             break;
 
@@ -90,23 +100,34 @@ static void procesar_conexion(void *void_args)
                 if (estructura_proceso_existente->marco_comienzo == -1)
                 {
                     send_valor_tb(*cliente_socket, -1); // send para kernel de que no se puede crear las estructuras para el proceso dado que no hay marcos libres (no hay memoria disponible)
-                    loggear_error(logger, "No hay marcos libres\n", mutex_logger_memoria);
+                    pthread_mutex_lock(&mutex_logger_memoria);
+                    log_error(logger, "No hay marcos libres\n");
+                    pthread_mutex_unlock(&mutex_logger_memoria);
                     break;
                 }
                 estructura_proceso_existente->marco_fin = (estructura_proceso_existente->marco_comienzo) + (configuracion_memoria->marcos_por_proceso) - 1;
                 llenar_marcos_para_el_proceso(estructura_proceso_existente->marco_comienzo, estructura_proceso_existente->marco_fin, 1);        // cambia a 1 los marcos ocupados (de la memoria) que le asigno al proceso
                 llenar_marcos_para_el_proceso_local(estructura_proceso_existente->vector_marcos, configuracion_memoria->marcos_por_proceso, 0); // lleno la lista de marcos propios del proceso (estado en 0 porque estan todos libres y num de pagona en -1 porque no tienen paginas los marcos) para saber si un proceso tiene marcos libres, etc
-                if (send_valor_tb(*cliente_socket, estructura_proceso_existente->tabla_pagina1->id_tabla))
-                    loggear_info(logger, "ID de tabla de paginas de primer nivel enviado a la CPU\n", mutex_logger_memoria);
-                else
-                    loggear_error(logger, "No se pudo enviar el ID de tabla de paginas de primer nivel\n", mutex_logger_memoria);
+                if (send_valor_tb(*cliente_socket, estructura_proceso_existente->tabla_pagina1->id_tabla)){
+                    pthread_mutex_lock(&mutex_logger_memoria);
+                    log_info(logger, "ID de tabla de paginas de primer nivel enviado a la CPU\n");
+                    pthread_mutex_unlock(&mutex_logger_memoria);
+                }
+                else{
+                    pthread_mutex_lock(&mutex_logger_memoria);
+                    log_error(logger, "No se pudo enviar el ID de tabla de paginas de primer nivel\n");
+                    pthread_mutex_unlock(&mutex_logger_memoria);
+                }
                 free(cliente_socket);
-
-                loggear_info(logger, "Se envio el valor de la tabla de paginas al kernel\n", mutex_logger_memoria);
+                pthread_mutex_lock(&mutex_logger_memoria);
+                log_info(logger, "Se envio el valor de la tabla de paginas al kernel\n");
+                pthread_mutex_unlock(&mutex_logger_memoria);
                 break;
             }
             mensaje = string_from_format("INICIALIZANDO ESTRUCTURAS DEL PROCESO %d\n", id_proceso);
-            loggear_info(logger, mensaje, mutex_logger_memoria);
+            pthread_mutex_lock(&mutex_logger_memoria);
+            log_info(logger, mensaje);
+            pthread_mutex_unlock(&mutex_logger_memoria);
             free(mensaje);
             t_estructura_proceso *estructura = malloc(sizeof(t_estructura_proceso)); // creamos la estructura correspondiete al proceso
             estructura->id_proceso = id_proceso;
@@ -115,7 +136,9 @@ static void procesar_conexion(void *void_args)
             if (estructura->marco_comienzo == -1)
             {
                 send_valor_tb(*cliente_socket, -1); // send para kernel de que no se puede crear las estructuras para el proceso dado que no hay marcos libres (no hay memoria disponible)
-                loggear_error(logger, "No hay marcos libres\n", mutex_logger_memoria);
+                pthread_mutex_lock(&mutex_logger_memoria);
+                log_error(logger, "No hay marcos libres\n");
+                pthread_mutex_unlock(&mutex_logger_memoria);
                 break;
             }
             estructura->puntero_clock = 0; // puntero de clock para el proceso
@@ -174,12 +197,18 @@ static void procesar_conexion(void *void_args)
             pthread_mutex_unlock(&mutex_variable_global);
 
             mensaje = string_from_format("El nombre del archivo es: %s\n", estructura->nombre_archivo_swap);
-            loggear_info(logger, mensaje, mutex_logger_memoria);
+            pthread_mutex_lock(&mutex_logger_memoria);
+            log_info(logger, mensaje);
+            pthread_mutex_unlock(&mutex_logger_memoria);
             free(mensaje);
             list_add_con_mutex_tablas(lista_estructuras, estructura); // agrega la estructura a la lista de estructuras global donde estan las de todos los procesos
 
             if (send_valor_tb(*cliente_socket, tabla_pagina1->id_tabla)) // le mandamos el id de la tabla que corresponde al proceso (es lo mismo que el contador)
-                loggear_info(logger, "Se envio el valor de la tabla de paginas al kernel\n", mutex_logger_memoria);
+            {   
+                pthread_mutex_lock(&mutex_logger_memoria);
+                log_info(logger, "Se envio el valor de la tabla de paginas al kernel\n", mutex_logger_memoria);
+                pthread_mutex_unlock(&mutex_logger_memoria);
+            }
 
             pthread_mutex_lock(&mutex_valor_tp);
             contador++; // para el id de la tabla de 1er nivel
@@ -191,9 +220,11 @@ static void procesar_conexion(void *void_args)
 
         case PRIMER_ACCESO:
             recv_entrada_tabla_1er_nivel(*cliente_socket, &id_tabla1, &entrada_primer_nivel);
-            loggear_info(logger, "Se recibio la entrada de la tabla de paginas de primer nivel\n", mutex_logger_memoria);
+            pthread_mutex_lock(&mutex_logger_memoria);
+            log_info(logger, "Se recibio la entrada de la tabla de paginas de primer nivel\n");
             mensaje = string_from_format("El id de la tabla de primer nivel es: %d y la entrada es %d\n", id_tabla1, entrada_primer_nivel);
-            loggear_info(logger, mensaje, mutex_logger_memoria);
+            log_info(logger, mensaje);
+            pthread_mutex_unlock(&mutex_logger_memoria);
             free(mensaje);
             num_tabla_segundo_nivel = obtener_tabla_2do_nivel(id_tabla1, entrada_primer_nivel); // busco la tabla de segundo nivel
             usleep(configuracion_memoria->retardo_memoria);
@@ -203,7 +234,9 @@ static void procesar_conexion(void *void_args)
 
         case SEGUNDO_ACCESO:
             recv_entrada_tabla_2do_nivel(*cliente_socket, &num_segundo_nivel, &entrada_tabla_2do_nivel, &nro_pagina);
-            loggear_info(logger, "Se recibio la entrada de la tabla de pagina de segundo nivel\n", mutex_logger_memoria);
+            pthread_mutex_lock(&mutex_logger_memoria);
+            log_info(logger, "Se recibio la entrada de la tabla de pagina de segundo nivel\n");
+            pthread_mutex_unlock(&mutex_logger_memoria);
             // busco el frame en la tabla de segundo nivel
             marco_presencia = obtener_frame(num_segundo_nivel, entrada_tabla_2do_nivel, nro_pagina);
             usleep(configuracion_memoria->retardo_memoria);
@@ -213,7 +246,9 @@ static void procesar_conexion(void *void_args)
 
         case EJECUTAR_WRITE:
             recv_ejecutar_write(*cliente_socket, &frame, &desplazamiento, &valor_a_escribir, &id_proceso);
-            loggear_warning(logger, "Se recibio orden de escritura\n", mutex_logger_memoria);
+            pthread_mutex_lock(&mutex_logger_memoria);
+            log_warning(logger, "Se recibio orden de escritura\n");
+            pthread_mutex_unlock(&mutex_logger_memoria);
             buscar_estructura_del_proceso(id_proceso); // setea el proceso actual buscandolo en la lista de estructuras global
             escribir_valor(frame, desplazamiento, valor_a_escribir);
             usleep(configuracion_memoria->retardo_memoria);
@@ -224,7 +259,9 @@ static void procesar_conexion(void *void_args)
         case EJECUTAR_READ:
             recv_ejecutar_read(*cliente_socket, &frame, &desplazamiento, &id_proceso);
             buscar_estructura_del_proceso(id_proceso);
-            loggear_warning(logger, "Se recibio orden de lectura\n", mutex_logger_memoria);
+            pthread_mutex_lock(&mutex_logger_memoria);
+            log_warning(logger, "Se recibio orden de lectura\n");
+            pthread_mutex_unlock(&mutex_logger_memoria);
             valor_leido = leer_valor(frame, desplazamiento);
             usleep(configuracion_memoria->retardo_memoria);
             send_ok_read(*cliente_socket, valor_leido);
@@ -234,7 +271,9 @@ static void procesar_conexion(void *void_args)
         case EJECUTAR_COPY:
             recv_ejecutar_copy(*cliente_socket, &frame_origen, &desplazamiento_origen, &frame_destino, &desplazamiento_destino, &id_proceso);
             buscar_estructura_del_proceso(id_proceso); // setea la estrctura actual
-            loggear_warning(logger, "Se recibio orden de copia\n", mutex_logger_memoria);
+            pthread_mutex_lock(&mutex_logger_memoria);
+            log_warning(logger, "Se recibio orden de copia\n");
+            pthread_mutex_unlock(&mutex_logger_memoria);
             copiar_valor(frame_origen, desplazamiento_origen, frame_destino, desplazamiento_destino);
             usleep(configuracion_memoria->retardo_memoria);
             send_ok(*cliente_socket);
@@ -242,7 +281,9 @@ static void procesar_conexion(void *void_args)
             break;
 
         case LIBERAR_ESTRUCTURAS:
-            loggear_info(logger, "LIBERANDO ESTRUCTURAS", mutex_logger_memoria);
+            pthread_mutex_lock(&mutex_logger_memoria);
+            log_info(logger, "LIBERANDO ESTRUCTURAS");
+            pthread_mutex_unlock(&mutex_logger_memoria);
             recv_fin_proceso(*cliente_socket, &id_proceso);
             liberar_estructuras(id_proceso);
             send_fin_proceso(*cliente_socket, id_proceso);
@@ -250,11 +291,15 @@ static void procesar_conexion(void *void_args)
             break;
 
         case SUSPENSION:
-            loggear_info(logger, "SUSPENDIENDO PROCESO\n", mutex_logger_memoria);
+            pthread_mutex_lock(&mutex_logger_memoria);
+            log_info(logger, "SUSPENDIENDO PROCESO\n");
+            pthread_mutex_unlock(&mutex_logger_memoria);
             recv_suspension(*cliente_socket, &id_proceso);
             suspender_proceso(id_proceso);
             mensaje = string_from_format("Se suspendio el proceso %d\n", id_proceso);
-            loggear_warning(logger, mensaje, mutex_logger_memoria);
+            pthread_mutex_lock(&mutex_logger_memoria);
+            log_warning(logger, mensaje);
+            pthread_mutex_unlock(&mutex_logger_memoria);
             free(mensaje);
             send_confirmacion_suspension(*cliente_socket);
             free(cliente_socket);
@@ -301,8 +346,10 @@ void list_add_con_mutex_tablas(t_list *lista, t_estructura_proceso *tabla_pagina
 {
     pthread_mutex_lock(&mutex_lista_estructuras);
     list_add(lista, tabla_pagina1);
-    loggear_info(logger, "Se agrega una tabla de paginas a la lista\n", mutex_logger_memoria);
     pthread_mutex_unlock(&mutex_lista_estructuras);
+    pthread_mutex_lock(&mutex_logger_memoria);
+    log_info(logger, "Se agrega una tabla de paginas a la lista\n");
+    pthread_mutex_unlock(&mutex_logger_memoria);
 }
 
 t_tabla_pagina1 *buscar_tabla_pagina1(uint32_t id_tabla) // busca en la lista de estructuras de todos los procesos la tabla de paginas de primer nivel corresponiente al proceso
@@ -440,7 +487,9 @@ uint32_t buscar_marco_libre(uint32_t nro_pagina, void *contenido_pagina)
                     elemento = list_get(estructura_proceso_actual->vector_marcos, marco_asignado);
                     escribir_contenido_pagina_en_marco(estructura_proceso_actual->marco_comienzo, contenido_pagina, marco_asignado, configuracion_memoria->tam_pagina); // escribo el contenido de la nueva pagina en el marco asignado
                     mensaje = string_from_format("Reemplazando pagina %d con bit de uso en 0 y modificado en 0", elemento->nro_pagina);
-                    loggear_info(logger, mensaje, mutex_logger_memoria);
+                    pthread_mutex_lock(&mutex_logger_memoria);
+                    log_info(logger, mensaje);
+                    pthread_mutex_unlock(&mutex_logger_memoria);
                     free(mensaje);
                     fila->presencia = 0;                      // como descarte una pagina, edito su entrada de la tabla de paginas poniendole el bit de presencia en 0 (ya que no esta mas presente en memoria)
                     elemento->nro_pagina = nro_pagina;        // le actualizo la pagina
@@ -471,7 +520,9 @@ uint32_t buscar_marco_libre(uint32_t nro_pagina, void *contenido_pagina)
                     sem_wait(&sem_fin_swap);
                     escribir_contenido_pagina_en_marco(estructura_proceso_actual->marco_comienzo, contenido_pagina, fila->marco, configuracion_memoria->tam_pagina); // escribo el contenido de la pagina que tengo que cargar en el marco
                     mensaje = string_from_format("Reemplazando pagina %d con bit de uso en 0 y modificado en 1", elemento->nro_pagina);
-                    loggear_info(logger, mensaje, mutex_logger_memoria);
+                    pthread_mutex_lock(&mutex_logger_memoria);
+                    log_info(logger, mensaje);
+                    pthread_mutex_unlock(&mutex_logger_memoria);
                     free(mensaje);
                     fila->presencia = 0;
                     elemento->nro_pagina = nro_pagina;
@@ -495,7 +546,9 @@ uint32_t buscar_marco_libre(uint32_t nro_pagina, void *contenido_pagina)
                 fila->uso = false;
                 elemento = list_get(estructura_proceso_actual->vector_marcos, fila->marco);
                 mensaje = string_from_format("Pagina %d con bit de uso en 1, ahora 0 ", elemento->nro_pagina);
-                loggear_info(logger, mensaje, mutex_logger_memoria);
+                pthread_mutex_lock(&mutex_logger_memoria);
+                log_info(logger, mensaje);
+                pthread_mutex_unlock(&mutex_logger_memoria);
                 free(mensaje);
                 if (list_size(paginas_cargadas) - 1 == i)
                 { // si ya revise hasta el tope, pongo desde el principio de la lista
@@ -518,7 +571,9 @@ uint32_t buscar_marco_libre(uint32_t nro_pagina, void *contenido_pagina)
                 elemento = list_get(estructura_proceso_actual->vector_marcos, marco_asignado);
                 escribir_contenido_pagina_en_marco(estructura_proceso_actual->marco_comienzo, contenido_pagina, marco_asignado, configuracion_memoria->tam_pagina); // escribo el contenido de la nueva pagina en el marco asignado
                 mensaje = string_from_format("Reemplazando pagina %d con bit de uso en 0 y modificado en 0", elemento->nro_pagina);
-                loggear_info(logger, mensaje, mutex_logger_memoria);
+                pthread_mutex_lock(&mutex_logger_memoria);
+                log_info(logger, mensaje);
+                pthread_mutex_unlock(&mutex_logger_memoria);
                 free(mensaje);
                 fila->presencia = 0;                      // como descarte una pagina, edito su entrada de la tabla de paginas poniendole el bit de presencia en 0 (ya que no esta mas presente en memoria)
                 elemento->nro_pagina = nro_pagina;        // le actualizo la pagina
@@ -549,7 +604,9 @@ uint32_t buscar_marco_libre(uint32_t nro_pagina, void *contenido_pagina)
                 sem_wait(&sem_fin_swap);
                 escribir_contenido_pagina_en_marco(estructura_proceso_actual->marco_comienzo, contenido_pagina, fila->marco, configuracion_memoria->tam_pagina); // escribo el contenido de la pagina que tengo que cargar en el marco
                 mensaje = string_from_format("Reemplazando pagina %d con bit de uso en 0 y modificado en 1", elemento->nro_pagina);
-                loggear_info(logger, mensaje, mutex_logger_memoria);
+                pthread_mutex_lock(&mutex_logger_memoria);
+                log_info(logger, mensaje);
+                pthread_mutex_unlock(&mutex_logger_memoria);
                 free(mensaje);
                 fila->presencia = 0;
                 elemento->nro_pagina = nro_pagina;
@@ -573,7 +630,9 @@ uint32_t buscar_marco_libre(uint32_t nro_pagina, void *contenido_pagina)
                 elemento = list_get(estructura_proceso_actual->vector_marcos, fila->marco);
                 fila->uso = false; // a todos los marcos que no elija les baja el bit de uso a 0
                 mensaje = string_from_format("Pagina %d con bit de uso en 1, ahora 0 ", elemento->nro_pagina);
-                loggear_info(logger, mensaje, mutex_logger_memoria);
+                pthread_mutex_lock(&mutex_logger_memoria);
+                log_info(logger, mensaje);
+                pthread_mutex_unlock(&mutex_logger_memoria);
                 free(mensaje);
             }
 
@@ -590,7 +649,9 @@ uint32_t buscar_marco_libre(uint32_t nro_pagina, void *contenido_pagina)
         break;
 
     default:
-        loggear_error(logger, "Error en algoritmo de reemplazo", mutex_logger_memoria);
+        pthread_mutex_lock(&mutex_logger_memoria);
+        log_error(logger, "Error en algoritmo de reemplazo");
+        pthread_mutex_unlock(&mutex_logger_memoria);
         break;
     }
     pthread_mutex_unlock(&mutex_estructura_proceso_actual);
@@ -823,7 +884,9 @@ void suspender_proceso(uint32_t pid)
                             variable_global->nro_pagina = marco->nro_pagina;
                             sem_post(&sem_swap);
                             mensaje = string_from_format("Suspendiendo proceso %d, descargando pagina %d modificada", pid, marco->nro_pagina);
-                            loggear_warning(logger, mensaje, mutex_logger_memoria);
+                            pthread_mutex_lock(&mutex_logger_memoria);
+                            log_warning(logger, mensaje);
+                            pthread_mutex_unlock(&mutex_logger_memoria);
                             free(mensaje);
                             sem_wait(&sem_fin_swap);
                             fila->modificado = false;
