@@ -93,9 +93,12 @@ static void procesar_conexion(void *void_args)
 
         case INICIALIZAR_ESTRUCTURAS:
             recv_inicializar_estructuras(*cliente_socket, &tamanio_proceso, &id_proceso);
-        
-            if (estructura_proceso_existente = buscar_estructura_del_proceso_suspension(id_proceso) != NULL) // si la estructura del proceso ya estaba en la lista (porque se desperto de una suspension)
-            {
+            estructura_proceso_existente = buscar_estructura_del_proceso_suspension(id_proceso);
+            if (estructura_proceso_existente != NULL) // si la estructura del proceso ya estaba en la lista (porque se desperto de una suspension)
+            {   
+                pthread_mutex_lock(&mutex_logger_memoria);
+                log_info(logger, "Des-suspendiendo proceso %d\n", id_proceso);
+                pthread_mutex_unlock(&mutex_logger_memoria);
                 estructura_proceso_existente->marco_comienzo = buscar_marcos_para_asignar();
                 if (estructura_proceso_existente->marco_comienzo == -1)
                 {
@@ -110,7 +113,7 @@ static void procesar_conexion(void *void_args)
                 llenar_marcos_para_el_proceso_local(estructura_proceso_existente->vector_marcos, configuracion_memoria->marcos_por_proceso, 0); // lleno la lista de marcos propios del proceso (estado en 0 porque estan todos libres y num de pagona en -1 porque no tienen paginas los marcos) para saber si un proceso tiene marcos libres, etc
                 if (send_valor_tb(*cliente_socket, estructura_proceso_existente->tabla_pagina1->id_tabla)){
                     pthread_mutex_lock(&mutex_logger_memoria);
-                    log_info(logger, "ID de tabla de paginas de primer nivel enviado a la CPU\n");
+                    log_info(logger, "ID de tabla de paginas de primer nivel enviado al kernel\n");
                     pthread_mutex_unlock(&mutex_logger_memoria);
                 }
                 else{
@@ -120,10 +123,10 @@ static void procesar_conexion(void *void_args)
                 }
                 free(cliente_socket);
                 pthread_mutex_lock(&mutex_logger_memoria);
-                log_info(logger, "Se envio el valor de la tabla de paginas al kernel\n");
                 pthread_mutex_unlock(&mutex_logger_memoria);
                 break;
             }
+            else {
             mensaje = string_from_format("INICIALIZANDO ESTRUCTURAS DEL PROCESO %d\n", id_proceso);
             pthread_mutex_lock(&mutex_logger_memoria);
             log_info(logger, mensaje);
@@ -215,7 +218,7 @@ static void procesar_conexion(void *void_args)
             pthread_mutex_unlock(&mutex_valor_tp);
 
             free(cliente_socket);
-
+            }
             break;
 
         case PRIMER_ACCESO:
@@ -893,8 +896,8 @@ void suspender_proceso(uint32_t pid)
                             marco->estado = false;
                             marco->nro_pagina = -1;
                         }
-                        fila->presencia = false; // cambio el bit de presencia de todas las paginas.
                     }
+                    fila->presencia = false; // cambio el bit de presencia de todas las paginas.
                 }
             }
         }

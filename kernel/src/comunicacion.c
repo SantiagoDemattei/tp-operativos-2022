@@ -606,6 +606,18 @@ void revisar_entrada_a_ready() // reviso si hay algun proceso en new o en suspen
                 pthread_mutex_unlock(&mutex_logger_kernel);
                 free(mensaje);
                 pcb->blocked_suspendido = false;                       // pone el flag de suspendido a false
+                socket_memoria = crear_conexion_memoria(configuracion_kernel, logger);
+                send_inicializar_estructuras(socket_memoria, pcb->tamanio, pcb->id);
+                if (recv(socket_memoria, &cop, sizeof(op_code), 0) != sizeof(op_code))
+                {   
+                    pthread_mutex_lock(&mutex_logger_kernel);
+                    log_error(logger, "Error al recibir el op_code INICIALIZAR_ESTRUCTURAS de la memoria");
+                    pthread_mutex_unlock(&mutex_logger_kernel);
+                    sem_post(&sem_inicio);
+                    return;
+                }
+                recv_valor_tb(socket_memoria, &pcb->tabla_pagina); // recibe el id de la tabla de paginas y lo guarda en el pcb
+                liberar_conexion(socket_memoria);
                 list_add_con_mutex(cola_ready, pcb, mutex_cola_ready); // lo mete en la cola de ready normal (no la de ready suspendido)
                 sem_post(&sem_nuevo_ready);                            // aviso que hay un nuevo pcb en la cola de ready
             }

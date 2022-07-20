@@ -1,1497 +1,1505 @@
-[INFO] 11:11:55:812 KERNEL/(9535:9535): Esperando a 127.0.0.1:8000 (CONSOLA)
+[INFO] 13:19:57:481 KERNEL/(13518:13518): Esperando a 127.0.0.1:8000 (CONSOLA)
 
-[INFO] 11:11:55:813 KERNEL/(9535:9536): Cliente conectado en 127.0.0.1:8001 (a CPU DISPATCH)
+[INFO] 13:19:57:481 KERNEL/(13518:13519): Cliente conectado en 127.0.0.1:8001 (a CPU DISPATCH)
 
-[INFO] 11:11:57:396 KERNEL/(9535:9535): Cliente conectado (a KERNEL)
+[INFO] 13:19:59:114 KERNEL/(13518:13518): Cliente conectado (a KERNEL)
 
-[INFO] 11:11:57:396 KERNEL/(9535:9542): Se recibieron las instrucciones
-[INFO] 11:11:57:396 KERNEL/(9535:9542): Cantidad de procesos en memoria: 0
+[INFO] 13:19:59:115 KERNEL/(13518:13528): Se recibieron las instrucciones
+[INFO] 13:19:59:115 KERNEL/(13518:13528): Cantidad de procesos en memoria: 0
 
-[INFO] 11:11:57:396 KERNEL/(9535:9542): Entro a inicializar (POR VERIFICACION_MULTIPROGRAMACION)
+[INFO] 13:19:59:116 KERNEL/(13518:13528): Entro a inicializar (POR VERIFICACION_MULTIPROGRAMACION)
 
-[INFO] 11:11:57:397 KERNEL/(9535:9542): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 13:19:59:116 KERNEL/(13518:13528): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 11:11:57:398 KERNEL/(9535:9542): Se inicializo el proceso 1 con el id 0 de la tabla de pagina 1 
+[INFO] 13:19:59:529 KERNEL/(13518:13518): Cliente conectado (a KERNEL)
 
-[INFO] 11:11:57:398 KERNEL/(9535:9542): [32m Cantidad de procesos en memoria: 1
+[INFO] 13:19:59:530 KERNEL/(13518:13533): Se recibieron las instrucciones
+[INFO] 13:19:59:530 KERNEL/(13518:13533): Cantidad de procesos en memoria: 0
 
-[INFO] 11:11:57:399 KERNEL/(9535:9542): Se agrega el proceso 1 a la cola de ready
-[INFO] 11:11:57:399 KERNEL/(9535:9542): Se llama a la planificacion por ser el primero en ingresar al sistema
-[INFO] 11:11:57:399 KERNEL/(9535:9536): Se eligio al proceso: 1
+[INFO] 13:20:00:083 KERNEL/(13518:13518): Cliente conectado (a KERNEL)
 
-[INFO] 11:11:57:399 KERNEL/(9535:9536): Se envio el proceso 1 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 13:20:00:084 KERNEL/(13518:13535): Se recibieron las instrucciones
+[INFO] 13:20:00:084 KERNEL/(13518:13535): Cantidad de procesos en memoria: 0
 
-[INFO] 11:11:57:902 KERNEL/(9535:9535): Cliente conectado (a KERNEL)
+[INFO] 13:20:00:121 KERNEL/(13518:13528): Se inicializo el proceso 1 con el id 0 de la tabla de pagina 1 
 
-[INFO] 11:11:57:903 KERNEL/(9535:9547): Se recibieron las instrucciones
-[INFO] 11:11:57:903 KERNEL/(9535:9547): Cantidad de procesos en memoria: 1
+[INFO] 13:20:00:121 KERNEL/(13518:13528): [32m Cantidad de procesos en memoria: 1
 
-[INFO] 11:11:57:903 KERNEL/(9535:9547): Entro a inicializar (POR VERIFICACION_MULTIPROGRAMACION)
+[INFO] 13:20:00:122 KERNEL/(13518:13528): Se agrega el proceso 1 a la cola de ready
+[INFO] 13:20:00:122 KERNEL/(13518:13528): Se llama a la planificacion por ser el primero en ingresar al sistema
+[INFO] 13:20:00:122 KERNEL/(13518:13533): Entro a inicializar (POR VERIFICACION_MULTIPROGRAMACION)
 
-[INFO] 11:11:57:904 KERNEL/(9535:9547): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 13:20:00:122 KERNEL/(13518:13519): Se eligio al proceso: 1
 
-[INFO] 11:11:58:398 KERNEL/(9535:9547): Se inicializo el proceso 2 con el id 1 de la tabla de pagina 1 
+[INFO] 13:20:00:122 KERNEL/(13518:13519): Se envio el proceso 1 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 11:11:58:399 KERNEL/(9535:9547): [32m Cantidad de procesos en memoria: 2
+[INFO] 13:20:00:122 KERNEL/(13518:13533): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 11:11:58:399 KERNEL/(9535:9547): Se agrega el proceso 2 a la cola de ready
-[INFO] 11:11:58:399 KERNEL/(9535:9547): Se llama a la planificacion porque es SJF y llego alguien a ready
-[INFO] 11:11:58:399 KERNEL/(9535:9536): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 13:20:00:751 KERNEL/(13518:13518): Cliente conectado (a KERNEL)
 
-[INFO] 11:11:58:399 KERNEL/(9535:9536): Mande la interrupcion a la cpu
+[INFO] 13:20:00:752 KERNEL/(13518:13539): Se recibieron las instrucciones
+[INFO] 13:20:00:752 KERNEL/(13518:13539): Cantidad de procesos en memoria: 1
 
-[WARNING] 11:11:58:405 KERNEL/(9535:9537): Proceso interrumpido 1
+[INFO] 13:20:01:124 KERNEL/(13518:13533): Se inicializo el proceso 2 con el id 1 de la tabla de pagina 1 
 
-[INFO] 11:11:58:405 KERNEL/(9535:9536): Comparando estimaciones: 50000.000000, 49000.000000
+[INFO] 13:20:01:124 KERNEL/(13518:13533): [32m Cantidad de procesos en memoria: 2
 
-[INFO] 11:11:58:405 KERNEL/(9535:9536): Se eligio al proceso: 1
+[INFO] 13:20:01:124 KERNEL/(13518:13533): Se agrega el proceso 2 a la cola de ready
+[INFO] 13:20:01:124 KERNEL/(13518:13533): Se llama a la planificacion porque es SJF y llego alguien a ready
+[INFO] 13:20:01:125 KERNEL/(13518:13535): Entro a inicializar (POR VERIFICACION_MULTIPROGRAMACION)
 
-[INFO] 11:11:58:405 KERNEL/(9535:9536): Se envio el proceso 1 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
+[INFO] 13:20:01:125 KERNEL/(13518:13519): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 11:11:58:459 KERNEL/(9535:9535): Cliente conectado (a KERNEL)
+[INFO] 13:20:01:125 KERNEL/(13518:13535): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 11:11:58:460 KERNEL/(9535:9556): Se recibieron las instrucciones
-[INFO] 11:11:58:460 KERNEL/(9535:9556): Cantidad de procesos en memoria: 2
+[INFO] 13:20:01:125 KERNEL/(13518:13519): Mande la interrupcion a la cpu
 
-[INFO] 11:11:58:461 KERNEL/(9535:9556): Entro a inicializar (POR VERIFICACION_MULTIPROGRAMACION)
+[WARNING] 13:20:01:129 KERNEL/(13518:13520): Proceso interrumpido 1
 
-[INFO] 11:11:58:461 KERNEL/(9535:9556): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 13:20:01:129 KERNEL/(13518:13519): Comparando estimaciones: 50000.000000, 49000.000000
 
-[INFO] 11:11:59:011 KERNEL/(9535:9535): Cliente conectado (a KERNEL)
+[INFO] 13:20:01:129 KERNEL/(13518:13519): Se eligio al proceso: 1
 
-[INFO] 11:11:59:012 KERNEL/(9535:9559): Se recibieron las instrucciones
-[INFO] 11:11:59:012 KERNEL/(9535:9559): Cantidad de procesos en memoria: 2
+[INFO] 13:20:01:129 KERNEL/(13518:13519): Se envio el proceso 1 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
 
-[INFO] 11:11:59:626 KERNEL/(9535:9535): Cliente conectado (a KERNEL)
+[INFO] 13:20:01:297 KERNEL/(13518:13518): Cliente conectado (a KERNEL)
 
-[INFO] 11:11:59:627 KERNEL/(9535:9561): Se recibieron las instrucciones
-[INFO] 11:11:59:627 KERNEL/(9535:9561): Cantidad de procesos en memoria: 2
+[INFO] 13:20:01:298 KERNEL/(13518:13545): Se recibieron las instrucciones
+[INFO] 13:20:01:298 KERNEL/(13518:13545): Cantidad de procesos en memoria: 2
 
-[INFO] 11:12:00:405 KERNEL/(9535:9556): Se inicializo el proceso 3 con el id 2 de la tabla de pagina 1 
+[INFO] 13:20:03:127 KERNEL/(13518:13535): Se inicializo el proceso 3 con el id 2 de la tabla de pagina 1 
 
-[INFO] 11:12:00:406 KERNEL/(9535:9556): [32m Cantidad de procesos en memoria: 3
+[INFO] 13:20:03:127 KERNEL/(13518:13535): [32m Cantidad de procesos en memoria: 3
 
-[INFO] 11:12:00:406 KERNEL/(9535:9556): Se agrega el proceso 3 a la cola de ready
-[INFO] 11:12:00:408 KERNEL/(9535:9559): Entro a inicializar (POR VERIFICACION_MULTIPROGRAMACION)
+[INFO] 13:20:03:127 KERNEL/(13518:13535): Se agrega el proceso 3 a la cola de ready
+[INFO] 13:20:03:127 KERNEL/(13518:13535): Se llama a la planificacion porque es SJF y llego alguien a ready
+[INFO] 13:20:03:127 KERNEL/(13518:13539): Entro a inicializar (POR VERIFICACION_MULTIPROGRAMACION)
 
-[INFO] 11:12:00:409 KERNEL/(9535:9559): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 13:20:03:127 KERNEL/(13518:13539): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 11:12:00:409 KERNEL/(9535:9556): Se llama a la planificacion porque es SJF y llego alguien a ready
-[INFO] 11:12:00:413 KERNEL/(9535:9536): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 13:20:03:127 KERNEL/(13518:13519): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 11:12:00:413 KERNEL/(9535:9536): Mande la interrupcion a la cpu
+[INFO] 13:20:03:128 KERNEL/(13518:13519): Mande la interrupcion a la cpu
 
-[WARNING] 11:12:00:428 KERNEL/(9535:9537): Proceso interrumpido 1
+[WARNING] 13:20:03:129 KERNEL/(13518:13520): Proceso interrumpido 1
 
-[INFO] 11:12:00:429 KERNEL/(9535:9536): Comparando estimaciones: 50000.000000, 50000.000000
+[INFO] 13:20:03:129 KERNEL/(13518:13519): Comparando estimaciones: 50000.000000, 50000.000000
 
-[INFO] 11:12:00:429 KERNEL/(9535:9536): Comparando estimaciones: 50000.000000, 47000.000000
+[INFO] 13:20:03:129 KERNEL/(13518:13519): Comparando estimaciones: 50000.000000, 47000.000000
 
-[INFO] 11:12:00:430 KERNEL/(9535:9536): Se eligio al proceso: 1
+[INFO] 13:20:03:129 KERNEL/(13518:13519): Se eligio al proceso: 1
 
-[INFO] 11:12:00:431 KERNEL/(9535:9536): Se envio el proceso 1 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
+[INFO] 13:20:03:129 KERNEL/(13518:13519): Se envio el proceso 1 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
 
-[INFO] 11:12:01:405 KERNEL/(9535:9559): Se inicializo el proceso 4 con el id 3 de la tabla de pagina 1 
+[INFO] 13:20:04:134 KERNEL/(13518:13539): Se inicializo el proceso 4 con el id 3 de la tabla de pagina 1 
 
-[INFO] 11:12:01:406 KERNEL/(9535:9559): [32m Cantidad de procesos en memoria: 4
+[INFO] 13:20:04:134 KERNEL/(13518:13539): [32m Cantidad de procesos en memoria: 4
 
-[INFO] 11:12:01:406 KERNEL/(9535:9559): Se agrega el proceso 4 a la cola de ready
-[INFO] 11:12:01:406 KERNEL/(9535:9559): Se llama a la planificacion porque es SJF y llego alguien a ready
-[INFO] 11:12:01:407 KERNEL/(9535:9561): Entro a inicializar (POR VERIFICACION_MULTIPROGRAMACION)
+[INFO] 13:20:04:134 KERNEL/(13518:13539): Se agrega el proceso 4 a la cola de ready
+[INFO] 13:20:04:134 KERNEL/(13518:13539): Se llama a la planificacion porque es SJF y llego alguien a ready
+[INFO] 13:20:04:135 KERNEL/(13518:13545): Entro a inicializar (POR VERIFICACION_MULTIPROGRAMACION)
 
-[INFO] 11:12:01:407 KERNEL/(9535:9536): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 13:20:04:135 KERNEL/(13518:13545): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 11:12:01:409 KERNEL/(9535:9536): Mande la interrupcion a la cpu
+[INFO] 13:20:04:135 KERNEL/(13518:13519): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 11:12:01:409 KERNEL/(9535:9561): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 13:20:04:136 KERNEL/(13518:13519): Mande la interrupcion a la cpu
 
-[WARNING] 11:12:01:485 KERNEL/(9535:9537): Proceso interrumpido 1
+[WARNING] 13:20:04:176 KERNEL/(13518:13520): Proceso interrumpido 1
 
-[INFO] 11:12:01:485 KERNEL/(9535:9536): Comparando estimaciones: 50000.000000, 50000.000000
+[INFO] 13:20:04:176 KERNEL/(13518:13519): Comparando estimaciones: 50000.000000, 50000.000000
 
-[INFO] 11:12:01:485 KERNEL/(9535:9536): Comparando estimaciones: 50000.000000, 50000.000000
+[INFO] 13:20:04:176 KERNEL/(13518:13519): Comparando estimaciones: 50000.000000, 50000.000000
 
-[INFO] 11:12:01:485 KERNEL/(9535:9536): Comparando estimaciones: 50000.000000, 46000.000000
+[INFO] 13:20:04:177 KERNEL/(13518:13519): Comparando estimaciones: 50000.000000, 46000.000000
 
-[INFO] 11:12:01:485 KERNEL/(9535:9536): Se eligio al proceso: 1
+[INFO] 13:20:04:177 KERNEL/(13518:13519): Se eligio al proceso: 1
 
-[INFO] 11:12:01:486 KERNEL/(9535:9536): Se envio el proceso 1 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
+[INFO] 13:20:04:177 KERNEL/(13518:13519): Se envio el proceso 1 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
 
-[INFO] 11:12:04:403 KERNEL/(9535:9561): Se inicializo el proceso 5 con el id 4 de la tabla de pagina 1 
+[INFO] 13:20:06:140 KERNEL/(13518:13545): Se inicializo el proceso 5 con el id 4 de la tabla de pagina 1 
 
-[INFO] 11:12:04:405 KERNEL/(9535:9561): [32m Cantidad de procesos en memoria: 5
+[INFO] 13:20:06:140 KERNEL/(13518:13545): [32m Cantidad de procesos en memoria: 5
 
-[INFO] 11:12:04:406 KERNEL/(9535:9561): Se agrega el proceso 5 a la cola de ready
-[INFO] 11:12:04:407 KERNEL/(9535:9561): Se llama a la planificacion porque es SJF y llego alguien a ready
-[INFO] 11:12:04:408 KERNEL/(9535:9536): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 13:20:06:140 KERNEL/(13518:13545): Se agrega el proceso 5 a la cola de ready
+[INFO] 13:20:06:140 KERNEL/(13518:13545): Se llama a la planificacion porque es SJF y llego alguien a ready
+[INFO] 13:20:06:140 KERNEL/(13518:13519): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 11:12:04:409 KERNEL/(9535:9536): Mande la interrupcion a la cpu
+[INFO] 13:20:06:141 KERNEL/(13518:13519): Mande la interrupcion a la cpu
 
-[WARNING] 11:12:04:420 KERNEL/(9535:9537): Proceso interrumpido 1
+[WARNING] 13:20:06:142 KERNEL/(13518:13520): Proceso interrumpido 1
 
-[INFO] 11:12:04:420 KERNEL/(9535:9536): Comparando estimaciones: 50000.000000, 50000.000000
+[INFO] 13:20:06:142 KERNEL/(13518:13519): Comparando estimaciones: 50000.000000, 50000.000000
 
-[INFO] 11:12:04:421 KERNEL/(9535:9536): Comparando estimaciones: 50000.000000, 50000.000000
+[INFO] 13:20:06:142 KERNEL/(13518:13519): Comparando estimaciones: 50000.000000, 50000.000000
 
-[INFO] 11:12:04:421 KERNEL/(9535:9536): Comparando estimaciones: 50000.000000, 50000.000000
+[INFO] 13:20:06:142 KERNEL/(13518:13519): Comparando estimaciones: 50000.000000, 50000.000000
 
-[INFO] 11:12:04:422 KERNEL/(9535:9536): Comparando estimaciones: 50000.000000, 43000.000000
+[INFO] 13:20:06:142 KERNEL/(13518:13519): Comparando estimaciones: 50000.000000, 44000.000000
 
-[INFO] 11:12:04:422 KERNEL/(9535:9536): Se eligio al proceso: 1
+[INFO] 13:20:06:142 KERNEL/(13518:13519): Se eligio al proceso: 1
 
-[INFO] 11:12:04:423 KERNEL/(9535:9536): Se envio el proceso 1 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
+[INFO] 13:20:06:142 KERNEL/(13518:13519): Se envio el proceso 1 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
 
-[INFO] 11:12:08:359 KERNEL/(9535:9537): Nuevo proceso en cola blocked: proceso 1
+[INFO] 13:20:10:048 KERNEL/(13518:13520): Nuevo proceso en cola blocked: proceso 1
 
-[INFO] 11:12:08:359 KERNEL/(9535:9537): Se llama a planificar porque se libero la CPU por I/O
+[INFO] 13:20:10:049 KERNEL/(13518:13520): Se llama a planificar porque se libero la CPU por I/O
 
-[INFO] 11:12:08:359 KERNEL/(9535:9536): Comparando estimaciones: 50000.000000, 50000.000000
+[INFO] 13:20:10:049 KERNEL/(13518:13519): Comparando estimaciones: 50000.000000, 50000.000000
 
-[INFO] 11:12:08:360 KERNEL/(9535:9536): Comparando estimaciones: 50000.000000, 50000.000000
+[INFO] 13:20:10:050 KERNEL/(13518:13519): Comparando estimaciones: 50000.000000, 50000.000000
 
-[INFO] 11:12:08:360 KERNEL/(9535:9536): Comparando estimaciones: 50000.000000, 50000.000000
+[INFO] 13:20:10:050 KERNEL/(13518:13519): Comparando estimaciones: 50000.000000, 50000.000000
 
-[INFO] 11:12:08:360 KERNEL/(9535:9536): Se eligio al proceso: 2
+[INFO] 13:20:10:051 KERNEL/(13518:13519): Se eligio al proceso: 2
 
-[INFO] 11:12:08:361 KERNEL/(9535:9536): Se envio el proceso 2 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 13:20:10:051 KERNEL/(13518:13519): Se envio el proceso 2 a la CPU, (RUNNING ESTABA EN NULL)
 
-[WARNING] 11:12:09:362 KERNEL/(9535:9615): Se va a suspender el proceso: 1
+[WARNING] 13:20:11:051 KERNEL/(13518:13589): Se va a suspender el proceso: 1
 
-[INFO] 11:12:09:363 KERNEL/(9535:9615): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 13:20:11:051 KERNEL/(13518:13589): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 11:12:09:374 KERNEL/(9535:9615): Confirmacion de suspension recibida
-[INFO] 11:12:09:374 KERNEL/(9535:9615): [32m Cantidad de procesos en memoria: 4
+[INFO] 13:20:12:056 KERNEL/(13518:13589): Confirmacion de suspension recibida
+[INFO] 13:20:12:056 KERNEL/(13518:13589): [32m Cantidad de procesos en memoria: 4
 
-[INFO] 11:12:09:375 KERNEL/(9535:9539): Cantidad de procesos en memoria: 4
+[INFO] 13:20:12:056 KERNEL/(13518:13522): Cantidad de procesos en memoria: 4
 
-[INFO] 11:12:13:359 KERNEL/(9535:9538): El proceso 1 se desbloqueo
+[INFO] 13:20:15:049 KERNEL/(13518:13521): El proceso 1 se desbloqueo
 
-[INFO] 11:12:13:360 KERNEL/(9535:9538): El proceso 1 se puso en ready suspendido porque termino su tiempo de I/O
+[INFO] 13:20:15:049 KERNEL/(13518:13521): El proceso 1 se puso en ready suspendido porque termino su tiempo de I/O
 
-[INFO] 11:12:13:360 KERNEL/(9535:9539): Cantidad de procesos en memoria: 4
+[INFO] 13:20:15:049 KERNEL/(13518:13522): Cantidad de procesos en memoria: 4
 
-[INFO] 11:12:13:360 KERNEL/(9535:9539): El proceso 1 pasara de ready suspendido a ready
+[INFO] 13:20:15:050 KERNEL/(13518:13522): El proceso 1 pasara de ready suspendido a ready
 
-[INFO] 11:12:13:361 KERNEL/(9535:9539): Se puso el proceso 1 en la cola ready
+[INFO] 13:20:15:050 KERNEL/(13518:13522): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 11:12:13:362 KERNEL/(9535:9536): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 13:20:15:051 KERNEL/(13518:13522): Se puso el proceso 1 en la cola ready
 
-[INFO] 11:12:13:363 KERNEL/(9535:9536): Mande la interrupcion a la cpu
+[INFO] 13:20:15:051 KERNEL/(13518:13519): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[WARNING] 11:12:13:477 KERNEL/(9535:9537): Proceso interrumpido 2
+[INFO] 13:20:15:052 KERNEL/(13518:13519): Mande la interrupcion a la cpu
 
-[INFO] 11:12:13:477 KERNEL/(9535:9536): Comparando estimaciones: 50000.000000, 50000.000000
+[WARNING] 13:20:15:081 KERNEL/(13518:13520): Proceso interrumpido 2
 
-[INFO] 11:12:13:477 KERNEL/(9535:9536): Comparando estimaciones: 50000.000000, 50000.000000
+[INFO] 13:20:15:082 KERNEL/(13518:13519): Comparando estimaciones: 50000.000000, 50000.000000
 
-[INFO] 11:12:13:477 KERNEL/(9535:9536): Comparando estimaciones: 50000.000000, 35799.999893
+[INFO] 13:20:15:082 KERNEL/(13518:13519): Comparando estimaciones: 50000.000000, 50000.000000
 
-[INFO] 11:12:13:477 KERNEL/(9535:9536): Comparando estimaciones: 35799.999893, 45000.000000
+[INFO] 13:20:15:082 KERNEL/(13518:13519): Comparando estimaciones: 50000.000000, 36399.999887
 
-[INFO] 11:12:13:477 KERNEL/(9535:9536): Se eligio al proceso: 1
+[INFO] 13:20:15:082 KERNEL/(13518:13519): Comparando estimaciones: 36399.999887, 45000.000000
 
-[INFO] 11:12:13:477 KERNEL/(9535:9536): Se envio el proceso 1 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
+[INFO] 13:20:15:083 KERNEL/(13518:13519): Se eligio al proceso: 1
 
-[INFO] 11:12:21:505 KERNEL/(9535:9537): Orden EXIT recibida: proceso 1
+[INFO] 13:20:15:083 KERNEL/(13518:13519): Se envio el proceso 1 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
 
-[INFO] 11:12:21:505 KERNEL/(9535:9537): Se llama a planificar porque se libero la CPU por EXIT
+[INFO] 13:20:23:048 KERNEL/(13518:13520): Orden EXIT recibida: proceso 1
 
-[INFO] 11:12:21:506 KERNEL/(9535:9536): Comparando estimaciones: 50000.000000, 50000.000000
+[INFO] 13:20:23:049 KERNEL/(13518:13520): Se llama a planificar porque se libero la CPU por EXIT
 
-[INFO] 11:12:21:506 KERNEL/(9535:9536): Comparando estimaciones: 50000.000000, 50000.000000
+[INFO] 13:20:23:049 KERNEL/(13518:13519): Comparando estimaciones: 50000.000000, 50000.000000
 
-[INFO] 11:12:21:507 KERNEL/(9535:9536): Comparando estimaciones: 50000.000000, 45000.000000
+[INFO] 13:20:23:049 KERNEL/(13518:13519): Comparando estimaciones: 50000.000000, 50000.000000
 
-[INFO] 11:12:21:507 KERNEL/(9535:9536): Se eligio al proceso: 2
+[INFO] 13:20:23:050 KERNEL/(13518:13519): Comparando estimaciones: 50000.000000, 45000.000000
 
-[INFO] 11:12:21:508 KERNEL/(9535:9536): Se envio el proceso 2 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 13:20:23:050 KERNEL/(13518:13519): Se eligio al proceso: 2
 
-[INFO] 11:12:21:507 KERNEL/(9535:9537): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 13:20:23:050 KERNEL/(13518:13519): Se envio el proceso 2 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 11:12:21:520 KERNEL/(9535:9537): [32m Cantidad de procesos en memoria: 4
+[INFO] 13:20:23:050 KERNEL/(13518:13520): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 11:12:21:521 KERNEL/(9535:9539): Cantidad de procesos en memoria: 4
+[INFO] 13:20:23:056 KERNEL/(13518:13520): [32m Cantidad de procesos en memoria: 4
 
-[INFO] 11:12:21:522 KERNEL/(9535:9542): DISCONNECT
-[INFO] 11:12:26:638 KERNEL/(9535:9537): Nuevo proceso en cola blocked: proceso 2
+[INFO] 13:20:23:056 KERNEL/(13518:13522): Cantidad de procesos en memoria: 4
 
-[INFO] 11:12:26:639 KERNEL/(9535:9537): Se llama a planificar porque se libero la CPU por I/O
+[INFO] 13:20:23:057 KERNEL/(13518:13528): DISCONNECT
+[INFO] 13:20:29:167 KERNEL/(13518:13520): Nuevo proceso en cola blocked: proceso 2
 
-[INFO] 11:12:26:639 KERNEL/(9535:9536): Comparando estimaciones: 50000.000000, 50000.000000
+[INFO] 13:20:29:167 KERNEL/(13518:13520): Se llama a planificar porque se libero la CPU por I/O
 
-[INFO] 11:12:26:639 KERNEL/(9535:9536): Comparando estimaciones: 50000.000000, 50000.000000
+[INFO] 13:20:29:167 KERNEL/(13518:13519): Comparando estimaciones: 50000.000000, 50000.000000
 
-[INFO] 11:12:26:639 KERNEL/(9535:9536): Se eligio al proceso: 3
+[INFO] 13:20:29:168 KERNEL/(13518:13519): Comparando estimaciones: 50000.000000, 50000.000000
 
-[INFO] 11:12:26:640 KERNEL/(9535:9536): Se envio el proceso 3 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 13:20:29:168 KERNEL/(13518:13519): Se eligio al proceso: 3
 
-[WARNING] 11:12:27:640 KERNEL/(9535:9686): Se va a suspender el proceso: 2
+[INFO] 13:20:29:168 KERNEL/(13518:13519): Se envio el proceso 3 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 11:12:27:641 KERNEL/(9535:9686): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[WARNING] 13:20:30:171 KERNEL/(13518:13664): Se va a suspender el proceso: 2
 
-[INFO] 11:12:27:656 KERNEL/(9535:9686): Confirmacion de suspension recibida
-[INFO] 11:12:27:657 KERNEL/(9535:9686): [32m Cantidad de procesos en memoria: 3
+[INFO] 13:20:30:172 KERNEL/(13518:13664): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 11:12:27:657 KERNEL/(9535:9539): Cantidad de procesos en memoria: 3
+[INFO] 13:20:31:180 KERNEL/(13518:13664): Confirmacion de suspension recibida
+[INFO] 13:20:31:180 KERNEL/(13518:13664): [32m Cantidad de procesos en memoria: 3
 
-[INFO] 11:12:31:640 KERNEL/(9535:9538): El proceso 2 se desbloqueo
+[INFO] 13:20:31:181 KERNEL/(13518:13522): Cantidad de procesos en memoria: 3
 
-[INFO] 11:12:31:640 KERNEL/(9535:9538): El proceso 2 se puso en ready suspendido porque termino su tiempo de I/O
+[INFO] 13:20:34:168 KERNEL/(13518:13521): El proceso 2 se desbloqueo
 
-[INFO] 11:12:31:641 KERNEL/(9535:9539): Cantidad de procesos en memoria: 3
+[INFO] 13:20:34:168 KERNEL/(13518:13521): El proceso 2 se puso en ready suspendido porque termino su tiempo de I/O
 
-[INFO] 11:12:31:641 KERNEL/(9535:9539): El proceso 2 pasara de ready suspendido a ready
+[INFO] 13:20:34:169 KERNEL/(13518:13522): Cantidad de procesos en memoria: 3
 
-[INFO] 11:12:31:641 KERNEL/(9535:9539): Se puso el proceso 2 en la cola ready
+[INFO] 13:20:34:169 KERNEL/(13518:13522): El proceso 2 pasara de ready suspendido a ready
 
-[INFO] 11:12:31:642 KERNEL/(9535:9536): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 13:20:34:170 KERNEL/(13518:13522): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 11:12:31:643 KERNEL/(9535:9536): Mande la interrupcion a la cpu
+[INFO] 13:20:34:172 KERNEL/(13518:13522): Se puso el proceso 2 en la cola ready
 
-[WARNING] 11:12:31:814 KERNEL/(9535:9537): Proceso interrumpido 3
+[INFO] 13:20:34:173 KERNEL/(13518:13519): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 11:12:31:814 KERNEL/(9535:9536): Comparando estimaciones: 50000.000000, 50000.000000
+[INFO] 13:20:34:174 KERNEL/(13518:13519): Mande la interrupcion a la cpu
 
-[INFO] 11:12:31:814 KERNEL/(9535:9536): Comparando estimaciones: 50000.000000, 37999.999896
+[WARNING] 13:20:34:270 KERNEL/(13518:13520): Proceso interrumpido 3
 
-[INFO] 11:12:31:814 KERNEL/(9535:9536): Comparando estimaciones: 37999.999896, 45000.000000
+[INFO] 13:20:34:271 KERNEL/(13518:13519): Comparando estimaciones: 50000.000000, 50000.000000
 
-[INFO] 11:12:31:814 KERNEL/(9535:9536): Se eligio al proceso: 2
+[INFO] 13:20:34:271 KERNEL/(13518:13519): Comparando estimaciones: 50000.000000, 38199.999899
 
-[INFO] 11:12:31:814 KERNEL/(9535:9536): Se envio el proceso 2 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
+[INFO] 13:20:34:272 KERNEL/(13518:13519): Comparando estimaciones: 38199.999899, 45000.000000
 
-[INFO] 11:12:40:487 KERNEL/(9535:9537): Nuevo proceso en cola blocked: proceso 2
+[INFO] 13:20:34:273 KERNEL/(13518:13519): Se eligio al proceso: 2
 
-[INFO] 11:12:40:487 KERNEL/(9535:9537): Se llama a planificar porque se libero la CPU por I/O
+[INFO] 13:20:34:274 KERNEL/(13518:13519): Se envio el proceso 2 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
 
-[INFO] 11:12:40:487 KERNEL/(9535:9536): Comparando estimaciones: 50000.000000, 50000.000000
+[INFO] 13:20:42:935 KERNEL/(13518:13520): Nuevo proceso en cola blocked: proceso 2
 
-[INFO] 11:12:40:487 KERNEL/(9535:9536): Comparando estimaciones: 50000.000000, 45000.000000
+[INFO] 13:20:42:935 KERNEL/(13518:13520): Se llama a planificar porque se libero la CPU por I/O
 
-[INFO] 11:12:40:487 KERNEL/(9535:9536): Se eligio al proceso: 3
+[INFO] 13:20:42:935 KERNEL/(13518:13519): Comparando estimaciones: 50000.000000, 50000.000000
 
-[INFO] 11:12:40:487 KERNEL/(9535:9536): Se envio el proceso 3 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 13:20:42:935 KERNEL/(13518:13519): Comparando estimaciones: 50000.000000, 45000.000000
 
-[INFO] 11:12:40:587 KERNEL/(9535:9538): El proceso 2 se desbloqueo
+[INFO] 13:20:42:935 KERNEL/(13518:13519): Se eligio al proceso: 3
 
-[INFO] 11:12:40:587 KERNEL/(9535:9538): El proceso 2 se puso en ready porque termino su tiempo de I/O
+[INFO] 13:20:42:936 KERNEL/(13518:13519): Se envio el proceso 3 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 11:12:40:587 KERNEL/(9535:9538): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
-[INFO] 11:12:40:587 KERNEL/(9535:9536): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 13:20:43:035 KERNEL/(13518:13521): El proceso 2 se desbloqueo
 
-[INFO] 11:12:40:587 KERNEL/(9535:9536): Mande la interrupcion a la cpu
+[INFO] 13:20:43:035 KERNEL/(13518:13521): El proceso 2 se puso en ready porque termino su tiempo de I/O
 
-[WARNING] 11:12:42:514 KERNEL/(9535:9537): Proceso interrumpido 3
+[INFO] 13:20:43:035 KERNEL/(13518:13521): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
+[INFO] 13:20:43:036 KERNEL/(13518:13519): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 11:12:42:515 KERNEL/(9535:9536): Comparando estimaciones: 50000.000000, 50000.000000
+[INFO] 13:20:43:036 KERNEL/(13518:13519): Mande la interrupcion a la cpu
 
-[INFO] 11:12:42:515 KERNEL/(9535:9536): Comparando estimaciones: 50000.000000, 32199.999830
+[WARNING] 13:20:43:978 KERNEL/(13518:13520): Proceso interrumpido 3
 
-[INFO] 11:12:42:516 KERNEL/(9535:9536): Comparando estimaciones: 32199.999830, 43000.000000
+[INFO] 13:20:43:978 KERNEL/(13518:13519): Comparando estimaciones: 50000.000000, 50000.000000
 
-[INFO] 11:12:42:516 KERNEL/(9535:9536): Se eligio al proceso: 2
+[INFO] 13:20:43:979 KERNEL/(13518:13519): Comparando estimaciones: 50000.000000, 32159.999829
 
-[INFO] 11:12:42:517 KERNEL/(9535:9536): Se envio el proceso 2 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
+[INFO] 13:20:43:979 KERNEL/(13518:13519): Comparando estimaciones: 32159.999829, 44000.000000
 
-[INFO] 11:12:43:025 KERNEL/(9535:9537): Nuevo proceso en cola blocked: proceso 2
+[INFO] 13:20:43:979 KERNEL/(13518:13519): Se eligio al proceso: 2
 
-[INFO] 11:12:43:025 KERNEL/(9535:9537): Se llama a planificar porque se libero la CPU por I/O
+[INFO] 13:20:43:980 KERNEL/(13518:13519): Se envio el proceso 2 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
 
-[INFO] 11:12:43:025 KERNEL/(9535:9536): Comparando estimaciones: 50000.000000, 50000.000000
+[INFO] 13:20:44:488 KERNEL/(13518:13520): Nuevo proceso en cola blocked: proceso 2
 
-[INFO] 11:12:43:025 KERNEL/(9535:9536): Comparando estimaciones: 50000.000000, 43000.000000
+[INFO] 13:20:44:488 KERNEL/(13518:13520): Se llama a planificar porque se libero la CPU por I/O
 
-[INFO] 11:12:43:025 KERNEL/(9535:9536): Se eligio al proceso: 3
+[INFO] 13:20:44:488 KERNEL/(13518:13519): Comparando estimaciones: 50000.000000, 50000.000000
 
-[INFO] 11:12:43:026 KERNEL/(9535:9536): Se envio el proceso 3 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 13:20:44:489 KERNEL/(13518:13519): Comparando estimaciones: 50000.000000, 44000.000000
 
-[INFO] 11:12:43:125 KERNEL/(9535:9538): El proceso 2 se desbloqueo
+[INFO] 13:20:44:489 KERNEL/(13518:13519): Se eligio al proceso: 3
 
-[INFO] 11:12:43:125 KERNEL/(9535:9538): El proceso 2 se puso en ready porque termino su tiempo de I/O
+[INFO] 13:20:44:489 KERNEL/(13518:13519): Se envio el proceso 3 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 11:12:43:126 KERNEL/(9535:9538): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
-[INFO] 11:12:43:126 KERNEL/(9535:9536): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 13:20:44:589 KERNEL/(13518:13521): El proceso 2 se desbloqueo
 
-[INFO] 11:12:43:126 KERNEL/(9535:9536): Mande la interrupcion a la cpu
+[INFO] 13:20:44:589 KERNEL/(13518:13521): El proceso 2 se puso en ready porque termino su tiempo de I/O
 
-[WARNING] 11:12:45:050 KERNEL/(9535:9537): Proceso interrumpido 3
+[INFO] 13:20:44:589 KERNEL/(13518:13521): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
+[INFO] 13:20:44:590 KERNEL/(13518:13519): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 11:12:45:051 KERNEL/(9535:9536): Comparando estimaciones: 50000.000000, 50000.000000
+[INFO] 13:20:44:590 KERNEL/(13518:13519): Mande la interrupcion a la cpu
 
-[INFO] 11:12:45:051 KERNEL/(9535:9536): Comparando estimaciones: 50000.000000, 25959.999771
+[WARNING] 13:20:46:531 KERNEL/(13518:13520): Proceso interrumpido 3
 
-[INFO] 11:12:45:052 KERNEL/(9535:9536): Comparando estimaciones: 25959.999771, 41000.000000
+[INFO] 13:20:46:531 KERNEL/(13518:13519): Comparando estimaciones: 50000.000000, 50000.000000
 
-[INFO] 11:12:45:052 KERNEL/(9535:9536): Se eligio al proceso: 2
+[INFO] 13:20:46:532 KERNEL/(13518:13519): Comparando estimaciones: 50000.000000, 25927.999770
 
-[INFO] 11:12:45:053 KERNEL/(9535:9536): Se envio el proceso 2 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
+[INFO] 13:20:46:532 KERNEL/(13518:13519): Comparando estimaciones: 25927.999770, 42000.000000
 
-[INFO] 11:12:45:576 KERNEL/(9535:9537): Nuevo proceso en cola blocked: proceso 2
+[INFO] 13:20:46:533 KERNEL/(13518:13519): Se eligio al proceso: 2
 
-[INFO] 11:12:45:577 KERNEL/(9535:9537): Se llama a planificar porque se libero la CPU por I/O
+[INFO] 13:20:46:533 KERNEL/(13518:13519): Se envio el proceso 2 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
 
-[INFO] 11:12:45:577 KERNEL/(9535:9536): Comparando estimaciones: 50000.000000, 50000.000000
+[INFO] 13:20:47:043 KERNEL/(13518:13520): Nuevo proceso en cola blocked: proceso 2
 
-[INFO] 11:12:45:578 KERNEL/(9535:9536): Comparando estimaciones: 50000.000000, 41000.000000
+[INFO] 13:20:47:044 KERNEL/(13518:13520): Se llama a planificar porque se libero la CPU por I/O
 
-[INFO] 11:12:45:578 KERNEL/(9535:9536): Se eligio al proceso: 3
+[INFO] 13:20:47:044 KERNEL/(13518:13519): Comparando estimaciones: 50000.000000, 50000.000000
 
-[INFO] 11:12:45:579 KERNEL/(9535:9536): Se envio el proceso 3 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 13:20:47:045 KERNEL/(13518:13519): Comparando estimaciones: 50000.000000, 42000.000000
 
-[INFO] 11:12:45:677 KERNEL/(9535:9538): El proceso 2 se desbloqueo
+[INFO] 13:20:47:045 KERNEL/(13518:13519): Se eligio al proceso: 3
 
-[INFO] 11:12:45:677 KERNEL/(9535:9538): El proceso 2 se puso en ready porque termino su tiempo de I/O
+[INFO] 13:20:47:046 KERNEL/(13518:13519): Se envio el proceso 3 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 11:12:45:677 KERNEL/(9535:9538): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
-[INFO] 11:12:45:678 KERNEL/(9535:9536): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 13:20:47:144 KERNEL/(13518:13521): El proceso 2 se desbloqueo
 
-[INFO] 11:12:45:678 KERNEL/(9535:9536): Mande la interrupcion a la cpu
+[INFO] 13:20:47:144 KERNEL/(13518:13521): El proceso 2 se puso en ready porque termino su tiempo de I/O
 
-[WARNING] 11:12:45:716 KERNEL/(9535:9537): Proceso interrumpido 3
+[INFO] 13:20:47:145 KERNEL/(13518:13521): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
+[INFO] 13:20:47:145 KERNEL/(13518:13519): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 11:12:45:716 KERNEL/(9535:9536): Comparando estimaciones: 50000.000000, 50000.000000
+[INFO] 13:20:47:146 KERNEL/(13518:13519): Mande la interrupcion a la cpu
 
-[INFO] 11:12:45:716 KERNEL/(9535:9536): Comparando estimaciones: 50000.000000, 20767.999740
+[WARNING] 13:20:49:113 KERNEL/(13518:13520): Proceso interrumpido 3
 
-[INFO] 11:12:45:716 KERNEL/(9535:9536): Comparando estimaciones: 20767.999740, 41000.000000
+[INFO] 13:20:49:113 KERNEL/(13518:13519): Comparando estimaciones: 50000.000000, 50000.000000
 
-[INFO] 11:12:45:716 KERNEL/(9535:9536): Se eligio al proceso: 2
+[INFO] 13:20:49:114 KERNEL/(13518:13519): Comparando estimaciones: 50000.000000, 20942.399742
 
-[INFO] 11:12:45:717 KERNEL/(9535:9536): Se envio el proceso 2 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
+[INFO] 13:20:49:114 KERNEL/(13518:13519): Comparando estimaciones: 20942.399742, 40000.000000
 
-[INFO] 11:12:46:228 KERNEL/(9535:9537): Nuevo proceso en cola blocked: proceso 2
+[INFO] 13:20:49:115 KERNEL/(13518:13519): Se eligio al proceso: 2
 
-[INFO] 11:12:46:228 KERNEL/(9535:9537): Se llama a planificar porque se libero la CPU por I/O
+[INFO] 13:20:49:115 KERNEL/(13518:13519): Se envio el proceso 2 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
 
-[INFO] 11:12:46:229 KERNEL/(9535:9536): Comparando estimaciones: 50000.000000, 50000.000000
+[INFO] 13:20:49:634 KERNEL/(13518:13520): Nuevo proceso en cola blocked: proceso 2
 
-[INFO] 11:12:46:229 KERNEL/(9535:9536): Comparando estimaciones: 50000.000000, 41000.000000
+[INFO] 13:20:49:635 KERNEL/(13518:13520): Se llama a planificar porque se libero la CPU por I/O
 
-[INFO] 11:12:46:230 KERNEL/(9535:9536): Se eligio al proceso: 3
+[INFO] 13:20:49:635 KERNEL/(13518:13519): Comparando estimaciones: 50000.000000, 50000.000000
 
-[INFO] 11:12:46:231 KERNEL/(9535:9536): Se envio el proceso 3 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 13:20:49:635 KERNEL/(13518:13519): Comparando estimaciones: 50000.000000, 40000.000000
 
-[INFO] 11:12:46:327 KERNEL/(9535:9538): El proceso 2 se desbloqueo
+[INFO] 13:20:49:636 KERNEL/(13518:13519): Se eligio al proceso: 3
 
-[INFO] 11:12:46:328 KERNEL/(9535:9538): El proceso 2 se puso en ready porque termino su tiempo de I/O
+[INFO] 13:20:49:640 KERNEL/(13518:13519): Se envio el proceso 3 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 11:12:46:328 KERNEL/(9535:9538): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
-[INFO] 11:12:46:328 KERNEL/(9535:9536): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 13:20:49:734 KERNEL/(13518:13521): El proceso 2 se desbloqueo
 
-[INFO] 11:12:46:329 KERNEL/(9535:9536): Mande la interrupcion a la cpu
+[INFO] 13:20:49:734 KERNEL/(13518:13521): El proceso 2 se puso en ready porque termino su tiempo de I/O
 
-[WARNING] 11:12:46:341 KERNEL/(9535:9537): Proceso interrumpido 3
+[INFO] 13:20:49:734 KERNEL/(13518:13521): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
+[INFO] 13:20:49:735 KERNEL/(13518:13519): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 11:12:46:342 KERNEL/(9535:9536): Comparando estimaciones: 50000.000000, 50000.000000
+[INFO] 13:20:49:735 KERNEL/(13518:13519): Mande la interrupcion a la cpu
 
-[INFO] 11:12:46:342 KERNEL/(9535:9536): Comparando estimaciones: 50000.000000, 16814.399733
+[WARNING] 13:20:49:776 KERNEL/(13518:13520): Proceso interrumpido 3
 
-[INFO] 11:12:46:342 KERNEL/(9535:9536): Comparando estimaciones: 16814.399733, 41000.000000
+[INFO] 13:20:49:777 KERNEL/(13518:13519): Comparando estimaciones: 50000.000000, 50000.000000
 
-[INFO] 11:12:46:342 KERNEL/(9535:9536): Se eligio al proceso: 2
+[INFO] 13:20:49:777 KERNEL/(13518:13519): Comparando estimaciones: 50000.000000, 16753.919731
 
-[INFO] 11:12:46:343 KERNEL/(9535:9536): Se envio el proceso 2 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
+[INFO] 13:20:49:777 KERNEL/(13518:13519): Comparando estimaciones: 16753.919731, 40000.000000
 
-[INFO] 11:12:46:853 KERNEL/(9535:9537): Nuevo proceso en cola blocked: proceso 2
+[INFO] 13:20:49:777 KERNEL/(13518:13519): Se eligio al proceso: 2
 
-[INFO] 11:12:46:853 KERNEL/(9535:9537): Se llama a planificar porque se libero la CPU por I/O
+[INFO] 13:20:49:778 KERNEL/(13518:13519): Se envio el proceso 2 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
 
-[INFO] 11:12:46:854 KERNEL/(9535:9536): Comparando estimaciones: 50000.000000, 50000.000000
+[INFO] 13:20:50:287 KERNEL/(13518:13520): Nuevo proceso en cola blocked: proceso 2
 
-[INFO] 11:12:46:854 KERNEL/(9535:9536): Comparando estimaciones: 50000.000000, 41000.000000
+[INFO] 13:20:50:288 KERNEL/(13518:13520): Se llama a planificar porque se libero la CPU por I/O
 
-[INFO] 11:12:46:854 KERNEL/(9535:9536): Se eligio al proceso: 3
+[INFO] 13:20:50:288 KERNEL/(13518:13519): Comparando estimaciones: 50000.000000, 50000.000000
 
-[INFO] 11:12:46:855 KERNEL/(9535:9536): Se envio el proceso 3 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 13:20:50:289 KERNEL/(13518:13519): Comparando estimaciones: 50000.000000, 40000.000000
 
-[INFO] 11:12:46:953 KERNEL/(9535:9538): El proceso 2 se desbloqueo
+[INFO] 13:20:50:289 KERNEL/(13518:13519): Se eligio al proceso: 3
 
-[INFO] 11:12:46:953 KERNEL/(9535:9538): El proceso 2 se puso en ready porque termino su tiempo de I/O
+[INFO] 13:20:50:290 KERNEL/(13518:13519): Se envio el proceso 3 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 11:12:46:954 KERNEL/(9535:9538): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
-[INFO] 11:12:46:954 KERNEL/(9535:9536): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 13:20:50:388 KERNEL/(13518:13521): El proceso 2 se desbloqueo
 
-[INFO] 11:12:46:955 KERNEL/(9535:9536): Mande la interrupcion a la cpu
+[INFO] 13:20:50:388 KERNEL/(13518:13521): El proceso 2 se puso en ready porque termino su tiempo de I/O
 
-[WARNING] 11:12:46:963 KERNEL/(9535:9537): Proceso interrumpido 3
+[INFO] 13:20:50:389 KERNEL/(13518:13521): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
+[INFO] 13:20:50:389 KERNEL/(13518:13519): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 11:12:46:964 KERNEL/(9535:9536): Comparando estimaciones: 50000.000000, 50000.000000
+[INFO] 13:20:50:390 KERNEL/(13518:13519): Mande la interrupcion a la cpu
 
-[INFO] 11:12:46:964 KERNEL/(9535:9536): Comparando estimaciones: 50000.000000, 13451.519736
+[WARNING] 13:20:50:399 KERNEL/(13518:13520): Proceso interrumpido 3
 
-[INFO] 11:12:46:965 KERNEL/(9535:9536): Comparando estimaciones: 13451.519736, 41000.000000
+[INFO] 13:20:50:402 KERNEL/(13518:13519): Comparando estimaciones: 50000.000000, 50000.000000
 
-[INFO] 11:12:46:965 KERNEL/(9535:9536): Se eligio al proceso: 2
+[INFO] 13:20:50:402 KERNEL/(13518:13519): Comparando estimaciones: 50000.000000, 13603.135738
 
-[INFO] 11:12:46:966 KERNEL/(9535:9536): Se envio el proceso 2 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
+[INFO] 13:20:50:403 KERNEL/(13518:13519): Comparando estimaciones: 13603.135738, 40000.000000
 
-[INFO] 11:12:47:477 KERNEL/(9535:9537): Nuevo proceso en cola blocked: proceso 2
+[INFO] 13:20:50:403 KERNEL/(13518:13519): Se eligio al proceso: 2
 
-[INFO] 11:12:47:478 KERNEL/(9535:9537): Se llama a planificar porque se libero la CPU por I/O
+[INFO] 13:20:50:404 KERNEL/(13518:13519): Se envio el proceso 2 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
 
-[INFO] 11:12:47:478 KERNEL/(9535:9536): Comparando estimaciones: 50000.000000, 50000.000000
+[INFO] 13:20:50:923 KERNEL/(13518:13520): Nuevo proceso en cola blocked: proceso 2
 
-[INFO] 11:12:47:479 KERNEL/(9535:9536): Comparando estimaciones: 50000.000000, 41000.000000
+[INFO] 13:20:50:923 KERNEL/(13518:13520): Se llama a planificar porque se libero la CPU por I/O
 
-[INFO] 11:12:47:479 KERNEL/(9535:9536): Se eligio al proceso: 3
+[INFO] 13:20:50:923 KERNEL/(13518:13519): Comparando estimaciones: 50000.000000, 50000.000000
 
-[INFO] 11:12:47:480 KERNEL/(9535:9536): Se envio el proceso 3 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 13:20:50:924 KERNEL/(13518:13519): Comparando estimaciones: 50000.000000, 40000.000000
 
-[INFO] 11:12:47:578 KERNEL/(9535:9538): El proceso 2 se desbloqueo
+[INFO] 13:20:50:924 KERNEL/(13518:13519): Se eligio al proceso: 3
 
-[INFO] 11:12:47:579 KERNEL/(9535:9538): El proceso 2 se puso en ready porque termino su tiempo de I/O
+[INFO] 13:20:50:924 KERNEL/(13518:13519): Se envio el proceso 3 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 11:12:47:579 KERNEL/(9535:9538): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
-[INFO] 11:12:47:580 KERNEL/(9535:9536): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 13:20:51:023 KERNEL/(13518:13521): El proceso 2 se desbloqueo
 
-[INFO] 11:12:47:581 KERNEL/(9535:9536): Mande la interrupcion a la cpu
+[INFO] 13:20:51:024 KERNEL/(13518:13521): El proceso 2 se puso en ready porque termino su tiempo de I/O
 
-[WARNING] 11:12:47:588 KERNEL/(9535:9537): Proceso interrumpido 3
+[INFO] 13:20:51:024 KERNEL/(13518:13521): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
+[INFO] 13:20:51:025 KERNEL/(13518:13519): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 11:12:47:589 KERNEL/(9535:9536): Comparando estimaciones: 50000.000000, 50000.000000
+[INFO] 13:20:51:026 KERNEL/(13518:13519): Mande la interrupcion a la cpu
 
-[INFO] 11:12:47:589 KERNEL/(9535:9536): Comparando estimaciones: 50000.000000, 10961.215752
+[WARNING] 13:20:51:132 KERNEL/(13518:13520): Proceso interrumpido 3
 
-[INFO] 11:12:47:590 KERNEL/(9535:9536): Comparando estimaciones: 10961.215752, 41000.000000
+[INFO] 13:20:51:132 KERNEL/(13518:13519): Comparando estimaciones: 50000.000000, 50000.000000
 
-[INFO] 11:12:47:590 KERNEL/(9535:9536): Se eligio al proceso: 2
+[INFO] 13:20:51:133 KERNEL/(13518:13519): Comparando estimaciones: 50000.000000, 10882.508550
 
-[INFO] 11:12:47:591 KERNEL/(9535:9536): Se envio el proceso 2 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
+[INFO] 13:20:51:134 KERNEL/(13518:13519): Comparando estimaciones: 10882.508550, 39000.000000
 
-[INFO] 11:12:48:606 KERNEL/(9535:9537): Orden EXIT recibida: proceso 2
+[INFO] 13:20:51:134 KERNEL/(13518:13519): Se eligio al proceso: 2
 
-[INFO] 11:12:48:607 KERNEL/(9535:9537): Se llama a planificar porque se libero la CPU por EXIT
+[INFO] 13:20:51:135 KERNEL/(13518:13519): Se envio el proceso 2 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
 
-[INFO] 11:12:48:607 KERNEL/(9535:9536): Comparando estimaciones: 50000.000000, 50000.000000
+[INFO] 13:20:52:153 KERNEL/(13518:13520): Orden EXIT recibida: proceso 2
 
-[INFO] 11:12:48:608 KERNEL/(9535:9536): Comparando estimaciones: 50000.000000, 41000.000000
+[INFO] 13:20:52:154 KERNEL/(13518:13520): Se llama a planificar porque se libero la CPU por EXIT
 
-[INFO] 11:12:48:608 KERNEL/(9535:9536): Se eligio al proceso: 3
+[INFO] 13:20:52:154 KERNEL/(13518:13519): Comparando estimaciones: 50000.000000, 50000.000000
 
-[INFO] 11:12:48:609 KERNEL/(9535:9536): Se envio el proceso 3 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 13:20:52:155 KERNEL/(13518:13519): Comparando estimaciones: 50000.000000, 39000.000000
 
-[INFO] 11:12:48:608 KERNEL/(9535:9537): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 13:20:52:155 KERNEL/(13518:13519): Se eligio al proceso: 3
 
-[INFO] 11:12:48:620 KERNEL/(9535:9537): [32m Cantidad de procesos en memoria: 3
+[INFO] 13:20:52:156 KERNEL/(13518:13519): Se envio el proceso 3 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 11:12:48:621 KERNEL/(9535:9539): Cantidad de procesos en memoria: 3
+[INFO] 13:20:52:156 KERNEL/(13518:13520): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 11:12:48:622 KERNEL/(9535:9547): DISCONNECT
-[INFO] 11:14:06:319 KERNEL/(9535:9537): Orden EXIT recibida: proceso 3
+[INFO] 13:20:52:167 KERNEL/(13518:13520): [32m Cantidad de procesos en memoria: 3
 
-[INFO] 11:14:06:319 KERNEL/(9535:9537): Se llama a planificar porque se libero la CPU por EXIT
+[INFO] 13:20:52:168 KERNEL/(13518:13522): Cantidad de procesos en memoria: 3
 
-[INFO] 11:14:06:320 KERNEL/(9535:9536): Comparando estimaciones: 50000.000000, 50000.000000
+[INFO] 13:20:52:169 KERNEL/(13518:13533): DISCONNECT
+[INFO] 13:22:09:136 KERNEL/(13518:13520): Orden EXIT recibida: proceso 3
 
-[INFO] 11:14:06:320 KERNEL/(9535:9536): Se eligio al proceso: 4
+[INFO] 13:22:09:136 KERNEL/(13518:13520): Se llama a planificar porque se libero la CPU por EXIT
 
-[INFO] 11:14:06:321 KERNEL/(9535:9536): Se envio el proceso 4 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 13:22:09:136 KERNEL/(13518:13519): Comparando estimaciones: 50000.000000, 50000.000000
 
-[INFO] 11:14:06:320 KERNEL/(9535:9537): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 13:22:09:136 KERNEL/(13518:13519): Se eligio al proceso: 4
 
-[INFO] 11:14:06:327 KERNEL/(9535:9537): [32m Cantidad de procesos en memoria: 2
+[INFO] 13:22:09:136 KERNEL/(13518:13520): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 11:14:06:328 KERNEL/(9535:9539): Cantidad de procesos en memoria: 2
+[INFO] 13:22:09:136 KERNEL/(13518:13519): Se envio el proceso 4 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 11:14:06:329 KERNEL/(9535:9556): DISCONNECT
-[INFO] 11:14:06:527 KERNEL/(9535:9537): Nuevo proceso en cola blocked: proceso 4
+[INFO] 13:22:09:138 KERNEL/(13518:13520): [32m Cantidad de procesos en memoria: 2
 
-[INFO] 11:14:06:527 KERNEL/(9535:9537): Se llama a planificar porque se libero la CPU por I/O
+[INFO] 13:22:09:139 KERNEL/(13518:13522): Cantidad de procesos en memoria: 2
 
-[INFO] 11:14:06:528 KERNEL/(9535:9536): Se eligio al proceso: 5
+[INFO] 13:22:09:139 KERNEL/(13518:13535): DISCONNECT
+[INFO] 13:22:09:339 KERNEL/(13518:13520): Nuevo proceso en cola blocked: proceso 4
 
-[INFO] 11:14:06:528 KERNEL/(9535:9536): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 13:22:09:339 KERNEL/(13518:13520): Se llama a planificar porque se libero la CPU por I/O
 
-[INFO] 11:14:06:627 KERNEL/(9535:9538): El proceso 4 se desbloqueo
+[INFO] 13:22:09:339 KERNEL/(13518:13519): Se eligio al proceso: 5
 
-[INFO] 11:14:06:627 KERNEL/(9535:9538): El proceso 4 se puso en ready porque termino su tiempo de I/O
+[INFO] 13:22:09:339 KERNEL/(13518:13519): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 11:14:06:627 KERNEL/(9535:9538): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
-[INFO] 11:14:06:628 KERNEL/(9535:9536): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 13:22:09:439 KERNEL/(13518:13521): El proceso 4 se desbloqueo
 
-[INFO] 11:14:06:629 KERNEL/(9535:9536): Mande la interrupcion a la cpu
+[INFO] 13:22:09:439 KERNEL/(13518:13521): El proceso 4 se puso en ready porque termino su tiempo de I/O
 
-[WARNING] 11:14:07:557 KERNEL/(9535:9537): Proceso interrumpido 5
+[INFO] 13:22:09:439 KERNEL/(13518:13521): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
+[INFO] 13:22:09:439 KERNEL/(13518:13519): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 11:14:07:558 KERNEL/(9535:9536): Comparando estimaciones: 39999.999851, 49000.000000
+[INFO] 13:22:09:439 KERNEL/(13518:13519): Mande la interrupcion a la cpu
 
-[INFO] 11:14:07:558 KERNEL/(9535:9536): Se eligio al proceso: 4
+[WARNING] 13:22:10:352 KERNEL/(13518:13520): Proceso interrumpido 5
 
-[INFO] 11:14:07:559 KERNEL/(9535:9536): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
+[INFO] 13:22:10:353 KERNEL/(13518:13519): Comparando estimaciones: 39999.999851, 49000.000000
 
-[INFO] 11:14:07:765 KERNEL/(9535:9537): Nuevo proceso en cola blocked: proceso 4
+[INFO] 13:22:10:353 KERNEL/(13518:13519): Se eligio al proceso: 4
 
-[INFO] 11:14:07:765 KERNEL/(9535:9537): Se llama a planificar porque se libero la CPU por I/O
+[INFO] 13:22:10:354 KERNEL/(13518:13519): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
 
-[INFO] 11:14:07:766 KERNEL/(9535:9536): Se eligio al proceso: 5
+[INFO] 13:22:10:559 KERNEL/(13518:13520): Nuevo proceso en cola blocked: proceso 4
 
-[INFO] 11:14:07:766 KERNEL/(9535:9536): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 13:22:10:560 KERNEL/(13518:13520): Se llama a planificar porque se libero la CPU por I/O
 
-[INFO] 11:14:07:865 KERNEL/(9535:9538): El proceso 4 se desbloqueo
+[INFO] 13:22:10:560 KERNEL/(13518:13519): Se eligio al proceso: 5
 
-[INFO] 11:14:07:865 KERNEL/(9535:9538): El proceso 4 se puso en ready porque termino su tiempo de I/O
+[INFO] 13:22:10:561 KERNEL/(13518:13519): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 11:14:07:866 KERNEL/(9535:9538): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
-[INFO] 11:14:07:867 KERNEL/(9535:9536): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 13:22:10:660 KERNEL/(13518:13521): El proceso 4 se desbloqueo
 
-[INFO] 11:14:07:867 KERNEL/(9535:9536): Mande la interrupcion a la cpu
+[INFO] 13:22:10:660 KERNEL/(13518:13521): El proceso 4 se puso en ready porque termino su tiempo de I/O
 
-[WARNING] 11:14:07:905 KERNEL/(9535:9537): Proceso interrumpido 5
+[INFO] 13:22:10:661 KERNEL/(13518:13521): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
+[INFO] 13:22:10:661 KERNEL/(13518:13519): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 11:14:07:906 KERNEL/(9535:9536): Comparando estimaciones: 31999.999762, 49000.000000
+[INFO] 13:22:10:662 KERNEL/(13518:13519): Mande la interrupcion a la cpu
 
-[INFO] 11:14:07:906 KERNEL/(9535:9536): Se eligio al proceso: 4
+[WARNING] 13:22:10:706 KERNEL/(13518:13520): Proceso interrumpido 5
 
-[INFO] 11:14:07:907 KERNEL/(9535:9536): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
+[INFO] 13:22:10:706 KERNEL/(13518:13519): Comparando estimaciones: 31999.999762, 49000.000000
 
-[INFO] 11:14:08:113 KERNEL/(9535:9537): Nuevo proceso en cola blocked: proceso 4
+[INFO] 13:22:10:707 KERNEL/(13518:13519): Se eligio al proceso: 4
 
-[INFO] 11:14:08:114 KERNEL/(9535:9537): Se llama a planificar porque se libero la CPU por I/O
+[INFO] 13:22:10:707 KERNEL/(13518:13519): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
 
-[INFO] 11:14:08:114 KERNEL/(9535:9536): Se eligio al proceso: 5
+[INFO] 13:22:10:914 KERNEL/(13518:13520): Nuevo proceso en cola blocked: proceso 4
 
-[INFO] 11:14:08:115 KERNEL/(9535:9536): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 13:22:10:914 KERNEL/(13518:13520): Se llama a planificar porque se libero la CPU por I/O
 
-[INFO] 11:14:08:213 KERNEL/(9535:9538): El proceso 4 se desbloqueo
+[INFO] 13:22:10:914 KERNEL/(13518:13519): Se eligio al proceso: 5
 
-[INFO] 11:14:08:214 KERNEL/(9535:9538): El proceso 4 se puso en ready porque termino su tiempo de I/O
+[INFO] 13:22:10:914 KERNEL/(13518:13519): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 11:14:08:214 KERNEL/(9535:9538): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
-[INFO] 11:14:08:215 KERNEL/(9535:9536): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 13:22:11:014 KERNEL/(13518:13521): El proceso 4 se desbloqueo
 
-[INFO] 11:14:08:216 KERNEL/(9535:9536): Mande la interrupcion a la cpu
+[INFO] 13:22:11:015 KERNEL/(13518:13521): El proceso 4 se puso en ready porque termino su tiempo de I/O
 
-[WARNING] 11:14:08:222 KERNEL/(9535:9537): Proceso interrumpido 5
+[INFO] 13:22:11:015 KERNEL/(13518:13521): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
+[INFO] 13:22:11:017 KERNEL/(13518:13519): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 11:14:08:222 KERNEL/(9535:9536): Comparando estimaciones: 25799.999717, 49000.000000
+[INFO] 13:22:11:018 KERNEL/(13518:13519): Mande la interrupcion a la cpu
 
-[INFO] 11:14:08:223 KERNEL/(9535:9536): Se eligio al proceso: 4
+[WARNING] 13:22:11:121 KERNEL/(13518:13520): Proceso interrumpido 5
 
-[INFO] 11:14:08:223 KERNEL/(9535:9536): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
+[INFO] 13:22:11:121 KERNEL/(13518:13519): Comparando estimaciones: 25599.999714, 48000.000000
 
-[INFO] 11:14:08:429 KERNEL/(9535:9537): Nuevo proceso en cola blocked: proceso 4
+[INFO] 13:22:11:121 KERNEL/(13518:13519): Se eligio al proceso: 4
 
-[INFO] 11:14:08:430 KERNEL/(9535:9537): Se llama a planificar porque se libero la CPU por I/O
+[INFO] 13:22:11:122 KERNEL/(13518:13519): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
 
-[INFO] 11:14:08:430 KERNEL/(9535:9536): Se eligio al proceso: 5
+[INFO] 13:22:11:327 KERNEL/(13518:13520): Nuevo proceso en cola blocked: proceso 4
 
-[INFO] 11:14:08:431 KERNEL/(9535:9536): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 13:22:11:328 KERNEL/(13518:13520): Se llama a planificar porque se libero la CPU por I/O
 
-[INFO] 11:14:08:530 KERNEL/(9535:9538): El proceso 4 se desbloqueo
+[INFO] 13:22:11:328 KERNEL/(13518:13519): Se eligio al proceso: 5
 
-[INFO] 11:14:08:530 KERNEL/(9535:9538): El proceso 4 se puso en ready porque termino su tiempo de I/O
+[INFO] 13:22:11:329 KERNEL/(13518:13519): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 11:14:08:531 KERNEL/(9535:9538): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
-[INFO] 11:14:08:531 KERNEL/(9535:9536): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 13:22:11:428 KERNEL/(13518:13521): El proceso 4 se desbloqueo
 
-[INFO] 11:14:08:532 KERNEL/(9535:9536): Mande la interrupcion a la cpu
+[INFO] 13:22:11:428 KERNEL/(13518:13521): El proceso 4 se puso en ready porque termino su tiempo de I/O
 
-[WARNING] 11:14:08:538 KERNEL/(9535:9537): Proceso interrumpido 5
+[INFO] 13:22:11:429 KERNEL/(13518:13521): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
+[INFO] 13:22:11:429 KERNEL/(13518:13519): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 11:14:08:539 KERNEL/(9535:9536): Comparando estimaciones: 20639.999697, 49000.000000
+[INFO] 13:22:11:430 KERNEL/(13518:13519): Mande la interrupcion a la cpu
 
-[INFO] 11:14:08:539 KERNEL/(9535:9536): Se eligio al proceso: 4
+[WARNING] 13:22:11:437 KERNEL/(13518:13520): Proceso interrumpido 5
 
-[INFO] 11:14:08:540 KERNEL/(9535:9536): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
+[INFO] 13:22:11:437 KERNEL/(13518:13519): Comparando estimaciones: 20479.999695, 48000.000000
 
-[INFO] 11:14:08:746 KERNEL/(9535:9537): Nuevo proceso en cola blocked: proceso 4
+[INFO] 13:22:11:438 KERNEL/(13518:13519): Se eligio al proceso: 4
 
-[INFO] 11:14:08:746 KERNEL/(9535:9537): Se llama a planificar porque se libero la CPU por I/O
+[INFO] 13:22:11:439 KERNEL/(13518:13519): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
 
-[INFO] 11:14:08:747 KERNEL/(9535:9536): Se eligio al proceso: 5
+[INFO] 13:22:11:644 KERNEL/(13518:13520): Nuevo proceso en cola blocked: proceso 4
 
-[INFO] 11:14:08:748 KERNEL/(9535:9536): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 13:22:11:645 KERNEL/(13518:13520): Se llama a planificar porque se libero la CPU por I/O
 
-[INFO] 11:14:08:846 KERNEL/(9535:9538): El proceso 4 se desbloqueo
+[INFO] 13:22:11:645 KERNEL/(13518:13519): Se eligio al proceso: 5
 
-[INFO] 11:14:08:847 KERNEL/(9535:9538): El proceso 4 se puso en ready porque termino su tiempo de I/O
+[INFO] 13:22:11:646 KERNEL/(13518:13519): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 11:14:08:847 KERNEL/(9535:9538): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
-[INFO] 11:14:08:848 KERNEL/(9535:9536): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 13:22:11:744 KERNEL/(13518:13521): El proceso 4 se desbloqueo
 
-[INFO] 11:14:08:849 KERNEL/(9535:9536): Mande la interrupcion a la cpu
+[INFO] 13:22:11:745 KERNEL/(13518:13521): El proceso 4 se puso en ready porque termino su tiempo de I/O
 
-[WARNING] 11:14:08:855 KERNEL/(9535:9537): Proceso interrumpido 5
+[INFO] 13:22:11:745 KERNEL/(13518:13521): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
+[INFO] 13:22:11:745 KERNEL/(13518:13519): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 11:14:08:855 KERNEL/(9535:9536): Comparando estimaciones: 16511.999696, 49000.000000
+[INFO] 13:22:11:746 KERNEL/(13518:13519): Mande la interrupcion a la cpu
 
-[INFO] 11:14:08:856 KERNEL/(9535:9536): Se eligio al proceso: 4
+[WARNING] 13:22:11:751 KERNEL/(13518:13520): Proceso interrumpido 5
 
-[INFO] 11:14:08:857 KERNEL/(9535:9536): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
+[INFO] 13:22:11:751 KERNEL/(13518:13519): Comparando estimaciones: 16383.999695, 48000.000000
 
-[INFO] 11:14:09:062 KERNEL/(9535:9537): Nuevo proceso en cola blocked: proceso 4
+[INFO] 13:22:11:751 KERNEL/(13518:13519): Se eligio al proceso: 4
 
-[INFO] 11:14:09:063 KERNEL/(9535:9537): Se llama a planificar porque se libero la CPU por I/O
+[INFO] 13:22:11:751 KERNEL/(13518:13519): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
 
-[INFO] 11:14:09:063 KERNEL/(9535:9536): Se eligio al proceso: 5
+[INFO] 13:22:11:953 KERNEL/(13518:13520): Nuevo proceso en cola blocked: proceso 4
 
-[INFO] 11:14:09:064 KERNEL/(9535:9536): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 13:22:11:954 KERNEL/(13518:13520): Se llama a planificar porque se libero la CPU por I/O
 
-[INFO] 11:14:09:162 KERNEL/(9535:9538): El proceso 4 se desbloqueo
+[INFO] 13:22:11:954 KERNEL/(13518:13519): Se eligio al proceso: 5
 
-[INFO] 11:14:09:163 KERNEL/(9535:9538): El proceso 4 se puso en ready porque termino su tiempo de I/O
+[INFO] 13:22:11:954 KERNEL/(13518:13519): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 11:14:09:163 KERNEL/(9535:9538): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
-[INFO] 11:14:09:164 KERNEL/(9535:9536): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 13:22:12:054 KERNEL/(13518:13521): El proceso 4 se desbloqueo
 
-[INFO] 11:14:09:165 KERNEL/(9535:9536): Mande la interrupcion a la cpu
+[INFO] 13:22:12:054 KERNEL/(13518:13521): El proceso 4 se puso en ready porque termino su tiempo de I/O
 
-[WARNING] 11:14:09:171 KERNEL/(9535:9537): Proceso interrumpido 5
+[INFO] 13:22:12:054 KERNEL/(13518:13521): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
+[INFO] 13:22:12:054 KERNEL/(13518:13519): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 11:14:09:171 KERNEL/(9535:9536): Comparando estimaciones: 13409.599710, 49000.000000
+[INFO] 13:22:12:054 KERNEL/(13518:13519): Mande la interrupcion a la cpu
 
-[INFO] 11:14:09:172 KERNEL/(9535:9536): Se eligio al proceso: 4
+[WARNING] 13:22:12:055 KERNEL/(13518:13520): Proceso interrumpido 5
 
-[INFO] 11:14:09:172 KERNEL/(9535:9536): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
+[INFO] 13:22:12:055 KERNEL/(13518:13519): Comparando estimaciones: 13107.199707, 47000.000000
 
-[INFO] 11:14:09:378 KERNEL/(9535:9537): Nuevo proceso en cola blocked: proceso 4
+[INFO] 13:22:12:055 KERNEL/(13518:13519): Se eligio al proceso: 4
 
-[INFO] 11:14:09:379 KERNEL/(9535:9537): Se llama a planificar porque se libero la CPU por I/O
+[INFO] 13:22:12:055 KERNEL/(13518:13519): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
 
-[INFO] 11:14:09:379 KERNEL/(9535:9536): Se eligio al proceso: 5
+[INFO] 13:22:12:257 KERNEL/(13518:13520): Nuevo proceso en cola blocked: proceso 4
 
-[INFO] 11:14:09:380 KERNEL/(9535:9536): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 13:22:12:258 KERNEL/(13518:13520): Se llama a planificar porque se libero la CPU por I/O
 
-[INFO] 11:14:09:479 KERNEL/(9535:9538): El proceso 4 se desbloqueo
+[INFO] 13:22:12:258 KERNEL/(13518:13519): Se eligio al proceso: 5
 
-[INFO] 11:14:09:480 KERNEL/(9535:9538): El proceso 4 se puso en ready porque termino su tiempo de I/O
+[INFO] 13:22:12:258 KERNEL/(13518:13519): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 11:14:09:480 KERNEL/(9535:9538): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
-[INFO] 11:14:09:481 KERNEL/(9535:9536): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 13:22:12:358 KERNEL/(13518:13521): El proceso 4 se desbloqueo
 
-[INFO] 11:14:09:482 KERNEL/(9535:9536): Mande la interrupcion a la cpu
+[INFO] 13:22:12:358 KERNEL/(13518:13521): El proceso 4 se puso en ready porque termino su tiempo de I/O
 
-[WARNING] 11:14:09:488 KERNEL/(9535:9537): Proceso interrumpido 5
+[INFO] 13:22:12:358 KERNEL/(13518:13521): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
+[INFO] 13:22:12:358 KERNEL/(13518:13519): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 11:14:09:488 KERNEL/(9535:9536): Comparando estimaciones: 10727.679728, 49000.000000
+[INFO] 13:22:12:358 KERNEL/(13518:13519): Mande la interrupcion a la cpu
 
-[INFO] 11:14:09:488 KERNEL/(9535:9536): Se eligio al proceso: 4
+[WARNING] 13:22:12:359 KERNEL/(13518:13520): Proceso interrumpido 5
 
-[INFO] 11:14:09:489 KERNEL/(9535:9536): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
+[INFO] 13:22:12:359 KERNEL/(13518:13519): Comparando estimaciones: 10485.759727, 47000.000000
 
-[INFO] 11:14:09:695 KERNEL/(9535:9537): Nuevo proceso en cola blocked: proceso 4
+[INFO] 13:22:12:359 KERNEL/(13518:13519): Se eligio al proceso: 4
 
-[INFO] 11:14:09:695 KERNEL/(9535:9537): Se llama a planificar porque se libero la CPU por I/O
+[INFO] 13:22:12:359 KERNEL/(13518:13519): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
 
-[INFO] 11:14:09:696 KERNEL/(9535:9536): Se eligio al proceso: 5
+[INFO] 13:22:12:561 KERNEL/(13518:13520): Nuevo proceso en cola blocked: proceso 4
 
-[INFO] 11:14:09:697 KERNEL/(9535:9536): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 13:22:12:561 KERNEL/(13518:13520): Se llama a planificar porque se libero la CPU por I/O
 
-[INFO] 11:14:09:796 KERNEL/(9535:9538): El proceso 4 se desbloqueo
+[INFO] 13:22:12:561 KERNEL/(13518:13519): Se eligio al proceso: 5
 
-[INFO] 11:14:09:796 KERNEL/(9535:9538): El proceso 4 se puso en ready porque termino su tiempo de I/O
+[INFO] 13:22:12:561 KERNEL/(13518:13519): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 11:14:09:797 KERNEL/(9535:9538): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
-[INFO] 11:14:09:798 KERNEL/(9535:9536): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 13:22:12:661 KERNEL/(13518:13521): El proceso 4 se desbloqueo
 
-[INFO] 11:14:09:798 KERNEL/(9535:9536): Mande la interrupcion a la cpu
+[INFO] 13:22:12:661 KERNEL/(13518:13521): El proceso 4 se puso en ready porque termino su tiempo de I/O
 
-[WARNING] 11:14:09:803 KERNEL/(9535:9537): Proceso interrumpido 5
+[INFO] 13:22:12:661 KERNEL/(13518:13521): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
+[INFO] 13:22:12:662 KERNEL/(13518:13519): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 11:14:09:804 KERNEL/(9535:9536): Comparando estimaciones: 8582.143751, 49000.000000
+[INFO] 13:22:12:662 KERNEL/(13518:13519): Mande la interrupcion a la cpu
 
-[INFO] 11:14:09:804 KERNEL/(9535:9536): Se eligio al proceso: 4
+[WARNING] 13:22:12:663 KERNEL/(13518:13520): Proceso interrumpido 5
 
-[INFO] 11:14:09:805 KERNEL/(9535:9536): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
+[INFO] 13:22:12:663 KERNEL/(13518:13519): Comparando estimaciones: 8388.607750, 47000.000000
 
-[INFO] 11:14:10:011 KERNEL/(9535:9537): Nuevo proceso en cola blocked: proceso 4
+[INFO] 13:22:12:663 KERNEL/(13518:13519): Se eligio al proceso: 4
 
-[INFO] 11:14:10:011 KERNEL/(9535:9537): Se llama a planificar porque se libero la CPU por I/O
+[INFO] 13:22:12:663 KERNEL/(13518:13519): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
 
-[INFO] 11:14:10:012 KERNEL/(9535:9536): Se eligio al proceso: 5
+[INFO] 13:22:12:865 KERNEL/(13518:13520): Nuevo proceso en cola blocked: proceso 4
 
-[INFO] 11:14:10:013 KERNEL/(9535:9536): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 13:22:12:865 KERNEL/(13518:13520): Se llama a planificar porque se libero la CPU por I/O
 
-[INFO] 11:14:10:111 KERNEL/(9535:9538): El proceso 4 se desbloqueo
+[INFO] 13:22:12:865 KERNEL/(13518:13519): Se eligio al proceso: 5
 
-[INFO] 11:14:10:112 KERNEL/(9535:9538): El proceso 4 se puso en ready porque termino su tiempo de I/O
+[INFO] 13:22:12:865 KERNEL/(13518:13519): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 11:14:10:112 KERNEL/(9535:9538): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
-[INFO] 11:14:10:113 KERNEL/(9535:9536): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 13:22:12:965 KERNEL/(13518:13521): El proceso 4 se desbloqueo
 
-[INFO] 11:14:10:114 KERNEL/(9535:9536): Mande la interrupcion a la cpu
+[INFO] 13:22:12:965 KERNEL/(13518:13521): El proceso 4 se puso en ready porque termino su tiempo de I/O
 
-[WARNING] 11:14:10:120 KERNEL/(9535:9537): Proceso interrumpido 5
+[INFO] 13:22:12:965 KERNEL/(13518:13521): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
+[INFO] 13:22:12:965 KERNEL/(13518:13519): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 11:14:10:121 KERNEL/(9535:9536): Comparando estimaciones: 7065.714978, 49000.000000
+[INFO] 13:22:12:966 KERNEL/(13518:13519): Mande la interrupcion a la cpu
 
-[INFO] 11:14:10:121 KERNEL/(9535:9536): Se eligio al proceso: 4
+[WARNING] 13:22:12:966 KERNEL/(13518:13520): Proceso interrumpido 5
 
-[INFO] 11:14:10:122 KERNEL/(9535:9536): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
+[INFO] 13:22:12:966 KERNEL/(13518:13519): Comparando estimaciones: 6710.886175, 47000.000000
 
-[INFO] 11:14:10:327 KERNEL/(9535:9537): Nuevo proceso en cola blocked: proceso 4
+[INFO] 13:22:12:967 KERNEL/(13518:13519): Se eligio al proceso: 4
 
-[INFO] 11:14:10:327 KERNEL/(9535:9537): Se llama a planificar porque se libero la CPU por I/O
+[INFO] 13:22:12:967 KERNEL/(13518:13519): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
 
-[INFO] 11:14:10:327 KERNEL/(9535:9536): Se eligio al proceso: 5
+[INFO] 13:22:13:169 KERNEL/(13518:13520): Nuevo proceso en cola blocked: proceso 4
 
-[INFO] 11:14:10:328 KERNEL/(9535:9536): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 13:22:13:169 KERNEL/(13518:13520): Se llama a planificar porque se libero la CPU por I/O
 
-[INFO] 11:14:10:427 KERNEL/(9535:9538): El proceso 4 se desbloqueo
+[INFO] 13:22:13:169 KERNEL/(13518:13519): Se eligio al proceso: 5
 
-[INFO] 11:14:10:428 KERNEL/(9535:9538): El proceso 4 se puso en ready porque termino su tiempo de I/O
+[INFO] 13:22:13:169 KERNEL/(13518:13519): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 11:14:10:428 KERNEL/(9535:9538): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
-[INFO] 11:14:10:429 KERNEL/(9535:9536): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 13:22:13:269 KERNEL/(13518:13521): El proceso 4 se desbloqueo
 
-[INFO] 11:14:10:430 KERNEL/(9535:9536): Mande la interrupcion a la cpu
+[INFO] 13:22:13:269 KERNEL/(13518:13521): El proceso 4 se puso en ready porque termino su tiempo de I/O
 
-[WARNING] 11:14:10:535 KERNEL/(9535:9537): Proceso interrumpido 5
+[INFO] 13:22:13:269 KERNEL/(13518:13521): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
+[INFO] 13:22:13:269 KERNEL/(13518:13519): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 11:14:10:536 KERNEL/(9535:9536): Comparando estimaciones: 5652.571961, 49000.000000
+[INFO] 13:22:13:269 KERNEL/(13518:13519): Mande la interrupcion a la cpu
 
-[INFO] 11:14:10:536 KERNEL/(9535:9536): Se eligio al proceso: 4
+[WARNING] 13:22:13:270 KERNEL/(13518:13520): Proceso interrumpido 5
 
-[INFO] 11:14:10:537 KERNEL/(9535:9536): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
+[INFO] 13:22:13:270 KERNEL/(13518:13519): Comparando estimaciones: 5568.708923, 47000.000000
 
-[INFO] 11:14:10:743 KERNEL/(9535:9537): Nuevo proceso en cola blocked: proceso 4
+[INFO] 13:22:13:270 KERNEL/(13518:13519): Se eligio al proceso: 4
 
-[INFO] 11:14:10:744 KERNEL/(9535:9537): Se llama a planificar porque se libero la CPU por I/O
+[INFO] 13:22:13:271 KERNEL/(13518:13519): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
 
-[INFO] 11:14:10:744 KERNEL/(9535:9536): Se eligio al proceso: 5
+[INFO] 13:22:13:473 KERNEL/(13518:13520): Nuevo proceso en cola blocked: proceso 4
 
-[INFO] 11:14:10:745 KERNEL/(9535:9536): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 13:22:13:473 KERNEL/(13518:13520): Se llama a planificar porque se libero la CPU por I/O
 
-[INFO] 11:14:10:750 KERNEL/(9535:9537): Nuevo proceso en cola blocked: proceso 5
+[INFO] 13:22:13:473 KERNEL/(13518:13519): Se eligio al proceso: 5
 
-[INFO] 11:14:10:844 KERNEL/(9535:9538): El proceso 4 se desbloqueo
+[INFO] 13:22:13:473 KERNEL/(13518:13519): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 11:14:10:845 KERNEL/(9535:9538): El proceso 4 se puso en ready porque termino su tiempo de I/O
+[INFO] 13:22:13:474 KERNEL/(13518:13520): Nuevo proceso en cola blocked: proceso 5
 
-[INFO] 11:14:10:845 KERNEL/(9535:9538): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
-[INFO] 11:14:10:846 KERNEL/(9535:9536): Se eligio al proceso: 4
+[INFO] 13:22:13:573 KERNEL/(13518:13521): El proceso 4 se desbloqueo
 
-[INFO] 11:14:10:846 KERNEL/(9535:9536): Se envio el proceso 4 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 13:22:13:573 KERNEL/(13518:13521): El proceso 4 se puso en ready porque termino su tiempo de I/O
 
-[INFO] 11:14:10:946 KERNEL/(9535:9538): El proceso 5 se desbloqueo
+[INFO] 13:22:13:573 KERNEL/(13518:13521): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
+[INFO] 13:22:13:573 KERNEL/(13518:13519): Se eligio al proceso: 4
 
-[INFO] 11:14:10:946 KERNEL/(9535:9538): El proceso 5 se puso en ready porque termino su tiempo de I/O
+[INFO] 13:22:13:574 KERNEL/(13518:13519): Se envio el proceso 4 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 11:14:10:947 KERNEL/(9535:9538): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
-[INFO] 11:14:10:948 KERNEL/(9535:9536): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 13:22:13:674 KERNEL/(13518:13521): El proceso 5 se desbloqueo
 
-[INFO] 11:14:10:949 KERNEL/(9535:9536): Mande la interrupcion a la cpu
+[INFO] 13:22:13:674 KERNEL/(13518:13521): El proceso 5 se puso en ready porque termino su tiempo de I/O
 
-[WARNING] 11:14:11:052 KERNEL/(9535:9537): Proceso interrumpido 4
+[INFO] 13:22:13:674 KERNEL/(13518:13521): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
+[INFO] 13:22:13:675 KERNEL/(13518:13519): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 11:14:11:053 KERNEL/(9535:9536): Comparando estimaciones: 39199.999854, 3522.057552
+[INFO] 13:22:13:675 KERNEL/(13518:13519): Mande la interrupcion a la cpu
 
-[INFO] 11:14:11:053 KERNEL/(9535:9536): Se eligio al proceso: 4
+[WARNING] 13:22:13:775 KERNEL/(13518:13520): Proceso interrumpido 4
 
-[INFO] 11:14:11:054 KERNEL/(9535:9536): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
+[INFO] 13:22:13:775 KERNEL/(13518:13519): Comparando estimaciones: 37599.999860, 4454.967122
 
-[INFO] 11:14:11:057 KERNEL/(9535:9537): Nuevo proceso en cola blocked: proceso 4
+[INFO] 13:22:13:775 KERNEL/(13518:13519): Se eligio al proceso: 4
 
-[INFO] 11:14:11:057 KERNEL/(9535:9537): Se llama a planificar porque se libero la CPU por I/O
+[INFO] 13:22:13:776 KERNEL/(13518:13519): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
 
-[INFO] 11:14:11:058 KERNEL/(9535:9536): Se eligio al proceso: 5
+[INFO] 13:22:13:776 KERNEL/(13518:13520): Nuevo proceso en cola blocked: proceso 4
 
-[INFO] 11:14:11:058 KERNEL/(9535:9536): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 13:22:13:776 KERNEL/(13518:13520): Se llama a planificar porque se libero la CPU por I/O
 
-[INFO] 11:14:11:157 KERNEL/(9535:9538): El proceso 4 se desbloqueo
+[INFO] 13:22:13:776 KERNEL/(13518:13519): Se eligio al proceso: 5
 
-[INFO] 11:14:11:157 KERNEL/(9535:9538): El proceso 4 se puso en ready porque termino su tiempo de I/O
+[INFO] 13:22:13:777 KERNEL/(13518:13519): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 11:14:11:157 KERNEL/(9535:9538): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
-[INFO] 11:14:11:158 KERNEL/(9535:9536): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 13:22:13:876 KERNEL/(13518:13521): El proceso 4 se desbloqueo
 
-[INFO] 11:14:11:158 KERNEL/(9535:9536): Mande la interrupcion a la cpu
+[INFO] 13:22:13:876 KERNEL/(13518:13521): El proceso 4 se puso en ready porque termino su tiempo de I/O
 
-[WARNING] 11:14:11:200 KERNEL/(9535:9537): Proceso interrumpido 5
+[INFO] 13:22:13:876 KERNEL/(13518:13521): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
+[INFO] 13:22:13:877 KERNEL/(13518:13519): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 11:14:11:200 KERNEL/(9535:9536): Comparando estimaciones: 3017.646034, 39199.999854
+[INFO] 13:22:13:877 KERNEL/(13518:13519): Mande la interrupcion a la cpu
 
-[INFO] 11:14:11:200 KERNEL/(9535:9536): Se eligio al proceso: 4
+[WARNING] 13:22:13:886 KERNEL/(13518:13520): Proceso interrumpido 5
 
-[INFO] 11:14:11:201 KERNEL/(9535:9536): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
+[INFO] 13:22:13:886 KERNEL/(13518:13519): Comparando estimaciones: 3563.973684, 37599.999860
 
-[INFO] 11:14:11:405 KERNEL/(9535:9537): Nuevo proceso en cola blocked: proceso 4
+[INFO] 13:22:13:886 KERNEL/(13518:13519): Se eligio al proceso: 4
 
-[INFO] 11:14:11:405 KERNEL/(9535:9537): Se llama a planificar porque se libero la CPU por I/O
+[INFO] 13:22:13:886 KERNEL/(13518:13519): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
 
-[INFO] 11:14:11:406 KERNEL/(9535:9536): Se eligio al proceso: 5
+[INFO] 13:22:14:087 KERNEL/(13518:13520): Nuevo proceso en cola blocked: proceso 4
 
-[INFO] 11:14:11:407 KERNEL/(9535:9536): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 13:22:14:088 KERNEL/(13518:13520): Se llama a planificar porque se libero la CPU por I/O
 
-[INFO] 11:14:11:505 KERNEL/(9535:9538): El proceso 4 se desbloqueo
+[INFO] 13:22:14:088 KERNEL/(13518:13519): Se eligio al proceso: 5
 
-[INFO] 11:14:11:506 KERNEL/(9535:9538): El proceso 4 se puso en ready porque termino su tiempo de I/O
+[INFO] 13:22:14:088 KERNEL/(13518:13519): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 11:14:11:506 KERNEL/(9535:9538): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
-[INFO] 11:14:11:507 KERNEL/(9535:9536): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 13:22:14:188 KERNEL/(13518:13521): El proceso 4 se desbloqueo
 
-[INFO] 11:14:11:508 KERNEL/(9535:9536): Mande la interrupcion a la cpu
+[INFO] 13:22:14:188 KERNEL/(13518:13521): El proceso 4 se puso en ready porque termino su tiempo de I/O
 
-[WARNING] 11:14:11:514 KERNEL/(9535:9537): Proceso interrumpido 5
+[INFO] 13:22:14:188 KERNEL/(13518:13521): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
+[INFO] 13:22:14:188 KERNEL/(13518:13519): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 11:14:11:514 KERNEL/(9535:9536): Comparando estimaciones: 2414.116818, 39199.999854
+[INFO] 13:22:14:188 KERNEL/(13518:13519): Mande la interrupcion a la cpu
 
-[INFO] 11:14:11:515 KERNEL/(9535:9536): Se eligio al proceso: 4
+[WARNING] 13:22:14:290 KERNEL/(13518:13520): Proceso interrumpido 5
 
-[INFO] 11:14:11:515 KERNEL/(9535:9536): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
+[INFO] 13:22:14:290 KERNEL/(13518:13519): Comparando estimaciones: 3051.178940, 37599.999860
 
-[INFO] 11:14:11:721 KERNEL/(9535:9537): Nuevo proceso en cola blocked: proceso 4
+[INFO] 13:22:14:290 KERNEL/(13518:13519): Se eligio al proceso: 4
 
-[INFO] 11:14:11:722 KERNEL/(9535:9537): Se llama a planificar porque se libero la CPU por I/O
+[INFO] 13:22:14:290 KERNEL/(13518:13519): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
 
-[INFO] 11:14:11:722 KERNEL/(9535:9536): Se eligio al proceso: 5
+[INFO] 13:22:14:491 KERNEL/(13518:13520): Nuevo proceso en cola blocked: proceso 4
 
-[INFO] 11:14:11:723 KERNEL/(9535:9536): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 13:22:14:491 KERNEL/(13518:13520): Se llama a planificar porque se libero la CPU por I/O
 
-[INFO] 11:14:11:822 KERNEL/(9535:9538): El proceso 4 se desbloqueo
+[INFO] 13:22:14:491 KERNEL/(13518:13519): Se eligio al proceso: 5
 
-[INFO] 11:14:11:822 KERNEL/(9535:9538): El proceso 4 se puso en ready porque termino su tiempo de I/O
+[INFO] 13:22:14:491 KERNEL/(13518:13519): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 11:14:11:823 KERNEL/(9535:9538): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
-[INFO] 11:14:11:823 KERNEL/(9535:9536): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 13:22:14:592 KERNEL/(13518:13521): El proceso 4 se desbloqueo
 
-[INFO] 11:14:11:824 KERNEL/(9535:9536): Mande la interrupcion a la cpu
+[INFO] 13:22:14:592 KERNEL/(13518:13521): El proceso 4 se puso en ready porque termino su tiempo de I/O
 
-[WARNING] 11:14:11:830 KERNEL/(9535:9537): Proceso interrumpido 5
+[INFO] 13:22:14:592 KERNEL/(13518:13521): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
+[INFO] 13:22:14:592 KERNEL/(13518:13519): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 11:14:11:830 KERNEL/(9535:9536): Comparando estimaciones: 1931.293448, 39199.999854
+[INFO] 13:22:14:592 KERNEL/(13518:13519): Mande la interrupcion a la cpu
 
-[INFO] 11:14:11:831 KERNEL/(9535:9536): Se eligio al proceso: 4
+[WARNING] 13:22:14:694 KERNEL/(13518:13520): Proceso interrumpido 5
 
-[INFO] 11:14:11:832 KERNEL/(9535:9536): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
+[INFO] 13:22:14:694 KERNEL/(13518:13519): Comparando estimaciones: 2440.943143, 37599.999860
 
-[INFO] 11:14:12:038 KERNEL/(9535:9537): Nuevo proceso en cola blocked: proceso 4
+[INFO] 13:22:14:694 KERNEL/(13518:13519): Se eligio al proceso: 4
 
-[INFO] 11:14:12:038 KERNEL/(9535:9537): Se llama a planificar porque se libero la CPU por I/O
+[INFO] 13:22:14:694 KERNEL/(13518:13519): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
 
-[INFO] 11:14:12:039 KERNEL/(9535:9536): Se eligio al proceso: 5
+[INFO] 13:22:14:896 KERNEL/(13518:13520): Nuevo proceso en cola blocked: proceso 4
 
-[INFO] 11:14:12:039 KERNEL/(9535:9536): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 13:22:14:896 KERNEL/(13518:13520): Se llama a planificar porque se libero la CPU por I/O
 
-[INFO] 11:14:12:138 KERNEL/(9535:9538): El proceso 4 se desbloqueo
+[INFO] 13:22:14:896 KERNEL/(13518:13519): Se eligio al proceso: 5
 
-[INFO] 11:14:12:139 KERNEL/(9535:9538): El proceso 4 se puso en ready porque termino su tiempo de I/O
+[INFO] 13:22:14:896 KERNEL/(13518:13519): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 11:14:12:139 KERNEL/(9535:9538): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
-[INFO] 11:14:12:140 KERNEL/(9535:9536): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 13:22:14:996 KERNEL/(13518:13521): El proceso 4 se desbloqueo
 
-[INFO] 11:14:12:141 KERNEL/(9535:9536): Mande la interrupcion a la cpu
+[INFO] 13:22:14:996 KERNEL/(13518:13521): El proceso 4 se puso en ready porque termino su tiempo de I/O
 
-[WARNING] 11:14:12:146 KERNEL/(9535:9537): Proceso interrumpido 5
+[INFO] 13:22:14:996 KERNEL/(13518:13521): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
+[INFO] 13:22:14:996 KERNEL/(13518:13519): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 11:14:12:147 KERNEL/(9535:9536): Comparando estimaciones: 1745.034755, 39199.999854
+[INFO] 13:22:14:996 KERNEL/(13518:13519): Mande la interrupcion a la cpu
 
-[INFO] 11:14:12:147 KERNEL/(9535:9536): Se eligio al proceso: 4
+[WARNING] 13:22:14:998 KERNEL/(13518:13520): Proceso interrumpido 5
 
-[INFO] 11:14:12:148 KERNEL/(9535:9536): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
+[INFO] 13:22:14:998 KERNEL/(13518:13519): Comparando estimaciones: 1952.754507, 37599.999860
 
-[INFO] 11:14:12:353 KERNEL/(9535:9537): Nuevo proceso en cola blocked: proceso 4
+[INFO] 13:22:14:998 KERNEL/(13518:13519): Se eligio al proceso: 4
 
-[INFO] 11:14:12:353 KERNEL/(9535:9537): Se llama a planificar porque se libero la CPU por I/O
+[INFO] 13:22:14:998 KERNEL/(13518:13519): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
 
-[INFO] 11:14:12:353 KERNEL/(9535:9536): Se eligio al proceso: 5
+[INFO] 13:22:15:199 KERNEL/(13518:13520): Nuevo proceso en cola blocked: proceso 4
 
-[INFO] 11:14:12:354 KERNEL/(9535:9536): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 13:22:15:199 KERNEL/(13518:13520): Se llama a planificar porque se libero la CPU por I/O
 
-[INFO] 11:14:12:454 KERNEL/(9535:9538): El proceso 4 se desbloqueo
+[INFO] 13:22:15:199 KERNEL/(13518:13519): Se eligio al proceso: 5
 
-[INFO] 11:14:12:454 KERNEL/(9535:9538): El proceso 4 se puso en ready porque termino su tiempo de I/O
+[INFO] 13:22:15:200 KERNEL/(13518:13519): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 11:14:12:454 KERNEL/(9535:9538): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
-[INFO] 11:14:12:455 KERNEL/(9535:9536): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 13:22:15:300 KERNEL/(13518:13521): El proceso 4 se desbloqueo
 
-[INFO] 11:14:12:457 KERNEL/(9535:9536): Mande la interrupcion a la cpu
+[INFO] 13:22:15:300 KERNEL/(13518:13521): El proceso 4 se puso en ready porque termino su tiempo de I/O
 
-[WARNING] 11:14:12:561 KERNEL/(9535:9537): Proceso interrumpido 5
+[INFO] 13:22:15:300 KERNEL/(13518:13521): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
+[INFO] 13:22:15:300 KERNEL/(13518:13519): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 11:14:12:561 KERNEL/(9535:9536): Comparando estimaciones: 1396.027799, 39199.999854
+[INFO] 13:22:15:300 KERNEL/(13518:13519): Mande la interrupcion a la cpu
 
-[INFO] 11:14:12:562 KERNEL/(9535:9536): Se eligio al proceso: 4
+[WARNING] 13:22:15:301 KERNEL/(13518:13520): Proceso interrumpido 5
 
-[INFO] 11:14:12:562 KERNEL/(9535:9536): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
+[INFO] 13:22:15:301 KERNEL/(13518:13519): Comparando estimaciones: 1762.203603, 37599.999860
 
-[INFO] 11:14:12:768 KERNEL/(9535:9537): Nuevo proceso en cola blocked: proceso 4
+[INFO] 13:22:15:301 KERNEL/(13518:13519): Se eligio al proceso: 4
 
-[INFO] 11:14:12:769 KERNEL/(9535:9537): Se llama a planificar porque se libero la CPU por I/O
+[INFO] 13:22:15:301 KERNEL/(13518:13519): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
 
-[INFO] 11:14:12:769 KERNEL/(9535:9536): Se eligio al proceso: 5
+[INFO] 13:22:15:503 KERNEL/(13518:13520): Nuevo proceso en cola blocked: proceso 4
 
-[INFO] 11:14:12:770 KERNEL/(9535:9536): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 13:22:15:503 KERNEL/(13518:13520): Se llama a planificar porque se libero la CPU por I/O
 
-[INFO] 11:14:12:869 KERNEL/(9535:9538): El proceso 4 se desbloqueo
+[INFO] 13:22:15:503 KERNEL/(13518:13519): Se eligio al proceso: 5
 
-[INFO] 11:14:12:869 KERNEL/(9535:9538): El proceso 4 se puso en ready porque termino su tiempo de I/O
+[INFO] 13:22:15:503 KERNEL/(13518:13519): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 11:14:12:870 KERNEL/(9535:9538): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
-[INFO] 11:14:12:870 KERNEL/(9535:9536): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 13:22:15:604 KERNEL/(13518:13521): El proceso 4 se desbloqueo
 
-[INFO] 11:14:12:871 KERNEL/(9535:9536): Mande la interrupcion a la cpu
+[INFO] 13:22:15:604 KERNEL/(13518:13521): El proceso 4 se puso en ready porque termino su tiempo de I/O
 
-[WARNING] 11:14:12:877 KERNEL/(9535:9537): Proceso interrumpido 5
+[INFO] 13:22:15:604 KERNEL/(13518:13521): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
+[INFO] 13:22:15:604 KERNEL/(13518:13519): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 11:14:12:877 KERNEL/(9535:9536): Comparando estimaciones: 1116.822235, 39199.999854
+[INFO] 13:22:15:604 KERNEL/(13518:13519): Mande la interrupcion a la cpu
 
-[INFO] 11:14:12:878 KERNEL/(9535:9536): Se eligio al proceso: 4
+[WARNING] 13:22:15:708 KERNEL/(13518:13520): Proceso interrumpido 5
 
-[INFO] 11:14:12:878 KERNEL/(9535:9536): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
+[INFO] 13:22:15:708 KERNEL/(13518:13519): Comparando estimaciones: 1409.762877, 37599.999860
 
-[INFO] 11:14:13:084 KERNEL/(9535:9537): Nuevo proceso en cola blocked: proceso 4
+[INFO] 13:22:15:708 KERNEL/(13518:13519): Se eligio al proceso: 4
 
-[INFO] 11:14:13:084 KERNEL/(9535:9537): Se llama a planificar porque se libero la CPU por I/O
+[INFO] 13:22:15:709 KERNEL/(13518:13519): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
 
-[INFO] 11:14:13:084 KERNEL/(9535:9536): Se eligio al proceso: 5
+[INFO] 13:22:15:913 KERNEL/(13518:13520): Nuevo proceso en cola blocked: proceso 4
 
-[INFO] 11:14:13:085 KERNEL/(9535:9536): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 13:22:15:913 KERNEL/(13518:13520): Se llama a planificar porque se libero la CPU por I/O
 
-[INFO] 11:14:13:185 KERNEL/(9535:9538): El proceso 4 se desbloqueo
+[INFO] 13:22:15:913 KERNEL/(13518:13519): Se eligio al proceso: 5
 
-[INFO] 11:14:13:186 KERNEL/(9535:9538): El proceso 4 se puso en ready porque termino su tiempo de I/O
+[INFO] 13:22:15:913 KERNEL/(13518:13519): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 11:14:13:186 KERNEL/(9535:9538): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
-[INFO] 11:14:13:187 KERNEL/(9535:9536): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 13:22:16:013 KERNEL/(13518:13521): El proceso 4 se desbloqueo
 
-[INFO] 11:14:13:188 KERNEL/(9535:9536): Mande la interrupcion a la cpu
+[INFO] 13:22:16:013 KERNEL/(13518:13521): El proceso 4 se puso en ready porque termino su tiempo de I/O
 
-[WARNING] 11:14:13:292 KERNEL/(9535:9537): Proceso interrumpido 5
+[INFO] 13:22:16:014 KERNEL/(13518:13521): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
+[INFO] 13:22:16:015 KERNEL/(13518:13519): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 11:14:13:292 KERNEL/(9535:9536): Comparando estimaciones: 1093.457788, 39199.999854
+[INFO] 13:22:16:015 KERNEL/(13518:13519): Mande la interrupcion a la cpu
 
-[INFO] 11:14:13:292 KERNEL/(9535:9536): Se eligio al proceso: 4
+[INFO] 13:22:16:019 KERNEL/(13518:13520): Nuevo proceso en cola blocked: proceso 5
 
-[INFO] 11:14:13:293 KERNEL/(9535:9536): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
+[INFO] 13:22:16:053 KERNEL/(13518:13519): Se eligio al proceso: 4
 
-[INFO] 11:14:13:497 KERNEL/(9535:9537): Nuevo proceso en cola blocked: proceso 4
+[INFO] 13:22:16:054 KERNEL/(13518:13519): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
 
-[INFO] 11:14:13:497 KERNEL/(9535:9537): Se llama a planificar porque se libero la CPU por I/O
+[INFO] 13:22:16:118 KERNEL/(13518:13521): El proceso 5 se desbloqueo
 
-[INFO] 11:14:13:497 KERNEL/(9535:9536): Se eligio al proceso: 5
+[INFO] 13:22:16:118 KERNEL/(13518:13521): El proceso 5 se puso en ready porque termino su tiempo de I/O
 
-[INFO] 11:14:13:498 KERNEL/(9535:9536): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 13:22:16:119 KERNEL/(13518:13521): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
+[INFO] 13:22:16:119 KERNEL/(13518:13519): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 11:14:13:597 KERNEL/(9535:9538): El proceso 4 se desbloqueo
+[INFO] 13:22:16:119 KERNEL/(13518:13519): Mande la interrupcion a la cpu
 
-[INFO] 11:14:13:598 KERNEL/(9535:9538): El proceso 4 se puso en ready porque termino su tiempo de I/O
+[WARNING] 13:22:16:156 KERNEL/(13518:13520): Proceso interrumpido 4
 
-[INFO] 11:14:13:598 KERNEL/(9535:9538): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
-[INFO] 11:14:13:598 KERNEL/(9535:9536): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 13:22:16:156 KERNEL/(13518:13519): Comparando estimaciones: 30279.999779, 1127.810297
 
-[INFO] 11:14:13:599 KERNEL/(9535:9536): Mande la interrupcion a la cpu
+[INFO] 13:22:16:157 KERNEL/(13518:13519): Se eligio al proceso: 4
 
-[WARNING] 11:14:13:603 KERNEL/(9535:9537): Proceso interrumpido 5
+[INFO] 13:22:16:157 KERNEL/(13518:13519): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
 
-[INFO] 11:14:13:603 KERNEL/(9535:9536): Comparando estimaciones: 874.766227, 39199.999854
+[INFO] 13:22:16:258 KERNEL/(13518:13520): Nuevo proceso en cola blocked: proceso 4
 
-[INFO] 11:14:13:604 KERNEL/(9535:9536): Se eligio al proceso: 4
+[INFO] 13:22:16:259 KERNEL/(13518:13520): Se llama a planificar porque se libero la CPU por I/O
 
-[INFO] 11:14:13:604 KERNEL/(9535:9536): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
+[INFO] 13:22:16:259 KERNEL/(13518:13519): Se eligio al proceso: 5
 
-[INFO] 11:14:13:809 KERNEL/(9535:9537): Nuevo proceso en cola blocked: proceso 4
+[INFO] 13:22:16:259 KERNEL/(13518:13519): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 11:14:13:809 KERNEL/(9535:9537): Se llama a planificar porque se libero la CPU por I/O
+[INFO] 13:22:16:359 KERNEL/(13518:13521): El proceso 4 se desbloqueo
 
-[INFO] 11:14:13:810 KERNEL/(9535:9536): Se eligio al proceso: 5
+[INFO] 13:22:16:359 KERNEL/(13518:13521): El proceso 4 se puso en ready porque termino su tiempo de I/O
 
-[INFO] 11:14:13:811 KERNEL/(9535:9536): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 13:22:16:359 KERNEL/(13518:13521): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
+[INFO] 13:22:16:359 KERNEL/(13518:13519): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 11:14:13:816 KERNEL/(9535:9537): Nuevo proceso en cola blocked: proceso 5
+[INFO] 13:22:16:360 KERNEL/(13518:13519): Mande la interrupcion a la cpu
 
-[INFO] 11:14:13:909 KERNEL/(9535:9538): El proceso 4 se desbloqueo
+[WARNING] 13:22:17:268 KERNEL/(13518:13520): Proceso interrumpido 5
 
-[INFO] 11:14:13:910 KERNEL/(9535:9538): El proceso 4 se puso en ready porque termino su tiempo de I/O
+[INFO] 13:22:17:268 KERNEL/(13518:13519): Comparando estimaciones: 902.248234, 29279.999779
 
-[INFO] 11:14:13:910 KERNEL/(9535:9538): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
-[INFO] 11:14:13:911 KERNEL/(9535:9536): Se eligio al proceso: 4
+[INFO] 13:22:17:268 KERNEL/(13518:13519): Se eligio al proceso: 4
 
-[INFO] 11:14:13:911 KERNEL/(9535:9536): Se envio el proceso 4 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 13:22:17:268 KERNEL/(13518:13519): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
 
-[INFO] 11:14:14:011 KERNEL/(9535:9538): El proceso 5 se desbloqueo
+[INFO] 13:22:17:471 KERNEL/(13518:13520): Nuevo proceso en cola blocked: proceso 4
 
-[INFO] 11:14:14:011 KERNEL/(9535:9538): El proceso 5 se puso en ready porque termino su tiempo de I/O
+[INFO] 13:22:17:472 KERNEL/(13518:13520): Se llama a planificar porque se libero la CPU por I/O
 
-[INFO] 11:14:14:012 KERNEL/(9535:9538): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
-[INFO] 11:14:14:012 KERNEL/(9535:9536): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 13:22:17:472 KERNEL/(13518:13519): Se eligio al proceso: 5
 
-[INFO] 11:14:14:013 KERNEL/(9535:9536): Mande la interrupcion a la cpu
+[INFO] 13:22:17:472 KERNEL/(13518:13519): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[WARNING] 11:14:14:117 KERNEL/(9535:9537): Proceso interrumpido 4
+[INFO] 13:22:17:572 KERNEL/(13518:13521): El proceso 4 se desbloqueo
 
-[INFO] 11:14:14:118 KERNEL/(9535:9536): Comparando estimaciones: 31359.999766, -300.187021
+[INFO] 13:22:17:572 KERNEL/(13518:13521): El proceso 4 se puso en ready porque termino su tiempo de I/O
 
-[INFO] 11:14:14:118 KERNEL/(9535:9536): Se eligio al proceso: 4
+[INFO] 13:22:17:572 KERNEL/(13518:13521): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
+[INFO] 13:22:17:572 KERNEL/(13518:13519): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 11:14:14:119 KERNEL/(9535:9536): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
+[INFO] 13:22:17:572 KERNEL/(13518:13519): Mande la interrupcion a la cpu
 
-[INFO] 11:14:14:122 KERNEL/(9535:9537): Nuevo proceso en cola blocked: proceso 4
+[WARNING] 13:22:17:595 KERNEL/(13518:13520): Proceso interrumpido 5
 
-[INFO] 11:14:14:122 KERNEL/(9535:9537): Se llama a planificar porque se libero la CPU por I/O
+[INFO] 13:22:17:595 KERNEL/(13518:13519): Comparando estimaciones: 721.798585, 29279.999779
 
-[INFO] 11:14:14:123 KERNEL/(9535:9536): Se eligio al proceso: 5
+[INFO] 13:22:17:595 KERNEL/(13518:13519): Se eligio al proceso: 4
 
-[INFO] 11:14:14:124 KERNEL/(9535:9536): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 13:22:17:596 KERNEL/(13518:13519): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
 
-[INFO] 11:14:14:222 KERNEL/(9535:9538): El proceso 4 se desbloqueo
+[INFO] 13:22:17:799 KERNEL/(13518:13520): Nuevo proceso en cola blocked: proceso 4
 
-[INFO] 11:14:14:223 KERNEL/(9535:9538): El proceso 4 se puso en ready porque termino su tiempo de I/O
+[INFO] 13:22:17:799 KERNEL/(13518:13520): Se llama a planificar porque se libero la CPU por I/O
 
-[INFO] 11:14:14:223 KERNEL/(9535:9538): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
-[INFO] 11:14:14:224 KERNEL/(9535:9536): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 13:22:17:799 KERNEL/(13518:13519): Se eligio al proceso: 5
 
-[INFO] 11:14:14:225 KERNEL/(9535:9536): Mande la interrupcion a la cpu
+[INFO] 13:22:17:799 KERNEL/(13518:13519): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[WARNING] 11:14:15:152 KERNEL/(9535:9537): Proceso interrumpido 5
+[INFO] 13:22:17:899 KERNEL/(13518:13521): El proceso 4 se desbloqueo
 
-[INFO] 11:14:15:152 KERNEL/(9535:9536): Comparando estimaciones: -40.149613, 30359.999766
+[INFO] 13:22:17:899 KERNEL/(13518:13521): El proceso 4 se puso en ready porque termino su tiempo de I/O
 
-[INFO] 11:14:15:152 KERNEL/(9535:9536): Se eligio al proceso: 4
+[INFO] 13:22:17:900 KERNEL/(13518:13521): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
+[INFO] 13:22:17:901 KERNEL/(13518:13519): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 11:14:15:152 KERNEL/(9535:9536): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
+[INFO] 13:22:17:902 KERNEL/(13518:13519): Mande la interrupcion a la cpu
 
-[INFO] 11:14:15:354 KERNEL/(9535:9537): Nuevo proceso en cola blocked: proceso 4
+[WARNING] 13:22:18:005 KERNEL/(13518:13520): Proceso interrumpido 5
 
-[INFO] 11:14:15:355 KERNEL/(9535:9537): Se llama a planificar porque se libero la CPU por I/O
+[INFO] 13:22:18:005 KERNEL/(13518:13519): Comparando estimaciones: 577.438866, 28279.999779
 
-[INFO] 11:14:15:355 KERNEL/(9535:9536): Se eligio al proceso: 5
+[INFO] 13:22:18:005 KERNEL/(13518:13519): Se eligio al proceso: 4
 
-[INFO] 11:14:15:355 KERNEL/(9535:9536): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 13:22:18:006 KERNEL/(13518:13519): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
 
-[INFO] 11:14:15:455 KERNEL/(9535:9538): El proceso 4 se desbloqueo
+[INFO] 13:22:18:211 KERNEL/(13518:13520): Nuevo proceso en cola blocked: proceso 4
 
-[INFO] 11:14:15:455 KERNEL/(9535:9538): El proceso 4 se puso en ready porque termino su tiempo de I/O
+[INFO] 13:22:18:211 KERNEL/(13518:13520): Se llama a planificar porque se libero la CPU por I/O
 
-[INFO] 11:14:15:455 KERNEL/(9535:9538): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
-[INFO] 11:14:15:455 KERNEL/(9535:9536): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 13:22:18:211 KERNEL/(13518:13519): Se eligio al proceso: 5
 
-[INFO] 11:14:15:455 KERNEL/(9535:9536): Mande la interrupcion a la cpu
+[INFO] 13:22:18:212 KERNEL/(13518:13519): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[WARNING] 11:14:15:464 KERNEL/(9535:9537): Proceso interrumpido 5
+[INFO] 13:22:18:311 KERNEL/(13518:13521): El proceso 4 se desbloqueo
 
-[INFO] 11:14:15:464 KERNEL/(9535:9536): Comparando estimaciones: -32.119690, 30359.999766
+[INFO] 13:22:18:311 KERNEL/(13518:13521): El proceso 4 se puso en ready porque termino su tiempo de I/O
 
-[INFO] 11:14:15:464 KERNEL/(9535:9536): Se eligio al proceso: 4
+[INFO] 13:22:18:312 KERNEL/(13518:13521): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
+[INFO] 13:22:18:312 KERNEL/(13518:13519): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 11:14:15:464 KERNEL/(9535:9536): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
+[INFO] 13:22:18:313 KERNEL/(13518:13519): Mande la interrupcion a la cpu
 
-[INFO] 11:14:15:666 KERNEL/(9535:9537): Nuevo proceso en cola blocked: proceso 4
+[WARNING] 13:22:18:316 KERNEL/(13518:13520): Proceso interrumpido 5
 
-[INFO] 11:14:15:666 KERNEL/(9535:9537): Se llama a planificar porque se libero la CPU por I/O
+[INFO] 13:22:18:317 KERNEL/(13518:13519): Comparando estimaciones: 461.951091, 28279.999779
 
-[INFO] 11:14:15:666 KERNEL/(9535:9536): Se eligio al proceso: 5
+[INFO] 13:22:18:317 KERNEL/(13518:13519): Se eligio al proceso: 4
 
-[INFO] 11:14:15:666 KERNEL/(9535:9536): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 13:22:18:317 KERNEL/(13518:13519): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
 
-[INFO] 11:14:15:766 KERNEL/(9535:9538): El proceso 4 se desbloqueo
+[INFO] 13:22:18:521 KERNEL/(13518:13520): Nuevo proceso en cola blocked: proceso 4
 
-[INFO] 11:14:15:766 KERNEL/(9535:9538): El proceso 4 se puso en ready porque termino su tiempo de I/O
+[INFO] 13:22:18:522 KERNEL/(13518:13520): Se llama a planificar porque se libero la CPU por I/O
 
-[INFO] 11:14:15:766 KERNEL/(9535:9538): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
-[INFO] 11:14:15:767 KERNEL/(9535:9536): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 13:22:18:522 KERNEL/(13518:13519): Se eligio al proceso: 5
 
-[INFO] 11:14:15:767 KERNEL/(9535:9536): Mande la interrupcion a la cpu
+[INFO] 13:22:18:522 KERNEL/(13518:13519): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[WARNING] 11:14:15:871 KERNEL/(9535:9537): Proceso interrumpido 5
+[INFO] 13:22:18:622 KERNEL/(13518:13521): El proceso 4 se desbloqueo
 
-[INFO] 11:14:15:871 KERNEL/(9535:9536): Comparando estimaciones: -25.695752, 30359.999766
+[INFO] 13:22:18:622 KERNEL/(13518:13521): El proceso 4 se puso en ready porque termino su tiempo de I/O
 
-[INFO] 11:14:15:872 KERNEL/(9535:9536): Se eligio al proceso: 4
+[INFO] 13:22:18:622 KERNEL/(13518:13521): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
+[INFO] 13:22:18:622 KERNEL/(13518:13519): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 11:14:15:873 KERNEL/(9535:9536): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
+[INFO] 13:22:18:623 KERNEL/(13518:13519): Mande la interrupcion a la cpu
 
-[INFO] 11:14:16:078 KERNEL/(9535:9537): Nuevo proceso en cola blocked: proceso 4
+[WARNING] 13:22:18:626 KERNEL/(13518:13520): Proceso interrumpido 5
 
-[INFO] 11:14:16:079 KERNEL/(9535:9537): Se llama a planificar porque se libero la CPU por I/O
+[INFO] 13:22:18:626 KERNEL/(13518:13519): Comparando estimaciones: 369.560871, 28279.999779
 
-[INFO] 11:14:16:079 KERNEL/(9535:9536): Se eligio al proceso: 5
+[INFO] 13:22:18:626 KERNEL/(13518:13519): Se eligio al proceso: 4
 
-[INFO] 11:14:16:080 KERNEL/(9535:9536): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 13:22:18:627 KERNEL/(13518:13519): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
 
-[INFO] 11:14:16:179 KERNEL/(9535:9538): El proceso 4 se desbloqueo
+[INFO] 13:22:18:831 KERNEL/(13518:13520): Nuevo proceso en cola blocked: proceso 4
 
-[INFO] 11:14:16:180 KERNEL/(9535:9538): El proceso 4 se puso en ready porque termino su tiempo de I/O
+[INFO] 13:22:18:831 KERNEL/(13518:13520): Se llama a planificar porque se libero la CPU por I/O
 
-[INFO] 11:14:16:180 KERNEL/(9535:9538): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
-[INFO] 11:14:16:181 KERNEL/(9535:9536): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 13:22:18:832 KERNEL/(13518:13519): Se eligio al proceso: 5
 
-[INFO] 11:14:16:181 KERNEL/(9535:9536): Mande la interrupcion a la cpu
+[INFO] 13:22:18:832 KERNEL/(13518:13519): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[WARNING] 11:14:16:186 KERNEL/(9535:9537): Proceso interrumpido 5
+[INFO] 13:22:18:931 KERNEL/(13518:13521): El proceso 4 se desbloqueo
 
-[INFO] 11:14:16:187 KERNEL/(9535:9536): Comparando estimaciones: 179.443401, 30359.999766
+[INFO] 13:22:18:931 KERNEL/(13518:13521): El proceso 4 se puso en ready porque termino su tiempo de I/O
 
-[INFO] 11:14:16:188 KERNEL/(9535:9536): Se eligio al proceso: 4
+[INFO] 13:22:18:932 KERNEL/(13518:13521): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
+[INFO] 13:22:18:933 KERNEL/(13518:13519): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 11:14:16:189 KERNEL/(9535:9536): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
+[INFO] 13:22:18:933 KERNEL/(13518:13519): Mande la interrupcion a la cpu
 
-[INFO] 11:14:16:395 KERNEL/(9535:9537): Nuevo proceso en cola blocked: proceso 4
+[WARNING] 13:22:18:938 KERNEL/(13518:13520): Proceso interrumpido 5
 
-[INFO] 11:14:16:395 KERNEL/(9535:9537): Se llama a planificar porque se libero la CPU por I/O
+[INFO] 13:22:18:939 KERNEL/(13518:13519): Comparando estimaciones: 295.648696, 28279.999779
 
-[INFO] 11:14:16:396 KERNEL/(9535:9536): Se eligio al proceso: 5
+[INFO] 13:22:18:939 KERNEL/(13518:13519): Se eligio al proceso: 4
 
-[INFO] 11:14:16:397 KERNEL/(9535:9536): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 13:22:18:940 KERNEL/(13518:13519): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
 
-[INFO] 11:14:16:496 KERNEL/(9535:9538): El proceso 4 se desbloqueo
+[INFO] 13:22:19:145 KERNEL/(13518:13520): Nuevo proceso en cola blocked: proceso 4
 
-[INFO] 11:14:16:496 KERNEL/(9535:9538): El proceso 4 se puso en ready porque termino su tiempo de I/O
+[INFO] 13:22:19:146 KERNEL/(13518:13520): Se llama a planificar porque se libero la CPU por I/O
 
-[INFO] 11:14:16:497 KERNEL/(9535:9538): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
-[INFO] 11:14:16:498 KERNEL/(9535:9536): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 13:22:19:146 KERNEL/(13518:13519): Se eligio al proceso: 5
 
-[INFO] 11:14:16:498 KERNEL/(9535:9536): Mande la interrupcion a la cpu
+[INFO] 13:22:19:147 KERNEL/(13518:13519): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[WARNING] 11:14:16:503 KERNEL/(9535:9537): Proceso interrumpido 5
+[INFO] 13:22:19:245 KERNEL/(13518:13521): El proceso 4 se desbloqueo
 
-[INFO] 11:14:16:504 KERNEL/(9535:9536): Comparando estimaciones: 143.554721, 30359.999766
+[INFO] 13:22:19:246 KERNEL/(13518:13521): El proceso 4 se puso en ready porque termino su tiempo de I/O
 
-[INFO] 11:14:16:504 KERNEL/(9535:9536): Se eligio al proceso: 4
+[INFO] 13:22:19:246 KERNEL/(13518:13521): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
+[INFO] 13:22:19:247 KERNEL/(13518:13519): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 11:14:16:505 KERNEL/(9535:9536): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
+[INFO] 13:22:19:248 KERNEL/(13518:13519): Mande la interrupcion a la cpu
 
-[INFO] 11:14:16:711 KERNEL/(9535:9537): Nuevo proceso en cola blocked: proceso 4
+[WARNING] 13:22:19:252 KERNEL/(13518:13520): Proceso interrumpido 5
 
-[INFO] 11:14:16:711 KERNEL/(9535:9537): Se llama a planificar porque se libero la CPU por I/O
+[INFO] 13:22:19:253 KERNEL/(13518:13519): Comparando estimaciones: 436.518959, 28279.999779
 
-[INFO] 11:14:16:712 KERNEL/(9535:9536): Se eligio al proceso: 5
+[INFO] 13:22:19:253 KERNEL/(13518:13519): Se eligio al proceso: 4
 
-[INFO] 11:14:16:712 KERNEL/(9535:9536): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 13:22:19:254 KERNEL/(13518:13519): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
 
-[INFO] 11:14:16:811 KERNEL/(9535:9538): El proceso 4 se desbloqueo
+[INFO] 13:22:19:459 KERNEL/(13518:13520): Nuevo proceso en cola blocked: proceso 4
 
-[INFO] 11:14:16:812 KERNEL/(9535:9538): El proceso 4 se puso en ready porque termino su tiempo de I/O
+[INFO] 13:22:19:459 KERNEL/(13518:13520): Se llama a planificar porque se libero la CPU por I/O
 
-[INFO] 11:14:16:812 KERNEL/(9535:9538): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
-[INFO] 11:14:16:813 KERNEL/(9535:9536): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 13:22:19:460 KERNEL/(13518:13519): Se eligio al proceso: 5
 
-[INFO] 11:14:16:813 KERNEL/(9535:9536): Mande la interrupcion a la cpu
+[INFO] 13:22:19:460 KERNEL/(13518:13519): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[WARNING] 11:14:16:819 KERNEL/(9535:9537): Proceso interrumpido 5
+[INFO] 13:22:19:560 KERNEL/(13518:13521): El proceso 4 se desbloqueo
 
-[INFO] 11:14:16:820 KERNEL/(9535:9536): Comparando estimaciones: 114.843776, 30359.999766
+[INFO] 13:22:19:560 KERNEL/(13518:13521): El proceso 4 se puso en ready porque termino su tiempo de I/O
 
-[INFO] 11:14:16:820 KERNEL/(9535:9536): Se eligio al proceso: 4
+[INFO] 13:22:19:560 KERNEL/(13518:13521): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
+[INFO] 13:22:19:561 KERNEL/(13518:13519): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 11:14:16:821 KERNEL/(9535:9536): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
+[INFO] 13:22:19:561 KERNEL/(13518:13519): Mande la interrupcion a la cpu
 
-[INFO] 11:14:17:027 KERNEL/(9535:9537): Nuevo proceso en cola blocked: proceso 4
+[WARNING] 13:22:19:565 KERNEL/(13518:13520): Proceso interrumpido 5
 
-[INFO] 11:14:17:027 KERNEL/(9535:9537): Se llama a planificar porque se libero la CPU por I/O
+[INFO] 13:22:19:566 KERNEL/(13518:13519): Comparando estimaciones: 349.215166, 28279.999779
 
-[INFO] 11:14:17:028 KERNEL/(9535:9536): Se eligio al proceso: 5
+[INFO] 13:22:19:566 KERNEL/(13518:13519): Se eligio al proceso: 4
 
-[INFO] 11:14:17:029 KERNEL/(9535:9536): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 13:22:19:566 KERNEL/(13518:13519): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
 
-[INFO] 11:14:17:127 KERNEL/(9535:9538): El proceso 4 se desbloqueo
+[INFO] 13:22:19:770 KERNEL/(13518:13520): Nuevo proceso en cola blocked: proceso 4
 
-[INFO] 11:14:17:128 KERNEL/(9535:9538): El proceso 4 se puso en ready porque termino su tiempo de I/O
+[INFO] 13:22:19:770 KERNEL/(13518:13520): Se llama a planificar porque se libero la CPU por I/O
 
-[INFO] 11:14:17:128 KERNEL/(9535:9538): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
-[INFO] 11:14:17:129 KERNEL/(9535:9536): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 13:22:19:770 KERNEL/(13518:13519): Se eligio al proceso: 5
 
-[INFO] 11:14:17:130 KERNEL/(9535:9536): Mande la interrupcion a la cpu
+[INFO] 13:22:19:771 KERNEL/(13518:13519): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[WARNING] 11:14:17:135 KERNEL/(9535:9537): Proceso interrumpido 5
+[INFO] 13:22:19:870 KERNEL/(13518:13521): El proceso 4 se desbloqueo
 
-[INFO] 11:14:17:136 KERNEL/(9535:9536): Comparando estimaciones: 291.875023, 30359.999766
+[INFO] 13:22:19:870 KERNEL/(13518:13521): El proceso 4 se puso en ready porque termino su tiempo de I/O
 
-[INFO] 11:14:17:137 KERNEL/(9535:9536): Se eligio al proceso: 4
+[INFO] 13:22:19:871 KERNEL/(13518:13521): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
+[INFO] 13:22:19:871 KERNEL/(13518:13519): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 11:14:17:137 KERNEL/(9535:9536): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
+[INFO] 13:22:19:871 KERNEL/(13518:13519): Mande la interrupcion a la cpu
 
-[INFO] 11:14:17:343 KERNEL/(9535:9537): Nuevo proceso en cola blocked: proceso 4
+[WARNING] 13:22:19:876 KERNEL/(13518:13520): Proceso interrumpido 5
 
-[INFO] 11:14:17:343 KERNEL/(9535:9537): Se llama a planificar porque se libero la CPU por I/O
+[INFO] 13:22:19:876 KERNEL/(13518:13519): Comparando estimaciones: 279.372132, 28279.999779
 
-[INFO] 11:14:17:343 KERNEL/(9535:9536): Se eligio al proceso: 5
+[INFO] 13:22:19:877 KERNEL/(13518:13519): Se eligio al proceso: 4
 
-[INFO] 11:14:17:344 KERNEL/(9535:9536): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 13:22:19:877 KERNEL/(13518:13519): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
 
-[INFO] 11:14:17:443 KERNEL/(9535:9538): El proceso 4 se desbloqueo
+[INFO] 13:22:20:081 KERNEL/(13518:13520): Nuevo proceso en cola blocked: proceso 4
 
-[INFO] 11:14:17:443 KERNEL/(9535:9538): El proceso 4 se puso en ready porque termino su tiempo de I/O
+[INFO] 13:22:20:081 KERNEL/(13518:13520): Se llama a planificar porque se libero la CPU por I/O
 
-[INFO] 11:14:17:443 KERNEL/(9535:9538): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
-[INFO] 11:14:17:444 KERNEL/(9535:9536): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 13:22:20:081 KERNEL/(13518:13519): Se eligio al proceso: 5
 
-[INFO] 11:14:17:444 KERNEL/(9535:9536): Mande la interrupcion a la cpu
+[INFO] 13:22:20:081 KERNEL/(13518:13519): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[WARNING] 11:14:17:448 KERNEL/(9535:9537): Proceso interrumpido 5
+[INFO] 13:22:20:181 KERNEL/(13518:13521): El proceso 4 se desbloqueo
 
-[INFO] 11:14:17:448 KERNEL/(9535:9536): Comparando estimaciones: 233.500018, 30359.999766
+[INFO] 13:22:20:181 KERNEL/(13518:13521): El proceso 4 se puso en ready porque termino su tiempo de I/O
 
-[INFO] 11:14:17:448 KERNEL/(9535:9536): Se eligio al proceso: 4
+[INFO] 13:22:20:181 KERNEL/(13518:13521): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
+[INFO] 13:22:20:182 KERNEL/(13518:13519): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 11:14:17:449 KERNEL/(9535:9536): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
+[INFO] 13:22:20:182 KERNEL/(13518:13519): Mande la interrupcion a la cpu
 
-[INFO] 11:14:17:654 KERNEL/(9535:9537): Nuevo proceso en cola blocked: proceso 4
+[WARNING] 13:22:20:183 KERNEL/(13518:13520): Proceso interrumpido 5
 
-[INFO] 11:14:17:654 KERNEL/(9535:9537): Se llama a planificar porque se libero la CPU por I/O
+[INFO] 13:22:20:183 KERNEL/(13518:13519): Comparando estimaciones: 423.497707, 28279.999779
 
-[INFO] 11:14:17:655 KERNEL/(9535:9536): Se eligio al proceso: 5
+[INFO] 13:22:20:183 KERNEL/(13518:13519): Se eligio al proceso: 4
 
-[INFO] 11:14:17:656 KERNEL/(9535:9536): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 13:22:20:183 KERNEL/(13518:13519): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
 
-[INFO] 11:14:17:754 KERNEL/(9535:9538): El proceso 4 se desbloqueo
+[INFO] 13:22:20:386 KERNEL/(13518:13520): Nuevo proceso en cola blocked: proceso 4
 
-[INFO] 11:14:17:755 KERNEL/(9535:9538): El proceso 4 se puso en ready porque termino su tiempo de I/O
+[INFO] 13:22:20:387 KERNEL/(13518:13520): Se llama a planificar porque se libero la CPU por I/O
 
-[INFO] 11:14:17:755 KERNEL/(9535:9538): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
-[INFO] 11:14:17:756 KERNEL/(9535:9536): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 13:22:20:387 KERNEL/(13518:13519): Se eligio al proceso: 5
 
-[INFO] 11:14:17:757 KERNEL/(9535:9536): Mande la interrupcion a la cpu
+[INFO] 13:22:20:388 KERNEL/(13518:13519): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[WARNING] 11:14:17:763 KERNEL/(9535:9537): Proceso interrumpido 5
+[INFO] 13:22:20:392 KERNEL/(13518:13520): Nuevo proceso en cola blocked: proceso 5
 
-[INFO] 11:14:17:763 KERNEL/(9535:9536): Comparando estimaciones: 186.800014, 30359.999766
+[INFO] 13:22:20:487 KERNEL/(13518:13521): El proceso 4 se desbloqueo
 
-[INFO] 11:14:17:764 KERNEL/(9535:9536): Se eligio al proceso: 4
+[INFO] 13:22:20:487 KERNEL/(13518:13521): El proceso 4 se puso en ready porque termino su tiempo de I/O
 
-[INFO] 11:14:17:764 KERNEL/(9535:9536): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
+[INFO] 13:22:20:487 KERNEL/(13518:13521): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
+[INFO] 13:22:20:488 KERNEL/(13518:13519): Se eligio al proceso: 4
 
-[INFO] 11:14:17:970 KERNEL/(9535:9537): Nuevo proceso en cola blocked: proceso 4
+[INFO] 13:22:20:488 KERNEL/(13518:13519): Se envio el proceso 4 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 11:14:17:971 KERNEL/(9535:9537): Se llama a planificar porque se libero la CPU por I/O
+[INFO] 13:22:20:588 KERNEL/(13518:13521): El proceso 5 se desbloqueo
 
-[INFO] 11:14:17:971 KERNEL/(9535:9536): Se eligio al proceso: 5
+[INFO] 13:22:20:588 KERNEL/(13518:13521): El proceso 5 se puso en ready porque termino su tiempo de I/O
 
-[INFO] 11:14:17:972 KERNEL/(9535:9536): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 13:22:20:588 KERNEL/(13518:13521): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
+[INFO] 13:22:20:588 KERNEL/(13518:13519): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 11:14:18:071 KERNEL/(9535:9538): El proceso 4 se desbloqueo
+[INFO] 13:22:20:589 KERNEL/(13518:13519): Mande la interrupcion a la cpu
 
-[INFO] 11:14:18:071 KERNEL/(9535:9538): El proceso 4 se puso en ready porque termino su tiempo de I/O
+[WARNING] 13:22:20:691 KERNEL/(13518:13520): Proceso interrumpido 4
 
-[INFO] 11:14:18:072 KERNEL/(9535:9538): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
-[INFO] 11:14:18:073 KERNEL/(9535:9536): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 13:22:20:691 KERNEL/(13518:13519): Comparando estimaciones: 22623.999739, 338.798165
 
-[INFO] 11:14:18:073 KERNEL/(9535:9536): Mande la interrupcion a la cpu
+[INFO] 13:22:20:691 KERNEL/(13518:13519): Se eligio al proceso: 4
 
-[WARNING] 11:14:18:079 KERNEL/(9535:9537): Proceso interrumpido 5
+[INFO] 13:22:20:692 KERNEL/(13518:13519): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
 
-[INFO] 11:14:18:079 KERNEL/(9535:9536): Comparando estimaciones: 149.440010, 29359.999766
+[INFO] 13:22:20:693 KERNEL/(13518:13520): Nuevo proceso en cola blocked: proceso 4
 
-[INFO] 11:14:18:080 KERNEL/(9535:9536): Se eligio al proceso: 4
+[INFO] 13:22:20:693 KERNEL/(13518:13520): Se llama a planificar porque se libero la CPU por I/O
 
-[INFO] 11:14:18:081 KERNEL/(9535:9536): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
+[INFO] 13:22:20:693 KERNEL/(13518:13519): Se eligio al proceso: 5
 
-[INFO] 11:14:18:287 KERNEL/(9535:9537): Nuevo proceso en cola blocked: proceso 4
+[INFO] 13:22:20:694 KERNEL/(13518:13519): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 11:14:18:287 KERNEL/(9535:9537): Se llama a planificar porque se libero la CPU por I/O
+[INFO] 13:22:20:793 KERNEL/(13518:13521): El proceso 4 se desbloqueo
 
-[INFO] 11:14:18:288 KERNEL/(9535:9536): Se eligio al proceso: 5
+[INFO] 13:22:20:793 KERNEL/(13518:13521): El proceso 4 se puso en ready porque termino su tiempo de I/O
 
-[INFO] 11:14:18:289 KERNEL/(9535:9536): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 13:22:20:794 KERNEL/(13518:13521): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
+[INFO] 13:22:20:794 KERNEL/(13518:13519): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 11:14:18:294 KERNEL/(9535:9537): Nuevo proceso en cola blocked: proceso 5
+[INFO] 13:22:20:794 KERNEL/(13518:13519): Mande la interrupcion a la cpu
 
-[INFO] 11:14:18:387 KERNEL/(9535:9538): El proceso 4 se desbloqueo
+[WARNING] 13:22:20:811 KERNEL/(13518:13520): Proceso interrumpido 5
 
-[INFO] 11:14:18:387 KERNEL/(9535:9538): El proceso 4 se puso en ready porque termino su tiempo de I/O
+[INFO] 13:22:20:811 KERNEL/(13518:13519): Comparando estimaciones: 271.038531, 22623.999739
 
-[INFO] 11:14:18:388 KERNEL/(9535:9538): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
-[INFO] 11:14:18:388 KERNEL/(9535:9536): Se eligio al proceso: 4
+[INFO] 13:22:20:811 KERNEL/(13518:13519): Se eligio al proceso: 4
 
-[INFO] 11:14:18:388 KERNEL/(9535:9536): Se envio el proceso 4 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 13:22:20:812 KERNEL/(13518:13519): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
 
-[INFO] 11:14:18:488 KERNEL/(9535:9538): El proceso 5 se desbloqueo
+[INFO] 13:22:21:014 KERNEL/(13518:13520): Nuevo proceso en cola blocked: proceso 4
 
-[INFO] 11:14:18:488 KERNEL/(9535:9538): El proceso 5 se puso en ready porque termino su tiempo de I/O
+[INFO] 13:22:21:015 KERNEL/(13518:13520): Se llama a planificar porque se libero la CPU por I/O
 
-[INFO] 11:14:18:489 KERNEL/(9535:9538): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
-[INFO] 11:14:18:489 KERNEL/(9535:9536): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 13:22:21:015 KERNEL/(13518:13519): Se eligio al proceso: 5
 
-[INFO] 11:14:18:490 KERNEL/(9535:9536): Mande la interrupcion a la cpu
+[INFO] 13:22:21:015 KERNEL/(13518:13519): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[WARNING] 11:14:18:593 KERNEL/(9535:9537): Proceso interrumpido 4
+[INFO] 13:22:21:115 KERNEL/(13518:13521): El proceso 4 se desbloqueo
 
-[INFO] 11:14:18:594 KERNEL/(9535:9536): Comparando estimaciones: 23687.999729, 119.552008
+[INFO] 13:22:21:115 KERNEL/(13518:13521): El proceso 4 se puso en ready porque termino su tiempo de I/O
 
-[INFO] 11:14:18:594 KERNEL/(9535:9536): Se eligio al proceso: 4
+[INFO] 13:22:21:115 KERNEL/(13518:13521): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
+[INFO] 13:22:21:116 KERNEL/(13518:13519): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 11:14:18:595 KERNEL/(9535:9536): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
+[INFO] 13:22:21:116 KERNEL/(13518:13519): Mande la interrupcion a la cpu
 
-[INFO] 11:14:18:598 KERNEL/(9535:9537): Nuevo proceso en cola blocked: proceso 4
+[WARNING] 13:22:21:119 KERNEL/(13518:13520): Proceso interrumpido 5
 
-[INFO] 11:14:18:598 KERNEL/(9535:9537): Se llama a planificar porque se libero la CPU por I/O
+[INFO] 13:22:21:119 KERNEL/(13518:13519): Comparando estimaciones: 416.830827, 22623.999739
 
-[INFO] 11:14:18:599 KERNEL/(9535:9536): Se eligio al proceso: 5
+[INFO] 13:22:21:120 KERNEL/(13518:13519): Se eligio al proceso: 4
 
-[INFO] 11:14:18:599 KERNEL/(9535:9536): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 13:22:21:120 KERNEL/(13518:13519): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
 
-[INFO] 11:14:18:698 KERNEL/(9535:9538): El proceso 4 se desbloqueo
+[INFO] 13:22:21:324 KERNEL/(13518:13520): Nuevo proceso en cola blocked: proceso 4
 
-[INFO] 11:14:18:698 KERNEL/(9535:9538): El proceso 4 se puso en ready porque termino su tiempo de I/O
+[INFO] 13:22:21:325 KERNEL/(13518:13520): Se llama a planificar porque se libero la CPU por I/O
 
-[INFO] 11:14:18:699 KERNEL/(9535:9538): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
-[INFO] 11:14:18:699 KERNEL/(9535:9536): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
+[INFO] 13:22:21:325 KERNEL/(13518:13519): Se eligio al proceso: 5
 
-[INFO] 11:14:18:699 KERNEL/(9535:9536): Mande la interrupcion a la cpu
+[INFO] 13:22:21:326 KERNEL/(13518:13519): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[WARNING] 11:14:18:738 KERNEL/(9535:9537): Proceso interrumpido 5
+[INFO] 13:22:21:424 KERNEL/(13518:13521): El proceso 4 se desbloqueo
 
-[INFO] 11:14:18:738 KERNEL/(9535:9536): Comparando estimaciones: 95.641606, 23687.999729
+[INFO] 13:22:21:425 KERNEL/(13518:13521): El proceso 4 se puso en ready porque termino su tiempo de I/O
 
-[INFO] 11:14:18:738 KERNEL/(9535:9536): Se eligio al proceso: 4
+[INFO] 13:22:21:425 KERNEL/(13518:13521): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
+[INFO] 13:22:21:426 KERNEL/(13518:13519): Cliente conectado en 127.0.0.1:8005 (a CPU INTERRUPT)
 
-[INFO] 11:14:18:739 KERNEL/(9535:9536): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
+[INFO] 13:22:21:427 KERNEL/(13518:13519): Mande la interrupcion a la cpu
 
-[INFO] 11:14:18:741 KERNEL/(9535:9537): Orden EXIT recibida: proceso 4
+[WARNING] 13:22:21:433 KERNEL/(13518:13520): Proceso interrumpido 5
 
-[INFO] 11:14:18:741 KERNEL/(9535:9537): Se llama a planificar porque se libero la CPU por EXIT
+[INFO] 13:22:21:434 KERNEL/(13518:13519): Comparando estimaciones: 333.464660, 22623.999739
 
-[INFO] 11:14:18:741 KERNEL/(9535:9536): Se eligio al proceso: 5
+[INFO] 13:22:21:434 KERNEL/(13518:13519): Se eligio al proceso: 4
 
-[INFO] 11:14:18:742 KERNEL/(9535:9536): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 13:22:21:435 KERNEL/(13518:13519): Se envio el proceso 4 a la CPU (EN RUNNING HABIA ALGUIEN Y SE LO DESALOJO)
 
-[INFO] 11:14:18:743 KERNEL/(9535:9537): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 13:22:21:438 KERNEL/(13518:13520): Orden EXIT recibida: proceso 4
 
-[INFO] 11:14:18:748 KERNEL/(9535:9537): [32m Cantidad de procesos en memoria: 1
+[INFO] 13:22:21:442 KERNEL/(13518:13520): Se llama a planificar porque se libero la CPU por EXIT
 
-[INFO] 11:14:18:748 KERNEL/(9535:9539): Cantidad de procesos en memoria: 1
+[INFO] 13:22:21:442 KERNEL/(13518:13519): Se eligio al proceso: 5
 
-[INFO] 11:14:18:749 KERNEL/(9535:9559): DISCONNECT
-[INFO] 11:14:19:660 KERNEL/(9535:9537): Nuevo proceso en cola blocked: proceso 5
+[INFO] 13:22:21:444 KERNEL/(13518:13519): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 11:14:19:760 KERNEL/(9535:9538): El proceso 5 se desbloqueo
+[INFO] 13:22:21:445 KERNEL/(13518:13520): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
 
-[INFO] 11:14:19:761 KERNEL/(9535:9538): El proceso 5 se puso en ready porque termino su tiempo de I/O
+[INFO] 13:22:21:454 KERNEL/(13518:13520): [32m Cantidad de procesos en memoria: 1
 
-[INFO] 11:14:19:761 KERNEL/(9535:9538): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
-[INFO] 11:14:19:761 KERNEL/(9535:9536): Se eligio al proceso: 5
+[INFO] 13:22:21:454 KERNEL/(13518:13522): Cantidad de procesos en memoria: 1
 
-[INFO] 11:14:19:762 KERNEL/(9535:9536): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 13:22:21:455 KERNEL/(13518:13539): DISCONNECT
+[INFO] 13:22:22:159 KERNEL/(13518:13520): Nuevo proceso en cola blocked: proceso 5
 
-[INFO] 11:14:20:810 KERNEL/(9535:9537): Nuevo proceso en cola blocked: proceso 5
+[INFO] 13:22:22:259 KERNEL/(13518:13521): El proceso 5 se desbloqueo
 
-[INFO] 11:14:20:910 KERNEL/(9535:9538): El proceso 5 se desbloqueo
+[INFO] 13:22:22:259 KERNEL/(13518:13521): El proceso 5 se puso en ready porque termino su tiempo de I/O
 
-[INFO] 11:14:20:911 KERNEL/(9535:9538): El proceso 5 se puso en ready porque termino su tiempo de I/O
+[INFO] 13:22:22:260 KERNEL/(13518:13521): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
+[INFO] 13:22:22:260 KERNEL/(13518:13519): Se eligio al proceso: 5
 
-[INFO] 11:14:20:911 KERNEL/(9535:9538): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
-[INFO] 11:14:20:912 KERNEL/(9535:9536): Se eligio al proceso: 5
+[INFO] 13:22:22:261 KERNEL/(13518:13519): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 11:14:20:913 KERNEL/(9535:9536): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 13:22:23:293 KERNEL/(13518:13520): Nuevo proceso en cola blocked: proceso 5
 
-[INFO] 11:14:21:961 KERNEL/(9535:9537): Nuevo proceso en cola blocked: proceso 5
+[INFO] 13:22:23:394 KERNEL/(13518:13521): El proceso 5 se desbloqueo
 
-[INFO] 11:14:22:061 KERNEL/(9535:9538): El proceso 5 se desbloqueo
+[INFO] 13:22:23:394 KERNEL/(13518:13521): El proceso 5 se puso en ready porque termino su tiempo de I/O
 
-[INFO] 11:14:22:061 KERNEL/(9535:9538): El proceso 5 se puso en ready porque termino su tiempo de I/O
+[INFO] 13:22:23:395 KERNEL/(13518:13521): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
+[INFO] 13:22:23:395 KERNEL/(13518:13519): Se eligio al proceso: 5
 
-[INFO] 11:14:22:062 KERNEL/(9535:9538): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
-[INFO] 11:14:22:062 KERNEL/(9535:9536): Se eligio al proceso: 5
+[INFO] 13:22:23:395 KERNEL/(13518:13519): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 11:14:22:063 KERNEL/(9535:9536): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 13:22:24:424 KERNEL/(13518:13520): Nuevo proceso en cola blocked: proceso 5
 
-[INFO] 11:14:23:112 KERNEL/(9535:9537): Nuevo proceso en cola blocked: proceso 5
+[INFO] 13:22:24:524 KERNEL/(13518:13521): El proceso 5 se desbloqueo
 
-[INFO] 11:14:23:212 KERNEL/(9535:9538): El proceso 5 se desbloqueo
+[INFO] 13:22:24:525 KERNEL/(13518:13521): El proceso 5 se puso en ready porque termino su tiempo de I/O
 
-[INFO] 11:14:23:213 KERNEL/(9535:9538): El proceso 5 se puso en ready porque termino su tiempo de I/O
+[INFO] 13:22:24:525 KERNEL/(13518:13521): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
+[INFO] 13:22:24:525 KERNEL/(13518:13519): Se eligio al proceso: 5
 
-[INFO] 11:14:23:213 KERNEL/(9535:9538): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
-[INFO] 11:14:23:213 KERNEL/(9535:9536): Se eligio al proceso: 5
+[INFO] 13:22:24:526 KERNEL/(13518:13519): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 11:14:23:214 KERNEL/(9535:9536): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 13:22:25:559 KERNEL/(13518:13520): Nuevo proceso en cola blocked: proceso 5
 
-[INFO] 11:14:24:276 KERNEL/(9535:9537): Nuevo proceso en cola blocked: proceso 5
+[INFO] 13:22:25:659 KERNEL/(13518:13521): El proceso 5 se desbloqueo
 
-[INFO] 11:14:24:376 KERNEL/(9535:9538): El proceso 5 se desbloqueo
+[INFO] 13:22:25:659 KERNEL/(13518:13521): El proceso 5 se puso en ready porque termino su tiempo de I/O
 
-[INFO] 11:14:24:377 KERNEL/(9535:9538): El proceso 5 se puso en ready porque termino su tiempo de I/O
+[INFO] 13:22:25:660 KERNEL/(13518:13521): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
+[INFO] 13:22:25:660 KERNEL/(13518:13519): Se eligio al proceso: 5
 
-[INFO] 11:14:24:377 KERNEL/(9535:9538): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
-[INFO] 11:14:24:378 KERNEL/(9535:9536): Se eligio al proceso: 5
+[INFO] 13:22:25:660 KERNEL/(13518:13519): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 11:14:24:378 KERNEL/(9535:9536): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 13:22:26:689 KERNEL/(13518:13520): Nuevo proceso en cola blocked: proceso 5
 
-[INFO] 11:14:26:433 KERNEL/(9535:9537): Nuevo proceso en cola blocked: proceso 5
+[INFO] 13:22:26:789 KERNEL/(13518:13521): El proceso 5 se desbloqueo
 
-[INFO] 11:14:26:534 KERNEL/(9535:9538): El proceso 5 se desbloqueo
+[INFO] 13:22:26:790 KERNEL/(13518:13521): El proceso 5 se puso en ready porque termino su tiempo de I/O
 
-[INFO] 11:14:26:534 KERNEL/(9535:9538): El proceso 5 se puso en ready porque termino su tiempo de I/O
+[INFO] 13:22:26:790 KERNEL/(13518:13521): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
+[INFO] 13:22:26:790 KERNEL/(13518:13519): Se eligio al proceso: 5
 
-[INFO] 11:14:26:535 KERNEL/(9535:9538): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
-[INFO] 11:14:26:535 KERNEL/(9535:9536): Se eligio al proceso: 5
+[INFO] 13:22:26:791 KERNEL/(13518:13519): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 11:14:26:536 KERNEL/(9535:9536): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 13:22:28:829 KERNEL/(13518:13520): Nuevo proceso en cola blocked: proceso 5
 
-[INFO] 11:14:27:587 KERNEL/(9535:9537): Nuevo proceso en cola blocked: proceso 5
+[INFO] 13:22:28:929 KERNEL/(13518:13521): El proceso 5 se desbloqueo
 
-[INFO] 11:14:27:687 KERNEL/(9535:9538): El proceso 5 se desbloqueo
+[INFO] 13:22:28:929 KERNEL/(13518:13521): El proceso 5 se puso en ready porque termino su tiempo de I/O
 
-[INFO] 11:14:27:688 KERNEL/(9535:9538): El proceso 5 se puso en ready porque termino su tiempo de I/O
+[INFO] 13:22:28:929 KERNEL/(13518:13521): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
+[INFO] 13:22:28:929 KERNEL/(13518:13519): Se eligio al proceso: 5
 
-[INFO] 11:14:27:688 KERNEL/(9535:9538): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
-[INFO] 11:14:27:689 KERNEL/(9535:9536): Se eligio al proceso: 5
+[INFO] 13:22:28:930 KERNEL/(13518:13519): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 11:14:27:690 KERNEL/(9535:9536): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 13:22:29:953 KERNEL/(13518:13520): Nuevo proceso en cola blocked: proceso 5
 
-[INFO] 11:14:29:744 KERNEL/(9535:9537): Nuevo proceso en cola blocked: proceso 5
+[INFO] 13:22:30:054 KERNEL/(13518:13521): El proceso 5 se desbloqueo
 
-[INFO] 11:14:29:844 KERNEL/(9535:9538): El proceso 5 se desbloqueo
+[INFO] 13:22:30:054 KERNEL/(13518:13521): El proceso 5 se puso en ready porque termino su tiempo de I/O
 
-[INFO] 11:14:29:845 KERNEL/(9535:9538): El proceso 5 se puso en ready porque termino su tiempo de I/O
+[INFO] 13:22:30:055 KERNEL/(13518:13521): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
+[INFO] 13:22:30:055 KERNEL/(13518:13519): Se eligio al proceso: 5
 
-[INFO] 11:14:29:846 KERNEL/(9535:9538): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
-[INFO] 11:14:29:846 KERNEL/(9535:9536): Se eligio al proceso: 5
+[INFO] 13:22:30:056 KERNEL/(13518:13519): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 11:14:29:847 KERNEL/(9535:9536): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 13:22:32:085 KERNEL/(13518:13520): Nuevo proceso en cola blocked: proceso 5
 
-[INFO] 11:14:30:901 KERNEL/(9535:9537): Nuevo proceso en cola blocked: proceso 5
+[INFO] 13:22:32:186 KERNEL/(13518:13521): El proceso 5 se desbloqueo
 
-[INFO] 11:14:31:001 KERNEL/(9535:9538): El proceso 5 se desbloqueo
+[INFO] 13:22:32:186 KERNEL/(13518:13521): El proceso 5 se puso en ready porque termino su tiempo de I/O
 
-[INFO] 11:14:31:001 KERNEL/(9535:9538): El proceso 5 se puso en ready porque termino su tiempo de I/O
+[INFO] 13:22:32:186 KERNEL/(13518:13521): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
+[INFO] 13:22:32:186 KERNEL/(13518:13519): Se eligio al proceso: 5
 
-[INFO] 11:14:31:002 KERNEL/(9535:9538): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
-[INFO] 11:14:31:002 KERNEL/(9535:9536): Se eligio al proceso: 5
+[INFO] 13:22:32:186 KERNEL/(13518:13519): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 11:14:31:003 KERNEL/(9535:9536): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 13:22:33:203 KERNEL/(13518:13520): Nuevo proceso en cola blocked: proceso 5
 
-[INFO] 11:14:32:050 KERNEL/(9535:9537): Nuevo proceso en cola blocked: proceso 5
+[INFO] 13:22:33:304 KERNEL/(13518:13521): El proceso 5 se desbloqueo
 
-[INFO] 11:14:32:150 KERNEL/(9535:9538): El proceso 5 se desbloqueo
+[INFO] 13:22:33:304 KERNEL/(13518:13521): El proceso 5 se puso en ready porque termino su tiempo de I/O
 
-[INFO] 11:14:32:150 KERNEL/(9535:9538): El proceso 5 se puso en ready porque termino su tiempo de I/O
+[INFO] 13:22:33:304 KERNEL/(13518:13521): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
+[INFO] 13:22:33:305 KERNEL/(13518:13519): Se eligio al proceso: 5
 
-[INFO] 11:14:32:151 KERNEL/(9535:9538): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
-[INFO] 11:14:32:151 KERNEL/(9535:9536): Se eligio al proceso: 5
+[INFO] 13:22:33:305 KERNEL/(13518:13519): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 11:14:32:152 KERNEL/(9535:9536): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 13:22:34:318 KERNEL/(13518:13520): Nuevo proceso en cola blocked: proceso 5
 
-[INFO] 11:14:33:204 KERNEL/(9535:9537): Nuevo proceso en cola blocked: proceso 5
+[INFO] 13:22:34:419 KERNEL/(13518:13521): El proceso 5 se desbloqueo
 
-[INFO] 11:14:33:304 KERNEL/(9535:9538): El proceso 5 se desbloqueo
+[INFO] 13:22:34:419 KERNEL/(13518:13521): El proceso 5 se puso en ready porque termino su tiempo de I/O
 
-[INFO] 11:14:33:305 KERNEL/(9535:9538): El proceso 5 se puso en ready porque termino su tiempo de I/O
+[INFO] 13:22:34:419 KERNEL/(13518:13521): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
+[INFO] 13:22:34:419 KERNEL/(13518:13519): Se eligio al proceso: 5
 
-[INFO] 11:14:33:305 KERNEL/(9535:9538): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
-[INFO] 11:14:33:305 KERNEL/(9535:9536): Se eligio al proceso: 5
+[INFO] 13:22:34:419 KERNEL/(13518:13519): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 11:14:33:305 KERNEL/(9535:9536): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 13:22:35:440 KERNEL/(13518:13520): Nuevo proceso en cola blocked: proceso 5
 
-[INFO] 11:14:34:338 KERNEL/(9535:9537): Nuevo proceso en cola blocked: proceso 5
+[INFO] 13:22:35:540 KERNEL/(13518:13521): El proceso 5 se desbloqueo
 
-[INFO] 11:14:34:438 KERNEL/(9535:9538): El proceso 5 se desbloqueo
+[INFO] 13:22:35:540 KERNEL/(13518:13521): El proceso 5 se puso en ready porque termino su tiempo de I/O
 
-[INFO] 11:14:34:439 KERNEL/(9535:9538): El proceso 5 se puso en ready porque termino su tiempo de I/O
+[INFO] 13:22:35:540 KERNEL/(13518:13521): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
+[INFO] 13:22:35:540 KERNEL/(13518:13519): Se eligio al proceso: 5
 
-[INFO] 11:14:34:439 KERNEL/(9535:9538): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
-[INFO] 11:14:34:440 KERNEL/(9535:9536): Se eligio al proceso: 5
+[INFO] 13:22:35:541 KERNEL/(13518:13519): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 11:14:34:441 KERNEL/(9535:9536): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 13:22:36:569 KERNEL/(13518:13520): Nuevo proceso en cola blocked: proceso 5
 
-[INFO] 11:14:35:491 KERNEL/(9535:9537): Nuevo proceso en cola blocked: proceso 5
+[INFO] 13:22:36:670 KERNEL/(13518:13521): El proceso 5 se desbloqueo
 
-[INFO] 11:14:35:591 KERNEL/(9535:9538): El proceso 5 se desbloqueo
+[INFO] 13:22:36:670 KERNEL/(13518:13521): El proceso 5 se puso en ready porque termino su tiempo de I/O
 
-[INFO] 11:14:35:592 KERNEL/(9535:9538): El proceso 5 se puso en ready porque termino su tiempo de I/O
+[INFO] 13:22:36:670 KERNEL/(13518:13521): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
+[INFO] 13:22:36:670 KERNEL/(13518:13519): Se eligio al proceso: 5
 
-[INFO] 11:14:35:592 KERNEL/(9535:9538): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
-[INFO] 11:14:35:593 KERNEL/(9535:9536): Se eligio al proceso: 5
+[INFO] 13:22:36:670 KERNEL/(13518:13519): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 11:14:35:593 KERNEL/(9535:9536): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
+[INFO] 13:22:37:685 KERNEL/(13518:13520): Nuevo proceso en cola blocked: proceso 5
 
-[INFO] 11:14:35:599 KERNEL/(9535:9537): Orden EXIT recibida: proceso 5
+[INFO] 13:22:37:785 KERNEL/(13518:13521): El proceso 5 se desbloqueo
 
-[INFO] 11:14:35:600 KERNEL/(9535:9537): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+[INFO] 13:22:37:786 KERNEL/(13518:13521): El proceso 5 se puso en ready porque termino su tiempo de I/O
 
-[INFO] 11:14:35:610 KERNEL/(9535:9537): [32m Cantidad de procesos en memoria: 0
+[INFO] 13:22:37:786 KERNEL/(13518:13521): Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF
+[INFO] 13:22:37:787 KERNEL/(13518:13519): Se eligio al proceso: 5
 
-[INFO] 11:14:35:610 KERNEL/(9535:9539): Cantidad de procesos en memoria: 0
+[INFO] 13:22:37:787 KERNEL/(13518:13519): Se envio el proceso 5 a la CPU, (RUNNING ESTABA EN NULL)
 
-[INFO] 11:14:35:611 KERNEL/(9535:9561): DISCONNECT
-[INFO] 11:15:00:676 KERNEL/(9535:9537): DISCONNECT
+[INFO] 13:22:37:792 KERNEL/(13518:13520): Orden EXIT recibida: proceso 5
+
+[INFO] 13:22:37:792 KERNEL/(13518:13520): Cliente conectado en 127.0.0.1:8002 (a MEMORIA)
+
+[INFO] 13:22:37:811 KERNEL/(13518:13520): [32m Cantidad de procesos en memoria: 0
+
+[INFO] 13:22:37:812 KERNEL/(13518:13522): Cantidad de procesos en memoria: 0
+
+[INFO] 13:22:37:812 KERNEL/(13518:13545): DISCONNECT
+[INFO] 13:22:43:176 KERNEL/(13518:13520): DISCONNECT

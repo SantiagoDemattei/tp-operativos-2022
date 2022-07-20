@@ -81,16 +81,13 @@ void swap()
         {
         case CREAR_ARCHIVO_SWAP:
             crear_archivo_swap(variable_global->proceso, variable_global->tamanio_proceso, logger, mutex_logger_memoria);
-            sem_post(&sem_creacion_archivo_swap);
             usleep(configuracion_memoria->retardo_swap * 1000); // tiempo que se debera esperar para cada operacion del SWAP
+            sem_post(&sem_creacion_archivo_swap);
             break;
 
         case ESCRIBIR_PAGINA_SWAP:
             escribir_contenido_pagina_en_swap(variable_global->proceso->archivo_swap, variable_global->contenido_pagina_que_esta_cargada, variable_global->nro_pagina, configuracion_memoria->tam_pagina);
-            if (variable_global->es_de_cpu)
-            {
-                usleep(configuracion_memoria->retardo_swap * 1000);
-            }
+            usleep(configuracion_memoria->retardo_swap * 1000);
             sem_post(&sem_fin_swap);
             break;
 
