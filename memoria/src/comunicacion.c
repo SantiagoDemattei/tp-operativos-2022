@@ -467,6 +467,11 @@ uint32_t buscar_marco_libre(uint32_t nro_pagina, void *contenido_pagina)
         elemento = list_get(estructura_proceso_actual->vector_marcos, marco_asignado); // busco el elemento a editar
         elemento->estado = 1;                                                          // pongo el marco ocupado en el vector del proceso
         elemento->nro_pagina = nro_pagina;                                             // pongo el numero de pagina en el vector del proceso
+        pthread_mutex_lock(&mutex_logger_memoria);
+        mensaje = string_from_format("Se va a escribir la pagina %d en el marco %d", nro_pagina, marco_asignado);
+        log_info(logger, mensaje);
+        pthread_mutex_unlock(&mutex_logger_memoria);
+        free(mensaje);
         escribir_contenido_pagina_en_marco(estructura_proceso_actual->marco_comienzo, contenido_pagina, marco_asignado, configuracion_memoria->tam_pagina);
         pthread_mutex_unlock(&mutex_estructura_proceso_actual);
         return marco_asignado; // retorno el marco
@@ -488,6 +493,11 @@ uint32_t buscar_marco_libre(uint32_t nro_pagina, void *contenido_pagina)
                 {                                 // como M = 0, puedo descartar la pagina que estaba en el marco
                     marco_asignado = fila->marco; // el marco que le asigno a la nueva pagina, es el mismo que tenia la pagina que descarte
                     elemento = list_get(estructura_proceso_actual->vector_marcos, marco_asignado);
+                    pthread_mutex_lock(&mutex_logger_memoria);
+                    mensaje = string_from_format("Se va a escribir la pagina %d en el marco %d", nro_pagina, marco_asignado);
+                    log_info(logger, mensaje);
+                    pthread_mutex_unlock(&mutex_logger_memoria);
+                    free(mensaje);
                     escribir_contenido_pagina_en_marco(estructura_proceso_actual->marco_comienzo, contenido_pagina, marco_asignado, configuracion_memoria->tam_pagina); // escribo el contenido de la nueva pagina en el marco asignado
                     mensaje = string_from_format("Reemplazando pagina %d con bit de uso en 0 y modificado en 0", elemento->nro_pagina);
                     pthread_mutex_lock(&mutex_logger_memoria);
@@ -519,8 +529,18 @@ uint32_t buscar_marco_libre(uint32_t nro_pagina, void *contenido_pagina)
                     variable_global->proceso = estructura_proceso_actual;
                     variable_global->es_de_cpu = true;
                     variable_global->indicador = ESCRIBIR_PAGINA_SWAP;
+                    pthread_mutex_lock(&mutex_logger_memoria);
+                    mensaje = string_from_format("Se va a escribir la pagina %d en SWAP", elemento->nro_pagina);
+                    log_info(logger, mensaje);
+                    pthread_mutex_unlock(&mutex_logger_memoria);
+                    free(mensaje);
                     sem_post(&sem_swap);
                     sem_wait(&sem_fin_swap);
+                    pthread_mutex_lock(&mutex_logger_memoria);
+                    mensaje = string_from_format("Se va a escribir la pagina %d en el marco %d", nro_pagina, fila->marco);
+                    log_info(logger, mensaje);
+                    free(mensaje);
+                    pthread_mutex_unlock(&mutex_logger_memoria);
                     escribir_contenido_pagina_en_marco(estructura_proceso_actual->marco_comienzo, contenido_pagina, fila->marco, configuracion_memoria->tam_pagina); // escribo el contenido de la pagina que tengo que cargar en el marco
                     mensaje = string_from_format("Reemplazando pagina %d con bit de uso en 0 y modificado en 1", elemento->nro_pagina);
                     pthread_mutex_lock(&mutex_logger_memoria);
@@ -572,6 +592,11 @@ uint32_t buscar_marco_libre(uint32_t nro_pagina, void *contenido_pagina)
             {
                 marco_asignado = fila->marco; // el marco que le asigno a la nueva pagina, es el mismo que tenia la pagina que descarte
                 elemento = list_get(estructura_proceso_actual->vector_marcos, marco_asignado);
+                pthread_mutex_lock(&mutex_logger_memoria);
+                mensaje = string_from_format("Se va a escribir la pagina %d en el marco %d", nro_pagina, marco_asignado);
+                log_info(logger, mensaje);
+                free(mensaje);
+                pthread_mutex_unlock(&mutex_logger_memoria);
                 escribir_contenido_pagina_en_marco(estructura_proceso_actual->marco_comienzo, contenido_pagina, marco_asignado, configuracion_memoria->tam_pagina); // escribo el contenido de la nueva pagina en el marco asignado
                 mensaje = string_from_format("Reemplazando pagina %d con bit de uso en 0 y modificado en 0", elemento->nro_pagina);
                 pthread_mutex_lock(&mutex_logger_memoria);
@@ -603,8 +628,18 @@ uint32_t buscar_marco_libre(uint32_t nro_pagina, void *contenido_pagina)
                 variable_global->proceso = estructura_proceso_actual;
                 variable_global->es_de_cpu = true;
                 variable_global->indicador = ESCRIBIR_PAGINA_SWAP;
+                pthread_mutex_lock(&mutex_logger_memoria);
+                mensaje = string_from_format("Se va a escribir la pagina %d en SWAP", elemento->nro_pagina);
+                log_info(logger, mensaje);
+                free(mensaje);
+                pthread_mutex_unlock(&mutex_logger_memoria);
                 sem_post(&sem_swap);
                 sem_wait(&sem_fin_swap);
+                pthread_mutex_lock(&mutex_logger_memoria);
+                mensaje = string_from_format("Se va a escribir la pagina %d en el marco %d", nro_pagina, fila->marco);
+                log_info(logger, mensaje);
+                free(mensaje);
+                pthread_mutex_unlock(&mutex_logger_memoria);
                 escribir_contenido_pagina_en_marco(estructura_proceso_actual->marco_comienzo, contenido_pagina, fila->marco, configuracion_memoria->tam_pagina); // escribo el contenido de la pagina que tengo que cargar en el marco
                 mensaje = string_from_format("Reemplazando pagina %d con bit de uso en 0 y modificado en 1", elemento->nro_pagina);
                 pthread_mutex_lock(&mutex_logger_memoria);
@@ -886,7 +921,7 @@ void suspender_proceso(uint32_t pid)
                             variable_global->contenido_pagina_que_esta_cargada = buscar_contenido_pagina_en_memoria(comienzo, i, configuracion_memoria->tam_pagina);
                             variable_global->nro_pagina = marco->nro_pagina;
                             sem_post(&sem_swap);
-                            mensaje = string_from_format("Suspendiendo proceso %d, descargando pagina %d modificada", pid, marco->nro_pagina);
+                            mensaje = string_from_format("Suspendiendo proceso %d, descargando pagina %d modificada en SWAP", pid, marco->nro_pagina);
                             pthread_mutex_lock(&mutex_logger_memoria);
                             log_warning(logger, mensaje);
                             pthread_mutex_unlock(&mutex_logger_memoria);
