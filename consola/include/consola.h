@@ -14,7 +14,7 @@
 #include "../../shared/include/utils.h"
 
 
-uint32_t iniciar_consola(uint32_t tamanio, char* path, t_log* logger);	
+uint32_t iniciar_consola(uint32_t tamanio, char* path, char* path_config, t_log* logger);	
 t_list* obtener_instrucciones(char* path, t_log* logger);
 t_instruccion* crear_instruccion(char* instruccion, t_log* logger);
 void destruir_instruccion(t_instruccion* instruccion);

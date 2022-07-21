@@ -10,7 +10,7 @@
 #include "../../shared/include/estructuras.h"
 #include "../../shared/include/utils.h"
 
-t_configuracion_consola* leer_configuracion(t_log* logger);
+t_configuracion_consola* leer_configuracion(char* path_config, t_log* logger);
 void liberar_estructura_datos(t_configuracion_consola* datos);
 
 

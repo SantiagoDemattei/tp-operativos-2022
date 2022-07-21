@@ -1,10 +1,10 @@
 #include "../include/configuracion.h"
 
 
-t_configuracion_consola* leer_configuracion(t_log* logger) { 
+t_configuracion_consola* leer_configuracion(char* path_config, t_log* logger) { 
 
     t_config* nuevo_config; // revisar struct (no importa el de commons)
-    nuevo_config = config_create("./consola.config");
+    nuevo_config = config_create(path_config);
     if(nuevo_config == NULL){
         log_info(logger, "Error: No se pudo abrir el archivo de configuracion de consola");
         exit(EXIT_FAILURE);

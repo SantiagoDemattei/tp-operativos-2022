@@ -12,7 +12,7 @@
 #include "../../shared/include/estructuras.h"
 #include "../../shared/include/utils.h"
 
-t_configuracion_memoria* leer_configuracion();
+t_configuracion_memoria* leer_configuracion(char* path_config);
 t_estructura_swap* variable_global;
 t_configuracion_memoria* configuracion_memoria;
 t_log* logger;

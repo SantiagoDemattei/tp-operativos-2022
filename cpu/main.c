@@ -23,13 +23,19 @@ void interrupt()
     pthread_exit(NULL);
 }
 
-uint32_t main(void)
+uint32_t main(uint32_t argc, char** argv)
 {
 
     signal(SIGINT, sighandler);
     op_code cop;
     logger_cpu = log_create("cpu.log", "CPU", true, LOG_LEVEL_INFO);
-    configuracion_cpu = leer_configuracion(logger_cpu);
+
+    if(argc != 2){
+        log_error(logger_cpu, "Error: Cantidad de parametros incorrecta");
+        return EXIT_FAILURE;
+    }
+    char* path_config = argv[1];
+    configuracion_cpu = leer_configuracion(path_config, logger_cpu);
     socket_cpu_dispatch = crear_comunicacion_dispatch(configuracion_cpu, logger_cpu); // servidor de kernel para recibir PCB
     socket_cpu_interrupt = crear_comunicacion_interrupt(configuracion_cpu, logger_cpu);
     socket_memoria_cpu = crear_conexion_memoria(configuracion_cpu, logger_cpu); // cliente cpu conectandose a la memoria (Servidor) para recibir el tamanio de pagina

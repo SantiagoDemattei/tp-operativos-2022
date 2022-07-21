@@ -12,7 +12,7 @@
 #include "../../shared/include/bibliotecas.h"
 #include "../../shared/include/utils.h"
 
-t_configuracion_kernel* leer_configuracion();
+t_configuracion_kernel* leer_configuracion(char* path_config);
 void inicializar_semaforos();
 t_log* logger;
 pthread_mutex_t mutex_cantidad_procesos; 

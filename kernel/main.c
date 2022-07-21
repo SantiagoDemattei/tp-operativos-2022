@@ -13,12 +13,20 @@ void sighandler(int x) {
     }
 }
 
-uint32_t main(void){
+
+// ./mainKernel.out kernelBase.config
+uint32_t main(uint32_t argc, char** argv){
 
     signal(SIGINT, sighandler); //para liberar cuando matamos un proceso desde consola 
       	
     logger = log_create("kernel.log", "KERNEL", true, LOG_LEVEL_INFO);
-    configuracion_kernel = leer_configuracion(); //me devuelve los datos para la conexion
+
+    if(argc != 2){
+        log_error(logger, "Error: Cantidad de parametros incorrecta");
+        return EXIT_FAILURE;
+    }
+    char* path_config = argv[1];
+    configuracion_kernel = leer_configuracion(path_config); //me devuelve los datos para la conexion
     socket_kernel = crear_comunicacion(configuracion_kernel, logger); //me devuelve el socket para la conexion
     inicializar_semaforos();
     running = NULL; //variable global -> estado running -> variable porque siempre tenemos 1 solo proceso en running 

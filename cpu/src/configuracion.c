@@ -1,10 +1,10 @@
 #include "../include/configuracion.h"
 
 
-t_configuracion_cpu* leer_configuracion(t_log* logger) {
+t_configuracion_cpu* leer_configuracion(char* path_config, t_log* logger) {
 
     t_config* nuevo_config; // revisar struct (no importa el de commons)
-    nuevo_config = config_create("./cpu.config");
+    nuevo_config = config_create(path_config);
     if(nuevo_config == NULL){
         loggear_error(logger, "Error: No se pudo abrir el archivo de configuracion de la cpu",mutex_logger_cpu);
         exit(EXIT_FAILURE);
