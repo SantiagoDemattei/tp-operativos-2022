@@ -598,7 +598,7 @@ void revisar_entrada_a_ready() // reviso si hay algun proceso en new o en suspen
             t_pcb *pcb;
             if (!isVaciaReadySuspendido) // si hay alguien en ready suspendido -> lo priorizo y lo pongo en ready primero
             {
-
+                sem_wait(&sem_inicio);
                 pcb = queue_pop_con_mutex(cola_ready_suspendido, mutex_cola_ready_suspendido); // lo desuspende
                 mensaje = string_from_format("El proceso %d pasara de ready suspendido a ready\n", pcb->id);
                 pthread_mutex_lock(&mutex_logger_kernel);
@@ -618,6 +618,7 @@ void revisar_entrada_a_ready() // reviso si hay algun proceso en new o en suspen
                 }
                 recv_valor_tb(socket_memoria, &pcb->tabla_pagina); // recibe el id de la tabla de paginas y lo guarda en el pcb
                 liberar_conexion(socket_memoria);
+                sem_post(&sem_inicio);
                 list_add_con_mutex(cola_ready, pcb, mutex_cola_ready); // lo mete en la cola de ready normal (no la de ready suspendido)
                 sem_post(&sem_nuevo_ready);                            // aviso que hay un nuevo pcb en la cola de ready
             }
