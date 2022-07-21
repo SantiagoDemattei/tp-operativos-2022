@@ -928,11 +928,13 @@ void suspender_proceso(uint32_t pid)
                             free(mensaje);
                             sem_wait(&sem_fin_swap);
                             fila->modificado = false;
-                            marco->estado = false;
-                            marco->nro_pagina = -1;
+                            
                         }
+                        marco->estado = false;
+                        marco->nro_pagina = -1;
+                        fila->presencia = false; // cambio el bit de presencia de todas las paginas.
                     }
-                    fila->presencia = false; // cambio el bit de presencia de todas las paginas.
+                    
                 }
             }
         }
