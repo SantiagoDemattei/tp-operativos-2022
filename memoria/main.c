@@ -16,13 +16,19 @@ void sighandler(int x)
     }
 }
 
-uint32_t main(void)
+uint32_t main(uint32_t argc, char** argv)
 {
 
     signal(SIGINT, sighandler);
     op_code cop;
     logger = log_create("memoria.log", "MEMORIA", true, LOG_LEVEL_INFO);
-    configuracion_memoria = leer_configuracion();
+
+    if(argc != 2){
+        log_error(logger, "Error: Cantidad de parametros incorrecta");
+        return EXIT_FAILURE;
+    }
+    char* path_config = argv[1];
+    configuracion_memoria = leer_configuracion(path_config);
     socket_memoria = crear_comunicacion_kernel(configuracion_memoria, logger); // inicia el servidor para que el kernel y la cpu se conecten a la memoria
     espacio_memoria = malloc(configuracion_memoria->tam_memoria);
 

@@ -1,11 +1,11 @@
 #include "../include/configuracion.h"
 
-t_configuracion_memoria *leer_configuracion()
+t_configuracion_memoria *leer_configuracion(char* path_config)
 {
 
     t_config *nuevo_config; // revisar struct (no importa el de commons)
     char* mensaje;
-    nuevo_config = config_create("./memoria.config");
+    nuevo_config = config_create(path_config);
     if (nuevo_config == NULL)
     {   
         mensaje = string_from_format("Error: No se pudo abrir el archivo de configuracion de memoria \n");

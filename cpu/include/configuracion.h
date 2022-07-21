@@ -25,7 +25,7 @@ pthread_mutex_t mutex_tlb;
 
 bool interrupciones;
 
-t_configuracion_cpu* leer_configuracion(t_log* logger);
+t_configuracion_cpu* leer_configuracion(char* path_config, t_log* logger);
 void liberar_estructura_datos(t_configuracion_cpu* datos);
 char* eliminar_caracter_retorno(char* cadena);
 void inicializar_semaforos();

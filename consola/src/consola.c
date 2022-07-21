@@ -1,10 +1,10 @@
 #include "../include/consola.h"
 
-uint32_t iniciar_consola(uint32_t tamanio, char *path, t_log *logger) 
+uint32_t iniciar_consola(uint32_t tamanio, char *path, char* path_config, t_log *logger) 
 {
     op_code cop;
     t_list *lista_instrucciones = obtener_instrucciones(path, logger); //lista con instrucciones del archivo 
-    t_configuracion_consola *datos_conexion = leer_configuracion(logger); //datos del servidor (kernel en este caso) al que queremos que se conecte
+    t_configuracion_consola *datos_conexion = leer_configuracion(path_config, logger); //datos del servidor (kernel en este caso) al que queremos que se conecte
     loggear_lista_instrucciones(lista_instrucciones, logger); 
 
     uint32_t conexion = crear_conexion_consola(datos_conexion, logger); //numero de socket del servidor (kernel) al que se conecto 
