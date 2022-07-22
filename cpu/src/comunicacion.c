@@ -497,8 +497,8 @@ void ciclo_instruccion(uint32_t *cliente_socket, t_log *logger)
             pthread_mutex_unlock(&mutex_running_cpu);
             free(direccion_fisica_origen);
             free(direccion_fisica_destino);
-            free(marco_presencia_origen);
-            free(marco_presencia_destino);
+            //free(marco_presencia_origen);
+            //free(marco_presencia_destino);
             break;
 
         case EXIT:
