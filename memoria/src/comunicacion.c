@@ -7,7 +7,7 @@ uint32_t crear_comunicacion_kernel(t_configuracion_memoria *configuracion_memori
     uint32_t socket_memoria = iniciar_servidor(logger, "KERNEL", configuracion_memoria->ip_memoria, configuracion_memoria->puerto_escucha);
 
     if (socket_memoria == -1)
-    {   
+    {
         pthread_mutex_lock(&mutex_logger_memoria);
         log_error(logger, "No se pudo iniciar el servidor de comunicacion\n");
         pthread_mutex_unlock(&mutex_logger_memoria);
@@ -23,7 +23,7 @@ uint32_t crear_comunicacion_cpu(t_configuracion_memoria *configuracion_memoria, 
     socket_cpu_dispatch = iniciar_servidor(logger, "CPU", configuracion_memoria->ip_memoria, configuracion_memoria->puerto_escucha);
 
     if (socket_cpu_dispatch == -1)
-    {   
+    {
         pthread_mutex_lock(&mutex_logger_memoria);
         log_error(logger, "No se pudo iniciar el servidor de comunicacion\n");
         pthread_mutex_unlock(&mutex_logger_memoria);
@@ -72,7 +72,7 @@ static void procesar_conexion(void *void_args)
             pthread_mutex_lock(&mutex_logger_memoria);
             log_info(logger, "DISCONNECT!\n");
             pthread_mutex_unlock(&mutex_logger_memoria);
-            //free(cliente_socket); ACA HAY LEAK. Con valgrind corre bien, pero al correrlo sin valgrind tira "Double free or corruption"
+            // free(cliente_socket); ACA HAY LEAK. Con valgrind corre bien, pero al correrlo sin valgrind tira "Double free or corruption"
             return;
         }
         switch (cop)
@@ -95,7 +95,7 @@ static void procesar_conexion(void *void_args)
             recv_inicializar_estructuras(*cliente_socket, &tamanio_proceso, &id_proceso);
             estructura_proceso_existente = buscar_estructura_del_proceso_suspension(id_proceso);
             if (estructura_proceso_existente != NULL) // si la estructura del proceso ya estaba en la lista (porque se desperto de una suspension)
-            {   
+            {
                 pthread_mutex_lock(&mutex_logger_memoria);
                 log_info(logger, "Des-suspendiendo proceso %d\n", id_proceso);
                 pthread_mutex_unlock(&mutex_logger_memoria);
@@ -111,12 +111,14 @@ static void procesar_conexion(void *void_args)
                 estructura_proceso_existente->marco_fin = (estructura_proceso_existente->marco_comienzo) + (configuracion_memoria->marcos_por_proceso) - 1;
                 llenar_marcos_para_el_proceso(estructura_proceso_existente->marco_comienzo, estructura_proceso_existente->marco_fin, 1);        // cambia a 1 los marcos ocupados (de la memoria) que le asigno al proceso
                 llenar_marcos_para_el_proceso_local(estructura_proceso_existente->vector_marcos, configuracion_memoria->marcos_por_proceso, 0); // lleno la lista de marcos propios del proceso (estado en 0 porque estan todos libres y num de pagona en -1 porque no tienen paginas los marcos) para saber si un proceso tiene marcos libres, etc
-                if (send_valor_tb(*cliente_socket, estructura_proceso_existente->tabla_pagina1->id_tabla)){
+                if (send_valor_tb(*cliente_socket, estructura_proceso_existente->tabla_pagina1->id_tabla))
+                {
                     pthread_mutex_lock(&mutex_logger_memoria);
                     log_info(logger, "ID de tabla de paginas de primer nivel enviado al kernel\n");
                     pthread_mutex_unlock(&mutex_logger_memoria);
                 }
-                else{
+                else
+                {
                     pthread_mutex_lock(&mutex_logger_memoria);
                     log_error(logger, "No se pudo enviar el ID de tabla de paginas de primer nivel\n");
                     pthread_mutex_unlock(&mutex_logger_memoria);
@@ -126,98 +128,99 @@ static void procesar_conexion(void *void_args)
                 pthread_mutex_unlock(&mutex_logger_memoria);
                 break;
             }
-            else {
-            mensaje = string_from_format("INICIALIZANDO ESTRUCTURAS DEL PROCESO %d\n", id_proceso);
-            pthread_mutex_lock(&mutex_logger_memoria);
-            log_info(logger, mensaje);
-            pthread_mutex_unlock(&mutex_logger_memoria);
-            free(mensaje);
-            t_estructura_proceso *estructura = malloc(sizeof(t_estructura_proceso)); // creamos la estructura correspondiete al proceso
-            estructura->id_proceso = id_proceso;
-            estructura->tamanio_proceso = tamanio_proceso;
-            estructura->marco_comienzo = buscar_marcos_para_asignar(); // primer frame de la memoria que le puedo asignar (donde arranca el proceso), se fija en el bitmap si alguno esta libre
-            if (estructura->marco_comienzo == -1)
+            else
             {
-                send_valor_tb(*cliente_socket, -1); // send para kernel de que no se puede crear las estructuras para el proceso dado que no hay marcos libres (no hay memoria disponible)
+                mensaje = string_from_format("INICIALIZANDO ESTRUCTURAS DEL PROCESO %d\n", id_proceso);
                 pthread_mutex_lock(&mutex_logger_memoria);
-                log_error(logger, "No hay marcos libres\n");
+                log_info(logger, mensaje);
                 pthread_mutex_unlock(&mutex_logger_memoria);
-                break;
-            }
-            estructura->puntero_clock = 0; // puntero de clock para el proceso
-            estructura->marco_fin = (estructura->marco_comienzo) + (configuracion_memoria->marcos_por_proceso) - 1;
-            llenar_marcos_para_el_proceso(estructura->marco_comienzo, estructura->marco_fin, 1); // cambia a 1 los marcos ocupados (de la memoria) que le asigno al proceso
-
-            estructura->vector_marcos = list_create();                                                                    // marcos propios del proceso
-            llenar_marcos_para_el_proceso_local(estructura->vector_marcos, configuracion_memoria->marcos_por_proceso, 0); // lleno la lista de marcos propios del proceso (estado en 0 porque estan todos libres y num de pagona en -1 porque no tienen paginas los marcos) para saber si un proceso tiene marcos libres, etc
-
-            // averiguo cuantas paginas tiene mi proceso: tamanio en bytes del proceso / tamanio en bytes de una pagina
-            cant_paginas = ceil(tamanio_proceso / (configuracion_memoria->tam_pagina));                   // la funcion ceil redondea para arriba
-            cant_tablas_segundo_nivel = ceil(cant_paginas / (configuracion_memoria->entradas_por_tabla)); // para saber cuantas tablas de 2do nivel crear
-            t_tabla_pagina1 *tabla_pagina1 = malloc(sizeof(t_tabla_pagina1) + sizeof(uint32_t) * (configuracion_memoria->entradas_por_tabla));
-            tabla_pagina1->id_tabla = contador;
-            tabla_pagina1->primer_nivel = list_create(); // filas de la tabla de primer nivel (guarda los numeros de las tablas de segundo nivel)
-            estructura->tabla_pagina1 = tabla_pagina1;
-
-            estructura->lista_tablas_segundo_nivel = list_create(); // lista que guarda las tablas de segundo nivel (cada nodo es una tabla)
-            // creo cada una de las tablas de segundo nivel que necesita
-            for (int i = 0; i < cant_tablas_segundo_nivel; i++)
-            {
-                t_tabla_pagina2 *tabla_segundo_nivel = malloc(sizeof(t_tabla_pagina2) + sizeof(uint32_t) * (configuracion_memoria->entradas_por_tabla));
-                int *id = malloc(sizeof(int));
-                *id = i;
-                tabla_segundo_nivel->id_tabla = i;                  // identificador de la tabla de segundo nivel
-                tabla_segundo_nivel->segundo_nivel = list_create(); // lista de las entradas (filas) de la tabla de segundo nivel, se guarda en cada entrada un struct
-                for (int j = 0; j < (configuracion_memoria->entradas_por_tabla); j++)
-                { // llenamos cada entrada de la tabla de 2do nivel
-                    t_estructura_2do_nivel *entrada_segundo_nivel = malloc(sizeof(t_estructura_2do_nivel));
-                    entrada_segundo_nivel->marco = -2;
-                    entrada_segundo_nivel->uso = false;
-                    entrada_segundo_nivel->modificado = false;
-                    entrada_segundo_nivel->presencia = false;
-                    list_add(tabla_segundo_nivel->segundo_nivel, entrada_segundo_nivel); // agrega las filas a la tabla de segundo nivel
+                free(mensaje);
+                t_estructura_proceso *estructura = malloc(sizeof(t_estructura_proceso)); // creamos la estructura correspondiete al proceso
+                estructura->id_proceso = id_proceso;
+                estructura->tamanio_proceso = tamanio_proceso;
+                estructura->marco_comienzo = buscar_marcos_para_asignar(); // primer frame de la memoria que le puedo asignar (donde arranca el proceso), se fija en el bitmap si alguno esta libre
+                if (estructura->marco_comienzo == -1)
+                {
+                    send_valor_tb(*cliente_socket, -1); // send para kernel de que no se puede crear las estructuras para el proceso dado que no hay marcos libres (no hay memoria disponible)
+                    pthread_mutex_lock(&mutex_logger_memoria);
+                    log_error(logger, "No hay marcos libres\n");
+                    pthread_mutex_unlock(&mutex_logger_memoria);
+                    break;
                 }
-                list_add(tabla_pagina1->primer_nivel, id);                             // llenamos la tabla de primer nivel con el id de la tabla de segundo nivel
-                list_add(estructura->lista_tablas_segundo_nivel, tabla_segundo_nivel); // guarda la tabla de 2do nivel en la lista de tablas de segundo nivel de la estrcutura del proceso
-            }
+                estructura->puntero_clock = 0; // puntero de clock para el proceso
+                estructura->marco_fin = (estructura->marco_comienzo) + (configuracion_memoria->marcos_por_proceso) - 1;
+                llenar_marcos_para_el_proceso(estructura->marco_comienzo, estructura->marco_fin, 1); // cambia a 1 los marcos ocupados (de la memoria) que le asigno al proceso
 
-            char *proceso_string; // para agregarlo en la url del archivo de swap
-            proceso_string = string_from_format("/%d.swap", id_proceso);
-            char *path_archivo;
-            path_archivo = string_from_format("%s%s", configuracion_memoria->path_swap, proceso_string);
-            free(proceso_string);
+                estructura->vector_marcos = list_create();                                                                    // marcos propios del proceso
+                llenar_marcos_para_el_proceso_local(estructura->vector_marcos, configuracion_memoria->marcos_por_proceso, 0); // lleno la lista de marcos propios del proceso (estado en 0 porque estan todos libres y num de pagona en -1 porque no tienen paginas los marcos) para saber si un proceso tiene marcos libres, etc
 
-            estructura->nombre_archivo_swap = malloc(strlen(path_archivo)); // "/home/utnso/id.swap"
-            string_append(&estructura->nombre_archivo_swap, path_archivo);  // agrego el path completo a la estructura
-            free(path_archivo);
+                // averiguo cuantas paginas tiene mi proceso: tamanio en bytes del proceso / tamanio en bytes de una pagina
+                cant_paginas = ceil(tamanio_proceso / (configuracion_memoria->tam_pagina));                   // la funcion ceil redondea para arriba
+                cant_tablas_segundo_nivel = ceil(cant_paginas / (configuracion_memoria->entradas_por_tabla)); // para saber cuantas tablas de 2do nivel crear
+                t_tabla_pagina1 *tabla_pagina1 = malloc(sizeof(t_tabla_pagina1) + sizeof(uint32_t) * (configuracion_memoria->entradas_por_tabla));
+                tabla_pagina1->id_tabla = contador;
+                tabla_pagina1->primer_nivel = list_create(); // filas de la tabla de primer nivel (guarda los numeros de las tablas de segundo nivel)
+                estructura->tabla_pagina1 = tabla_pagina1;
 
-            pthread_mutex_lock(&mutex_variable_global);
-            variable_global->proceso = estructura;
-            variable_global->indicador = CREAR_ARCHIVO_SWAP;
-            variable_global->tamanio_proceso = tamanio_proceso;
-            sem_post(&sem_swap);                  // habilito al swap a crear el archivo
-            sem_wait(&sem_creacion_archivo_swap); // espero que el swap termine de crear el archivo
-            pthread_mutex_unlock(&mutex_variable_global);
+                estructura->lista_tablas_segundo_nivel = list_create(); // lista que guarda las tablas de segundo nivel (cada nodo es una tabla)
+                // creo cada una de las tablas de segundo nivel que necesita
+                for (int i = 0; i < cant_tablas_segundo_nivel; i++)
+                {
+                    t_tabla_pagina2 *tabla_segundo_nivel = malloc(sizeof(t_tabla_pagina2) + sizeof(uint32_t) * (configuracion_memoria->entradas_por_tabla));
+                    int *id = malloc(sizeof(int));
+                    *id = i;
+                    tabla_segundo_nivel->id_tabla = i;                  // identificador de la tabla de segundo nivel
+                    tabla_segundo_nivel->segundo_nivel = list_create(); // lista de las entradas (filas) de la tabla de segundo nivel, se guarda en cada entrada un struct
+                    for (int j = 0; j < (configuracion_memoria->entradas_por_tabla); j++)
+                    { // llenamos cada entrada de la tabla de 2do nivel
+                        t_estructura_2do_nivel *entrada_segundo_nivel = malloc(sizeof(t_estructura_2do_nivel));
+                        entrada_segundo_nivel->marco = -2;
+                        entrada_segundo_nivel->uso = false;
+                        entrada_segundo_nivel->modificado = false;
+                        entrada_segundo_nivel->presencia = false;
+                        list_add(tabla_segundo_nivel->segundo_nivel, entrada_segundo_nivel); // agrega las filas a la tabla de segundo nivel
+                    }
+                    list_add(tabla_pagina1->primer_nivel, id);                             // llenamos la tabla de primer nivel con el id de la tabla de segundo nivel
+                    list_add(estructura->lista_tablas_segundo_nivel, tabla_segundo_nivel); // guarda la tabla de 2do nivel en la lista de tablas de segundo nivel de la estrcutura del proceso
+                }
 
-            mensaje = string_from_format("El nombre del archivo es: %s\n", estructura->nombre_archivo_swap);
-            pthread_mutex_lock(&mutex_logger_memoria);
-            log_info(logger, mensaje);
-            pthread_mutex_unlock(&mutex_logger_memoria);
-            free(mensaje);
-            list_add_con_mutex_tablas(lista_estructuras, estructura); // agrega la estructura a la lista de estructuras global donde estan las de todos los procesos
+                char *proceso_string; // para agregarlo en la url del archivo de swap
+                proceso_string = string_from_format("/%d.swap", id_proceso);
+                char *path_archivo;
+                path_archivo = string_from_format("%s%s", configuracion_memoria->path_swap, proceso_string);
+                free(proceso_string);
 
-            if (send_valor_tb(*cliente_socket, tabla_pagina1->id_tabla)) // le mandamos el id de la tabla que corresponde al proceso (es lo mismo que el contador)
-            {   
+                estructura->nombre_archivo_swap = malloc(strlen(path_archivo)); // "/home/utnso/id.swap"
+                string_append(&estructura->nombre_archivo_swap, path_archivo);  // agrego el path completo a la estructura
+                free(path_archivo);
+
+                pthread_mutex_lock(&mutex_variable_global);
+                variable_global->proceso = estructura;
+                variable_global->indicador = CREAR_ARCHIVO_SWAP;
+                variable_global->tamanio_proceso = tamanio_proceso;
+                sem_post(&sem_swap);                  // habilito al swap a crear el archivo
+                sem_wait(&sem_creacion_archivo_swap); // espero que el swap termine de crear el archivo
+                pthread_mutex_unlock(&mutex_variable_global);
+
+                mensaje = string_from_format("El nombre del archivo es: %s\n", estructura->nombre_archivo_swap);
                 pthread_mutex_lock(&mutex_logger_memoria);
-                log_info(logger, "Se envio el valor de la tabla de paginas al kernel\n", mutex_logger_memoria);
+                log_info(logger, mensaje);
                 pthread_mutex_unlock(&mutex_logger_memoria);
-            }
+                free(mensaje);
+                list_add_con_mutex_tablas(lista_estructuras, estructura); // agrega la estructura a la lista de estructuras global donde estan las de todos los procesos
 
-            pthread_mutex_lock(&mutex_valor_tp);
-            contador++; // para el id de la tabla de 1er nivel
-            pthread_mutex_unlock(&mutex_valor_tp);
+                if (send_valor_tb(*cliente_socket, tabla_pagina1->id_tabla)) // le mandamos el id de la tabla que corresponde al proceso (es lo mismo que el contador)
+                {
+                    pthread_mutex_lock(&mutex_logger_memoria);
+                    log_info(logger, "Se envio el valor de la tabla de paginas al kernel\n", mutex_logger_memoria);
+                    pthread_mutex_unlock(&mutex_logger_memoria);
+                }
 
-            free(cliente_socket);
+                pthread_mutex_lock(&mutex_valor_tp);
+                contador++; // para el id de la tabla de 1er nivel
+                pthread_mutex_unlock(&mutex_valor_tp);
+
+                free(cliente_socket);
             }
             break;
 
@@ -928,13 +931,11 @@ void suspender_proceso(uint32_t pid)
                             free(mensaje);
                             sem_wait(&sem_fin_swap);
                             fila->modificado = false;
-                            
+                            marco->estado = false;
+                            marco->nro_pagina = -1;
                         }
-                        marco->estado = false;
-                        marco->nro_pagina = -1;
-                        fila->presencia = false; // cambio el bit de presencia de todas las paginas.
                     }
-                    
+                    fila->presencia = false; // cambio el bit de presencia de todas las paginas.
                 }
             }
         }

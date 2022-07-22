@@ -746,13 +746,22 @@ void bloquear()
             list_add_con_mutex(cola_ready, pcb, mutex_cola_ready); // cuando se despierta lo pone en ready
             
             sem_post(&sem_nuevo_ready); // aviso que meti un nuevo pcb en la cola de ready y puede planificar
-            if (strcmp(configuracion_kernel->algoritmo_planificacion, "SRT") == 0)
+            
+            pthread_mutex_lock(&mutex_estado_running);
+            if (running == NULL) // si no hay nadie en running, planifico tanto en fifo como en sjf
             {
-                pthread_mutex_lock(&mutex_logger_kernel);
-                log_info(logger, "Llame a planificar porque llego alguien a ready y mi algoritmo de planificacion es SJF");
-                pthread_mutex_unlock(&mutex_logger_kernel);
-                sem_post(&sem_planificar); // planifica solo si es SJF cuando llega uno a ready
+                pthread_mutex_unlock(&mutex_estado_running);
+                sem_post(&sem_planificar);
+                pthread_mutex_lock(&mutex_estado_running);
             }
+            else
+            {
+                if (strcmp(configuracion_kernel->algoritmo_planificacion, "SRT") == 0)
+                {
+                    sem_post(&sem_planificar); // si es SJF, como llego un proceso a ready tiene que planificar
+                }
+            }
+            pthread_mutex_unlock(&mutex_estado_running);
         }
     }
 }
