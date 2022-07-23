@@ -143,6 +143,7 @@ t_pcb *list_get_and_remove_con_mutex(t_list *lista, int indice, pthread_mutex_t 
 
 int list_size_con_mutex(t_list *lista, pthread_mutex_t mutex)
 {
+
     pthread_mutex_lock(&mutex);
     int size = list_size(lista);
     pthread_mutex_unlock(&mutex);

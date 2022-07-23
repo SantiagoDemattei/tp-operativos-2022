@@ -151,10 +151,11 @@ void verificacion_multiprogramacion(t_pcb *pcb)
     char *mensaje;
     int valor;
     queue_push_con_mutex(cola_new, pcb, mutex_cola_new); // agrega el pcb a la cola de NEW
+    sem_wait(&sem_inicio);
     if (consulta_grado())                                // si el grado de multiprogramacion lo permite
     {
         
-        sem_wait(&sem_inicio);
+        
         pthread_mutex_lock(&mutex_logger_kernel);
         log_info(logger, "Entro a inicializar (POR VERIFICACION_MULTIPROGRAMACION)\n");
         pthread_mutex_unlock(&mutex_logger_kernel);
@@ -225,6 +226,13 @@ void verificacion_multiprogramacion(t_pcb *pcb)
             pthread_mutex_unlock(&mutex_logger_kernel);
             sem_post(&sem_planificar);
         }
+    }
+    else
+    {
+        pthread_mutex_lock(&mutex_logger_kernel);
+        log_info(logger, "No se puede inicializar el proceso porque el grado de multiprogramacion es mayor a la cantidad de marcos");
+        pthread_mutex_unlock(&mutex_logger_kernel);
+        sem_post(&sem_inicio);
     }
     return;
 }
@@ -501,12 +509,15 @@ void recibir() // de cpu
             log_info(logger, mensaje);
             pthread_mutex_unlock(&mutex_logger_kernel);
             free(mensaje);
+          
             pthread_mutex_lock(&mutex_estado_running);
             running = NULL; // modifico el running de kernel
+ 
             pthread_mutex_unlock(&mutex_estado_running);
             sem_post(&sem_running);
 
             pthread_mutex_lock(&mutex_estoy_planificando);
+
             if (list_size_con_mutex(cola_ready, mutex_cola_ready) > 0 && !estoy_planificando)
             {
                 pthread_mutex_lock(&mutex_logger_kernel);
@@ -516,8 +527,9 @@ void recibir() // de cpu
             }
             pthread_mutex_unlock(&mutex_estoy_planificando);
 
-            pthread_mutex_lock(&mutex_socket_memoria);
+
             socket_memoria = crear_conexion_memoria(configuracion_kernel, logger);
+            log_info(logger, "ENVIANDO FIN PROCESO\n");
             send_fin_proceso(socket_memoria, pcb_exit->id); // le aviso a la memoria que el proceso termino para que libere las estructuras
 
             if (recv(socket_memoria, &cop2, sizeof(op_code), 0) != sizeof(op_code))
@@ -529,7 +541,7 @@ void recibir() // de cpu
             }
             recv_fin_proceso(socket_memoria, &id);
             liberar_conexion(socket_memoria); // libero la conexion con la memoria
-            pthread_mutex_unlock(&mutex_socket_memoria);
+
             
             pthread_mutex_lock(&mutex_cantidad_procesos);
             if (cantidad_procesos_en_memoria > 0)
@@ -818,7 +830,6 @@ bool criterio_id_lista(t_pcb *pcb_buscado, t_pcb *pcb_de_la_cola)
 
 void comunicacion_suspension_memoria(t_pcb *pcb)
 {
-    pthread_mutex_lock(&mutex_socket_memoria);
     socket_memoria = crear_conexion_memoria(configuracion_kernel, logger); // creo la conexion con la memoria
     op_code cop3;
 
@@ -837,5 +848,5 @@ void comunicacion_suspension_memoria(t_pcb *pcb)
     pthread_mutex_unlock(&mutex_logger_kernel);
     pcb->blocked_suspendido = true;   // suspendo al proceso
     liberar_conexion(socket_memoria); // cierro la conexion con la memoria
-    pthread_mutex_unlock(&mutex_socket_memoria);
+
 }
