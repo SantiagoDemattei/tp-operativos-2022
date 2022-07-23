@@ -239,10 +239,20 @@ bool consulta_grado()
     pthread_mutex_unlock(&mutex_logger_kernel);
     free(mensaje);
     if (cantidad_procesos_en_memoria < configuracion_kernel->grado_multiprogramacion)
-    {
+    {   
+        mensaje = string_from_format("como la cantidad de procesos es %d y es menor a %d, se puede agregar un nuevo proceso\n", cantidad_procesos_en_memoria, configuracion_kernel->grado_multiprogramacion);
+        pthread_mutex_lock(&mutex_logger_kernel);
+        log_info(logger, mensaje);
+        pthread_mutex_unlock(&mutex_logger_kernel);
+        free(mensaje);
         pthread_mutex_unlock(&mutex_cantidad_procesos);
         return true;
     }
+    mensaje = string_from_format("como la cantidad de procesos es %d y es mayor a %d, no se puede agregar un nuevo proceso\n", cantidad_procesos_en_memoria, configuracion_kernel->grado_multiprogramacion);
+    pthread_mutex_lock(&mutex_logger_kernel);
+    log_info(logger, mensaje);
+    pthread_mutex_unlock(&mutex_logger_kernel);
+    free(mensaje);
     pthread_mutex_unlock(&mutex_cantidad_procesos);
    
     return false;
