@@ -468,6 +468,7 @@ uint32_t buscar_marco_libre(uint32_t nro_pagina, void *contenido_pagina)
     char *mensaje;
     pthread_mutex_lock(&mutex_estructura_proceso_actual);
     t_vector_marcos *elemento;
+    printf("cantidad de marcos del proceso: %d\n", list_size(estructura_proceso_actual->vector_marcos));
     marco_asignado = buscar_marcos_para_asignar_local(estructura_proceso_actual->vector_marcos); // busco un marco libre en el vector de marcos del proceso actual+
     if (marco_asignado != -1)
     {                                                                                  // Hay un marco libre y lo devuelvo
@@ -860,7 +861,7 @@ void llenar_marcos_para_el_proceso(uint32_t inicio, uint32_t fin, uint32_t conte
 
 void llenar_marcos_para_el_proceso_local(t_list *lista_marcos_del_proceso, uint32_t cant_marcos, uint32_t estado)
 {
-    for (int i = 0; i < cant_marcos; i++)
+    for (int i = 0; i < cant_marcos - 1; i++)
     {
         t_vector_marcos *elemento = malloc(sizeof(t_vector_marcos));
         elemento->estado = estado; // estado 0 = libre, estado 1 = ocupado
