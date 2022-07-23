@@ -245,7 +245,7 @@ static void procesar_conexion(void *void_args)
             pthread_mutex_unlock(&mutex_logger_memoria);
             // busco el frame en la tabla de segundo nivel
             marco_presencia = obtener_frame(num_segundo_nivel, entrada_tabla_2do_nivel, nro_pagina);
-            t_vector_marcos *elemento = list_get(estructura_proceso_actual->vector_marcos, marco_presencia->marco)
+            t_vector_marcos *elemento = list_get(estructura_proceso_actual->vector_marcos, marco_presencia->marco);
             elemento->estado = 1;
             elemento->nro_pagina = nro_pagina;
             usleep(configuracion_memoria->retardo_memoria);
