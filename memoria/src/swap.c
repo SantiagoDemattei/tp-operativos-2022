@@ -50,13 +50,13 @@ void *buscar_contenido_pagina_en_memoria(uint32_t inicio, uint32_t nro_frame, si
     size_t inicio_real = inicio * tamanio_frame;
     memcpy(contenido_pagina, espacio_memoria + inicio_real + nro_frame * tamanio_frame, tamanio_frame);
     pthread_mutex_unlock(&mutex_espacio_memoria);
-    // mostrar_contenido(contenido_pagina, tamanio_frame);
+    //mostrar_contenido(contenido_pagina, tamanio_frame);
     return contenido_pagina;
 }
 
 void escribir_contenido_pagina_en_swap(void *archivo_mappeado, void *contenido_pagina, uint32_t nro_pagina, size_t tam_pagina)
 { // descargas la pagina de la RAM a swap
-    // mostrar_contenido(contenido_pagina, tam_pagina);
+    //mostrar_contenido(contenido_pagina, tam_pagina);
     memcpy(archivo_mappeado + nro_pagina * tam_pagina, contenido_pagina, tam_pagina);
     loggear_info(logger, "Se escribio en swap\n", mutex_logger_memoria);
     free(contenido_pagina);
@@ -87,7 +87,7 @@ void swap()
 
         case ESCRIBIR_PAGINA_SWAP:
             escribir_contenido_pagina_en_swap(variable_global->proceso->archivo_swap, variable_global->contenido_pagina_que_esta_cargada, variable_global->nro_pagina, configuracion_memoria->tam_pagina);
-            usleep(configuracion_memoria->retardo_swap * 1000);
+            //usleep(configuracion_memoria->retardo_swap * 1000);
             sem_post(&sem_fin_swap);
             break;
 

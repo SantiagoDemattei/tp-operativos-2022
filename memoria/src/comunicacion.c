@@ -551,6 +551,7 @@ uint32_t buscar_marco_libre(uint32_t nro_pagina, void *contenido_pagina)
                     pthread_mutex_unlock(&mutex_logger_memoria);
                     free(mensaje);
                     fila->presencia = 0;
+                    fila->modificado = false;
                     elemento->nro_pagina = nro_pagina;
                     elemento->estado = 1;
                     if (i == list_size(paginas_cargadas) - 1) // si es el ultimo elemento, pongo el puntero en el primer elemento
@@ -650,6 +651,7 @@ uint32_t buscar_marco_libre(uint32_t nro_pagina, void *contenido_pagina)
                 pthread_mutex_unlock(&mutex_logger_memoria);
                 free(mensaje);
                 fila->presencia = 0;
+                fila->modificado = false;
                 elemento->nro_pagina = nro_pagina;
                 elemento->estado = 1;
 
@@ -797,7 +799,7 @@ void copiar_valor(uint32_t frame_origen, uint32_t desplazamiento_origen, uint32_
     size_t frame_real_destino = (configuracion_memoria->tam_pagina * frame_destino); // lo que hago aca es calcular en donde esta ubicado el frame donde tengo que leer
     // tamanio pagina = tamanio frame (en paginacion)
     memcpy(espacio_memoria + comienzo_real + frame_real_destino + desplazamiento_destino, espacio_memoria + comienzo_real + frame_real_origen + desplazamiento_origen, sizeof(uint32_t)); // comienzo de la memoria + todos los bytes que hay hasta el frame elegido + el desplazamiento sobre el frame
-    void encender_bit_modificado(uint32_t frame_destino);                                                                                                                                 // pongo modificado = 1 (solo en el destino, porque en el origen solo lei un valor);
+    encender_bit_modificado(frame_destino);                                                                                                                                // pongo modificado = 1 (solo en el destino, porque en el origen solo lei un valor);
     pthread_mutex_unlock(&mutex_espacio_memoria);
     pthread_mutex_unlock(&mutex_estructura_proceso_actual);
 }
@@ -934,8 +936,8 @@ void suspender_proceso(uint32_t pid)
                             marco->estado = false;
                             marco->nro_pagina = -1;
                         }
-                    }
                     fila->presencia = false; // cambio el bit de presencia de todas las paginas.
+                    }
                 }
             }
         }
