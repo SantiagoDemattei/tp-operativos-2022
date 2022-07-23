@@ -944,7 +944,7 @@ void suspender_proceso(uint32_t pid)
     }
     pthread_mutex_unlock(&mutex_variable_global);
     pthread_mutex_lock(&mutex_marcos);
-    for (int i = comienzo; i < comienzo + configuracion_memoria->marcos_por_proceso; i++)
+    for (int i = comienzo; i < comienzo + configuracion_memoria->marcos_por_proceso-1; i++)
     {
         uint32_t *elemento = list_get(marcos_totales, i);
         *elemento = 0; // los marcos que tenia asignados el proceso ahora estan libres
