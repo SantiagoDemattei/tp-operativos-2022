@@ -245,6 +245,9 @@ static void procesar_conexion(void *void_args)
             pthread_mutex_unlock(&mutex_logger_memoria);
             // busco el frame en la tabla de segundo nivel
             marco_presencia = obtener_frame(num_segundo_nivel, entrada_tabla_2do_nivel, nro_pagina);
+            t_vector_marcos *elemento = list_get(estructura_proceso_actual->vector_marcos, marco_presencia->marco)
+            elemento->estado = 1;
+            elemento->nro_pagina = nro_pagina;
             usleep(configuracion_memoria->retardo_memoria);
             send_frame(*cliente_socket, marco_presencia);
             free(cliente_socket);
@@ -448,6 +451,7 @@ t_marco_presencia *obtener_frame(uint32_t nro_tabla_2do_nivel, uint32_t entrada_
         // ESTO ES LO QUE LE DEVUELVO A LA CPU
         marco_presencia->marco = fila_2do_nivel->marco;
         marco_presencia->presencia = 0; // no significa q en la tabla de paginas sea 0
+        
         /*
         devolver una estructura:
             1) marco
@@ -747,7 +751,7 @@ uint32_t buscar_marcos_para_asignar()
 
 uint32_t buscar_marcos_para_asignar_local(t_list *lista)
 {
-    for (int i = 0; i < list_size(lista); i++)
+    for (int i = 0; i < list_size(lista) ; i++)
     {
         t_vector_marcos *elemento = list_get(lista, i);
         if (elemento->estado == 0)
@@ -944,7 +948,7 @@ void suspender_proceso(uint32_t pid)
     }
     pthread_mutex_unlock(&mutex_variable_global);
     pthread_mutex_lock(&mutex_marcos);
-    for (int i = comienzo; i < comienzo + configuracion_memoria->marcos_por_proceso-1; i++)
+    for (int i = comienzo; i < comienzo + configuracion_memoria->marcos_por_proceso; i++)
     {
         uint32_t *elemento = list_get(marcos_totales, i);
         *elemento = 0; // los marcos que tenia asignados el proceso ahora estan libres
